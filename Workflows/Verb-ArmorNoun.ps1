@@ -32,9 +32,9 @@ Function Verb-ArmorNoun
 		# {param details}
 		[String] $Param3,
 		# Armor server IP or FQDN
-		[String] $Server = $global:ArmorConnection.server,
+		[String] $Server = $global:ArmorConnection.Server,
 		# API version
-		[String] $ApiVersion = $global:ArmorConnection.apiVersion
+		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 
 	Begin
@@ -50,11 +50,11 @@ Function Verb-ArmorNoun
 		$function = $MyInvocation.MyCommand.Name
 
 		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
-		Write-Verbose -Message ( 'Gather API Data for {0}' -f $function )
+		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = ( Get-ArmorApiData -Endpoint $function ).$ApiVersion
 
-		Write-Verbose -Message ( 'Load API data for {0}' -f $resources.Function )
-		Write-Verbose -Message ( 'Description: {0}' -f $resources.Description )
+		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
+		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
 	}
 
 	Process
