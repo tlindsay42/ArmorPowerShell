@@ -55,7 +55,7 @@ Function Verb-ArmorNoun
 
 		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
 		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
-	}
+	} # End of Begin
 
 	Process
 	{
@@ -69,5 +69,5 @@ Function Verb-ArmorNoun
 		$result = Test-FilterObject -filter $resources.Filter -result $result
 
 		Return $result
-	}
-}
+	} # End of Process
+} # End of Function
