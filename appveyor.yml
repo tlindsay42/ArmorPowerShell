@@ -25,9 +25,9 @@ pull_requests:
 # The "secure:" value is the Appveyor encryption of the key
 environment:
   NuGetApiKey:
-    #secure: vPcmFNoIOhHHHo2LtrM0IKNcNwXYqmw2C6viMFZ8ea6BJ5SIXsAjJ0zUcKeT+w3p
+    secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
   GitHubKey:
-    #secure: aTZkOm9umaTs73LWnGpo/tyn0RN0Eq2oRs35iAxYZa6zL2qIW/yx5rouLNaG3uQp
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
 
 # Install NuGet to interact with the PowerShell Gallery
 install:
