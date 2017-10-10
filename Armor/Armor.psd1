@@ -20,7 +20,7 @@
 	'Author' = 'Troy Lindsay'
 
 	# Company or vendor of this module
-	'CompanyName' = 'Armor'
+	# 'CompanyName' = ''
 
 	# Copyright statement for this module
 	'Copyright' = '(c) 2017 Troy Lindsay. All rights reserved.'
