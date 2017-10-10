@@ -71,7 +71,7 @@ Function Connect-Armor
 		$function = $MyInvocation.MyCommand.Name
 
 		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
-		Write-Verbose -Message ( "Gather API Data for {0}." -f $function )
+		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = Get-ArmorApiData -Endpoint $function
 	}
 
@@ -93,7 +93,7 @@ Function Connect-Armor
 			# Load the version specific data from the resources array
 			$version = $resources[$versionNumber]
 
-			Write-Verbose -Message ( "Connecting to {0}." -f $version.Uri )
+			Write-Verbose -Message ( 'Connecting to {0}.' -f $version.Uri )
 
 			# Create the URI
 			$uri = 'https://{0}{1}' -f $Server, $version.Uri
