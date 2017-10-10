@@ -66,8 +66,6 @@ Function Connect-Armor
 
 	Begin
 	{
-		Unblock-SelfSignedCert
-
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
