@@ -124,7 +124,7 @@
 			'ProjectUri' = 'https://github.com/tlindsay42/ArmorPowerShell'
 
 			# A URL to an icon representing this module.
-			#'IconUri' = '' # Need to find link
+			'IconUri' = 'http://i.imgur.com/fbXjkCn.png'
 
 			# ReleaseNotes of this module
 			# 'ReleaseNotes' = ''
