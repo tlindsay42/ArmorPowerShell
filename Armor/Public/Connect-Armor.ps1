@@ -96,7 +96,7 @@ Function Connect-Armor
 			Write-Verbose -Message ( 'Connecting to {0}.' -f $version.Uri )
 
 			# Create the URI
-			$uri = 'https://{0}{1}' -f $Server, $version.Uri
+			$uri = 'https://{0}:{1}{2}' -f $Server, $Port, $version.Uri
 
 			# Set the Method
 			$method = $version.Method
@@ -179,14 +179,15 @@ Function Connect-Armor
 
 		Write-Verbose -Message 'Storing all connection details into $global:ArmorConnection'
 		$global:ArmorConnection = @{
-			id      = $content.id
-			userId  = $content.userId
-			token   = $content.token
-			server  = $Server
-			header  = $headers
-			time    = (Get-Date)
-			api     = $versionNumber
-			version = Get-ArmorSoftwareVersion -Server $Server
+			'Id'      = $content.Id
+			'UserId'  = $content.UserId
+			'Token'   = $content.Token
+			'Server'  = $Server
+			'Port'    = $Port
+			'Header'  = $headers
+			'Time'    = Get-Date
+			'Api'     = $versionNumber
+			'Version' = Get-ArmorSoftwareVersion -Server $Server
 		}
 
 		Write-Verbose -Message 'Adding connection details into the $global:ArmorConnections array'
