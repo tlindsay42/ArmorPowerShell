@@ -14,11 +14,30 @@ Function Test-ArmorConnection
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
+		.INPUTS
+		None
+			You cannot pipe objects to Test-ArmorConnection.
+
+		.OUTPUTS
+		None
+			Test-ArmorConnection has no output.
+
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
 
+		.LINK
+		https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+		.LINK
+		https://developer.armor.com/
+
 		.EXAMPLE
 		Test-ArmorConnection
+
+		Description
+		-----------
+
+		Validates that there is one Armor API connection token stored in '$global:ArmorConnection.Token'.
 	#>
 
 	Process
