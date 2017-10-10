@@ -4,19 +4,34 @@ Function Verb-ArmorNoun
 {
 	<#
 		.SYNOPSIS
-		{required: high level overview}
+		{ required: high level overview }
 
 		.DESCRIPTION
-		{required: more detailed description of the function's purpose}
+		{ required: more detailed description of the function's purpose }
 
 		.NOTES
-		Written by {required}
-		Twitter: {optional}
-		GitHub: {optional}
+		Written by { required }
+		Twitter: { optional }
+		GitHub: { optional }
 		Any other links you'd like here
+
+		.PARAMETER Parameter
+		{ required: description of the specified input parameter's purpose }
+
+		.INPUTS
+		{ required: .NET Framework object types that can be piped in and a description of the input objects }
+
+		.OUTPUTS
+		{ required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
+
+		.LINK
+		https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+		.LINK
+		https://developer.armor.com/
 
 		.EXAMPLE
 		{required: show one or more examples using the function}
@@ -25,15 +40,9 @@ Function Verb-ArmorNoun
 	[CmdletBinding()]
 	Param
 	(
-		# {param details}
 		[String] $Param1,
-		# {param details}
 		[String] $Param2,
-		# {param details}
 		[String] $Param3,
-		# Armor server IP or FQDN
-		[String] $Server = $global:ArmorConnection.Server,
-		# API version
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 
