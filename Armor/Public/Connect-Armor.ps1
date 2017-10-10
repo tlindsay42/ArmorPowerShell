@@ -102,22 +102,20 @@ Function Connect-Armor
 			$method = $version.Method
 
 			# For API version v1.0, create a body with the credentials
-			If ( $versionNumber -eq 'v1.0' )
+			Switch ( $versionNumber )
 			{
-				$body = @{
-					$version.Body[0] = $Credential.UserName
-					$version.Body[1] = $Credential.GetNetworkCredential().Password
-				} |
-					ConvertTo-Json
-			}
-			# For API version v1.1 or greater, use a standard Basic Auth Base64 encoded header with username:password
-			Else
-			{
-				$headers = @{
-					'Authorization' = 'Basic {0}' -f
-						[System.Convert]::ToBase64String(
-							[System.Text.Encoding]::UTF8.GetBytes( '{0}:{1}' -f $Credential.UserName, $Credential.GetNetworkCredential().Password )
-						)
+				'v1.0'
+				{
+					$body = @{
+						$version.Body[0] = $Credential.UserName
+						$version.Body[1] = $Credential.GetNetworkCredential().Password
+					} |
+						ConvertTo-Json
+				}
+
+				Default
+				{
+					Throw ( 'Unknown API version number: {0}.' -f $versionNumber )
 				}
 			}
 
@@ -125,11 +123,12 @@ Function Connect-Armor
 			Try
 			{
 				$request = Invoke-WebRequest -Uri $uri -Method $method -Body $body -Headers $headers
+
 				$content = $request.Content |
 					ConvertFrom-Json
 
 				# If we find a successful call code and also an OAuth code, we know the request was successful
-				# Anything else will trigger a Throw, which will cause the Catch to break the current loop and try another version
+				# Anything else will trigger a Throw, which will cause the Catch to break the current loop
 				If ( $request.StatusCode -eq $version.Success -and $content.Code -ne $null )
 				{
 					Write-Verbose -Message ( 'Successfully acquired code: {0}' -f $content.Code )
@@ -148,33 +147,9 @@ Function Connect-Armor
 		}
 
 		# Final throw for when all versions of the API have failed
-		If ( $content.token -eq $null )
+		If ( $content.Token -eq $null )
 		{
-			throw 'Unable to connect with any available API version. Check $Error for details or use the -Verbose parameter.'
-		}
-
-		# For API version v1.0, use a standard Basic Auth Base64 encoded header with token:$null
-		if ($versionNumber -eq 'v1.0')
-		{
-			Write-Verbose -Message 'Validate token and build Base64 Auth string'
-			$auth = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($($content.token)+':'))
-			$headers = @{
-			'Authorization' = "Basic $auth"
-			}
-		}
-		# For API version v1.1 or greater, use Bearer and token
-		else
-		{
-			$headers = @{
-			'Authorization' = "Bearer $($content.token)"
-			}
-		}
-
-		# v1.0 uses a different auth method compared to v1.1
-		# If we find v1.1 is in use, reset the version number to 'v1' to match the remainder of v1 calls
-		if ($versionNumber -match 'v1')
-		{
-			$versionNumber = 'v1'
+			Throw 'Unable to connect with any available API version. Check $Error for details or use the -Verbose parameter.'
 		}
 
 		Write-Verbose -Message 'Storing all connection details into $global:ArmorConnection'
@@ -190,11 +165,6 @@ Function Connect-Armor
 			'Version' = Get-ArmorSoftwareVersion -Server $Server
 		}
 
-		Write-Verbose -Message 'Adding connection details into the $global:ArmorConnections array'
-		[array]$global:ArmorConnections += $ArmorConnection
-
-		$global:ArmorConnection.GetEnumerator() | Where-Object -FilterScript {
-			$_.name -notmatch 'token'
-		}
+		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -notmatch 'Token' } )
 	} # End of Process
 } # End of Function
