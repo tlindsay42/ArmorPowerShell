@@ -17,8 +17,32 @@ Function Connect-Armor
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
+		.PARAMETER Credential
+		Your username and password stored in a PSCredential object for authenticating to the Armor API.
+
+		.PARAMETER Server
+		The Armor API server IP address or FQDN.  The default value is 'api.armor.com'.
+
+		.PARAMETER Port
+		The Armor API server port.  The default value is '443'.
+
+		.INPUTS
+		None
+			You cannot pipe objects to Connect-Armor.
+
+		.OUTPUTS
+		System.Collections.Hashtable
+			Get-ArmorApiData returns a hashtable with the data necessary to construct an API request based on the
+			specified cmdlet name.
+
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
+
+		.LINK
+		https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+		.LINK
+		https://developer.armor.com/
 
 		.EXAMPLE
 		Connect-Armor -Credential ( Get-Credential )
