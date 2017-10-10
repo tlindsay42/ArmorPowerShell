@@ -1,4 +1,5 @@
-#Requires -Version 3
+#Requires -Version 4
+#Requires -Module NetTCPIP
 
 Function Connect-Armor
 {
@@ -52,14 +53,15 @@ Function Connect-Armor
 	[CmdletBinding()]
 	Param
 	(
-		# The IP or FQDN of any available Armor node within the cluster
-		[Parameter( Mandatory = $false )]
+		[Parameter( Position = 0 )]
 		[ValidateNotNullorEmpty()]
+		[PSCredential] $Credential = $null,
+		[Parameter( Position = 1 )]
+		[ValidateScript( { Test-NetConnection -ComputerName $_ -InformationLevel Quiet } )]
 		[String] $Server = 'api.armor.com',
-		# Credentials with permission to connect to the Armor API
-		[Parameter( Mandatory = $false )]
-		[ValidateNotNullorEmpty()]
-		[PSCredential] $Credential
+		[Parameter( Position = 2 )]
+		[ValidateRange( 0, 65535 )]
+		[UInt16] $Port = 443
 	)
 
 	Begin
@@ -77,6 +79,15 @@ Function Connect-Armor
 
 	Process
 	{
+		If ( Test-NetConnection -ComputerName $Server -Port $Port -InformationLevel Quiet )
+		{
+			Write-Verbose -Message ( 'Verified TCP connection to {0}:{1}.' -f $Server, $Port )
+		}
+		Else
+		{
+			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Server, $Port )
+		}
+
 		$Credential = Test-ArmorCredential -Credential $Credential
 
 		ForEach ( $versionNumber In $resources.Keys | Sort-Object -Descending )
