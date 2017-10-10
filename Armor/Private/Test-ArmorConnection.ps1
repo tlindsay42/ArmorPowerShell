@@ -40,18 +40,31 @@ Function Test-ArmorConnection
 		Validates that there is one Armor API connection token stored in '$global:ArmorConnection.Token'.
 	#>
 
+	[CmdletBinding()]
+	Param()
+
 	Process
 	{
 		Write-Verbose -Message 'Validate that the Armor token exists.'
-		
-		If ( -not $global:ArmorConnection.Token )
+
+		If ( $global:ArmorConnection.Token.Count -eq 0 )
+		{
+			Write-Warning -Message 'Please connect an Armor API session before running this command.'
+		}
+		ElseIf ( $global:ArmorConnection.Token.Count -gt 1 )
 		{
 			Write-Warning -Message 'Please connect to only one Armor API session before running this command.'
+		}
+
+		If ( $global:ArmorConnection.Token.Count -ne 1 )
+		{
 			Throw 'A single connection with Connect-Armor is required.'
 		}
 
 		Write-Verbose -Message 'Found an Armor token for authentication.'
 
 		$script:Header = $global:ArmorConnection.Header
+
+		Return
 	} # End of Process
 } # End of Function
