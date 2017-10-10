@@ -66,8 +66,7 @@
 
 	# Functions to export from this module
 	'FunctionsToExport' = @(
-		'Connect-Armor',
-		'Disconnect-Armor'
+		'Connect-Armor'
 	)
 
 	# Cmdlets to export from this module
