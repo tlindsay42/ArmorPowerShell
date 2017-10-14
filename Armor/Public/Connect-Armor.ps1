@@ -102,7 +102,8 @@ Function Connect-Armor
 			Write-Verbose -Message ( 'Connecting to {0}.' -f $version.Uri )
 
 			# Create the URI
-			$uri = 'https://{0}:{1}{2}' -f $Server, $Port, $version.Uri
+			#$uri = 'https://{0}:{1}{2}' -f $Server, $Port, $version.Uri
+			$uri = New-UriString -Server $Server -Port $Port -Endpoint $version.Uri
 
 			# Set the Method
 			$method = $version.Method
