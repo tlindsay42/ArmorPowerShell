@@ -41,8 +41,12 @@ Function New-BodyString
 	[CmdletBinding()]
 	Param
 	(
-		[String[]] $BodyKeys,
-		[String[]] $Parameters
+		[Parameter( Position = 0 )]
+		[ValidateNotNullorEmpty()]
+		[String[]] $BodyKeys = $null,
+		[Parameter( Position = 1 )]
+		[ValidateNotNullorEmpty()]
+		[String[]] $Parameters = $null
 	)
 
 	If ( $resources.Method -eq 'Get' ) { Return $null }
