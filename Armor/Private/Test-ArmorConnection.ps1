@@ -40,6 +40,7 @@ Function Test-ArmorConnection
 		Validates that there is one Armor API connection token stored in '$global:ArmorConnection.Token'.
 	#>
 
+	[CmdletBinding()]
 	Param()
 
 	Process

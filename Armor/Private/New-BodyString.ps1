@@ -38,6 +38,7 @@ Function New-BodyString
 		{required: show one or more examples using the function}
 	#>
 
+	[CmdletBinding()]
 	Param
 	(
 		[String[]] $BodyKeys,

@@ -47,6 +47,7 @@ Function Get-ArmorApiData
 		This command gets all of the data necessary to construct an API request for the Connect-Armor cmdlet.
 	#>
 
+	[CmdletBinding()]
 	Param
 	(
 		[Parameter( Mandatory = $true, Position = 0, ValueFromPipeline = $true )]

@@ -62,6 +62,7 @@ Function New-UriString
 		[String] $Id = $null
 	)
 
+	[CmdletBinding()]
 	Process
 	{
 		Write-Verbose -Message 'Build the URI.'
