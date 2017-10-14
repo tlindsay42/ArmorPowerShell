@@ -46,6 +46,7 @@ Function New-UriString
 		This will return 'https://api.armor.com:443/auth/authorize'.
 	#>
 
+	[CmdletBinding()]
 	Param
 	(
 		[Parameter( Position = 0 )]
@@ -62,7 +63,6 @@ Function New-UriString
 		[String] $Id = $null
 	)
 
-	[CmdletBinding()]
 	Process
 	{
 		Write-Verbose -Message 'Build the URI.'
