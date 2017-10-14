@@ -73,6 +73,9 @@ Function Connect-Armor
 		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = Get-ArmorApiData -Endpoint $function
+
+		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
+		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
 	}
 
 	Process
