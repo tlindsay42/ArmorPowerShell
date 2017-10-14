@@ -145,6 +145,7 @@ Function Connect-Armor
 				{
 					Write-Verbose -Message ( 'Successfully acquired code: {0}' -f $content.Code )
 
+					$token = New-ArmorApiToken -Code $content.Code
 
 					Break
 				}
@@ -161,7 +162,7 @@ Function Connect-Armor
 		}
 
 		# Final throw for when all versions of the API have failed
-		If ( $content.Token -eq $null )
+		If ( $token -eq $null )
 		{
 			Throw 'Unable to connect with any available API version. Check $Error for details or use the -Verbose parameter.'
 		}
