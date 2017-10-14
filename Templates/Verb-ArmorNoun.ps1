@@ -74,7 +74,7 @@ Function Verb-ArmorNoun
 
 		$result = Submit-Request -Uri $uri -Header $header -Method $resources.Method -Body $body
 
-		$result = Test-ReturnFormat -ApiVersion $ApiVersion -Result $result -Location $resources.Result
+		$result = Format-Result -ApiVersion $ApiVersion -Result $result -Location $resources.Result
 
 		$result = Test-FilterObject -Filter $resources.Filter -Result $result
 
