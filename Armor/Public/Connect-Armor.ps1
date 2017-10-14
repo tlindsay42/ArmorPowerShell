@@ -180,7 +180,7 @@ Function Connect-Armor
 			'Header' = $headers
 			'SessionStartTime' = $now
 			'SessionExpirationTime' = $now.AddSeconds( $token.Expires_In )
-			'Api' = $versionNumber
+			'ApiVersion' = $versionNumber
 		}
 
 		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -notmatch 'Token' } )
