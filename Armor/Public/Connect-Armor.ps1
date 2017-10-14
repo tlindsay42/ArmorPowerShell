@@ -118,6 +118,11 @@ Function Connect-Armor
 						$version.Body.Password = $Credential.GetNetworkCredential().Password
 					} |
 						ConvertTo-Json
+
+					$headers = @{ 
+						'Content-Type' = 'application/json'
+						'Accept' = 'application/json'
+				}
 				}
 
 				Default
