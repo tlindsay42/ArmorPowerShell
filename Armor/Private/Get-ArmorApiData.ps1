@@ -47,7 +47,6 @@ Function Get-ArmorApiData
 		This command gets all of the data necessary to construct an API request for the Connect-Armor cmdlet.
 	#>
 
-	[CmdletBinding()]
 	Param
 	(
 		[Parameter( Mandatory = $true, Position = 0, ValueFromPipeline = $true )]
@@ -75,6 +74,21 @@ Function Get-ArmorApiData
 					'URI'         = '/auth/authorize'
 					'Method'      = 'Post'
 					'Body'        = @( 'username', 'password' )
+					'Query'       = ''
+					'Result'      = ''
+					'Filter'      = ''
+					'Success'     = '200'
+				}
+			}
+			'Get-ArmorApiToken' = @{
+				'v1.0' = @{
+					'Description' = 'Creates an authentication token from an authorization code'
+					'URI'         = '/auth/token'
+					'Method'      = 'Post'
+					'Body'        = @{ 
+						'code' = 'code'
+						'grant_type' = 'authorization_code'
+					}
 					'Query'       = ''
 					'Result'      = ''
 					'Filter'      = ''
