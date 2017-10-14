@@ -1,5 +1,3 @@
-#requires -Version 3
-
 Function Verb-ArmorNoun
 {
 	<#
@@ -69,13 +67,16 @@ Function Verb-ArmorNoun
 	Process
 	{
 		$uri = New-UriString -Server $Server -Endpoint $resources.Uri -id $id
-		$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values) -Uri $uri
+
+		$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
 		$body = New-BodyString -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
 		$result = Submit-Request -Uri $uri -Header $header -Method $resources.Method -Body $body
+
 		$result = Test-ReturnFormat -ApiVersion $ApiVersion -Result $result -Location $resources.Result
-		$result = Test-FilterObject -filter $resources.Filter -result $result
+
+		$result = Test-FilterObject -Filter $resources.Filter -Result $result
 
 		Return $result
 	} # End of Process
