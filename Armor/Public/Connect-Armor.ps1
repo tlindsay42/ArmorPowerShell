@@ -122,7 +122,7 @@ Function Connect-Armor
 					$headers = @{ 
 						'Content-Type' = 'application/json'
 						'Accept' = 'application/json'
-				}
+					}
 				}
 
 				Default
@@ -168,16 +168,19 @@ Function Connect-Armor
 		}
 
 		Write-Verbose -Message 'Storing all connection details into $global:ArmorConnection'
+
+		$now = Get-Date
+
 		$global:ArmorConnection = @{
-			'Id'      = $content.Id
-			'UserId'  = $content.UserId
-			'Token'   = $content.Token
-			'Server'  = $Server
-			'Port'    = $Port
-			'Header'  = $headers
-			'Time'    = Get-Date
-			'Api'     = $versionNumber
-			'Version' = Get-ArmorSoftwareVersion -Server $Server
+			'Id' = $token.Id_Token
+			'UserName' = $Credential.UserName
+			'Token' = $token.Access_Token
+			'Server' = $Server
+			'Port' = $Port
+			'Header' = $headers
+			'SessionStartTime' = $now
+			'SessionExpirationTime' = $now.AddSeconds( $token.Expires_In )
+			'Api' = $versionNumber
 		}
 
 		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -notmatch 'Token' } )
