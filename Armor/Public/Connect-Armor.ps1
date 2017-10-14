@@ -114,8 +114,8 @@ Function Connect-Armor
 				'v1.0'
 				{
 					$body = @{
-						$version.Body[0] = $Credential.UserName
-						$version.Body[1] = $Credential.GetNetworkCredential().Password
+						$version.Body.UserName = $Credential.UserName
+						$version.Body.Password = $Credential.GetNetworkCredential().Password
 					} |
 						ConvertTo-Json
 				}
