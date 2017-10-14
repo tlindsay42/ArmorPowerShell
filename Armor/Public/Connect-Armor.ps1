@@ -141,7 +141,7 @@ Function Connect-Armor
 
 				# If we find a successful call code and also an OAuth code, we know the request was successful
 				# Anything else will trigger a Throw, which will cause the Catch to break the current loop
-				If ( $request.StatusCode -eq $version.Success -and $content.Code -ne $null )
+				If ( $request.StatusCode -eq $version.Success -and $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
 				{
 					Write-Verbose -Message ( 'Successfully acquired code: {0}' -f $content.Code )
 
