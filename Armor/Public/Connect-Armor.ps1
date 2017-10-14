@@ -89,6 +89,11 @@ Function Connect-Armor
 			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Server, $Port )
 		}
 
+		While ( $Credential -eq $null )
+		{
+			$Credential = Get-Credential
+		}
+
 		ForEach ( $versionNumber In $resources.Keys | Sort-Object -Descending )
 		{
 			# Load the version specific data from the resources array
