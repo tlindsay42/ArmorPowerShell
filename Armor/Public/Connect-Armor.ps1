@@ -86,8 +86,6 @@ Function Connect-Armor
 			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Server, $Port )
 		}
 
-		$Credential = Test-ArmorCredential -Credential $Credential
-
 		ForEach ( $versionNumber In $resources.Keys | Sort-Object -Descending )
 		{
 			# Load the version specific data from the resources array
@@ -132,6 +130,8 @@ Function Connect-Armor
 				If ( $request.StatusCode -eq $version.Success -and $content.Code -ne $null )
 				{
 					Write-Verbose -Message ( 'Successfully acquired code: {0}' -f $content.Code )
+
+
 					Break
 				}
 				Else
