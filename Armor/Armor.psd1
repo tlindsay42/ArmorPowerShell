@@ -11,7 +11,7 @@
 	'RootModule' = 'Armor.psm1'
 
 	# Version number of this module.
-	'ModuleVersion' = '0.0.0.0'
+	'ModuleVersion' = '1.0.0.0'
 
 	# ID used to uniquely identify this module
 	'GUID' = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -26,7 +26,7 @@
 	'Copyright' = '(c) 2017 Troy Lindsay. All rights reserved.'
 
 	# Description of the functionality provided by this module
-	'Description' = 'This is a community project that provides a Windows PowerShell module for managing and monitoring Armor''s Complete and Anywhere product lines.'
+	'Description' = 'This is a community project that provides a Windows PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.'
 
 	# Minimum version of the Windows PowerShell engine required by this module
 	'PowerShellVersion' = '4.0'
