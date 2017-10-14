@@ -14,7 +14,7 @@ Function Connect-Armor
 		Note that you can pass a username and password or an entire set of credentials.
 
 		.NOTES
-		Written by Troy Lindsay
+		Troy Lindsay
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 

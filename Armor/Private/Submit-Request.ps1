@@ -8,7 +8,7 @@ Function Submit-Request
 		{ required: more detailed description of the function's purpose }
 
 		.NOTES
-		Written by Troy Lindsay with lots of help from Chris Wahl's Rubrik 
+		Troy Lindsay
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 

@@ -8,7 +8,7 @@ Function Get-ArmorApiData
 		This command gets all of the data necessary to construct an API request based on the specified cmdlet name.
 
 		.NOTES
-		Written by Troy Lindsay
+		Troy Lindsay
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 

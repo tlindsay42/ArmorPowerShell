@@ -10,7 +10,7 @@ Function Test-ArmorConnection
 		Otherwise, the token is loaded into the script's $Header variable.
 
 		.NOTES
-		Written by Troy Lindsay
+		Troy Lindsay
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 

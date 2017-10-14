@@ -8,7 +8,7 @@ Function New-UriString
 		{ required: more detailed description of the function's purpose }
 
 		.NOTES
-		Written by Troy Lindsay
+		Troy Lindsay
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 

@@ -8,7 +8,7 @@ Function Verb-ArmorNoun
 		{ required: more detailed description of the function's purpose }
 
 		.NOTES
-		Written by { required }
+		Name { required }
 		Twitter: { optional }
 		GitHub: { optional }
 		Any other links you'd like here
