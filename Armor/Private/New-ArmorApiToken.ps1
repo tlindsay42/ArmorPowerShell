@@ -18,6 +18,9 @@ Function New-ArmorApiToken
 		.PARAMETER GrantType
 		The type of permission.
 
+		.PARAMETER ApiVersion
+		The API version.
+
 		.INPUTS
 		System.String
 			New-ArmorApiToken accepts the temporary authorization code via the pipeline.
@@ -47,7 +50,10 @@ Function New-ArmorApiToken
 		[String] $Code = $null,
 		[Parameter( Position = 1 )]
 		[ValidateSet( 'authorization_code' )]
-		[String] $GrantType = 'authorization_code'
+		[String] $GrantType = 'authorization_code',
+		[Parameter( Position = 2 )]
+		[ValidateSet( 'v1.0' )]
+		[String] $ApiVersion = 'v1.0'
 	)
 
 	Begin
@@ -55,17 +61,15 @@ Function New-ArmorApiToken
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
-
-		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
-		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		$resources = Get-ArmorApiData -Endpoint $function
-
-		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
-		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
 	} # End of Begin
 
 	Process
 	{
+		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
+		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
+
+		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+
 		$uri = New-UriString -Endpoint $resources.Uri
 
 		$body = New-BodyString -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
