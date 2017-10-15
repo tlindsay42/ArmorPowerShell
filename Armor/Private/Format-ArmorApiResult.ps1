@@ -1,8 +1,8 @@
-Function Format-Result
+Function Format-ArmorApiResult
 {
 	<#
 		.SYNOPSIS
-		The Format-Result function is used to remove any parent variables surrounding return data, such as encapsulating results in a "data" key.
+		The Format-ArmorApiResult function is used to remove any parent variables surrounding return data, such as encapsulating results in a "data" key.
 
 		.DESCRIPTION
 		{ required: more detailed description of the function's purpose }
@@ -20,7 +20,7 @@ Function Format-Result
 
 		.INPUTS
 		None
-			You cannot pipe objects to Format-Result.
+			You cannot pipe objects to Format-ArmorApiResult.
 
 		.OUTPUTS
 		{ required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
