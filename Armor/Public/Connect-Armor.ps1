@@ -178,6 +178,6 @@ Function Connect-Armor
 			'ApiVersion' = $ApiVersion
 		}
 
-		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -notmatch 'Token' } )
+		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne  'Token' } )
 	} # End of Process
 } # End of Function
