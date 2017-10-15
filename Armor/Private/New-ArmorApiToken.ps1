@@ -78,7 +78,7 @@ Function New-ArmorApiToken
 
 		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
 
-		$result = Test-FilterObject -Filter $resources.Filter -Result $result
+		$result = Select-ArmorApiResult -Result $result -Filter $resources.Filter
 
 		Return $result
 	} # End of Process
