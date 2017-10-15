@@ -93,7 +93,7 @@ Function Get-ArmorApiData
 					'Success'     = '200'
 				}
 			}
-			'Get-ArmorApiToken' = @{
+			'New-ArmorApiToken' = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
 					'URI'         = '/auth/token'
