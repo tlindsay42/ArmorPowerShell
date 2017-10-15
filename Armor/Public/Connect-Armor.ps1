@@ -158,7 +158,7 @@ Function Connect-Armor
 		# Final throw for when all versions of the API have failed
 		If ( $token -eq $null )
 		{
-			Throw 'Unable to connect with any available API version. Check $Error for details or use the -Verbose parameter.'
+			Throw 'Unable to acquire authorization token. Check $Error for details or use the -Verbose parameter.'
 		}
 
 		Write-Verbose -Message 'Storing all connection details into $global:ArmorConnection'
