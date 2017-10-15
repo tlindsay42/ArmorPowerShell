@@ -55,17 +55,15 @@ Function Verb-ArmorNoun
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
-
-		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
-		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		$resources = ( Get-ArmorApiData -Endpoint $function ).$ApiVersion
-
-		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
-		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
 	} # End of Begin
 
 	Process
 	{
+		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
+		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
+		
+		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+
 		$uri = New-UriString -Server $Server -Endpoint $resources.Uri -id $id
 
 		$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
