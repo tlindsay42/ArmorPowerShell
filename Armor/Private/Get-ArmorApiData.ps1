@@ -73,7 +73,7 @@ Function Get-ArmorApiData
 					'Method'      = 'Method to use against the endpoint'
 					'Body'        = 'Parameters to use in the request body'
 					'Query'       = 'Parameters to use in the URI query'
-					'Result'      = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
+					'Location'    = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
 					'Filter'      = 'If the result content needs to be filtered based on key names, express them here'
 					'Success'     = 'The expected HTTP status code for a successful call'
 				}
@@ -88,7 +88,7 @@ Function Get-ArmorApiData
 						'password' = 'password'
 					}
 					'Query'       = ''
-					'Result'      = ''
+					'Location'    = ''
 					'Filter'      = ''
 					'Success'     = '200'
 				}
@@ -103,7 +103,7 @@ Function Get-ArmorApiData
 						'grant_type' = 'authorization_code'
 					}
 					'Query'       = ''
-					'Result'      = ''
+					'Location'    = ''
 					'Filter'      = ''
 					'Success'     = '200'
 				}
