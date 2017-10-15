@@ -66,46 +66,46 @@ Function Get-ArmorApiData
 		$return = $null
 
 		$api = @{
-			'Example' = @{
+			'Example'           = @{
 				'v1.0' = @{
 					'Description' = 'Details about the API endpoint'
-					'URI' = 'The URI expressed as /endpoint'
-					'Method' = 'Method to use against the endpoint'
-					'Body' = 'Parameters to use in the request body'
-					'Query' = 'Parameters to use in the URI query'
-					'Result' = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
-					'Filter' = 'If the result content needs to be filtered based on key names, express them here'
-					'Success' = 'The expected HTTP status code for a successful call'
+					'URI'         = 'The URI expressed as /endpoint'
+					'Method'      = 'Method to use against the endpoint'
+					'Body'        = 'Parameters to use in the request body'
+					'Query'       = 'Parameters to use in the URI query'
+					'Result'      = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
+					'Filter'      = 'If the result content needs to be filtered based on key names, express them here'
+					'Success'     = 'The expected HTTP status code for a successful call'
 				}
 			}
-			'Connect-Armor' = @{
+			'Connect-Armor'     = @{
 				'v1.0' = @{
 					'Description' = 'Create a new login session'
-					'URI' = '/auth/authorize'
-					'Method' = 'Post'
-					'Body' = @{ 
-						'username' = 'username' 
+					'URI'         = '/auth/authorize'
+					'Method'      = 'Post'
+					'Body'        = @{
+						'username' = 'username'
 						'password' = 'password'
 					}
-						'Query' = ''
-						'Result' = ''
-						'Filter' = ''
-						'Success' = '200'
-					}
+					'Query'       = ''
+					'Result'      = ''
+					'Filter'      = ''
+					'Success'     = '200'
 				}
+			}
 			'Get-ArmorApiToken' = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
-					'URI' = '/auth/token'
-					'Method' = 'Post'
-					'Body' = @{ 
-						'code' = 'GUID'
+					'URI'         = '/auth/token'
+					'Method'      = 'Post'
+					'Body'        = @{
+						'code'       = 'GUID'
 						'grant_type' = 'authorization_code'
 					}
-					'Query' = ''
-					'Result' = ''
-					'Filter' = ''
-					'Success' = '200'
+					'Query'       = ''
+					'Result'      = ''
+					'Filter'      = ''
+					'Success'     = '200'
 				}
 			}
 		} # End of $api
