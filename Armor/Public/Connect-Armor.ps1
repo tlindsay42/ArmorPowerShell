@@ -61,7 +61,10 @@ Function Connect-Armor
 		[String] $Server = 'api.armor.com',
 		[Parameter( Position = 2 )]
 		[ValidateRange( 0, 65535 )]
-		[UInt16] $Port = 443
+		[UInt16] $Port = 443,
+		[Parameter( Position = 3 )]
+		[ValidateSet( 'v1.0' )]
+		[String] $ApiVersion = 'v1.0'
 	)
 
 	Begin
@@ -69,17 +72,15 @@ Function Connect-Armor
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
-
-		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
-		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		$resources = Get-ArmorApiData -Endpoint $function
-
-		Write-Verbose -Message ( 'Load API data for {0}.' -f $resources.Function )
-		Write-Verbose -Message ( 'Description: {0}.' -f $resources.Description )
 	}
 
 	Process
 	{
+		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
+		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
+
+		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+
 		If ( Test-NetConnection -ComputerName $Server -Port $Port -InformationLevel Quiet )
 		{
 			Write-Verbose -Message ( 'Verified TCP connection to {0}:{1}.' -f $Server, $Port )
@@ -94,71 +95,65 @@ Function Connect-Armor
 			$Credential = Get-Credential
 		}
 
-		ForEach ( $versionNumber In $resources.Keys | Sort-Object -Descending )
+		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
+
+		# Create the URI
+		#$uri = 'https://{0}:{1}{2}' -f $Server, $Port, $resources.Uri
+		$uri = New-UriString -Server $Server -Port $Port -Endpoint $resources.Uri
+
+		# Set the Method
+		$method = $resources.Method
+
+		# For API version v1.0, create a body with the credentials
+		Switch ( $ApiVersion )
 		{
-			# Load the version specific data from the resources array
-			$version = $resources[$versionNumber]
-
-			Write-Verbose -Message ( 'Connecting to {0}.' -f $version.Uri )
-
-			# Create the URI
-			#$uri = 'https://{0}:{1}{2}' -f $Server, $Port, $version.Uri
-			$uri = New-UriString -Server $Server -Port $Port -Endpoint $version.Uri
-
-			# Set the Method
-			$method = $version.Method
-
-			# For API version v1.0, create a body with the credentials
-			Switch ( $versionNumber )
+			'v1.0'
 			{
-				'v1.0'
-				{
-					$body = @{
-						$version.Body.UserName = $Credential.UserName
-						$version.Body.Password = $Credential.GetNetworkCredential().Password
-					} |
-						ConvertTo-Json
+				$body = @{
+					$resources.Body.UserName = $Credential.UserName
+					$resources.Body.Password = $Credential.GetNetworkCredential().Password
+				} |
+					ConvertTo-Json
 
-					$headers = @{ 
-						'Content-Type' = 'application/json'
-						'Accept' = 'application/json'
-					}
-				}
-
-				Default
-				{
-					Throw ( 'Unknown API version number: {0}.' -f $versionNumber )
+				$headers = @{ 
+					'Content-Type' = 'application/json'
+					'Accept' = 'application/json'
 				}
 			}
 
-			Write-Verbose -Message 'Submitting the request'
-			Try
+			Default
 			{
-				$request = Invoke-WebRequest -Uri $uri -Method $method -Body $body -Headers $headers
-
-				$content = $request.Content |
-					ConvertFrom-Json
-
-				# If we find a successful call code and also an OAuth code, we know the request was successful
-				# Anything else will trigger a Throw, which will cause the Catch to break the current loop
-				If ( $request.StatusCode -eq $version.Success -and $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
-				{
-					Write-Verbose -Message ( 'Successfully acquired code: {0}' -f $content.Code )
-
-					$token = New-ArmorApiToken -Code $content.Code
-
-					Break
-				}
-				Else
-				{
-					Throw 'Unable to connect to the Armor API.'
-				}
+				Throw ( 'Unknown API version number: {0}.' -f $ApiVersion )
 			}
-			Catch
+		}
+
+		Write-Verbose -Message 'Submitting the request'
+		Try
+		{
+			$request = Invoke-WebRequest -Uri $uri -Method $method -Body $body -Headers $headers
+
+			$content = $request.Content |
+				ConvertFrom-Json
+
+			# If we find a successful call code and also an OAuth code, we know the request was successful
+			# Anything else will trigger a Throw, which will cause the Catch to break the current loop
+			If ( $request.StatusCode -eq $resources.Success -and $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
 			{
-				Write-Verbose -Message $_
-				Write-Verbose -Message $_.Exception.InnerException.Message
+				Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
+
+				$token = New-ArmorApiToken -Code $content.Code
+
+				Break
 			}
+			Else
+			{
+				Throw ( 'HTTP {0}: Failed to obtain temporary authorization code.' -f $request.StatusCode )
+			}
+		}
+		Catch
+		{
+			Write-Verbose -Message $_
+			Write-Verbose -Message $_.Exception.InnerException.Message
 		}
 
 		# Final throw for when all versions of the API have failed
@@ -180,7 +175,7 @@ Function Connect-Armor
 			'Header' = $headers
 			'SessionStartTime' = $now
 			'SessionExpirationTime' = $now.AddSeconds( $token.Expires_In )
-			'ApiVersion' = $versionNumber
+			'ApiVersion' = $ApiVersion
 		}
 
 		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -notmatch 'Token' } )
