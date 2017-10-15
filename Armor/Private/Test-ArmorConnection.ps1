@@ -63,7 +63,7 @@ Function Test-ArmorConnection
 
 		Write-Verbose -Message 'Found an Armor token for authentication.'
 
-		$script:Header = $global:ArmorConnection.Header
+		$script:Headers = $global:ArmorConnection.Headers
 
 		Return
 	} # End of Process
