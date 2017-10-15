@@ -12,9 +12,6 @@ Function Format-Result
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
-		.PARAMETER ApiVersion
-		The API version.
-
 		.PARAMETER Result
 		The unformatted API response content.
 
@@ -45,11 +42,11 @@ Function Format-Result
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[String] $ApiVersion,
+		[ValidateNotNullorEmpty()]
+		[String] $Result = $null,
 		[Parameter( Position = 1 )]
-		[String] $Result,
-		[Parameter( Position = 2 )]
-		[String] $Location
+		[ValidateNotNullorEmpty()]
+		[String] $Location = $null
 	)
 
 	Process
