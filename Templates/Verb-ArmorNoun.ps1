@@ -68,7 +68,7 @@ Function Verb-ArmorNoun
 
 		$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$body = New-BodyString -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
 		$result = Submit-Request -Uri $uri -Header $header -Method $resources.Method -Body $body
 

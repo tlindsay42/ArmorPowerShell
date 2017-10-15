@@ -1,4 +1,4 @@
-Function New-BodyString
+Function Format-ArmorApiJsonRequestBody
 {
 	<#
 		.SYNOPSIS
@@ -20,7 +20,7 @@ Function New-BodyString
 
 		.INPUTS
 		None
-			You cannot pipe objects to New-BodyString.
+			You cannot pipe objects to Format-ArmorApiJsonRequestBody.
 
 		.OUTPUTS
 		System.String
@@ -46,8 +46,26 @@ Function New-BodyString
 		[String[]] $BodyKeys = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNullorEmpty()]
-		[String[]] $Parameters = $null
+		$Parameters = $null
 	)
+
+	Begin
+	{
+		$excludedParameters = @(
+			'ApiVersion',
+			'Verbose', 
+			'Debug',
+			'ErrorAction',
+			'WarningAction',
+			'InformationAction',
+			'ErrorVariable',
+			'WarningVariable',
+			'InformationVariable',
+			'OutVariable',
+			'OutBuffer',
+			'PipelineVariable'
+		)
+	} # End of Begin
 
 	Process
 	{
@@ -56,7 +74,7 @@ Function New-BodyString
 		# Inventory all invoked parameters
 		$setParameters = $PSCmdlet.MyInvocation.BoundParameters
 
-		Write-Verbose -Message ( 'List of set parameters: {0}.' -f $setParameters.GetEnumerator() )
+		Write-Verbose -Message ( 'List of set parameters: {0}.' -f ( $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } ) -join ', ' ) )
 
 		Write-Verbose -Message 'Build the body parameters.'
 
@@ -64,21 +82,23 @@ Function New-BodyString
 
 		# Walk through all of the available body options presented by the endpoint
 		# Note: Keys are used to search in case the value changes in the future across different API versions
-		ForEach ( $body in $BodyKeys )
+		ForEach ( $bodyKey in $BodyKeys )
 		{
-			Write-Verbose -Message ( 'Adding {0}...' -f $body )
+			Write-Verbose -Message ( 'Adding {0}...' -f $bodyKey )
+
+			$bodyKeyNoUnderscore = $bodyKey -replace '_', ''
 
 			# Array Object
-			If ( $resources.Body.$body.GetType().BaseType.Name -eq 'Array' )
+			If ( $resources.Body.$bodyKey.GetType().BaseType.Name -eq 'Array' )
 			{
 				$arraystring = @{}
 
-				ForEach ( $arrayItem In $resources.Body.$body.Keys )
+				ForEach ( $arrayItem In $resources.Body.$bodyKey.Keys )
 				{
 					# Walk through all of the parameters defined in the function
 					# Both the parameter name and parameter alias are used to match against a body option
 					# It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
-					ForEach ( $parameter In $Parameters )
+					ForEach ( $parameter In $Parameters.Where( { $_.Name -notin $excludedParameters } ) )
 					{
 						# If the parameter name or alias matches the body option name, build a body string
 						If ( $parameter.Name -eq $arrayItem -or $parameter.Aliases -eq $arrayItem)
@@ -97,7 +117,7 @@ Function New-BodyString
 					}
 				}
 
-				$bodyString.Add( $body, @( $arraystring ) )
+				$bodyString.Add( $bodyKey, @( $arraystring ) )
 			}
 			# Non-Array Object
 			Else
@@ -105,21 +125,44 @@ Function New-BodyString
 				# Walk through all of the parameters defined in the function
 				# Both the parameter name and parameter alias are used to match against a body option
 				# It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
-				ForEach ( $parameter In $parameters )
+				ForEach ( $parameter In $Parameters.Where( { $_.Name -notin $excludedParameters } ) )
 				{
 					# If the parameter name or alias matches the body option name, build a body string
-					If ( ( $parameter.Name -eq $body -or $parameter.Aliases -eq $body ) -and $setParameters.ContainsKey( $parameter.Name ) )
+					If ( 
+						( $parameter.Name -eq $bodyKey -or $parameter.Aliases -contains $bodyKey ) -and 
+						$parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
+					)
 					{
 						# Switch variable types
 						If ( ( Get-Variable -Name $parameter.Name ).Value.GetType().Name -eq 'SwitchParameter' )
 						{
-							$bodyString.Add( $body, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
+							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
 						}
 						# All other variable types
 						ElseIf ( ( Get-Variable -Name $parameter.Name ).Value -ne $null -and ( Get-Variable -Name $parameter.Name ).Value.Length -gt 0 )
 						{
-							$bodyString.Add( $body, ( Get-Variable -Name $parameter.Name ).Value )
+							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
 						}
+					}
+					ElseIf ( 
+						( $parameter.Name -eq $bodyKeyNoUnderscore -or $parameter.Aliases -contains $bodyKeyNoUnderscore ) -and 
+						$parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
+					)
+					{
+						# Switch variable types
+						If ( ( Get-Variable -Name $parameter.Name ).Value.GetType().Name -eq 'SwitchParameter' )
+						{
+							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
+						}
+						# All other variable types
+						ElseIf ( ( Get-Variable -Name $parameter.Name ).Value -ne $null -and ( Get-Variable -Name $parameter.Name ).Value.Length -gt 0 )
+						{
+							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
+						}
+					}
+					Else
+					{
+						Write-Verbose -Message ( 'Parameter not specified in Get-ArmorApiData Body keys: {0}' -f $parameter.Name )
 					}
 				}
 			}

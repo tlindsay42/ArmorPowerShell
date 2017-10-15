@@ -72,7 +72,7 @@ Function New-ArmorApiToken
 
 		$uri = New-UriString -Endpoint $resources.Uri
 
-		$body = New-BodyString -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
 		$result = Submit-Request -Uri $uri -Header $header -Method $resources.Method -Body $body
 
