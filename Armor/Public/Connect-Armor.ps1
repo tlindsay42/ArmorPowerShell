@@ -57,7 +57,7 @@ Function Connect-Armor
 		[ValidateNotNullorEmpty()]
 		[PSCredential] $Credential = $null,
 		[Parameter( Position = 1 )]
-		[ValidateScript( { Test-NetConnection -ComputerName $_ -InformationLevel Quiet } )]
+		[ValidateNotNullorEmpty()]
 		[String] $Server = 'api.armor.com',
 		[Parameter( Position = 2 )]
 		[ValidateRange( 0, 65535 )]
