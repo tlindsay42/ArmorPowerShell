@@ -172,7 +172,7 @@ Function Connect-Armor
 			'Token' = $token.Access_Token
 			'Server' = $Server
 			'Port' = $Port
-			'Header' = $headers
+			'Headers' = $headers
 			'SessionStartTime' = $now
 			'SessionExpirationTime' = $now.AddSeconds( $token.Expires_In )
 			'ApiVersion' = $ApiVersion
