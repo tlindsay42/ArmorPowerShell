@@ -1,8 +1,8 @@
-Function New-UriString
+Function New-ArmorApiUriString
 {
 	<#
 		.SYNOPSIS
-		The New-URIString function is used to build a valid URI.
+		The New-ArmorApiUriString function is used to build a valid URI.
 
 		.DESCRIPTION
 		{ required: more detailed description of the function's purpose }
@@ -26,11 +26,11 @@ Function New-UriString
 
 		.INPUTS
 		None
-			You cannot pipe objects to New-UriString.
+			You cannot pipe objects to New-ArmorApiUriString.
 
 		.OUTPUTS
 		System.String
-			New-UriString returns the formatted URI string to use for the Armor API request.
+			New-ArmorApiUriString returns the formatted URI string to use for the Armor API request.
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -42,7 +42,7 @@ Function New-UriString
 		https://developer.armor.com/
 
 		.EXAMPLE
-		New-UriString -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
+		New-ArmorApiUriString -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
 		This will return 'https://api.armor.com:443/auth/authorize'.
 	#>
 
