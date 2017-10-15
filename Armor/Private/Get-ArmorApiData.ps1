@@ -16,9 +16,12 @@ Function Get-ArmorApiData
 		Specifies the cmdlet name to lookup the API data for.  The default value is 'Example', which provides example
 		API data for each of the fields for reference.
 
+		.PARAMETER ApiVersion
+		The API version.
+
 		.INPUTS
-		System.String
-			Get-ArmorApiData accepts the cmdlet endpoint string via the pipeline.
+		None
+			You cannot pipe objects to Get-ArmorApiData.
 
 		.OUTPUTS
 		System.Collections.Hashtable
@@ -50,12 +53,18 @@ Function Get-ArmorApiData
 	[CmdletBinding()]
 	Param
 	(
-		[Parameter( Mandatory = $true, Position = 0, ValueFromPipeline = $true )]
-		[String] $Endpoint = 'Example'
+		[Parameter( Position = 0 )]
+		[ValidateNotNullorEmpty()]
+		[String] $Endpoint = 'Example',
+		[Parameter( Position = 1 )]
+		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
+		[String] $ApiVersion = $null
 	)
 
 	Process
 	{
+		$return = $null
+
 		$api = @{
 			'Example' = @{
 				'v1.0' = @{
@@ -101,6 +110,19 @@ Function Get-ArmorApiData
 			}
 		} # End of $api
 
-		Return $api.$Endpoint
+		If ( $api.$Endpoint -eq $null )
+		{
+			Throw ( 'Invalid endpoint: {0}' -f $Endpoint )
+		}
+		ElseIf ( $api.$Endpoint.$ApiVersion -eq $null )
+		{
+			Throw ( 'Invalid endpoint version: {0}' -f $ApiVersion )
+		}
+		Else
+		{
+			$return = $api.$Endpoint.$ApiVersion
+		}
+
+		Return $return
 	} # End of Process
 } # End of Function
