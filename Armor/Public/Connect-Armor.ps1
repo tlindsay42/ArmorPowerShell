@@ -129,7 +129,7 @@ Function Connect-Armor
 		Write-Verbose -Message 'Submitting the request'
 		Try
 		{
-			$request = Invoke-WebRequest -Uri $uri -Method $method -Body $body -Headers $headers
+			$request = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $method -Body $body
 
 			$content = $request.Content |
 				ConvertFrom-Json
