@@ -70,7 +70,7 @@ Function Verb-ArmorNoun
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$result = Submit-Request -Uri $uri -Header $header -Method $resources.Method -Body $body
+		$result = Submit-ArmorApiRequest -Uri $uri -Header $headers -Method $resources.Method -Body $body
 
 		$result = Format-Result -Result $result -Location $resources.Result
 

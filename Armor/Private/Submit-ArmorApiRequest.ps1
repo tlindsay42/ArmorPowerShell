@@ -1,4 +1,4 @@
-Function Submit-Request
+Function Submit-ArmorApiRequest
 {
 	<#
 		.SYNOPSIS
@@ -26,7 +26,7 @@ Function Submit-Request
 
 		.INPUTS
 		None
-			You cannot pipe objects to Submit-Request.
+			You cannot pipe objects to Submit-ArmorApiRequest.
 
 		.OUTPUTS
 		Microsoft.PowerShell.Commands.HtmlWebResponseObject
@@ -52,7 +52,7 @@ Function Submit-Request
 		[String] $Uri = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
-		[Hashtable] $Headers = @{},
+		[Hashtable] $Headers = $null,
 		[Parameter( Position = 2 )]
 		[ValidateNotNullorEmpty()]
 		[String] $Method = $null,
