@@ -64,7 +64,7 @@ Function Select-ArmorApiResult
 	{
 		$return = $null
 
-		Write-Verbose -Message 'Filter the results'
+		Write-Verbose -Message 'Filter the results.'
 
 		ForEach ( $filterKey In $Filter.Keys )
 		{
