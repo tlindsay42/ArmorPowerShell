@@ -93,26 +93,36 @@ Function Connect-Armor
 			$Credential = Get-Credential
 		}
 
+		$global:ArmorConnection = @{
+			'Id' = $null
+			'UserName' = $Credential.UserName
+			'Token' = $null
+			'Server' = $Server
+			'Port' = $Port
+			'Headers' = @{ 
+				'Content-Type' = 'application/json'
+				'Accept' = 'application/json'
+			}
+			'SessionStartTime' = $null
+			'SessionExpirationTime' = $null
+			'ApiVersion' = $ApiVersion
+		}
+
 		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
 
 		# Create the URI
-		$uri = New-ArmorApiUriString -Server $Server -Port $Port -Endpoint $resources.Uri
+		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri
 
 		# Set the Method
 		$method = $resources.Method
 
-		$headers = @{ 
-			'Content-Type' = 'application/json'
-			'Accept' = 'application/json'
-		}
-
 		# For API version v1.0, create a body with the credentials
-		Switch ( $ApiVersion )
+		Switch ( $global:ArmorConnection.ApiVersion )
 		{
 			'v1.0'
 			{
 				$body = @{
-					$resources.Body.UserName = $Credential.UserName
+					$resources.Body.UserName = $global:ArmorConnection.UserName
 					$resources.Body.Password = $Credential.GetNetworkCredential().Password
 				} |
 					ConvertTo-Json
@@ -120,13 +130,13 @@ Function Connect-Armor
 
 			Default
 			{
-				Throw ( 'Unknown API version number: {0}.' -f $ApiVersion )
+				Throw ( 'Unknown API version number: {0}.' -f $global:ArmorConnection.ApiVersion )
 			}
 		}
 
 		Try
 		{
-			$content = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $method -Body $body
+			$content = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $method -Body $body
 
 			# If we find a temporary authorization code and a success message, we know the request was successful
 			# Anything else will trigger a Throw, which will cause the Catch to break the current loop
@@ -157,17 +167,11 @@ Function Connect-Armor
 
 		$now = Get-Date
 
-		$global:ArmorConnection = @{
-			'Id' = $token.Id_Token
-			'UserName' = $Credential.UserName
-			'Token' = $token.Access_Token
-			'Server' = $Server
-			'Port' = $Port
-			'Headers' = $headers
-			'SessionStartTime' = $now
-			'SessionExpirationTime' = $now.AddSeconds( $token.Expires_In )
-			'ApiVersion' = $ApiVersion
-		}
+		$global:ArmorConnection.Id = $token.Id_Token
+		$global:ArmorConnection.Token = $token.Access_Token
+		$global:ArmorConnection.SessionStartTime = $now
+		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
+		$global:ArmorConnection.Headers.Authorization = '{0} {1}' -f $token.Token_Type, $token.Access_Token
 
 		Return $global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
 	} # End of Process
