@@ -62,7 +62,7 @@ Function Select-ArmorApiResult
 
 	Process
 	{
-		$return = $null
+		$return = $Result
 
 		Write-Verbose -Message 'Filter the results.'
 
