@@ -19,11 +19,10 @@ Function Format-ArmorApiResult
 		The key/value pair that contains the name of the key holding the response content's data.
 
 		.INPUTS
-		None
-			You cannot pipe objects to Format-ArmorApiResult.
+		System.Management.Automation.PSCustomObject
 
 		.OUTPUTS
-		{ required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
+		System.Management.Automation.PSCustomObject
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -41,11 +40,11 @@ Function Format-ArmorApiResult
 	[CmdletBinding()]
 	Param
 	(
-		[Parameter( Position = 0 )]
-		[ValidateNotNullorEmpty()]
-		[String] $Result = $null,
+		[Parameter( Position = 0, ValueFromPipeline = $true )]
+		[ValidateNotNull()]
+		[PSCustomObject] $Result = $null,
 		[Parameter( Position = 1 )]
-		[ValidateNotNullorEmpty()]
+		[ValidateNotNull()]
 		[String] $Location = $null
 	)
 
