@@ -63,6 +63,9 @@ Function Submit-ArmorApiRequest
 	
 	Begin
 	{
+		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
+		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
+
 		$function = $MyInvocation.MyCommand.Name
 
 		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
