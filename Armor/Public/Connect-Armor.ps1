@@ -1,6 +1,3 @@
-#Requires -Version 4
-#Requires -Module NetTCPIP
-
 Function Connect-Armor
 {
 	<#
@@ -8,10 +5,9 @@ Function Connect-Armor
 		Connects to Armor and retrieves a token value for authentication
 
 		.DESCRIPTION
-		The Connect-Armor function is used to connect to the Armor RESTful API and supply credentials to the /login method.
-		Armor then returns a unique token to represent the user's credentials for subsequent calls.
-		Acquire a token before running other Armor cmdlets.
-		Note that you can pass a username and password or an entire set of credentials.
+		The Connect-Armor function is used to connect to the Armor RESTful API and supply credentials to the method.
+		Armor then returns a unique, temporary authorization code, which must then be converted into a token to 
+		represent the user's credentials for subsequent calls.
 
 		.NOTES
 		Troy Lindsay
@@ -33,8 +29,6 @@ Function Connect-Armor
 
 		.OUTPUTS
 		System.Collections.Hashtable
-			Get-ArmorApiData returns a hashtable with the data necessary to construct an API request based on the
-			specified cmdlet name.
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -47,7 +41,6 @@ Function Connect-Armor
 
 		.EXAMPLE
 		Connect-Armor -Credential ( Get-Credential )
-		You can submit an entire set of credentials using the -Credentials parameter.
 	#>
 
 	[CmdletBinding()]
@@ -69,14 +62,19 @@ Function Connect-Armor
 
 	Begin
 	{
+		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
+		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
+
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 	}
 
 	Process
 	{
-		# Retrieve all of the URI, method, body, query, result, filter, and success details for the API endpoint
+		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
@@ -103,6 +101,11 @@ Function Connect-Armor
 		# Set the Method
 		$method = $resources.Method
 
+		$headers = @{ 
+			'Content-Type' = 'application/json'
+			'Accept' = 'application/json'
+		}
+
 		# For API version v1.0, create a body with the credentials
 		Switch ( $ApiVersion )
 		{
@@ -113,11 +116,6 @@ Function Connect-Armor
 					$resources.Body.Password = $Credential.GetNetworkCredential().Password
 				} |
 					ConvertTo-Json
-
-				$headers = @{ 
-					'Content-Type' = 'application/json'
-					'Accept' = 'application/json'
-				}
 			}
 
 			Default
@@ -126,27 +124,21 @@ Function Connect-Armor
 			}
 		}
 
-		Write-Verbose -Message 'Submitting the request'
 		Try
 		{
-			$request = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $method -Body $body
+			$content = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $method -Body $body
 
-			$content = $request.Content |
-				ConvertFrom-Json
-
-			# If we find a successful call code and also an OAuth code, we know the request was successful
+			# If we find a temporary authorization code and a success message, we know the request was successful
 			# Anything else will trigger a Throw, which will cause the Catch to break the current loop
-			If ( $request.StatusCode -eq $resources.Success -and $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
+			If ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
 			{
 				Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
 
-				$token = New-ArmorApiToken -Code $content.Code
-
-				Break
+				$token = New-ArmorApiToken -Code $content.Code -GrantType 'authorization_code'
 			}
 			Else
 			{
-				Throw ( 'HTTP {0}: Failed to obtain temporary authorization code.' -f $request.StatusCode )
+				Throw 'Failed to obtain temporary authorization code.'
 			}
 		}
 		Catch
@@ -161,7 +153,7 @@ Function Connect-Armor
 			Throw 'Unable to acquire authorization token. Check $Error for details or use the -Verbose parameter.'
 		}
 
-		Write-Verbose -Message 'Storing all connection details into $global:ArmorConnection'
+		Write-Verbose -Message 'Storing all connection details in $global:ArmorConnection.'
 
 		$now = Get-Date
 
@@ -177,6 +169,11 @@ Function Connect-Armor
 			'ApiVersion' = $ApiVersion
 		}
 
-		$global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne  'Token' } )
+		Return $global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
 	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+	}
 } # End of Function
