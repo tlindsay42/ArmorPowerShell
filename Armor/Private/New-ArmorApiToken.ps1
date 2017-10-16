@@ -73,11 +73,11 @@ Function New-ArmorApiToken
 
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Endpoint $resources.Uri
+		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$result = Submit-ArmorApiRequest -Uri $uri -Header $headers -Method $resources.Method -Body $body
+		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
 		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
 
