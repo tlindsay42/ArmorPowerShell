@@ -20,11 +20,10 @@ Function Select-ArmorApiResult
 		Each key is the parameter name without the "$" and each value corresponds to the response data's key.
 
 		.INPUTS
-		None
-			You cannot pipe objects to Select-ArmorApiResult.
+		System.Management.Automation.PSCustomObject
 
 		.OUTPUTS
-		System.Collections.Hashtable
+		System.Management.Automation.PSCustomObject
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -42,9 +41,9 @@ Function Select-ArmorApiResult
 	[CmdletBinding()]
 	Param
 	(
-		[Parameter( Position = 0 )]
-		[ValidateNotNullorEmpty()]
-		[String] $Result = $null,
+		[Parameter( Position = 0, ValueFromPipeline = $true )]
+		[ValidateNotNull()]
+		[PSCustomObject] $Result = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
 		[Hashtable] $Filter = $null
