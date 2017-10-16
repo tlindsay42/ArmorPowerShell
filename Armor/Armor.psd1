@@ -66,7 +66,7 @@ FormatsToProcess = @()
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Connect-Armor'')
+FunctionsToExport = @('Connect-Armor')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()
@@ -92,7 +92,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Armor''),'Defense','Security','Complete','Anywhere','Secure','Cloud','Protect','Protection','Compliance','Compliant','PCI','DSS','HIPAA','Performance','Hosting','Hosted','Infrastructure','IaaS','SaaS','Amazon','AWS','Microsoft','Azure'
+        Tags = @('Armor','Defense','Security','Complete','Anywhere','Secure','Cloud','Protect','Protection','Compliance','Compliant','PCI','DSS','HIPAA','Performance','Hosting','Hosted','Infrastructure','IaaS','SaaS','Amazon','AWS','Microsoft','Azure')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE'
