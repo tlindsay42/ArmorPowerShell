@@ -23,11 +23,9 @@ Function New-ArmorApiToken
 
 		.INPUTS
 		System.String
-			New-ArmorApiToken accepts the temporary authorization code via the pipeline.
 
 		.OUTPUTS
-		System.Collections.Hashtable
-			New-ArmorApiToken returns a hashtable with the contents of the response body of the token request.
+		System.Management.Automation.PSCustomObject
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
