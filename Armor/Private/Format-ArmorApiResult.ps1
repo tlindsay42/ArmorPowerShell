@@ -60,7 +60,7 @@ Function Format-ArmorApiResult
 
 	Process
 	{
-		$return = $null
+		$return = $Result
 
 		Write-Verbose -Message 'Formatting return value.'
 
@@ -69,11 +69,6 @@ Function Format-ArmorApiResult
 			# The $Location check assumes that not all endpoints will require finding (and removing) a parent key
 			# If one does exist, this extracts the value so that the $Result data is consistent across API versions
 			$return = $Result.$Location
-		}
-		Else
-		{
-			# When no $Location is found, return the original $Result
-			$return = $Result
 		}
 
 		Return $return
