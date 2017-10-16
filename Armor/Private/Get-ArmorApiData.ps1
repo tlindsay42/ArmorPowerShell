@@ -82,7 +82,7 @@ Function Get-ArmorApiData
 					'Query'       = 'Parameters to use in the URI query'
 					'Location'    = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
 					'Filter'      = 'If the result content needs to be filtered based on key names, express them here'
-					'Success'     = 'The expected HTTP status code for a successful call'
+					'SuccessCode' = 'The expected HTTP status code for a successful call'
 				}
 			}
 			'Connect-Armor'     = @{
@@ -97,7 +97,7 @@ Function Get-ArmorApiData
 					'Query'       = ''
 					'Location'    = ''
 					'Filter'      = ''
-					'Success'     = '200'
+					'SuccessCode' = '200'
 				}
 			}
 			'New-ArmorApiToken' = @{
@@ -112,7 +112,7 @@ Function Get-ArmorApiData
 					'Query'       = ''
 					'Location'    = ''
 					'Filter'      = ''
-					'Success'     = '200'
+					'SuccessCode' = '200'
 				}
 			}
 		} # End of $api
