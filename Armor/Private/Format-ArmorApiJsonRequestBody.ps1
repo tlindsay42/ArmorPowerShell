@@ -172,7 +172,7 @@ Function Format-ArmorApiJsonRequestBody
 			}
 		}
 
-		# Store the results into a JSON string
+		# Store the results in a JSON string
 		$bodyString = ConvertTo-Json -InputObject $bodyString
 
 		Write-Verbose -Message ( 'Body = {0}' -f $bodyString )
