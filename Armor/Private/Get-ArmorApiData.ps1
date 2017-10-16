@@ -118,6 +118,20 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
+			'Update-ArmorApiToken' = @{
+				'v1.0' = @{
+					'Description' = 'Reissues an authentication token if requested before session expiration'
+					'URI'         = '/auth/token/reissue'
+					'Method'      = 'Post'
+					'Body'        = @{
+						'token'       = 'GUID'
+					}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 		} # End of $api
 
 		If ( $api.$Endpoint -eq $null )
