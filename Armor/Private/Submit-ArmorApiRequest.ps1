@@ -61,6 +61,13 @@ Function Submit-ArmorApiRequest
 		[String] $Body = $null
 	)
 	
+	Begin
+	{
+		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+	} # End of Begin
+
 	Process
 	{
 		$result = $null
@@ -101,4 +108,9 @@ Function Submit-ArmorApiRequest
 
 		Return $result
 	}
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
 }
+} # End of Function

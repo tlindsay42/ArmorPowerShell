@@ -43,6 +43,13 @@ Function Test-ArmorConnection
 	[CmdletBinding()]
 	Param()
 
+	Begin
+	{
+		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+	} # End of Begin
+
 	Process
 	{
 		Write-Verbose -Message 'Validate that the Armor token exists.'
@@ -67,4 +74,9 @@ Function Test-ArmorConnection
 
 		Return
 	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+	} # End of End
 } # End of Function

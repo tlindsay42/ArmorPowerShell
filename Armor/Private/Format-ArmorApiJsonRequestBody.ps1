@@ -51,6 +51,10 @@ Function Format-ArmorApiJsonRequestBody
 
 	Begin
 	{
+		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+
 		$excludedParameters = @(
 			'ApiVersion',
 			'Verbose', 
@@ -174,5 +178,10 @@ Function Format-ArmorApiJsonRequestBody
 		Write-Verbose -Message ( 'Body = {0}' -f $bodyString )
 
 		Return $bodyString
-	}
-}
+	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+	} # End of End
+} # End of Function

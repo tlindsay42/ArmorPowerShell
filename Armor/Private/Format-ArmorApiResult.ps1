@@ -49,6 +49,13 @@ Function Format-ArmorApiResult
 		[String] $Location = $null
 	)
 
+	Begin
+	{
+		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+	} # End of Begin
+
 	Process
 	{
 		$return = $null
@@ -68,5 +75,10 @@ Function Format-ArmorApiResult
 		}
 
 		Return $return
-	}
-}
+	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+	} # End of End
+} # End of Function

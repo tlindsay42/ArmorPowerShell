@@ -55,6 +55,8 @@ Function Verb-ArmorNoun
 		# API data references the name of the function
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose  -Message ( 'Beginning {0}.' -f $function )
 	} # End of Begin
 
 	Process
@@ -78,4 +80,9 @@ Function Verb-ArmorNoun
 
 		Return $result
 	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+	} # End of End
 } # End of Function

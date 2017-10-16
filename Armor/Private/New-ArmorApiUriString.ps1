@@ -63,6 +63,13 @@ Function New-ArmorApiUriString
 		[String] $Id = $null
 	)
 
+	Begin
+	{
+		$function = $MyInvocation.MyCommand.Name
+
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+	} # End of Begin
+
 	Process
 	{
 		Write-Verbose -Message 'Build the URI.'
@@ -88,5 +95,10 @@ Function New-ArmorApiUriString
 		Write-Verbose -Message ( 'URI = {0}' -f $return )
 			
 		Return $return
+	} # End of Process
+
+	End
+	{
+		Write-Verbose -Message ( 'Ending {0}.' -f $function )
 	}
-}
+} # End of Function
