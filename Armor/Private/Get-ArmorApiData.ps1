@@ -97,9 +97,9 @@ Function Get-ArmorApiData
 						'username' = 'username'
 						'password' = 'password'
 					}
-					'Query'       = ''
+					'Query'       = @{}
 					'Location'    = ''
-					'Filter'      = ''
+					'Filter'      = @{}
 					'SuccessCode' = '200'
 				}
 			}
@@ -112,9 +112,9 @@ Function Get-ArmorApiData
 						'code'       = 'GUID'
 						'grant_type' = 'authorization_code'
 					}
-					'Query'       = ''
+					'Query'       = @{}
 					'Location'    = ''
-					'Filter'      = ''
+					'Filter'      = @{}
 					'SuccessCode' = '200'
 				}
 			}
