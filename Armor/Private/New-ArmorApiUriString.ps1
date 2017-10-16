@@ -13,10 +13,10 @@ Function New-ArmorApiUriString
 		GitHub: tlindsay42
 
 		.PARAMETER Server
-		The Armor API server IP address or FQDN.  The default value is 'api.armor.com'.
+		The Armor API server IP address or FQDN.  The default value is $global:ArmorConnection.Server.
 
 		.PARAMETER Port
-		The Armor API server port.  The default value is '443'.
+		The Armor API server port.  The default value is $global:ArmorConnection.Port.
 
 		.PARAMETER Endpoint
 		The endpoint path.
@@ -30,7 +30,6 @@ Function New-ArmorApiUriString
 
 		.OUTPUTS
 		System.String
-			New-ArmorApiUriString returns the formatted URI string to use for the Armor API request.
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -51,10 +50,10 @@ Function New-ArmorApiUriString
 	(
 		[Parameter( Position = 0 )]
 		[ValidateScript( { Test-NetConnection -ComputerName $_ -InformationLevel Quiet } )]
-		[String] $Server = 'api.armor.com',
+		[String] $Server = $global:ArmorConnection.Server,
 		[Parameter( Position = 1 )]
 		[ValidateRange( 0, 65535 )]
-		[UInt16] $Port = 443,
+		[UInt16] $Port = $global:ArmorConnection.Port,
 		[Parameter( Position = 2 )]
 		[ValidateNotNullorEmpty()]
 		[String] $Endpoint = '/',
