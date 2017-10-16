@@ -36,7 +36,7 @@ Else
 		( Get-Content -Path $manifestPath ) -replace 'PSGet_Armor', 'Armor' |
 			ForEach-Object -Process { $_ -replace 'NewManifest', 'Armor' } |
 			ForEach-Object -Process { $_ -replace 'FunctionsToExport = ', 'FunctionsToExport = @(' } |
-			ForEach-Object -Process { $_ -replace ( "{0}'" -f $functionList[-1] ), ( "{0}'')" -f $functionList[-1] ) } |
+			ForEach-Object -Process { $_ -replace ( "{0}'" -f $functionList[-1] ), ( "{0}')" -f $functionList[-1] ) } |
 			Set-Content -Path $manifestPath
 	}
 	Catch
