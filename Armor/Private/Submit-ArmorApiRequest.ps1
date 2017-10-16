@@ -60,7 +60,7 @@ Function Submit-ArmorApiRequest
 		[ValidateNotNullorEmpty()]
 		[String] $Body = $null
 	)
-	
+
 	Begin
 	{
 		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
@@ -73,7 +73,7 @@ Function Submit-ArmorApiRequest
 
 	Process
 	{
-		$result = $null
+		$request = $null
 
 		If ( $PSCmdlet.ShouldProcess( $id, $resources.Description ) )
 		{
@@ -81,8 +81,19 @@ Function Submit-ArmorApiRequest
 			{
 				Write-Verbose -Message 'Submitting the request.'
 
-				# Because some calls require more than the default payload limit of 2MB, ExpandPayload dynamically adjusts the payload limit
-				$result = ExpandPayload -Response ( Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body )
+				$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body 
+				
+				If ( $request.StatusCode -eq $resources.SuccessCode )
+				{
+					# Because some calls require more than the default payload limit of 2MB, ExpandPayload dynamically adjusts the payload limit
+					$content = $request.Content |
+						ConvertFrom-JsonXL
+
+				}
+				Else
+				{
+					Throw $request.StatusDescription
+				}
 			}
 			Catch
 			{
@@ -109,11 +120,11 @@ Function Submit-ArmorApiRequest
 			}
 		}
 
-		Return $result
-	}
+		Return $content
+	} # End of Process
 
 	End
 	{
 		Write-Verbose -Message ( 'Ending {0}.' -f $function )
-}
+	} # End of End
 } # End of Function
