@@ -57,7 +57,7 @@ Function Format-ArmorApiJsonRequestBody
 
 		$excludedParameters = @(
 			'ApiVersion',
-			'Verbose', 
+			'Verbose',
 			'Debug',
 			'ErrorAction',
 			'WarningAction',
@@ -132,8 +132,8 @@ Function Format-ArmorApiJsonRequestBody
 				ForEach ( $parameter In $Parameters.Where( { $_.Name -notin $excludedParameters } ) )
 				{
 					# If the parameter name or alias matches the body option name, build a body string
-					If ( 
-						( $parameter.Name -eq $bodyKey -or $parameter.Aliases -contains $bodyKey ) -and 
+					If (
+						( $parameter.Name -eq $bodyKey -or $parameter.Aliases -contains $bodyKey ) -and
 						$parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 					)
 					{
@@ -148,8 +148,8 @@ Function Format-ArmorApiJsonRequestBody
 							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
 						}
 					}
-					ElseIf ( 
-						( $parameter.Name -eq $bodyKeyNoUnderscore -or $parameter.Aliases -contains $bodyKeyNoUnderscore ) -and 
+					ElseIf (
+						( $parameter.Name -eq $bodyKeyNoUnderscore -or $parameter.Aliases -contains $bodyKeyNoUnderscore ) -and
 						$parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 					)
 					{
@@ -163,10 +163,6 @@ Function Format-ArmorApiJsonRequestBody
 						{
 							$bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
 						}
-					}
-					Else
-					{
-						Write-Verbose -Message ( 'Parameter not specified in Get-ArmorApiData Body keys: {0}' -f $parameter.Name )
 					}
 				}
 			}
