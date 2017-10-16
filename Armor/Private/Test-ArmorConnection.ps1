@@ -73,6 +73,13 @@ Function Test-ArmorConnection
 
 		Write-Verbose -Message 'Found an Armor token for authentication.'
 
+		If ( ( ( Get-Date ) - $global:ArmorConnection.SessionExpirationTime ).Minutes -lt 29 )
+		{
+			Write-Verbose -Message 'Renewing session token.'
+
+			Update-ArmorApiToken -Token $global:ArmorConnection.Token
+		}
+
 		$script:Headers = $global:ArmorConnection.Headers
 
 		Return
