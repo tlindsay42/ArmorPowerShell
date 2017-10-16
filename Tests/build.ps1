@@ -52,8 +52,9 @@ Else
 	# Publish the new version to the PowerShell Gallery
 	Try
 	{
-		Publish-Module -Path '.\Armor' -NuGetApiKey $env:NuGetApiKey -ErrorAction 'Stop'
-		Write-Host -Object ( 'Armor PowerShell Module version {0} published to the PowerShell Gallery.' -f $newVersion ) -ForegroundColor 'Cyan'
+		#Publish-Module -Path '.\Armor' -NuGetApiKey $env:NuGetApiKey -ErrorAction 'Stop'
+		#Write-Host -Object ( 'Armor PowerShell Module version {0} published to the PowerShell Gallery.' -f $newVersion ) -ForegroundColor 'Cyan'
+		Write-Host -Object ( 'Armor PowerShell Module version {0} would be published to the PowerShell Gallery if enabled.' -f $newVersion ) -ForegroundColor 'Cyan'
 	}
 	Catch
 	{
