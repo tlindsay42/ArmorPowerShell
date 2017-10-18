@@ -80,8 +80,18 @@ Function Submit-ArmorApiRequest
 			{
 				Write-Verbose -Message 'Submitting the request.'
 
-				$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body 
-				
+				If ( $Method -eq 'Get' )
+				{
+					$getHeaders = $Headers.Clone()
+					$getHeaders.Remove( 'Content-Type' )
+
+					$request = Invoke-WebRequest -Uri $Uri -Headers $getHeaders -Method $Method
+				}
+				Else
+				{
+					$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
+				}
+
 				If ( $request.StatusCode -eq $resources.SuccessCode )
 				{
 					# Because some calls require more than the default payload limit of 2MB, ExpandPayload dynamically adjusts the payload limit
