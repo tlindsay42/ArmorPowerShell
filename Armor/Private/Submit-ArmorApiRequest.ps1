@@ -54,7 +54,7 @@ Function Submit-ArmorApiRequest
 		[ValidateNotNull()]
 		[Hashtable] $Headers = $global:ArmorConnection.Headers,
 		[Parameter( Position = 2 )]
-		[ValidateNotNullorEmpty()]
+		[ValidateSet( 'Default', 'Delete', 'Get', 'Head', 'Merge', 'Options', 'Patch', 'Post', 'Put', 'Trace' )]
 		[String] $Method = $null,
 		[Parameter( Position = 3 )]
 		[String] $Body = $null
