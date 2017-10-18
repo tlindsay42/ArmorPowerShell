@@ -103,6 +103,18 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
+			'Get-ArmorVm'          = @{
+				'v1.0' = @{
+					'Description' = 'Displays a list of virtual machines in your account'
+					'URI'         = '/vms'
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 			'New-ArmorApiToken' = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
