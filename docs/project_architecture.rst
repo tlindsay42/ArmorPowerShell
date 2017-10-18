@@ -3,7 +3,7 @@ Project Architecture
 
 This page contains details on the artifacts found within the repository.
 
-* docs: Module documentation that is automatically published to ReadTheDocs.io
+* docs: Module documentation
 * templates: Templates for creating your own functions
 * tests: Pester unit tests used to validate the public functions
 * workflows: Sample workflows for more complex automation tasks
