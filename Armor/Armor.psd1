@@ -24,7 +24,7 @@ GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
 Author = 'Troy Lindsay'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'Armor'
 
 # Copyright statement for this module
 Copyright = '(c) 2017 Troy Lindsay. All rights reserved.'
