@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.12'
+ModuleVersion = '1.0.0.13'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -48,7 +48,7 @@ PowerShellVersion = '4.0'
 ProcessorArchitecture = 'None'
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @()
+# RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
 RequiredAssemblies = @()
