@@ -77,7 +77,8 @@ Function Test-ArmorConnection
 		{
 			Write-Verbose -Message 'Renewing session token.'
 
-			Update-ArmorApiToken -Token $global:ArmorConnection.Token
+			Update-ArmorApiToken -Token $global:ArmorConnection.Token |
+				Out-Null
 		}
 
 		$script:Headers = $global:ArmorConnection.Headers
