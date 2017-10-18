@@ -69,8 +69,7 @@ RequiredModules = @('NetTCPIP')
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-# Functions to export from this module
-FunctionsToExport = @('Connect-Armor')
+FunctionsToExport = 'Connect-Armor', 'Get-ArmorUser', 'Get-ArmorVm'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -118,7 +117,7 @@ PrivateData = @{
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+HelpInfoURI = 'https://github.com/tlindsay42/ArmorPowerShell'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
