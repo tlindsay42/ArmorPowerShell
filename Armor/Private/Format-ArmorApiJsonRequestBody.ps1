@@ -42,7 +42,6 @@ Function Format-ArmorApiJsonRequestBody
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[ValidateNotNullorEmpty()]
 		[String[]] $BodyKeys = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNullorEmpty()]
