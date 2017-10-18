@@ -61,7 +61,7 @@ Else
 
 	# Update the docs
 	Write-Host -Object 'Building new documentation.' -ForegroundColor 'Yellow'
-	. .\Docs\BuildDocs.ps1
+	. .\docs\BuildDocs.ps1
 	Write-Host -Object ''
 
 	# Publish the new version to the PowerShell Gallery
