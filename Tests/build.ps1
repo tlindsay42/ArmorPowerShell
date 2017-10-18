@@ -31,27 +31,28 @@ Else
 		# Update the manifest with the new version value and fix the weird string replace bug
 		$functionList = ( Get-ChildItem -Path .\Armor\Public ).BaseName
 
-		Update-ModuleManifest -Path $manifestPath -ModuleVersion $newVersion -FunctionsToExport $functionList
+		Update-ModuleManifest `
+			-Path $manifestPath `
+			-RootModule 'Armor.psm1' `
+			-ModuleVersion $newVersion `
+			-Guid 'a4cb0e3e-b1fe-4da8-9c75-d445e5f96cfb' `
+			-Author 'Troy Lindsay' `
+			-CompanyName 'Troy Lindsay' `
+			-Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
+			-Description 'This is a community project that provides a Windows PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.' `
+			-PowerShellVersion '4.0' `
+			-ProcessorArchitecture 'None' `
+			-RequiredModules @( 'NetTCPIP' ) `
+			-FunctionsToExport $functionList `
+			-VariablesToExport global:ArmorConnection `
+			-Tags 'Armor', 'Defense', 'Security', 'Complete', 'Anywhere', 'Secure', 'Cloud', 'Protect', 'Protection', 'Compliance', 'Compliant', 'PCI', 'DSS', 'HIPAA', 'Performance', 'Hosting', 'Hosted', 'Infrastructure', 'IaaS', 'SaaS', 'Amazon', 'AWS', 'Microsoft', 'Azure' `
+			-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
+			-IconUri 'http://i.imgur.com/fbXjkCn.png' `
+			-HelpInfoUri 'https://github.com/tlindsay42/ArmorPowerShell'
 
-		<#
 		( Get-Content -Path $manifestPath ) -replace 'PSGet_Armor', 'Armor' |
 			ForEach-Object -Process { $_ -replace 'NewManifest', 'Armor' } |
-			ForEach-Object -Process { $_ -replace 'FunctionsToExport = ', 'FunctionsToExport = @(' } |
-			ForEach-Object -Process { $_ -replace ( "{0}'" -f $functionList[-1] ), ( "{0}')" -f $functionList[-1] ) } |
 			Set-Content -Path $manifestPath
-		#>
-
-		( Get-Content -Path $manifestPath ) -replace 'PSGet_Armor', 'Armor' |
-			Set-Content -Path $manifestPath
-
-		( Get-Content -Path $manifestPath ) -replace 'NewManifest', 'Armor' |
-			Set-Content -Path $manifestPath
-
-		( Get-Content -Path $manifestPath ) -replace 'FunctionsToExport = ', 'FunctionsToExport = @(' |
-			Set-Content -Path $manifestPath -Force
-
-		( Get-Content -Path $manifestPath ) -replace "$($functionList[-1])'", "$($functionList[-1])')" |
-			Set-Content -Path $manifestPath -Force
 	}
 	Catch
 	{
@@ -101,6 +102,7 @@ Else
 	{
 		# Sad panda; it broke
 		Write-Warning -Message ( 'Publishing update {0} to GitHub failed.' -f $newVersion )
-		throw $_
+
+		Throw $_
 	}
 }
