@@ -88,9 +88,10 @@ Function Connect-Armor
 			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Server, $Port )
 		}
 
-		While ( $Credential -eq $null )
+		If ( $Credential -eq $null )
 		{
-			$Credential = Get-Credential
+			Try { $Credential = Get-Credential }
+			Catch { Throw 'Failed to set credentials.' }
 		}
 
 		$global:ArmorConnection = @{
