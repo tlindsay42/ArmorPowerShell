@@ -49,7 +49,7 @@ Function New-ArmorApiUriString
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[ValidateScript( { Test-NetConnection -ComputerName $_ -InformationLevel Quiet } )]
+		[ValidateNotNullOrEmpty()]
 		[String] $Server = $global:ArmorConnection.Server,
 		[Parameter( Position = 1 )]
 		[ValidateRange( 0, 65535 )]
