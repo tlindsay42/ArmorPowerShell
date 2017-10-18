@@ -115,7 +115,19 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'New-ArmorApiToken' = @{
+			'Get-ArmorUser'        = @{
+				'v1.0' = @{
+					'Description' = 'Retrieves a list of users in your account'
+					'URI'         = '/users'
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
+			'New-ArmorApiToken'    = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
 					'URI'         = '/auth/token'
