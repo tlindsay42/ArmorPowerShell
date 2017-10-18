@@ -35,7 +35,7 @@ Else
 			-Path $manifestPath `
 			-RootModule 'Armor.psm1' `
 			-ModuleVersion $newVersion `
-			-Guid 'a4cb0e3e-b1fe-4da8-9c75-d445e5f96cfb' `
+			-Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
 			-Author 'Troy Lindsay' `
 			-CompanyName 'Troy Lindsay' `
 			-Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
