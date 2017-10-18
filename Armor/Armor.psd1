@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.9'
+ModuleVersion = '1.0.0.10'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -66,7 +66,8 @@ FormatsToProcess = @()
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = 'Connect-Armor', 'Get-ArmorUser', 'Get-ArmorVm'
+FunctionsToExport = 'Connect-Armor', 'Get-ArmorAccount', 'Get-ArmorUser', 'Get-ArmorVm', 
+               'Set-ArmorAccountContext'
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

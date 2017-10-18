@@ -15,7 +15,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Connect-Armor [[-Credential] <PSCredential>] [[-Server] <String>] [[-Port] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Connect-Armor [[-Credential] <PSCredential>] [[-AccountID] <UInt16>] [[-Server] <String>] [[-Port] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -28,6 +28,9 @@ PARAMETERS
     -Credential <PSCredential>
         Your username and password stored in a PSCredential object for authenticating to the Armor API.
         
+    -AccountID <UInt16>
+        The Armor account ID to use for all subsequent requests.
+        
     -Server <String>
         The Armor API server IP address or FQDN.  The default value is 'api.armor.com'.
         
@@ -35,6 +38,7 @@ PARAMETERS
         The Armor API server port.  The default value is '443'.
         
     -ApiVersion <String>
+        The API version.  The default value is 'v1.0'.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,

@@ -3,9 +3,53 @@
 
 This page contains details on **Get** commands.
 
-Get-ArmorUser
+Get-ArmorAccount
 -------------------------
 
+
+NAME
+    Get-ArmorAccount
+    
+SYNOPSIS
+    Retrieves a list of Armor account memberships for the currently authenticated user.
+    
+    
+SYNTAX
+    Get-ArmorAccount [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    { required: more detailed description of the function's purpose }
+    
+
+PARAMETERS
+    -ApiVersion <String>
+        The API version.  The default value is $global:ArmorConnection.ApiVersion.
+        
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>{required: show one or more examples using the function}
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help Get-ArmorAccount -examples".
+    For more information, type: "get-help Get-ArmorAccount -detailed".
+    For technical information, type: "get-help Get-ArmorAccount -full".
+    For online help, type: "get-help Get-ArmorAccount -online"
+
+
+Get-ArmorUser
+-------------------------
 
 NAME
     Get-ArmorUser
@@ -49,18 +93,18 @@ REMARKS
     For online help, type: "get-help Get-ArmorUser -online"
 
 
-Get-ArmorVm
+Get-ArmorVM
 -------------------------
 
 NAME
-    Get-ArmorVm
+    Get-ArmorVM
     
 SYNOPSIS
-    The Get-ArmorVm function displays a list of virtual machines in your account.
+    The Get-ArmorVM function displays a list of virtual machines in your account.
     
     
 SYNTAX
-    Get-ArmorVm [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorVM [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -88,10 +132,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Get-ArmorVm -examples".
-    For more information, type: "get-help Get-ArmorVm -detailed".
-    For technical information, type: "get-help Get-ArmorVm -full".
-    For online help, type: "get-help Get-ArmorVm -online"
+    To see the examples, type: "get-help Get-ArmorVM -examples".
+    For more information, type: "get-help Get-ArmorVM -detailed".
+    For technical information, type: "get-help Get-ArmorVM -full".
+    For online help, type: "get-help Get-ArmorVM -online"
 
 
 
