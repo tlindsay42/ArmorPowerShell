@@ -32,3 +32,4 @@ This is a community project that provides a Microsoft PowerShell module for mana
 
    cmd_connect
    cmd_get
+   cmd_set
