@@ -57,7 +57,6 @@ Function Submit-ArmorApiRequest
 		[ValidateNotNullorEmpty()]
 		[String] $Method = $null,
 		[Parameter( Position = 3 )]
-		[ValidateNotNullorEmpty()]
 		[String] $Body = $null
 	)
 
