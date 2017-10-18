@@ -59,7 +59,7 @@ Function New-ArmorApiUriString
 		[String] $Endpoint = '/',
 		[Parameter( Position = 3 )]
 		[ValidateNotNullorEmpty()]
-		[String] $Id = $null
+		[String] $ID = $null
 	)
 
 	Begin
@@ -78,20 +78,20 @@ Function New-ArmorApiUriString
 
 		$return = 'https://{0}:{1}{2}' -f $Server, $Port, $Endpoint
 
-		# If we find {id} in the path, replace it with the $Id value
-		If ( $return -match '{id}' -and $Id.Length -gt 0 )
+		# If we find {id} in the path, replace it with the $ID value
+		If ( $return -match '{id}' -and $ID.Length -gt 0 )
 		{
-			$return = $return -replace '{id}', $Id
+			$return = $return -replace '{id}', $ID
 		}
-		# If we find {id} in the path, but $Id is not set, throw an error
-		ElseIf ( $return -match '{id}' -and $Id.Length -eq 0 )
+		# If we find {id} in the path, but $ID is not set, throw an error
+		ElseIf ( $return -match '{id}' -and $ID.Length -eq 0 )
 		{
 			Throw 'Missing ID value.'
 		}
 		# Otherwise, only add the $id value at the end if it exists (for single object retrieval)
-		ElseIf ( $Id.Length -gt 0 )
+		ElseIf ( $ID.Length -gt 0 )
 		{
-			$return += '/{0}' -f $Id
+			$return += '/{0}' -f $ID
 		}
 
 		Write-Verbose -Message ( 'URI = {0}' -f $return )
