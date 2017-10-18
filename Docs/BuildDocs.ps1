@@ -4,14 +4,18 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 {
 	$data = @()
 	$data += '{0} Commands' -f $verb
-	$data += "=========================`r`n"
-	$data += "This page contains details on **{0}** commands.`r`n" -f $verb
+	$data += '========================='
+	$data += ''
+	$data += 'This page contains details on **{0}** commands.' -f $verb
+	$data += ''
 
-	ForEach ( $help In ( Get-Command -Module Armor | Where-Object -FilterScript { $_.Name -match ( '^{0}-' -f $verb ) } ) )
+	ForEach ( $help In ( Get-Command -Module Armor ).Where( { $_.Name -match ( '^{0}-' -f $verb ) } ) )
 	{
 		$data += $help.Name
-		$data += "-------------------------`r`n"
-		$data += "{0}`r`n" -f ( Get-Help -Name $help.name -Detailed )
+		$data += '-------------------------'
+		$data += ''
+		$data += Get-Help -Name $help.name -Detailed
+		$data += ''
 	}
 
 	$data |
