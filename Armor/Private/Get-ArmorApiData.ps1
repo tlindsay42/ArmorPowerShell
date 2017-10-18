@@ -76,7 +76,7 @@ Function Get-ArmorApiData
 		$return = $null
 
 		$api = @{
-			'Example'              = @{
+			'Example'                 = @{
 				'v1.0' = @{
 					'Description' = 'Details about the API endpoint'
 					'URI'         = 'The URI expressed as /endpoint'
@@ -88,7 +88,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = 'The expected HTTP status code for a successful call'
 				}
 			}
-			'Connect-Armor'        = @{
+			'Connect-Armor'           = @{
 				'v1.0' = @{
 					'Description' = 'Create a new login session'
 					'URI'         = '/auth/authorize'
@@ -103,7 +103,19 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorVm'          = @{
+			'Get-ArmorAccount' = @{
+				'v1.0' = @{
+					'Description' = 'Retrieves a list of Armor account memberships'
+					'URI'         = '/me'
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
+			'Get-ArmorVM'             = @{
 				'v1.0' = @{
 					'Description' = 'Displays a list of virtual machines in your account'
 					'URI'         = '/vms'
@@ -115,7 +127,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorUser'        = @{
+			'Get-ArmorUser'           = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of users in your account'
 					'URI'         = '/users'
@@ -127,7 +139,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'New-ArmorApiToken'    = @{
+			'New-ArmorApiToken'       = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
 					'URI'         = '/auth/token'
@@ -142,7 +154,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Update-ArmorApiToken' = @{
+			'Update-ArmorApiToken'    = @{
 				'v1.0' = @{
 					'Description' = 'Reissues an authentication token if requested before session expiration'
 					'URI'         = '/auth/token/reissue'
