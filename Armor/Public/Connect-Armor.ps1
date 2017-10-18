@@ -17,11 +17,17 @@ Function Connect-Armor
 		.PARAMETER Credential
 		Your username and password stored in a PSCredential object for authenticating to the Armor API.
 
+		.PARAMETER AccountID
+		The Armor account ID to use for all subsequent requests.
+
 		.PARAMETER Server
 		The Armor API server IP address or FQDN.  The default value is 'api.armor.com'.
 
 		.PARAMETER Port
 		The Armor API server port.  The default value is '443'.
+
+		.PARAMETER ApiVersion
+		The API version.  The default value is 'v1.0'.
 
 		.INPUTS
 		None
@@ -50,12 +56,15 @@ Function Connect-Armor
 		[ValidateNotNullorEmpty()]
 		[PSCredential] $Credential = $null,
 		[Parameter( Position = 1 )]
+		[ValidateRange( 0, 65535 )]
+		[UInt16] $AccountID = $null,
+		[Parameter( Position = 2 )]
 		[ValidateNotNullorEmpty()]
 		[String] $Server = 'api.armor.com',
-		[Parameter( Position = 2 )]
+		[Parameter( Position = 3 )]
 		[ValidateRange( 0, 65535 )]
 		[UInt16] $Port = 443,
-		[Parameter( Position = 3 )]
+		[Parameter( Position = 4 )]
 		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = 'v1.0'
 	)
@@ -97,6 +106,7 @@ Function Connect-Armor
 		$global:ArmorConnection = @{
 			'Id' = $null
 			'UserName' = $Credential.UserName
+			'Accounts' = @()
 			'Token' = $null
 			'Server' = $Server
 			'Port' = $Port
@@ -173,6 +183,19 @@ Function Connect-Armor
 		$global:ArmorConnection.SessionStartTime = $now
 		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
 		$global:ArmorConnection.Headers.Authorization = 'FH-AUTH {0}' -f $token.Access_Token
+		
+		If ( $AccountID -eq 0 )
+		{
+			Try
+			{
+				$AccountID = ( Get-ArmorAccount ).ID |
+					Select-Object -First 1 
+   		}
+			Catch { Throw 'Failed to get the default Armor account ID.' }
+		}
+
+		Write-Verbose -Message ( 'Setting the Armor account context to ID {0}.' -f $AccountID )
+		Set-ArmorAccountContext -ID $AccountID
 
 		Return $global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
 	} # End of Process
