@@ -7,7 +7,7 @@ Welcome to the Armor PowerShell Module
 .. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
 
-This is a community project that provides a Microsoft PowerShell module for managing and monitoring Armor's secure cloud and security as a service product lines (Armor Complete and Armor Anywhere respectively) by way of published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide'). If you're looking to perform interactive automation, setting up scheduled tasks, leverage an orchestration engine, or need ad-hoc operations, this module is intended to be valuable to your needs. The code is open source, and `available on GitHub`_.
+This is a community project that provides a Microsoft PowerShell module for managing and monitoring Armor's secure cloud and security as a service product lines (Armor Complete and Armor Anywhere respectively) by way of published RESTful APIs. If you're looking to perform interactive automation, setting up scheduled tasks, leverage an orchestration engine, or need ad-hoc operations, this module is intended to be valuable to your needs. The code is open source, and `available on GitHub`_.
 
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
