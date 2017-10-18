@@ -77,13 +77,9 @@ Function Update-ArmorApiToken
 
 		$result = Select-ArmorApiResult -Result $result -Filter $resources.Filter
 
-		$now = Get-Date
-
-		$global:ArmorConnection.Id = $result.Id_Token
 		$global:ArmorConnection.Token = $result.Access_Token
-		$global:ArmorConnection.SessionStartTime = $now
-		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $result.Expires_In )
-		$global:ArmorConnection.Headers.Authorization = '{0} {1}' -f $result.Token_Type, $result.Access_Token
+		$global:ArmorConnection.SessionExpirationTime = ( Get-Date ).AddSeconds( $result.Expires_In )
+		$global:ArmorConnection.Headers.Authorization = $global:ArmorConnection.Headers.Authorization -replace '\w+$', $result.Access_Token
 
 		Return $result
 	} # End of Process
