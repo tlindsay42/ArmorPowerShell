@@ -42,7 +42,6 @@ Else
 			-Description 'This is a community project that provides a Windows PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.' `
 			-PowerShellVersion '4.0' `
 			-ProcessorArchitecture 'None' `
-			-RequiredModules @( 'NetTCPIP' ) `
 			-FunctionsToExport $functionList `
 			-VariablesToExport global:ArmorConnection `
 			-Tags 'Armor', 'Defense', 'Security', 'Complete', 'Anywhere', 'Secure', 'Cloud', 'Protect', 'Protection', 'Compliance', 'Compliant', 'PCI', 'DSS', 'HIPAA', 'Performance', 'Hosting', 'Hosted', 'Infrastructure', 'IaaS', 'SaaS', 'Amazon', 'AWS', 'Microsoft', 'Azure' `
