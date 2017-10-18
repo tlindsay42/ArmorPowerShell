@@ -171,7 +171,7 @@ Function Connect-Armor
 		$global:ArmorConnection.Token = $token.Access_Token
 		$global:ArmorConnection.SessionStartTime = $now
 		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
-		$global:ArmorConnection.Headers.Authorization = '{0} {1}' -f $token.Token_Type, $token.Access_Token
+		$global:ArmorConnection.Headers.Authorization = 'FH-AUTH {0}' -f $token.Access_Token
 
 		Return $global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
 	} # End of Process
