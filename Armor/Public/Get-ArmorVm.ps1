@@ -1,8 +1,8 @@
-Function Get-ArmorVm
+Function Get-ArmorVM
 {
 	<#
 		.SYNOPSIS
-		The Get-ArmorVm function displays a list of virtual machines in your account.
+		The Get-ArmorVM function displays a list of virtual machines in your account.
 
 		.DESCRIPTION
 		{ required: more detailed description of the function's purpose }
@@ -71,14 +71,12 @@ Function Get-ArmorVm
 		}
 		Else
 		{
-			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri -Id $Name
+			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri -ID $Name
 		}
 
 		#$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
-
-		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
+		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
 
 		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
 
