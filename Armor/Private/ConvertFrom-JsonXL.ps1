@@ -52,9 +52,9 @@ Function Convert-JsonItem
 		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
 		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
 
-		$function = $MyInvocation.MyCommand.Name
+		#$function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+		#Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 	} # End of Begin
 
 	Process
@@ -96,6 +96,6 @@ Function Convert-JsonItem
 
 	End
 	{
-		Write-Verbose -Message ( 'Ending {0}.' -f $function )
+		#Write-Verbose -Message ( 'Ending {0}.' -f $function )
 	} # End of End
 } # End of Function
