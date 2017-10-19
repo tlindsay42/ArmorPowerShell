@@ -28,7 +28,7 @@ Function ConvertFrom-JsonXL
 		$javaScriptSerializer = New-Object -TypeName System.Web.Script.Serialization.JavaScriptSerializer -Property @{ 'MaxJsonLength' = 64MB }
 
 		$return = $javaScriptSerializer.DeserializeObject( $InputObject ) |
-			Convert-JsonItem
+			ConvertFrom-JsonItem
 
 		Return $return
 	} # End of Process
@@ -39,7 +39,7 @@ Function ConvertFrom-JsonXL
 	} # End of End
 } # End of Function
 
-Function Convert-JsonItem
+Function ConvertFrom-JsonItem
 {
 	Param
 	(
@@ -67,7 +67,7 @@ Function Convert-JsonItem
 			{
 				$return = @()
 
-				$InputObject.ForEach( { <# Recurse #> $return += , ( Convert-JsonItem -InputObject $_ ) } )
+				$InputObject.ForEach( { <# Recurse #> $return += , ( ConvertFrom-JsonItem -InputObject $_ ) } )
 
 				Break
 			}
@@ -78,7 +78,7 @@ Function Convert-JsonItem
 
 				ForEach ( $jsonItemKey In ( [HashTable]$InputObject ).Keys )
 				{
-					If ( $InputObject[$jsonItemKey] ) { <# Recurse #> $parsedItem = Convert-JsonItem -InputObject $InputObject[$jsonItemKey] }
+					If ( $InputObject[$jsonItemKey] ) { <# Recurse #> $parsedItem = ConvertFrom-JsonItem -InputObject $InputObject[$jsonItemKey] }
 					Else { $parsedItem = $null }
 
 					$return |
