@@ -18,11 +18,11 @@ Function New-ArmorApiUriString
 		.PARAMETER Port
 		The Armor API server port.  The default value is $global:ArmorConnection.Port.
 
-		.PARAMETER Endpoint
-		The endpoint path.
+		.PARAMETER Endpoints
+		An array of available endpoint paths.
 
 		.PARAMETER ID
-		An id value to be planted into the path or optionally at the end of the URI to retrieve a single object.
+		An array of positional ID values to be inserted into the path.
 
 		.INPUTS
 		None
@@ -55,11 +55,11 @@ Function New-ArmorApiUriString
 		[ValidateRange( 0, 65535 )]
 		[UInt16] $Port = $global:ArmorConnection.Port,
 		[Parameter( Position = 2 )]
-		[ValidateNotNullorEmpty()]
-		[String] $Endpoint = '/',
+		[ValidateNotNull()]
+		[Array] $Endpoints = @(),
 		[Parameter( Position = 3 )]
-		[ValidateNotNullorEmpty()]
-		[String] $ID = $null
+		[ValidateNotNull()]
+		[Array] $IDs = @()
 	)
 
 	Begin
@@ -76,22 +76,68 @@ Function New-ArmorApiUriString
 	{
 		Write-Verbose -Message 'Build the URI.'
 
-		$return = 'https://{0}:{1}{2}' -f $Server, $Port, $Endpoint
+		# Reset for instances where $ID was set with a null string
+		If ( $IDs.Count -eq 1 ) { If ( $IDs[0] -eq '' ) { $IDs = @() } }
 
-		# If we find {id} in the path, replace it with the $ID value
-		If ( $return -match '{id}' -and $ID.Length -gt 0 )
+		Switch ( $IDs.Count )
 		{
-			$return = $return -replace '{id}', $ID
-		}
-		# If we find {id} in the path, but $ID is not set, throw an error
-		ElseIf ( $return -match '{id}' -and $ID.Length -eq 0 )
-		{
-			Throw 'Missing ID value.'
-		}
-		# Otherwise, only add the $id value at the end if it exists (for single object retrieval)
-		ElseIf ( $ID.Length -gt 0 )
-		{
-			$return += '/{0}' -f $ID
+			0
+			{
+				$endpoint = $Endpoints.Where( { $_ -notmatch '{id}' } )
+
+				If ( $endpoint.Count -eq 0 ) { Throw 'Endpoint with no ID specification not found.' }
+				ElseIf ( $endpoint.Count -ne 1 ) { Throw 'More than one endpoint with no ID specification found.' }
+
+				$return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+			}
+
+			1
+			{
+				$endpoint = $Endpoints.Where( { $_ -match '/{id}$' } )
+
+				If ( $endpoint.Count -eq 0 ) { Throw 'Endpoint with one ID specification not found.' }
+				ElseIf ( $endpoint.Count -ne 1 ) { Throw 'More than one endpoint with one ID specification found.' }
+
+				$return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+
+				If ( $IDs[0].Length -gt 0 )
+				{
+					# Insert ID in URI string
+					$return = $return -replace '{id}', $IDs[0]
+				}
+				Else
+				{
+					Throw ( 'Invalid ID value for endpoint: {0}.' -f $endpoint[0] )
+				}
+			}
+
+			2
+			{
+				$endpoint = $Endpoints.Where( { $_ -match '/{id}.*/{id}' } )
+
+				If ( $endpoint.Count -eq 0 ) { Throw 'Endpoint with two ID specifications not found.' }
+				ElseIf ( $endpoint.Count -ne 1 ) { Throw 'More than one endpoint with two ID specifications found.' }
+
+				$return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+
+				If ( $IDs[0].Length -gt 0 -and $IDs[1].Length -gt 0 )
+				{
+					# Insert first ID in URI string
+					$return = $return -replace '(.*?)/{id}(.*)', ( '$1/{0}$2' -f $IDs[0] )
+
+					# Insert second ID in URI string
+					$return = $return -replace '{id}', $IDs[1]
+				}
+				Else
+				{
+					Throw ( 'Invalid ID value for endpoint: {0}.' -f $endpoint[0] )
+				}
+			}
+
+			Default
+			{
+				Throw 'Unsupported number of ID values in endpoint.'
+			}
 		}
 
 		Write-Verbose -Message ( 'URI = {0}' -f $return )
