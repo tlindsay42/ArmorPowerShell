@@ -89,7 +89,9 @@ Function Get-ArmorApiData
 			'Connect-Armor'           = @{
 				'v1.0' = @{
 					'Description' = 'Create a new login session'
-					'URI'         = '/auth/authorize'
+					'URI'         = @(
+						'/auth/authorize'
+					)
 					'Method'      = 'Post'
 					'Body'        = @{
 						'Username' = 'Username'
@@ -104,7 +106,9 @@ Function Get-ArmorApiData
 			'Get-ArmorAccount' = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of Armor account memberships'
-					'URI'         = '/me'
+					'URI'         = @(
+						'/me'
+					)
 					'Method'      = 'Get'
 					'Body'        = @{}
 					'Query'       = @{}
@@ -116,7 +120,10 @@ Function Get-ArmorApiData
 			'Get-ArmorVM'             = @{
 				'v1.0' = @{
 					'Description' = 'Displays a list of virtual machines in your account'
-					'URI'         = '/vms'
+					'URI'         = @(
+						'/vms',
+						'/vms/{id}'
+					)
 					'Method'      = 'Get'
 					'Body'        = @{}
 					'Query'       = @{}
@@ -128,7 +135,10 @@ Function Get-ArmorApiData
 			'Get-ArmorUser'           = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of users in your account'
-					'URI'         = '/users'
+					'URI'         = @(
+						'/users',
+						'/users/{id}'
+					)
 					'Method'      = 'Get'
 					'Body'        = @{}
 					'Query'       = @{}
@@ -140,7 +150,9 @@ Function Get-ArmorApiData
 			'New-ArmorApiToken'       = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
-					'URI'         = '/auth/token'
+					'URI'         = @(
+						'/auth/token'
+					)
 					'Method'      = 'Post'
 					'Body'        = @{
 						'code'       = 'GUID'
@@ -155,7 +167,9 @@ Function Get-ArmorApiData
 			'Update-ArmorApiToken'    = @{
 				'v1.0' = @{
 					'Description' = 'Reissues an authentication token if requested before session expiration'
-					'URI'         = '/auth/token/reissue'
+					'URI'         = @(
+						'/auth/token/reissue'
+					)
 					'Method'      = 'Post'
 					'Body'        = @{
 						'token' = 'GUID'
