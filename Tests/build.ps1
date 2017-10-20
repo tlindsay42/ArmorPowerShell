@@ -47,8 +47,7 @@ Else
 			-FileList ( ( Get-ChildItem -Path '.\Armor' -File -Recurse ).Name.ForEach( { "'{0}'" -f $_ } ) -join ', ' ) `
 			-Tags 'Armor', 'Defense', 'Security', 'Complete', 'Anywhere', 'Secure', 'Cloud', 'Protect', 'Protection', 'Compliance', 'Compliant', 'PCI', 'DSS', 'HIPAA', 'Performance', 'Hosting', 'Hosted', 'Infrastructure', 'IaaS', 'SaaS', 'Amazon', 'AWS', 'Microsoft', 'Azure' `
 			-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
-			-IconUri 'http://i.imgur.com/fbXjkCn.png' `
-			-HelpInfoUri 'https://github.com/tlindsay42/ArmorPowerShell'
+			-IconUri 'http://i.imgur.com/fbXjkCn.png'
 
 		( Get-Content -Path $manifestPath ) -replace 'PSGet_Armor', 'Armor' |
 			ForEach-Object -Process { $_ -replace 'NewManifest', 'Armor' } |
