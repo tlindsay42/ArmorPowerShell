@@ -178,6 +178,7 @@ Function Connect-Armor
 
 		$now = Get-Date
 
+		$global:ArmorConnection.ID = $token.Id_Token
 		$global:ArmorConnection.Token = $token.Access_Token
 		$global:ArmorConnection.SessionStartTime = $now
 		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
