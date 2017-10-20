@@ -106,6 +106,7 @@ Function Connect-Armor
 		$global:ArmorConnection = @{
 			'ID' = $null
 			'UserName' = $Credential.UserName
+			'AccountContextID' = $null
 			'Accounts' = @()
 			'Token' = $null
 			'Server' = $Server
