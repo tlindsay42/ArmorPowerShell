@@ -41,7 +41,6 @@ Function Format-ArmorApiResult
 	Param
 	(
 		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[ValidateNotNull()]
 		[PSCustomObject] $Result = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
@@ -61,6 +60,8 @@ Function Format-ArmorApiResult
 	Process
 	{
 		$return = $Result
+
+		If ( $return -eq $null ) { Return }
 
 		Write-Verbose -Message 'Formatting return value.'
 

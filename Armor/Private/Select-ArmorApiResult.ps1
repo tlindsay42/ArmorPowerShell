@@ -42,7 +42,6 @@ Function Select-ArmorApiResult
 	Param
 	(
 		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[ValidateNotNull()]
 		[PSCustomObject] $Result = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
@@ -62,6 +61,8 @@ Function Select-ArmorApiResult
 	Process
 	{
 		$return = $Result
+
+		If ( $return -eq $null ) { Return }
 
 		Write-Verbose -Message 'Filter the results.'
 
