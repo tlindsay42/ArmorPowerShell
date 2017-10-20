@@ -12,7 +12,7 @@ Function Get-ArmorVM
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
-		.PARAMETER Parameter
+		.PARAMETER ID
 		{ required: description of the specified input parameter's purpose }
 
 		.INPUTS
@@ -38,7 +38,7 @@ Function Get-ArmorVM
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[String] $Name = $null,
+		[String] $ID = $null,
 		[Parameter( Position = 1 )]
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
@@ -65,14 +65,7 @@ Function Get-ArmorVM
 		
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		If ( $Name.Length -eq 0 )
-		{
-			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri
-		}
-		Else
-		{
-			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri -ID $Name
-		}
+		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
 
 		#$uri = Test-QueryParam -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
