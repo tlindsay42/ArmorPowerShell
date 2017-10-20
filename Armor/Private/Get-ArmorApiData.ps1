@@ -92,8 +92,8 @@ Function Get-ArmorApiData
 					'URI'         = '/auth/authorize'
 					'Method'      = 'Post'
 					'Body'        = @{
-						'username' = 'username'
-						'password' = 'password'
+						'Username' = 'Username'
+						'Password' = 'Password'
 					}
 					'Query'       = @{}
 					'Location'    = ''
