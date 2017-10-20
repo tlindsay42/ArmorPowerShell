@@ -122,7 +122,7 @@ Function Connect-Armor
 		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
 
 		# Create the URI
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoint $resources.Uri
+		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri
 
 		# Set the Method
 		$method = $resources.Method
