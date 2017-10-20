@@ -104,7 +104,7 @@ Function Connect-Armor
 		}
 
 		$global:ArmorConnection = @{
-			'Id' = $null
+			'ID' = $null
 			'UserName' = $Credential.UserName
 			'Accounts' = @()
 			'Token' = $null
@@ -178,7 +178,6 @@ Function Connect-Armor
 
 		$now = Get-Date
 
-		$global:ArmorConnection.Id = $token.Id_Token
 		$global:ArmorConnection.Token = $token.Access_Token
 		$global:ArmorConnection.SessionStartTime = $now
 		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
