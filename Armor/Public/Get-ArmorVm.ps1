@@ -40,6 +40,7 @@ Function Get-ArmorVM
 		[Parameter( Position = 0 )]
 		[String] $ID = $null,
 		[Parameter( Position = 1 )]
+		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 

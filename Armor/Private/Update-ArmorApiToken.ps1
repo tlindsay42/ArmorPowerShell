@@ -16,7 +16,7 @@ Function Update-ArmorApiToken
 		The authorization token.
 
 		.PARAMETER ApiVersion
-		The API version.
+		The API version.  The default value is $global:ArmorConnection.ApiVersion.
 
 		.INPUTS
 		System.String
@@ -44,8 +44,8 @@ Function Update-ArmorApiToken
 		[ValidateNotNullorEmpty()]
 		[String] $Token = $global:ArmorConnection.Token,
 		[Parameter( Position = 1 )]
-		[ValidateSet( 'v1.0' )]
-		[String] $ApiVersion = 'v1.0'
+		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
+		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 
 	Begin

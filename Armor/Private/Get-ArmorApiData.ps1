@@ -56,7 +56,7 @@ Function Get-ArmorApiData
 		[String] $Endpoint = 'Example',
 		[Parameter( Position = 1 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $null
+		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 
 	Begin
@@ -128,7 +128,9 @@ Function Get-ArmorApiData
 					'Body'        = @{}
 					'Query'       = @{}
 					'Location'    = ''
-					'Filter'      = @{}
+					'Filter'      = @{
+						'Name' = 'Name'
+					}
 					'SuccessCode' = '200'
 				}
 			}

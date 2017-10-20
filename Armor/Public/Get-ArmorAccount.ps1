@@ -38,6 +38,7 @@ Function Get-ArmorAccount
 	[CmdletBinding()]
 	Param
 	(
+		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
 	)
 
