@@ -71,9 +71,12 @@ Function Test-ArmorConnection
 			Throw 'A single connection with Connect-Armor is required.'
 		}
 
-		Write-Verbose -Message 'Found an Armor token for authentication.'
-
-		If ( ( ( Get-Date ) - $global:ArmorConnection.SessionExpirationTime ).Minutes -lt 29 )
+		Write-Verbose -Message ( 
+			'Found an Armor API authentication token with {0} minutes remaining until expiration.' -f
+				( $global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
+		)
+		
+		If ( ( $global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes -lt 15 )
 		{
 			Write-Verbose -Message 'Renewing session token.'
 
