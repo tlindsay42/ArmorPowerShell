@@ -94,10 +94,17 @@ Function Submit-ArmorApiRequest
 
 				If ( $request.StatusCode -eq $resources.SuccessCode )
 				{
-					# Because some calls require more than the default payload limit of 2MB, ExpandPayload dynamically adjusts the payload limit
+					If ( $request.Content.Length -gt 2MB )
+					{
+						# Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
 					$content = $request.Content |
 						ConvertFrom-JsonXL
-
+					}
+					Else
+					{
+						$content = $request.Content |
+							ConvertFrom-Json
+					}
 				}
 				Else
 				{
