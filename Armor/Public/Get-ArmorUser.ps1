@@ -38,7 +38,14 @@ Function Get-ArmorUser
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[String] $ID = $null,
+		[ValidateNotNullOrEmpty()]
+		[String] $UserName = '',
+		[ValidateNotNullOrEmpty()]
+		[String] $FirstName = '',
+		[ValidateNotNullOrEmpty()]
+		[String] $LastName = '',
+		[ValidateRange( 1, 65535 )]
+		[UInt16] $ID = 0,
 		[Parameter( Position = 1 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
