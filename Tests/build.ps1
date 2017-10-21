@@ -44,7 +44,7 @@ Else
 			-ProcessorArchitecture 'None' `
 			-FunctionsToExport $functionList `
 			-VariablesToExport global:ArmorConnection `
-			-FileList ( ( Get-ChildItem -Path '.\Armor' -File -Recurse ).Name.ForEach( { "'{0}'" -f $_ } ) -join ', ' ) `
+			-FileList ( ( Get-ChildItem -Path '.\Armor' -File -Recurse ).Where( { $_.Extension -match '^\.ps[dm]?1$' } ).Name.ForEach( { "'{0}'" -f $_ } ) -join ', ' ) `
 			-Tags 'Armor', 'Defense', 'Security', 'Complete', 'Anywhere', 'Secure', 'Cloud', 'Protect', 'Protection', 'Compliance', 'Compliant', 'PCI', 'DSS', 'HIPAA', 'Performance', 'Hosting', 'Hosted', 'Infrastructure', 'IaaS', 'SaaS', 'Amazon', 'AWS', 'Microsoft', 'Azure' `
 			-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
 			-IconUri 'http://i.imgur.com/fbXjkCn.png'
