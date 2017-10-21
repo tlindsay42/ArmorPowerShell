@@ -43,11 +43,13 @@ Function New-ArmorApiUriQueryString
 	Param
 	(
 		[Parameter( Position = 0 )]
-		$QueryKeys, 
-		[Parameter( Position = 0 )]
+		[String[]] $QueryKeys = @(),
+		[Parameter( Position = 1 )]
 		[ValidateNotNullOrEmpty()]
-		$Parameters, 
-		$Uri
+		[String[]] $Parameters = @(),
+		[Parameter( Position = 2 )]
+		[ValidateNotNullOrEmpty()]
+		[String] $Uri = ''
 	)
 
 	Begin
@@ -62,73 +64,46 @@ Function New-ArmorApiUriQueryString
 
 	Process
 	{
-		# For functions that can address multiple different endpoints based on the $ID value
-		# If there are multiple URIs referenced in the API resources, we know this is true
-		If ( ( $resources.URI ).Count -ge 2 )
+		$return = $Uri
+
+		Write-Verbose -Message 'Build the query parameters.'
+
+		$queryString = @()
+
+		# Walk through all of the available query options presented by the endpoint
+		# Note: Keys are used to search in case the value changes in the future across different API versions
+		ForEach ( $query In $QueryKeys )
 		{
-			$return = $null
-
-			Write-Verbose -Message ( 'Multiple URIs detected. Selecting URI based on {0}' -f $ID )
-
-			$message = 'Loading {0} API data'
-			Switch -Wildcard ( $ID )
+			# Walk through all of the parameters defined in the function
+			# Both the parameter name and parameter alias are used to match against a query option
+			# It is suggested to make the parameter name "human friendly" and set an alias corresponding to the query option name
+			ForEach ( $parameter In $Parameters )
 			{
-				'Example:::*'
+				# If the parameter name matches the query option name, build a query string
+				If ( $parameter.Name -eq $query )
 				{
-					Write-Verbose -Message $message -f 'Example'
-					$Uri = $Uri -replace ' {id}', $ID
+					If ( $resources.Query[$parameter.Name] -and ( Get-Variable -Name $parameter.Name ).Value )
+					{
+						$queryString += '{0}={1}' -f $resources.Query[$parameter.Name], ( Get-Variable -Name $parameter.Name ).Value
+					}
 				}
-				Default
+				# If the parameter alias matches the query option name, build a query string
+				ElseIf ( $parameter.Aliases -eq $query )
 				{
-					Throw 'The supplied id value has no matching endpoint.'
+					If ( $resources.Query[$parameter.Aliases] -and ( Get-Variable -Name $parameter.Name ).Value )
+					{
+						$queryString += '{0}={1}' -f $resources.Query[$parameter.Aliases], ( Get-Variable -Name $parameter.Name ).Value
+					}
 				}
 			}
-    
-			# This ends the logic statement without running the rest of this private function
-			$return = $Uri
 		}
-		Else
+
+		# After all query options are exhausted, build a new URI with all defined query options
+		If ( $queryString.Count -gt 0 )
 		{
-			Write-Verbose -Message 'Build the query parameters.'
+			$return = '?{0}' -f ( $queryString -join '&' )
 
-			$queryString = @()
-
-			# Walk through all of the available query options presented by the endpoint
-			# Note: Keys are used to search in case the value changes in the future across different API versions
-			ForEach ( $query In $QueryKeys )
-			{
-				# Walk through all of the parameters defined in the function
-				# Both the parameter name and parameter alias are used to match against a query option
-				# It is suggested to make the parameter name "human friendly" and set an alias corresponding to the query option name
-				ForEach ( $parameter In $Parameters )
-				{
-					# If the parameter name matches the query option name, build a query string
-					If ( $parameter.Name -eq $query )
-					{
-						If ( $resources.Query[$parameter.Name] -and ( Get-Variable -Name $parameter.Name ).Value )
-						{
-							$queryString += '{0}={1}' -f $resources.Query[$parameter.Name], ( Get-Variable -Name $parameter.Name ).Value
-						}
-					}
-					# If the parameter alias matches the query option name, build a query string
-					ElseIf ( $parameter.Aliases -eq $query )
-					{
-						If ( $resources.Query[$parameter.Aliases] -and ( Get-Variable -Name $parameter.Name ).Value )
-						{
-							$queryString += '{0}={1}' -f $resources.Query[$parameter.Aliases], ( Get-Variable -Name $parameter.Name ).Value
-						}
-					}
-				}
-			}
-
-			# After all query options are exhausted, build a new URI with all defined query options
-			If ( $queryString.Length -gt 0 )
-			{
-				$return = '?{0}' -f ( $queryString -join '&' )
-
-				Write-Verbose -Message ( 'URI = {0}' -f $return )
-			}
-			Else { $return = '' }
+			Write-Verbose -Message ( 'URI = {0}' -f $return )
 		}
 
 		Return $return
