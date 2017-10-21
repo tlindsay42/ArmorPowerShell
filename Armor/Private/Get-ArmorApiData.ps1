@@ -166,6 +166,23 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
+			'Rename-ArmorVM'       = @{
+				'v1.0' = @{
+					'Description' = 'Renames the specified virtual machine in your account'
+					'URI'         = @(
+						'/vms/{id}'
+					)
+					'Method'      = 'Put'
+					'Body'        = @{
+						'id' = 'ID'
+						'name' = 'Name'
+					}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 			'Update-ArmorApiToken'    = @{
 				'v1.0' = @{
 					'Description' = 'Reissues an authentication token if requested before session expiration'
