@@ -60,9 +60,9 @@ Function Select-ArmorApiResult
 
 	Process
 	{
-		$return = $Result
+		If ( $Result -eq $null ) { Return }
 
-		If ( $return -eq $null ) { Return }
+		$return = @()
 
 		Write-Verbose -Message 'Filter the results.'
 
