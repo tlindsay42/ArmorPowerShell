@@ -56,10 +56,10 @@ Function New-ArmorApiUriString
 		[UInt16] $Port = $global:ArmorConnection.Port,
 		[Parameter( Position = 2 )]
 		[ValidateNotNull()]
-		[Array] $Endpoints = @(),
+		[String[]] $Endpoints = @(),
 		[Parameter( Position = 3 )]
 		[ValidateNotNull()]
-		[Array] $IDs = @()
+		[UInt16[]] $IDs = @()
 	)
 
 	Begin
@@ -77,7 +77,7 @@ Function New-ArmorApiUriString
 		Write-Verbose -Message 'Build the URI.'
 
 		# Reset for instances where $ID was set with a null string
-		If ( $IDs.Count -eq 1 ) { If ( $IDs[0] -eq '' ) { $IDs = @() } }
+		If ( $IDs.Count -eq 1 ) { If ( $IDs[0] -eq 0 ) { $IDs = @() } }
 
 		Switch ( $IDs.Count )
 		{
