@@ -79,13 +79,13 @@ Function New-ArmorApiToken
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
+		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
-		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
+		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
 
-		$result = Select-ArmorApiResult -Result $result -Filter $resources.Filter
+		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		Return $result
+		Return $results
 	} # End of Process
 
 	End

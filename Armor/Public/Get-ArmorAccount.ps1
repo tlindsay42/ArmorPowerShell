@@ -66,15 +66,15 @@ Function Get-ArmorAccount
 
 		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri
 
-		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
+		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
 
-		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
+		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
 
-		$result = Select-ArmorApiResult -Result $result -Filter $resources.Filter
+		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
 		$global:ArmorConnection.Accounts = @()
 		
-		ForEach ( $account In $result.Accounts )
+		ForEach ( $account In $results.Accounts )
 		{
 			$temp = New-Object -TypeName PSCustomObject |
 				Select-Object -Property 'Name', 'ID', 'Status', 'Parent', 'Currency', 'Products'

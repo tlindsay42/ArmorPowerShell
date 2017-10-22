@@ -12,8 +12,8 @@ Function Select-ArmorApiResult
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
-		.PARAMETER Result
-		The formatted API response content.
+		.PARAMETER Results
+		The formatted API response contents.
 
 		.PARAMETER Filter
 		The list of parameters that the user can use to filter response data. 
@@ -42,7 +42,7 @@ Function Select-ArmorApiResult
 	Param
 	(
 		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[PSCustomObject] $Result = $null,
+		[PSCustomObject[]] $Results = @(),
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
 		[Hashtable] $Filter = $null
@@ -60,7 +60,7 @@ Function Select-ArmorApiResult
 
 	Process
 	{
-		If ( $Result -eq $null ) { Return }
+		If ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) { Return 'No results found.' }
 
 		$return = @()
 
@@ -73,31 +73,31 @@ Function Select-ArmorApiResult
 				Write-Verbose -Message ( 'Filter match = {0}' -f $filterKey )
 
 				$filterKeyValue = ( Get-Variable -Name $filterKey ).Value
-				
+
 				# For when a location is one layer deep
 				If ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 1 )
 				{
 					# The $filterKeyValue check assumes that not all filters will be used in each call
 					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return = $Result.Where( { $_.$Filter[$filterKey] -eq $filterKeyValue } )
+					$return += $Results.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
 				}
 				# For when a location is two layers deep
 				ElseIf ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 2 )
 				{
 					# The $filterKeyValue check assumes that not all filters will be used in each call
 					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return = $Result.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1]) -eq $filterKeyValue } )
+					$return += $Results.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -eq $filterKeyValue } )
 				}
-				Else
-				{
-					# When no filter is found, return the original $result
-					$return = $Result
-				}
-
-				Break
 			}
 		}
-    
+
+		If ( $return.Count -eq 0 )
+		{
+			Write-Verbose -Message 'No filter key matches set.  Returning entire result set.'
+			# When no filter is found, return the original $Results
+			$return = $Results
+		}
+
 		Return $return
 	} # End of Process
 

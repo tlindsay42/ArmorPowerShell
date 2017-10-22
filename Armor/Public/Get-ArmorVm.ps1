@@ -70,13 +70,13 @@ Function Get-ArmorVM
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$result = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
+		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
 
-		$result = Format-ArmorApiResult -Result $result -Location $resources.Location
+		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
 
-		$result = Select-ArmorApiResult -Result $result -Filter $resources.Filter
+		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		Return $result
+		Return $results
 	} # End of Process
 
 	End

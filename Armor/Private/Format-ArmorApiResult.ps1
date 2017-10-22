@@ -12,7 +12,7 @@ Function Format-ArmorApiResult
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
-		.PARAMETER Result
+		.PARAMETER Results
 		The unformatted API response content.
 
 		.PARAMETER Location
@@ -41,7 +41,7 @@ Function Format-ArmorApiResult
 	Param
 	(
 		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[PSCustomObject] $Result = $null,
+		[PSCustomObject[]] $Results = @(),
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
 		[String] $Location = $null
@@ -59,18 +59,23 @@ Function Format-ArmorApiResult
 
 	Process
 	{
-		$return = $Result
+		$return = @()
 
-		If ( $return -eq $null ) { Return }
+		If ( $Results.Count -eq 0 ) { Return $Results }
 
-		Write-Verbose -Message 'Formatting return value.'
+		Write-Verbose -Message 'Formatting return values.'
 
-		If ( $Location -and $Result.$Location -ne $null )
+		ForEach ( $result In $Results )
 		{
-			# The $Location check assumes that not all endpoints will require finding (and removing) a parent key
-			# If one does exist, this extracts the value so that the $Result data is consistent across API versions
-			$return = $Result.$Location
+			If ( $Location -and $result.$Location -ne $null )
+			{
+				# The $Location check assumes that not all endpoints will require finding (and removing) a parent key
+				# If one does exist, this extracts the value so that the $result data is consistent across API versions
+				$return += $result.$Location
+			}
 		}
+
+		If ( $return.Count -eq 0 ) { $return = $Results }
 
 		Return $return
 	} # End of Process
