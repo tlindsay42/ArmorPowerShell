@@ -69,7 +69,7 @@ case "$OSTYPE" in
 
                 # Install system components
                 sudo apt-get update -qq
-                sudo apt-get install -y curl apt-transport-https
+                sudo apt-get install -y apt-transport-https
 
                 # Import the public repository GPG keys
                 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
