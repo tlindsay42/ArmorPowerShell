@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.19'
+ModuleVersion = '1.0.0.20'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -86,8 +86,8 @@ AliasesToExport = @()
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'ConvertFrom-JsonItem.ps1', 
-               'ConvertFrom-JsonXL.ps1', 'Expand-ArmorApiResult.ps1', 
+FileList = 'Armor.psd1', 'Armor.psm1', 'ConvertFrom-JsonXL.ps1', 
+               'Expand-ArmorApiResult.ps1', 'Expand-JsonItem.ps1', 
                'Format-ArmorApiJsonRequestBody.ps1', 'Get-ArmorApiData.ps1', 
                'New-ArmorApiToken.ps1', 'New-ArmorApiUriQueryString.ps1', 
                'New-ArmorApiUriString.ps1', 'Select-ArmorApiResult.ps1', 
