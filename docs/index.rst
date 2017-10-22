@@ -1,4 +1,4 @@
-Welcome to the Armor PowerShell Module
+Welcome to the Armor Community PowerShell Module
 ========================
 
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
