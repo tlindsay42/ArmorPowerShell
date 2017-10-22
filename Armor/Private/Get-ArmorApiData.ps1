@@ -204,7 +204,22 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Update-ArmorApiToken'    = @{
+			'Stop-ArmorVM'         = @{
+				'v1.0' = @{
+					'Description' = 'Power on the specified virtual machine in your account'
+					'URI'         = @(
+						'/vms/{id}/power/shutdown',
+						'/vms/{id}/power/off',
+						'/vms/{id}/power/forceOff'
+					)
+					'Method'      = 'Post'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 				'v1.0' = @{
 					'Description' = 'Reissues an authentication token if requested before session expiration'
 					'URI'         = @(
