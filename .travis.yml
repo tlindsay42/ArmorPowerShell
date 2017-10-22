@@ -8,26 +8,9 @@ os:
   - osx
 sudo: required
 dist: trusty
-osx_image: xcode8.3
+osx_image: xcode9.1
 
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew update;
-      brew install openssl;
-      mkdir -p /usr/local/lib;
-      ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/;
-      ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      nvm install v6.0.0;
-    fi
 install:
-  # Default 2.0.0 Ruby is buggy
-  # Default bundler version is buggy
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      rvm install ruby-2.3.3;
-      rvm --default use 2.3.3;
-    fi
   - pushd tests
   - ./travis-install-dependencies.sh
   - popd
