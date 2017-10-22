@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.14'
+ModuleVersion = '1.0.0.15'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Armor','Defense','Security','Complete','Anywhere','Secure','Cloud','Protect','Protection','Compliance','Compliant','PCI','DSS','HIPAA','Performance','Hosting','Hosted','Infrastructure','IaaS','SaaS','Amazon','AWS','Microsoft','Azure'
+        Tags = 'Armor','Defense','Cloud','Security','Performance','Complete','Anywhere','Compliant','PCI-DSS','HIPAA','IaaS','SaaS'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE'
