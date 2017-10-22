@@ -1,4 +1,4 @@
-Function ConvertFrom-JsonItem
+Function Expand-JsonItem
 {
 	<#
 		.SYNOPSIS
@@ -61,7 +61,7 @@ Function ConvertFrom-JsonItem
 			{
 				$return = @()
 
-				$InputObject.ForEach( { <# Recurse #> $return += , ( ConvertFrom-JsonItem -InputObject $_ ) } )
+				$InputObject.ForEach( { <# Recurse #> $return += , ( Expand-JsonItem -InputObject $_ ) } )
 
 				Break
 			}
@@ -72,7 +72,7 @@ Function ConvertFrom-JsonItem
 
 				ForEach ( $jsonItemKey In ( [HashTable]$InputObject ).Keys )
 				{
-					If ( $InputObject[$jsonItemKey] ) { <# Recurse #> $parsedItem = ConvertFrom-JsonItem -InputObject $InputObject[$jsonItemKey] }
+					If ( $InputObject[$jsonItemKey] ) { <# Recurse #> $parsedItem = Expand-JsonItem -InputObject $InputObject[$jsonItemKey] }
 					Else { $parsedItem = $null }
 
 					$return |

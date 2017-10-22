@@ -59,7 +59,7 @@ Function ConvertFrom-JsonXL
 		$javaScriptSerializer = New-Object -TypeName System.Web.Script.Serialization.JavaScriptSerializer -Property @{ 'MaxJsonLength' = 64MB }
 
 		$return = $javaScriptSerializer.DeserializeObject( $InputObject ) |
-			ConvertFrom-JsonItem
+			Expand-JsonItem
 
 		Return $return
 	} # End of Process
