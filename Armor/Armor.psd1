@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.16'
+ModuleVersion = '1.0.0.17'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -86,8 +86,16 @@ AliasesToExport = @()
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 
-               'Armor.psd1, Armor.psm1, ConvertFrom-JsonItem.ps1, ConvertFrom-JsonXL.ps1, Format-ArmorApiJsonRequestBody.ps1, Format-ArmorApiResult.ps1, Get-ArmorApiData.ps1, New-ArmorApiToken.ps1, New-ArmorApiUriQueryString.ps1, New-ArmorApiUriString.ps1, Select-ArmorApiResult.ps1, Submit-ArmorApiRequest.ps1, Test-ArmorConnection.ps1, Update-ArmorApiToken.ps1, Connect-Armor.ps1, Disconnect-Armor.ps1, Get-ArmorAccount.ps1, Get-ArmorUser.ps1, Get-ArmorVm.ps1, Rename-ArmorVM.ps1, Set-ArmorAccountContext.ps1'
+FileList = 'Armor.psd1', 'Armor.psm1', 'ConvertFrom-JsonItem.ps1', 
+               'ConvertFrom-JsonXL.ps1', 'Format-ArmorApiJsonRequestBody.ps1', 
+               'Format-ArmorApiResult.ps1', 'Get-ArmorApiData.ps1', 
+               'New-ArmorApiToken.ps1', 'New-ArmorApiUriQueryString.ps1', 
+               'New-ArmorApiUriString.ps1', 'Select-ArmorApiResult.ps1', 
+               'Submit-ArmorApiRequest.ps1', 'Test-ArmorConnection.ps1', 
+               'Update-ArmorApiToken.ps1', 'Connect-Armor.ps1', 
+               'Disconnect-Armor.ps1', 'Get-ArmorAccount.ps1', 'Get-ArmorUser.ps1', 
+               'Get-ArmorVm.ps1', 'Rename-ArmorVM.ps1', 
+               'Set-ArmorAccountContext.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
