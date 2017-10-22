@@ -12,9 +12,6 @@ Function Stop-ArmorVM
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
-		.PARAMETER Name
-		The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
-
 		.PARAMETER ID
 		The ID of a VM in the Armor account.  The default value is 0.
 
