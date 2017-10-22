@@ -60,7 +60,7 @@ Function Select-ArmorApiResult
 
 	Process
 	{
-		If ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) { Return 'No results found.' }
+		If ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) { Return $Results }
 
 		$return = @()
 
