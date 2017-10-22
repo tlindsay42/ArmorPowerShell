@@ -24,7 +24,7 @@ DESCRIPTION
 
 PARAMETERS
     -ApiVersion <String>
-        The API version.  The default value is $global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -59,7 +59,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorUser [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorUser [[-UserName] <String>] [-FirstName <String>] [-LastName <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -67,7 +67,14 @@ DESCRIPTION
     
 
 PARAMETERS
-    -Name <String>
+    -UserName <String>
+        
+    -FirstName <String>
+        
+    -LastName <String>
+        
+    -ID <UInt16>
+        { required: description of the specified input parameter's purpose }
         
     -ApiVersion <String>
         
@@ -104,7 +111,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorVM [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorVM [[-Name] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -113,8 +120,13 @@ DESCRIPTION
 
 PARAMETERS
     -Name <String>
+        The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
+        
+    -ID <UInt16>
+        The ID of a VM in the Armor account.  The default value is 0.
         
     -ApiVersion <String>
+        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -124,9 +136,48 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Get-ArmorVM
+    
+    Description
+    -----------
+    
+    Returns all VMs in the Armor account that currently has context.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>Get-ArmorVM -Name ARMO25VML01-gen4
+    
+    Description
+    -----------
+    
+    Returns the specified VM in the Armor account that currently has context.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>Get-ArmorVM -Name *-gen4
+    
+    Description
+    -----------
+    
+    Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 4 --------------------------
+    
+    PS C:\>Get-ArmorVM -Name *hacked*
+    
+    Description
+    -----------
+    
+    Returns null.
     
     
     
