@@ -55,7 +55,18 @@ Function Test-ArmorConnection
 
 	Process
 	{
+		$now = Get-Date
+
 		Write-Verbose -Message 'Validate that the Armor token exists.'
+
+		If ( $Global:ArmorConnection.SessionExpirationTime -lt $now )
+		{
+			$message = 'Session expired at {0}.  Please log in again.' -f $now
+
+			Disconnect-Armor
+
+			Throw $message
+		}
 
 		If ( $Global:ArmorConnection.Token.Count -eq 0 )
 		{
