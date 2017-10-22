@@ -28,4 +28,4 @@ install:
 
 script:
   - ulimit -n 4096
-  - powershell -File tests/travis-build.ps1
+  - powershell -File ./tests/travis-build.ps1
