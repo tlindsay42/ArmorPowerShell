@@ -117,19 +117,19 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorVM'             = @{
+			'Get-ArmorLocation'    = @{
 				'v1.0' = @{
-					'Description' = 'Displays a list of virtual machines in your account'
+					'Description' = 'Return a set of available locations for provisioning new servers'
 					'URI'         = @(
-						'/vms',
-						'/vms/{id}'
+						'/locations'
 					)
 					'Method'      = 'Get'
 					'Body'        = @{}
 					'Query'       = @{}
 					'Location'    = ''
 					'Filter'      = @{
-						'Name' = 'Name'
+						'Location' = 'Location'
+						'ID'       = 'ID'
 					}
 					'SuccessCode' = '200'
 				}
