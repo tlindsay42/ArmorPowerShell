@@ -98,12 +98,15 @@ Function Submit-ArmorApiRequest
 					If ( $request.Content.Length -gt 2MB )
 					{
 						# Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
-					$content = $request.Content |
+						Write-Verbose -Message 'Converting JSON payload more than 2MB.'
+
 						$return = $request.Content |
 						ConvertFrom-JsonXL
 					}
 					Else
 					{
+						Write-Verbose -Message 'Converting JSON payload less than or equal to 2MB.'
+
 						$return = $request.Content |
 							ConvertFrom-Json
 					}
