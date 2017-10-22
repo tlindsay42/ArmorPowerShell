@@ -2,7 +2,7 @@ Function Connect-Armor
 {
 	<#
 		.SYNOPSIS
-		Connects to Armor and retrieves a token value for authentication
+		Connects to Armor and retrieves an authentication token.
 
 		.DESCRIPTION
 		The Connect-Armor function is used to connect to the Armor RESTful API and supply credentials to the method.
