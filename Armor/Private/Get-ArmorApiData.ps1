@@ -204,6 +204,20 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
+			'Restart-ArmorVM'      = @{
+				'v1.0' = @{
+					'Description' = 'Reboot the specified virtual machine in your account'
+					'URI'         = @(
+						'/vms/{id}/power/reboot'
+					)
+					'Method'      = 'Post'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 			'Start-ArmorVM'        = @{
 				'v1.0' = @{
 					'Description' = 'Power on the specified virtual machine in your account'
