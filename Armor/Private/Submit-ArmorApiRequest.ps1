@@ -72,6 +72,7 @@ Function Submit-ArmorApiRequest
 
 	Process
 	{
+		$return = $null
 		$request = $null
 
 		If ( $PSCmdlet.ShouldProcess( $id, $resources.Description ) )
@@ -98,11 +99,12 @@ Function Submit-ArmorApiRequest
 					{
 						# Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
 					$content = $request.Content |
+						$return = $request.Content |
 						ConvertFrom-JsonXL
 					}
 					Else
 					{
-						$content = $request.Content |
+						$return = $request.Content |
 							ConvertFrom-Json
 					}
 				}
@@ -136,7 +138,7 @@ Function Submit-ArmorApiRequest
 			}
 		}
 
-		Return $content
+		Return $return
 	} # End of Process
 
 	End
