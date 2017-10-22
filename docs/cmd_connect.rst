@@ -11,7 +11,7 @@ NAME
     Connect-Armor
     
 SYNOPSIS
-    Connects to Armor and retrieves a token value for authentication
+    Connects to Armor and retrieves an authentication token.
     
     
 SYNTAX
