@@ -93,8 +93,9 @@ Function Select-ArmorApiResult
 
 		If ( $return.Count -eq 0 )
 		{
-			Write-Verbose -Message 'No filter key matches set.  Returning entire result set.'
 			# When no filter is found, return the original $Results
+			Write-Verbose -Message 'No filter key matches set.  Returning entire result set.'
+
 			$return = $Results
 		}
 
