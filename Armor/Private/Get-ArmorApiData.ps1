@@ -248,7 +248,7 @@ Function Get-ArmorApiData
 			}
 			'Stop-ArmorVM'         = @{
 				'v1.0' = @{
-					'Description' = 'Power on the specified virtual machine in your account'
+					'Description' = 'Power off the specified virtual machine in your account'
 					'URI'         = @(
 						'/vms/{id}/power/shutdown',
 						'/vms/{id}/power/off',
