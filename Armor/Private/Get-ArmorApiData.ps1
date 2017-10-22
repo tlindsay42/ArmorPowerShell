@@ -56,7 +56,7 @@ Function Get-ArmorApiData
 		[String] $Endpoint = 'Example',
 		[Parameter( Position = 1 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
 	)
 
 	Begin

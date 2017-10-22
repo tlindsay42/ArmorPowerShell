@@ -37,7 +37,7 @@ Function Test-ArmorConnection
 		Description
 		-----------
 
-		Validates that there is one Armor API connection token stored in '$global:ArmorConnection.Token'.
+		Validates that there is one Armor API connection token stored in '$Global:ArmorConnection.Token'.
 	#>
 
 	[CmdletBinding()]
@@ -57,34 +57,34 @@ Function Test-ArmorConnection
 	{
 		Write-Verbose -Message 'Validate that the Armor token exists.'
 
-		If ( $global:ArmorConnection.Token.Count -eq 0 )
+		If ( $Global:ArmorConnection.Token.Count -eq 0 )
 		{
 			Write-Warning -Message 'Please connect an Armor API session before running this command.'
 		}
-		ElseIf ( $global:ArmorConnection.Token.Count -gt 1 )
+		ElseIf ( $Global:ArmorConnection.Token.Count -gt 1 )
 		{
 			Write-Warning -Message 'Please connect to only one Armor API session before running this command.'
 		}
 
-		If ( $global:ArmorConnection.Token.Count -ne 1 )
+		If ( $Global:ArmorConnection.Token.Count -ne 1 )
 		{
 			Throw 'A single connection with Connect-Armor is required.'
 		}
 
 		Write-Verbose -Message ( 
 			'Found an Armor API authentication token with {0} minutes remaining until expiration.' -f
-				( $global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
+				( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
 		)
 		
-		If ( ( $global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes -lt 15 )
+		If ( ( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes -lt 25 )
 		{
 			Write-Verbose -Message 'Renewing session token.'
 
-			Update-ArmorApiToken -Token $global:ArmorConnection.Token |
+			Update-ArmorApiToken -Token $Global:ArmorConnection.Token |
 				Out-Null
 		}
 
-		$script:Headers = $global:ArmorConnection.Headers
+		$script:Headers = $Global:ArmorConnection.Headers
 
 		Return
 	} # End of Process

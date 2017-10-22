@@ -103,7 +103,7 @@ Function Connect-Armor
 			Catch { Throw 'Failed to set credentials.' }
 		}
 
-		$global:ArmorConnection = @{
+		$Global:ArmorConnection = @{
 			'ID' = $null
 			'UserName' = $Credential.UserName
 			'AccountContextID' = $null
@@ -123,18 +123,18 @@ Function Connect-Armor
 		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
 
 		# Create the URI
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri
+		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri
 
 		# Set the Method
 		$method = $resources.Method
 
 		# For API version v1.0, create a body with the credentials
-		Switch ( $global:ArmorConnection.ApiVersion )
+		Switch ( $Global:ArmorConnection.ApiVersion )
 		{
 			'v1.0'
 			{
 				$body = @{
-					$resources.Body.UserName = $global:ArmorConnection.UserName
+					$resources.Body.UserName = $Global:ArmorConnection.UserName
 					$resources.Body.Password = $Credential.GetNetworkCredential().Password
 				} |
 					ConvertTo-Json
@@ -142,13 +142,13 @@ Function Connect-Armor
 
 			Default
 			{
-				Throw ( 'Unknown API version number: {0}.' -f $global:ArmorConnection.ApiVersion )
+				Throw ( 'Unknown API version number: {0}.' -f $Global:ArmorConnection.ApiVersion )
 			}
 		}
 
 		Try
 		{
-			$content = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $method -Body $body
+			$content = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $method -Body $body
 
 			# If we find a temporary authorization code and a success message, we know the request was successful
 			# Anything else will trigger a Throw, which will cause the Catch to break the current loop
@@ -175,15 +175,15 @@ Function Connect-Armor
 			Throw 'Unable to acquire authorization token. Check $Error for details or use the -Verbose parameter.'
 		}
 
-		Write-Verbose -Message 'Storing all connection details in $global:ArmorConnection.'
+		Write-Verbose -Message 'Storing all connection details in $Global:ArmorConnection.'
 
 		$now = Get-Date
 
-		$global:ArmorConnection.ID = $token.Id_Token
-		$global:ArmorConnection.Token = $token.Access_Token
-		$global:ArmorConnection.SessionStartTime = $now
-		$global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
-		$global:ArmorConnection.Headers.Authorization = 'FH-AUTH {0}' -f $token.Access_Token
+		$Global:ArmorConnection.ID = $token.Id_Token
+		$Global:ArmorConnection.Token = $token.Access_Token
+		$Global:ArmorConnection.SessionStartTime = $now
+		$Global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
+		$Global:ArmorConnection.Headers.Authorization = 'FH-AUTH {0}' -f $token.Access_Token
 		
 		If ( $AccountID -eq 0 )
 		{
@@ -198,7 +198,7 @@ Function Connect-Armor
 		Write-Verbose -Message ( 'Setting the Armor account context to ID {0}.' -f $AccountID )
 		Set-ArmorAccountContext -ID $AccountID
 
-		Return $global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
+		Return $Global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
 	} # End of Process
 
 	End

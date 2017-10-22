@@ -48,7 +48,7 @@ Function Rename-ArmorVM
 		[String] $Name = '',
 		[Parameter( Position = 2 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
 	)
 
 	Begin
@@ -73,13 +73,13 @@ Function Rename-ArmorVM
 		
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
+		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
+		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
 		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
 

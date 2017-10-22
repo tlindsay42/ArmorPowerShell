@@ -52,7 +52,7 @@ Function Submit-ArmorApiRequest
 		[String] $Uri = $null,
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
-		[Hashtable] $Headers = $global:ArmorConnection.Headers,
+		[Hashtable] $Headers = $Global:ArmorConnection.Headers,
 		[Parameter( Position = 2 )]
 		[ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
 		[String] $Method = $null,

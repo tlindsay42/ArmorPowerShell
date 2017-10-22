@@ -16,7 +16,7 @@ Function Update-ArmorApiToken
 		The authorization token.
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
 
 		.INPUTS
 		System.String
@@ -42,10 +42,10 @@ Function Update-ArmorApiToken
 	(
 		[Parameter( ValueFromPipeline = $true, Position = 0 )]
 		[ValidateNotNullorEmpty()]
-		[String] $Token = $global:ArmorConnection.Token,
+		[String] $Token = $Global:ArmorConnection.Token,
 		[Parameter( Position = 1 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
 	)
 
 	Begin
@@ -67,21 +67,21 @@ Function Update-ArmorApiToken
 
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri
+		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
+		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
 		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		$global:ArmorConnection.Token = $results.Access_Token
-		$global:ArmorConnection.SessionExpirationTime = ( Get-Date ).AddSeconds( $results.Expires_In )
-		$global:ArmorConnection.Headers.Authorization = $global:ArmorConnection.Headers.Authorization -replace '\w+$', $results.Access_Token
+		$Global:ArmorConnection.Token = $results.Access_Token
+		$Global:ArmorConnection.SessionExpirationTime = ( Get-Date ).AddSeconds( $results.Expires_In )
+		$Global:ArmorConnection.Headers.Authorization = $Global:ArmorConnection.Headers.Authorization -replace '\w+$', $results.Access_Token
 
 		Return $results
 	} # End of Process
