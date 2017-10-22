@@ -93,7 +93,7 @@ Function New-ArmorApiUriString
 
 			1
 			{
-				$endpoint = $Endpoints.Where( { $_ -match '/{id}$' } )
+				$endpoint = $Endpoints.Where( { $_ -match '/{id}' } )
 
 				If ( $endpoint.Count -eq 0 ) { Throw 'Endpoint with one ID specification not found.' }
 				ElseIf ( $endpoint.Count -ne 1 ) { Throw 'More than one endpoint with one ID specification found.' }
