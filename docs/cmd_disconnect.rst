@@ -15,7 +15,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Disconnect-Armor [<CommonParameters>]
+    Disconnect-Armor [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -23,6 +23,10 @@ DESCRIPTION
     
 
 PARAMETERS
+    -WhatIf [<SwitchParameter>]
+        
+    -Confirm [<SwitchParameter>]
+        
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,
