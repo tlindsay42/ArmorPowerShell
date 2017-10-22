@@ -12,6 +12,9 @@ Function Get-ArmorVM
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
+		.PARAMETER Name
+		The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
+
 		.PARAMETER ID
 		{ required: description of the specified input parameter's purpose }
 
@@ -38,7 +41,9 @@ Function Get-ArmorVM
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[String] $ID = $null,
+		[String] $Name = '',
+		[ValidateRange( 1, 65535 )]
+		[UInt16] $ID = 0,
 		[Parameter( Position = 1 )]
 		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
 		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
