@@ -145,7 +145,11 @@ Function Get-ArmorApiData
 					'Body'        = @{}
 					'Query'       = @{}
 					'Location'    = ''
-					'Filter'      = @{}
+					'Filter'      = @{
+						'FirstName' = 'FirstName'
+						'LastName'  = 'LastName'
+						'UserName'  = 'Email'
+					}
 					'SuccessCode' = '200'
 				}
 			}
