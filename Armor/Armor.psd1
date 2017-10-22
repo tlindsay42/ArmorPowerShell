@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.18'
+ModuleVersion = '1.0.0.19'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -27,10 +27,10 @@ CompanyName = 'Armor'
 Copyright = '(c) 2017 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This is a community project that provides a Windows PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.'
+Description = 'This is a community project that provides a Microsoft PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '4.0'
+PowerShellVersion = '5.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -74,7 +74,7 @@ FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount',
 CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = @()
+VariablesToExport = 'global:ArmorConnection'
 
 # Aliases to export from this module
 AliasesToExport = @()
@@ -87,8 +87,8 @@ AliasesToExport = @()
 
 # List of all files packaged with this module
 FileList = 'Armor.psd1', 'Armor.psm1', 'ConvertFrom-JsonItem.ps1', 
-               'ConvertFrom-JsonXL.ps1', 'Format-ArmorApiJsonRequestBody.ps1', 
-               'Format-ArmorApiResult.ps1', 'Get-ArmorApiData.ps1', 
+               'ConvertFrom-JsonXL.ps1', 'Expand-ArmorApiResult.ps1', 
+               'Format-ArmorApiJsonRequestBody.ps1', 'Get-ArmorApiData.ps1', 
                'New-ArmorApiToken.ps1', 'New-ArmorApiUriQueryString.ps1', 
                'New-ArmorApiUriString.ps1', 'Select-ArmorApiResult.ps1', 
                'Submit-ArmorApiRequest.ps1', 'Test-ArmorConnection.ps1', 
