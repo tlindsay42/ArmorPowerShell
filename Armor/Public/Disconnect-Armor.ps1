@@ -32,7 +32,7 @@ Function Disconnect-Armor
 		Disconnect-Armor
 	#>
 
-	[CmdletBinding()]
+	[CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
 	Param ()
 
 	Begin
@@ -49,10 +49,13 @@ Function Disconnect-Armor
 
 	Process
 	{
-		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
-		Write-Verbose -Message 'Disconnecting from Armor.'
+		If ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) )
+		{
+			# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
+			Write-Verbose -Message 'Disconnecting from Armor.'
 
-		Remove-Variable -Name ArmorConnection -Scope Global
+			Remove-Variable -Name ArmorConnection -Scope Global
+		}
 	} # End of Process
 
 	End

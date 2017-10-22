@@ -37,7 +37,7 @@ Function Rename-ArmorVM
 		{required: show one or more examples using the function}
 	#>
 
-	[CmdletBinding()]
+	[CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
 	Param
 	(
 		[Parameter( Position = 0 )]
@@ -70,22 +70,25 @@ Function Rename-ArmorVM
 	{
 		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		
+
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
+		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
+		{
+			$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
 
-		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
+			$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+			$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
+			$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+			$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
-		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		Return $results
+			Return $results
+		}
 	} # End of Process
 
 	End

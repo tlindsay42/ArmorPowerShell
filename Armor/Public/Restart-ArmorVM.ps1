@@ -37,7 +37,7 @@ Function Restart-ArmorVM
 		{required: show one or more examples using the function}
 	#>
 
-	[CmdletBinding()]
+	[CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
 	Param
 	(
 		[Parameter( Position = 0 )]
@@ -70,17 +70,20 @@ Function Restart-ArmorVM
 		
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
+		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
+		{
+			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
 
-		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
+			$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
+			$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
 
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+			$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
-		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		Return $results
+			Return $results
+		}
 	} # End of Process
 
 	End

@@ -63,7 +63,7 @@ Function Test-ArmorConnection
 		{
 			$message = 'Session expired at {0}.  Please log in again.' -f $now
 
-			Disconnect-Armor
+			Disconnect-Armor -Confirm:$false
 
 			Throw $message
 		}
