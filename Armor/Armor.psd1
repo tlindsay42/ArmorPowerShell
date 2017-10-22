@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.20'
+ModuleVersion = '1.0.0.21'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -67,8 +67,9 @@ FormatsToProcess = @()
 
 # Functions to export from this module
 FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount', 
-               'Get-ArmorUser', 'Get-ArmorVm', 'Rename-ArmorVM', 
-               'Set-ArmorAccountContext'
+               'Get-ArmorLocation', 'Get-ArmorUser', 'Get-ArmorVm', 'Rename-ArmorVM', 
+               'Reset-ArmorVM', 'Restart-ArmorVM', 'Set-ArmorAccountContext', 
+               'Start-ArmorVM', 'Stop-ArmorVM'
 
 # Cmdlets to export from this module
 CmdletsToExport = @()
@@ -93,9 +94,11 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'ConvertFrom-JsonXL.ps1',
                'New-ArmorApiUriString.ps1', 'Select-ArmorApiResult.ps1', 
                'Submit-ArmorApiRequest.ps1', 'Test-ArmorConnection.ps1', 
                'Update-ArmorApiToken.ps1', 'Connect-Armor.ps1', 
-               'Disconnect-Armor.ps1', 'Get-ArmorAccount.ps1', 'Get-ArmorUser.ps1', 
-               'Get-ArmorVm.ps1', 'Rename-ArmorVM.ps1', 
-               'Set-ArmorAccountContext.ps1'
+               'Disconnect-Armor.ps1', 'Get-ArmorAccount.ps1', 
+               'Get-ArmorLocation.ps1', 'Get-ArmorUser.ps1', 'Get-ArmorVm.ps1', 
+               'Rename-ArmorVM.ps1', 'Reset-ArmorVM.ps1', 'Restart-ArmorVM.ps1', 
+               'Set-ArmorAccountContext.ps1', 'Start-ArmorVM.ps1', 
+               'Stop-ArmorVM.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
