@@ -74,7 +74,7 @@ FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount',
 CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = 'global:ArmorConnection'
+VariablesToExport = @()
 
 # Aliases to export from this module
 AliasesToExport = @()
