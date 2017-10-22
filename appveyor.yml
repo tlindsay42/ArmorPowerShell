@@ -39,14 +39,14 @@ install:
 # Invoke Pester to run all of the unit tests, then save the results into XML in order to populate the AppVeyor tests section
 # If any of the tests fail, consider the pipeline failed
 test_script:
-  - ps: $testsResults = Invoke-Pester -Path ".\Tests" -OutputFormat NUnitXml -OutputFile TestsResults.xml -PassThru
-  - ps: ( New-Object -TypeName 'System.Net.WebClient' ).UploadFile( ( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ), ( Resolve-Path -Path '.\TestsResults.xml' ) )
+  - ps: $testsResults = Invoke-Pester -Path ".\tests" -OutputFormat NUnitXml -OutputFile TestsResults.xml -PassThru
+  - ps: ( New-Object -TypeName 'System.Net.WebClient' ).UploadFile( ( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ), ( Resolve-Path -Path '.\AppVeyorTestsResults.xml' ) )
   - ps: If ( $testsResults.FailedCount -gt 0 ) { Throw ( '{0} tests failed.' -f $testsResults.FailedCount ) }
   - git config --global credential.helper store
   - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
   - git config --global user.email 'tlindsay42@gmail.com'
   - git config --global user.name 'Troy Lindsay'
-  - ps: . .\Tests\build.ps1
+  - ps: . .\tests\appveyor-build.ps1
 
 # Post a status update in $chatProvider
 # The "secure:" value is the Appveyor encryption of my $chatProvider API token
