@@ -16,13 +16,17 @@ Function Get-ArmorVM
 		The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
 
 		.PARAMETER ID
-		{ required: description of the specified input parameter's purpose }
+		The ID of a VM in the Armor account.  The default value is 0.
+
+		.PARAMETER ApiVersion
+		The API version.  The default value is $global:ArmorConnection.ApiVersion.
 
 		.INPUTS
-		{ required: .NET Framework object types that can be piped in and a description of the input objects }
+		None
+			You cannot pipe objects to Get-ArmorVM.
 
 		.OUTPUTS
-		{ required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
+		System.Management.Automation.PSCustomObject[]
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -34,7 +38,36 @@ Function Get-ArmorVM
 		https://developer.armor.com/
 
 		.EXAMPLE
-		{required: show one or more examples using the function}
+		Get-ArmorVM
+
+		Description
+		-----------
+
+		Returns all VMs in the Armor account that currently has context.
+
+		.EXAMPLE
+		Get-ArmorVM -Name ARMO25VML01-gen4
+
+		Description
+		-----------
+
+		Returns the specified VM in the Armor account that currently has context.
+
+		.EXAMPLE
+		Get-ArmorVM -Name *-gen4
+
+		Description
+		-----------
+
+		Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
+
+		.EXAMPLE
+		Get-ArmorVM -Name *hacked*
+
+		Description
+		-----------
+
+		Returns null.
 	#>
 
 	[CmdletBinding()]
