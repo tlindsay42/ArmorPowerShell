@@ -169,9 +169,7 @@ case "$OSTYPE" in
                 fi
 
                 case "$VERSION_ID" in
-                    14.04)
-                    16.04)
-                    17.04)
+                    14.04 | 16.04 | 17.04)
                         version=$VERSION_ID
                         ;;
                     *)
@@ -217,10 +215,16 @@ case "$OSTYPE" in
         # Install dependencies
         echo "Installing PowerShell with sudo..."
         case "$ID" in
-            centos)
-            rhel)
+            centos | rhel)
                 # yum automatically resolves dependencies for local packages
                 sudo yum install -y powershell
+                ;;
+            debian | ubuntu)
+                # Update the list of products
+                sudo apt-get update -qq
+
+                # Install PowerShell
+                sudo apt-get install -y powershell
                 ;;
             fedora)
                 # Update the list of products
@@ -234,14 +238,6 @@ case "$OSTYPE" in
 
                 # Install PowerShell
                 sudo zypper install powershell
-                ;;
-            debian)
-            ubuntu)
-                # Update the list of products
-                sudo apt-get update -qq
-
-                # Install PowerShell
-                sudo apt-get install -y powershell
                 ;;
             *)
                 echo "$NAME is not supported!" >&2
