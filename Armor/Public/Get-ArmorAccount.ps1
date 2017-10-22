@@ -68,7 +68,7 @@ Function Get-ArmorAccount
 
 		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method
 
-		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
+		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 

@@ -1,8 +1,8 @@
-Function Format-ArmorApiResult
+Function Expand-ArmorApiResult
 {
 	<#
 		.SYNOPSIS
-		The Format-ArmorApiResult function is used to remove any parent variables surrounding return data, such as encapsulating results in a "data" key.
+		The Expand-ArmorApiResult function is used to remove any parent variables surrounding return data, such as encapsulating results in a "data" key.
 
 		.DESCRIPTION
 		{ required: more detailed description of the function's purpose }

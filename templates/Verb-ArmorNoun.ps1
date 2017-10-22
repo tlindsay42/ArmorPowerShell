@@ -74,7 +74,7 @@ Function Verb-ArmorNoun
 
 		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method -Body $body
 
-		$results = Format-ArmorApiResult -Results $results -Location $resources.Location
+		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
