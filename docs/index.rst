@@ -31,5 +31,7 @@ This is a community project that provides a Microsoft PowerShell module for mana
    :caption: Command Documentation
 
    cmd_connect
+   cmd_disconnect
    cmd_get
+   cmd_rename
    cmd_set
