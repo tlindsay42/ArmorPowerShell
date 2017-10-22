@@ -232,6 +232,7 @@ case "$OSTYPE" in
 
                 # Install PowerShell
                 sudo dnf install -y powershell
+                ;;
             opensuse)
                 # Update the list of products
                 sudo zypper update
