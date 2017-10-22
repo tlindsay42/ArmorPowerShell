@@ -15,7 +15,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Rename-ArmorVM [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Rename-ArmorVM [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -29,6 +29,10 @@ PARAMETERS
     -Name <String>
         
     -ApiVersion <String>
+        
+    -WhatIf [<SwitchParameter>]
+        
+    -Confirm [<SwitchParameter>]
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,

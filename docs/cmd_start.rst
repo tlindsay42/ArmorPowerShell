@@ -15,7 +15,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Start-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Start-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -28,6 +28,10 @@ PARAMETERS
         
     -ApiVersion <String>
         The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        
+    -WhatIf [<SwitchParameter>]
+        
+    -Confirm [<SwitchParameter>]
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
