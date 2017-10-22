@@ -29,9 +29,7 @@ install:
       rvm --default use 2.3.3;
     fi
   - pushd tests
-  - pwd
-  - ls -lA
-  - sudo ./travis-install-dependencies.sh
+  - ./travis-install-dependencies.sh
   - popd
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
