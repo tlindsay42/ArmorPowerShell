@@ -68,8 +68,8 @@ case "$OSTYPE" in
                 esac
 
                 # Install system components
-                sudo apt-get update
-                sudo apt-get install curl apt-transport-https
+                sudo apt-get update -qq
+                sudo apt-get install -y apt-transport-https
 
                 # Import the public repository GPG keys
                 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -238,7 +238,7 @@ case "$OSTYPE" in
             debian)
             ubuntu)
                 # Update the list of products
-                sudo apt-get update
+                sudo apt-get update -qq
 
                 # Install PowerShell
                 sudo apt-get install -y powershell
