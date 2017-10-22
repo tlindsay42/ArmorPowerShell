@@ -22,6 +22,12 @@ before_install:
       nvm install v6.0.0;
     fi
 install:
+  # Default 2.0.0 Ruby is buggy
+  # Default bundler version is buggy
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      rvm install ruby-2.3.3;
+      rvm --default use 2.3.3;
+    fi
   - pushd tests
   - sudo ./travis-install-dependencies.sh
   - popd
