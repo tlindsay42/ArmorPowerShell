@@ -39,6 +39,7 @@ Else
 			-Author 'Troy Lindsay' `
 			-CompanyName 'Armor' `
 			-Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
+			-Description 'This is a community project that provides a Microsoft PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.' `
 			-PowerShellVersion '5.0' `
 			-ProcessorArchitecture 'None' `
 			-FunctionsToExport $functionList `
