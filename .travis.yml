@@ -12,6 +12,7 @@ osx_image: xcode9.1
 
 install:
   - pushd tests
+  - chmod +x ./travis-install-dependencies.sh
   - ./travis-install-dependencies.sh
   - popd
   # spellcheck
