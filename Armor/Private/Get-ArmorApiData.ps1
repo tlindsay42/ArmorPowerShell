@@ -134,7 +134,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorUser'           = @{
+			'Get-ArmorUser'        = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of users in your account'
 					'URI'         = @(
@@ -153,7 +153,24 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'New-ArmorApiToken'       = @{
+			'Get-ArmorVM'          = @{
+				'v1.0' = @{
+					'Description' = 'Displays a list of virtual machines in your account'
+					'URI'         = @(
+						'/vms',
+						'/vms/{id}'
+					)
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{
+						'Name' = 'Name'
+					}
+					'SuccessCode' = '200'
+				}
+			}
+			'New-ArmorApiToken'    = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
 					'URI'         = @(
