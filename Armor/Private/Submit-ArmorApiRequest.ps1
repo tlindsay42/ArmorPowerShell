@@ -75,7 +75,7 @@ Function Submit-ArmorApiRequest
 		$return = $null
 		$request = $null
 
-		If ( $PSCmdlet.ShouldProcess( $id, $resources.Description ) )
+		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
 		{
 			Try
 			{
