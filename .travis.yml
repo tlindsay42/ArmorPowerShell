@@ -22,7 +22,9 @@ before_install:
       nvm install v6.0.0;
     fi
 install:
-  - sudo ./tests/travis-install-dependencies.sh
+  - pushd tests
+  - sudo ./travis-install-dependencies.sh
+  - popd
 
 script:
   - ulimit -n 4096
