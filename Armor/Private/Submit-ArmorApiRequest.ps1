@@ -13,23 +13,23 @@ Function Submit-ArmorApiRequest
 		GitHub: tlindsay42
 
 		.PARAMETER URI
-		The endpoint's URI.
+		The endpoint's URI.  The default value is null.
 
 		.PARAMETER Headers
-		The headers containing authentication details.
+		The headers containing authentication details.  The default value is $Global:ArmorConnection.Headers.
 
 		.PARAMETER Method
-		The action (method) to perform on the endpoint.
+		The action/method to perform on the endpoint.  The default value is null.
 
 		.PARAMETER Body
-		Any optional request body data being submitted to the endpoint.
+		Any optional request body data being submitted to the endpoint.  The default value is null.
 
 		.INPUTS
 		None
 			You cannot pipe objects to Submit-ArmorApiRequest.
 
 		.OUTPUTS
-		Microsoft.PowerShell.Commands.HtmlWebResponseObject
+		System.Management.Automation.PSCustomObject[]
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -49,15 +49,15 @@ Function Submit-ArmorApiRequest
 	(
 		[Parameter( Position = 0 )]
 		[ValidateNotNullorEmpty()]
-		[String] $Uri = $null,
+		[String] $Uri = '',
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
 		[Hashtable] $Headers = $Global:ArmorConnection.Headers,
 		[Parameter( Position = 2 )]
 		[ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
-		[String] $Method = $null,
+		[String] $Method = '',
 		[Parameter( Position = 3 )]
-		[String] $Body = $null
+		[String] $Body = ''
 	)
 
 	Begin
@@ -101,7 +101,7 @@ Function Submit-ArmorApiRequest
 						Write-Verbose -Message 'Converting JSON payload more than 2MB.'
 
 						$return = $request.Content |
-						ConvertFrom-JsonXL
+							ConvertFrom-JsonXL
 					}
 					Else
 					{
