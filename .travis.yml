@@ -28,3 +28,7 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       mdspell '**/*.md' '!powershell/**/*.md' --ignore-numbers --ignore-acronyms --report;
     fi
+
+notifications:
+  slack:
+    secure: TpslQKjfhzkDLlAxaxLyV0LEi2bZe+HcJU+mxJuxlX6zfbG8KalJz5IcOv8Y2/YNmj5+Svtu1/w09DScAkWKsXdh9SCBgYRKzd1tfgqOGF71KA/IryIBYNwYwFSNgGtqoYdBc/mnp8n8ayXpLvF+8HpphDaXXZLstcd35J6lwG7MSQVx8R2oWiMuhZiwGJBzGl+XB5dT4qCzpIADwpBU3N8Z5GfmMFWbjsRRJCRFcXedESuIAqPmUzCxS9hPYLna1YHe6aAMG18jLsFrF55sTDJW8YK5X92/DkVI/REkpvpqD65GEhBcpoZ6WVfWkpHC1tbLHO1r7wbFuaQFx+Vlt6dfpA+Hnf4cpmXKE8ppjaKCzBj7BGJJNWdSjd/w+lsiUKnGTALd/uTonK6l+fevK5IlROgcU3Oq++I6t8Wzs0nkNQyhM9qE+GcyfzfwyKwRrdB9zROXNrLa1UGedsC/tQhUGRwKN/GxGUDIJ0qbiRxFEmj52t/spzadb5p0mFmFKwPZuBheMk2slwUNM+Zq/q1NWYVRPH+NHr57PFdXU1pa6OmPVP7/qb4PuKuOXzWag5hMhvo3NoHcztRVcVmihqyGYM3aaGYfmmtqK8WFalL3ccRYcjY9qudvDZj9LB6YFQt0dA0TlPGDPbPP3wuAHMW3VZz7cn6hDe5USzDk+pk=
