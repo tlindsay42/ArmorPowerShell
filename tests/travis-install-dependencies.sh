@@ -186,6 +186,11 @@ case "$OSTYPE" in
                 echo "$NAME is not supported!" >&2
                 exit 2
         esac
+
+        if [[ ! -r "$repo" ]]; then
+            echo "ERROR: Failed to set $repo! Aborting..." >&2
+            exit 3
+        fi
         ;;
     darwin*)
         if hash brew 2>/dev/null; then
@@ -202,11 +207,6 @@ case "$OSTYPE" in
         exit 2
         ;;
 esac
-
-if [[ ! -r "$repo" ]]; then
-    echo "ERROR: Failed to set $repo! Aborting..." >&2
-    exit 3
-fi
 
 # Installs PowerShell package
 case "$OSTYPE" in
