@@ -45,7 +45,7 @@ Else
 			-FunctionsToExport $functionList `
 			-VariablesToExport global:ArmorConnection `
 			-FileList ( Get-ChildItem -Path '.\Armor' -File -Recurse ).Where( { $_.Extension -match '^\.ps[dm]?1$' } ).Name `
-			-Tags 'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'IaaS', 'SaaS' `
+			-Tags 'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS' `
 			-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
 			-IconUri 'http://i.imgur.com/fbXjkCn.png'
 
