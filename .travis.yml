@@ -21,6 +21,9 @@ install:
       npm install -g markdown-spellcheck@0.11.0;
     fi
   - ulimit -n 4096
+  - powershell -Command { Install-PackageProvider -Name NuGet -Force | Out-Null }
+  - powershell -Command { Install-Module -Name Pester -Force }
+  - powershell -Command { Install-Module -Name posh-git -Force }
 
 script:
   - powershell -File ./tests/travis-build.ps1
