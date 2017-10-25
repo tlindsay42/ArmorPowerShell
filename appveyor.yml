@@ -22,10 +22,12 @@ pull_requests:
 # PowerShell Gallery API key for publishing an update to the module
 # The "secure:" value is the Appveyor encryption of the key
 environment:
-  NuGetApiKey:
-    secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
+  EmailAddress:
+    secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
   GitHubKey:
     secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+  NuGetApiKey:
+    secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
 
 # Install NuGet to interact with the PowerShell Gallery
 install:
@@ -42,7 +44,7 @@ test_script:
   - ps: If ( $testsResults.FailedCount -gt 0 ) { Throw ( '{0} tests failed.' -f $testsResults.FailedCount ) }
   - git config --global credential.helper store
   - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
-  - git config --global user.email 'tlindsay42@gmail.com'
+  - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
   - ps: . .\tests\appveyor-build.ps1
 
