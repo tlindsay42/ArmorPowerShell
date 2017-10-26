@@ -89,11 +89,11 @@ Else
 
 		Import-Module -Name 'Posh-Git' -ErrorAction 'Stop'
 
-		git checkout master
+		git checkout master 2>&1
 		git add --all
 		git status
 		git commit -s -m ( 'AppVeyor: Update version to {0} [ci skip]' -f $newVersion )
-		git push origin master
+		git push origin master 2>&1
 
 		Write-Host -Object ( 'Armor PowerShell Module version {0} published to GitHub.' -f $newVersion ) -ForegroundColor 'Cyan'
 	}
