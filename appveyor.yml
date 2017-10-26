@@ -14,6 +14,7 @@ version: 1.0.0.{build}
 skip_commits:
   files:
     - README.md
+  message: /Merge branch .+ of .+ArmorPowerShell/
 
 # There's no need to alter the build number for a Pull Request (PR) since they don't modify anything
 pull_requests:
@@ -47,6 +48,7 @@ test_script:
   - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
   - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
+  - git config --global core.autocrlf true
   - ps: . .\tests\appveyor-build.ps1
 
 # Files generated during the build process that should be retained
