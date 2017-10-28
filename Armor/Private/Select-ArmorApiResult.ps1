@@ -62,7 +62,7 @@ Function Select-ArmorApiResult
 	{
 		If ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) { Return $Results }
 
-		$return = @()
+		$return = $Results.Clone()
 
 		Write-Verbose -Message 'Filter the results.'
 
@@ -79,24 +79,16 @@ Function Select-ArmorApiResult
 				{
 					# The $filterKeyValue check assumes that not all filters will be used in each call
 					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return += $Results.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
+					$return = $return.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
 				}
 				# For when a location is two layers deep
 				ElseIf ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 2 )
 				{
 					# The $filterKeyValue check assumes that not all filters will be used in each call
 					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return += $Results.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -eq $filterKeyValue } )
+					$return = $return.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -eq $filterKeyValue } )
 				}
 			}
-		}
-
-		If ( $return.Count -eq 0 )
-		{
-			# When no filter is found, return the original $Results
-			Write-Verbose -Message 'No filter key matches set.  Returning entire result set.'
-
-			$return = $Results
 		}
 
 		Return $return
