@@ -1,4 +1,4 @@
-Function Get-ArmorLocation
+Function Get-ArmorDatacenter
 {
 	<#
 		.SYNOPSIS
@@ -13,6 +13,9 @@ Function Get-ArmorLocation
 		GitHub: tlindsay42
 
 		.PARAMETER Location
+		{ required: description of the specified input parameter's purpose }
+
+		.PARAMETER ID
 		{ required: description of the specified input parameter's purpose }
 
 		.PARAMETER ApiVersion

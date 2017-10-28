@@ -117,7 +117,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorLocation'    = @{
+			'Get-ArmorDatacenter'  = @{
 				'v1.0' = @{
 					'Description' = 'Return a set of available locations for provisioning new servers'
 					'URI'         = @(
