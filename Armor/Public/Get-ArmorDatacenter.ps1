@@ -12,6 +12,9 @@ Function Get-ArmorDatacenter
 		Twitter: @troylindsay42
 		GitHub: tlindsay42
 
+		.PARAMETER Name
+		{ required: description of the specified input parameter's purpose }
+
 		.PARAMETER Location
 		{ required: description of the specified input parameter's purpose }
 
@@ -44,6 +47,7 @@ Function Get-ArmorDatacenter
 	[CmdletBinding()]
 	Param
 	(
+		[String] $Name = '',
 		[Parameter( Position = 0 )]
 		[String] $Location = '',
 		[ValidateRange( 1, 5 )]

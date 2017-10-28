@@ -128,6 +128,7 @@ Function Get-ArmorApiData
 					'Query'       = @{}
 					'Location'    = ''
 					'Filter'      = @{
+						'Name'     = 'Name'
 						'Location' = 'Location'
 						'ID'       = 'ID'
 					}
