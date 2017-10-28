@@ -25,7 +25,7 @@ Else
 		[System.Version] $version = $manifest.Version
 		Write-Host -Object ( 'Old Version: {0}' -f $version )
 
-		[String] $newVersion = New-Object -TypeName 'System.Version' -ArgumentList ( $version.Major, $version.Minor, $version.Build, ( $version.Revision + 1 ) )
+		[String] $newVersion = New-Object -TypeName 'System.Version' -ArgumentList ( $version.Major, $version.Minor, $version.Build, $env:APPVEYOR_BUILD_NUMBER )
 		Write-Host -Object ( 'New Version: {0}' -f $newVersion )
 
 		# Update the manifest with the new version value and fix the weird string replace bug
