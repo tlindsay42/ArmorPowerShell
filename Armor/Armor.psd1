@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.44'
+ModuleVersion = '1.0.0.45'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -67,7 +67,7 @@ FormatsToProcess = @()
 
 # Functions to export from this module
 FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount', 
-               'Get-ArmorLocation', 'Get-ArmorUser', 'Get-ArmorVm', 'Rename-ArmorVM', 
+               'Get-ArmorDatacenter', 'Get-ArmorUser', 'Get-ArmorVm', 'Rename-ArmorVM', 
                'Reset-ArmorVM', 'Restart-ArmorVM', 'Set-ArmorAccountContext', 
                'Start-ArmorVM', 'Stop-ArmorVM'
 
@@ -103,7 +103,7 @@ FileList = 'Armor\Armor.psd1', 'Armor\Armor.psm1',
                'Armor\Public\Connect-Armor.ps1', 
                'Armor\Public\Disconnect-Armor.ps1', 
                'Armor\Public\Get-ArmorAccount.ps1', 
-               'Armor\Public\Get-ArmorLocation.ps1', 
+               'Armor\Public\Get-ArmorDatacenter.ps1', 
                'Armor\Public\Get-ArmorUser.ps1', 'Armor\Public\Get-ArmorVm.ps1', 
                'Armor\Public\Rename-ArmorVM.ps1', 'Armor\Public\Reset-ArmorVM.ps1', 
                'Armor\Public\Restart-ArmorVM.ps1', 

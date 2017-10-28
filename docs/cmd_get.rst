@@ -48,18 +48,18 @@ REMARKS
     For online help, type: "get-help Get-ArmorAccount -online"
 
 
-Get-ArmorLocation
+Get-ArmorDatacenter
 -------------------------
 
 NAME
-    Get-ArmorLocation
+    Get-ArmorDatacenter
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Get-ArmorLocation [[-Location] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorDatacenter [-Name <String>] [[-Location] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -67,10 +67,14 @@ DESCRIPTION
     
 
 PARAMETERS
+    -Name <String>
+        { required: description of the specified input parameter's purpose }
+        
     -Location <String>
         { required: description of the specified input parameter's purpose }
         
     -ID <UInt16>
+        { required: description of the specified input parameter's purpose }
         
     -ApiVersion <String>
         The API version.  The default value is $Global:ArmorConnection.ApiVersion.
@@ -91,10 +95,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Get-ArmorLocation -examples".
-    For more information, type: "get-help Get-ArmorLocation -detailed".
-    For technical information, type: "get-help Get-ArmorLocation -full".
-    For online help, type: "get-help Get-ArmorLocation -online"
+    To see the examples, type: "get-help Get-ArmorDatacenter -examples".
+    For more information, type: "get-help Get-ArmorDatacenter -detailed".
+    For technical information, type: "get-help Get-ArmorDatacenter -full".
+    For online help, type: "get-help Get-ArmorDatacenter -online"
 
 
 Get-ArmorUser
