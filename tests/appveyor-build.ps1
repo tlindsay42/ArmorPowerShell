@@ -28,10 +28,6 @@ Else
 		[String] $newVersion = New-Object -TypeName 'System.Version' -ArgumentList ( $version.Major, $version.Minor, $version.Build, ( $version.Revision + 1 ) )
 		Write-Host -Object ( 'New Version: {0}' -f $newVersion )
 
-		Write-Host -Object $env:APPVEYOR_BUILD_ID
-		Write-Host -Object $env:APPVEYOR_BUILD_NUMBER
-		Write-Host -Object $env:APPVEYOR_BUILD_VERSION
-
 		# Update the manifest with the new version value and fix the weird string replace bug
 		$functionList = ( Get-ChildItem -Path .\Armor\Public ).BaseName
 
