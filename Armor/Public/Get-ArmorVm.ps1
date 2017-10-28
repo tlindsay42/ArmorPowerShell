@@ -114,7 +114,7 @@ Function Get-ArmorVM
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		If ( $results.Count -eq 0 ) { Write-Host -Object 'No Armor VMs found.' }
+		If ( $results.Count -eq 0 ) { Write-Host -Object 'Armor VM not found.' }
 
 		Return $results
 	} # End of Process
