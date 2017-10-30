@@ -1,20 +1,23 @@
-Welcome to the Armor Community PowerShell Module
+Welcome to the Armor PowerShell Module
 ========================
 
-.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
-   :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+.. image:: Windows PowerShell https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
+:target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+
+.. image:: PowerShell Core https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+:target: https://travis-ci.org/tlindsay42/armorpowershell
 
 .. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
-   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+:target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
 
-This is a community project that provides a Microsoft PowerShell module for managing and monitoring Armor's secure cloud and security as a service product lines (Armor Complete and Armor Anywhere respectively) by way of published RESTful APIs. If you're looking to perform interactive automation, setting up scheduled tasks, leverage an orchestration engine, or need ad-hoc operations, this module is intended to be valuable to your needs. The code is open source, and `available on GitHub`_.
+This is a community project that provides a Microsoft PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.  The code is open source, and `available on GitHub`_.
 
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
 .. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: User Documentation
+:maxdepth: 2
+:hidden:
+:caption: User Documentation
 
    requirements
    installation
@@ -22,20 +25,12 @@ This is a community project that provides a Microsoft PowerShell module for mana
    project_architecture
    support
    contribution
-   licensing  
+   licensing
    faq
 
 .. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: Command Documentation
+:maxdepth: 2
+:hidden:
+:caption: Command Documentation
 
-   cmd_connect
-   cmd_disconnect
-   cmd_get
-   cmd_rename
-   cmd_reset
-   cmd_restart
-   cmd_set
-   cmd_start
-   cmd_stop
+
