@@ -1,32 +1,70 @@
+#          YAML Reference Guide: https://www.appveyor.com/docs/appveyor-yml/
+# Environmental Variables Guide: https://www.appveyor.com/docs/environment-variables/
+#                YAML Validator: https://ci.appveyor.com/tools/validate-yaml
+
+# Notes:
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
 language: cpp
+#rvm:
 
 git:
   depth: 1000
 
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Build worker image (VM template)
 os:
   - linux
   - osx
+
 sudo: required
+
 dist: trusty
+
 osx_image: xcode9.1
 
+# environment variables
+#env:
+
+#matrix:
+
+# build cache to preserve files/folders between builds
+#cache:
+
+# enable service required for build/tests
+#services:
+
+addons:
+  apt:
+    sources:
+
+before_install:
+
+
 install:
-  - pushd tests
-  - chmod +x ./travis-install-dependencies.sh
-  - ./travis-install-dependencies.sh
-  - popd
+  - chmod +x ./build/travis/install-dependencies.sh
+  - ./build/travis/install-dependencies.sh
+  - powershell -File ./build/shared/install-dependencies.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       nvm install 6.4.0 &&
       npm install -g markdown-spellcheck@0.11.0;
     fi
   - ulimit -n 4096
-  - powershell -Command { Install-PackageProvider -Name NuGet -Force | Out-Null }
-  - powershell -Command { Install-Module -Name Pester -Force }
-  - powershell -Command { Install-Module -Name posh-git -Force }
 
 script:
-  - powershell -File ./tests/travis-build.ps1
+  - powershell -File ./build/build.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       mdspell '**/*.md' '!powershell/**/*.md' --ignore-numbers --ignore-acronyms --report;
