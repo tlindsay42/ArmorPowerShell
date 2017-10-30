@@ -211,7 +211,7 @@ after_test:
 
 # Files generated during the build process that should be retained
 artifacts:
-  path: $testsResultsDir\*.xml
+  path: .\tests\results\*.xml
 
 
 #---------------------------------#
