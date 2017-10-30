@@ -262,3 +262,6 @@ notifications:
     incoming_webhook:
       secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
     channel: '#develop'
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
