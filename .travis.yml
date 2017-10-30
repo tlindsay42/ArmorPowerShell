@@ -64,7 +64,7 @@ install:
   - ulimit -n 4096
 
 script:
-  - powershell -File ./build/build.ps1
+  - powershell -File ./build/shared/build.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       mdspell '**/*.md' '!powershell/**/*.md' --ignore-numbers --ignore-acronyms --report;
