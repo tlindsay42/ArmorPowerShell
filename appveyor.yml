@@ -251,8 +251,6 @@ on_finish:
 #         notifications           #
 #---------------------------------#
 
-# Post a status update in Slack
-# The "secure:" value is the Appveyor encryption of my Slack API token
 notifications:
   - provider: Email
     on_build_success: false
@@ -261,7 +259,7 @@ notifications:
   - provider: GitHubPullRequest
     auth_token:
       secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
-    template: {{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})
+    template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
   - provider: Slack
     incoming_webhook:
       secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
