@@ -254,6 +254,10 @@ on_finish:
 # Post a status update in Slack
 # The "secure:" value is the Appveyor encryption of my Slack API token
 notifications:
+  - provider: Email
+    on_build_success: false
+    on_build_failure: false
+    on_build_status_changed: false
   - provider: Slack
     incoming_webhook:
       secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
