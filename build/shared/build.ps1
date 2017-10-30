@@ -51,7 +51,7 @@ Import-Module -Name ( '{0}\..\..\Armor' -f $PSScriptRoot ) -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
-Set-Content -Path .\docs\index.rst -Value (
+Set-Content -Path '.\docs\index.rst' -Value (
 	"Welcome to the Armor PowerShell Module`n" +
 	"========================`n`n" +
 	".. image:: Windows PowerShell https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true`n" +
@@ -91,7 +91,7 @@ $content += "`n"
 
 # Write the index file
 $content |
-	Out-File -FilePath ( '{0}\index.rst' -f $PSScriptRoot ) -Encoding utf8
+	Out-File -FilePath '.\docs\index.rst' -Encoding utf8
 
 Write-Host -Object "`tindex"
 
@@ -113,7 +113,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	}
 
 	$content |
-		Out-File -FilePath ( '{0}\cmd_{1}.rst' -f $PSScriptRoot, $verb.ToLower() ) -Encoding utf8
+		Out-File -FilePath ( '.\docs\cmd_{0}.rst' -f $verb.ToLower() ) -Encoding utf8
 
 	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
 }
