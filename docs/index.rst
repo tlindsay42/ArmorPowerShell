@@ -10,7 +10,7 @@ Welcome to the Armor PowerShell Module
 .. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
 :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
 
-This is a community project that provides a Microsoft PowerShell module for managing and monitoring your Armor Complete and Anywhere environments.  The code is open source, and `available on GitHub`_.
+This is a community project that provides a powerful command-line interface via a Microsoft PowerShell module for managing, monitoring, and automating many aspects of your Armor Complete and Armor Anywhere environments, including firewalls, VMs, and more.  The code is open source, and `available on GitHub`_.
 
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
