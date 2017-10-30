@@ -47,7 +47,7 @@ Catch
 }
 
 Write-Host -Object 'Import module'
-Import-Module -Name ( '{0}\..\..\Armor' -f $PSScriptRoot ) -Force
+Import-Module -Name '.\Armor\Armor.psm1' -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
