@@ -62,7 +62,7 @@ pull_requests:
 # Build worker image (VM template)
 image:
   - Visual Studio 2015
-  - Visual Studio 2017
+  #- Visual Studio 2017
 
 # scripts that are called at very beginning, before repo cloning
 init:
