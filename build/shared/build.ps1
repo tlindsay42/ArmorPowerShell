@@ -1,5 +1,18 @@
+If ( $env:APPVEYOR -eq $true )
+{
+	$directory = $env:APPVEYOR_BUILD_FOLDER
+}
+ElseIf ( $env:TRAVIS -eq $true )
+{
+	$directory = $env:TRAVIS_BUILD_DIR
+}
+Else { Throw 'Unknown continuous integration environment.' }
+
 Try
 {
+	Write-Host -Object ( "`nSet the working directory to {0}" -f $directory ) -ForegroundColor 'Yellow'
+	Push-Location -Path $directory -ErrorAction Stop
+
 	$manifestPath = './Armor/Armor.psd1'
 
 	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
@@ -129,4 +142,5 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
 }
 
-Write-Host -Object ''
+Pop-Location
+Write-Host -Object ( "`nRestored the working directory to '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
