@@ -221,6 +221,8 @@ case "$OSTYPE" in
 
         # Install PowerShell
         sudo apt-get install -y powershell
+
+        dpkg -L powershell
         ;;
       fedora)
         # Update the list of products
@@ -243,6 +245,8 @@ case "$OSTYPE" in
     ;;
   darwin*)
     brew cask install powershell
+
+    brew ls --verbose powershell
     ;;
   *)
     echo "$OSTYPE is not supported!" >&2
