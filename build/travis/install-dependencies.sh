@@ -157,7 +157,7 @@ case "$OSTYPE" in
         sudo rpm --import "$key_url"
 
         # Add the Microsoft Product feed
-        curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee $repo
+        curl "$base_url/config/$distro/$version/prod.$ext" | sudo tee $repo
         ;;
       ubuntu)
         distro=ubuntu
