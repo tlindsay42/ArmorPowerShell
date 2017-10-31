@@ -192,9 +192,7 @@ build_script:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - ps: $testsResults = Invoke-Pester -Path '.\tests' -OutputFormat NUnitXml -OutputFile '.\tests\results\AppVeyorTestsResults.xml' -PassThru
-  - ps: ( New-Object -TypeName 'System.Net.WebClient' ).UploadFile( ( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ), ( Resolve-Path -Path '.\tests\results\AppVeyorTestsResults.xml' ) )
-  - ps: If ( $testsResults.FailedCount -gt 0 ) { Throw ( '{0} tests failed.' -f $testsResults.FailedCount ) }
+  - ps: ./tests/start-tests.ps1
 
 # scripts to run after tests
 after_test:
