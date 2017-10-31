@@ -47,6 +47,7 @@ Catch
 }
 
 Write-Host -Object "`nImport module: 'Armor'"
+Import-Module -Name './Armor/Armor.psm1' -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
