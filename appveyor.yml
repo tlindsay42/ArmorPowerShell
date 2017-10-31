@@ -200,6 +200,7 @@ after_test:
   - ps: Add-Content -Path ( '{0}/.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
   - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
+  - git config --global core.autocrlf true
 
 
 #---------------------------------#
