@@ -10,11 +10,6 @@ trap '
   kill -s INT "$$"
 ' INT
 
-get_url() {
-  echo "/config/$1/$2/prod.$3"
-  #https://packages.microsoft.com/repos/microsoft-debian-jessie-prod
-}
-
 base_url=https://packages.microsoft.com
 key_url=https://packages.microsoft.com/keys/microsoft.asc
 
@@ -132,7 +127,7 @@ case "$OSTYPE" in
         esac
 
         # Register the Microsoft RedHat repository
-        curl $(get_url "$distro" "$version" "$ext") | sudo tee $repo
+        curl "$base_url/config/$distro/$version/prod.$ext" | sudo tee $repo
         ;;
       opensuse)
         distro=rhel
