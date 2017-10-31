@@ -121,9 +121,8 @@ before_install:
     fi
 
 install:
-  - chmod +x ./build/travis/install-dependencies.sh
-  - ./build/travis/install-dependencies.sh
-  - powershell -File ./build/shared/install-dependencies.ps1
+  #- chmod +x ./build/travis/install-dependencies.sh
+  #- ./build/travis/install-dependencies.sh
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       nvm install 6.4.0 &&
