@@ -46,7 +46,11 @@ Try
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
 		-FunctionsToExport ( Get-ChildItem -Path './Armor/Public' ).BaseName `
-		-FileList ( Get-ChildItem -Path './Armor' -File -Recurse | Resolve-Path -Relative ) `
+		-FileList (
+			Get-ChildItem -Path './Armor' -File -Recurse |
+			Resolve-Path -Relative |
+			ForEach-Object -Process { $_ -replace '\', '/' }
+		) `
 		-Tags (
 			'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere',
 			'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS'
@@ -121,7 +125,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 $content += ''
 
 # Write the index file
-$content |
+$content.ToString() -replace "`r`n", "`n" |
 	Out-File -FilePath './docs/index.rst' -Encoding utf8
 
 Write-Host -Object "`tindex"
@@ -144,7 +148,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 		$content += ''
 	}
 
-	$content |
+	$content.ToString() -replace "`r`n", "`n" |
 		Out-File -FilePath ( './docs/cmd_{0}.rst' -f $verb.ToLower() ) -Encoding utf8
 
 	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
