@@ -2,13 +2,13 @@ Try
 {
 	$manifestPath = '.\Armor\Armor.psd1'
 
-	Write-Host -Object 'Test and import the module manifest'
+	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
 
 	Write-Host -Object ( "`nOld Version- {0}" -f $manifest.Version )
 	Write-Host -Object ( 'New Version- {0}' -f $env:APPVEYOR_BUILD_VERSION )
 
-	Write-Host -Object 'Update the module manifest'
+	Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 	Update-ModuleManifest `
 		-Path $manifestPath `
 		-RootModule 'Armor.psm1' `
@@ -33,12 +33,12 @@ Try
 		-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
 		-IconUri 'http://i.imgur.com/fbXjkCn.png'
 
-	Write-Host -Object 'Adjust a couple of PowerShell manifest auto-generated items'
+	Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
 	( Get-Content -Path $manifestPath ) -replace 'PSGet_Armor', 'Armor' |
 		ForEach-Object -Process { $_ -replace 'NewManifest', 'Armor' } |
 		Set-Content -Path $manifestPath
 
-	Write-Host -Object 'Test and import the module manifest again'
+	Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
 }
 Catch
@@ -46,8 +46,7 @@ Catch
 	Throw $_
 }
 
-Write-Host -Object 'Import module'
-Import-Module -Name '.\Armor\Armor.psm1' -Force
+Write-Host -Object "`nImport module: 'Armor'"
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
