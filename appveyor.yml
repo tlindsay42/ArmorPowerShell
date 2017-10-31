@@ -79,7 +79,7 @@ init:
 # clone entire repository history if not defined
 #clone_depth:
 
-# setting up etc\hosts file
+# setting up etc/hosts file
 #hosts:
 
 # environment variables
@@ -126,7 +126,7 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: .\build\shared\install-dependencies.ps1
+  - ps: ./build/shared/install-dependencies.ps1
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
@@ -163,7 +163,7 @@ install:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-  - ps: . .\build\shared\build.ps1
+  - ps: ./build/shared/build.ps1
  
 # scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
 #before_package:
@@ -197,7 +197,7 @@ test_script:
 # scripts to run after tests
 after_test:
   - git config --global credential.helper store
-  - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
+  - ps: Add-Content -Path ( '{0}/.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
   - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
 
@@ -208,7 +208,7 @@ after_test:
 
 # Files generated during the build process that should be retained
 artifacts:
-  path: .\tests\results\*.xml
+  path: ./tests/results/AppVeyor*.xml
 
 
 #---------------------------------#
@@ -235,14 +235,14 @@ deploy: off
 
 # on successful build
 on_success:
-  - ps: . .\build\appveyor\publish-psgallery.ps1
+  - ps: ./build/appveyor/publish-psgallery.ps1
 
 # on build failure
 #on_failure:
 
 # after build failure or success
 on_finish:
-  - ps: . .\build\appveyor\publish-github.ps1
+  - ps: ./build/appveyor/publish-github.ps1
 
 
 #---------------------------------#
