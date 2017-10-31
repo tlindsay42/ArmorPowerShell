@@ -1,9 +1,6 @@
-Param
-(
-	[Parameter( Position = 0 )]
-	[ValidateSet( 'AppVeyor', 'Travis' )]
-	[String] $ciName = ''
-)
+If ( $env:APPVEYOR -eq $true ) { $ciName = 'AppVeyor' }
+ElseIf ( $env:TRAVIS -eq $true ) { $ciName = 'Travis' }
+Else { Throw 'Unknown continuous integration environment.' }
 
 Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
 $testsResults = Invoke-Pester -Path './tests' `
