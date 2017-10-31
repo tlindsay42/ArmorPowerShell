@@ -111,7 +111,6 @@ matrix:
       #brew install curl --with-openssl;
       #brew tap caskroom/cask;
       #brew cask install powershell;
-      #brew ls --verbose powershell;
     #fi
 
 install:

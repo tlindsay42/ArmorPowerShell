@@ -247,8 +247,6 @@ case "$OSTYPE" in
     ;;
   darwin*)
     brew cask install powershell
-
-    brew ls --verbose powershell
     ;;
   *)
     echo "$OSTYPE is not supported!" >&2
