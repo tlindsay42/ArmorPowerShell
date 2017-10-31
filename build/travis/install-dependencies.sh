@@ -16,6 +16,7 @@ get_url() {
 }
 
 base_url=https://packages.microsoft.com
+key_url=https://packages.microsoft.com/keys/microsoft.asc
 
  # Get OS specific asset ID and package name
 case "$OSTYPE" in
@@ -72,7 +73,7 @@ case "$OSTYPE" in
         sudo apt-get install -y apt-transport-https
 
         # Import the public repository GPG keys
-        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+        curl "$key_url" | sudo apt-key add -
 
         # Register the Microsoft Product feed
         sudo sh -c "echo 'deb [arch=amd64] $base_url/repos/microsoft-debian-$version-prod $version main' > $repo"
@@ -106,7 +107,7 @@ case "$OSTYPE" in
         esac
 
         # Register the Microsoft signature key
-        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo rpm --import "$key_url"
 
         # Register the Microsoft RedHat repository
         curl "$base_url/config/$distro/$version/prod.$ext" | sudo tee $repo
@@ -153,7 +154,7 @@ case "$OSTYPE" in
         esac
 
         # Register the Microsoft signature key
-        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo rpm --import "$key_url"
 
         # Add the Microsoft Product feed
         curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee $repo
@@ -178,7 +179,7 @@ case "$OSTYPE" in
         esac
 
         # Import the public repository GPG keys
-        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+        curl "$key_url" | sudo apt-key add -
 
         curl "$base_url/config/$distro/$version/prod.$ext" | sudo tee $repo
         ;;
