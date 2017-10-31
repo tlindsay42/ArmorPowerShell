@@ -42,15 +42,15 @@ language: generic
 #---------------------------------#
 
 # Build worker image (VM template)
-os:
-  - linux
-  - osx
+#os:
+  #- linux
+  #- osx
 
-sudo: required
+#sudo: required
 
-dist: trusty
+#dist: trusty
 
-osx_image: xcode9.1
+#osx_image: xcode9.1
 
 # environment variables
 #env:
@@ -58,11 +58,14 @@ osx_image: xcode9.1
   #matrix:
 
 matrix:
-  #fast_finish: true
-  #allow_failures:
   include:
     - os: linux
+      dist: trusty
+      sudo: required
     - os: osx
+      osx_image: xcode9.1
+  #fast_finish: true
+  #allow_failures:
   #exclude:
 
 # build cache to preserve files/folders between builds
@@ -110,7 +113,7 @@ matrix:
 
 install:
   - chmod +x ./build/travis/install-dependencies.sh
-  - sh ./build/travis/install-dependencies.sh
+  - ./build/travis/install-dependencies.sh
   - powershell -File ./build/shared/install-dependencies.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
