@@ -1,6 +1,6 @@
 Try
 {
-	$manifestPath = '.\Armor\Armor.psd1'
+	$manifestPath = './Armor/Armor.psd1'
 
 	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
@@ -24,8 +24,8 @@ Try
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
-		-FunctionsToExport ( Get-ChildItem -Path .\Armor\Public ).BaseName `
-		-FileList ( Get-ChildItem -Path '.\Armor' -File -Recurse | Resolve-Path -Relative ) `
+		-FunctionsToExport ( Get-ChildItem -Path './Armor/Public' ).BaseName `
+		-FileList ( Get-ChildItem -Path './Armor' -File -Recurse | Resolve-Path -Relative ) `
 		-Tags (
 			'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere',
 			'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS'
@@ -90,7 +90,7 @@ $content += "`n"
 
 # Write the index file
 $content |
-	Out-File -FilePath '.\docs\index.rst' -Encoding utf8
+	Out-File -FilePath './docs/index.rst' -Encoding utf8
 
 Write-Host -Object "`tindex"
 
@@ -112,7 +112,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	}
 
 	$content |
-		Out-File -FilePath ( '.\docs\cmd_{0}.rst' -f $verb.ToLower() ) -Encoding utf8
+		Out-File -FilePath ( './docs/cmd_{0}.rst' -f $verb.ToLower() ) -Encoding utf8
 
 	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
 }
