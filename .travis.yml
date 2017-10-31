@@ -62,6 +62,12 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
+      apt:
+        sources:
+          - sourceline: https://packages.microsoft.com/config/ubuntu/14.04/prod.list
+            key_url: https://packages.microsoft.com/keys/microsoft.asc
+        packages:
+          - powershell
     - os: osx
       osx_image: xcode9.1
   #fast_finish: true
