@@ -123,6 +123,8 @@ before_install:
 install:
   #- chmod +x ./build/travis/install-dependencies.sh
   #- ./build/travis/install-dependencies.sh
+  - pwsh -h
+  - pwsh -file ./build/shared/install-dependencies.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       nvm install 6.4.0 &&
@@ -138,8 +140,8 @@ install:
 #before_script:
 
 script:
-  - powershell -File ./build/shared/build.ps1
-  - powershell -File ./tests/start-tests.ps1
+  - pwsh -file ./build/shared/build.ps1
+  - pwsh -file ./tests/start-tests.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       mdspell '**/*.md' --ignore-numbers --ignore-acronyms --report;
