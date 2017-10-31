@@ -1,10 +1,18 @@
 If ( $env:APPVEYOR -eq $true )
 {
 	$directory = $env:APPVEYOR_BUILD_FOLDER
+
+	$version = $env:APPVEYOR_BUILD_VERSION
 }
 ElseIf ( $env:TRAVIS -eq $true )
 {
 	$directory = $env:TRAVIS_BUILD_DIR
+
+	$version = '{0}.{1}.{2}.{3}' -f 
+	$manifest.Version.Major,
+	$manifest.Version.Minor,
+	$manifest.Version.Build,
+	( $manifest.Version.Revision + 1 )
 }
 Else { Throw 'Unknown continuous integration environment.' }
 
@@ -19,13 +27,13 @@ Try
 	$manifest = Test-ModuleManifest -Path $manifestPath
 
 	Write-Host -Object ( "`nOld Version- {0}" -f $manifest.Version )
-	Write-Host -Object ( 'New Version- {0}' -f $env:APPVEYOR_BUILD_VERSION )
+	Write-Host -Object ( 'New Version- {0}' -f $version )
 
 	Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 	Update-ModuleManifest `
 		-Path $manifestPath `
 		-RootModule 'Armor.psm1' `
-		-ModuleVersion $env:APPVEYOR_BUILD_VERSION `
+		-ModuleVersion $version `
 		-Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
 		-Author 'Troy Lindsay' `
 		-CompanyName 'Armor' `
