@@ -62,12 +62,6 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      apt:
-        sources:
-          - sourceline: https://packages.microsoft.com/config/ubuntu/14.04/prod.list
-            key_url: https://packages.microsoft.com/keys/microsoft.asc
-        packages:
-          - powershell
     - os: osx
       osx_image: xcode9.1
   fast_finish: true
@@ -111,18 +105,18 @@ matrix:
     #access_key:
   #ssh_known_hosts:
 
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew update > /dev/null;
-      brew install curl --with-openssl;
-      brew tap caskroom/cask;
-      brew cask install powershell;
-      brew ls --verbose powershell;
-    fi
+#before_install:
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      #brew update > /dev/null;
+      #brew install curl --with-openssl;
+      #brew tap caskroom/cask;
+      #brew cask install powershell;
+      #brew ls --verbose powershell;
+    #fi
 
 install:
-  #- chmod +x ./build/travis/install-dependencies.sh
-  #- ./build/travis/install-dependencies.sh
+  - chmod +x ./build/travis/install-dependencies.sh
+  - ./build/travis/install-dependencies.sh
   - pwsh -h
   - pwsh -file ./build/shared/install-dependencies.ps1
   # spellcheck
