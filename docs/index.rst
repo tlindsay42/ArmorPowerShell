@@ -18,9 +18,9 @@ This is a community project that provides a powerful command-line interface via 
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
 .. toctree::
-:maxdepth: 2
-:hidden:
-:caption: User Documentation
+   :maxdepth: 2
+   :hidden:
+   :caption: User Documentation
 
    requirements
    installation
@@ -32,10 +32,10 @@ This is a community project that provides a powerful command-line interface via 
    faq
 
 .. toctree::
-:maxdepth: 2
-:hidden:
-:caption: Command Documentation
-
+   :maxdepth: 2
+   :hidden:
+   :caption: Command Documentation
+   
    cmd_connect
    cmd_disconnect
    cmd_get
