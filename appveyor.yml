@@ -66,7 +66,7 @@ image:
 
 # scripts that are called at very beginning, before repo cloning
 init:
-  - git config --global core.autocrlf true
+  - git config --global core.autocrlf input
 
 # clone directory
 #clone_folder:
@@ -200,7 +200,6 @@ after_test:
   - ps: Add-Content -Path ( '{0}/.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
   - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
-  - git config --global core.autocrlf true
 
 
 #---------------------------------#
