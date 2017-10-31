@@ -1,11 +1,8 @@
 ﻿Reset Commands
 =========================
-
 This page contains details on **Reset** commands.
-
 Reset-ArmorVM
 -------------------------
-
 
 NAME
     Reset-ArmorVM

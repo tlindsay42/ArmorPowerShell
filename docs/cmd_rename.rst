@@ -1,11 +1,8 @@
 ﻿Rename Commands
 =========================
-
 This page contains details on **Rename** commands.
-
 Rename-ArmorVM
 -------------------------
-
 
 NAME
     Rename-ArmorVM

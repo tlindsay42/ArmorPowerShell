@@ -1,14 +1,17 @@
 ﻿Welcome to the Armor PowerShell Module
 ========================
 
-.. image:: Windows PowerShell https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+   :alt: Windows PowerShell Status
 
-.. image:: PowerShell Core https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
    :target: https://travis-ci.org/tlindsay42/armorpowershell
+   :alt: PowerShell Core Status
 
 .. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 This is a community project that provides a powerful command-line interface via a Microsoft PowerShell module for managing, monitoring, and automating many aspects of your Armor Complete and Armor Anywhere environments, including firewalls, VMs, and more.  The code is open source, and `available on GitHub`_.
 
@@ -42,5 +45,4 @@ This is a community project that provides a powerful command-line interface via 
    cmd_set
    cmd_start
    cmd_stop
-
 

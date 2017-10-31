@@ -1,11 +1,8 @@
 ﻿Start Commands
 =========================
-
 This page contains details on **Start** commands.
-
 Start-ArmorVM
 -------------------------
-
 
 NAME
     Start-ArmorVM

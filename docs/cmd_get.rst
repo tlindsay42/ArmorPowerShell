@@ -1,11 +1,8 @@
 ﻿Get Commands
 =========================
-
 This page contains details on **Get** commands.
-
 Get-ArmorAccount
 -------------------------
-
 
 NAME
     Get-ArmorAccount
@@ -50,7 +47,6 @@ REMARKS
 
 Get-ArmorDatacenter
 -------------------------
-
 NAME
     Get-ArmorDatacenter
     
@@ -103,7 +99,6 @@ REMARKS
 
 Get-ArmorUser
 -------------------------
-
 NAME
     Get-ArmorUser
     
@@ -155,7 +150,6 @@ REMARKS
 
 Get-ArmorVM
 -------------------------
-
 NAME
     Get-ArmorVM
     

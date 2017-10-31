@@ -1,11 +1,8 @@
 ﻿Stop Commands
 =========================
-
 This page contains details on **Stop** commands.
-
 Stop-ArmorVM
 -------------------------
-
 
 NAME
     Stop-ArmorVM

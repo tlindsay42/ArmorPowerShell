@@ -1,11 +1,8 @@
 ﻿Disconnect Commands
 =========================
-
 This page contains details on **Disconnect** commands.
-
 Disconnect-Armor
 -------------------------
-
 
 NAME
     Disconnect-Armor
