@@ -192,6 +192,8 @@ case "$OSTYPE" in
     if hash brew 2>/dev/null; then
       brew update > /dev/null
 
+      brew install curl --with-openssl
+
       brew tap caskroom/cask
     else
       echo "ERROR: Homebrew is not installed! Aborting..." >&2
