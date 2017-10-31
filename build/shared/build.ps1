@@ -72,9 +72,9 @@ $content += 'Welcome to the Armor PowerShell Module
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
 .. toctree::
-:maxdepth: 2
-:hidden:
-:caption: User Documentation
+   :maxdepth: 2
+   :hidden:
+   :caption: User Documentation
 
    requirements
    installation
@@ -86,10 +86,10 @@ $content += 'Welcome to the Armor PowerShell Module
    faq
 
 .. toctree::
-:maxdepth: 2
-:hidden:
-:caption: Command Documentation
-' -f $manifest.Description
+   :maxdepth: 2
+   :hidden:
+   :caption: Command Documentation
+   ' -f $manifest.Description
 
 # Build the command documentation menu
 ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
