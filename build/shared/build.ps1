@@ -50,7 +50,7 @@ Write-Host -Object "`nImport module: 'Armor'"
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
-Set-Content -Path '.\docs\index.rst' -Value (
+$content = (
 	"Welcome to the Armor PowerShell Module`n" +
 	"========================`n`n" +
 	".. image:: Windows PowerShell https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true`n" +
