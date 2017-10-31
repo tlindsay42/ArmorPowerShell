@@ -51,43 +51,53 @@ Import-Module -Name './Armor/Armor.psm1' -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
-$content = (
-	"Welcome to the Armor PowerShell Module`r`n" +
-	"========================`r`n`r`n" +
-	".. image:: Windows PowerShell https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true`r`n" +
-	"   :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell`r`n`r`n" +
-	".. image:: PowerShell Core https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master`r`n" +
-	"   :target: https://travis-ci.org/tlindsay42/armorpowershell`r`n`r`n" +
-	".. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest`r`n" +
-	"   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest`r`n`r`n" +
-	$manifest.Description +
-	"  The code is open source, and ``available on GitHub``_.`r`n`r`n" +
-	".. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell`r`n`r`n" +
-	".. toctree::`r`n" +
-	":maxdepth: 2`r`n" +
-	":hidden:`r`n" +
-	":caption: User Documentation`r`n`r`n" +
-	"   requirements`r`n" +
-	"   installation`r`n" +
-	"   getting_started`r`n" +
-	"   project_architecture`r`n" +
-	"   support`r`n" +
-	"   contribution`r`n" +
-	"   licensing`r`n" +
-	"   faq`r`n`r`n" +
-	".. toctree::`r`n" +
-	":maxdepth: 2`r`n" +
-	":hidden:`r`n" +
-	":caption: Command Documentation`r`n`r`n"
-)
+$content = @()
+$content += 'Welcome to the Armor PowerShell Module
+========================
+
+.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
+   :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+   :alt: Windows PowerShell Status
+
+.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+   :target: https://travis-ci.org/tlindsay42/armorpowershell
+   :alt: PowerShell Core Status
+
+.. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
+   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+{0}  The code is open source, and `available on GitHub`_.
+
+.. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
+
+.. toctree::
+:maxdepth: 2
+:hidden:
+:caption: User Documentation
+
+   requirements
+   installation
+   getting_started
+   project_architecture
+   support
+   contribution
+   licensing
+   faq
+
+.. toctree::
+:maxdepth: 2
+:hidden:
+:caption: Command Documentation
+' -f $manifest.Description
 
 # Build the command documentation menu
 ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 {
-	$content += "   cmd_{0}`r`n" -f $verb.ToLower()
+	$content += '   cmd_{0}' -f $verb.ToLower()
 }
 
-$content += "`r`n"
+$content += ''
 
 # Write the index file
 $content |
@@ -100,14 +110,14 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 {
 	$content = @()
 	$content += '{0} Commands' -f $verb
-	$content += "=========================`r`n"
-	$content += "This page contains details on **{0}** commands.`r`n" -f $verb
+	$content += '========================='
+	$content += 'This page contains details on **{0}** commands.' -f $verb
 
 	# Build the command documentation from the comment-based help
 	ForEach ( $command In ( Get-Command -Module Armor ).Where( { $_.Verb -eq $verb } ) )
  {
 		$content += $command.Name
-		$content += "-------------------------`r`n"
+		$content += '-------------------------'
 		$content += Get-Help -Name $command.name -Detailed
 		$content += ''
 	}
