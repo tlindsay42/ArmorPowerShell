@@ -1,6 +1,7 @@
 ﻿Restart Commands
 =========================
 This page contains details on **Restart** commands.
+
 Restart-ArmorVM
 -------------------------
 
