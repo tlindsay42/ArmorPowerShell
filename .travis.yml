@@ -119,8 +119,8 @@ install:
   - sudo pwsh -file ./build/shared/install-dependencies.ps1
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo nvm install 6.4.0;
-      sudo npm install -g markdown-spellcheck@0.11.0;
+      nvm install 6.4.0;
+      npm install -g markdown-spellcheck@0.11.0;
     fi
   - sudo ulimit -n 4096
 
