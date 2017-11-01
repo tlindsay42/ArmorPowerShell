@@ -52,7 +52,7 @@ Try
 		-FileList (
 			Get-ChildItem -File -Recurse |
 			Resolve-Path -Relative |
-			ForEach-Object -Process { $_ -replace '\', '/' }
+			ForEach-Object -Process { $_ -replace '\\', '/' }
 		) `
 		-Tags (
 			'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere',
