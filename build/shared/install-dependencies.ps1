@@ -5,9 +5,7 @@ ForEach ( $packageProvider In 'NuGet' )
 }
 Remove-Variable -Name packageProvider
 
-Write-Host -Object "`nInstalling package provider: 'NuGet'." -ForegroundColor 'Yellow'
-Install-PackageProvider -Name 'NuGet' -Force | 
-	Out-Null
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 
 ForEach ( $module In 'Pester', 'Posh-Git' )
 {
