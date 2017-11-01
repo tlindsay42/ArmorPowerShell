@@ -21,7 +21,7 @@ If ( ( Test-Path -Path $modulePath ) -eq $false ) { Throw ( 'Module directory: "
 
 Try
 {
-	Write-Host -Object ( "`nSet the working directory to {0}" -f $buildPath ) -ForegroundColor 'Yellow'
+	Write-Host -Object ( "`nSet the working directory to {0}" -f $modulePath ) -ForegroundColor 'Yellow'
 	Push-Location -Path $modulePath -ErrorAction Stop
 
 	$manifestPath = '{0}/Armor.psd1' -f $modulePath
