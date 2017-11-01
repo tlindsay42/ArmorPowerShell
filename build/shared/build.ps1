@@ -1,12 +1,12 @@
 If ( $env:APPVEYOR -eq $true )
 {
-	$directory = $env:APPVEYOR_BUILD_FOLDER
+	$buildPath = $env:APPVEYOR_BUILD_FOLDER
 
 	$version = $env:APPVEYOR_BUILD_VERSION
 }
 ElseIf ( $env:TRAVIS -eq $true )
 {
-	$directory = $env:TRAVIS_BUILD_DIR
+	$buildPath = $env:TRAVIS_BUILD_DIR
 
 	$version = '{0}.{1}.{2}.{3}' -f 
 	$manifest.Version.Major,
@@ -16,12 +16,15 @@ ElseIf ( $env:TRAVIS -eq $true )
 }
 Else { Throw 'Unknown continuous integration environment.' }
 
+$modulePath = '{0}/Armor' -f $buildPath
+If ( ( Test-Path -Path $modulePath ) -eq $false ) { Throw ( 'Module directory: "{0}" not found.' -f $modulePath ) }
+
 Try
 {
-	Write-Host -Object ( "`nSet the working directory to {0}" -f $directory ) -ForegroundColor 'Yellow'
-	Push-Location -Path $directory -ErrorAction Stop
+	Write-Host -Object ( "`nSet the working directory to {0}" -f $buildPath ) -ForegroundColor 'Yellow'
+	Push-Location -Path $modulePath -ErrorAction Stop
 
-	$manifestPath = './Armor/Armor.psd1'
+	$manifestPath = '{0}/Armor.psd1' -f $modulePath
 
 	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
@@ -45,9 +48,9 @@ Try
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
-		-FunctionsToExport ( Get-ChildItem -Path './Armor/Public' ).BaseName `
+		-FunctionsToExport ( Get-ChildItem -Path ( '{0}/Public' -f $modulePath ) ).BaseName `
 		-FileList (
-			Get-ChildItem -Path './Armor' -File -Recurse |
+			Get-ChildItem -File -Recurse |
 			Resolve-Path -Relative |
 			ForEach-Object -Process { $_ -replace '\', '/' }
 		) `
@@ -65,6 +68,9 @@ Try
 
 	Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
+
+	Pop-Location
+	Write-Host -Object ( "`nRestored the working directory to '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
 }
 Catch
 {
@@ -72,7 +78,7 @@ Catch
 }
 
 Write-Host -Object "`nImport module: 'Armor'"
-Import-Module -Name './Armor/Armor.psm1' -Force
+Import-Module -Name ( '{0}/Armor.psm1' -f $modulePath ) -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
@@ -80,11 +86,11 @@ $content = @()
 $content += 'Welcome to the Armor PowerShell Module
 ========================
 
-.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
    :alt: Windows PowerShell Status
 
-.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+.. image:: https://travis-ci.org/tlindsay42/armorpowershell.svg?branch=master
    :target: https://travis-ci.org/tlindsay42/armorpowershell
    :alt: PowerShell Core Status
 
@@ -126,7 +132,7 @@ $content += ''
 
 # Write the index file
 $content.ToString() -replace "`r`n", "`n" |
-	Out-File -FilePath './docs/index.rst' -Encoding utf8
+	Out-File -FilePath ( '{0}/docs/index.rst' -f $buildPath ) -Encoding utf8
 
 Write-Host -Object "`tindex"
 
@@ -149,10 +155,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	}
 
 	$content.ToString() -replace "`r`n", "`n" |
-		Out-File -FilePath ( './docs/cmd_{0}.rst' -f $verb.ToLower() ) -Encoding utf8
+		Out-File -FilePath ( '{0}/docs/cmd_{1}.rst' -f $buildPath, $verb.ToLower() ) -Encoding utf8
 
 	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
 }
-
-Pop-Location
-Write-Host -Object ( "`nRestored the working directory to '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
