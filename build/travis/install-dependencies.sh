@@ -64,7 +64,6 @@ case "$OSTYPE" in
         esac
 
         # Install system components
-        sudo apt-get update -qq
         sudo apt-get install -y apt-transport-https
 
         # Import the public repository GPG keys
@@ -223,8 +222,6 @@ case "$OSTYPE" in
 
         # Install PowerShell
         sudo apt-get install -y powershell
-
-        dpkg -L powershell
         ;;
       fedora)
         # Update the list of products
