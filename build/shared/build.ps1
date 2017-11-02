@@ -16,7 +16,7 @@ ElseIf ( $env:TRAVIS -eq $true )
 }
 Else { Throw 'Unknown continuous integration environment.' }
 
-$modulePath = '{0}/Armor' -f $buildPath
+$modulePath = '{0}\Armor' -f $buildPath
 If ( ( Test-Path -Path $modulePath ) -eq $false ) { Throw ( 'Module directory: "{0}" not found.' -f $modulePath ) }
 
 Try
@@ -24,7 +24,7 @@ Try
 	Write-Host -Object ( "`nSet the working directory to {0}" -f $modulePath ) -ForegroundColor 'Yellow'
 	Push-Location -Path $modulePath -ErrorAction Stop
 
-	$manifestPath = '{0}/Armor.psd1' -f $modulePath
+	$manifestPath = '{0}\Armor.psd1' -f $modulePath
 
 	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
@@ -48,11 +48,10 @@ Try
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
-		-FunctionsToExport ( Get-ChildItem -Path ( '{0}/Public' -f $modulePath ) ).BaseName `
+		-FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $modulePath ) ).BaseName `
 		-FileList (
 			Get-ChildItem -File -Recurse |
-			Resolve-Path -Relative |
-			ForEach-Object -Process { $_ -replace '\\', '/' }
+			Resolve-Path -Relative
 		) `
 		-Tags (
 			'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere',
@@ -78,7 +77,7 @@ Catch
 }
 
 Write-Host -Object "`nImport module: 'Armor'"
-Import-Module -Name ( '{0}/Armor.psm1' -f $modulePath ) -Force
+Import-Module -Name ( '{0}\Armor.psm1' -f $modulePath ) -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
@@ -131,10 +130,10 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 $content += ''
 
 # Write the index file
-$content.ToString() -replace "`r`n", "`n" |
-	Out-File -FilePath ( '{0}/docs/index.rst' -f $buildPath ) -Encoding utf8
+$content |
+	Out-File -FilePath ( '{0}\docs\index.rst' -f $buildPath ) -Encoding utf8
 
-Write-Host -Object "`tindex"
+Write-Host -Object '   index'
 
 # Build the command documentation files for each verb
 ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
@@ -155,7 +154,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	}
 
 	$content.ToString() -replace "`r`n", "`n" |
-		Out-File -FilePath ( '{0}/docs/cmd_{1}.rst' -f $buildPath, $verb.ToLower() ) -Encoding utf8
+		Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $buildPath, $verb.ToLower() ) -Encoding utf8
 
-	Write-Host -Object ( "`tcmd_ {0}" -f $verb.ToLower() )
+	Write-Host -Object ( '   cmd_ {0}' -f $verb.ToLower() )
 }
