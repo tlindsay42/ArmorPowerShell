@@ -7,12 +7,6 @@ If ( $env:APPVEYOR -eq $true )
 ElseIf ( $env:TRAVIS -eq $true )
 {
 	$buildPath = $env:TRAVIS_BUILD_DIR
-
-	$version = '{0}.{1}.{2}.{3}' -f 
-	$manifest.Version.Major,
-	$manifest.Version.Minor,
-	$manifest.Version.Build,
-	( $manifest.Version.Revision + 1 )
 }
 Else { Throw 'Unknown continuous integration environment.' }
 
@@ -28,6 +22,15 @@ Try
 
 	Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 	$manifest = Test-ModuleManifest -Path $manifestPath
+
+	If ( $env:TRAVIS -eq $true )
+	{
+		$version = '{0}.{1}.{2}.{3}' -f 
+		$manifest.Version.Major,
+		$manifest.Version.Minor,
+		$manifest.Version.Build,
+		( $manifest.Version.Revision + 1 )
+	}
 
 	Write-Host -Object ( "`nOld Version- {0}" -f $manifest.Version )
 	Write-Host -Object ( 'New Version- {0}' -f $version )
