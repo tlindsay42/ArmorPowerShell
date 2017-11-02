@@ -208,7 +208,7 @@ after_test:
 
 # Files generated during the build process that should be retained
 artifacts:
-  path: '{0}\tests\results\AppVeyor*.xml' -f $env:APPVEYOR_BUILD_FOLDER
+  path: ( '{0}\tests\results\AppVeyor*.xml' -f $env:APPVEYOR_BUILD_FOLDER )
 
 
 #---------------------------------#
