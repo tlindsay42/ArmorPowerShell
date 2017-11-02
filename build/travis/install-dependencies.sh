@@ -189,7 +189,7 @@ case "$OSTYPE" in
     ;;
   darwin*)
     if hash brew 2>/dev/null; then
-      brew update > /dev/null
+      #brew update > /dev/null
 
       brew install curl --with-openssl
 
