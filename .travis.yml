@@ -122,7 +122,6 @@ install:
       nvm install 6.4.0;
       npm install -g markdown-spellcheck@0.11.0;
     fi
-  - ulimit -n 4096
 
 
 #---------------------------------#
