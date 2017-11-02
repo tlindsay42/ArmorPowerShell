@@ -130,7 +130,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 $content += ''
 
 # Write the index file
-$content |
+$content.ToString() |
 	Out-File -FilePath ( '{0}\docs\index.rst' -f $buildPath ) -Encoding utf8
 
 Write-Host -Object '   index'
@@ -153,7 +153,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 		$content += ''
 	}
 
-	$content.ToString() -replace "`r`n", "`n" |
+	$content.ToString() |
 		Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $buildPath, $verb.ToLower() ) -Encoding utf8
 
 	Write-Host -Object ( '   cmd_ {0}' -f $verb.ToLower() )
