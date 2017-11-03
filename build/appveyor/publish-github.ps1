@@ -10,11 +10,11 @@ Try
 
 	Import-Module -Name 'Posh-Git' -ErrorAction 'Stop'
 
-	git checkout master *>&1
-	git add --all *>&1
+	git checkout master 2>&1
+	git add --all 2>&1
 	git status
 	git commit --signoff --message ( 'AppVeyor: Update version to {0} [ci skip]' -f $env:APPVEYOR_BUILD_VERSION )
-	git push origin master *>&1
+	git push origin master 2>&1
 
 	Write-Host -Object ( 'Armor PowerShell Module version {0} published to GitHub.' -f $env:APPVEYOR_BUILD_VERSION ) -ForegroundColor 'Cyan'
 }
