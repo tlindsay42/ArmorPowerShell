@@ -1,11 +1,10 @@
 Requirements
 ========================
 
-The code assumes that you have either an Armor Complete or Armor Anywhere account. At a minimum, make sure you have installed the following:
+At a minimum, you will need the following:
 
-1. PowerShell version 4 or higher
-2. (optional) `Windows Management Framework 5.0`_
+#. An Armor Complete or Armor Anywhere account.
+#. An Armor Management Portal user account that has been granted membership to one or more roles configured with sufficient permissions to interact with the environment.
+#. PowerShell version 5.0 or higher or `PowerShell Core`_.
 
-Note: This is currently being written and validated using a Microsoft Windows environment, though support for PowerShell Core will be added a later date.
-
-.. _Windows Management Framework 5.0: https://www.microsoft.com/en-us/download/details.aspx?id=50395
+.. _PowerShell Core: https://github.com/PowerShell/PowerShell
