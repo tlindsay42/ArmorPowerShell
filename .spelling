@@ -5,8 +5,10 @@
 # where filename is relative to this configuration file
 
 #region Global Dictionary
+AppVeyor
 Armor
 Armor's
+macOS
 PowerShell
 hoc
 #endregion
