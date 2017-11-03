@@ -149,6 +149,8 @@ $content += ''
 $content |
 	Out-File -FilePath ( '{0}\docs\index.rst' -f $buildPath ) -Encoding utf8
 
+Write-Host -Object ( '{0}\docs\index.rst' -f $buildPath )
+
 Write-Host -Object '   index'
 
 # Build the command documentation files for each verb
