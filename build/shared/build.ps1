@@ -134,6 +134,8 @@ This is a community project that provides a powerful command-line interface for 
 
    requirements
    installation
+	 update
+	 uninstall
    getting_started
    project_architecture
    support
