@@ -45,9 +45,10 @@ Try
 		-CompanyName 'Armor' `
 		-Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
 		-Description (
-			'This is a community project that provides a powerful command-line interface via a Microsoft PowerShell ' +
-			'module for managing, monitoring, and automating many aspects of your Armor Complete and Armor Anywhere ' +
-			'environments, including firewalls, VMs, and more.'
+			'This is a community project that provides a powerful command-line interface for managing and monitoring your ' +
+			'Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a ' +
+			'PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on ' +
+			'Windows Server via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
@@ -100,7 +101,19 @@ $content += 'Welcome to the Armor PowerShell Module
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-{0}  The code is open source, and `available on GitHub`_.
+This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.  It is continuously tested on Windows Server via `AppVeyor`_, as well as on Ubuntu Linux and macOS via `Travis CI`_, and it is published on the `PowerShell Gallery`_.  The code is open source, and `available on GitHub`_.
+
+.. _Armor Complete: https://www.armor.com/armor-complete-secure-hosting/
+
+.. _Armor Anywhere: https://www.armor.com/armor-anywhere-security/
+
+.. _RESTful APIs: https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+.. _AppVeyor: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell
+
+.. _Travis CI: https://travis-ci.org/tlindsay42/ArmorPowerShell
+
+.. _PowerShell Gallery: https://www.powershellgallery.com/packages/Armor
 
 .. _available on GitHub: https://github.com/tlindsay42/ArmorPowerShell
 
@@ -122,7 +135,7 @@ $content += 'Welcome to the Armor PowerShell Module
    :maxdepth: 2
    :hidden:
    :caption: Command Documentation
-   ' -f $manifest.Description
+   '
 
 # Build the command documentation menu
 ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
