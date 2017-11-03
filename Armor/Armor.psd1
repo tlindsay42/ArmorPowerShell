@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.72'
+ModuleVersion = '1.0.0.73'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -27,7 +27,7 @@ CompanyName = 'Armor'
 Copyright = '(c) 2017 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on Windows Server via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
+Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on Windows via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'

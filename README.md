@@ -1,4 +1,4 @@
-# Armor Community PowerShell Module
+﻿# Armor PowerShell Module
 
 **Windows PowerShell** [![Build status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true&branch=master)](https://ci.appveyor.com/project/tlindsay42/armorpowershell) **PowerShell Core** [![Build status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell) **Documentation** [![Documentation Status](http://readthedocs.org/projects/armorpowershell/badge/?version=latest)](http://armorpowershell.readthedocs.io/en/latest/?badge=latest)
 
