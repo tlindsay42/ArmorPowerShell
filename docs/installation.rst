@@ -59,9 +59,3 @@ If you wish to load a specific version, use:
 ``Import-Module Armor -RequiredVersion #.#.#.#``
 
 Where "#.#.#.#" represents the version number.
-
-Updating to a newer version
-========================
-
-1. Open a Powershell console with the *Run as Administrator* option.
-2. Run ``Update-Module -Name Armor``.
