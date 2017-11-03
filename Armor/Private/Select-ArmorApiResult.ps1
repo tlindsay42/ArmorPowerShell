@@ -86,7 +86,7 @@ Function Select-ArmorApiResult
 				{
 					# The $filterKeyValue check assumes that not all filters will be used in each call
 					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return = $return.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -eq $filterKeyValue } )
+					$return = $return.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -like $filterKeyValue } )
 				}
 			}
 		}
