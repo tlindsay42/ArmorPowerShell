@@ -48,7 +48,7 @@ Try
 			'This is a community project that provides a powerful command-line interface for managing and monitoring your ' +
 			'Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a ' +
 			'PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on ' +
-			'Windows Server via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
+			'Windows via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
