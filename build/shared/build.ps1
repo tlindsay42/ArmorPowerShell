@@ -58,8 +58,8 @@ Try
 				Resolve-Path -Relative
 		) `
 		-Tags (
-			'Armor', 'Defense', 'Cloud', 'Security', 'Performance', 'Complete', 'Anywhere',
-			'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS'
+			'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Automation', 'Performance',
+			'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS'
 		) `
 		-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
 		-IconUri 'http://i.imgur.com/fbXjkCn.png'
@@ -88,11 +88,11 @@ Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
 $content = @()
 $content += "# Armor PowerShell Module
 
-**Windows PowerShell** [![Build status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true&branch=master)](https://ci.appveyor.com/project/tlindsay42/armorpowershell) **PowerShell Core** [![Build status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell) **Documentation** [![Documentation Status](http://readthedocs.org/projects/armorpowershell/badge/?version=latest)](http://armorpowershell.readthedocs.io/en/latest/?badge=latest)
+**Windows PowerShell** [![Build status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6?svg=true&branch=master)](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell) **PowerShell Core** [![Build status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell) **Documentation** [![Documentation Status](http://readthedocs.org/projects/ArmorPowerShell/badge/?version=latest)](http://ArmorPowerShell.readthedocs.io/en/latest/?badge=latest)
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your **[Armor Complete](https://www.armor.com/armor-complete-secure-hosting/ 'Armor Complete Product Page')** (secure public cloud) and **[Armor Anywhere](https://www.armor.com/armor-anywhere-security/ 'Armor Anywhere Product Page')** (security as a service) environments & accounts via a PowerShell module that interfaces with the published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide').  It is continuously tested on Windows via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell), as well as on Ubuntu Linux and macOS via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell), and it is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor).
 
-Please visit the **[full documentation](http://armorpowershell.readthedocs.io/en/latest/)** for more details." |
+Please visit the **[full documentation](http://ArmorPowerShell.readthedocs.io/en/latest/)** for more details." |
 	Out-File -FilePath ( '{0}\README.md' -f $buildPath ) -Encoding utf8
 
 $content = @()
@@ -100,15 +100,15 @@ $content += 'Welcome to the Armor PowerShell Module
 ========================
 
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
-   :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+   :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell
    :alt: Windows PowerShell Status
 
-.. image:: https://travis-ci.org/tlindsay42/armorpowershell.svg?branch=master
-   :target: https://travis-ci.org/tlindsay42/armorpowershell
+.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+   :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: PowerShell Core Status
 
-.. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
-   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+.. image:: http://readthedocs.org/projects/ArmorPowerShell/badge/?version=latest
+   :target: http://ArmorPowerShell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.  It is continuously tested on Windows Server via `AppVeyor`_, as well as on Ubuntu Linux and macOS via `Travis CI`_, and it is published on the `PowerShell Gallery`_.  The code is open source, and `available on GitHub`_.
