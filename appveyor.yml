@@ -201,7 +201,7 @@ after_test:
   - git config --global user.email $env:EmailAddress
   - git config --global user.name 'Troy Lindsay'
   - git config --global core.autocrlf true
-
+  - git config --global core.safecrlf false
 
 #---------------------------------#
 #      artifacts configuration    #
