@@ -66,7 +66,7 @@ Function Get-ArmorDatacenter
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose  -Message ( 'Beginning {0}.' -f $function )
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 
 		# Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
 		Test-ArmorConnection

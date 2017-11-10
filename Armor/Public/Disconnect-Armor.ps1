@@ -44,7 +44,7 @@ Function Disconnect-Armor
 		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose  -Message ( 'Beginning {0}.' -f $function )
+		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 	} # End of Begin
 
 	Process
