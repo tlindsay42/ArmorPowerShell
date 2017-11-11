@@ -3,7 +3,7 @@ Getting Started
 
 Now that you have the Armor module installed on your workstation, there's a few beginner commands that you can explore to feel comfortable with the available functions.
 
-Connecting to the Armor API
+Connecting to Armor
 ------------------------
 
 To begin, let's connect to the Armor API. To keep things simple, we'll do the first command without any supplied parameters.
