@@ -72,7 +72,7 @@ Function Start-ArmorVM
 
 		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
 		{
-			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
+			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
 			$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 

@@ -64,7 +64,7 @@ Function Get-ArmorAccount
 
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
 		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method
 

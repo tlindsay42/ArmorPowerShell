@@ -73,7 +73,7 @@ Function Get-ArmorUser
 		
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 

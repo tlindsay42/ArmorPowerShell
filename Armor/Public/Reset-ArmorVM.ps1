@@ -72,13 +72,7 @@ Function Reset-ArmorVM
 
 		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
 		{
-			$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ID
-
-			$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
-
-			$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
-
-			$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
 			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
