@@ -1,4 +1,4 @@
-Function Get-ArmorDatacenter
+Function Get-ArmorCompleteDatacenter
 {
 	<#
 		.SYNOPSIS
