@@ -64,15 +64,7 @@ Function Update-ArmorApiToken
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
-
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
-
-		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
-
-		$Global:ArmorConnection.Token = $results.Access_Token
-		$Global:ArmorConnection.SessionExpirationTime = ( Get-Date ).AddSeconds( $results.Expires_In )
-		$Global:ArmorConnection.Headers.Authorization = $Global:ArmorConnection.Headers.Authorization -replace '\w+$', $results.Access_Token
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body
 
 		Return $results
 	} # End of Process

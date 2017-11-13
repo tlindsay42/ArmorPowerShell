@@ -71,14 +71,10 @@ Function Rename-ArmorVM
 
 			$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-			$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method -Body $body
-
-			$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
-
-			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body
+		}
 
 			Return $results
-		}
 	} # End of Process
 
 	End

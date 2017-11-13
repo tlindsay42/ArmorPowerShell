@@ -143,7 +143,7 @@ Function Connect-Armor
 
 		Try
 		{
-			$content = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $method -Body $body
+			$content = Submit-ArmorApiRequest -Uri $uri -Method $method -Body $body
 
 			# If we find a temporary authorization code and a success message, we know the request was successful
 			# Anything else will trigger a Throw, which will cause the Catch to break the current loop

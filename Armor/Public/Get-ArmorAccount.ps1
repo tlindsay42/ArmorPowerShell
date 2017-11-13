@@ -58,9 +58,9 @@ Function Get-ArmorAccount
 
 		$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method
+		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 

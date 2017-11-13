@@ -69,7 +69,7 @@ Function Get-ArmorUser
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $Global:ArmorConnection.Headers -Method $resources.Method
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
 
 		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 

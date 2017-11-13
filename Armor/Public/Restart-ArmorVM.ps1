@@ -66,10 +66,10 @@ Function Restart-ArmorVM
 		{
 			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
-			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
+		}
 
 			Return $results
-		}
 	} # End of Process
 
 	End
