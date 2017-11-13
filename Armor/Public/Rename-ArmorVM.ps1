@@ -74,7 +74,7 @@ Function Rename-ArmorVM
 			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body
 		}
 
-			Return $results
+		Return $results
 	} # End of Process
 
 	End

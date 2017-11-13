@@ -69,7 +69,7 @@ Function Reset-ArmorVM
 			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
 		}
 
-			Return $results
+		Return $results
 	} # End of Process
 
 	End
