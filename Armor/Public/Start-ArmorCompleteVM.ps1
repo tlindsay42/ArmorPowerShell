@@ -1,4 +1,4 @@
-Function Start-ArmorVM
+Function Start-ArmorCompleteVM
 {
 	<#
 		.SYNOPSIS
