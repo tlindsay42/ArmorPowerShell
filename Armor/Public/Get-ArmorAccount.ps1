@@ -40,6 +40,8 @@ Function Get-ArmorAccount
 	(
 		[Parameter( Position = 0 )]
 		[String] $Name = '',
+		[ValidateRange( 1, 65535 )]
+		[UInt16] $ID = 0,
 		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
