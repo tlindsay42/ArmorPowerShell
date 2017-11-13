@@ -59,33 +59,23 @@ Function Get-ArmorCompleteDatacenter
 
 	Begin
 	{
-		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
-		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
-
-		# API data references the name of the function
-		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
 
 		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 
-		# Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
-		Test-ArmorConnection
+		Test-ArmorSession
 	} # End of Begin
 
 	Process
 	{
-		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Headers $global:ArmorConnection.Headers -Method $resources.Method
-
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 

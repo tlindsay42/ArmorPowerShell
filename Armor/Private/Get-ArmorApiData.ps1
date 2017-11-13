@@ -71,7 +71,7 @@ Function Get-ArmorApiData
 		$return = $null
 
 		$api = @{
-			'Example'              = @{
+			'Example'                     = @{
 				'v1.0' = @{
 					'Description' = 'Details about the API endpoint'
 					'URI'         = 'The URI expressed as /endpoint'
@@ -83,7 +83,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = 'The expected HTTP status code for a successful call'
 				}
 			}
-			'Connect-Armor'        = @{
+			'Connect-Armor'               = @{
 				'v1.0' = @{
 					'Description' = 'Create a new login session'
 					'URI'         = @(
@@ -100,7 +100,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorAccount'     = @{
+			'Get-ArmorAccount'            = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of Armor account memberships'
 					'URI'         = @(
@@ -114,9 +114,9 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorDatacenter'  = @{
+			'Get-ArmorCompleteDatacenter' = @{
 				'v1.0' = @{
-					'Description' = 'Return a set of available locations for provisioning new servers'
+					'Description' = 'Return a set of available locations for provisioning new Armor Complete servers'
 					'URI'         = @(
 						'/locations'
 					)
@@ -132,7 +132,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorUser'        = @{
+			'Get-ArmorUser'               = @{
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of users in your account'
 					'URI'         = @(
@@ -151,7 +151,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Get-ArmorVM'          = @{
+			'Get-ArmorVM'                 = @{
 				'v1.0' = @{
 					'Description' = 'Displays a list of virtual machines in your account'
 					'URI'         = @(
@@ -168,7 +168,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'New-ArmorApiToken'    = @{
+			'New-ArmorApiToken'           = @{
 				'v1.0' = @{
 					'Description' = 'Creates an authentication token from an authorization code'
 					'URI'         = @(
@@ -185,7 +185,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Rename-ArmorVM'       = @{
+			'Rename-ArmorVM'              = @{
 				'v1.0' = @{
 					'Description' = 'Renames the specified virtual machine in your account'
 					'URI'         = @(
@@ -202,7 +202,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Reset-ArmorVM'        = @{
+			'Reset-ArmorVM'               = @{
 				'v1.0' = @{
 					'Description' = 'Abruptly reset the specified virtual machine in your account'
 					'URI'         = @(
@@ -216,7 +216,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Restart-ArmorVM'      = @{
+			'Restart-ArmorVM'             = @{
 				'v1.0' = @{
 					'Description' = 'Reboot the specified virtual machine in your account'
 					'URI'         = @(
@@ -230,7 +230,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Start-ArmorVM'        = @{
+			'Start-ArmorVM'               = @{
 				'v1.0' = @{
 					'Description' = 'Power on the specified virtual machine in your account'
 					'URI'         = @(
@@ -244,7 +244,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Stop-ArmorVM'         = @{
+			'Stop-ArmorVM'                = @{
 				'v1.0' = @{
 					'Description' = 'Power off the specified virtual machine in your account'
 					'URI'         = @(
@@ -260,7 +260,7 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
-			'Update-ArmorApiToken' = @{
+			'Update-ArmorApiToken'        = @{
 				'v1.0' = @{
 					'Description' = 'Reissues an authentication token if requested before session expiration'
 					'URI'         = @(
