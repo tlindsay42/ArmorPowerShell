@@ -47,6 +47,7 @@ Function Stop-ArmorVM
 		[ValidateSet( 'Shutdown', 'Off', 'ForceOff' )]
 		[String] $Type = 'Shutdown',
 		[Parameter( Position = 2 )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 

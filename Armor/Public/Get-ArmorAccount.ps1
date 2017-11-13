@@ -38,6 +38,7 @@ Function Get-ArmorAccount
 	[CmdletBinding()]
 	Param
 	(
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 

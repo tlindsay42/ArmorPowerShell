@@ -50,6 +50,7 @@ Function New-ArmorApiToken
 		[ValidateSet( 'authorization_code' )]
 		[String] $GrantType = 'authorization_code',
 		[Parameter( Position = 2 )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 

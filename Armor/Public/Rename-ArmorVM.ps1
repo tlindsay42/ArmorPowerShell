@@ -47,7 +47,7 @@ Function Rename-ArmorVM
 		[ValidateNotNullOrEmpty()]
 		[String] $Name = '',
 		[Parameter( Position = 2 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 

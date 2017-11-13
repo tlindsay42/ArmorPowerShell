@@ -44,6 +44,7 @@ Function Reset-ArmorVM
 		[ValidateRange( 1, 65535 )]
 		[UInt16] $ID = 0,
 		[Parameter( Position = 1 )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 

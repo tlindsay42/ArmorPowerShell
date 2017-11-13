@@ -55,6 +55,7 @@ Function Get-ArmorApiData
 		[ValidateNotNullorEmpty()]
 		[String] $Endpoint = 'Example',
 		[Parameter( Position = 1 )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
