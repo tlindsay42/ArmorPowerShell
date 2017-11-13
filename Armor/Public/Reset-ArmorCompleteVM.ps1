@@ -1,4 +1,4 @@
-Function Reset-ArmorVM
+Function Reset-ArmorCompleteVM
 {
 	<#
 		.SYNOPSIS
