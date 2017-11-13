@@ -44,6 +44,7 @@ Function Update-ArmorApiToken
 		[ValidateNotNullorEmpty()]
 		[String] $Token = $Global:ArmorSession.GetToken(),
 		[Parameter( Position = 1 )]
+		[ValidateSet( 'v1.0' )]
 		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
