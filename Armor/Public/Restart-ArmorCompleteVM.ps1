@@ -1,4 +1,4 @@
-Function Restart-ArmorVM
+Function Restart-ArmorCompleteVM
 {
 	<#
 		.SYNOPSIS
