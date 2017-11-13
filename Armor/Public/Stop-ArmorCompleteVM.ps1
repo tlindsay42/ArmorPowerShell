@@ -1,4 +1,4 @@
-Function Stop-ArmorVM
+Function Stop-ArmorCompleteVM
 {
 	<#
 		.SYNOPSIS
