@@ -78,18 +78,19 @@ Function Connect-Armor
 
 	Process
 	{
-		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
+		Write-Verbose -Message 'Storing all session details in $Global:ArmorSession.'
+		$Global:ArmorSession = [ArmorSession]::New( $Server, $Port, $ApiVersion )
+
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
+		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $Global:ArmorSession.ApiVersion
 
-		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
-
-		If ( Test-NetConnection -ComputerName $Server -Port $Port -InformationLevel Quiet )
+		If ( Test-NetConnection -ComputerName $Global:ArmorSession.Server -Port $Global:ArmorSession.Port -InformationLevel Quiet )
 		{
-			Write-Verbose -Message ( 'Verified TCP connection to {0}:{1}.' -f $Server, $Port )
+			Write-Verbose -Message ( 'Verified TCP connection to {0}:{1}.' -f $Global:ArmorSession.Server, $Global:ArmorSession.Port )
 		}
 		Else
 		{
-			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Server, $Port )
+			Throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Global:ArmorSession.Server, $Global:ArmorSession.Port )
 		}
 
 		If ( $Credential -eq $null )
@@ -98,38 +99,21 @@ Function Connect-Armor
 			Catch { Throw 'Failed to set credentials.' }
 		}
 
-		$Global:ArmorConnection = @{
-			'ID' = $null
-			'UserName' = $Credential.UserName
-			'AccountContextID' = $null
-			'Accounts' = @()
-			'Token' = $null
-			'Server' = $Server
-			'Port' = $Port
-			'Headers' = @{ 
-				'Content-Type' = 'application/json'
-				'Accept' = 'application/json'
-			}
-			'SessionStartTime' = $null
-			'SessionExpirationTime' = $null
-			'ApiVersion' = $ApiVersion
-		}
-
 		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
 
 		# Create the URI
-		$uri = New-ArmorApiUriString -Server $Global:ArmorConnection.Server -Port $Global:ArmorConnection.Port -Endpoints $resources.Uri
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
 		# Set the Method
 		$method = $resources.Method
 
 		# For API version v1.0, create a body with the credentials
-		Switch ( $Global:ArmorConnection.ApiVersion )
+		Switch ( $Global:ArmorSession.ApiVersion )
 		{
 			'v1.0'
 			{
 				$body = @{
-					$resources.Body.UserName = $Global:ArmorConnection.UserName
+					$resources.Body.UserName = $Credential.UserName
 					$resources.Body.Password = $Credential.GetNetworkCredential().Password
 				} |
 					ConvertTo-Json
@@ -137,7 +121,7 @@ Function Connect-Armor
 
 			Default
 			{
-				Throw ( 'Unknown API version number: {0}.' -f $Global:ArmorConnection.ApiVersion )
+				Throw ( 'Unknown API version number: {0}.' -f $Global:ArmorSession.ApiVersion )
 			}
 		}
 
@@ -170,30 +154,23 @@ Function Connect-Armor
 			Throw 'Unable to acquire authorization token. Check $Error for details or use the -Verbose parameter.'
 		}
 
-		Write-Verbose -Message 'Storing all connection details in $Global:ArmorConnection.'
+		$Global:ArmorSession.Authorize( $token.Access_Token, $token.Expires_In )
 
-		$now = Get-Date
-
-		$Global:ArmorConnection.ID = $token.Id_Token
-		$Global:ArmorConnection.Token = $token.Access_Token
-		$Global:ArmorConnection.SessionStartTime = $now
-		$Global:ArmorConnection.SessionExpirationTime = $now.AddSeconds( $token.Expires_In )
-		$Global:ArmorConnection.Headers.Authorization = 'FH-AUTH {0}' -f $token.Access_Token
-		
 		If ( $AccountID -eq 0 )
 		{
 			Try
 			{
-				$AccountID = ( Get-ArmorAccount ).ID |
+				$AccountID = ( Get-ArmorIdentity ).Accounts.ID |
 					Select-Object -First 1 
    		}
 			Catch { Throw 'Failed to get the default Armor account ID.' }
 		}
 
 		Write-Verbose -Message ( 'Setting the Armor account context to ID {0}.' -f $AccountID )
-		Set-ArmorAccountContext -ID $AccountID
+		Set-ArmorAccountContext -ID $AccountID |
+			Out-Null
 
-		Return $Global:ArmorConnection.GetEnumerator().Where( { $_.Name -ne 'Token' } )
+		Return $Global:ArmorSession
 	} # End of Process
 
 	End
