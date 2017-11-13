@@ -16,11 +16,11 @@ Function Test-ArmorSession
 
 		.INPUTS
 		None
-			You cannot pipe objects to Test-ArmorConnection.
+			You cannot pipe objects to Test-ArmorSession.
 
 		.OUTPUTS
 		None
-			Test-ArmorConnection has no output.
+			Test-ArmorSession has no output.
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -32,7 +32,7 @@ Function Test-ArmorSession
 		https://developer.armor.com/
 
 		.EXAMPLE
-		Test-ArmorConnection
+		Test-ArmorSession
 
 		Description
 		-----------
@@ -45,9 +45,6 @@ Function Test-ArmorSession
 
 	Begin
 	{
-		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
-		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
-
 		$function = $MyInvocation.MyCommand.Name
 
 		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
@@ -55,49 +52,33 @@ Function Test-ArmorSession
 
 	Process
 	{
-		$now = Get-Date
-
-		Write-Verbose -Message 'Validate that the Armor token exists.'
-
-		If ( $Global:ArmorConnection.SessionExpirationTime -lt $now )
+		Write-Verbose -Message 'Verify that the session authorization exists.'
+		If ( -not $Global:ArmorSession.AuthorizationExists() )
 		{
-			$message = 'Session expired at {0}.  Please log in again.' -f $now
+			Throw 'Session authorization not found.  Please log in again.'
+		}
+
+		Write-Verbose -Message 'Verify that the session is active.'
+		If ( $Global:ArmorSession.IsActive() )
+		{
+			$minutesRemaining = $Global:ArmorSession.GetMinutesRemaining()
+
+			Write-Verbose -Message ( '{0} minutes remaining until session expiration.' -f $minutesRemaining )
+
+			If ( $minutesRemaining -lt 25 )
+			{
+				Write-Verbose -Message 'Renewing session token.'
+				Update-ArmorApiToken -Token $Global:ArmorSession.GetToken()
+			}
+		}
+		Else
+		{
+			$expirationTime = $Global:ArmorSession.SessionExpirationTime
 
 			Disconnect-Armor -Confirm:$false
 
-			Throw $message
+			Throw ( 'Session expired at {0}.  Please log in again.' -f $expirationTime )
 		}
-
-		If ( $Global:ArmorConnection.Token.Count -eq 0 )
-		{
-			Write-Warning -Message 'Please connect an Armor API session before running this command.'
-		}
-		ElseIf ( $Global:ArmorConnection.Token.Count -gt 1 )
-		{
-			Write-Warning -Message 'Please connect to only one Armor API session before running this command.'
-		}
-
-		If ( $Global:ArmorConnection.Token.Count -ne 1 )
-		{
-			Throw 'A single connection with Connect-Armor is required.'
-		}
-
-		Write-Verbose -Message ( 
-			'Found an Armor API authentication token with {0} minutes remaining until expiration.' -f
-			( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
-		)
-		
-		If ( ( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes -lt 25 )
-		{
-			Write-Verbose -Message 'Renewing session token.'
-
-			Update-ArmorApiToken -Token $Global:ArmorConnection.Token |
-				Out-Null
-		}
-
-		$script:Headers = $Global:ArmorConnection.Headers
-
-		Return
 	} # End of Process
 
 	End
