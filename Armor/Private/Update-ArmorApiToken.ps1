@@ -22,7 +22,7 @@ Function Update-ArmorApiToken
 		System.String
 
 		.OUTPUTS
-		System.Management.Automation.PSCustomObject
+		None
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -66,7 +66,7 @@ Function Update-ArmorApiToken
 
 		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body
 
-		Return $results
+		$Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
 	} # End of Process
 
 	End
