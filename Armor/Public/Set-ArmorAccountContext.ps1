@@ -38,7 +38,7 @@ Function Set-ArmorAccountContext
 	Param 
 	(
 		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[ValidateScript( { $_ -in ( Get-ArmorAccount ).ID } )]
+		[ValidateScript( { $_ -in ( Get-ArmorIdentity ).Accounts.ID } )]
 		[UInt16] $ID = $null
 	)
 
