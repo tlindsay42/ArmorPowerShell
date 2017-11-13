@@ -65,7 +65,7 @@ Function Verb-ArmorNoun
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Server $global:ArmorConnection.Server -Port $global:ArmorConnection.Port -Endpoints $resources.Uri -IDs $ids
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $IDs
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 

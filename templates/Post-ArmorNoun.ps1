@@ -67,7 +67,7 @@ Function Post-ArmorNoun
 
 		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
 		{
-			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ids
+			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $IDs
 
 			$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
