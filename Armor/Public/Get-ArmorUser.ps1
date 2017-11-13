@@ -71,8 +71,6 @@ Function Get-ArmorUser
 
 		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
 
-		$results = Expand-ArmorApiResult -Results $results -Location $resources.Location
-
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
 		If ( $results.Count -eq 0 )
