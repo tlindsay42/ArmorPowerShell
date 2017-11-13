@@ -58,8 +58,8 @@ Try
 				Resolve-Path -Relative
 		) `
 		-Tags (
-			'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Automation', 'Performance',
-			'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'IaaS', 'SaaS'
+			'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
+			'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
 		) `
 		-LicenseUri 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE' `
 		-IconUri 'http://i.imgur.com/fbXjkCn.png'
