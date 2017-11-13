@@ -53,11 +53,6 @@ Function Get-ArmorUser
 
 	Begin
 	{
-		# The Begin section is used to perform one-time loads of data necessary to carry out the function's purpose
-		# If a command needs to be run with each iteration or pipeline input, place it in the Process section
-
-		# API data references the name of the function
-		# For convenience, that name is saved here to $function
 		$function = $MyInvocation.MyCommand.Name
 
 		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
