@@ -1,4 +1,4 @@
-Function Test-ArmorConnection
+Function Test-ArmorSession
 {
 	<#
 		.SYNOPSIS
@@ -84,7 +84,7 @@ Function Test-ArmorConnection
 
 		Write-Verbose -Message ( 
 			'Found an Armor API authentication token with {0} minutes remaining until expiration.' -f
-				( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
+			( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes
 		)
 		
 		If ( ( $Global:ArmorConnection.SessionExpirationTime - ( Get-Date ) ).Minutes -lt 25 )

@@ -88,8 +88,7 @@ Function Get-ArmorVM
 
 		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 
-		# Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
-		Test-ArmorConnection
+		Test-ArmorSession
 	} # End of Begin
 
 	Process
