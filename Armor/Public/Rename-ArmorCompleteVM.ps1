@@ -1,8 +1,8 @@
-Function Rename-ArmorVM
+Function Rename-ArmorCompleteVM
 {
 	<#
 		.SYNOPSIS
-		The Rename-ArmorVM function renames the specified virtual machine in your account.
+		The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
 
 		.DESCRIPTION
 		{ required: more detailed description of the function's purpose }
