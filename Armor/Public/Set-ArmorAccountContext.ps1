@@ -19,7 +19,7 @@ Function Set-ArmorAccountContext
 		System.UInt16
 
 		.OUTPUTS
-		None
+		ArmorAccount
 
 		.LINK
 		https://github.com/tlindsay42/ArmorPowerShell
@@ -53,9 +53,7 @@ Function Set-ArmorAccountContext
 
 	Process
 	{
-		$Global:ArmorSession.SetAccountContext( $ID )
-
-		$Global:ArmorConnection.Headers.'X-Account-Context' = $ID
+		Return $Global:ArmorSession.SetAccountContext( $ID )
 	} # End of Process
 
 	End

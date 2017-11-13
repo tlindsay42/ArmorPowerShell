@@ -104,9 +104,9 @@ Class ArmorSession
 		$this.SessionExpirationTime = ( Get-Date ).AddSeconds( $this.SessionLengthInSeconds )
 	}
 
-	[UInt16] GetAccountContext ()
+	[PSObject] GetAccountContext ()
 	{
-		Return $this.Headers.( $this.AccountContextHeader )
+		Return $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } )
 	}
 
 	[Int32] GetMinutesRemaining()
@@ -131,10 +131,12 @@ Class ArmorSession
 		Return $return
 	}
 
-	[Void] SetAccountContext (
+	[PSObject] SetAccountContext (
 		[UInt16] $ID
 	)
 	{
+		$return = $null
+
 		If ( $this.Accounts.Count -eq 0 )
 		{
 			Throw 'Accounts have not been initialized for this Armor API session.'
@@ -142,10 +144,14 @@ Class ArmorSession
 		ElseIf ( $ID -in $this.Accounts.ID )
 		{
 			$this.Headers.( $this.AccountContextHeader ) = $ID
+
+			$return = $this.Accounts.Where( { $_.ID -eq $ID } )
 		}
 		Else
 		{
 			Throw ( 'Invalid account context: "{0}".  Available Armor Account IDs are: {1}.' -f $ID, ( $this.Accounts.ID -join ', ' ) )
 		}
+
+		Return $return
 	}
 }
