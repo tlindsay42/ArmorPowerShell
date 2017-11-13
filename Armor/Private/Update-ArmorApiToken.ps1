@@ -40,12 +40,11 @@ Function Update-ArmorApiToken
 	[CmdletBinding()]
 	Param
 	(
-		[Parameter( ValueFromPipeline = $true, Position = 0 )]
+		[Parameter( Position = 0, ValueFromPipeline = $true )]
 		[ValidateNotNullorEmpty()]
-		[String] $Token = $Global:ArmorConnection.Token,
+		[String] $Token = $Global:ArmorSession.GetToken(),
 		[Parameter( Position = 1 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin
