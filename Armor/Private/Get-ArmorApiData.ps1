@@ -104,13 +104,16 @@ Function Get-ArmorApiData
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of Armor account memberships'
 					'URI'         = @(
-						'/me'
+						'/accounts',
+						'/accounts/{id}'
 					)
 					'Method'      = 'Get'
 					'Body'        = @{}
 					'Query'       = @{}
 					'Location'    = ''
-					'Filter'      = @{}
+					'Filter'      = @{
+						'Name' = 'Name'
+					}
 					'SuccessCode' = '200'
 				}
 			}
@@ -129,6 +132,20 @@ Function Get-ArmorApiData
 						'Location' = 'Location'
 						'ID'       = 'ID'
 					}
+					'SuccessCode' = '200'
+				}
+			}
+			'Get-ArmorIdentity'           = @{
+				'v1.0' = @{
+					'Description' = 'Return information about the current authenticated user, including account membership and permissions'
+					'URI'         = @(
+						'/me'
+					)
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
 					'SuccessCode' = '200'
 				}
 			}
