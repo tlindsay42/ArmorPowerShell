@@ -63,7 +63,6 @@ Function Post-ArmorNoun
 	{
 		# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
 		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )

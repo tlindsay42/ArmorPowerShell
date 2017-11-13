@@ -46,7 +46,6 @@ Function Disconnect-Armor
 	{
 		If ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) )
 		{
-			# Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
 			Write-Verbose -Message 'Disconnecting from Armor.'
 
 			Remove-Variable -Name ArmorConnection -Scope Global
