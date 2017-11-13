@@ -2,18 +2,18 @@
 =========================
 This page contains details on **Start** commands.
 
-Start-ArmorVM
+Start-ArmorCompleteVM
 -------------------------
 
 NAME
-    Start-ArmorVM
+    Start-ArmorCompleteVM
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Start-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Start-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -25,7 +25,7 @@ PARAMETERS
         The ID of a VM in the Armor account.  The default value is 0.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     -WhatIf [<SwitchParameter>]
         
@@ -47,10 +47,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Start-ArmorVM -examples".
-    For more information, type: "get-help Start-ArmorVM -detailed".
-    For technical information, type: "get-help Start-ArmorVM -full".
-    For online help, type: "get-help Start-ArmorVM -online"
+    To see the examples, type: "get-help Start-ArmorCompleteVM -examples".
+    For more information, type: "get-help Start-ArmorCompleteVM -detailed".
+    For technical information, type: "get-help Start-ArmorCompleteVM -full".
+    For online help, type: "get-help Start-ArmorCompleteVM -online"
 
 
 

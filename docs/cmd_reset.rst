@@ -2,18 +2,18 @@
 =========================
 This page contains details on **Reset** commands.
 
-Reset-ArmorVM
+Reset-ArmorCompleteVM
 -------------------------
 
 NAME
-    Reset-ArmorVM
+    Reset-ArmorCompleteVM
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Reset-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Reset-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -25,7 +25,7 @@ PARAMETERS
         The ID of a VM in the Armor account.  The default value is 0.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     -WhatIf [<SwitchParameter>]
         
@@ -47,10 +47,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Reset-ArmorVM -examples".
-    For more information, type: "get-help Reset-ArmorVM -detailed".
-    For technical information, type: "get-help Reset-ArmorVM -full".
-    For online help, type: "get-help Reset-ArmorVM -online"
+    To see the examples, type: "get-help Reset-ArmorCompleteVM -examples".
+    For more information, type: "get-help Reset-ArmorCompleteVM -detailed".
+    For technical information, type: "get-help Reset-ArmorCompleteVM -full".
+    For online help, type: "get-help Reset-ArmorCompleteVM -online"
 
 
 

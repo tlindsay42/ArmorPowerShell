@@ -2,18 +2,18 @@
 =========================
 This page contains details on **Restart** commands.
 
-Restart-ArmorVM
+Restart-ArmorCompleteVM
 -------------------------
 
 NAME
-    Restart-ArmorVM
+    Restart-ArmorCompleteVM
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Restart-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Restart-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -25,7 +25,7 @@ PARAMETERS
         The ID of a VM in the Armor account.  The default value is 0.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     -WhatIf [<SwitchParameter>]
         
@@ -47,10 +47,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Restart-ArmorVM -examples".
-    For more information, type: "get-help Restart-ArmorVM -detailed".
-    For technical information, type: "get-help Restart-ArmorVM -full".
-    For online help, type: "get-help Restart-ArmorVM -online"
+    To see the examples, type: "get-help Restart-ArmorCompleteVM -examples".
+    For more information, type: "get-help Restart-ArmorCompleteVM -detailed".
+    For technical information, type: "get-help Restart-ArmorCompleteVM -full".
+    For online help, type: "get-help Restart-ArmorCompleteVM -online"
 
 
 

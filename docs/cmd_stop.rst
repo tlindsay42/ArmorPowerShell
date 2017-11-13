@@ -2,18 +2,18 @@
 =========================
 This page contains details on **Stop** commands.
 
-Stop-ArmorVM
+Stop-ArmorCompleteVM
 -------------------------
 
 NAME
-    Stop-ArmorVM
+    Stop-ArmorCompleteVM
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Stop-ArmorVM [[-ID] <UInt16>] [[-Type] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Stop-ArmorCompleteVM [[-ID] <UInt16>] [[-Type] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -27,7 +27,7 @@ PARAMETERS
     -Type <String>
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     -WhatIf [<SwitchParameter>]
         
@@ -49,10 +49,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Stop-ArmorVM -examples".
-    For more information, type: "get-help Stop-ArmorVM -detailed".
-    For technical information, type: "get-help Stop-ArmorVM -full".
-    For online help, type: "get-help Stop-ArmorVM -online"
+    To see the examples, type: "get-help Stop-ArmorCompleteVM -examples".
+    For more information, type: "get-help Stop-ArmorCompleteVM -detailed".
+    For technical information, type: "get-help Stop-ArmorCompleteVM -full".
+    For online help, type: "get-help Stop-ArmorCompleteVM -online"
 
 
 

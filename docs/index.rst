@@ -2,15 +2,15 @@
 ========================
 
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
-   :target: https://ci.appveyor.com/project/tlindsay42/armorpowershell
+   :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell
    :alt: Windows PowerShell Status
 
-.. image:: https://travis-ci.org/tlindsay42/armorpowershell.svg?branch=master
-   :target: https://travis-ci.org/tlindsay42/armorpowershell
+.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+   :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: PowerShell Core Status
 
-.. image:: http://readthedocs.org/projects/armorpowershell/badge/?version=latest
-   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+.. image:: http://readthedocs.org/projects/ArmorPowerShell/badge/?version=latest
+   :target: http://ArmorPowerShell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.  It is continuously tested on Windows Server via `AppVeyor`_, as well as on Ubuntu Linux and macOS via `Travis CI`_, and it is published on the `PowerShell Gallery`_.  The code is open source, and `available on GitHub`_.

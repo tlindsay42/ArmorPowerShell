@@ -13,7 +13,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorAccount [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorAccount [[-Name] <String>] [-ID <UInt16>] [-ApiVersion <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -21,8 +21,12 @@ DESCRIPTION
     
 
 PARAMETERS
+    -Name <String>
+        
+    -ID <UInt16>
+        
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -46,17 +50,57 @@ REMARKS
     For online help, type: "get-help Get-ArmorAccount -online"
 
 
-Get-ArmorDatacenter
+Get-ArmorAccountContext
 -------------------------
 NAME
-    Get-ArmorDatacenter
+    Get-ArmorAccountContext
     
 SYNOPSIS
     { required: high level overview }
     
     
 SYNTAX
-    Get-ArmorDatacenter [-Name <String>] [[-Location] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorAccountContext [<CommonParameters>]
+    
+    
+DESCRIPTION
+    { required: more detailed description of the function's purpose }
+    
+
+PARAMETERS
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>{required: show one or more examples using the function}
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help Get-ArmorAccountContext -examples".
+    For more information, type: "get-help Get-ArmorAccountContext -detailed".
+    For technical information, type: "get-help Get-ArmorAccountContext -full".
+    For online help, type: "get-help Get-ArmorAccountContext -online"
+
+
+Get-ArmorCompleteDatacenter
+-------------------------
+NAME
+    Get-ArmorCompleteDatacenter
+    
+SYNOPSIS
+    { required: high level overview }
+    
+    
+SYNTAX
+    Get-ArmorCompleteDatacenter [-Name <String>] [[-Location] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -74,7 +118,7 @@ PARAMETERS
         { required: description of the specified input parameter's purpose }
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -92,10 +136,53 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Get-ArmorDatacenter -examples".
-    For more information, type: "get-help Get-ArmorDatacenter -detailed".
-    For technical information, type: "get-help Get-ArmorDatacenter -full".
-    For online help, type: "get-help Get-ArmorDatacenter -online"
+    To see the examples, type: "get-help Get-ArmorCompleteDatacenter -examples".
+    For more information, type: "get-help Get-ArmorCompleteDatacenter -detailed".
+    For technical information, type: "get-help Get-ArmorCompleteDatacenter -full".
+    For online help, type: "get-help Get-ArmorCompleteDatacenter -online"
+
+
+Get-ArmorIdentity
+-------------------------
+NAME
+    Get-ArmorIdentity
+    
+SYNOPSIS
+    Return information about the current authenticated user, including account membership and permissions.
+    
+    
+SYNTAX
+    Get-ArmorIdentity [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    { required: more detailed description of the function's purpose }
+    
+
+PARAMETERS
+    -ApiVersion <String>
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>{required: show one or more examples using the function}
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help Get-ArmorIdentity -examples".
+    For more information, type: "get-help Get-ArmorIdentity -detailed".
+    For technical information, type: "get-help Get-ArmorIdentity -full".
+    For online help, type: "get-help Get-ArmorIdentity -online"
 
 
 Get-ArmorUser
@@ -174,7 +261,7 @@ PARAMETERS
         The ID of a VM in the Armor account.  The default value is 0.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,

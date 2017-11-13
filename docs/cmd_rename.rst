@@ -2,18 +2,18 @@
 =========================
 This page contains details on **Rename** commands.
 
-Rename-ArmorVM
+Rename-ArmorCompleteVM
 -------------------------
 
 NAME
-    Rename-ArmorVM
+    Rename-ArmorCompleteVM
     
 SYNOPSIS
-    The Rename-ArmorVM function renames the specified virtual machine in your account.
+    The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
     
     
 SYNTAX
-    Rename-ArmorVM [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Rename-ArmorCompleteVM [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -48,10 +48,10 @@ PARAMETERS
     
     
 REMARKS
-    To see the examples, type: "get-help Rename-ArmorVM -examples".
-    For more information, type: "get-help Rename-ArmorVM -detailed".
-    For technical information, type: "get-help Rename-ArmorVM -full".
-    For online help, type: "get-help Rename-ArmorVM -online"
+    To see the examples, type: "get-help Rename-ArmorCompleteVM -examples".
+    For more information, type: "get-help Rename-ArmorCompleteVM -detailed".
+    For technical information, type: "get-help Rename-ArmorCompleteVM -full".
+    For online help, type: "get-help Rename-ArmorCompleteVM -online"
 
 
 
