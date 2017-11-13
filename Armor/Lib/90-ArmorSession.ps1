@@ -119,6 +119,11 @@ Class ArmorSession
 		Return ( $this.SessionExpirationTime - ( Get-Date ) ).Second
 	}
 
+	[String] GetToken()
+	{
+		Return $this.Headers.Authorization.Split( ' ' )[-1]
+	}
+
 	[Boolean] IsActive()
 	{
 		$return = $false
