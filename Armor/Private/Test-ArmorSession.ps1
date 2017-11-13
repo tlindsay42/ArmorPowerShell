@@ -37,7 +37,7 @@ Function Test-ArmorSession
 		Description
 		-----------
 
-		Validates that there is one Armor API connection token stored in '$Global:ArmorConnection.Token'.
+		Validates that there is one Armor API connection token stored in '$Global:ArmorSession.Token'.
 	#>
 
 	[CmdletBinding()]

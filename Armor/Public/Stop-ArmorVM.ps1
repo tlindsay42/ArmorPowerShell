@@ -16,7 +16,7 @@ Function Stop-ArmorVM
 		The ID of a VM in the Armor account.  The default value is 0.
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorSession.ApiVersion.
 
 		.INPUTS
 		{ required: .NET Framework object types that can be piped in and a description of the input objects }
@@ -47,8 +47,7 @@ Function Stop-ArmorVM
 		[ValidateSet( 'Shutdown', 'Off', 'ForceOff' )]
 		[String] $Type = 'Shutdown',
 		[Parameter( Position = 2 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

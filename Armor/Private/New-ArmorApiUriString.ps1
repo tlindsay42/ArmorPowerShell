@@ -13,10 +13,10 @@ Function New-ArmorApiUriString
 		GitHub: tlindsay42
 
 		.PARAMETER Server
-		The Armor API server IP address or FQDN.  The default value is $Global:ArmorConnection.Server.
+		The Armor API server IP address or FQDN.  The default value is $Global:ArmorSession.Server.
 
 		.PARAMETER Port
-		The Armor API server port.  The default value is $Global:ArmorConnection.Port.
+		The Armor API server port.  The default value is $Global:ArmorSession.Port.
 
 		.PARAMETER Endpoints
 		An array of available endpoint paths.
@@ -50,10 +50,10 @@ Function New-ArmorApiUriString
 	(
 		[Parameter( Position = 0 )]
 		[ValidateNotNullOrEmpty()]
-		[String] $Server = $Global:ArmorConnection.Server,
+		[String] $Server = $Global:ArmorSession.Server,
 		[Parameter( Position = 1 )]
 		[ValidateRange( 0, 65535 )]
-		[UInt16] $Port = $Global:ArmorConnection.Port,
+		[UInt16] $Port = $Global:ArmorSession.Port,
 		[Parameter( Position = 2 )]
 		[ValidateNotNull()]
 		[String[]] $Endpoints = @(),

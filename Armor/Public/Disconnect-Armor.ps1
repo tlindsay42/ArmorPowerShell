@@ -48,7 +48,7 @@ Function Disconnect-Armor
 		{
 			Write-Verbose -Message 'Disconnecting from Armor.'
 
-			Remove-Variable -Name ArmorConnection -Scope Global
+			Remove-Variable -Name ArmorSession -Scope Global
 		}
 	} # End of Process
 

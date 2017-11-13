@@ -13,7 +13,7 @@ Function Get-ArmorAccount
 		GitHub: tlindsay42
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorSession.ApiVersion.
 
 		.INPUTS
 		None
@@ -38,8 +38,7 @@ Function Get-ArmorAccount
 	[CmdletBinding()]
 	Param
 	(
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

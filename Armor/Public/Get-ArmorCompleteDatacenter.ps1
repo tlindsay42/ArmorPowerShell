@@ -22,7 +22,7 @@ Function Get-ArmorCompleteDatacenter
 		{ required: description of the specified input parameter's purpose }
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorSession.ApiVersion.
 
 		.INPUTS
 		None
@@ -53,8 +53,7 @@ Function Get-ArmorCompleteDatacenter
 		[ValidateRange( 1, 5 )]
 		[UInt16] $ID = 0,
 		[Parameter( Position = 1 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

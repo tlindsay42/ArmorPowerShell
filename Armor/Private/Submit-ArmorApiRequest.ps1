@@ -16,7 +16,7 @@ Function Submit-ArmorApiRequest
 		The endpoint's URI.  The default value is null.
 
 		.PARAMETER Headers
-		The headers containing authentication details.  The default value is $Global:ArmorConnection.Headers.
+		The headers containing authentication details.  The default value is $Global:ArmorSession.Headers.
 
 		.PARAMETER Method
 		The action/method to perform on the endpoint.  The default value is null.
@@ -52,7 +52,7 @@ Function Submit-ArmorApiRequest
 		[String] $Uri = '',
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
-		[Hashtable] $Headers = $Global:ArmorConnection.Headers,
+		[Hashtable] $Headers = $Global:ArmorSession.Headers,
 		[Parameter( Position = 2 )]
 		[ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
 		[String] $Method = '',

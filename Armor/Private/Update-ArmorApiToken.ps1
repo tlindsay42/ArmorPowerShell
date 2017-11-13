@@ -16,7 +16,7 @@ Function Update-ArmorApiToken
 		The authorization token.
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorSession.ApiVersion.
 
 		.INPUTS
 		System.String

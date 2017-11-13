@@ -50,8 +50,7 @@ Function New-ArmorApiToken
 		[ValidateSet( 'authorization_code' )]
 		[String] $GrantType = 'authorization_code',
 		[Parameter( Position = 2 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

@@ -53,7 +53,7 @@ Function Set-ArmorAccountContext
 
 	Process
 	{
-		$Global:ArmorConnection.AccountContextID = $ID
+		$Global:ArmorSession.SetAccountContext( $ID )
 
 		$Global:ArmorConnection.Headers.'X-Account-Context' = $ID
 	} # End of Process

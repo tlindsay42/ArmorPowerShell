@@ -41,7 +41,7 @@ Function Post-ArmorNoun
 		[String] $Param1,
 		[String] $Param2,
 		[String] $Param3,
-		[String] $ApiVersion = $global:ArmorSession.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

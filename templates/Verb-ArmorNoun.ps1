@@ -41,7 +41,7 @@ Function Verb-ArmorNoun
 		[String] $Param1,
 		[String] $Param2,
 		[String] $Param3,
-		[String] $ApiVersion = $global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin

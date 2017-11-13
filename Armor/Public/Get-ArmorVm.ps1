@@ -19,7 +19,7 @@ Function Get-ArmorVM
 		The ID of a VM in the Armor account.  The default value is 0.
 
 		.PARAMETER ApiVersion
-		The API version.  The default value is $Global:ArmorConnection.ApiVersion.
+		The API version.  The default value is $Global:ArmorSession.ApiVersion.
 
 		.INPUTS
 		None
@@ -78,8 +78,7 @@ Function Get-ArmorVM
 		[ValidateRange( 1, 65535 )]
 		[UInt16] $ID = 0,
 		[Parameter( Position = 1 )]
-		[ValidateScript( { $_ -match '^v\d+\.\d$' } )]
-		[String] $ApiVersion = $Global:ArmorConnection.ApiVersion
+		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
 	)
 
 	Begin
