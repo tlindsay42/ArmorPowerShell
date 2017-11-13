@@ -64,24 +64,12 @@ Function Get-ArmorAccount
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		$Global:ArmorConnection.Accounts = @()
-		
-		ForEach ( $account In $results.Accounts )
+		If ( $results.Count -eq 0 )
 		{
-			$temp = New-Object -TypeName PSCustomObject |
-				Select-Object -Property 'Name', 'ID', 'Status', 'Parent', 'Currency', 'Products'
-
-			$temp.Name = $account.Name.Trim()
-			$temp.ID = $account.Id
-			$temp.Status = $account.Status.Trim()
-			$temp.Parent = $account.Parent
-			$temp.Currency = $account.Currency.Trim()
-			$temp.Products = $account.Products
-
-			$Global:ArmorConnection.Accounts += $temp
+			Write-Host -Object 'Armor account not found.'
 		}
 
-		Return $Global:ArmorConnection.Accounts
+		Return $results
 	} # End of Process
 
 	End

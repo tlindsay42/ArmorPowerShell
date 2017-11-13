@@ -58,7 +58,13 @@ Function Expand-JsonItem
 			{
 				$return = @()
 
-				$InputObject.ForEach( { <# Recurse #> $return += , ( Expand-JsonItem -InputObject $_ ) } )
+				$InputObject.ForEach( 
+					{
+						# Recurse
+						$return += $_ |
+							Expand-JsonItem
+					}
+				)
 
 				Break
 			}
@@ -69,8 +75,16 @@ Function Expand-JsonItem
 
 				ForEach ( $jsonItemKey In ( [HashTable]$InputObject ).Keys )
 				{
-					If ( $InputObject[$jsonItemKey] ) { <# Recurse #> $parsedItem = Expand-JsonItem -InputObject $InputObject[$jsonItemKey] }
-					Else { $parsedItem = $null }
+					If ( $InputObject[$jsonItemKey] )
+					{
+						# Recurse
+						$parsedItem = $InputObject.$jsonItemKey |
+							Expand-JsonItem
+					}
+					Else
+					{
+						$parsedItem = $null
+					}
 
 					$return |
 						Add-Member -MemberType NoteProperty -Name $jsonItemKey -Value $parsedItem
@@ -79,7 +93,10 @@ Function Expand-JsonItem
 				Break
 			}
 
-			Default { $return = $InputObject }
+			Default
+			{
+				$return = $InputObject
+			}
 		}
 
 		Return $return

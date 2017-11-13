@@ -77,7 +77,7 @@ Function Get-ArmorNoun
 
 		If ( $results.Count -eq 0 )
 		{
-			Write-Information -MessageData 'Armor item not found.'
+			Write-Host -Object 'Armor item not found.'
 		}
 
 		Return $results

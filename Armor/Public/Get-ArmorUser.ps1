@@ -75,7 +75,10 @@ Function Get-ArmorUser
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-		If ( $results.Count -eq 0 ) { Write-Host -Object 'Armor user not found.' }
+		If ( $results.Count -eq 0 )
+		{
+			Write-Host -Object 'Armor user not found.'
+		}
 
 		Return $results
 	} # End of Process

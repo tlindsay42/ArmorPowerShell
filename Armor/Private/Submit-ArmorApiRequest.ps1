@@ -133,7 +133,10 @@ Function Submit-ArmorApiRequest
 						Throw $_.Exception 
 					}
 
-					Default { Throw $_ }
+					Default
+					{
+						Throw $_
+					}
 				}
 			}
 		}
