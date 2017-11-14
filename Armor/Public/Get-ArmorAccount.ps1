@@ -60,7 +60,7 @@ Function Get-ArmorAccount
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+		$uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
 		$uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 

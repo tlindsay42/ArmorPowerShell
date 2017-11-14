@@ -104,8 +104,7 @@ Function Get-ArmorApiData
 				'v1.0' = @{
 					'Description' = 'Retrieves a list of Armor account memberships'
 					'URI'         = @(
-						'/accounts',
-						'/accounts/{id}'
+						'/accounts'
 					)
 					'Method'      = 'Get'
 					'Body'        = @{}
@@ -113,6 +112,7 @@ Function Get-ArmorApiData
 					'Location'    = ''
 					'Filter'      = @{
 						'Name' = 'Name'
+						'ID' = 'ID'
 					}
 					'SuccessCode' = '200'
 				}
