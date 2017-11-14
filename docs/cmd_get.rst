@@ -50,6 +50,51 @@ REMARKS
     For online help, type: "get-help Get-ArmorAccount -online"
 
 
+Get-ArmorAccountAddress
+-------------------------
+NAME
+    Get-ArmorAccountAddress
+    
+SYNOPSIS
+    Displays the address for the specified Armor account accessible to the current user.
+    
+    
+SYNTAX
+    Get-ArmorAccountAddress [[-ID] <UInt16>] [-ApiVersion <String>] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    { required: more detailed description of the function's purpose }
+    
+
+PARAMETERS
+    -ID <UInt16>
+        
+    -ApiVersion <String>
+        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>{required: show one or more examples using the function}
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help Get-ArmorAccountAddress -examples".
+    For more information, type: "get-help Get-ArmorAccountAddress -detailed".
+    For technical information, type: "get-help Get-ArmorAccountAddress -full".
+    For online help, type: "get-help Get-ArmorAccountAddress -online"
+
+
 Get-ArmorAccountContext
 -------------------------
 NAME
