@@ -57,6 +57,8 @@ Function Get-ArmorAccount
 
 	Process
 	{
+		$return = $null
+
 		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
 		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -72,8 +74,12 @@ Function Get-ArmorAccount
 		{
 			Write-Host -Object 'Armor account not found.'
 		}
+		Else
+		{
+			$return = [ArmorAccount[]] $results
+		}
 
-		Return $results
+		Return $return
 	} # End of Process
 
 	End
