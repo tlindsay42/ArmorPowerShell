@@ -117,6 +117,20 @@ Function Get-ArmorApiData
 					'SuccessCode' = '200'
 				}
 			}
+			'Get-ArmorAccountAddress'     = @{
+				'v1.0' = @{
+					'Description' = 'Retrieves the address on file for the specified Armor account'
+					'URI'         = @(
+						'/accounts/{id}'
+					)
+					'Method'      = 'Get'
+					'Body'        = @{}
+					'Query'       = @{}
+					'Location'    = ''
+					'Filter'      = @{}
+					'SuccessCode' = '200'
+				}
+			}
 			'Get-ArmorCompleteDatacenter' = @{
 				'v1.0' = @{
 					'Description' = 'Return a set of available locations for provisioning new Armor Complete servers'
