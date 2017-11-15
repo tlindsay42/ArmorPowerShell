@@ -58,7 +58,7 @@ Function Get-ArmorIdentity
 
 		$uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
 		$Global:ArmorSession.User = $results.User
 		$Global:ArmorSession.Accounts = $results.Accounts

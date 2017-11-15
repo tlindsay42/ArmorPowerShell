@@ -69,7 +69,7 @@ Function Stop-ArmorCompleteVM
 		{
 			$uri = New-ArmorApiUriString -Endpoints $resources.Uri.Where( { $_ -match ( '/{0}$' -f $Type ) } ) -IDs $ID
 
-			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method
+			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
 			$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 		}

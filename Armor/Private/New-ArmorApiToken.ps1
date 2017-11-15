@@ -70,7 +70,7 @@ Function New-ArmorApiToken
 
 		$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body
+		$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
 		$results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 

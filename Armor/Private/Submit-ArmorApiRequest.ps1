@@ -57,7 +57,13 @@ Function Submit-ArmorApiRequest
 		[ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
 		[String] $Method = '',
 		[Parameter( Position = 3 )]
-		[String] $Body = ''
+		[String] $Body = '',
+		[Parameter( Position = 4 )]
+		[ValidateSet( 200 )]
+		[UInt16] $SuccessCode = 200,
+		[Parameter( Position = 5 )]
+		[ValidateNotNullorEmpty()]
+		[String] $Description = ''
 	)
 
 	Begin
@@ -72,7 +78,7 @@ Function Submit-ArmorApiRequest
 		$return = $null
 		$request = $null
 
-		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
+		If ( $PSCmdlet.ShouldProcess( $ID, $Description ) )
 		{
 			Try
 			{
@@ -90,7 +96,7 @@ Function Submit-ArmorApiRequest
 					$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
 				}
 
-				If ( $request.StatusCode -eq $resources.SuccessCode )
+				If ( $request.StatusCode -eq $SuccessCode )
 				{
 					If ( $request.Content.Length -gt 2MB )
 					{
