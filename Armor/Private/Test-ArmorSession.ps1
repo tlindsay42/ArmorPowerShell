@@ -53,7 +53,11 @@ Function Test-ArmorSession
 	Process
 	{
 		Write-Verbose -Message 'Verify that the session authorization exists.'
-		If ( -not $Global:ArmorSession.AuthorizationExists() )
+		If ( -not $Global:ArmorSession )
+		{
+			Throw 'Session not found.  Please log in again.'
+		}
+		ElseIf ( -not $Global:ArmorSession.AuthorizationExists() )
 		{
 			Throw 'Session authorization not found.  Please log in again.'
 		}
