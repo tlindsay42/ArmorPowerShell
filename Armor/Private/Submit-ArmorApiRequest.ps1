@@ -48,7 +48,7 @@ Function Submit-ArmorApiRequest
 	Param
 	(
 		[Parameter( Position = 0 )]
-		[ValidateNotNullorEmpty()]
+		[ValidateScript( { $_ -match '^https://.+/.+$' } )]
 		[String] $Uri = '',
 		[Parameter( Position = 1 )]
 		[ValidateNotNull()]
