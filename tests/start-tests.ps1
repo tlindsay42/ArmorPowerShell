@@ -17,6 +17,10 @@ If ( $ciName -eq 'AppVeyor' )
 		( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ), 
 		( Resolve-Path -Path '.\tests\results\AppVeyorTestsResults.xml' )
 	)
+
+	$coverage = Format-Coverage -PesterResults $testsResults -CoverallsApiToken $env:CoverallsApiKey -BranchName $env:APPVEYOR_REPO_BRANCH
+
+	Publish-Coverage -Coverage $coverage
 }
 
 If ( $testsResults.FailedCount -gt 0 )
