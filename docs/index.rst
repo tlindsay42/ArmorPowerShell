@@ -9,6 +9,11 @@
    :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: PowerShell Core Status
 
+
+.. image:: https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master
+   :target: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
+   :alt: Code Coverage Status
+
 .. image:: https://readthedocs.org/projects/armorpowershell/badge/?version=latest
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
