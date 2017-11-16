@@ -35,8 +35,8 @@ version: 1.0.0.{build}
 skip_commits:
   message: /Merge branch .+ of .+ArmorPowerShell/
   #author:
-  files:
-    - README.md
+  #files:
+    #- README.md
 
 # Including commits with particular message, from specific users, or for specific files
 #only_commits:
