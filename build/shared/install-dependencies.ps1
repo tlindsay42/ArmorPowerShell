@@ -10,7 +10,7 @@ Get-PackageProvider
 
 Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 
-ForEach ( $module In 'Pester', 'Posh-Git' )
+ForEach ( $module In 'Pester', 'Posh-Git', 'Coveralls' )
 {
 	Write-Host -Object ( "`nInstalling module: '{0}'." -f $module ) -ForegroundColor 'Yellow'
 	Install-Module -Name $module -Force |
