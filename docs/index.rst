@@ -57,6 +57,7 @@ This is a community project that provides a powerful command-line interface for 
    cmd_connect
    cmd_disconnect
    cmd_get
+   cmd_invoke
    cmd_rename
    cmd_reset
    cmd_restart
