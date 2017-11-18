@@ -44,7 +44,7 @@ This is a community project that provides a powerful command-line interface for 
    :caption: User Documentation
 
    requirements
-   installation
+   install
 	 update
 	 uninstall
    getting_started

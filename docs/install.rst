@@ -1,4 +1,4 @@
-Installation
+Install
 ========================
 
 This repository contains a folder named `Armor`_. The folder needs to be installed into one of your PowerShell Module Paths using one of the installation methods outlined in the next section. To see the full list of available PowerShell Module paths, use ``$env:PSModulePath.Split( ';' )`` in a PowerShell terminal window.
