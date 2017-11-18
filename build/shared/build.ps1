@@ -121,7 +121,7 @@ $content += 'Welcome to the Armor PowerShell Module
    :target: https://www.powershellgallery.com/packages/armor
    :alt: PowerShell Gallery
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your ** `Armor Complete`_ ** (secure public cloud) and ** `Armor Anywhere`_ ** (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
+This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
 
 Every release is tested on **Windows** via `AppVeyor`_, as well as on **macOS** and **Ubuntu Linux** via `Travis CI`_, and it is published on the `PowerShell Gallery`_.
 
