@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.82'
+ModuleVersion = '1.0.0.83'
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
@@ -27,7 +27,7 @@ CompanyName = 'Armor'
 Copyright = '(c) 2017 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on Windows via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
+Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on Windows via AppVeyor, as well as on macOS and Linux via Travis CI.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'
@@ -90,10 +90,8 @@ AliasesToExport = @()
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'Lib\10-ArmorUser.ps1', 
-               'Lib\11-ArmorAccount.ps1', 'Lib\12-ArmorDepartment.ps1', 
-               'Lib\13-ArmorFeature.ps1', 'Lib\14-ArmorAccountAddress.ps1', 
-               'Lib\90-ArmorSession.ps1', 'Private\ConvertFrom-JsonXL.ps1', 
+FileList = 'Armor.psd1', 'Armor.psm1', 'Lib\ArmorAccountAddress.ps1', 
+               'Lib\ArmorSession.ps1', 'Private\ConvertFrom-JsonXL.ps1', 
                'Private\Expand-ArmorApiResult.ps1', 'Private\Expand-JsonItem.ps1', 
                'Private\Format-ArmorApiJsonRequestBody.ps1', 
                'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1', 

@@ -9,7 +9,6 @@
    :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: PowerShell Core Status
 
-
 .. image:: https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master
    :target: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
    :alt: Code Coverage Status
@@ -22,7 +21,11 @@
    :target: https://www.powershellgallery.com/packages/armor
    :alt: PowerShell Gallery
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.  It is continuously tested on Windows Server via `AppVeyor`_, as well as on Ubuntu Linux and macOS via `Travis CI`_, and it is published on the `PowerShell Gallery`_.  The code is open source, and `available on GitHub`_.
+This is a community project that provides a powerful command-line interface for managing and monitoring your **`Armor Complete`_** (secure public cloud) and **`Armor Anywhere`_** (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
+
+Every release is tested on **Windows** via `AppVeyor`_, as well as on **macOS** and **Ubuntu Linux** via `Travis CI`_, and it is published on the `PowerShell Gallery`_.
+
+The source code is `available on GitHub`_.
 
 .. _Armor Complete: https://www.armor.com/armor-complete-secure-hosting/
 
@@ -44,7 +47,7 @@ This is a community project that provides a powerful command-line interface for 
    :caption: User Documentation
 
    requirements
-   install
+   installation
 	 update
 	 uninstall
    getting_started
