@@ -1,4 +1,4 @@
-Updating to a newer version
+Update
 ========================
 
 Option 1: PowerShell Gallery Update (Recommended)

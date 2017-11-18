@@ -1,4 +1,4 @@
-Uninstalling the module
+Uninstall
 ========================
 
 Option 1: Uninstall-Module (Recommended)
