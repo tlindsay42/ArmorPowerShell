@@ -147,7 +147,7 @@ The source code is `available on GitHub`_.
    :caption: User Documentation
 
    requirements
-   installation
+   install
 	 update
 	 uninstall
    getting_started
