@@ -1,16 +1,79 @@
-# Include required classes
-ForEach ( $class In '10-ArmorUser', '11-ArmorAccount', '12-ArmorDepartment', '13-ArmorFeature' )
+Class ArmorUser
 {
-	$classFilePath = '{0}\{1}.ps1' -f $PSScriptRoot, $class
+	[ValidateNotNullOrEmpty()]
+	[String] $Type
 
-	If ( Test-Path -Path $classFilePath )
-	{
-		. $classFilePath
-	}
-	Else
-	{
-		Throw ( 'File not found: "{0}"' -f $classFilePath )
-	}
+	[ValidatePattern( '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' )]
+	[Alias( 'Name' )]
+	[String] $UserName
+
+	[ValidateNotNullOrEmpty()]
+	[String] $FirstName
+
+	[ValidateNotNullOrEmpty()]
+	[String] $LastName
+
+	[ValidateNotNull()]
+	[PSCustomObject[]] $Links = @()
+
+	#Constructors
+	ArmorUser () {}
+}
+
+Class ArmorAccount
+{
+	[ValidateRange( 1, 65535 )]
+	[UInt16] $ID
+
+	[ValidateNotNullOrEmpty()]
+	[String] $Name
+
+	[ValidateNotNullOrEmpty()]
+	[String] $Currency
+
+	[ValidateNotNullOrEmpty()]
+	[String] $Status
+
+	[ValidateRange( -1, 65535 )]
+	[Int32] $Parent
+
+	[PSObject[]] $Products = @()
+
+	#Constructors
+	ArmorAccount () {}
+}
+
+Class ArmorDepartment
+{
+	[ValidateRange( 1, 65535 )]
+	[UInt16] $ID
+
+	[ValidateNotNullOrEmpty()]
+	[String] $Name
+
+	[ValidateRange( 1, 65535 )]
+	[UInt16] $Account
+
+	#Constructors
+	ArmorDepartment () {}
+}
+
+Class ArmorFeature
+{
+	[ValidateRange( 1, 65535 )]
+	[UInt16] $AccountID
+
+	[ValidateNotNullOrEmpty()]
+	[String] $Feature
+
+	[ValidateRange( 1, 65535 )]
+	[UInt16] $ProductID
+
+	[ValidateRange( 0, 65535 )]
+	[UInt16] $FeatureID
+
+	#Constructors
+	ArmorFeature () {}
 }
 
 Class ArmorSession
