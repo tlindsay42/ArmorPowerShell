@@ -15,7 +15,7 @@ If ( ( Test-Path -Path $modulePath ) -eq $false ) { Throw ( 'Module directory: "
 
 Try
 {
-	Write-Host -Object ( "`nSet the working directory to {0}" -f $modulePath ) -ForegroundColor 'Yellow'
+	Write-Host -Object ( "`nSet the working directory to: '{0}'." -f $modulePath ) -ForegroundColor 'Yellow'
 	Push-Location -Path $modulePath -ErrorAction Stop
 
 	$manifestPath = '{0}\Armor.psd1' -f $modulePath
@@ -32,8 +32,8 @@ Try
 		( $manifest.Version.Revision + 1 )
 	}
 
-	Write-Host -Object ( "`nOld Version- {0}" -f $manifest.Version )
-	Write-Host -Object ( 'New Version- {0}' -f $version )
+	Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
+	Write-Host -Object ( "New Version: '{0}'." -f $version )
 
 	Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 	Update-ModuleManifest `
@@ -73,14 +73,14 @@ Try
 	$manifest = Test-ModuleManifest -Path $manifestPath
 
 	Pop-Location
-	Write-Host -Object ( "`nRestored the working directory to '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
+	Write-Host -Object ( "`nRestored the working directory to: '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
 }
 Catch
 {
 	Throw $_
 }
 
-Write-Host -Object "Import module: 'Armor'" -ForegroundColor 'Yellow'
+Write-Host -Object "Import module: 'Armor'." -ForegroundColor 'Yellow'
 Import-Module -Name ( '{0}\Armor.psm1' -f $modulePath ) -Force
 
 # Update the docs
@@ -121,7 +121,7 @@ $content += 'Welcome to the Armor PowerShell Module
    :target: https://www.powershellgallery.com/packages/armor
    :alt: PowerShell Gallery
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your **`Armor Complete`_** (secure public cloud) and **`Armor Anywhere`_** (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
+This is a community project that provides a powerful command-line interface for managing and monitoring your `**Armor Complete**`_ (secure public cloud) and `**Armor Anywhere**`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
 
 Every release is tested on **Windows** via `AppVeyor`_, as well as on **macOS** and **Ubuntu Linux** via `Travis CI`_, and it is published on the `PowerShell Gallery`_.
 
@@ -200,5 +200,7 @@ ForEach ( $verb In ( Get-Command -Module Armor ).Verb | Select-Object -Unique )
 	$content |
 		Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $buildPath, $verb.ToLower() ) -Encoding utf8
 
-	Write-Host -Object ( '   cmd_ {0}' -f $verb.ToLower() )
+	Write-Host -Object ( '   cmd_{0}' -f $verb.ToLower() )
 }
+
+Write-Host -Object ''
