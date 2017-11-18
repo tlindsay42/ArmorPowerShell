@@ -48,7 +48,7 @@ Try
 			'This is a community project that provides a powerful command-line interface for managing and monitoring your ' +
 			'Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a ' +
 			'PowerShell module with cmdlets that interact with the published RESTful APIs.  It is continuously tested on ' +
-			'Windows via AppVeyor, as well as on Ubuntu Linux and macOS via Travis CI.'
+			'Windows via AppVeyor, as well as on macOS and Linux via Travis CI.'
 		) `
 		-PowerShellVersion '5.0' `
 		-ProcessorArchitecture 'None' `
@@ -80,7 +80,7 @@ Catch
 	Throw $_
 }
 
-Write-Host -Object "`nImport module: 'Armor'"
+Write-Host -Object "Import module: 'Armor'" -ForegroundColor 'Yellow'
 Import-Module -Name ( '{0}\Armor.psm1' -f $modulePath ) -Force
 
 # Update the docs
@@ -88,11 +88,11 @@ Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
 $content = @()
 $content += "# Armor PowerShell Module
 
-| **Windows PowerShell** | **PowerShell Core** | **Code Coverage** | **Documentation** | **Install** |
-| :--------------------: | :-----------------: | :---------------: | :---------------: | :---------: |
-| [![Build status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true)](https://ci.appveyor.com/project/tlindsay42/armorpowershell/branch/master) | [![Build status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell) | [![Coverage Status](https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master)](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master) | [![Documentation Status](https://readthedocs.org/projects/armorpowershell/badge/?version=latest)](http://armorpowershell.readthedocs.io/en/latest/?badge=latest) | [![PS Gallery](https://img.shields.io/badge/install-PS%20Gallery-blue.svg)](https://www.powershellgallery.com/packages/Armor)
+[![Build status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true)](https://ci.appveyor.com/project/tlindsay42/armorpowershell/branch/master) [![Build status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell) [![Coverage Status](https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master)](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master) [![Documentation Status](https://readthedocs.org/projects/armorpowershell/badge/?version=latest)](http://armorpowershell.readthedocs.io/en/latest/?badge=latest) [![PS Gallery](https://img.shields.io/badge/install-PS%20Gallery-blue.svg)](https://www.powershellgallery.com/packages/Armor)
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your **[Armor Complete](https://www.armor.com/armor-complete-secure-hosting/ 'Armor Complete Product Page')** (secure public cloud) and **[Armor Anywhere](https://www.armor.com/armor-anywhere-security/ 'Armor Anywhere Product Page')** (security as a service) environments & accounts via a PowerShell module that interfaces with the published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide').  It is continuously tested on Windows via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell), as well as on Ubuntu Linux and macOS via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell), and it is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor).
+This is a community project that provides a powerful command-line interface for managing and monitoring your **[Armor Complete](https://www.armor.com/armor-complete-secure-hosting/ 'Armor Complete Product Page')** (secure public cloud) and **[Armor Anywhere](https://www.armor.com/armor-anywhere-security/ 'Armor Anywhere Product Page')** (security as a service) environments & accounts via a PowerShell module that interfaces with the published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide').
+
+Every release is tested on **Windows** via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell), as well as on **macOS** and **Ubuntu Linux** via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell), and it is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor).
 
 Please visit the **[full documentation](http://ArmorPowerShell.readthedocs.io/en/latest/)** for more details." |
 	Out-File -FilePath ( '{0}\README.md' -f $buildPath ) -Encoding utf8
@@ -109,7 +109,6 @@ $content += 'Welcome to the Armor PowerShell Module
    :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: PowerShell Core Status
 
-
 .. image:: https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master
    :target: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
    :alt: Code Coverage Status
@@ -122,7 +121,11 @@ $content += 'Welcome to the Armor PowerShell Module
    :target: https://www.powershellgallery.com/packages/armor
    :alt: PowerShell Gallery
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.  It is continuously tested on Windows Server via `AppVeyor`_, as well as on Ubuntu Linux and macOS via `Travis CI`_, and it is published on the `PowerShell Gallery`_.  The code is open source, and `available on GitHub`_.
+This is a community project that provides a powerful command-line interface for managing and monitoring your **`Armor Complete`_** (secure public cloud) and **`Armor Anywhere`_** (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
+
+Every release is tested on **Windows** via `AppVeyor`_, as well as on **macOS** and **Ubuntu Linux** via `Travis CI`_, and it is published on the `PowerShell Gallery`_.
+
+The source code is `available on GitHub`_.
 
 .. _Armor Complete: https://www.armor.com/armor-complete-secure-hosting/
 
