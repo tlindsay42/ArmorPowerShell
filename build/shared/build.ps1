@@ -245,8 +245,8 @@ $text.AppVeyor, #22
 $text.TravisCi, #23
 $text.Pester, #24
 $text.PesterUrl, #25
-$text.Coveralls #26
-$text.CoverallsProjectUrl #27
+$text.Coveralls, #26
+$text.CoverallsProjectUrl, #27
 $repoUrl #28
 
 ForEach ( $fileName In ( Get-ChildItem -Path .\docs ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).Name )
