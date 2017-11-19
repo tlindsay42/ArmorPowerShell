@@ -1,6 +1,15 @@
-If ( $env:APPVEYOR -eq $true ) { $ciName = 'AppVeyor' }
-ElseIf ( $env:TRAVIS -eq $true ) { $ciName = 'TravisCI' }
-Else { Throw 'Unknown continuous integration environment.' }
+If ( $env:APPVEYOR -eq $true )
+{
+	$ciName = 'AppVeyor' 
+}
+ElseIf ( $env:TRAVIS -eq $true )
+{
+	$ciName = 'TravisCI' 
+}
+Else
+{
+	Throw 'Unknown continuous integration environment.'
+}
 
 Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
 $testsResults = Invoke-Pester -Path ( '{0}\tests' -f $env:BUILD_PATH ) `
