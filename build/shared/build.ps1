@@ -88,7 +88,7 @@ Update-ModuleManifest `
 	-FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
 	-Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
 		'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
-	-LicenseUri ( '{0}/blob/master/LICENSE' -f $repoUrl ) `
+	-LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
 	-IconUri 'http://i.imgur.com/fbXjkCn.png' `
 	-ErrorAction Stop
 
