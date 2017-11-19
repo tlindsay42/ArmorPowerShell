@@ -199,6 +199,8 @@ The source code is `available on GitHub`_.
 
 .. _{23}: {5}
 
+.. _{24}: {25}
+
 .. _{12}: {14}
 
 .. _available on GitHub: {24}
@@ -233,7 +235,8 @@ $text.RestfulApi, #20
 $text.ArmorApiGuideUrl, #21
 $text.AppVeyor, #22
 $text.TravisCi, #23
-$repoUrl #24
+$text.Pester, #24
+$text.PesterUrl, #25
 
 ForEach ( $fileName In ( Get-ChildItem -Path .\docs ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).Name )
 {
