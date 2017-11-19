@@ -6,14 +6,7 @@ $public = @( Get-ChildItem -Path ( '{0}\Public\*.ps1' -f $PSScriptRoot ) -ErrorA
 # Source the definition files
 ForEach ( $import In @( $lib + $private + $public ) )
 {
-	Try
-	{
-		. $import.FullName
-	}
-	Catch
-	{
-		Write-Error -Message ( 'Failed to import function {0}: {1}.' -f $import.FullName, $_ )
-	}
+	. $import.FullName
 }
 
 # Export the Public modules

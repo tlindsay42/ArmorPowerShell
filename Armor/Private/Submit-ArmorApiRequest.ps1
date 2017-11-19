@@ -80,70 +80,41 @@ Function Submit-ArmorApiRequest
 
 		If ( $PSCmdlet.ShouldProcess( $ID, $Description ) )
 		{
-			Try
+			Write-Verbose -Message 'Submitting the request.'
+
+			If ( $Method -eq 'Get' )
 			{
-				Write-Verbose -Message 'Submitting the request.'
+				$getHeaders = $Headers.Clone()
+				$getHeaders.Remove( 'Content-Type' )
 
-				If ( $Method -eq 'Get' )
+				$request = Invoke-WebRequest -Uri $Uri -Headers $getHeaders -Method $Method
+			}
+			Else
+			{
+				$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
+			}
+
+			If ( $request.StatusCode -eq $SuccessCode )
+			{
+				If ( $request.Content.Length -gt 2MB )
 				{
-					$getHeaders = $Headers.Clone()
-					$getHeaders.Remove( 'Content-Type' )
+					# Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
+					Write-Verbose -Message 'Converting JSON payload more than 2MB.'
 
-					$request = Invoke-WebRequest -Uri $Uri -Headers $getHeaders -Method $Method
+					$return = $request.Content |
+						ConvertFrom-JsonXL
 				}
 				Else
 				{
-					$request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
-				}
+					Write-Verbose -Message 'Converting JSON payload less than or equal to 2MB.'
 
-				If ( $request.StatusCode -eq $SuccessCode )
-				{
-					If ( $request.Content.Length -gt 2MB )
-					{
-						# Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
-						Write-Verbose -Message 'Converting JSON payload more than 2MB.'
-
-						$return = $request.Content |
-							ConvertFrom-JsonXL
-					}
-					Else
-					{
-						Write-Verbose -Message 'Converting JSON payload less than or equal to 2MB.'
-
-						$return = $request.Content |
-							ConvertFrom-Json
-					}
-				}
-				Else
-				{
-					Throw $request.StatusDescription
+					$return = $request.Content |
+						ConvertFrom-Json
 				}
 			}
-			Catch
+			Else
 			{
-				$warningMessage = 'The endpoint supplied to the Armor API is invalid. Likely this is due to an incompatible version of the API or references pointing to a non-existent endpoint. The URI passed was: {0}' -f $Uri
-
-				Switch -Wildcard ( $_ )
-				{
-					'Route not defined.'
-					{
-						Write-Warning -Message $warningMessage -Verbose
-
-						Throw $_.Exception
-					}
-					
-					'Invalid ManagedId*'
-					{
-						Write-Warning -Message $warningMessage -Verbose
-
-						Throw $_.Exception 
-					}
-
-					Default
-					{
-						Throw $_
-					}
-				}
+				Throw $request.StatusDescription
 			}
 		}
 

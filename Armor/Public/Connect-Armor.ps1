@@ -95,8 +95,12 @@ Function Connect-Armor
 
 		If ( $Credential -eq $null )
 		{
-			Try { $Credential = Get-Credential }
-			Catch { Throw 'Failed to set credentials.' }
+			$Credential = Get-Credential
+
+			If ( $Credential -eq $null )
+			{
+				Throw 'Failed to set credentials.'
+			}
 		}
 
 		Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
@@ -125,27 +129,18 @@ Function Connect-Armor
 			}
 		}
 
-		Try
+		$content = Submit-ArmorApiRequest -Uri $uri -Method $method -Body $body -Description $resources.Description
+
+		# If we find a temporary authorization code and a success message, we know the request was successful
+		If ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
 		{
-			$content = Submit-ArmorApiRequest -Uri $uri -Method $method -Body $body -Description $resources.Description
+			Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
 
-			# If we find a temporary authorization code and a success message, we know the request was successful
-			# Anything else will trigger a Throw, which will cause the Catch to break the current loop
-			If ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' )
-			{
-				Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
-
-				$token = New-ArmorApiToken -Code $content.Code -GrantType 'authorization_code'
-			}
-			Else
-			{
-				Throw 'Failed to obtain temporary authorization code.'
-			}
+			$token = New-ArmorApiToken -Code $content.Code -GrantType 'authorization_code'
 		}
-		Catch
+		Else
 		{
-			Write-Verbose -Message $_
-			Write-Verbose -Message $_.Exception.InnerException.Message
+			Throw 'Failed to obtain temporary authorization code.'
 		}
 
 		# Final throw for when all versions of the API have failed
@@ -158,12 +153,13 @@ Function Connect-Armor
 
 		If ( $AccountID -eq 0 )
 		{
-			Try
+			$AccountID = ( Get-ArmorIdentity ).Accounts.ID |
+				Select-Object -First 1
+
+			If ( $AccountID -eq 0 )
 			{
-				$AccountID = ( Get-ArmorIdentity ).Accounts.ID |
-					Select-Object -First 1 
-   		}
-			Catch { Throw 'Failed to get the default Armor account ID.' }
+				Throw 'Failed to get the default Armor account ID.'
+			}
 		}
 
 		Write-Verbose -Message ( 'Setting the Armor account context to ID {0}.' -f $AccountID )
