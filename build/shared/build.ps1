@@ -53,7 +53,7 @@ If ( $env:TRAVIS -eq $true )
 }
 
 Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
-Write-Host -Object ( "New Version: '{0}'." -f $version )
+Write-Host -Object ( "New Version: '{0}'." -f $env:MODULE_VERSION )
 
 Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 
@@ -76,7 +76,7 @@ $text.PSGallery #9
 Update-ModuleManifest `
 	-Path $manifestPath `
 	-RootModule ( '{0}.psm1' -f $env:MODULE_NAME ) `
-	-ModuleVersion $version `
+	-ModuleVersion $env:MODULE_VERSION `
 	-Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
 	-Author 'Troy Lindsay' `
 	-CompanyName 'Armor' `
