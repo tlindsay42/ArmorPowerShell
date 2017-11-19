@@ -33,7 +33,7 @@ version: 1.0.0.{build}
 
 # Skipping commits with particular message, from specific users, or for specific files
 skip_commits:
-  message: /Merge branch .+ of .+ArmorPowerShell/
+  #message: /Merge branch .+ of .+ArmorPowerShell/
   #author:
   #files:
     #- README.md
