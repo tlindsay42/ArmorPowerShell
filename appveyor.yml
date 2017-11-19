@@ -84,13 +84,19 @@ image:
 
 # environment variables
 environment:
-  EmailAddress:
+  BUILD_PATH: $env:APPVEYOR_BUILD_FOLDER
+  MODULE_NAME: 'Armor'
+  MODULE_PATH: '{0}\{1}' -f $env:BUILD_PATH, $env:MODULE_NAME
+  MODULE_VERSION: $env:APPVEYOR_BUILD_VERSION
+  OWNER_NAME: $env:APPVEYOR_ACCOUNT_NAME
+  PROJECT_NAME: $env:APPVEYOR_PROJECT_NAME
+  EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
-  GitHubKey:
+  GITHUB_API_KEY:
     secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
-  NuGetApiKey:
+  NUGET_API_KEY:
     secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
-  CoverallsApiKey:
+  COVERALLS_API_KEY:
     secure: WWnf4Q5NJHBpILI4QpagjvIO4lKmqu3wa3u/vhDXRivO2Xsr4xt3XEsswAG0vryE
 
 # this is how to allow failing jobs in the matrix
@@ -199,8 +205,8 @@ test_script:
 # scripts to run after tests
 after_test:
   - git config --global credential.helper store
-  - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GitHubKey )
-  - git config --global user.email $env:EmailAddress
+  - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GITHUB_API_KEY )
+  - git config --global user.email $env:EMAIL_ADDRESS
   - git config --global user.name 'Troy Lindsay'
   - git config --global core.autocrlf true
   - git config --global core.safecrlf false

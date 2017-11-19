@@ -55,7 +55,13 @@ language: generic
 # environment variables
 env:
   global:
-    secure: "Q3vmE6RYSo8zpmzzFsZoYO7Q9mQvX32dMyLiSEOXEoDq41vc8OJyctpOTtoQmme9tAgzZrv9cdCbhfOsLfVtILbTrHWj8ktvTv7dQg29Qa1tH9IwPHL300RSPB1vBijtBTpuJ77NFjJUmaBSkB0Ixz0/2/nO7qhyLOUcxCAsNk53oHJzfxSOPo0WjiMamYDdcVVdxluogEu2Zgjm4V8J0KxSyFPKqeALvNnKRUWTe4m/ouetr9M5+19Z2uNpUDh90Gl9YQVXT4XZldt6tgwrDajz6uo6TM/3E4IKvNiu+NvvI9zF/tIwWL2R2wm/kZczN95m9cTVyPsbOzJTutcxP3xxZNe+O4gK0ToQVCUL8bjcIDaf66XQ4zS9fo77UYfNAl/JFFOtq4EfMwBuouBxVyAqriFnInbqADSycVEnYcdx0JCRFAQLpemyF+29cSSpDSySYpf1nP3EjOPBfWLCfMe0U0pSdag4T0nFxLL70Abd/AOfrXXTnLdRci4I2QMaHdKX1CEnx7sCBhtAwmKnxqhlR8uB2APb8gl+wbzBwl7bv6rRSplVApjcBQbydHJbk+QkFQBuPOI5BNMZYsqjhlJxAL+XOZfEn7NUtBjCyl4cb6SesooCtqHvhgfqeFYdiRmv0pYd9rnUfeZxr7dpI1CPhLLngsl1l1ey13DX164="
+    - BUILD_PATH="$TRAVIS_BUILD_DIR"
+    - MODULE_NAME="Armor"
+    - MODULE_PATH="$BUILD_PATH/$MODULE_NAME"
+    - MODULE_VERSION="{set module version in build script}"
+    - OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
+    - PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
+    - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
   #matrix:
 
 matrix:
