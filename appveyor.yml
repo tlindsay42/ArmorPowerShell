@@ -32,7 +32,7 @@ version: 1.0.0.{build}
 #skip_non_tags:
 
 # Skipping commits with particular message, from specific users, or for specific files
-skip_commits:
+#skip_commits:
   #message: /Merge branch .+ of .+ArmorPowerShell/
   #author:
   #files:
