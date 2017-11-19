@@ -229,10 +229,11 @@ artifacts:
 
 # providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
 # provider names are case-sensitive!
-deploy: off
+#deploy: off
 
 # to run your custom scripts instead of provider deployments
-#deploy_script:
+deploy_script:
+  - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # scripts to run after deployment
 #after_deploy:
@@ -243,8 +244,7 @@ deploy: off
 #---------------------------------#
 
 # on successful build
-on_success:
-  - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+#on_success:
 
 # on build failure
 #on_failure:
