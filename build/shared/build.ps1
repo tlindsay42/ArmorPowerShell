@@ -34,11 +34,6 @@ $text = @{
 	'Windows'               = 'Windows'
 }
 
-If ( $env:APPVEYOR -eq $true )
-{
-	$env:MODULE_PATH = '{0}\{1}' -f $env:BUILD_PATH, $env:MODULE_NAME
-}
-
 If ( ( Test-Path -Path $env:MODULE_PATH ) -eq $false )
 {
 	Throw ( 'Module directory: "{0}" not found.' -f $env:MODULE_PATH )
