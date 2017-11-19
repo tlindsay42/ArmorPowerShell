@@ -6,7 +6,7 @@ ElseIf ( $env:APPVEYOR_PULL_REQUEST_NUMBER -gt 0 )
 {
 	Write-Warning -Message ( 'Skipping publish for pull request {0}' -f $env:APPVEYOR_PULL_REQUEST_NUMBER )
 }
-Else
+ElseIf ( $env:APPVEYOR_JOB_NUMBER -eq 1 )
 {
 	# Publish the new version to the PowerShell Gallery
 	Publish-Module -Path $env:MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
