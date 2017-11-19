@@ -10,6 +10,7 @@ $text = @{
 	'BoldForm'              = '**{0}**'
 	'BuildStatus'           = 'Build Status'
 	'CoverageStatus'        = 'Coverage Status'
+	'Coveralls'             = 'Coveralls'
 	'CoverallsImageUrl'     = 'https://coveralls.io/repos/github/{0}/{1}/badge.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
 	'CoverallsProjectUrl'   = 'https://coveralls.io/github/{0}/{1}?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
 	'DocumentationStatus'   = 'Documentation Status'
@@ -61,7 +62,9 @@ $description = 'This is a community project that provides a powerful command-lin
 
 Every code push is built on {3} via {4}, as well as on {5} and {6} via {7}, and tested using the {8} test & mock framework.
 
-Every successful build is published on the {9}.' -f
+Code coverage scores and reports showing how much of the project is covered by automated unit tests are tracked by {9}.
+
+Every successful build is published on the {10}.' -f
 $text.ArmorComplete, #0
 $text.ArmorAnywhere, #1
 $text.RestfulApi, #2
@@ -71,7 +74,8 @@ $text.macOS, #5
 $text.Ubuntu, #6
 $text.TravisCi, #7
 $text.Pester, #8
-$text.PSGallery #9
+$text.Coveralls, #9
+$text.PSGallery #10
 
 Update-ModuleManifest `
 	-Path $manifestPath `
@@ -120,6 +124,7 @@ $markDownDescription = $description `
 	-replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
 	-replace $text.TravisCi, ( $text.MdLinkForm -f $text.TravisCi, $text.TravisCiProjectUrl, ( '{0}: {1}: latest build console' -f $text.TravisCi, $env:PROJECT_NAME ) ) `
 	-replace $text.Pester, ( $text.MdLinkForm -f $text.Pester, $text.PesterUrl, ( '{0} GitHub repo' -f $text.Pester ) ) `
+	-replace $text.Coveralls, ( $text.MdLinkForm -f $text.Coveralls, $text.CoverallsProjectUrl, ( '{0}: {1}: latest report' -f $text.Coveralls, $env:PROJECT_NAME ) ) `
 	-replace $text.PSGallery, ( "[{0}]({1})" -f $text.PSGallery, $text.PSGalleryProjectUrl )
 
 $content = @()
@@ -159,6 +164,7 @@ $reStructuredTextDescription = $description `
  -replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
  -replace $text.TravisCi, ( $text.RstLinkForm -f $text.TravisCi ) `
  -replace $text.Pester, ( $text.RstLinkForm -f $text.Pester ) `
+ -replace $text.Coveralls, ( $text.RstLinkForm -f $text.Coveralls ) `
  -replace $text.PSGallery, ( $text.RstLinkForm -f $text.PSGallery )
 
 $content = @()
@@ -201,9 +207,11 @@ The source code is `available on GitHub`_.
 
 .. _{24}: {25}
 
+.. _{26}: {27}
+
 .. _{12}: {14}
 
-.. _available on GitHub: {24}
+.. _available on GitHub: {28}
 
 .. toctree::
    :maxdepth: 2
@@ -237,6 +245,9 @@ $text.AppVeyor, #22
 $text.TravisCi, #23
 $text.Pester, #24
 $text.PesterUrl, #25
+$text.Coveralls #26
+$text.CoverallsProjectUrl #27
+$repoUrl #28
 
 ForEach ( $fileName In ( Get-ChildItem -Path .\docs ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).Name )
 {
