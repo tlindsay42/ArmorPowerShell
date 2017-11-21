@@ -1,109 +1,97 @@
-Function Expand-JsonItem
-{
-	<#
-		.SYNOPSIS
-		{ required: high level overview }
+function Expand-JsonItem {
+    <#
+        .SYNOPSIS
+        { required: high level overview }
 
-		.DESCRIPTION
-		{ required: more detailed description of the function's purpose }
+        .DESCRIPTION
+        { required: more detailed description of the function's purpose }
 
-		.NOTES
-		Troy Lindsay
-		Twitter: @troylindsay42
-		GitHub: tlindsay42
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
-		.PARAMETER InputObject
-		{ required: description of the specified input parameter's purpose }
+        .PARAMETER InputObject
+        { required: description of the specified input parameter's purpose }
 
-		.INPUTS
-		System.Management.Automation.PSObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
-		.OUTPUTS
-		System.String
+        .OUTPUTS
+        System.String
 
-		.LINK
-		https://github.com/tlindsay42/ArmorPowerShell
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
 
-		.LINK
-		https://docs.armor.com/display/KBSS/Armor+API+Guide
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
 
-		.LINK
-		https://developer.armor.com/
+        .LINK
+        https://developer.armor.com/
 
-		.EXAMPLE
-		{required: show one or more examples using the function}
-	#>
+        .EXAMPLE
+        {required: show one or more examples using the function}
+    #>
 
-	[CmdletBinding()]
-	Param
-	(
-		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		$InputObject = $null
-	)
+    [CmdletBinding()]
+    param (
+        [Parameter( Position = 0, ValueFromPipeline = $true )]
+        $InputObject = $null
+    )
 
-	Begin
-	{
-		#$function = $MyInvocation.MyCommand.Name
+    begin {
+        #$function = $MyInvocation.MyCommand.Name
 
-		#Write-Verbose -Message ( 'Beginning {0}.' -f $function )
-	} # End of Begin
+        #Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+    } # End of begin
 
-	Process
-	{
-		$return = $null
+    process {
+        $return = $null
 
-		Switch -Regex ( $InputObject.PSObject.TypeNames )
-		{
-			'Array'
-			{
-				$return = @()
+        switch -Regex ( $InputObject.PSObject.TypeNames ) {
+            'Array' {
+                $return = @()
 
-				$InputObject.ForEach( 
-					{
-						# Recurse
-						$return += $_ |
-							Expand-JsonItem
-					}
-				)
+                $InputObject.foreach( 
+                    {
+                        # Recurse
+                        $return += $_ |
+                            Expand-JsonItem
+                    }
+                )
 
-				Break
-			}
+                break
+            }
 
-			'Dictionary'
-			{
-				$return = New-Object -TypeName PSCustomObject
+            'Dictionary' {
+                $return = New-Object -TypeName PSCustomObject
 
-				ForEach ( $jsonItemKey In ( [HashTable]$InputObject ).Keys )
-				{
-					If ( $InputObject[$jsonItemKey] )
-					{
-						# Recurse
-						$parsedItem = $InputObject.$jsonItemKey |
-							Expand-JsonItem
-					}
-					Else
-					{
-						$parsedItem = $null
-					}
+                foreach ( $jsonItemKey in ( [HashTable]$InputObject ).Keys ) {
+                    if ( $InputObject[$jsonItemKey] ) {
+                        # Recurse
+                        $parsedItem = $InputObject.$jsonItemKey |
+                            Expand-JsonItem
+                    }
+                    else {
+                        $parsedItem = $null
+                    }
 
-					$return |
-						Add-Member -MemberType NoteProperty -Name $jsonItemKey -Value $parsedItem
-				}
+                    $return |
+                        Add-Member -MemberType NoteProperty -Name $jsonItemKey -Value $parsedItem
+                }
 
-				Break
-			}
+                break
+            }
 
-			Default
-			{
-				$return = $InputObject
-			}
-		}
+            Default {
+                $return = $InputObject
+            }
+        }
 
-		Return $return
-	} # End of Process
+        return $return
+    } # End of process
 
-	End
-	{
-		#Write-Verbose -Message ( 'Ending {0}.' -f $function )
-	} # End of End
-} # End of Function
+    end {
+        #Write-Verbose -Message ( 'Ending {0}.' -f $function )
+    } # End of end
+} # End of function

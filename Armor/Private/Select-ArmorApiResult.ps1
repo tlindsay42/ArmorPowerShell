@@ -1,6 +1,5 @@
-Function Select-ArmorApiResult
-{
-	<#
+function Select-ArmorApiResult {
+    <#
 		.SYNOPSIS
 		The Select-ArmorApiResult function is used to filter data that has been returned from an endpoint for specific objects important to the user.
 
@@ -38,61 +37,55 @@ Function Select-ArmorApiResult
 		{required: show one or more examples using the function}
 	#>
 
-	[CmdletBinding()]
-	Param
-	(
-		[Parameter( Position = 0, ValueFromPipeline = $true )]
-		[PSCustomObject[]] $Results = @(),
-		[Parameter( Position = 1 )]
-		[ValidateNotNull()]
-		[Hashtable] $Filter = $null
-	)
+    [CmdletBinding()]
+    param (
+        [Parameter( Position = 0, ValueFromPipeline = $true )]
+        [PSCustomObject[]] $Results = @(),
+        [Parameter( Position = 1 )]
+        [ValidateNotNull()]
+        [Hashtable] $Filter = $null
+    )
 
-	Begin
-	{
-		$function = $MyInvocation.MyCommand.Name
+    begin {
+        $function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
-	} # End of Begin
+        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+    } # End of begin
 
-	Process
-	{
-		If ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) { Return $Results }
+    process {
+        if ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) {
+            return $Results
+        }
 
-		$return = $Results.Clone()
+        $return = $Results.Clone()
 
-		Write-Verbose -Message 'Filter the results.'
+        Write-Verbose -Message 'Filter the results.'
 
-		ForEach ( $filterKey In $Filter.Keys )
-		{
-			If ( ( Get-Variable -Name $filterKey -ErrorAction SilentlyContinue ).Value -ne $null )
-			{
-				Write-Verbose -Message ( 'Filter match = {0}' -f $filterKey )
+        foreach ( $filterKey in $Filter.Keys ) {
+            if ( ( Get-Variable -Name $filterKey -ErrorAction 'SilentlyContinue' ).Value -ne $null ) {
+                Write-Verbose -Message ( 'Filter match = {0}' -f $filterKey )
 
-				$filterKeyValue = ( Get-Variable -Name $filterKey ).Value
+                $filterKeyValue = ( Get-Variable -Name $filterKey ).Value
 
-				# For when a location is one layer deep
-				If ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 1 )
-				{
-					# The $filterKeyValue check assumes that not all filters will be used in each call
-					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return = $return.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
-				}
-				# For when a location is two layers deep
-				ElseIf ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 2 )
-				{
-					# The $filterKeyValue check assumes that not all filters will be used in each call
-					# If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-					$return = $return.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -like $filterKeyValue } )
-				}
-			}
-		}
+                # For when a location is one layer deep
+                if ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 1 ) {
+                    # The $filterKeyValue check assumes that not all filters will be used in each call
+                    # If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
+                    $return = $return.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
+                }
+                # For when a location is two layers deep
+                elseif ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 2 ) {
+                    # The $filterKeyValue check assumes that not all filters will be used in each call
+                    # If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
+                    $return = $return.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -like $filterKeyValue } )
+                }
+            }
+        }
 
-		Return $return
-	} # End of Process
+        return $return
+    } # End of process
 
-	End
-	{
-		Write-Verbose -Message ( 'Ending {0}.' -f $function )
-	} # End of End
-} # End of Function
+    end {
+        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+    } # End of end
+} # End of function

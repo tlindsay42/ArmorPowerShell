@@ -1,23 +1,22 @@
-Class ArmorAccountAddress
-{
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $AccountID
+Class ArmorAccountAddress {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $AccountID
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Name
+    [ValidateNotNullOrEmpty()]
+    [String] $Name
 
-	[String] $AddressLine1
+    [String] $AddressLine1
 
-	[String] $AddressLine2
+    [String] $AddressLine2
 
-	[String] $City
+    [String] $City
 
-	[String] $State
+    [String] $State
 
-	[String] $PostalCode
+    [String] $PostalCode
 
-	[String] $Country
+    [String] $Country
 
-	#Constructors
-	ArmorAccountAddress () {}
+    #Constructors
+    ArmorAccountAddress () {}
 }

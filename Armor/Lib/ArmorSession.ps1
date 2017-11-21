@@ -1,225 +1,208 @@
-Class ArmorUser
-{
-	[ValidateNotNullOrEmpty()]
-	[String] $Type
+Class ArmorUser {
+    [ValidateNotNullOrEmpty()]
+    [String] $Type
 
-	[ValidatePattern( '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' )]
-	[Alias( 'Name' )]
-	[String] $UserName
+    [ValidatePattern( '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' )]
+    [Alias( 'Name' )]
+    [String] $UserName
 
-	[ValidateNotNullOrEmpty()]
-	[String] $FirstName
+    [ValidateNotNullOrEmpty()]
+    [String] $FirstName
 
-	[ValidateNotNullOrEmpty()]
-	[String] $LastName
+    [ValidateNotNullOrEmpty()]
+    [String] $LastName
 
-	[ValidateNotNull()]
-	[PSCustomObject[]] $Links = @()
+    [ValidateNotNull()]
+    [PSCustomObject[]] $Links = @()
 
-	#Constructors
-	ArmorUser () {}
+    #Constructors
+    ArmorUser () {}
 }
 
-Class ArmorAccount
-{
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $ID
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Name
+Class ArmorAccount {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $ID
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Currency
+    [ValidateNotNullOrEmpty()]
+    [String] $Name
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Status
+    [ValidateNotNullOrEmpty()]
+    [String] $Currency
 
-	[ValidateRange( -1, 65535 )]
-	[Int32] $Parent
+    [ValidateNotNullOrEmpty()]
+    [String] $Status
 
-	[PSObject[]] $Products = @()
+    [ValidateRange( -1, 65535 )]
+    [Int32] $Parent
 
-	#Constructors
-	ArmorAccount () {}
+    [PSObject[]] $Products = @()
+
+    #Constructors
+    ArmorAccount () {}
 }
 
-Class ArmorDepartment
-{
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $ID
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Name
+Class ArmorDepartment {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $ID
 
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $Account
+    [ValidateNotNullOrEmpty()]
+    [String] $Name
 
-	#Constructors
-	ArmorDepartment () {}
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $Account
+
+    #Constructors
+    ArmorDepartment () {}
 }
 
-Class ArmorFeature
-{
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $AccountID
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Feature
+Class ArmorFeature {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $AccountID
 
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $ProductID
+    [ValidateNotNullOrEmpty()]
+    [String] $Feature
 
-	[ValidateRange( 0, 65535 )]
-	[UInt16] $FeatureID
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $ProductID
 
-	#Constructors
-	ArmorFeature () {}
+    [ValidateRange( 0, 65535 )]
+    [UInt16] $FeatureID
+
+    #Constructors
+    ArmorFeature () {}
 }
 
-Class ArmorSession
-{
-	[ValidateNotNull()]
-	[ArmorUser[]] $User = @()
 
-	[ValidateNotNull()]
-	[ArmorAccount[]] $Accounts = @()
+Class ArmorSession {
+    [ValidateNotNull()]
+    [ArmorUser[]] $User = @()
 
-	[ValidateNotNull()]
-	[ArmorDepartment[]] $Departments = @()
+    [ValidateNotNull()]
+    [ArmorAccount[]] $Accounts = @()
 
-	[ValidateNotNull()]
-	[PSObject[]] $Permissions = @()
+    [ValidateNotNull()]
+    [ArmorDepartment[]] $Departments = @()
 
-	[ValidateNotNull()]
-	[ArmorFeature[]] $Features = @()
+    [ValidateNotNull()]
+    [PSObject[]] $Permissions = @()
 
-	[ValidateNotNullOrEmpty()]
-	[String] $Server = 'api.armor.com'
+    [ValidateNotNull()]
+    [ArmorFeature[]] $Features = @()
 
-	[ValidateRange( 1, 65535 )]
-	[UInt16] $Port = 443
+    [ValidateNotNullOrEmpty()]
+    [String] $Server = 'api.armor.com'
 
-	[ValidateRange( 1, 1800 )]
-	[UInt16] $SessionLengthInSeconds
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $Port = 443
 
-	[ValidateNotNull()]
-	[DateTime] $SessionStartTime = ( Get-Date )
+    [ValidateRange( 1, 1800 )]
+    [UInt16] $SessionLengthInSeconds
 
-	[ValidateNotNull()]
-	[DateTime] $SessionExpirationTime
+    [ValidateNotNull()]
+    [DateTime] $SessionStartTime = ( Get-Date )
 
-	[ValidateSet( 'v1.0' )]
-	[String] $ApiVersion = 'v1.0'
+    [ValidateNotNull()]
+    [DateTime] $SessionExpirationTime
 
-	[ValidateSet( 'X-Account-Context' )]
-	Hidden [String] $AccountContextHeader = 'X-Account-Context'
+    [ValidateSet( 'v1.0' )]
+    [String] $ApiVersion = 'v1.0'
 
-	[ValidateSet( 'FH-AUTH' )]
-	Hidden [String] $AuthenticationType = 'FH-AUTH'
+    [ValidateSet( 'X-Account-Context' )]
+    Hidden [String] $AccountContextHeader = 'X-Account-Context'
 
-	[ValidateNotNull()]
-	Hidden [Hashtable] $Headers = @{ 
-		'Content-Type' = 'application/json'
-		'Accept'       = 'application/json'
-	}
+    [ValidateSet( 'FH-AUTH' )]
+    Hidden [String] $AuthenticationType = 'FH-AUTH'
 
-	# Constructors
-	ArmorSession () {}
+    [ValidateNotNull()]
+    Hidden [Hashtable] $Headers = @{ 
+        'Content-Type' = 'application/json'
+        'Accept'       = 'application/json'
+    }
 
-	ArmorSession (
-		[String] $Server,
-		[UInt16] $Port,
-		[String] $ApiVersion
-	)
-	{
-		$this.Server = $Server
-		$this.Port = $Port
-		$this.ApiVersion = $ApiVersion
-	}
+    # Constructors
+    ArmorSession () {}
 
-	[Boolean] AuthorizationExists()
-	{
-		$return = $false
+    ArmorSession (
+        [String] $Server,
+        [UInt16] $Port,
+        [String] $ApiVersion
+    ) {
+        $this.Server = $Server
+        $this.Port = $Port
+        $this.ApiVersion = $ApiVersion
+    }
 
-		If ( $this.Headers.Authorization -match ( '^{0} [a-z0-9]+$' -f $this.AuthenticationType ) )
-		{
-			$return = $true
-		}
+    [Boolean] AuthorizationExists() {
+        $return = $false
 
-		Return $return
-	}
+        if ( $this.Headers.Authorization -match ( '^{0} [a-z0-9]+$' -f $this.AuthenticationType ) ) {
+            $return = $true
+        }
 
-	[Void] Authorize (
-		[String] $AccessToken,
-		[UInt16] $SessionLengthInSeconds
-	)
-	{
-		If ( $AccessToken -match '^[a-z0-9]+$' )
-		{
-			$this.Headers.Authorization = '{0} {1}' -f $this.AuthenticationType, $AccessToken
-		}
-		Else
-		{
-			Throw ( 'Invalid access token: "{0}".' -f $AccessToken )
-		}
+        return $return
+    }
 
-		$this.SessionLengthInSeconds = $SessionLengthInSeconds
-		$this.SessionExpirationTime = ( Get-Date ).AddSeconds( $this.SessionLengthInSeconds )
-	}
+    [Void] Authorize (
+        [String] $AccessToken,
+        [UInt16] $SessionLengthInSeconds
+    ) {
+        if ( $AccessToken -match '^[a-z0-9]+$' ) {
+            $this.Headers.Authorization = '{0} {1}' -f $this.AuthenticationType, $AccessToken
+        }
+        else {
+            throw ( 'Invalid access token: "{0}".' -f $AccessToken )
+        }
 
-	[PSObject] GetAccountContext ()
-	{
-		Return $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } )
-	}
+        $this.SessionLengthInSeconds = $SessionLengthInSeconds
+        $this.SessionExpirationTime = ( Get-Date ).AddSeconds( $this.SessionLengthInSeconds )
+    }
 
-	[Int32] GetMinutesRemaining()
-	{
-		Return ( $this.SessionExpirationTime - ( Get-Date ) ).Minutes
-	}
+    [PSObject] GetAccountContext () {
+        return $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } )
+    }
 
-	[Int32] GetSecondsRemaining()
-	{
-		Return ( $this.SessionExpirationTime - ( Get-Date ) ).Second
-	}
+    [Int32] GetMinutesRemaining() {
+        return ( $this.SessionExpirationTime - ( Get-Date ) ).Minutes
+    }
 
-	[String] GetToken()
-	{
-		Return $this.Headers.Authorization.Split( ' ' )[-1]
-	}
+    [Int32] GetSecondsRemaining() {
+        return ( $this.SessionExpirationTime - ( Get-Date ) ).Second
+    }
 
-	[Boolean] IsActive()
-	{
-		$return = $false
+    [String] GetToken() {
+        return $this.Headers.Authorization.Split( ' ' )[-1]
+    }
 
-		If ( $this.SessionExpirationTime -gt ( Get-Date ) )
-		{
-			$return = $true
-		}
+    [Boolean] IsActive() {
+        $return = $false
 
-		Return $return
-	}
+        if ( $this.SessionExpirationTime -gt ( Get-Date ) ) {
+            $return = $true
+        }
 
-	[PSObject] SetAccountContext (
-		[UInt16] $ID
-	)
-	{
-		$return = $null
+        return $return
+    }
 
-		If ( $this.Accounts.Count -eq 0 )
-		{
-			Throw 'Accounts have not been initialized for this Armor API session.'
-		}
-		ElseIf ( $ID -in $this.Accounts.ID )
-		{
-			$this.Headers.( $this.AccountContextHeader ) = $ID
+    [PSObject] SetAccountContext (
+        [UInt16] $ID
+    ) {
+        $return = $null
 
-			$return = $this.Accounts.Where( { $_.ID -eq $ID } )
-		}
-		Else
-		{
-			Throw ( 'Invalid account context: "{0}".  Available Armor Account IDs are: {1}.' -f $ID, ( $this.Accounts.ID -join ', ' ) )
-		}
+        if ( $this.Accounts.Count -eq 0 ) {
+            throw 'Accounts have not been initialized for this Armor API session.'
+        }
+        elseif ( $ID -in $this.Accounts.ID ) {
+            $this.Headers.( $this.AccountContextHeader ) = $ID
 
-		Return $return
-	}
+            $return = $this.Accounts.Where( { $_.ID -eq $ID } )
+        }
+        else {
+            throw ( 'Invalid account context: "{0}".  Available Armor Account IDs are: {1}.' -f $ID, ( $this.Accounts.ID -join ', ' ) )
+        }
+
+        return $return
+    }
 }

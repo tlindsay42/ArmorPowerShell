@@ -1,56 +1,54 @@
 $text = @{
-	'AppVeyor'              = 'AppVeyor'
-	'AppVeyorImageUrl'      = 'https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true'
-	'AppVeyorProjectUrl'    = 'https://ci.appveyor.com/project/{0}/{1}/branch/master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'ArmorAnywhere'         = 'Armor Anywhere'
-	'ArmorAnywhereUrl'      = 'https://www.armor.com/armor-anywhere-security/'
-	'ArmorApiGuideUrl'      = 'https://docs.armor.com/display/KBSS/Armor+API+Guide'
-	'ArmorComplete'         = 'Armor Complete'
-	'ArmorCompleteUrl'      = 'https://www.armor.com/armor-complete-secure-hosting/'
-	'BoldForm'              = '**{0}**'
-	'BuildStatus'           = 'Build Status'
-	'CoverageStatus'        = 'Coverage Status'
-	'Coveralls'             = 'Coveralls'
-	'CoverallsImageUrl'     = 'https://coveralls.io/repos/github/{0}/{1}/badge.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'CoverallsProjectUrl'   = 'https://coveralls.io/github/{0}/{1}?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'DocumentationStatus'   = 'Documentation Status'
-	'macOS'                 = 'macOS'
-	'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
-	'MdLinkForm'            = "[{0}]({1} '{2}')"
-	'Pester'                = 'Pester'
-	'PesterUrl'             = 'https://github.com/pester/Pester'
-	'PSGallery'             = 'PowerShell Gallery'
-	'PSGalleryImageUrl'     = 'https://img.shields.io/badge/install-PS%20Gallery-blue.svg'
-	'PSGalleryProjectUrl'   = 'https://www.powershellgallery.com/packages/{0}' -f $env:MODULE_NAME
-	'ReadTheDocsImageUrl'   = 'https://readthedocs.org/projects/{0}/badge/?version=latest' -f $env:PROJECT_NAME.ToLower()
-	'ReadTheDocsProjectUrl' = 'http://{0}.readthedocs.io/en/latest/?badge=latest' -f $env:PROJECT_NAME.ToLower()
-	'RepoUrl'               = 'https://github.com/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'RestfulApi'            = 'RESTful APIs'
-	'RstLinkForm'           = '`{0}`_'
-	'Title'                 = 'Armor PowerShell Module'
-	'TravisCi'              = 'Travis CI'
-	'TravisCiImageUrl'      = 'https://travis-ci.org/{0}/{1}.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'TravisCiProjectUrl'    = 'https://travis-ci.org/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
-	'Ubuntu'                = 'Ubuntu Linux'
-	'Windows'               = 'Windows'
+    'AppVeyor'              = 'AppVeyor'
+    'AppVeyorImageUrl'      = 'https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true'
+    'AppVeyorProjectUrl'    = 'https://ci.appveyor.com/project/{0}/{1}/branch/master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'ArmorAnywhere'         = 'Armor Anywhere'
+    'ArmorAnywhereUrl'      = 'https://www.armor.com/armor-anywhere-security/'
+    'ArmorApiGuideUrl'      = 'https://docs.armor.com/display/KBSS/Armor+API+Guide'
+    'ArmorComplete'         = 'Armor Complete'
+    'ArmorCompleteUrl'      = 'https://www.armor.com/armor-complete-secure-hosting/'
+    'BoldForm'              = '**{0}**'
+    'BuildStatus'           = 'Build Status'
+    'CoverageStatus'        = 'Coverage Status'
+    'Coveralls'             = 'Coveralls'
+    'CoverallsImageUrl'     = 'https://coveralls.io/repos/github/{0}/{1}/badge.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'CoverallsProjectUrl'   = 'https://coveralls.io/github/{0}/{1}?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'DocumentationStatus'   = 'Documentation Status'
+    'macOS'                 = 'macOS'
+    'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
+    'MdLinkForm'            = "[{0}]({1} '{2}')"
+    'Pester'                = 'Pester'
+    'PesterUrl'             = 'https://github.com/pester/Pester'
+    'PSGallery'             = 'PowerShell Gallery'
+    'PSGalleryImageUrl'     = 'https://img.shields.io/badge/install-PS%20Gallery-blue.svg'
+    'PSGalleryProjectUrl'   = 'https://www.powershellgallery.com/packages/{0}' -f $env:MODULE_NAME
+    'ReadTheDocsImageUrl'   = 'https://readthedocs.org/projects/{0}/badge/?version=latest' -f $env:PROJECT_NAME.ToLower()
+    'ReadTheDocsProjectUrl' = 'http://{0}.readthedocs.io/en/latest/?badge=latest' -f $env:PROJECT_NAME.ToLower()
+    'RepoUrl'               = 'https://github.com/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'RestfulApi'            = 'RESTful APIs'
+    'RstLinkForm'           = '`{0}`_'
+    'Title'                 = 'Armor PowerShell Module'
+    'TravisCi'              = 'Travis CI'
+    'TravisCiImageUrl'      = 'https://travis-ci.org/{0}/{1}.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'TravisCiProjectUrl'    = 'https://travis-ci.org/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'Ubuntu'                = 'Ubuntu Linux'
+    'Windows'               = 'Windows'
 }
 
-If ( ( Test-Path -Path $env:MODULE_PATH ) -eq $false )
-{
-	Throw ( 'Module directory: "{0}" not found.' -f $env:MODULE_PATH )
+if ( ( Test-Path -Path $env:MODULE_PATH ) -eq $false ) {
+    throw ( 'Module directory: "{0}" not found.' -f $env:MODULE_PATH )
 }
 
 Write-Host -Object ( "`nSet the working directory to: '{0}'." -f $env:MODULE_PATH ) -ForegroundColor 'Yellow'
-Push-Location -Path $env:MODULE_PATH -ErrorAction Stop
+Push-Location -Path $env:MODULE_PATH -ErrorAction 'Stop'
 
 $manifestPath = '{0}\{1}.psd1' -f $env:MODULE_PATH, $env:MODULE_NAME
 
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction Stop
+$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
-If ( $env:TRAVIS -eq $true )
-{
-	$env:MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, $manifest.Version.Build, ( $manifest.Version.Revision + 1 )
+if ( $env:TRAVIS -eq $true ) {
+    $env:MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, $manifest.Version.Build, ( $manifest.Version.Revision + 1 )
 }
 
 Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
@@ -78,33 +76,33 @@ $text.Coveralls, #9
 $text.PSGallery #10
 
 Update-ModuleManifest `
-	-Path $manifestPath `
-	-RootModule ( '{0}.psm1' -f $env:MODULE_NAME ) `
-	-ModuleVersion $env:MODULE_VERSION `
-	-Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
-	-Author 'Troy Lindsay' `
-	-CompanyName 'Armor' `
-	-Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
-	-Description $description `
-	-PowerShellVersion '5.0' `
-	-ProcessorArchitecture 'None' `
-	-FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:MODULE_PATH ) ).BaseName `
-	-FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
-	-Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
-		'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
-	-LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
-	-IconUri 'http://i.imgur.com/fbXjkCn.png' `
-	-ErrorAction Stop
+    -Path $manifestPath `
+    -RootModule ( '{0}.psm1' -f $env:MODULE_NAME ) `
+    -ModuleVersion $env:MODULE_VERSION `
+    -Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
+    -Author 'Troy Lindsay' `
+    -CompanyName 'Armor' `
+    -Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
+    -Description $description `
+    -PowerShellVersion '5.0' `
+    -ProcessorArchitecture 'None' `
+    -FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:MODULE_PATH ) ).BaseName `
+    -FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
+    -Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
+'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
+    -LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
+    -IconUri 'http://i.imgur.com/fbXjkCn.png' `
+    -ErrorAction 'Stop'
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
 ( Get-Content -Path $manifestPath ) `
-	-replace ( 'PSGet_{0}|NewManifest' -f $env:MODULE_NAME ), $env:MODULE_NAME |
-	Set-Content -Path $manifestPath -ErrorAction Stop
+    -replace ( 'PSGet_{0}|NewManifest' -f $env:MODULE_NAME ), $env:MODULE_NAME |
+    Set-Content -Path $manifestPath -ErrorAction 'Stop'
 
 Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction Stop
+$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
-Pop-Location -ErrorAction Stop
+Pop-Location -ErrorAction 'Stop'
 Write-Host -Object ( "`nRestored the working directory to: '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
 
 Write-Host -Object ( "Import module: '{0}'." -f $env:MODULE_NAME ) -ForegroundColor 'Yellow'
@@ -115,17 +113,17 @@ Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
 
 # Build README.md
 $markDownDescription = $description `
-	-replace $text.ArmorComplete, ( $text.MdBoldLinkForm -f $text.ArmorComplete, $text.ArmorCompleteUrl, ( '{0} Product Page' -f $text.ArmorComplete ) ) `
-	-replace $text.ArmorAnywhere, ( $text.MdBoldLinkForm -f $text.ArmorAnywhere, $text.ArmorAnywhereUrl, ( '{0} Product Page' -f $text.ArmorAnywhere ) ) `
-	-replace $text.RestfulApi, ( $text.MdLinkForm -f $text.RestfulApi, $text.ArmorApiGuideUrl, 'Armor API Guide' ) `
-	-replace $text.Windows, ( $text.BoldForm -f $text.Windows ) `
-	-replace $text.AppVeyor, ( $text.MdLinkForm -f $text.AppVeyor, $text.AppVeyorProjectUrl, ( '{0}: {1}: latest build console' -f $text.AppVeyor, $env:PROJECT_NAME ) ) `
-	-replace $text.macOS, ( $text.BoldForm -f $text.macOS ) `
-	-replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
-	-replace $text.TravisCi, ( $text.MdLinkForm -f $text.TravisCi, $text.TravisCiProjectUrl, ( '{0}: {1}: latest build console' -f $text.TravisCi, $env:PROJECT_NAME ) ) `
-	-replace $text.Pester, ( $text.MdLinkForm -f $text.Pester, $text.PesterUrl, ( '{0} GitHub repo' -f $text.Pester ) ) `
-	-replace $text.Coveralls, ( $text.MdLinkForm -f $text.Coveralls, $text.CoverallsProjectUrl, ( '{0}: {1}: latest report' -f $text.Coveralls, $env:PROJECT_NAME ) ) `
-	-replace $text.PSGallery, ( "[{0}]({1})" -f $text.PSGallery, $text.PSGalleryProjectUrl )
+    -replace $text.ArmorComplete, ( $text.MdBoldLinkForm -f $text.ArmorComplete, $text.ArmorCompleteUrl, ( '{0} Product Page' -f $text.ArmorComplete ) ) `
+    -replace $text.ArmorAnywhere, ( $text.MdBoldLinkForm -f $text.ArmorAnywhere, $text.ArmorAnywhereUrl, ( '{0} Product Page' -f $text.ArmorAnywhere ) ) `
+    -replace $text.RestfulApi, ( $text.MdLinkForm -f $text.RestfulApi, $text.ArmorApiGuideUrl, 'Armor API Guide' ) `
+    -replace $text.Windows, ( $text.BoldForm -f $text.Windows ) `
+    -replace $text.AppVeyor, ( $text.MdLinkForm -f $text.AppVeyor, $text.AppVeyorProjectUrl, ( '{0}: {1}: latest build console' -f $text.AppVeyor, $env:PROJECT_NAME ) ) `
+    -replace $text.macOS, ( $text.BoldForm -f $text.macOS ) `
+    -replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
+    -replace $text.TravisCi, ( $text.MdLinkForm -f $text.TravisCi, $text.TravisCiProjectUrl, ( '{0}: {1}: latest build console' -f $text.TravisCi, $env:PROJECT_NAME ) ) `
+    -replace $text.Pester, ( $text.MdLinkForm -f $text.Pester, $text.PesterUrl, ( '{0} GitHub repo' -f $text.Pester ) ) `
+    -replace $text.Coveralls, ( $text.MdLinkForm -f $text.Coveralls, $text.CoverallsProjectUrl, ( '{0}: {1}: latest report' -f $text.Coveralls, $env:PROJECT_NAME ) ) `
+    -replace $text.PSGallery, ( "[{0}]({1})" -f $text.PSGallery, $text.PSGalleryProjectUrl )
 
 $content = @()
 $content += "# {0}
@@ -151,21 +149,21 @@ $text.PSGallery, #12
 $text.PSGalleryImageUrl, #13
 $text.PSGalleryProjectUrl, #14
 $markDownDescription <#15#> |
-	Out-File -FilePath ( '{0}\README.md' -f $env:BUILD_PATH ) -Encoding utf8
+    Out-File -FilePath ( '{0}\README.md' -f $env:BUILD_PATH ) -Encoding utf8
 
 # Build readthedocs.io index.rst
 $reStructuredTextDescription = $description `
- -replace $text.ArmorComplete, ( $text.RstLinkForm -f $text.ArmorComplete ) `
- -replace $text.ArmorAnywhere, ( $text.RstLinkForm -f $text.ArmorAnywhere ) `
- -replace $text.RestfulApi, ( $text.RstLinkForm -f $text.RestfulApi ) `
- -replace $text.Windows, ( $text.BoldForm -f $text.Windows ) `
- -replace $text.AppVeyor, ( $text.RstLinkForm -f $text.AppVeyor ) `
- -replace $text.macOS, ( $text.BoldForm -f $text.macOS ) `
- -replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
- -replace $text.TravisCi, ( $text.RstLinkForm -f $text.TravisCi ) `
- -replace $text.Pester, ( $text.RstLinkForm -f $text.Pester ) `
- -replace $text.Coveralls, ( $text.RstLinkForm -f $text.Coveralls ) `
- -replace $text.PSGallery, ( $text.RstLinkForm -f $text.PSGallery )
+    -replace $text.ArmorComplete, ( $text.RstLinkForm -f $text.ArmorComplete ) `
+    -replace $text.ArmorAnywhere, ( $text.RstLinkForm -f $text.ArmorAnywhere ) `
+    -replace $text.RestfulApi, ( $text.RstLinkForm -f $text.RestfulApi ) `
+    -replace $text.Windows, ( $text.BoldForm -f $text.Windows ) `
+    -replace $text.AppVeyor, ( $text.RstLinkForm -f $text.AppVeyor ) `
+    -replace $text.macOS, ( $text.BoldForm -f $text.macOS ) `
+    -replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
+    -replace $text.TravisCi, ( $text.RstLinkForm -f $text.TravisCi ) `
+    -replace $text.Pester, ( $text.RstLinkForm -f $text.Pester ) `
+    -replace $text.Coveralls, ( $text.RstLinkForm -f $text.Coveralls ) `
+    -replace $text.PSGallery, ( $text.RstLinkForm -f $text.PSGallery )
 
 $content = @()
 $content += '{0}
@@ -249,9 +247,8 @@ $text.Coveralls, #26
 $text.CoverallsProjectUrl, #27
 $repoUrl #28
 
-ForEach ( $fileName In ( Get-ChildItem -Path .\docs ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).Name )
-{
-	$content += '   {0}' -f $fileName.ToLower()
+foreach ( $fileName in ( Get-ChildItem -Path '.\docs' ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).Name ) {
+    $content += '   {0}' -f $fileName.ToLower()
 }
 
 $content += '
@@ -263,41 +260,38 @@ $content += '
    '
 
 # Build the command documentation menu
-ForEach ( $verb In ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique )
-{
-	$content += '   cmd_{0}' -f $verb.ToLower()
+foreach ( $verb in ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique ) {
+    $content += '   cmd_{0}' -f $verb.ToLower()
 }
 
 $content += ''
 
 # Write the index file
 $content |
-	Out-File -FilePath ( '{0}\docs\index.rst' -f $env:BUILD_PATH ) -Encoding utf8
+    Out-File -FilePath ( '{0}\docs\index.rst' -f $env:BUILD_PATH ) -Encoding utf8
 
 Write-Host -Object '   index'
 
 # Build the command documentation files for each verb
-ForEach ( $verb In ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique )
-{
-	$content = @()
-	$content += '{0} Commands' -f $verb
-	$content += '========================='
-	$content += 'This page contains details on **{0}** commands.' -f $verb
-	$content += ''
+foreach ( $verb in ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique ) {
+    $content = @()
+    $content += '{0} Commands' -f $verb
+    $content += '========================='
+    $content += 'This page contains details on **{0}** commands.' -f $verb
+    $content += ''
 
-	# Build the command documentation from the comment-based help
-	ForEach ( $command In ( Get-Command -Module Armor ).Where( { $_.Verb -eq $verb } ) )
- {
-		$content += $command.Name
-		$content += '-------------------------'
-		$content += Get-Help -Name $command.name -Detailed
-		$content += ''
-	}
+    # Build the command documentation from the comment-based help
+    foreach ( $command in ( Get-Command -Module Armor ).Where( { $_.Verb -eq $verb } ) ) {
+        $content += $command.Name
+        $content += '-------------------------'
+        $content += Get-Help -Name $command.name -Detailed
+        $content += ''
+    }
 
-	$content |
-		Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $env:BUILD_PATH, $verb.ToLower() ) -Encoding utf8
+    $content |
+        Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $env:BUILD_PATH, $verb.ToLower() ) -Encoding utf8
 
-	Write-Host -Object ( '   cmd_{0}' -f $verb.ToLower() )
+    Write-Host -Object ( '   cmd_{0}' -f $verb.ToLower() )
 }
 
 Write-Host -Object ''

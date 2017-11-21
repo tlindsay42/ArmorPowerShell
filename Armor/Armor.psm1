@@ -4,9 +4,8 @@ $private = @( Get-ChildItem -Path ( '{0}\Private\*.ps1' -f $PSScriptRoot ) -Erro
 $public = @( Get-ChildItem -Path ( '{0}\Public\*.ps1' -f $PSScriptRoot ) -ErrorAction 'SilentlyContinue' )
 
 # Source the definition files
-ForEach ( $import In @( $lib + $private + $public ) )
-{
-	. $import.FullName
+foreach ( $import in @( $lib + $private + $public ) ) {
+    . $import.FullName
 }
 
 # Export the Public modules

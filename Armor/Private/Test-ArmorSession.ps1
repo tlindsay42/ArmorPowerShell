@@ -1,92 +1,83 @@
-Function Test-ArmorSession
-{
-	<#
-		.SYNOPSIS
-		Armor API session test.
+function Test-ArmorSession {
+    <#
+        .SYNOPSIS
+        Armor API session test.
 
-		.DESCRIPTION
-		Test to see if a session has been established with the Armor API.
-		If no token is found, this will throw an error and halt the script.
-		Otherwise, the token is loaded into the script's $Header variable.
+        .DESCRIPTION
+        Test to see if a session has been established with the Armor API.
+        If no token is found, this will throw an error and halt the script.
+        Otherwise, the token is loaded into the script's $Header variable.
 
-		.NOTES
-		Troy Lindsay
-		Twitter: @troylindsay42
-		GitHub: tlindsay42
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
-		.INPUTS
-		None
-			You cannot pipe objects to Test-ArmorSession.
+        .INPUTS
+        None
+            You cannot pipe objects to Test-ArmorSession.
 
-		.OUTPUTS
-		None
-			Test-ArmorSession has no output.
+        .OUTPUTS
+        None
+            Test-ArmorSession has no output.
 
-		.LINK
-		https://github.com/tlindsay42/ArmorPowerShell
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
 
-		.LINK
-		https://docs.armor.com/display/KBSS/Armor+API+Guide
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
 
-		.LINK
-		https://developer.armor.com/
+        .LINK
+        https://developer.armor.com/
 
-		.EXAMPLE
-		Test-ArmorSession
+        .EXAMPLE
+        Test-ArmorSession
 
-		Description
-		-----------
+        Description
+        -----------
 
-		Validates that there is one Armor API connection token stored in '$Global:ArmorSession.Token'.
-	#>
+        Validates that there is one Armor API connection token stored in '$Global:ArmorSession.Token'.
+    #>
 
-	[CmdletBinding()]
-	Param()
+    [CmdletBinding()]
+    param ()
 
-	Begin
-	{
-		$function = $MyInvocation.MyCommand.Name
+    begin {
+        $function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
-	} # End of Begin
+        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+    } # End of begin
 
-	Process
-	{
-		Write-Verbose -Message 'Verify that the session authorization exists.'
-		If ( -not $Global:ArmorSession )
-		{
-			Throw 'Session not found.  Please log in again.'
-		}
-		ElseIf ( -not $Global:ArmorSession.AuthorizationExists() )
-		{
-			Throw 'Session authorization not found.  Please log in again.'
-		}
+    process {
+        Write-Verbose -Message 'Verify that the session authorization exists.'
+        if ( -not $Global:ArmorSession ) {
+            throw 'Session not found.  Please log in again.'
+        }
+        elseif ( -not $Global:ArmorSession.AuthorizationExists() ) {
+            throw 'Session authorization not found.  Please log in again.'
+        }
 
-		Write-Verbose -Message 'Verify that the session is active.'
-		If ( $Global:ArmorSession.IsActive() )
-		{
-			$minutesRemaining = $Global:ArmorSession.GetMinutesRemaining()
+        Write-Verbose -Message 'Verify that the session is active.'
+        if ( $Global:ArmorSession.IsActive() ) {
+            $minutesRemaining = $Global:ArmorSession.GetMinutesRemaining()
 
-			Write-Verbose -Message ( '{0} minutes remaining until session expiration.' -f $minutesRemaining )
+            Write-Verbose -Message ( '{0} minutes remaining until session expiration.' -f $minutesRemaining )
 
-			If ( $minutesRemaining -lt 25 )
-			{
-				Write-Verbose -Message 'Renewing session token.'
-				Update-ArmorApiToken -Token $Global:ArmorSession.GetToken()
-			}
-		}
-		Else
-		{
-			$expirationTime = $Global:ArmorSession.SessionExpirationTime
+            if ( $minutesRemaining -lt 25 ) {
+                Write-Verbose -Message 'Renewing session token.'
+                Update-ArmorApiToken -Token $Global:ArmorSession.GetToken()
+            }
+        }
+        else {
+            $expirationTime = $Global:ArmorSession.SessionExpirationTime
 
-			Disconnect-Armor -Confirm:$false
+            Disconnect-Armor -Confirm:$false
 
-			Throw ( 'Session expired at {0}.  Please log in again.' -f $expirationTime )
-		}
-	} # End of Process
+            throw ( 'Session expired at {0}.  Please log in again.' -f $expirationTime )
+        }
+    } # End of process
 
-	End
-	{
-		Write-Verbose -Message ( 'Ending {0}.' -f $function )
-	} # End of End
-} # End of Function
+    end {
+        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+    } # End of end
+} # End of function

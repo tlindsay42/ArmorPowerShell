@@ -1,9 +1,8 @@
 # Publish the new version back to Master on GitHub
 # Set up a path to the git.exe cmd, import posh-git to give us control over git, and then push changes to GitHub
 # Note that "update version" is included in the appveyor.yml file's "skip a build" regex to avoid a loop
-If ( ( '{0}\Git\cmd' -f $env:ProgramFiles ) -notin $env:Path.Split( ';' ).Trim() )
-{
-	$env:Path += ';{0}\Git\cmd' -f $env:ProgramFiles
+if ( ( '{0}\Git\cmd' -f $env:ProgramFiles ) -notin $env:Path.Split( ';' ).Trim() ) {
+    $env:Path += ';{0}\Git\cmd' -f $env:ProgramFiles
 }
 
 Import-Module -Name 'Posh-Git' -ErrorAction 'Stop'

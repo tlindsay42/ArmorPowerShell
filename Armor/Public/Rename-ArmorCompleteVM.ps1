@@ -1,84 +1,78 @@
-Function Rename-ArmorCompleteVM
-{
-	<#
-		.SYNOPSIS
-		The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
+function Rename-ArmorCompleteVM {
+    <#
+        .SYNOPSIS
+        The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
 
-		.DESCRIPTION
-		{ required: more detailed description of the function's purpose }
+        .DESCRIPTION
+        { required: more detailed description of the function's purpose }
 
-		.NOTES
-		Troy Lindsay
-		Twitter: @troylindsay42
-		GitHub: tlindsay42
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
-		.PARAMETER NewName
-		{ required: description of the specified input parameter's purpose }
+        .PARAMETER NewName
+        { required: description of the specified input parameter's purpose }
 
-		.PARAMETER ID
-		{ required: description of the specified input parameter's purpose }
+        .PARAMETER ID
+        { required: description of the specified input parameter's purpose }
 
-		.INPUTS
-		{ required: .NET Framework object types that can be piped in and a description of the input objects }
+        .INPUTS
+        { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-		.OUTPUTS
-		{ required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
+        .OUTPUTS
+        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
 
-		.LINK
-		https://github.com/tlindsay42/ArmorPowerShell
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
 
-		.LINK
-		https://docs.armor.com/display/KBSS/Armor+API+Guide
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
 
-		.LINK
-		https://developer.armor.com/
+        .LINK
+        https://developer.armor.com/
 
-		.EXAMPLE
-		{required: show one or more examples using the function}
-	#>
+        .EXAMPLE
+        {required: show one or more examples using the function}
+    #>
 
-	[CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
-	Param
-	(
-		[Parameter( Position = 0 )]
-		[ValidateRange( 1, 65535 )]
-		[UInt16] $ID = 0,
-		[Parameter( Position = 1 )]
-		[ValidateNotNullOrEmpty()]
-		[String] $Name = '',
-		[Parameter( Position = 2 )]
-		[ValidateSet( 'v1.0' )]
-		[String] $ApiVersion = $Global:ArmorSession.ApiVersion
-	)
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
+    param (
+        [Parameter( Position = 0 )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16] $ID = 0,
+        [Parameter( Position = 1 )]
+        [ValidateNotNullOrEmpty()]
+        [String] $Name = '',
+        [Parameter( Position = 2 )]
+        [ValidateSet( 'v1.0' )]
+        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+    )
 
-	Begin
-	{
-		$function = $MyInvocation.MyCommand.Name
+    begin {
+        $function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 
-		Test-ArmorSession
-	} # End of Begin
+        Test-ArmorSession
+    } # End of begin
 
-	Process
-	{
-		Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
-		$resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+    process {
+        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
+        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-		If ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) )
-		{
-			$uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+        if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
+            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
-			$body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+            $body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
 
-			$results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
-		}
+            $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+        }
 
-		Return $results
-	} # End of Process
+        return $results
+    } # End of process
 
-	End
-	{
-		Write-Verbose -Message ( 'Ending {0}.' -f $function )
-	} # End of End
-} # End of Function
+    end {
+        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+    } # End of end
+} # End of function

@@ -1,59 +1,54 @@
-Function Disconnect-Armor
-{
-	<#
-		.SYNOPSIS
-		Disconnects from Armor and destroys the session information.
+function Disconnect-Armor {
+    <#
+        .SYNOPSIS
+        Disconnects from Armor and destroys the session information.
 
-		.DESCRIPTION
-		{ required: more detailed description of the function's purpose }
+        .DESCRIPTION
+        { required: more detailed description of the function's purpose }
 
-		.NOTES
-		Troy Lindsay
-		Twitter: @troylindsay42
-		GitHub: tlindsay42
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
-		.INPUTS
-		None
-			You cannot pipe objects to Disonnect-Armor.
+        .INPUTS
+        None
+            You cannot pipe objects to Disonnect-Armor.
 
-		.OUTPUTS
-		None
+        .OUTPUTS
+        None
 
-		.LINK
-		https://github.com/tlindsay42/ArmorPowerShell
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
 
-		.LINK
-		https://docs.armor.com/display/KBSS/Armor+API+Guide
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
 
-		.LINK
-		https://developer.armor.com/
+        .LINK
+        https://developer.armor.com/
 
-		.EXAMPLE
-		Disconnect-Armor
-	#>
+        .EXAMPLE
+        Disconnect-Armor
+    #>
 
-	[CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
-	Param ()
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
+    param ()
 
-	Begin
-	{
-		$function = $MyInvocation.MyCommand.Name
+    begin {
+        $function = $MyInvocation.MyCommand.Name
 
-		Write-Verbose -Message ( 'Beginning {0}.' -f $function )
-	} # End of Begin
+        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+    } # End of begin
 
-	Process
-	{
-		If ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) )
-		{
-			Write-Verbose -Message 'Disconnecting from Armor.'
+    process {
+        if ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) ) {
+            Write-Verbose -Message 'Disconnecting from Armor.'
 
-			Remove-Variable -Name ArmorSession -Scope Global
-		}
-	} # End of Process
+            Remove-Variable -Name ArmorSession -Scope Global
+        }
+    } # End of process
 
-	End
-	{
-		Write-Verbose -Message ( 'Ending {0}.' -f $function )
-	} # End of End
-} # End of Function
+    end {
+        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+    } # End of end
+} # End of function
