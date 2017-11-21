@@ -145,6 +145,23 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
+            'Get-ArmorCompleteWorkload'     = @{
+                'v1.0' = @{
+                    'Description' = 'Retrieve any workloads that are associated to your account'
+                    'URI'         = @(
+                        '/apps',
+                        '/apps/{id}'
+                    )
+                    'Method'      = 'Get'
+                    'Body'        = @{}
+                    'Query'       = @{}
+                    'Location'    = ''
+                    'Filter'      = @{
+                        'Name' = 'Name'
+                    }
+                    'SuccessCode' = '200'
+                }
+            }
             'Get-ArmorIdentity'             = @{
                 'v1.0' = @{
                     'Description' = 'Return information about the current authenticated user, including account membership and permissions'
