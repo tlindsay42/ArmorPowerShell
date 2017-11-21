@@ -40,4 +40,4 @@ Thumbs.db
 ######################
 .vscode/
 .candidate/
-.tests/results/
+tests/results/
