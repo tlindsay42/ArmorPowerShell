@@ -7,10 +7,10 @@ if ( ( '{0}\Git\cmd' -f $env:ProgramFiles ) -notin $env:Path.Split( ';' ).Trim()
 
 Import-Module -Name 'Posh-Git' -ErrorAction 'Stop'
 
-git checkout master
+git checkout --quiet master
 git add --all
 git status
 git commit --signoff --message ( 'AppVeyor: Update version to {0} [ci skip]' -f $env:APPVEYOR_BUILD_VERSION )
-git push origin master
+git push --porcelain origin master
 
 Write-Host -Object ( 'Armor PowerShell Module version {0} published to GitHub.' -f $env:APPVEYOR_BUILD_VERSION ) -ForegroundColor 'Cyan'
