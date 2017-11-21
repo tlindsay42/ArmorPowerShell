@@ -162,6 +162,23 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
+            'Get-ArmorCompleteWorkloadTier' = @{
+                'v1.0' = @{
+                    'Description' = 'Retrieves all the tiers associated with a specified workload'
+                    'URI'         = @(
+                        '/apps/{id}/tiers',
+                        '/apps/{id}/tiers/{id}'
+                    )
+                    'Method'      = 'Get'
+                    'Body'        = @{}
+                    'Query'       = @{}
+                    'Location'    = ''
+                    'Filter'      = @{
+                        'Name' = 'Name'
+                    }
+                    'SuccessCode' = '200'
+                }
+            }
             'Get-ArmorIdentity'             = @{
                 'v1.0' = @{
                     'Description' = 'Return information about the current authenticated user, including account membership and permissions'
