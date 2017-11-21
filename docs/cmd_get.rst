@@ -187,6 +187,54 @@ REMARKS
     For online help, type: "get-help Get-ArmorCompleteDatacenter -online"
 
 
+Get-ArmorCompleteWorkloadTier
+-------------------------
+NAME
+    Get-ArmorCompleteWorkloadTier
+    
+SYNOPSIS
+    Retrieves all the tiers associated with a specified workload.
+    
+    
+SYNTAX
+    Get-ArmorCompleteWorkloadTier [[-WorkloadID] <UInt16>] [[-Name] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    { required: more detailed description of the function's purpose }
+    
+
+PARAMETERS
+    -WorkloadID <UInt16>
+        
+    -Name <String>
+        
+    -ID <UInt16>
+        
+    -ApiVersion <String>
+        
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS C:\>{required: show one or more examples using the function}
+    
+    
+    
+    
+    
+    
+REMARKS
+    To see the examples, type: "get-help Get-ArmorCompleteWorkloadTier -examples".
+    For more information, type: "get-help Get-ArmorCompleteWorkloadTier -detailed".
+    For technical information, type: "get-help Get-ArmorCompleteWorkloadTier -full".
+    For online help, type: "get-help Get-ArmorCompleteWorkloadTier -online"
+
+
 Get-ArmorIdentity
 -------------------------
 NAME
