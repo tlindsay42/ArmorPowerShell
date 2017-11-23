@@ -10,11 +10,11 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 
 Write-Host -Object "`nInstalling modules:" -ForegroundColor 'Yellow'
 
-foreach ( $module in 'Pester', 'Posh-Git', 'Coveralls' ) {
+foreach ( $moduleName in 'Pester', 'Posh-Git', 'Coveralls' ) {
     Write-Host -Object ( '   {0}' -f $module )
-    Install-Module -Name $module -Force |
+    Install-Module -Name $moduleName -Scope 'CurrentUser' -Force -Confirm:$false |
         Out-Null
 }
-Remove-Variable -Name module
+Remove-Variable -Name moduleName
 
 Write-Host -Object ''
