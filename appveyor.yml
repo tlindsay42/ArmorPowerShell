@@ -18,12 +18,12 @@ version: 1.0.0.{build}
 
 # branches to build
 #branches:
-    # whitelist
-    #only:
-        #- master
+  # whitelist
+  #only:
+    #- master
 
-    # blacklist
-    #except:
+  # blacklist
+  #except:
 
 # Do not build on tags
 #skip_tags:
@@ -33,20 +33,20 @@ version: 1.0.0.{build}
 
 # Skipping commits with particular message, from specific users, or for specific files
 #skip_commits:
-    #message: /Merge branch .+ of .+ArmorPowerShell/
-    #author:
-    #files:
-        #- README.md
+  #message: /Merge branch .+ of .+ArmorPowerShell/
+  #author:
+  #files:
+    #- README.md
 
 # Including commits with particular message, from specific users, or for specific files
 #only_commits:
-    #message:
-    #author:
-    #files:
+  #message:
+  #author:
+  #files:
 
 # There's no need to alter the build number for a Pull Request (PR) since they don't modify anything
 pull_requests:
-    do_not_increment_build_number: true
+  do_not_increment_build_number: true
 
 # Do not build feature branch with open Pull Requests
 #skip_branch_with_pr:
@@ -61,12 +61,12 @@ pull_requests:
 
 # Build worker image (VM template)
 image:
-    - Visual Studio 2015
-    #- Visual Studio 2017
+  - Visual Studio 2015
+  #- Visual Studio 2017
 
 # scripts that are called at very beginning, before repo cloning
 #init:
-    #- git config --global core.autocrlf input
+  #- git config --global core.autocrlf input
 
 # clone directory
 #clone_folder:
@@ -84,72 +84,72 @@ image:
 
 # environment variables
 environment:
-    BUILD_PATH: '{set build path in install script}'
-    MODULE_NAME: 'Armor'
-    MODULE_PATH: '{set module path in install script}'
-    MODULE_VERSION: '{set module version in install script}'
-    OWNER_NAME: '{set owner name in install script}'
-    PROJECT_NAME: '{set project name in install script}'
-    EMAIL_ADDRESS:
-        secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
-    GITHUB_API_KEY:
-        secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
-    NUGET_API_KEY:
-        secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
-    COVERALLS_API_KEY:
-        secure: WWnf4Q5NJHBpILI4QpagjvIO4lKmqu3wa3u/vhDXRivO2Xsr4xt3XEsswAG0vryE
+  BUILD_PATH: '{set build path in install script}'
+  MODULE_NAME: 'Armor'
+  MODULE_PATH: '{set module path in install script}'
+  MODULE_VERSION: '{set module version in install script}'
+  OWNER_NAME: '{set owner name in install script}'
+  PROJECT_NAME: '{set project name in install script}'
+  EMAIL_ADDRESS:
+    secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
+  GITHUB_API_KEY:
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+  NUGET_API_KEY:
+    secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
+  COVERALLS_API_KEY:
+    secure: WWnf4Q5NJHBpILI4QpagjvIO4lKmqu3wa3u/vhDXRivO2Xsr4xt3XEsswAG0vryE
 
 # this is how to allow failing jobs in the matrix
 #matrix:
-    # set this flag to immediately finish build once one of the jobs fails.
-    #fast_finish:
-    #allow_failures:
-        #- platform: x86
-            #configuration: Debug
-        #- platform: x64
-            #configuration: Release
+  # set this flag to immediately finish build once one of the jobs fails.
+  #fast_finish:
+  #allow_failures:
+    #- platform: x86
+      #configuration: Debug
+    #- platform: x64
+      #configuration: Release
 
 # exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
-    #exclude:
-        #- platform: x86
-            #configuration: Debug
+  #exclude:
+    #- platform: x86
+      #configuration: Debug
 
 # build cache to preserve files/folders between builds
 #cache:
 
 # enable service required for build/tests
 #services:
-    #- mssql2014           # start SQL Server 2014 Express
-    #- mssql2014rs         # start SQL Server 2014 Express and Reporting Services
-    #- mssql2012sp1        # start SQL Server 2012 SP1 Express
-    #- mssql2012sp1rs      # start SQL Server 2012 SP1 Express and Reporting Services
-    #- mssql2008r2sp2      # start SQL Server 2008 R2 SP2 Express
-    #- mssql2008r2sp2rs    # start SQL Server 2008 R2 SP2 Express and Reporting Services
-    #- mysql               # start MySQL 5.6 service
-    #- postgresql          # start PostgreSQL 9.5 service
-    #- iis                 # start IIS
-    #- msmq                # start Queuing services
-    #- mongodb             # start MongoDB
+  #- mssql2014           # start SQL Server 2014 Express
+  #- mssql2014rs         # start SQL Server 2014 Express and Reporting Services
+  #- mssql2012sp1        # start SQL Server 2012 SP1 Express
+  #- mssql2012sp1rs      # start SQL Server 2012 SP1 Express and Reporting Services
+  #- mssql2008r2sp2      # start SQL Server 2008 R2 SP2 Express
+  #- mssql2008r2sp2rs    # start SQL Server 2008 R2 SP2 Express and Reporting Services
+  #- mysql               # start MySQL 5.6 service
+  #- postgresql          # start PostgreSQL 9.5 service
+  #- iis                 # start IIS
+  #- msmq                # start Queuing services
+  #- mongodb             # start MongoDB
 
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-    - ps: . ( '{0}\build\shared\install-dependencies.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+  - ps: . ( '{0}\build\shared\install-dependencies.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
-    #patch:
-    #file:
-    #assembly_version:
-    #assembly_file_version:
-    #assembly_informational_version:
+  #patch:
+  #file:
+  #assembly_version:
+  #assembly_file_version:
+  #assembly_informational_version:
 
 
 # Automatically register private account and/or project AppVeyor NuGet feeds.
 #nuget:
-    #account_feed:
-    #project_feed:
-    #disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to account/project feeds for pull request builds
+  #account_feed:
+  #project_feed:
+  #disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to account/project feeds for pull request builds
 
 
 #---------------------------------#
@@ -160,8 +160,8 @@ install:
 #before_build:
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
-#platform: 
-    #- Any CPU
+#platform:
+  #- Any CPU
 
 # build Configuration, i.e. Debug, Release, etc.
 #configuration:
@@ -171,8 +171,8 @@ install:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-    - ps: . ( '{0}\build\shared\build.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
- 
+  - ps: . ( '{0}\build\shared\build.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+
 # scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
 #before_package:
 
@@ -189,27 +189,27 @@ build_script:
 
 # to run tests again only selected assemblies and/or categories
 #test:
-    #assemblies:
-        #only:
+  #assemblies:
+    #only:
 
-    #categories:
-        #only:
+  #categories:
+    #only:
 
 # to disable automatic tests
 #test: off
 
 # to run your custom scripts instead of automatic tests
 test_script:
-    - ps: . ( '{0}\tests\start-tests.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+  - ps: . ( '{0}\tests\start-tests.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # scripts to run after tests
 after_test:
-    - git config --global credential.helper store
-    - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GITHUB_API_KEY )
-    - git config --global user.email $env:EMAIL_ADDRESS
-    - git config --global user.name 'Troy Lindsay'
-    - git config --global core.autocrlf true
-    - git config --global core.safecrlf false
+  - git config --global credential.helper store
+  - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GITHUB_API_KEY )
+  - git config --global user.email $env:EMAIL_ADDRESS
+  - git config --global user.name 'Troy Lindsay'
+  - git config --global core.autocrlf true
+  - git config --global core.safecrlf false
 
 #---------------------------------#
 #      artifacts configuration    #
@@ -217,7 +217,7 @@ after_test:
 
 # Files generated during the build process that should be retained
 artifacts:
-    path: tests\results\AppVeyor*.xml
+  path: tests\results\AppVeyor*.xml
 
 
 #---------------------------------#
@@ -233,7 +233,7 @@ artifacts:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
-    - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+  - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # scripts to run after deployment
 #after_deploy:
@@ -251,7 +251,7 @@ deploy_script:
 
 # after build failure or success
 on_finish:
-    - ps: . ( '{0}\build\appveyor\publish-github.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+  - ps: . ( '{0}\build\appveyor\publish-github.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 
 #---------------------------------#
@@ -259,18 +259,18 @@ on_finish:
 #---------------------------------#
 
 notifications:
-    - provider: Email
-      on_build_success: false
-      on_build_failure: false
-      on_build_status_changed: false
-    - provider: GitHubPullRequest
-      auth_token:
-        secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
-      template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
-    - provider: Slack
-      incoming_webhook:
-        secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
-      channel: '#develop'
-      on_build_success: true
-      on_build_failure: true
-      on_build_status_changed: true
+  - provider: Email
+    on_build_success: false
+    on_build_failure: false
+    on_build_status_changed: false
+  - provider: GitHubPullRequest
+    auth_token:
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+    template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
+  - provider: Slack
+    incoming_webhook:
+    secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
+    channel: '#develop'
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
