@@ -86,7 +86,7 @@ image:
 environment:
   BUILD_PATH: $env:APPVEYOR_BUILD_FOLDER
   MODULE_NAME: 'Armor'
-  MODULE_PATH: "${env:BUILD_PATH}/${env:MODULE_NAME}"
+  MODULE_PATH: "{insert in install dependencies script}"
   MODULE_VERSION: $env:APPVEYOR_BUILD_VERSION
   OWNER_NAME: $env:APPVEYOR_ACCOUNT_NAME
   PROJECT_NAME: $env:APPVEYOR_PROJECT_NAME
