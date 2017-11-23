@@ -84,12 +84,12 @@ image:
 
 # environment variables
 environment:
-  BUILD_PATH: $env:APPVEYOR_BUILD_FOLDER
+  BUILD_PATH: '{insert in install dependencies script}'
   MODULE_NAME: 'Armor'
-  MODULE_PATH: "{insert in install dependencies script}"
-  MODULE_VERSION: $env:APPVEYOR_BUILD_VERSION
-  OWNER_NAME: $env:APPVEYOR_ACCOUNT_NAME
-  PROJECT_NAME: $env:APPVEYOR_PROJECT_NAME
+  MODULE_PATH: '{insert in install dependencies script}'
+  MODULE_VERSION: '{insert in install dependencies script}'
+  OWNER_NAME: '{insert in install dependencies script}'
+  PROJECT_NAME: '{insert in install dependencies script}'
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
   GITHUB_API_KEY:
