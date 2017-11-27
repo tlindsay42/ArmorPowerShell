@@ -263,14 +263,14 @@ artifacts:
 
 # on successful build
 on_success:
+  - ps: . ( '{0}\build\appveyor\publish-github.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
   - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # on build failure
 #on_failure:
 
 # after build failure or success
-on_finish:
-  - ps: . ( '{0}\build\appveyor\publish-github.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+#on_finish:
 
 
 #---------------------------------#
