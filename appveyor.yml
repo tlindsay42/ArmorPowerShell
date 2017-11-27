@@ -249,8 +249,7 @@ artifacts:
 #deploy: off
 
 # to run your custom scripts instead of provider deployments
-deploy_script:
-  - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
+#deploy_script:
 
 # scripts to run after deployment
 #after_deploy:
@@ -261,7 +260,8 @@ deploy_script:
 #---------------------------------#
 
 # on successful build
-#on_success:
+on_success:
+  - ps: . ( '{0}\build\appveyor\publish-psgallery.ps1' -f $env:APPVEYOR_BUILD_FOLDER )
 
 # on build failure
 #on_failure:
