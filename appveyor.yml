@@ -65,8 +65,31 @@ image:
   - Visual Studio 2017
 
 # scripts that are called at very beginning, before repo cloning
-#init:
-  #- git config --global core.autocrlf input
+init:
+    # CI abstraction variables
+  - ps: $env:BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
+  - ps: Write-Host -Object ( '   $env:BUILD_PATH = {0}' -f $env:BUILD_PATH )
+  - ps: $env:MODULE_NAME = 'Armor'
+  - ps: Write-Host -Object ( '   $env:MODULE_NAME = {0}' -f $env:MODULE_NAME )
+  - ps: $env:MODULE_PATH = '{0}\{1}' -f $env:BUILD_PATH, $env:MODULE_NAME
+  - ps: Write-Host -Object ( '   $env:MODULE_PATH = {0}' -f $env:MODULE_PATH )
+  - ps: $env:MODULE_VERSION = ( $env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
+  - ps: Write-Host -Object ( '   $env:MODULE_VERSION = {0}' -f $env:MODULE_VERSION )
+  - ps: $env:OWNER_NAME = $env:APPVEYOR_ACCOUNT_NAME
+  - ps: Write-Host -Object ( '   $env:OWNER_NAME = {0}' -f $env:OWNER_NAME )
+  - ps: $env:PROJECT_NAME = $env:APPVEYOR_PROJECT_NAME
+  - ps: Write-Host -Object ( '   $env:PROJECT_NAME = {0}' -f $env:PROJECT_NAME )
+    # Coveralls environment variables
+  - ps: $env:CI_NAME = 'AppVeyor'
+  - ps: Write-Host -Object ( '   $env:CI_NAME = {0}' -f $env:CI_NAME )
+  - ps: $env:CI_BUILD_NUMBER = $env:APPVEYOR_BUILD_VERSION
+  - ps: Write-Host -Object ( '   $env:CI_BUILD_NUMBER = {0}' -f $env:CI_BUILD_NUMBER )
+  - ps: $env:CI_BUILD_URL = 'https://ci.appveyor.com/project/{0}/{1}/build/{2}' -f $env:OWNER_NAME, $env:PROJECT_NAME, $env:CI_BUILD_NUMBER
+  - ps: Write-Host -Object ( '   $env:CI_BUILD_URL = {0}' -f $env:CI_BUILD_URL )
+  - ps: $env:CI_BRANCH = $env:APPVEYOR_REPO_BRANCH
+  - ps: Write-Host -Object ( '   $env:CI_BRANCH = {0}' -f $env:CI_BRANCH )
+  - ps: $env:CI_PULL_REQUEST = $env:APPVEYOR_PULL_REQUEST_NUMBER
+  - ps: Write-Host -Object ( '   $env:CI_PULL_REQUEST = {0}' -f $env:CI_PULL_REQUEST )
 
 # clone directory
 #clone_folder:
@@ -84,12 +107,6 @@ image:
 
 # environment variables
 environment:
-  BUILD_PATH: '{insert in install dependencies script}'
-  MODULE_NAME: 'Armor'
-  MODULE_PATH: '{insert in install dependencies script}'
-  MODULE_VERSION: '{insert in install dependencies script}'
-  OWNER_NAME: '{insert in install dependencies script}'
-  PROJECT_NAME: '{insert in install dependencies script}'
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
   GITHUB_API_KEY:
