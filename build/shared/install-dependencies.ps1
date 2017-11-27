@@ -4,7 +4,7 @@ Write-Host -Object "`nInstalling modules:" -ForegroundColor 'Yellow'
 
 foreach ( $moduleName in 'Pester', 'Coveralls' ) {
     Write-Host -Object ( '   {0}' -f $moduleName )
-    Install-Module -Name $moduleName -Scope 'CurrentUser' -Force -Confirm:$false |
+    Install-Module -Name $moduleName -Scope 'CurrentUser' -SkipPublisherCheck -Force -Confirm:$false |
         Out-Null
 }
 Remove-Variable -Name moduleName
