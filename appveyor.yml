@@ -107,6 +107,8 @@ init:
 
 # environment variables
 environment:
+  APPVEYOR_CACHE_SKIP_RESTORE: true
+  APPVEYOR_CACHE_SKIP_SAVE: true
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
   GITHUB_API_KEY:
