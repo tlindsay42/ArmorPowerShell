@@ -3,6 +3,11 @@ function OutWarning ( [String] $Message ) {
     Write-Warning -Message ( "`n{0}`n" -f $Message )
 }
 
+function OutInfo ( [String] $Message ) {
+    Add-AppVeyorMessage -Message $Message -Category 'Information'
+    Write-Host -Message ( "`n{0}`n" -f $Message ) -ForegroundColor 'Yellow'
+}
+
 $skipMessage = 'Skipping publish to the PowerShell Gallery'
 $message = $null
 $messageForm = '{0} for {1} "{2}".'
@@ -17,12 +22,17 @@ elseif ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:EMAIL_ADDRESS ) {
     OutWarning( ( $messageForm -f $skipMessage, 'commit author', $env:APPVEYOR_REPO_COMMIT_AUTHOR ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-    $message = '{0} Module version {1} published to the PowerShell Gallery.' -f $env:APPVEYOR_PROJECT_NAME, $env:MODULE_VERSION
-
+    $messageForm = '{0} module version "{1}" published to {2}.'
     # Publish the new version to the PowerShell Gallery
     Publish-Module -Path $env:MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
 
-    Add-AppVeyorMessage -Message $message -Category 'Information'
+    OutInfo( ( $messageForm -f $env:APPVEYOR_PROJECT_NAME, $env:MODULE_VERSION, 'the PowerShell Gallery' ) )
 
-    Write-Host -Object ( "`n{0}`n" -f $message ) -ForegroundColor 'Yellow'
+    # Publish the new version back to GitHub
+    git add --all
+    git status
+    git commit --signoff --message ( 'AppVeyor: Update version to {0} [ci skip]' -f $env:APPVEYOR_BUILD_VERSION )
+    git push --porcelain origin master
+
+    OutInfo( ( $messageForm -f $env:MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 }
