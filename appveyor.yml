@@ -100,7 +100,7 @@ init:
 
 # set clone depth
 # clone entire repository history if not defined
-#clone_depth:
+clone_depth: 50
 
 # setting up etc/hosts file
 #hosts:
