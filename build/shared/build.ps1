@@ -1,7 +1,7 @@
 $text = @{
     'AppVeyor'              = 'AppVeyor'
     'AppVeyorImageUrl'      = 'https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true'
-    'AppVeyorProjectUrl'    = 'https://ci.appveyor.com/project/{0}/{1}/branch/master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'AppVeyorProjectUrl'    = 'https://ci.appveyor.com/project/{0}/{1}/branch/master' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
     'ArmorAnywhere'         = 'Armor Anywhere'
     'ArmorAnywhereUrl'      = 'https://www.armor.com/armor-anywhere-security/'
     'ArmorApiGuideUrl'      = 'https://docs.armor.com/display/KBSS/Armor+API+Guide'
@@ -11,8 +11,8 @@ $text = @{
     'BuildStatus'           = 'Build Status'
     'CoverageStatus'        = 'Coverage Status'
     'Coveralls'             = 'Coveralls'
-    'CoverallsImageUrl'     = 'https://coveralls.io/repos/github/{0}/{1}/badge.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-    'CoverallsProjectUrl'   = 'https://coveralls.io/github/{0}/{1}?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'CoverallsImageUrl'     = 'https://coveralls.io/repos/github/{0}/{1}/badge.svg?branch=master' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
+    'CoverallsProjectUrl'   = 'https://coveralls.io/github/{0}/{1}?branch=master' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
     'DocumentationStatus'   = 'Documentation Status'
     'macOS'                 = 'macOS'
     'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
@@ -21,38 +21,38 @@ $text = @{
     'PesterUrl'             = 'https://github.com/pester/Pester'
     'PSGallery'             = 'PowerShell Gallery'
     'PSGalleryImageUrl'     = 'https://img.shields.io/badge/install-PS%20Gallery-blue.svg'
-    'PSGalleryProjectUrl'   = 'https://www.powershellgallery.com/packages/{0}' -f $env:MODULE_NAME
-    'ReadTheDocsImageUrl'   = 'https://readthedocs.org/projects/{0}/badge/?version=latest' -f $env:PROJECT_NAME.ToLower()
-    'ReadTheDocsProjectUrl' = 'http://{0}.readthedocs.io/en/latest/?badge=latest' -f $env:PROJECT_NAME.ToLower()
-    'RepoUrl'               = 'https://github.com/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'PSGalleryProjectUrl'   = 'https://www.powershellgallery.com/packages/{0}' -f $env:CI_MODULE_NAME
+    'ReadTheDocsImageUrl'   = 'https://readthedocs.org/projects/{0}/badge/?version=latest' -f $env:CI_PROJECT_NAME.ToLower()
+    'ReadTheDocsProjectUrl' = 'http://{0}.readthedocs.io/en/latest/?badge=latest' -f $env:CI_PROJECT_NAME.ToLower()
+    'RepoUrl'               = 'https://github.com/{0}/{1}' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
     'RestfulApi'            = 'RESTful APIs'
     'RstLinkForm'           = '`{0}`_'
     'Title'                 = 'Armor PowerShell Module'
     'TravisCi'              = 'Travis CI'
-    'TravisCiImageUrl'      = 'https://travis-ci.org/{0}/{1}.svg?branch=master' -f $env:OWNER_NAME, $env:PROJECT_NAME
-    'TravisCiProjectUrl'    = 'https://travis-ci.org/{0}/{1}' -f $env:OWNER_NAME, $env:PROJECT_NAME
+    'TravisCiImageUrl'      = 'https://travis-ci.org/{0}/{1}.svg?branch=master' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
+    'TravisCiProjectUrl'    = 'https://travis-ci.org/{0}/{1}' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME
     'Ubuntu'                = 'Ubuntu Linux'
     'Windows'               = 'Windows'
 }
 
-if ( ( Test-Path -Path $env:MODULE_PATH ) -eq $false ) {
-    throw ( 'Module directory: "{0}" not found.' -f $env:MODULE_PATH )
+if ( ( Test-Path -Path $env:CI_MODULE_PATH ) -eq $false ) {
+    throw ( 'Module directory: "{0}" not found.' -f $env:CI_MODULE_PATH )
 }
 
-Write-Host -Object ( "`nSet the working directory to: '{0}'." -f $env:MODULE_PATH ) -ForegroundColor 'Yellow'
-Push-Location -Path $env:MODULE_PATH -ErrorAction 'Stop'
+Write-Host -Object ( "`nSet the working directory to: '{0}'." -f $env:CI_MODULE_PATH ) -ForegroundColor 'Yellow'
+Push-Location -Path $env:CI_MODULE_PATH -ErrorAction 'Stop'
 
-$manifestPath = '{0}\{1}.psd1' -f $env:MODULE_PATH, $env:MODULE_NAME
+$manifestPath = '{0}\{1}.psd1' -f $env:CI_MODULE_PATH, $env:CI_MODULE_NAME
 
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 $manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
 if ( $env:TRAVIS -eq $true ) {
-    $env:MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, $manifest.Version.Build, ( $manifest.Version.Revision + 1 )
+    $env:CI_MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, $manifest.Version.Build, ( $manifest.Version.Revision + 1 )
 }
 
 Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
-Write-Host -Object ( "New Version: '{0}'." -f $env:MODULE_VERSION )
+Write-Host -Object ( "New Version: '{0}'." -f $env:CI_MODULE_VERSION )
 
 Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 
@@ -77,8 +77,8 @@ $text.PSGallery #10
 
 Update-ModuleManifest `
     -Path $manifestPath `
-    -RootModule ( '{0}.psm1' -f $env:MODULE_NAME ) `
-    -ModuleVersion $env:MODULE_VERSION `
+    -RootModule ( '{0}.psm1' -f $env:CI_MODULE_NAME ) `
+    -ModuleVersion $env:CI_MODULE_VERSION `
     -Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
     -Author 'Troy Lindsay' `
     -CompanyName 'Armor' `
@@ -86,7 +86,7 @@ Update-ModuleManifest `
     -Description $description `
     -PowerShellVersion '5.0' `
     -ProcessorArchitecture 'None' `
-    -FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:MODULE_PATH ) ).BaseName `
+    -FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:CI_MODULE_PATH ) ).BaseName `
     -FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
     -Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
@@ -96,7 +96,7 @@ Update-ModuleManifest `
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
 ( Get-Content -Path $manifestPath ) `
-    -replace ( 'PSGet_{0}|NewManifest' -f $env:MODULE_NAME ), $env:MODULE_NAME |
+    -replace ( 'PSGet_{0}|NewManifest' -f $env:CI_MODULE_NAME ), $env:CI_MODULE_NAME |
     Set-Content -Path $manifestPath -ErrorAction 'Stop'
 
 Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
@@ -105,8 +105,8 @@ $manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 Pop-Location -ErrorAction 'Stop'
 Write-Host -Object ( "`nRestored the working directory to: '{0}'.`n" -f ( Get-Location ) ) -ForegroundColor 'Yellow'
 
-Write-Host -Object ( "Import module: '{0}'." -f $env:MODULE_NAME ) -ForegroundColor 'Yellow'
-Import-Module -Name ( '{0}\{1}.psm1' -f $env:MODULE_PATH, $env:MODULE_NAME ) -Force
+Write-Host -Object ( "Import module: '{0}'." -f $env:CI_MODULE_NAME ) -ForegroundColor 'Yellow'
+Import-Module -Name ( '{0}\{1}.psm1' -f $env:CI_MODULE_PATH, $env:CI_MODULE_NAME ) -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
@@ -117,12 +117,12 @@ $markDownDescription = $description `
     -replace $text.ArmorAnywhere, ( $text.MdBoldLinkForm -f $text.ArmorAnywhere, $text.ArmorAnywhereUrl, ( '{0} Product Page' -f $text.ArmorAnywhere ) ) `
     -replace $text.RestfulApi, ( $text.MdLinkForm -f $text.RestfulApi, $text.ArmorApiGuideUrl, 'Armor API Guide' ) `
     -replace $text.Windows, ( $text.BoldForm -f $text.Windows ) `
-    -replace $text.AppVeyor, ( $text.MdLinkForm -f $text.AppVeyor, $text.AppVeyorProjectUrl, ( '{0}: {1}: latest build console' -f $text.AppVeyor, $env:PROJECT_NAME ) ) `
+    -replace $text.AppVeyor, ( $text.MdLinkForm -f $text.AppVeyor, $text.AppVeyorProjectUrl, ( '{0}: {1}: latest build console' -f $text.AppVeyor, $env:CI_PROJECT_NAME ) ) `
     -replace $text.macOS, ( $text.BoldForm -f $text.macOS ) `
     -replace $text.Ubuntu, ( $text.BoldForm -f $text.Ubuntu ) `
-    -replace $text.TravisCi, ( $text.MdLinkForm -f $text.TravisCi, $text.TravisCiProjectUrl, ( '{0}: {1}: latest build console' -f $text.TravisCi, $env:PROJECT_NAME ) ) `
+    -replace $text.TravisCi, ( $text.MdLinkForm -f $text.TravisCi, $text.TravisCiProjectUrl, ( '{0}: {1}: latest build console' -f $text.TravisCi, $env:CI_PROJECT_NAME ) ) `
     -replace $text.Pester, ( $text.MdLinkForm -f $text.Pester, $text.PesterUrl, ( '{0} GitHub repo' -f $text.Pester ) ) `
-    -replace $text.Coveralls, ( $text.MdLinkForm -f $text.Coveralls, $text.CoverallsProjectUrl, ( '{0}: {1}: latest report' -f $text.Coveralls, $env:PROJECT_NAME ) ) `
+    -replace $text.Coveralls, ( $text.MdLinkForm -f $text.Coveralls, $text.CoverallsProjectUrl, ( '{0}: {1}: latest report' -f $text.Coveralls, $env:CI_PROJECT_NAME ) ) `
     -replace $text.PSGallery, ( "[{0}]({1})" -f $text.PSGallery, $text.PSGalleryProjectUrl )
 
 $content = @()
@@ -149,7 +149,7 @@ $text.PSGallery, #12
 $text.PSGalleryImageUrl, #13
 $text.PSGalleryProjectUrl, #14
 $markDownDescription <#15#> |
-    Out-File -FilePath ( '{0}\README.md' -f $env:BUILD_PATH ) -Encoding utf8
+    Out-File -FilePath ( '{0}\README.md' -f $env:CI_BUILD_PATH ) -Encoding utf8
 
 # Build readthedocs.io index.rst
 $reStructuredTextDescription = $description `
@@ -260,7 +260,7 @@ $content += '
    '
 
 # Build the command documentation menu
-foreach ( $verb in ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique ) {
+foreach ( $verb in ( Get-Command -Module $env:CI_MODULE_NAME ).Verb | Select-Object -Unique ) {
     $content += '   cmd_{0}' -f $verb.ToLower()
 }
 
@@ -268,12 +268,12 @@ $content += ''
 
 # Write the index file
 $content |
-    Out-File -FilePath ( '{0}\docs\index.rst' -f $env:BUILD_PATH ) -Encoding utf8
+    Out-File -FilePath ( '{0}\docs\index.rst' -f $env:CI_BUILD_PATH ) -Encoding utf8
 
 Write-Host -Object '   index'
 
 # Build the command documentation files for each verb
-foreach ( $verb in ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object -Unique ) {
+foreach ( $verb in ( Get-Command -Module $env:CI_MODULE_NAME ).Verb | Select-Object -Unique ) {
     $content = @()
     $content += '{0} Commands' -f $verb
     $content += '========================='
@@ -289,7 +289,7 @@ foreach ( $verb in ( Get-Command -Module $env:MODULE_NAME ).Verb | Select-Object
     }
 
     $content |
-        Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $env:BUILD_PATH, $verb.ToLower() ) -Encoding utf8
+        Out-File -FilePath ( '{0}\docs\cmd_{1}.rst' -f $env:CI_BUILD_PATH, $verb.ToLower() ) -Encoding utf8
 
     Write-Host -Object ( '   cmd_{0}' -f $verb.ToLower() )
 }

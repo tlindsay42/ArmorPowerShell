@@ -1,4 +1,4 @@
-$testsPath = '{0}\tests' -f $env:BUILD_PATH
+$testsPath = '{0}\tests' -f $env:CI_BUILD_PATH
 $results = 'results'
 $testsResultsPath = '{0}\{1}' -f $testsPath, $results
 $testsResultsDirectory = $null
@@ -29,7 +29,7 @@ Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
 $testsResults = Invoke-Pester -Path $testsPath `
     -OutputFormat 'NUnitXml' `
     -OutputFile $testsResultsFilePath `
-    -CodeCoverage ( Get-ChildItem -Path $env:MODULE_PATH -Include '*.ps1' -Recurse ) `
+    -CodeCoverage ( Get-ChildItem -Path $env:CI_MODULE_PATH -Include '*.ps1' -Recurse ) `
     -CodeCoverageOutputFile $codeCoverageResultsFilePath `
     -CodeCoverageOutputFileFormat 'JaCoCo' `
     -PassThru
@@ -41,7 +41,7 @@ if ( -not ( Test-Path -Path $testsResultsFilePath ) ) {
 if ( $ciName -eq 'AppVeyor' ) {
     ( New-Object -TypeName 'System.Net.WebClient' ).UploadFile(
         ( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ),
-        ( '{0}\tests\results\AppVeyorTestsResults.xml' -f $env:BUILD_PATH )
+        ( '{0}\tests\results\AppVeyorTestsResults.xml' -f $env:CI_BUILD_PATH )
     )
 
     $coverage = Format-Coverage -PesterResults $testsResults -CoverallsApiToken $env:COVERALLS_API_KEY -BranchName $env:APPVEYOR_REPO_BRANCH

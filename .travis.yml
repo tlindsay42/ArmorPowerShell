@@ -57,12 +57,20 @@ language: generic
 # environment variables
 env:
   global:
+    # CI abstraction variables
     - BUILD_PATH="$TRAVIS_BUILD_DIR"
     - MODULE_NAME="Armor"
     - MODULE_PATH="$BUILD_PATH/$MODULE_NAME"
     - MODULE_VERSION="{set module version in build script}"
     - OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
     - PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
+    # Coveralls environment variables
+    - CI_NAME = 'Travis CI'
+    - CI_BUILD_NUMBER = $env:TRAVIS_BUILD_NUMBER
+    - CI_BUILD_URL = 'https://travis-ci.org/{0}/{1}/jobs/{2}' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME, $env:TRAVIS_JOB_ID
+    - CI_BRANCH = $env:TRAVIS_BRANCH
+    - CI_PULL_REQUEST = $env:TRAVIS_PULL_REQUEST
+    # Encrypted environment variables
     - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
   #matrix:
 
@@ -133,9 +141,7 @@ matrix:
     #fi
 
 install:
-  #- sudo chmod +x ./build/travis/install-dependencies.sh
-  #- ./build/travis/install-dependencies.sh
-  - pwsh -file ./build/shared/install-dependencies.ps1
+  - pwsh -Command { . ( '{0}/build/shared/install-dependencies.ps1' -f $env:CI_BUILD_PATH ) }
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       nvm install 6.4.0;
@@ -150,8 +156,8 @@ install:
 #before_script:
 
 script:
-  - pwsh -file ./build/shared/build.ps1
-  - pwsh -file ./tests/start-tests.ps1
+  - pwsh -Command { . ( '{0}/build/shared/build.ps1' -f $env:CI_BUILD_PATH ) }
+  - pwsh -Command { . ( '{0}/tests/start-tests.ps1' -f $env:CI_BUILD_PATH ) }
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     mdspell '**/*.md' --ignore-numbers --ignore-acronyms --report;
