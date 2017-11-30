@@ -21,6 +21,6 @@ foreach ( $moduleName in 'Pester', 'Coveralls' ) {
 
     Import-Module -Name $moduleName
 }
-Remove-Variable -Name moduleName
+Remove-Variable -Name 'moduleName'
 
 Write-Host -Object ''
