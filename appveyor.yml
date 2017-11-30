@@ -142,6 +142,7 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
+  - ps: . ( '{0}\build\shared\out-environmentvariables.ps1' -f $env:CI_BUILD_PATH )
   - ps: . ( '{0}\build\shared\install-dependencies.ps1' -f $env:CI_BUILD_PATH )
 
 # enable patching of AssemblyInfo.* files

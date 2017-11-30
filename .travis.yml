@@ -135,6 +135,7 @@ matrix:
 #before_install:
 
 install:
+  - pwsh -Command { . ( '{0}/build/shared/out-environmentvariables.ps1' -f $env:CI_BUILD_PATH ) }
   - pwsh -Command { . ( '{0}/build/shared/install-dependencies.ps1' -f $env:CI_BUILD_PATH ) }
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
