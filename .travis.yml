@@ -1,6 +1,6 @@
-#          YAML Reference Guide:
+#          YAML Reference Guide: https://docs.travis-ci.com/user/customizing-the-build/
 # Environmental Variables Guide: https://docs.travis-ci.com/user/environment-variables/
-#                YAML Validator: travis lint ./.travis.yml
+#                YAML Validator: https://lint.travis-ci.org/
 
 # Notes:
 #   - Indent each level of configuration with 2 spaces. Do not use tabs!
