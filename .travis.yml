@@ -133,12 +133,6 @@ matrix:
   #ssh_known_hosts:
 
 #before_install:
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      #brew update > /dev/null;
-      #brew install curl --with-openssl;
-      #brew tap caskroom/cask;
-      #brew cask install powershell;
-    #fi
 
 install:
   - pwsh -Command { . ( '{0}/build/shared/install-dependencies.ps1' -f $env:CI_BUILD_PATH ) }
