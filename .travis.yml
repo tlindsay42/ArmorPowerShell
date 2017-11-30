@@ -154,7 +154,7 @@ script:
   - pwsh -Command { . ( '{0}/tests/start-tests.ps1' -f $env:CI_BUILD_PATH ) }
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    mdspell '**/*.md' --ignore-numbers --ignore-acronyms --report;
+      mdspell '**/*.md' --ignore-numbers --ignore-acronyms --report;
     fi
 
 #before_cache:
