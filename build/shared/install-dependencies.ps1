@@ -12,6 +12,8 @@ foreach ( $moduleName in 'Pester', 'Coveralls' ) {
         Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -SkipPublisherCheck -Force -Confirm:$false |
             Out-Null
     }
+
+    Import-Module -Name $moduleName
 }
 Remove-Variable -Name moduleName
 
