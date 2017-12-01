@@ -75,7 +75,7 @@ init:
   - ps: $env:CI_PROJECT_NAME = $env:APPVEYOR_PROJECT_NAME
     # Coveralls environment variables
   - ps: $env:CI_NAME = 'AppVeyor'
-  - ps: $env:CI_BUILD_NUMBER = $env:APPVEYOR_BUILD_VERSION
+  - ps: $env:CI_BUILD_NUMBER = $env:APPVEYOR_BUILD_NUMBER
   - ps: $env:CI_BUILD_URL = 'https://ci.appveyor.com/project/{0}/{1}/build/job/{2}' -f $env:CI_OWNER_NAME, $env:CI_PROJECT_NAME, $env:APPVEYOR_JOB_ID
   - ps: $env:CI_BRANCH = $env:APPVEYOR_REPO_BRANCH
   - ps: $env:CI_PULL_REQUEST = $env:APPVEYOR_PULL_REQUEST_NUMBER
