@@ -1,6 +1,4 @@
-Push-Location -Path 'env:'
-
-$table = ( Get-ChildItem ).Where(
+$table = ( Get-ChildItem -Path 'env:' ).Where(
     {
         $_.Name -match ( '^(?:CI|{0})(?:_|$)' -f $env:CI_NAME ) -and
             $_.Name -notmatch 'EMAIL'
@@ -15,5 +13,3 @@ $table = ( Get-ChildItem ).Where(
 Write-Host -Object $table
 
 Remove-Variable -Name 'table'
-
-Pop-Location
