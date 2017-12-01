@@ -135,8 +135,8 @@ matrix:
 #before_install:
 
 install:
-  - pwsh -File "${env:CI_BUILD_PATH}/build/shared/out-environmentvariables.ps1"
-  - pwsh -File "${env:CI_BUILD_PATH}/build/shared/install-dependencies.ps1"
+  - pwsh -File "${CI_BUILD_PATH}/build/shared/out-environmentvariables.ps1"
+  - pwsh -File "${CI_BUILD_PATH}/build/shared/install-dependencies.ps1"
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       nvm install 6.4.0;
@@ -151,8 +151,8 @@ install:
 #before_script:
 
 script:
-  - pwsh -File "${env:CI_BUILD_PATH}/build/shared/build.ps1"
-  - pwsh -File "${env:CI_BUILD_PATH}/tests/start-tests.ps1"
+  - pwsh -File "${CI_BUILD_PATH}/build/shared/build.ps1"
+  - pwsh -File "${CI_BUILD_PATH}/tests/start-tests.ps1"
   # spellcheck
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       mdspell '**/*.md' --ignore-numbers --ignore-acronyms --report;
