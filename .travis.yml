@@ -65,7 +65,7 @@ env:
     - CI_OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
     - CI_PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
     # Coveralls environment variables
-    - CI_NAME='Travis CI'
+    - CI_NAME='Travis'
     - CI_BUILD_NUMBER="${TRAVIS_BUILD_NUMBER}"
     - CI_BUILD_URL="https://travis-ci.org/${CI_OWNER_NAME}/${CI_PROJECT_NAME}/jobs/${TRAVIS_JOB_ID}"
     - CI_BRANCH="${TRAVIS_BRANCH}"
@@ -151,7 +151,6 @@ install:
 #before_script:
 
 script:
-  - echo "${CI_BUILD_PATH}/build/shared/build.ps1"
   - pwsh -File "${CI_BUILD_PATH}/build/shared/build.ps1"
   - pwsh -File "${CI_BUILD_PATH}/tests/start-tests.ps1"
   # spellcheck
