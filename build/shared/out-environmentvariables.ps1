@@ -1,6 +1,11 @@
 Push-Location -Path 'env:'
 
-$table = ( Get-ChildItem ).Where( { $_.Name -match '^(?:CI|{0})(?:_|$)' -f $env:CI_NAME } ) |
+$table = ( Get-ChildItem ).Where(
+    {
+        $_.Name -match ( '^(?:CI|{0})(?:_|$)' -f $env:CI_NAME ) -and
+            $_.Name -notmatch 'EMAIL'
+    }
+) |
     Select-Object -Property 'Name', 'Value' |
     Sort-Object -Property 'Name' |
     Format-Table -AutoSize |
