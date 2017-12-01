@@ -60,7 +60,7 @@ env:
     # CI abstraction variables
     - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
     - CI_MODULE_NAME="Armor"
-    - CI_MODULE_PATH="${BUILD_PATH}/${MODULE_NAME}"
+    - CI_MODULE_PATH="${CI_BUILD_PATH}/${CI_MODULE_NAME}"
     - CI_MODULE_VERSION="<set module version in build script>"
     - CI_OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
     - CI_PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
