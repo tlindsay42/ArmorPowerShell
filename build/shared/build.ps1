@@ -48,7 +48,7 @@ Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Ye
 $manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
 if ( $env:TRAVIS -eq $true ) {
-    $env:CI_MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, $manifest.Version.Build, ( $manifest.Version.Revision + 1 )
+    $env:CI_MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, ( $manifest.Version.Build + 1 ), $manifest.Version.Revision
 }
 
 Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
