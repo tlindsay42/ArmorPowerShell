@@ -50,7 +50,7 @@ if ( $env:CI -eq $true ) {
 
             It 'set $env:CI_PROJECT_NAME correctly' {
                 $env:CI_PROJECT_NAME |
-                    Should -Be ( Split-Path -Path $env:CI_BUILD_PATH -LeafBase )
+                    Should -Be ( Split-Path -Path $env:CI_BUILD_PATH -Leaf )
             }
 
             It 'set $env:CI_NAME to either "AppVeyor" or "Travis CI"' {
