@@ -12,11 +12,14 @@ $skipMessage = 'Skipping publish to the PowerShell Gallery'
 $message = $null
 $messageForm = '{0} for {1} "{2}".'
 
-if ( $env:APPVEYOR_REPO_BRANCH -ne 'master' ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'branch', $env:APPVEYOR_REPO_BRANCH ) )
+if ( $env:APPVEYOR -ne $true ) {
+    OutWarning( ( $messageForm -f $skipMessage, 'continuous integration platform', $env:CI_NAME ) )
 }
-elseif ( $env:APPVEYOR_PULL_REQUEST_NUMBER -gt 0 ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:APPVEYOR_PULL_REQUEST_NUMBER ) )
+elseif ( $env:CI_BRANCH -ne 'master' ) {
+    OutWarning( ( $messageForm -f $skipMessage, 'branch', $env:CI_BRANCH ) )
+}
+elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
+    OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:CI_PULL_REQUEST ) )
 }
 elseif ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:EMAIL_ADDRESS ) {
     OutWarning( ( $messageForm -f $skipMessage, 'commit author', $env:APPVEYOR_REPO_COMMIT_AUTHOR ) )
@@ -26,12 +29,13 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     # Publish the new version to the PowerShell Gallery
     Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
 
-    OutInfo( ( $messageForm -f $env:APPVEYOR_PROJECT_NAME, $env:CI_MODULE_VERSION, 'the PowerShell Gallery' ) )
+    OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'the PowerShell Gallery' ) )
 
     # Publish the new version back to GitHub
+    git checkout master
     git add --all
     git status
-    git commit --signoff --message ( 'AppVeyor: Update version to {0} [ci skip]' -f $env:APPVEYOR_BUILD_VERSION )
+    git commit --signoff --message ( '{0}: Update version to {1} [ci skip]' -f $env:CI_NAME, $env:CI_MODULE_VERSION )
     git push --porcelain origin master
 
     OutInfo( ( $messageForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
