@@ -24,7 +24,7 @@ elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
 elseif ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:EMAIL_ADDRESS ) {
     OutWarning( ( $messageForm -f $skipMessage, 'commit author', $env:APPVEYOR_REPO_COMMIT_AUTHOR ) )
 }
-elseif ( $env:APPVEYOR_JOB_NUMBER -eq 2 ) {
+elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $messageForm = '{0} module version "{1}" published to {2}.'
     # Publish the new version to the PowerShell Gallery
     Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -Force
