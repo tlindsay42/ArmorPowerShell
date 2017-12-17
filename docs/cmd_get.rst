@@ -49,7 +49,6 @@ REMARKS
     For technical information, type: "get-help Get-ArmorAccount -full".
     For online help, type: "get-help Get-ArmorAccount -online"
 
-
 Get-ArmorAccountAddress
 -------------------------
 NAME
@@ -94,7 +93,6 @@ REMARKS
     For technical information, type: "get-help Get-ArmorAccountAddress -full".
     For online help, type: "get-help Get-ArmorAccountAddress -online"
 
-
 Get-ArmorAccountContext
 -------------------------
 NAME
@@ -133,7 +131,6 @@ REMARKS
     For more information, type: "get-help Get-ArmorAccountContext -detailed".
     For technical information, type: "get-help Get-ArmorAccountContext -full".
     For online help, type: "get-help Get-ArmorAccountContext -online"
-
 
 Get-ArmorCompleteDatacenter
 -------------------------
@@ -186,7 +183,6 @@ REMARKS
     For technical information, type: "get-help Get-ArmorCompleteDatacenter -full".
     For online help, type: "get-help Get-ArmorCompleteDatacenter -online"
 
-
 Get-ArmorCompleteWorkloadTier
 -------------------------
 NAME
@@ -234,7 +230,6 @@ REMARKS
     For technical information, type: "get-help Get-ArmorCompleteWorkloadTier -full".
     For online help, type: "get-help Get-ArmorCompleteWorkloadTier -online"
 
-
 Get-ArmorIdentity
 -------------------------
 NAME
@@ -276,7 +271,6 @@ REMARKS
     For more information, type: "get-help Get-ArmorIdentity -detailed".
     For technical information, type: "get-help Get-ArmorIdentity -full".
     For online help, type: "get-help Get-ArmorIdentity -online"
-
 
 Get-ArmorUser
 -------------------------
@@ -327,7 +321,6 @@ REMARKS
     For more information, type: "get-help Get-ArmorUser -detailed".
     For technical information, type: "get-help Get-ArmorUser -full".
     For online help, type: "get-help Get-ArmorUser -online"
-
 
 Get-ArmorVM
 -------------------------
@@ -415,7 +408,6 @@ REMARKS
     For more information, type: "get-help Get-ArmorVM -detailed".
     For technical information, type: "get-help Get-ArmorVM -full".
     For online help, type: "get-help Get-ArmorVM -online"
-
 
 
 
