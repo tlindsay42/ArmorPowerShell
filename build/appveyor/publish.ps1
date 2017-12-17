@@ -5,7 +5,7 @@ function OutWarning ( [String] $Message ) {
 
 function OutInfo ( [String] $Message ) {
     Add-AppVeyorMessage -Message $Message -Category 'Information'
-    Write-Host -Message ( "`n{0}`n" -f $Message ) -ForegroundColor 'Yellow'
+    Write-Host -Object ( "`n{0}`n" -f $Message ) -ForegroundColor 'Yellow'
 }
 
 $skipMessage = 'Skipping publish to the PowerShell Gallery'
