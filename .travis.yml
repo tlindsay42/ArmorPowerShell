@@ -61,7 +61,7 @@ env:
     - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
     - CI_MODULE_NAME="Armor"
     - CI_MODULE_PATH="${CI_BUILD_PATH}/${CI_MODULE_NAME}"
-    - CI_MODULE_VERSION="$(grep ModuleVersion ${CI_MODULE_PATH}/${CI_MODULE_NAME}.psd1 | cut -d "'" -f2)"
+    - CI_MODULE_VERSION="$(grep ModuleVersion ${CI_MODULE_PATH}/${CI_MODULE_NAME}.psd1 | cut -d """'""" -f2)"
     - CI_OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
     - CI_PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
     # Coveralls environment variables
