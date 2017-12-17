@@ -47,10 +47,6 @@ $manifestPath = '{0}\{1}.psd1' -f $env:CI_MODULE_PATH, $env:CI_MODULE_NAME
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 $manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
-if ( $env:TRAVIS -eq $true ) {
-    $env:CI_MODULE_VERSION = '{0}.{1}.{2}.{3}' -f $manifest.Version.Major, $manifest.Version.Minor, ( $manifest.Version.Build + 1 ), $manifest.Version.Revision
-}
-
 Write-Host -Object ( "`nOld Version: '{0}'." -f $manifest.Version )
 Write-Host -Object ( "New Version: '{0}'." -f $env:CI_MODULE_VERSION )
 
@@ -92,7 +88,8 @@ Update-ModuleManifest `
 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
     -LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
     -IconUri 'http://i.imgur.com/fbXjkCn.png' `
-    -ErrorAction 'Stop'
+    -ErrorAction 'Stop' `
+    -Verbose
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
 ( Get-Content -Path $manifestPath ) `
