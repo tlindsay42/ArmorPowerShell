@@ -88,8 +88,7 @@ Update-ModuleManifest `
 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
     -LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
     -IconUri 'http://i.imgur.com/fbXjkCn.png' `
-    -ErrorAction 'Stop' `
-    -Verbose
+    -ErrorAction 'Stop'
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
 ( Get-Content -Path $manifestPath ) `
