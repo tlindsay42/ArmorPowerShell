@@ -53,9 +53,9 @@ if ( $env:CI -eq $true ) {
                     Should -Be ( Split-Path -Path $env:CI_BUILD_PATH -Leaf )
             }
 
-            It 'set $env:CI_NAME to either "AppVeyor" or "Travis CI"' {
+            It 'set $env:CI_NAME to either "AppVeyor" or "Travis"' {
                 $env:CI_NAME |
-                    Should -BeIn 'AppVeyor', 'Travis CI'
+                    Should -BeIn 'AppVeyor', 'Travis'
             }
 
             It 'set $env:CI_BUILD_NUMBER to a number' {
