@@ -13,7 +13,7 @@ $message = $null
 $messageForm = '{0} for {1} "{2}".'
 
 if ( $env:APPVEYOR -ne $true ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'continuous integration platform', $env:CI_NAME ) )
+    Write-Warning -Message ( $messageForm -f $skipMessage, 'continuous integration platform', $env:CI_NAME )
 }
 elseif ( $env:CI_BRANCH -ne 'master' ) {
     OutWarning( ( $messageForm -f $skipMessage, 'branch', $env:CI_BRANCH ) )
