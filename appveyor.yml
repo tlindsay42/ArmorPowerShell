@@ -71,7 +71,7 @@ init:
   - ps: $env:CI_MODULE_NAME = 'Armor'
   - ps: $env:CI_MODULE_PATH = '{0}\{1}' -f $env:CI_BUILD_PATH, $env:CI_MODULE_NAME
   - ps: $env:CI_MODULE_VERSION = ( $env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
-  - ps: $env:CI_OWNER_NAME = $env:APPVEYOR_ACCOUNT_NAME.Trim()
+  - ps: $env:CI_OWNER_NAME = $env:APPVEYOR_ACCOUNT_NAME
   - ps: $env:CI_PROJECT_NAME = $env:APPVEYOR_PROJECT_NAME
     # Coveralls environment variables
   - ps: $env:CI_NAME = 'AppVeyor'
