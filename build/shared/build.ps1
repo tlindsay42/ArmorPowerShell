@@ -20,7 +20,7 @@ $text = @{
     'Pester'                = 'Pester'
     'PesterUrl'             = 'https://github.com/pester/Pester'
     'PSGallery'             = 'PowerShell Gallery'
-    'PSGalleryImageUrl'     = 'https://img.shields.io/badge/install-PS%20Gallery-blue.svg'
+    'PSGalleryImageUrl'     = 'https://img.shields.io/powershellgallery/v/{0}.svg' -f $env:CI_MODULE_NAME
     'PSGalleryProjectUrl'   = 'https://www.powershellgallery.com/packages/{0}' -f $env:CI_MODULE_NAME
     'ReadTheDocsImageUrl'   = 'https://readthedocs.org/projects/{0}/badge/?version=latest' -f $env:CI_PROJECT_NAME.ToLower()
     'ReadTheDocsProjectUrl' = 'http://{0}.readthedocs.io/en/latest/?badge=latest' -f $env:CI_PROJECT_NAME.ToLower()
