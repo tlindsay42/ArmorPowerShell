@@ -78,14 +78,13 @@ Update-ModuleManifest `
     -Guid '226c1ea9-1078-402a-861c-10a845a0d173' `
     -Author 'Troy Lindsay' `
     -CompanyName 'Armor' `
-    -Copyright '(c) 2017 Troy Lindsay. All rights reserved.' `
+    -Copyright ( '(c) 2017-{0} Troy Lindsay. All rights reserved.' -f ( Get-Date ).Year ) `
     -Description $description `
     -PowerShellVersion '5.0' `
     -ProcessorArchitecture 'None' `
     -FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:CI_MODULE_PATH ) ).BaseName `
     -FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
-    -Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance',
-'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
+    -Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
     -LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
     -IconUri 'http://i.imgur.com/fbXjkCn.png' `
     -ErrorAction 'Stop'
