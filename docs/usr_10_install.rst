@@ -50,14 +50,14 @@ The ``-ListAvailable`` switch will pull up all installed versions from any path 
 
 To see which version is currently loaded, use:
 
-``Get-Module Armor``
+``Get-Module -Name Armor``
 
 If nothing is returned, you need to first load the module by using:
 
-``Import-Module Armor``
+``Import-Module -Name Armor``
 
 If you wish to load a specific version, use:
 
-``Import-Module Armor -RequiredVersion #.#.#.#``
+``Import-Module -Name Armor -RequiredVersion #.#.#.#``
 
 Where "#.#.#.#" represents the version number.
