@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.130'
+ModuleVersion = '1.0.134'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@ Author = 'Troy Lindsay'
 CompanyName = 'Armor'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Troy Lindsay. All rights reserved.'
+Copyright = '(c) 2017-2018 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.

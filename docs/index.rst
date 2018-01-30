@@ -17,7 +17,7 @@
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-.. image:: https://img.shields.io/badge/install-PS%20Gallery-blue.svg
+.. image:: https://img.shields.io/powershellgallery/v/Armor.svg
    :target: https://www.powershellgallery.com/packages/Armor
    :alt: PowerShell Gallery
 
