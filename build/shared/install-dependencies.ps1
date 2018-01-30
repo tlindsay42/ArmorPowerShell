@@ -9,13 +9,13 @@ foreach ( $providerName in 'NuGet', 'PowerShellGet' ) {
 }
 
 Write-Host -Object "`nInstalling modules:" -ForegroundColor 'Yellow'
-foreach ( $moduleName in 'PowerShellGet', 'Pester', 'Coveralls' ) {
+foreach ( $moduleName in 'Pester', 'Coveralls' ) {
     if ( $env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2015' ) {
-        Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -AllowClobber -Force -Confirm:$false |
+        Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -Force -Confirm:$false |
             Out-Null
     }
     else {
-        Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -AllowClobber -SkipPublisherCheck -Force -Confirm:$false |
+        Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -SkipPublisherCheck -Force -Confirm:$false |
             Out-Null
     }
     
