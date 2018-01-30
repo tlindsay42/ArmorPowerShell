@@ -27,8 +27,6 @@ elseif ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:EMAIL_ADDRESS ) {
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $messageForm = '{0} module version "{1}" published to {2}.'
 
-    Get-Content -Path ( '{0}\{1}.psd1' -f $env:CI_MODULE_PATH, $env:CI_MODULE_NAME )
-
     # Publish the new version to the PowerShell Gallery
     Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
 
