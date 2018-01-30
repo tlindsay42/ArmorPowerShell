@@ -96,6 +96,20 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
+            'Remove-ArmorCompleteWorkload'     = @{
+                'v1.0' = @{
+                    'Description' = 'Deletes the specified workload in your account'
+                    'URI'         = @(
+                        '/apps/{id}'
+                    )
+                    'Method'      = 'Delete'
+                    'Body'        = @{}
+                    'Query'       = @{}
+                    'Location'    = ''
+                    'Filter'      = @{}
+                    'SuccessCode' = '202'
+                }
+            }
             'Get-ArmorAccount'              = @{
                 'v1.0' = @{
                     'Description' = 'Retrieves a list of Armor account memberships'
@@ -276,9 +290,7 @@ function Get-ArmorApiData {
                     }
                     'Query'       = @{}
                     'Location'    = ''
-                    'Filter'      = @{
-                        'Name' = 'Name'
-                    }
+                    'Filter'      = @{}
                     'SuccessCode' = '200'
                 }
             }
