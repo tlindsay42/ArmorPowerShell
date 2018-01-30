@@ -263,6 +263,25 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
+            'Rename-ArmorCompleteWorkload'     = @{
+                'v1.0' = @{
+                    'Description' = 'Renames the specified workload in your account'
+                    'URI'         = @(
+                        '/apps/{id}'
+                    )
+                    'Method'      = 'Put'
+                    'Body'        = @{
+                        'id'   = 'ID'
+                        'name' = 'Name'
+                    }
+                    'Query'       = @{}
+                    'Location'    = ''
+                    'Filter'      = @{
+                        'Name' = 'Name'
+                    }
+                    'SuccessCode' = '200'
+                }
+            }
             'Reset-ArmorVM'                 = @{
                 'v1.0' = @{
                     'Description' = 'Abruptly reset the specified virtual machine in your account'
