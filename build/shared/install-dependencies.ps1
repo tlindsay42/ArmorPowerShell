@@ -2,7 +2,6 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 
 Write-Host -Object "`nInstalling package providers:" -ForegroundColor 'Yellow'
 foreach ( $providerName in 'NuGet', 'PowerShellGet' ) {
-    Write-Host -Object ( '   {0}' -f $moduleName )
     if ( -not ( Get-PackageProvider $providerName -ErrorAction 'SilentlyContinue' ) ) {
         Install-PackageProvider -Name $providerName -Scope 'CurrentUser' -Force -ForceBootstrap
         Get-PackageProvider -Name $providerName
