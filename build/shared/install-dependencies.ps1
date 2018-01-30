@@ -3,8 +3,12 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 Write-Host -Object "`nInstalling modules:" -ForegroundColor 'Yellow'
 
 foreach ( $providerName in 'NuGet', 'PowerShellGet' ) {
-    Install-PackageProvider -Name $providerName -Scope 'CurrentUser' -Force -ForceBootstrap
+    if ( -not ( Get-PackageProvider $providerName -ErrorAction 'SilentlyContinue' ) ) {
+        Install-PackageProvider -Name $providerName -Scope 'CurrentUser' -Force -ForceBootstrap
+    }
 }
+
+Install-Module -Name 'PowerShellGet' -Repository 'PSGallery' -SkipPublisherCheck -Force -Confirm:$false
 
 foreach ( $moduleName in 'Pester', 'Coveralls' ) {
     Write-Host -Object ( '   {0}' -f $moduleName )
