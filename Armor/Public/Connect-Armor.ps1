@@ -82,13 +82,6 @@ function Connect-Armor {
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $Global:ArmorSession.ApiVersion
 
-        if ( Test-NetConnection -ComputerName $Global:ArmorSession.Server -Port $Global:ArmorSession.Port -InformationLevel Quiet ) {
-            Write-Verbose -Message ( 'Verified TCP connection to {0}:{1}.' -f $Global:ArmorSession.Server, $Global:ArmorSession.Port )
-        }
-        else {
-            throw ( 'Failed to establish a TCP connection to {0}:{1}.' -f $Global:ArmorSession.Server, $Global:ArmorSession.Port )
-        }
-
         if ( $Credential -eq $null ) {
             $Credential = Get-Credential
 
