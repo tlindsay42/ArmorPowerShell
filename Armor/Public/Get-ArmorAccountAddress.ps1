@@ -38,7 +38,7 @@ function Get-ArmorAccountAddress {
     param (
         [Parameter( Position = 0 )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16] $ID = $Global:ArmorSession.GetAccountContext().ID,
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion
     )
