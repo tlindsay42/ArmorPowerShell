@@ -107,7 +107,7 @@ function Submit-ArmorApiRequest {
             }
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

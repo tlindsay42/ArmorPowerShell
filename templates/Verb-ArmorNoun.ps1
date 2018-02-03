@@ -57,6 +57,8 @@ function Verb-ArmorNoun {
     } # End of begin
 
     process {
+        $return = $null
+
         # Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
@@ -76,8 +78,11 @@ function Verb-ArmorNoun {
         if ( $results.Count -eq 0 ) {
             Write-Host -Object 'Armor item not found.'
         }
+        else {
+            $return = $results
+        }
 
-        return $results
+        $return
     } # End of process
 
     end {

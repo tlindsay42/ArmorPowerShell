@@ -53,6 +53,8 @@ function Update-ArmorApiToken {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -62,7 +64,9 @@ function Update-ArmorApiToken {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
-        $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
+        $return = $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
+
+        $return
     } # End of process
 
     end {

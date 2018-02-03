@@ -88,7 +88,7 @@ function Expand-JsonItem {
             }
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

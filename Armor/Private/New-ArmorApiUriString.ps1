@@ -67,6 +67,8 @@ function New-ArmorApiUriString {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message 'Build the URI.'
 
         # Reset for instances where $ID was set with a null string
@@ -142,7 +144,7 @@ function New-ArmorApiUriString {
 
         Write-Verbose -Message ( 'URI = {0}' -f $return )
             
-        return $return
+        $return
     } # End of process
 
     end {

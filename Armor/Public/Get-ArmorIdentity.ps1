@@ -49,6 +49,8 @@ function Get-ArmorIdentity {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -62,7 +64,9 @@ function Get-ArmorIdentity {
         $Global:ArmorSession.Permissions = $results.Permissions
         $Global:ArmorSession.Features = $results.Features
 
-        return $Global:ArmorSession
+        $return = $Global:ArmorSession
+
+        $return
     } # End of process
 
     end {

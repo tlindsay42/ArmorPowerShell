@@ -74,6 +74,8 @@ function Connect-Armor {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message 'Storing all session details in $Global:ArmorSession.'
         $Global:ArmorSession = [ArmorSession]::New( $Server, $Port, $ApiVersion )
 
@@ -150,7 +152,9 @@ function Connect-Armor {
         Set-ArmorAccountContext -ID $AccountID |
             Out-Null
 
-        return $Global:ArmorSession
+        $return = $Global:ArmorSession
+
+        $return
     } # End of process
 
     end {

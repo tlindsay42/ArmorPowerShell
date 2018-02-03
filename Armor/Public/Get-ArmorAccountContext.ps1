@@ -43,7 +43,9 @@ function Get-ArmorAccountContext {
     } # End of begin
 
     process {
-        return $Global:ArmorSession.GetAccountContext()
+        $return = $Global:ArmorSession.GetAccountContext()
+
+        $return
     } # End of process
 
     end {

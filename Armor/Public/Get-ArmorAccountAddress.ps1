@@ -78,7 +78,7 @@ function Get-ArmorAccountAddress {
             $return = [ArmorAccountAddress] $results
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

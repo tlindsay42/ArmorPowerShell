@@ -59,6 +59,8 @@ function New-ArmorApiToken {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -70,7 +72,9 @@ function New-ArmorApiToken {
 
         $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-        return $results
+        $return = $results
+
+        $return
     } # End of process
 
     end {

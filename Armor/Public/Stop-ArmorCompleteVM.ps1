@@ -58,6 +58,8 @@ function Stop-ArmorCompleteVM {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -67,9 +69,11 @@ function Stop-ArmorCompleteVM {
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
             $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+
+            $return = $results
         }
 
-        return $results
+        $return
     } # End of process
 
     end {

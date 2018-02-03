@@ -53,6 +53,8 @@ function Get-ArmorWorkload {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -67,8 +69,11 @@ function Get-ArmorWorkload {
         if ( $results.Count -eq 0 ) {
             Write-Host -Object 'Armor workload not found.'
         }
+        else {
+            $return = $results
+        }
 
-        return $results
+        $return
     } # End of process
 
     end {

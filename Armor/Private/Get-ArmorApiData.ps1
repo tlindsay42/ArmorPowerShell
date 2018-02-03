@@ -380,7 +380,7 @@ function Get-ArmorApiData {
             $return = $api.$Endpoint.$ApiVersion
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

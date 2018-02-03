@@ -73,7 +73,7 @@ function Get-ArmorAccount {
             $return = [ArmorAccount[]] $results
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

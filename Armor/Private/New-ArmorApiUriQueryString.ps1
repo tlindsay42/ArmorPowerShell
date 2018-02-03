@@ -87,12 +87,12 @@ function New-ArmorApiUriQueryString {
 
         # After all query options are exhausted, build a new URI with all defined query options
         if ( $queryString.Count -gt 0 ) {
-            $return = '?{0}' -f ( $queryString -join '&' )
+            $return += '?{0}' -f ( $queryString -join '&' )
 
             Write-Verbose -Message ( 'URI = {0}' -f $return )
         }
 
-        return $return
+        $return
     } # End of process
 
     end {

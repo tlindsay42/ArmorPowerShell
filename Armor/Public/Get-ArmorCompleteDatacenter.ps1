@@ -64,6 +64,8 @@ function Get-ArmorCompleteDatacenter {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -78,8 +80,11 @@ function Get-ArmorCompleteDatacenter {
         if ( $results.Count -eq 0 ) {
             Write-Host -Object 'Armor Complete datacenter not found.'
         }
+        else {
+            $return = $results
+        }
 
-        return $results
+        $return
     } # End of process
 
     end {

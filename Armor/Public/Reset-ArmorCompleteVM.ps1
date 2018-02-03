@@ -55,6 +55,8 @@ function Reset-ArmorCompleteVM {
     } # End of begin
 
     process {
+        $return = $null
+
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -62,9 +64,11 @@ function Reset-ArmorCompleteVM {
             $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
+
+            $return = $results
         }
 
-        return $results
+        $return
     } # End of process
 
     end {
