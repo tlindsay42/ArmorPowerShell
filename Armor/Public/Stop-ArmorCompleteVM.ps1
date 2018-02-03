@@ -60,7 +60,6 @@ function Stop-ArmorCompleteVM {
     process {
         $return = $null
 
-        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {

@@ -60,7 +60,6 @@ function Get-ArmorUser {
     process {
         $return = $null
 
-        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID

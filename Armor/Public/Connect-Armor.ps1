@@ -79,7 +79,6 @@ function Connect-Armor {
         Write-Verbose -Message 'Storing all session details in $Global:ArmorSession.'
         $Global:ArmorSession = [ArmorSession]::New( $Server, $Port, $ApiVersion )
 
-        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $function )
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $Global:ArmorSession.ApiVersion
 
         if ( $Credential -eq $null ) {

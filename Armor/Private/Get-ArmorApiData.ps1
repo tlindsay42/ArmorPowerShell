@@ -66,6 +66,8 @@ function Get-ArmorApiData {
     process {
         $return = $null
 
+        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $Endpoint )
+
         $api = @{
             'Example'                       = @{
                 'v1.0' = @{
