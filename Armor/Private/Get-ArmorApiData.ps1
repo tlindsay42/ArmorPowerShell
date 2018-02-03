@@ -96,7 +96,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Remove-ArmorCompleteWorkload'     = @{
+            'Remove-ArmorCompleteWorkload'  = @{
                 'v1.0' = @{
                     'Description' = 'Deletes the specified workload in your account'
                     'URI'         = @(
@@ -260,7 +260,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Rename-ArmorVM'                = @{
+            'Rename-ArmorCompleteVM'        = @{
                 'v1.0' = @{
                     'Description' = 'Renames the specified virtual machine in your account'
                     'URI'         = @(
@@ -277,7 +277,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Rename-ArmorCompleteWorkload'     = @{
+            'Rename-ArmorCompleteWorkload'  = @{
                 'v1.0' = @{
                     'Description' = 'Renames the specified workload in your account'
                     'URI'         = @(
