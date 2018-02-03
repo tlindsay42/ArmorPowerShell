@@ -65,9 +65,12 @@ function Invoke-ArmorWebRequest {
     process {
         $return = $null
 
+        $jsonBody = $Body |
+            ConvertTo-Json -ErrorAction 'Stop'
+
         $uri = New-ArmorApiUriString -Endpoints $Endpoint
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $Method -Body ( $Body | ConvertTo-Json ) -SuccessCode $SuccessCode -Description $Description
+        $results = Submit-ArmorApiRequest -Uri $uri -Method $Method -Body $jsonBody -SuccessCode $SuccessCode -Description $Description
 
         $return = $results
 
