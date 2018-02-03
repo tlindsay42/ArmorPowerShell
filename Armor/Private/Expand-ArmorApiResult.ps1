@@ -54,12 +54,6 @@ function Expand-ArmorApiResult {
     process {
         $return = @()
 
-        if ( $Results.Count -eq 0 ) {
-            return $Results
-        }
-
-        Write-Verbose -Message 'Formatting return values.'
-
         foreach ( $result in $Results ) {
             if ( $Location -and $result.$Location -ne $null ) {
                 # The $Location check assumes that not all endpoints will require finding (and removing) a parent key
@@ -68,11 +62,7 @@ function Expand-ArmorApiResult {
             }
         }
 
-        if ( $return.Count -eq 0 ) {
-            $return = $Results
-        }
-
-        return $return
+        $return
     } # End of process
 
     end {
