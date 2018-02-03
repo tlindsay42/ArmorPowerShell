@@ -75,6 +75,7 @@ The source code is `available on GitHub`_.
    cmd_disconnect
    cmd_get
    cmd_invoke
+   cmd_remove
    cmd_rename
    cmd_reset
    cmd_restart
