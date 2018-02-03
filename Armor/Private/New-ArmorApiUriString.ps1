@@ -71,7 +71,7 @@ function New-ArmorApiUriString {
 
         Write-Verbose -Message 'Build the URI.'
 
-        # Reset for instances where $ID was set with a null string
+        # Reset for instances where $ID is set to zero / null so that the base URI is selected
         if ( $IDs.Count -eq 1 ) {
             if ( $IDs[0] -eq 0 ) {
                 $IDs = @()
@@ -143,7 +143,7 @@ function New-ArmorApiUriString {
         }
 
         Write-Verbose -Message ( 'URI = {0}' -f $return )
-            
+
         $return
     } # End of process
 
