@@ -1,7 +1,7 @@
-function Get-ArmorWorkload {
+function Get-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        Retrieve any workloads that are associated to your account.
+        Retrieve any workloads that are associated to your Armor Complete account.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
