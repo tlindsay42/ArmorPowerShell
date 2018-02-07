@@ -11,12 +11,6 @@ function Stop-ArmorCompleteVM {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ID
-        The ID of a VM in the Armor account.  The default value is 0.
-
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -38,12 +32,24 @@ function Stop-ArmorCompleteVM {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
     param (
+        <#
+        Specifies the ID of the Armor Complete virtual machine that you want
+        to stop.
+        #>
         [Parameter( Position = 0 )]
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies how you want to stop the Armor Complete virtual machine.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'Shutdown', 'Off', 'ForceOff' )]
         [String] $Type = 'Shutdown',
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

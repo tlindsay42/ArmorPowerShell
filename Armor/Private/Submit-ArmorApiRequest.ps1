@@ -11,18 +11,6 @@ function Submit-ArmorApiRequest {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER URI
-        The endpoint's URI.  The default value is null.
-
-        .PARAMETER Headers
-        The headers containing authentication details.  The default value is $Global:ArmorSession.Headers.
-
-        .PARAMETER Method
-        The action/method to perform on the endpoint.  The default value is null.
-
-        .PARAMETER Body
-        Any optional request body data being submitted to the endpoint.  The default value is null.
-
         .INPUTS
         None
             You cannot pipe objects to Submit-ArmorApiRequest.
@@ -45,20 +33,46 @@ function Submit-ArmorApiRequest {
 
     [CmdletBinding( SupportsShouldProcess = $true )]
     param (
+        <#
+        Specifies the Uniform Resource Identifier (URI) of the Armor API
+        resource to which the web request is sent.
+        #>
         [Parameter( Position = 0 )]
         [ValidateScript( { $_ -match '^https://.+/.+$' } )]
         [String] $Uri = '',
+
+        <#
+        Specifies the headers of the Armor API web request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
         [Hashtable] $Headers = $Global:ArmorSession.Headers,
+
+        <#
+        Specifies the action/method used for the Armor API web request.
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
         [String] $Method = '',
+
+        <#
+        Specifies the body of the Armor API request.  Ignored if the request
+        method is set to Get.
+        #>
         [Parameter( Position = 3 )]
         [String] $Body = '',
+
+        <#
+        Specifies the success code expected in the response.
+        #>
         [Parameter( Position = 4 )]
         [ValidateSet( 200 )]
         [UInt16] $SuccessCode = 200,
+
+        <#
+        If this cmdlet is called with the -Confirm switch parameter
+        set to true, this optional description will be displayed at the prompt.
+        #>
         [Parameter( Position = 5 )]
         [ValidateNotNullorEmpty()]
         [String] $Description = ''

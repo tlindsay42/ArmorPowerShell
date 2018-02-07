@@ -11,9 +11,6 @@ function Expand-JsonItem {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER InputObject
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         System.Management.Automation.PSObject
 
@@ -35,6 +32,9 @@ function Expand-JsonItem {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the deserialized JSON objects to parse recursively.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         $InputObject = $null
     )

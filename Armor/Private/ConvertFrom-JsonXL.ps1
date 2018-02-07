@@ -12,9 +12,6 @@ function ConvertFrom-JsonXL {
         Twitter: troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER InputObject
-        The JSON string payload.
-
         .INPUTS
         System.String
 
@@ -36,6 +33,9 @@ function ConvertFrom-JsonXL {
 
     [CmdletBinding()]
     param (
+        <#
+        The JSON string payload.  The default is an empty string: ''.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [String] $InputObject = ''
     )

@@ -11,9 +11,6 @@ function Get-ArmorAccountContext {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Parameter
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 

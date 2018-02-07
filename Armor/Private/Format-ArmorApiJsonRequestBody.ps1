@@ -11,12 +11,6 @@ function Format-ArmorApiJsonRequestBody {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER BodyKeys
-        All of the body options available to the endpoint.
-
-        .PARAMETER Parameters
-        All of the parameter options available within the parent function.
-
         .INPUTS
         None
             You cannot pipe objects to Format-ArmorApiJsonRequestBody.
@@ -39,8 +33,14 @@ function Format-ArmorApiJsonRequestBody {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the variables available in the endpoint request body schema.
+        #>
         [Parameter( Position = 0 )]
-        [String[]] $BodyKeys = $null,
+
+        <#
+        Specifies the parameter names available within the calling cmdlet.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNullorEmpty()]
         $Parameters = $null

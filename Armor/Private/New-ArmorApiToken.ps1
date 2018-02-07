@@ -11,15 +11,6 @@ function New-ArmorApiToken {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Code
-        The temporary authorization code to redeem for a token.
-
-        .PARAMETER GrantType
-        The type of permission.
-
-        .PARAMETER ApiVersion
-        The API version.
-
         .INPUTS
         System.String
 
@@ -41,12 +32,23 @@ function New-ArmorApiToken {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the temporary authorization code to redeem for a token.
+        #>
         [Parameter( ValueFromPipeline = $true, Position = 0 )]
         [ValidateNotNullorEmpty()]
         [String] $Code = $null,
+
+        <#
+        Specifies the type of permission.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'authorization_code' )]
         [String] $GrantType = 'authorization_code',
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

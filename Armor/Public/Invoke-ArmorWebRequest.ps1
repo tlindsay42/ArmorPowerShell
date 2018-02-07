@@ -11,9 +11,6 @@ function Invoke-ArmorWebRequest {
         Twitter: @troylindsay42
         GitHub: @tlindsay42
 
-        .PARAMETER Parameter
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -35,20 +32,53 @@ function Invoke-ArmorWebRequest {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the Armor API endpoint.
+        #>
         [Parameter( Position = 0 )]
         [ValidateNotNullorEmpty()]
         [String] $Endpoint = '/',
+
+        <#
+        Specifies the headers of the Armor API web request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
         [Hashtable] $Headers = $Global:ArmorSession.Headers,
+
+        <#
+        Specifies the method used for the Armor API web request.  The permitted
+        values are:
+        - Delete
+        - Get
+        - Patch
+        - Post
+        - Put
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
         [String] $Method = '',
+
+        <#
+        Specifies the body of the Armor API web request.  This parameter is
+        ignored for Get requests.
+        #>
         [Parameter( Position = 3 )]
         [String] $Body = '',
+
+        <#
+        Specifies the value of the HTTP response code that indicates success
+        for this Armor API web request.
+        #>
         [Parameter( Position = 4 )]
         [ValidateSet( 200 )]
         [UInt16] $SuccessCode = 200,
+
+        <#
+        If the PowerShell $ConfirmPreference value is elevated for this Armor
+        API web request by setting the -Confirm parameter to $true, this
+        specifies the text to display at the user prompt.
+        #>
         [Parameter( Position = 5 )]
         [ValidateNotNullorEmpty()]
         [String] $Description = 'Test Armor API request'

@@ -11,9 +11,6 @@ function Get-ArmorCompleteWorkloadTier {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Parameter
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -35,13 +32,31 @@ function Get-ArmorCompleteWorkloadTier {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the ID of the Armor Complete workload that contains the
+        tier(s).
+        #>
         [Parameter( Position = 0 )]
         [UInt16] $WorkloadID = 0,
+
+        <#
+        Specifies the names of the tiers in the Armor Complete that you want to
+        retrieve.  Wildcard searches are permitted.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNullOrEmpty()]
         [String] $Name = '',
+
+        <#
+        Specifies the IDs of the tiers in the Armor Complete that you want to
+        retrieve.
+        #>
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

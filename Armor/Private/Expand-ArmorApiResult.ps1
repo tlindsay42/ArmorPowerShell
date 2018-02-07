@@ -11,12 +11,6 @@ function Expand-ArmorApiResult {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Results
-        The unformatted API response content.
-
-        .PARAMETER Location
-        The key/value pair that contains the name of the key holding the response content's data.
-
         .INPUTS
         System.Management.Automation.PSCustomObject
 
@@ -38,8 +32,16 @@ function Expand-ArmorApiResult {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the unformatted API response content.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [PSCustomObject[]] $Results = @(),
+
+        <#
+        Specifies the key/value pair that contains the name of the key holding
+        the response content's data.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
         [String] $Location = $null
