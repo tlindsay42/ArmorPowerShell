@@ -11,9 +11,6 @@ function Get-ArmorCompleteWorkload {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Parameter
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -35,10 +32,22 @@ function Get-ArmorCompleteWorkload {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the name of the Armor Complete workload.  Wildcard searches
+        are permitted.
+        #>
         [Parameter( Position = 0 )]
         [String] $Name = '',
+
+        <#
+        Specifies the ID of the Armor Complete workload.
+        #>
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

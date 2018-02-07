@@ -11,12 +11,6 @@ function Update-ArmorApiToken {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Token
-        The authorization token.
-
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         System.String
 
@@ -38,9 +32,16 @@ function Update-ArmorApiToken {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the Armor API authorization token.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [ValidateNotNullorEmpty()]
         [String] $Token = $Global:ArmorSession.GetToken(),
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

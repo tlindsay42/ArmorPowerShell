@@ -11,15 +11,6 @@ function Get-ArmorVM {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Name
-        The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
-
-        .PARAMETER ID
-        The ID of a VM in the Armor account.  The default value is 0.
-
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorVM.
@@ -71,10 +62,22 @@ function Get-ArmorVM {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the names of the virtual machines that you want to retrieve.
+        Wildcard matches are supported.
+        #>
         [Parameter( Position = 0 )]
         [String] $Name = '',
+
+        <#
+        Specifies the IDs of the virtual machines that you want to retrieve.
+        #>
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

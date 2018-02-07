@@ -11,18 +11,6 @@ function Get-ArmorCompleteDatacenter {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Name
-        { required: description of the specified input parameter's purpose }
-
-        .PARAMETER Location
-        { required: description of the specified input parameter's purpose }
-
-        .PARAMETER ID
-        { required: description of the specified input parameter's purpose }
-
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorLocation.
@@ -45,11 +33,26 @@ function Get-ArmorCompleteDatacenter {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the name of the Armor Complete region.
+        #>
         [String] $Name = '',
+
+        <#
+        Specifies the name of the Armor Complete datacenter.
+        #>
         [Parameter( Position = 0 )]
         [String] $Location = '',
+
+        <#
+        Specifies the ID of the Armor Complete datacenter.
+        #>
         [ValidateRange( 1, 5 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

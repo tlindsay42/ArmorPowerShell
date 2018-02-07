@@ -11,9 +11,6 @@ function Get-ArmorAccount {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorAccount.
@@ -36,10 +33,21 @@ function Get-ArmorAccount {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the name of the Armor account.  Wildcard searches are permitted.
+        #>
         [Parameter( Position = 0 )]
         [String] $Name = '',
+
+        <#
+        Specifies the ID of the Armor account.
+        #>
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion
     )

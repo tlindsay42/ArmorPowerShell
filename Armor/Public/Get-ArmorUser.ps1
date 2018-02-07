@@ -11,9 +11,6 @@ function Get-ArmorUser {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ID
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -35,15 +32,37 @@ function Get-ArmorUser {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the username of the Armor user account.  Wildcard searches
+        are permitted.
+        #>
         [Parameter( Position = 0 )]
         [ValidateNotNullOrEmpty()]
         [String] $UserName = '',
+
+        <#
+        Specifies the first name of the Armor user account.  Wildcard searches
+        are permitted.
+        #>
         [ValidateNotNullOrEmpty()]
         [String] $FirstName = '',
+
+        <#
+        Specifies the last name of the Armor user account.  Wildcard searches
+        are permitted.
+        #>
         [ValidateNotNullOrEmpty()]
         [String] $LastName = '',
+
+        <#
+        Specifies the ID of the Armor user account.
+        #>
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

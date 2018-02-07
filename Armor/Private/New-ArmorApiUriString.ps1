@@ -11,18 +11,6 @@ function New-ArmorApiUriString {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Server
-        The Armor API server IP address or FQDN.  The default value is $Global:ArmorSession.Server.
-
-        .PARAMETER Port
-        The Armor API server port.  The default value is $Global:ArmorSession.Port.
-
-        .PARAMETER Endpoints
-        An array of available endpoint paths.
-
-        .PARAMETER ID
-        An array of positional ID values to be inserted into the path.
-
         .INPUTS
         None
             You cannot pipe objects to New-ArmorApiUriString.
@@ -46,15 +34,30 @@ function New-ArmorApiUriString {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the Armor API server IP address or FQDN.
+        #>
         [Parameter( Position = 0 )]
         [ValidateNotNullOrEmpty()]
         [String] $Server = $Global:ArmorSession.Server,
+
+        <#
+        Specifies the Armor API server port.
+        #>
         [Parameter( Position = 1 )]
         [ValidateRange( 0, 65535 )]
         [UInt16] $Port = $Global:ArmorSession.Port,
+
+        <#
+        Specifies the array of available endpoint paths.
+        #>
         [Parameter( Position = 2 )]
         [ValidateNotNull()]
         [String[]] $Endpoints = @(),
+
+        <#
+        Specifies the positional ID values to be inserted into the path.
+        #>
         [Parameter( Position = 3 )]
         [ValidateNotNull()]
         [UInt16[]] $IDs = @()

@@ -11,9 +11,6 @@ function Set-ArmorAccountContext {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ID
-        The Armor account ID to use for all subsequent requests.
-
         .INPUTS
         System.UInt16
 
@@ -35,6 +32,10 @@ function Set-ArmorAccountContext {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies which Armor account should be used for the context of all
+        subsequent requests.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [ValidateScript( { $_ -in ( Get-ArmorIdentity ).Accounts.ID } )]
         [UInt16] $ID = $null

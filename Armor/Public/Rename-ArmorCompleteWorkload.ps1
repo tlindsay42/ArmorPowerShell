@@ -11,12 +11,6 @@ function Rename-ArmorCompleteWorkload {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER NewName
-        { required: description of the specified input parameter's purpose }
-
-        .PARAMETER ID
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -38,12 +32,24 @@ function Rename-ArmorCompleteWorkload {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
     param (
+        <#
+        Specifies the ID of the Armor Complete workload that you want to
+        rename.
+        #>
         [Parameter( Position = 0 )]
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the new name of the Armor Complete workload.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNullOrEmpty()]
         [String] $Name = '',
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

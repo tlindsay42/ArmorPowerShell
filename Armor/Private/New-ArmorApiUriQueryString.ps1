@@ -11,15 +11,6 @@ function New-ArmorApiUriQueryString {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER QueryKeys
-        All of the query options available to the endpoint.
-
-        .PARAMETER Parameters
-        All of the parameter options available within the parent function.
-
-        .PARAMETER Uri
-        The endpoint's URI.
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -40,11 +31,22 @@ function New-ArmorApiUriQueryString {
     #>
 
     param (
+        <#
+        Specifies the query filters available to the endpoint.
+        #>
         [Parameter( Position = 0 )]
         [String[]] $QueryKeys = @(),
+
+        <#
+        Specifies the parameters available within the calling cmdlet.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNullOrEmpty()]
         [String[]] $Parameters = @(),
+
+        <#
+        Specifies the endpoint's URI.
+        #>
         [Parameter( Position = 2 )]
         [ValidateNotNullOrEmpty()]
         [String] $Uri = ''

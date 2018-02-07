@@ -11,9 +11,6 @@ function Remove-ArmorCompleteWorkload {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ID
-        { required: description of the specified input parameter's purpose }
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -35,9 +32,16 @@ function Remove-ArmorCompleteWorkload {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
     param (
+        <#
+        Specifies the ID of the Armor Complete workload.
+        #>
         [Parameter( Position = 0 )]
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

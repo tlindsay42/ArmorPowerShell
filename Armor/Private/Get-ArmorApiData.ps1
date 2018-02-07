@@ -11,13 +11,6 @@ function Get-ArmorApiData {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Endpoint
-        Specifies the cmdlet name to lookup the API data for.  The default value is 'Example', which provides example
-        API data for each of the fields for reference.
-
-        .PARAMETER ApiVersion
-        The API version.
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorApiData.
@@ -49,9 +42,16 @@ function Get-ArmorApiData {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the cmdlet name to lookup the API data for.
+        #>
         [Parameter( Position = 0 )]
         [ValidateNotNullorEmpty()]
         [String] $Endpoint = 'Example',
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

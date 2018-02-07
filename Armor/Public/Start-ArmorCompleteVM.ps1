@@ -11,12 +11,6 @@ function Start-ArmorCompleteVM {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER ID
-        The ID of a VM in the Armor account.  The default value is 0.
-
-        .PARAMETER ApiVersion
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
-
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
@@ -38,9 +32,17 @@ function Start-ArmorCompleteVM {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
     param (
+        <#
+        Specifies the ID of the VM to power on in the Armor Complete account in
+        context.
+        #>
         [Parameter( Position = 0 )]
         [ValidateRange( 1, 65535 )]
         [UInt16] $ID = 0,
+
+        <#
+        Specifies the API version for this request.
+        #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion

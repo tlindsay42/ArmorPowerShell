@@ -11,13 +11,6 @@ function Select-ArmorApiResult {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .PARAMETER Results
-        The formatted API response contents.
-
-        .PARAMETER Filter
-        The list of parameters that the user can use to filter response data. 
-        Each key is the parameter name without the "$" and each value corresponds to the response data's key.
-
         .INPUTS
         System.Management.Automation.PSCustomObject
 
@@ -39,8 +32,17 @@ function Select-ArmorApiResult {
 
     [CmdletBinding()]
     param (
+        <#
+        Specifies the formatted API response contents.
+        #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [PSCustomObject[]] $Results = @(),
+
+        <#
+        Specifies the list of parameters that the user can use to filter
+        response data.  Each key is the parameter name without the "$" and each
+        value corresponds to the response data's key.
+        #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
         [Hashtable] $Filter = $null
