@@ -22,9 +22,10 @@ DESCRIPTION
 
 PARAMETERS
     -ID <UInt16>
-        { required: description of the specified input parameter's purpose }
+        Specifies the ID of the Armor Complete workload.
         
     -ApiVersion <String>
+        Specifies the API version for this request.
         
     -WhatIf [<SwitchParameter>]
         

@@ -22,16 +22,32 @@ DESCRIPTION
 
 PARAMETERS
     -Endpoint <String>
+        Specifies the Armor API endpoint.
         
     -Headers <Hashtable>
+        Specifies the headers of the Armor API web request.
         
     -Method <String>
+        Specifies the method used for the Armor API web request.  The permitted
+        values are:
+        - Delete
+        - Get
+        - Patch
+        - Post
+        - Put
         
     -Body <String>
+        Specifies the body of the Armor API web request.  This parameter is
+        ignored for Get requests.
         
     -SuccessCode <UInt16>
+        Specifies the value of the HTTP response code that indicates success
+        for this Armor API web request.
         
     -Description <String>
+        If the PowerShell $ConfirmPreference value is elevated for this Armor
+        API web request by setting the -Confirm parameter to $true, this
+        specifies the text to display at the user prompt.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
