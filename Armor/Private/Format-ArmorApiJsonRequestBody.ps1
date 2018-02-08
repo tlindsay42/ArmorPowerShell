@@ -15,9 +15,6 @@ function Format-ArmorApiJsonRequestBody {
         None
             You cannot pipe objects to Format-ArmorApiJsonRequestBody.
 
-        .OUTPUTS
-        System.String
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -32,6 +29,7 @@ function Format-ArmorApiJsonRequestBody {
     #>
 
     [CmdletBinding()]
+    [OutputType( [String] )]
     param (
         <#
         Specifies the variables available in the endpoint request body schema.
@@ -68,7 +66,7 @@ function Format-ArmorApiJsonRequestBody {
     } # End of begin
 
     process {
-        $return = $null
+        [String] $return = $null
 
         if ( $resources.Method -ne 'Get' ) {
             # Inventory all invoked parameters

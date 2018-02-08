@@ -15,9 +15,6 @@ function Submit-ArmorApiRequest {
         None
             You cannot pipe objects to Submit-ArmorApiRequest.
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject[]
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -32,6 +29,7 @@ function Submit-ArmorApiRequest {
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true )]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the Uniform Resource Identifier (URI) of the Armor API
@@ -85,7 +83,7 @@ function Submit-ArmorApiRequest {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
         $request = $null
 
         if ( $PSCmdlet.ShouldProcess( $ID, $Description ) ) {

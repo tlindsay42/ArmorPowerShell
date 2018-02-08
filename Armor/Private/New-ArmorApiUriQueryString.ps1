@@ -14,9 +14,6 @@ function New-ArmorApiUriQueryString {
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -30,6 +27,7 @@ function New-ArmorApiUriQueryString {
         {required: show one or more examples using the function}
     #>
 
+    [OutputType( [String] )]
     param (
         <#
         Specifies the query filters available to the endpoint.
@@ -59,7 +57,7 @@ function New-ArmorApiUriQueryString {
     } # End of begin
 
     process {
-        $return = $Uri
+        [String] $return = $Uri
 
         Write-Verbose -Message 'Build the query parameters.'
 

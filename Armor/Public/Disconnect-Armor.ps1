@@ -15,9 +15,6 @@ function Disconnect-Armor {
         None
             You cannot pipe objects to Disonnect-Armor.
 
-        .OUTPUTS
-        None
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -32,6 +29,7 @@ function Disconnect-Armor {
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
+    [OutputType( [Void] )]
     param ()
 
     begin {

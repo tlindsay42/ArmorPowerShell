@@ -14,9 +14,6 @@ function Get-ArmorUser {
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Get-ArmorUser {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the username of the Armor user account.  Wildcard searches
@@ -77,7 +75,7 @@ function Get-ArmorUser {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

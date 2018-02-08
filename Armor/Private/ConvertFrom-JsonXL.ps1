@@ -15,9 +15,6 @@ function ConvertFrom-JsonXL {
         .INPUTS
         System.String
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -32,6 +29,7 @@ function ConvertFrom-JsonXL {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the JSON string payload.
@@ -47,7 +45,7 @@ function ConvertFrom-JsonXL {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         [void][System.Reflection.Assembly]::LoadWithPartialName( 'System.Web.Extensions' )
         

@@ -14,9 +14,6 @@ function Get-ArmorCompleteWorkload {
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -30,7 +27,7 @@ function Get-ArmorCompleteWorkload {
         {required: show one or more examples using the function}
     #>
 
-    [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the name of the Armor Complete workload.  Wildcard searches
@@ -62,7 +59,7 @@ function Get-ArmorCompleteWorkload {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

@@ -14,9 +14,6 @@ function Expand-ArmorApiResult {
         .INPUTS
         System.Management.Automation.PSCustomObject
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Expand-ArmorApiResult {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the unformatted API response content.
@@ -54,7 +52,7 @@ function Expand-ArmorApiResult {
     } # End of begin
 
     process {
-        $return = @()
+        [PSCustomObject[]] $return = @()
 
         foreach ( $result in $Results ) {
             if ( $Location -and $result.$Location -ne $null ) {

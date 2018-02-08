@@ -15,9 +15,6 @@ function Get-ArmorAccountAddress {
         None
             You cannot pipe objects to Get-ArmorAccount.
 
-        .OUTPUTS
-        System.Collections.Hashtable
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -32,6 +29,7 @@ function Get-ArmorAccountAddress {
     #>
 
     [CmdletBinding()]
+    [OutputType( 'ArmorAccountAddress' )]
     param (
         <#
         Specifies the ID of the Armor account with the desired address details.
@@ -56,7 +54,7 @@ function Get-ArmorAccountAddress {
     } # End of begin
 
     process {
-        $return = $null
+        [ArmorAccountAddress] $return = $null
         $headers = $Global:ArmorSession.Headers.Clone()
         $headers.( $Global:ArmorSession.AccountContextHeader ) = $ID
 
@@ -78,7 +76,7 @@ function Get-ArmorAccountAddress {
             Write-Host -Object 'Armor account not found.'
         }
         else {
-            $return = [ArmorAccountAddress] $results
+            $return = $results
         }
 
         $return

@@ -15,9 +15,6 @@ function Get-ArmorCompleteDatacenter {
         None
             You cannot pipe objects to Get-ArmorLocation.
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,7 +28,7 @@ function Get-ArmorCompleteDatacenter {
         {required: show one or more examples using the function}
     #>
 
-    [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the name of the Armor Complete region.
@@ -67,7 +64,7 @@ function Get-ArmorCompleteDatacenter {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

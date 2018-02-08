@@ -15,9 +15,6 @@ function Get-ArmorVM {
         None
             You cannot pipe objects to Get-ArmorVM.
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject[]
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -61,6 +58,7 @@ function Get-ArmorVM {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the names of the virtual machines that you want to retrieve.
@@ -92,7 +90,7 @@ function Get-ArmorVM {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

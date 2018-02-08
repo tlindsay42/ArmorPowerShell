@@ -14,9 +14,6 @@ function Set-ArmorAccountContext {
         .INPUTS
         System.UInt16
 
-        .OUTPUTS
-        ArmorAccount
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Set-ArmorAccountContext {
     #>
 
     [CmdletBinding()]
+    [OutputType( 'ArmorAccount' )]
     param (
         <#
         Specifies which Armor account should be used for the context of all
@@ -50,7 +48,7 @@ function Set-ArmorAccountContext {
     } # End of begin
 
     process {
-        $return = $Global:ArmorSession.SetAccountContext( $ID )
+        [ArmorAccount] $return = $Global:ArmorSession.SetAccountContext( $ID )
 
         $return
     } # End of process

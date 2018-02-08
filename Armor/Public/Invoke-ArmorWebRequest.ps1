@@ -14,9 +14,6 @@ function Invoke-ArmorWebRequest {
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Invoke-ArmorWebRequest {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the Armor API endpoint.
@@ -93,7 +91,7 @@ function Invoke-ArmorWebRequest {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         $jsonBody = $Body |
             ConvertTo-Json -ErrorAction 'Stop'

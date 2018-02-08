@@ -15,8 +15,6 @@ function Get-ArmorIdentity {
         None
             You cannot pipe objects to Get-ArmorAccount.
 
-        .OUTPUTS
-        System.Collections.Hashtable
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -32,6 +30,7 @@ function Get-ArmorIdentity {
     #>
 
     [CmdletBinding()]
+    [OutputType( 'ArmorSession' )]
     param (
         <#
         Specifies the API version for this request.
@@ -49,7 +48,7 @@ function Get-ArmorIdentity {
     } # End of begin
 
     process {
-        $return = $null
+        [ArmorSession] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

@@ -14,9 +14,6 @@ function Get-ArmorAccountContext {
         .INPUTS
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Get-ArmorAccountContext {
     #>
 
     [CmdletBinding()]
+    [OutputType( 'ArmorAccount' )]
     param ()
 
     begin {
@@ -40,7 +38,7 @@ function Get-ArmorAccountContext {
     } # End of begin
 
     process {
-        $return = $Global:ArmorSession.GetAccountContext()
+        [ArmorAccount] $return = $Global:ArmorSession.GetAccountContext()
 
         $return
     } # End of process

@@ -14,9 +14,6 @@ function New-ArmorApiToken {
         .INPUTS
         System.String
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function New-ArmorApiToken {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the temporary authorization code to redeem for a token.
@@ -61,7 +59,7 @@ function New-ArmorApiToken {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 

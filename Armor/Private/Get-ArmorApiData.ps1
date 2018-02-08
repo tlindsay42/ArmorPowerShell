@@ -15,9 +15,6 @@ function Get-ArmorApiData {
         None
             You cannot pipe objects to Get-ArmorApiData.
 
-        .OUTPUTS
-        System.Collections.Hashtable
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -41,6 +38,7 @@ function Get-ArmorApiData {
     #>
 
     [CmdletBinding()]
+    [OutputType( [Hashtable] )]
     param (
         <#
         Specifies the cmdlet name to lookup the API data for.
@@ -64,7 +62,7 @@ function Get-ArmorApiData {
     } # End of begin
 
     process {
-        $return = $null
+        [Hashtable] $return = $null
 
         Write-Verbose -Message ( 'Gather API Data for {0}.' -f $Endpoint )
 

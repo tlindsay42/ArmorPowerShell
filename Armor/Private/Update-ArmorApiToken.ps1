@@ -14,9 +14,6 @@ function Update-ArmorApiToken {
         .INPUTS
         System.String
 
-        .OUTPUTS
-        None
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Update-ArmorApiToken {
     #>
 
     [CmdletBinding()]
+    [OutputType( [Void] )]
     param (
         <#
         Specifies the Armor API authorization token.
@@ -54,8 +52,6 @@ function Update-ArmorApiToken {
     } # End of begin
 
     process {
-        $return = $null
-
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
@@ -64,9 +60,7 @@ function Update-ArmorApiToken {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
-        $return = $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
-
-        $return
+        $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
     } # End of process
 
     end {

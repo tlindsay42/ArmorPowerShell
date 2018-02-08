@@ -17,8 +17,6 @@ function Connect-Armor {
         None
             You cannot pipe objects to Connect-Armor.
 
-        .OUTPUTS
-        System.Collections.Hashtable
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -34,6 +32,7 @@ function Connect-Armor {
     #>
 
     [CmdletBinding()]
+    [OutputType( 'ArmorSession' )]
     param (
         <#
         Your Armor API username and password.  If not supplied as a parameter,
@@ -87,7 +86,7 @@ function Connect-Armor {
     } # End of begin
 
     process {
-        $return = $null
+        [ArmorSession] $return = $null
 
         Write-Verbose -Message 'Storing all session details in $Global:ArmorSession.'
         $Global:ArmorSession = [ArmorSession]::New( $Server, $Port, $ApiVersion )

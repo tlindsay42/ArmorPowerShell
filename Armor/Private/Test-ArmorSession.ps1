@@ -17,10 +17,6 @@ function Test-ArmorSession {
         None
             You cannot pipe objects to Test-ArmorSession.
 
-        .OUTPUTS
-        None
-            Test-ArmorSession has no output.
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -40,6 +36,7 @@ function Test-ArmorSession {
     #>
 
     [CmdletBinding()]
+    [OutputType( [Void] )]
     param ()
 
     begin {

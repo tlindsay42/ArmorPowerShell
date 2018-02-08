@@ -14,9 +14,6 @@ function Expand-JsonItem {
         .INPUTS
         System.Management.Automation.PSObject
 
-        .OUTPUTS
-        System.String
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Expand-JsonItem {
     #>
 
     [CmdletBinding()]
+    [OutputType( [String] )]
     param (
         <#
         Specifies the deserialized JSON objects to parse recursively.
@@ -46,7 +44,7 @@ function Expand-JsonItem {
     } # End of begin
 
     process {
-        $return = $null
+        [String] $return = $null
 
         switch -Regex ( $InputObject.PSObject.TypeNames ) {
             'Array' {

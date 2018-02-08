@@ -15,9 +15,6 @@ function Get-ArmorAccount {
         None
             You cannot pipe objects to Get-ArmorAccount.
 
-        .OUTPUTS
-        System.Collections.Hashtable
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,7 +28,7 @@ function Get-ArmorAccount {
         {required: show one or more examples using the function}
     #>
 
-    [CmdletBinding()]
+    [OutputType( 'ArmorAccount[]' )]
     param (
         <#
         Specifies the name of the Armor account.  Wildcard searches are permitted.
@@ -61,7 +58,7 @@ function Get-ArmorAccount {
     } # End of begin
 
     process {
-        $return = $null
+        [ArmorAccount[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
@@ -77,7 +74,7 @@ function Get-ArmorAccount {
             Write-Host -Object 'Armor account not found.'
         }
         else {
-            $return = [ArmorAccount[]] $results
+            $return = $results
         }
 
         $return

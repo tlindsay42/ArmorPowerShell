@@ -14,9 +14,6 @@ function Select-ArmorApiResult {
         .INPUTS
         System.Management.Automation.PSCustomObject
 
-        .OUTPUTS
-        System.Management.Automation.PSCustomObject
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -31,6 +28,7 @@ function Select-ArmorApiResult {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the formatted API response contents.
@@ -55,7 +53,7 @@ function Select-ArmorApiResult {
     } # End of begin
 
     process {
-        $return = $null
+        [PSCustomObject[]] $return = $null
 
         if ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) {
             $return = $Results

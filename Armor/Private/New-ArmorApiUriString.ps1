@@ -15,9 +15,6 @@ function New-ArmorApiUriString {
         None
             You cannot pipe objects to New-ArmorApiUriString.
 
-        .OUTPUTS
-        System.String
-
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
@@ -33,6 +30,7 @@ function New-ArmorApiUriString {
     #>
 
     [CmdletBinding()]
+    [OutputType( [String] )]
     param (
         <#
         Specifies the Armor API server IP address or FQDN.
@@ -70,7 +68,7 @@ function New-ArmorApiUriString {
     } # End of begin
 
     process {
-        $return = $null
+        [String] $return = $null
 
         Write-Verbose -Message 'Build the URI.'
 
