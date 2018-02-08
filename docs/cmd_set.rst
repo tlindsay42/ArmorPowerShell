@@ -22,7 +22,8 @@ DESCRIPTION
 
 PARAMETERS
     -ID <UInt16>
-        The Armor account ID to use for all subsequent requests.
+        Specifies which Armor account should be used for the context of all
+        subsequent requests.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,

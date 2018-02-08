@@ -34,7 +34,11 @@ function ConvertFrom-JsonXL {
     [CmdletBinding()]
     param (
         <#
+<<<<<<< HEAD
         Specifies the JSON string payload.
+=======
+        The JSON string payload.  The default is an empty string: ''.
+>>>>>>> 7926de383ba5917ea1e2ea4208fb4910371dc973
         #>
         [Parameter( Position = 0, ValueFromPipeline = $true )]
         [String] $InputObject = ''

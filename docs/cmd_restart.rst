@@ -22,10 +22,11 @@ DESCRIPTION
 
 PARAMETERS
     -ID <UInt16>
-        The ID of a VM in the Armor account.  The default value is 0.
+        Specifies the ID of the Armor Complete virtual machine that you want to
+        gracefully reboot.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     -WhatIf [<SwitchParameter>]
         

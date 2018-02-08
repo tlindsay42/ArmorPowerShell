@@ -24,19 +24,28 @@ DESCRIPTION
 
 PARAMETERS
     -Credential <PSCredential>
-        Your username and password stored in a PSCredential object for authenticating to the Armor API.
+        Your Armor API username and password.  If not supplied as a parameter,
+        you will be prompted for your credentials.
         
     -AccountID <UInt16>
-        The Armor account ID to use for all subsequent requests.
+        Specifies the Armor account ID to use for all subsequent requests.
+        The permitted range is 1-65535.
         
     -Server <String>
-        The Armor API server IP address or FQDN.  The default value is 'api.armor.com'.
+        Specifies the Armor API server IP address or FQDN.
         
     -Port <UInt16>
-        The Armor API server port.  The default value is '443'.
+        Specifies the Armor API server listening TCP port.  The permitted range
+        is: 1-65535.
         
     -ApiVersion <String>
-        The API version.  The default value is 'v1.0'.
+        Specifies the API version for this request.  The specified value is
+        also set as the default API version for the session as a parameter of
+        the session variable: '$Global:ArmorSession.ApiVersion'.
+        
+        The API version can be specified when any other public cmdlets are
+        called or the value of '$Global:ArmorSession.ApiVersion' can be updated
+        afterward to set a different default API version for the session.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,

@@ -22,11 +22,13 @@ DESCRIPTION
 
 PARAMETERS
     -Name <String>
+        Specifies the name of the Armor account.  Wildcard searches are permitted.
         
     -ID <UInt16>
+        Specifies the ID of the Armor account.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -68,9 +70,10 @@ DESCRIPTION
 
 PARAMETERS
     -ID <UInt16>
+        Specifies the ID of the Armor account with the desired address details.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -151,16 +154,16 @@ DESCRIPTION
 
 PARAMETERS
     -Name <String>
-        { required: description of the specified input parameter's purpose }
+        Specifies the name of the Armor Complete region.
         
     -Location <String>
-        { required: description of the specified input parameter's purpose }
+        Specifies the name of the Armor Complete datacenter.
         
     -ID <UInt16>
-        { required: description of the specified input parameter's purpose }
+        Specifies the ID of the Armor Complete datacenter.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -202,10 +205,14 @@ DESCRIPTION
 
 PARAMETERS
     -Name <String>
+        Specifies the name of the Armor Complete workload.  Wildcard searches
+        are permitted.
         
     -ID <UInt16>
+        Specifies the ID of the Armor Complete workload.
         
     -ApiVersion <String>
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -247,12 +254,19 @@ DESCRIPTION
 
 PARAMETERS
     -WorkloadID <UInt16>
+        Specifies the ID of the Armor Complete workload that contains the
+        tier(s).
         
     -Name <String>
+        Specifies the names of the tiers in the Armor Complete that you want to
+        retrieve.  Wildcard searches are permitted.
         
     -ID <UInt16>
+        Specifies the IDs of the tiers in the Armor Complete that you want to
+        retrieve.
         
     -ApiVersion <String>
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -294,7 +308,7 @@ DESCRIPTION
 
 PARAMETERS
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -336,15 +350,22 @@ DESCRIPTION
 
 PARAMETERS
     -UserName <String>
+        Specifies the username of the Armor user account.  Wildcard searches
+        are permitted.
         
     -FirstName <String>
+        Specifies the first name of the Armor user account.  Wildcard searches
+        are permitted.
         
     -LastName <String>
+        Specifies the last name of the Armor user account.  Wildcard searches
+        are permitted.
         
     -ID <UInt16>
-        { required: description of the specified input parameter's purpose }
+        Specifies the ID of the Armor user account.
         
     -ApiVersion <String>
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -386,13 +407,14 @@ DESCRIPTION
 
 PARAMETERS
     -Name <String>
-        The name of a VM in the Armor account.  Wildcard matches are supported.  The default value is null.
+        Specifies the names of the virtual machines that you want to retrieve.
+        Wildcard matches are supported.
         
     -ID <UInt16>
-        The ID of a VM in the Armor account.  The default value is 0.
+        Specifies the IDs of the virtual machines that you want to retrieve.
         
     -ApiVersion <String>
-        The API version.  The default value is $Global:ArmorSession.ApiVersion.
+        Specifies the API version for this request.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
