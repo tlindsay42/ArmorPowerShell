@@ -29,7 +29,7 @@ function Get-ArmorCompleteDatacenter {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( [PSCustomObject[]] )]
+    [OutputType( [ArmorCompleteDatacenter[]] )]
     param (
         <#
         Specifies the ID of the Armor Complete datacenter.
@@ -86,7 +86,7 @@ function Get-ArmorCompleteDatacenter {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorCompleteDatacenter[]] $return = $null
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
