@@ -21,9 +21,6 @@ elseif ( $env:CI_BRANCH -ne 'master' ) {
 elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:CI_PULL_REQUEST ) )
 }
-elseif ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:EMAIL_ADDRESS ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'commit author', $env:APPVEYOR_REPO_COMMIT_AUTHOR ) )
-}
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $messageForm = '{0} module version "{1}" published to {2}.'
 
