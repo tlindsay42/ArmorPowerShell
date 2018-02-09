@@ -13,7 +13,9 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorAccount [[-Name] <String>] [-ID <UInt16>] [-ApiVersion <String>] [<CommonParameters>]
+    Get-ArmorAccount [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorAccount [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -21,11 +23,11 @@ DESCRIPTION
     
 
 PARAMETERS
-    -Name <String>
-        Specifies the name of the Armor account.  Wildcard searches are permitted.
-        
     -ID <UInt16>
         Specifies the ID of the Armor account.
+        
+    -Name <String>
+        Specifies the name of the Armor account.  Wildcard searches are permitted.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -145,7 +147,11 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorCompleteDatacenter [-Name <String>] [[-Location] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorCompleteDatacenter [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorCompleteDatacenter [-Name <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorCompleteDatacenter [[-Location] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -153,14 +159,14 @@ DESCRIPTION
     
 
 PARAMETERS
+    -ID <UInt16>
+        Specifies the ID of the Armor Complete datacenter.
+        
     -Name <String>
         Specifies the name of the Armor Complete region.
         
     -Location <String>
         Specifies the name of the Armor Complete datacenter.
-        
-    -ID <UInt16>
-        Specifies the ID of the Armor Complete datacenter.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -196,7 +202,9 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorCompleteWorkload [[-Name] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorCompleteWorkload [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorCompleteWorkload [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -204,12 +212,12 @@ DESCRIPTION
     
 
 PARAMETERS
+    -ID <UInt16>
+        Specifies the ID of the Armor Complete workload.
+        
     -Name <String>
         Specifies the name of the Armor Complete workload.  Wildcard searches
         are permitted.
-        
-    -ID <UInt16>
-        Specifies the ID of the Armor Complete workload.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -245,7 +253,9 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorCompleteWorkloadTier [[-WorkloadID] <UInt16>] [[-Name] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorCompleteWorkloadTier [-WorkloadID] <UInt16> [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorCompleteWorkloadTier [-WorkloadID] <UInt16> [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -257,13 +267,13 @@ PARAMETERS
         Specifies the ID of the Armor Complete workload that contains the
         tier(s).
         
-    -Name <String>
-        Specifies the names of the tiers in the Armor Complete that you want to
-        retrieve.  Wildcard searches are permitted.
-        
     -ID <UInt16>
         Specifies the IDs of the tiers in the Armor Complete that you want to
         retrieve.
+        
+    -Name <String>
+        Specifies the names of the tiers in the Armor Complete that you want to
+        retrieve.  Wildcard searches are permitted.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -341,7 +351,11 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorUser [[-UserName] <String>] [-FirstName <String>] [-LastName <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorUser [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorUser [[-UserName] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorUser [-FirstName <String>] [-LastName <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -349,6 +363,9 @@ DESCRIPTION
     
 
 PARAMETERS
+    -ID <UInt16>
+        Specifies the ID of the Armor user account.
+        
     -UserName <String>
         Specifies the username of the Armor user account.  Wildcard searches
         are permitted.
@@ -360,9 +377,6 @@ PARAMETERS
     -LastName <String>
         Specifies the last name of the Armor user account.  Wildcard searches
         are permitted.
-        
-    -ID <UInt16>
-        Specifies the ID of the Armor user account.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -398,7 +412,9 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-ArmorVM [[-Name] <String>] [-ID <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    Get-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
+    Get-ArmorVM [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -406,12 +422,12 @@ DESCRIPTION
     
 
 PARAMETERS
+    -ID <UInt16>
+        Specifies the IDs of the virtual machines that you want to retrieve.
+        
     -Name <String>
         Specifies the names of the virtual machines that you want to retrieve.
         Wildcard matches are supported.
-        
-    -ID <UInt16>
-        Specifies the IDs of the virtual machines that you want to retrieve.
         
     -ApiVersion <String>
         Specifies the API version for this request.
