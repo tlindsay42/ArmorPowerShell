@@ -215,8 +215,8 @@ test_script:
 after_test:
   - git config --global credential.helper store
   - ps: Add-Content -Path ( '{0}\.git-credentials' -f $env:USERPROFILE ) -Value ( "https://{0}:x-oauth-basic@github.com`n" -f $env:GITHUB_API_KEY )
-  - git config --global user.email $env:EMAIL_ADDRESS
-  - git config --global user.name 'Troy Lindsay'
+  - ps: git config --global user.email $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
+  - ps: git config --global user.name $env:APPVEYOR_REPO_COMMIT_AUTHOR
   - git config --global core.autocrlf true
   - git config --global core.safecrlf false
 
