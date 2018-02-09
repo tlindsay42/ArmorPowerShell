@@ -57,28 +57,43 @@ function Get-ArmorVM {
         Returns null.
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
+        <#
+        Specifies the IDs of the virtual machines that you want to retrieve.
+        #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $ID = 0,
+
         <#
         Specifies the names of the virtual machines that you want to retrieve.
         Wildcard matches are supported.
         #>
-        [Parameter( Position = 0 )]
-        [String] $Name = '',
-
-        <#
-        Specifies the IDs of the virtual machines that you want to retrieve.
-        #>
-        [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [Parameter(
+            ParameterSetName = 'Name',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowEmptyString()]
+        [String]
+        $Name = '',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

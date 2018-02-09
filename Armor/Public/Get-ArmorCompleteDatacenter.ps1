@@ -28,31 +28,53 @@ function Get-ArmorCompleteDatacenter {
         {required: show one or more examples using the function}
     #>
 
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
         <#
+        Specifies the ID of the Armor Complete datacenter.
+        #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateSet( 1, 2, 3, 4, 5 )]
+        [UInt16]
+        $ID = 0,
+
+        <#
         Specifies the name of the Armor Complete region.
         #>
-        [String] $Name = '',
+        [Parameter(
+            ParameterSetName = 'Name',
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateSet( 'AS East', 'EU Central', 'EU West', 'US Central', 'US West' )]
+        [String]
+        $Name = '',
 
         <#
         Specifies the name of the Armor Complete datacenter.
         #>
-        [Parameter( Position = 0 )]
-        [String] $Location = '',
-
-        <#
-        Specifies the ID of the Armor Complete datacenter.
-        #>
-        [ValidateRange( 1, 5 )]
-        [UInt16] $ID = 0,
+        [Parameter(
+            ParameterSetName = 'Location',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateSet( 'AMS01', 'DFW01', 'LHR01', 'PHX01', 'SIN01' )]
+        [String]
+        $Location = '',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

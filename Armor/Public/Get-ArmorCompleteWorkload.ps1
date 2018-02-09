@@ -27,27 +27,43 @@ function Get-ArmorCompleteWorkload {
         {required: show one or more examples using the function}
     #>
 
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
+        <#
+        Specifies the ID of the Armor Complete workload.
+        #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $ID = 0,
+
         <#
         Specifies the name of the Armor Complete workload.  Wildcard searches
         are permitted.
         #>
-        [Parameter( Position = 0 )]
-        [String] $Name = '',
-
-        <#
-        Specifies the ID of the Armor Complete workload.
-        #>
-        [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [Parameter(
+            ParameterSetName = 'Name',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowEmptyString()]
+        [String]
+        $Name,
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

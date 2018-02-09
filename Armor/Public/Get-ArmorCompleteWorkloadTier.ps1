@@ -27,37 +27,58 @@ function Get-ArmorCompleteWorkloadTier {
         {required: show one or more examples using the function}
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload that contains the
         tier(s).
         #>
-        [Parameter( Position = 0 )]
-        [UInt16] $WorkloadID = 0,
-
-        <#
-        Specifies the names of the tiers in the Armor Complete that you want to
-        retrieve.  Wildcard searches are permitted.
-        #>
-        [Parameter( Position = 1 )]
-        [ValidateNotNullOrEmpty()]
-        [String] $Name = '',
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the ID of the Armor Complete workload that contains the tiers that you want to retrieve',
+            Position = 0,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $WorkloadID,
 
         <#
         Specifies the IDs of the tiers in the Armor Complete that you want to
         retrieve.
         #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 1,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16]
+        $ID = 0,
+
+        <#
+        Specifies the names of the tiers in the Armor Complete that you want to
+        retrieve.  Wildcard searches are permitted.
+        #>
+        [Parameter(
+            ParameterSetName = 'Name',
+            Position = 1,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Name = '',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

@@ -28,25 +28,42 @@ function Get-ArmorAccount {
         {required: show one or more examples using the function}
     #>
 
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( 'ArmorAccount[]' )]
     param (
         <#
-        Specifies the name of the Armor account.  Wildcard searches are permitted.
-        #>
-        [Parameter( Position = 0 )]
-        [String] $Name = '',
-
-        <#
         Specifies the ID of the Armor account.
         #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16]
+        $ID = 0,
+
+        <#
+        Specifies the name of the Armor account.  Wildcard searches are permitted.
+        #>
+        [Parameter(
+            ParameterSetName = 'Name',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowEmptyString()]
+        [String]
+        $Name = '',
 
         <#
         Specifies the API version for this request.
         #>
+        [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

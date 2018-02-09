@@ -27,43 +27,67 @@ function Get-ArmorUser {
         {required: show one or more examples using the function}
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
+        <#
+        Specifies the ID of the Armor user account.
+        #>
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $ID = 0,
+
         <#
         Specifies the username of the Armor user account.  Wildcard searches
         are permitted.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            ParameterSetName = 'UserName',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullOrEmpty()]
-        [String] $UserName = '',
+        [String]
+        $UserName = '',
 
         <#
         Specifies the first name of the Armor user account.  Wildcard searches
         are permitted.
         #>
+        [Parameter(
+            ParameterSetName = 'Name',
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullOrEmpty()]
-        [String] $FirstName = '',
+        [String]
+        $FirstName = '',
 
         <#
         Specifies the last name of the Armor user account.  Wildcard searches
         are permitted.
         #>
+        [Parameter(
+            ParameterSetName = 'Name',
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullOrEmpty()]
-        [String] $LastName = '',
-
-        <#
-        Specifies the ID of the Armor user account.
-        #>
-        [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [String]
+        $LastName = '',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {
