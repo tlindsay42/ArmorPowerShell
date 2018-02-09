@@ -161,7 +161,9 @@ Class ArmorSession {
     }
 
     [PSObject] GetAccountContext () {
-        return $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } )
+
+    [UInt16] GetAccountContextID () {
+        return $this.Headers.( $this.AccountContextHeader )
     }
 
     [Int32] GetMinutesRemaining() {
