@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.137'
+ModuleVersion = '1.0.138'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -102,7 +102,8 @@ AliasesToExport = @()
 
 # List of all files packaged with this module
 FileList = 'Armor.psd1', 'Armor.psm1', 'Lib\ArmorAccountAddress.ps1', 
-               'Lib\ArmorSession.ps1', 'Private\ConvertFrom-JsonXL.ps1', 
+               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorSession.ps1', 
+               'Private\ConvertFrom-JsonXL.ps1', 
                'Private\Expand-ArmorApiResult.ps1', 'Private\Expand-JsonItem.ps1', 
                'Private\Format-ArmorApiJsonRequestBody.ps1', 
                'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1', 
