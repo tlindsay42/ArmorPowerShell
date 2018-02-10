@@ -6,23 +6,14 @@ function Get-ArmorApiData {
         .DESCRIPTION
         This command gets all of the data necessary to construct an API request based on the specified cmdlet name.
 
-        .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorApiData.
 
-        .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
-
-        .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
-
-        .LINK
-        https://developer.armor.com/
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorApiData -Endpoint 'Connect-Armor'
@@ -33,8 +24,16 @@ function Get-ArmorApiData {
 
         Description
         -----------
-
         This command gets all of the data necessary to construct an API request for the Connect-Armor cmdlet.
+
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
+
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+        .LINK
+        https://developer.armor.com/
     #>
 
     [CmdletBinding()]

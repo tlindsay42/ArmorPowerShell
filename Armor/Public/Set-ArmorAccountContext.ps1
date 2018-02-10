@@ -6,13 +6,16 @@ function Set-ArmorAccountContext {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        System.UInt16
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        System.UInt16
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -22,9 +25,6 @@ function Set-ArmorAccountContext {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding()]

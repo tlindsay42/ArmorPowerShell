@@ -6,13 +6,16 @@ function Update-ArmorApiToken {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        System.String
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        System.String
+        .EXAMPLE
+        Update-ArmorApiToken -Token '2261bac252204c2ea93ed32ea1ffd3ab' -ApiVersion 'v1.0'
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -22,9 +25,6 @@ function Update-ArmorApiToken {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        Update-ArmorApiToken -Token 2261bac252204c2ea93ed32ea1ffd3ab -ApiVersion 'v1.0'
     #>
 
     [CmdletBinding()]

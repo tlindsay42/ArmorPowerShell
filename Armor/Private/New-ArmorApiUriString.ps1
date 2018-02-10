@@ -6,14 +6,22 @@ function New-ArmorApiUriString {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        None
+            You cannot pipe objects to New-ArmorApiUriString.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to New-ArmorApiUriString.
+        .EXAMPLE
+        New-ArmorApiUriString -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
+
+
+        Description
+        -----------
+        This will return 'https://api.armor.com:443/auth/authorize'.
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -23,10 +31,6 @@ function New-ArmorApiUriString {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        New-ArmorApiUriString -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
-        This will return 'https://api.armor.com:443/auth/authorize'.
     #>
 
     [CmdletBinding()]

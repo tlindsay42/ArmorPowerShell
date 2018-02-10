@@ -6,14 +6,16 @@ function Get-ArmorCompleteDatacenter {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        None- you cannot pipe objects to this cmdlet.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorLocation.
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -23,9 +25,6 @@ function Get-ArmorCompleteDatacenter {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

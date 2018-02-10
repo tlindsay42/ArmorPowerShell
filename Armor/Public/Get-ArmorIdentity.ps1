@@ -6,15 +6,17 @@ function Get-ArmorIdentity {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        None
+            You cannot pipe objects to Get-ArmorAccount.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorAccount.
-
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -24,9 +26,6 @@ function Get-ArmorIdentity {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding()]

@@ -6,23 +6,14 @@ function Get-ArmorVM {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
-        .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
-
         .INPUTS
         None
             You cannot pipe objects to Get-ArmorVM.
 
-        .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
-
-        .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
-
-        .LINK
-        https://developer.armor.com/
+        .NOTES
+        Troy Lindsay
+        Twitter: @troylindsay42
+        GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorVM
@@ -53,8 +44,16 @@ function Get-ArmorVM {
 
         Description
         -----------
-
         Returns null.
+
+        .LINK
+        https://github.com/tlindsay42/ArmorPowerShell
+
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+        .LINK
+        https://developer.armor.com/
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

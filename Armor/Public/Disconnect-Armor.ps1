@@ -6,14 +6,17 @@ function Disconnect-Armor {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        None
+            You cannot pipe objects to Disonnect-Armor.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Disonnect-Armor.
+        .EXAMPLE
+        Disconnect-Armor
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -23,9 +26,6 @@ function Disconnect-Armor {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        Disconnect-Armor
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

@@ -6,14 +6,17 @@ function Format-ArmorApiJsonRequestBody {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        None
+            You cannot pipe objects to Format-ArmorApiJsonRequestBody.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Format-ArmorApiJsonRequestBody.
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -23,9 +26,6 @@ function Format-ArmorApiJsonRequestBody {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding()]

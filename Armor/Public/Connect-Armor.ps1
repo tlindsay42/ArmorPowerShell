@@ -8,14 +8,15 @@ function Connect-Armor {
         Armor then returns a unique, temporary authorization code, which must then be converted into a token to 
         represent the user's credentials for subsequent calls.
 
+        .INPUTS
+        None
+            You cannot pipe objects to Connect-Armor.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Connect-Armor.
 
 
         .LINK
@@ -26,9 +27,6 @@ function Connect-Armor {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        Connect-Armor -Credential ( Get-Credential )
     #>
 
     [CmdletBinding()]

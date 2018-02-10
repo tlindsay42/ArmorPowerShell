@@ -6,13 +6,16 @@ function Get-ArmorCompleteWorkload {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        { required: .NET Framework object types that can be piped in and a description of the input objects }
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -22,9 +25,6 @@ function Get-ArmorCompleteWorkload {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

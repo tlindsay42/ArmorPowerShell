@@ -8,14 +8,22 @@ function Test-ArmorSession {
         If no token is found, this will throw an error and halt the script.
         Otherwise, the token is loaded into the script's $Header variable.
 
+        .INPUTS
+        None
+            You cannot pipe objects to Test-ArmorSession.
+
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
-        .INPUTS
-        None
-            You cannot pipe objects to Test-ArmorSession.
+        .EXAMPLE
+        Test-ArmorSession
+
+
+        Description
+        -----------
+        Validates that there is an Armor API connection token stored in '$Global:ArmorSession.Token'.
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -25,14 +33,6 @@ function Test-ArmorSession {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        Test-ArmorSession
-
-        Description
-        -----------
-
-        Validates that there is one Armor API connection token stored in '$Global:ArmorSession.Token'.
     #>
 
     [CmdletBinding()]
