@@ -1,14 +1,14 @@
 function Get-ArmorAccountAddress {
     <#
         .SYNOPSIS
-        Displays the address for the specified Armor account accessible to the current user.
+        This cmdlet retrieves the address on file for Armor accounts.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves the address on file for Armor accounts that your
+        user account has access to.
 
         .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorAccount.
+        System.UInt16
 
         .NOTES
         Troy Lindsay

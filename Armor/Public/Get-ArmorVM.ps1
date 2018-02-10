@@ -1,14 +1,18 @@
 function Get-ArmorVM {
     <#
         .SYNOPSIS
-        The Get-ArmorVM function displays a list of virtual machines in your account.
+        This cmdlet retrieves the virtual machines in your Armor account.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves details about the virtual machines in the
+        Armor Anywhere or Armor Complete account in context.  Returns a set of
+        virtual machines that correspond to the filter criteria provided by the
+        cmdlet parameters.
 
         .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorVM.
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay
@@ -20,7 +24,6 @@ function Get-ArmorVM {
 
         Description
         -----------
-
         Returns all VMs in the Armor account that currently has context.
 
         .EXAMPLE
@@ -28,7 +31,6 @@ function Get-ArmorVM {
 
         Description
         -----------
-
         Returns the specified VM in the Armor account that currently has context.
 
         .EXAMPLE
@@ -36,7 +38,6 @@ function Get-ArmorVM {
 
         Description
         -----------
-
         Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
 
         .EXAMPLE

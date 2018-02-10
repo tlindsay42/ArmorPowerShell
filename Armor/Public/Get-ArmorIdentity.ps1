@@ -1,14 +1,18 @@
 function Get-ArmorIdentity {
     <#
         .SYNOPSIS
-        Return information about the current authenticated user, including account membership and permissions.
+        This cmdlet retrieves details about your Armor user account.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves details about your Armor user account that you
+        used to establish the session.  Returns information about the current
+        authenticated user, including account membership and permissions.
+
+        This also updates the identity information in the session variable:
+        $Global:ArmorSession.
 
         .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorAccount.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

@@ -1,13 +1,14 @@
 function Expand-ArmorApiResult {
     <#
         .SYNOPSIS
-        The Expand-ArmorApiResult function is used to remove any parent variables surrounding return data, such as encapsulating results in a "data" key.
+        This cmdlet is used to remove any parent variables surrounding response
+        data, such as encapsulating results in a "data" key.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        System.Management.Automation.PSCustomObject
+        System.Management.Automation.PSCustomObject[]
 
         .NOTES
         Troy Lindsay

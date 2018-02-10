@@ -1,10 +1,14 @@
 function Restart-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet gracefully reboots virtual machines.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified virtual machine will be gracefully rebooted in the Armor
+        Complete account in context.  VMware Tools or open-vm-tools must be
+        installed and running for this request to succeed.
+
+        See also: Reset-ArmorCompleteVM
 
         .INPUTS
         System.UInt16

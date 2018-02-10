@@ -1,14 +1,13 @@
 function New-ArmorApiUriString {
     <#
         .SYNOPSIS
-        The New-ArmorApiUriString function is used to build a valid URI.
+        This cmdlet is used to build a valid URI.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        None
-            You cannot pipe objects to New-ArmorApiUriString.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

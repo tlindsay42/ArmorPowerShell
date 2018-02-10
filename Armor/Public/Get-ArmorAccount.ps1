@@ -1,13 +1,17 @@
 function Get-ArmorAccount {
     <#
         .SYNOPSIS
-        Retrieves a list of Armor account memberships for the currently authenticated user.
+        This cmdlet retrieves Armor account details.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves a list of Armor account memberships for the
+        currently authenticated user.  Returns a set of accounts that
+        correspond to the filter criteria provided by the cmdlet parameters.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

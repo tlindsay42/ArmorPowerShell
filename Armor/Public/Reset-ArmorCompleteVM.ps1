@@ -1,13 +1,19 @@
 function Reset-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet powers off & on virtual machines.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified virtual machine in the Armor Complete account in context
+        will be hard reset- effectively disconnecting the virtual power cord
+        from the VM, plugging it back in, and then powering it back on.  This
+        reboot method has the potential to cause data corruption and should
+        only be used when necessary.
+
+        See also: Restart-ArmorCompleteVM
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
 
         .NOTES
         Name Troy Lindsay

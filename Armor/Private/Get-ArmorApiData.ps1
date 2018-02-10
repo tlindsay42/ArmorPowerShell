@@ -1,14 +1,14 @@
 function Get-ArmorApiData {
     <#
         .SYNOPSIS
-        Helper function that retrieves data for making requests to the Armor API.
+        This cmdlet retrieves data for making requests to the Armor API.
 
         .DESCRIPTION
-        This command gets all of the data necessary to construct an API request based on the specified cmdlet name.
+        This cmdlet gets all of the data necessary to construct an API request
+        based on the specified cmdlet name.
 
         .INPUTS
-        None
-            You cannot pipe objects to Get-ArmorApiData.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay
@@ -22,6 +22,7 @@ function Get-ArmorApiData {
         ----                           -----
         v1.0                           {Query, Result, Filter, Method...}
 
+        
         Description
         -----------
         This command gets all of the data necessary to construct an API request for the Connect-Armor cmdlet.

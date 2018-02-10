@@ -1,10 +1,11 @@
 function Start-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet powers on Armor Complete virtual machines.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified virtual machine in the Armor Complete account in context
+        will be powered on.
 
         .INPUTS
         System.UInt16

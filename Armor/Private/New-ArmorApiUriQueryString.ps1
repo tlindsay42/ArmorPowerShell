@@ -1,13 +1,13 @@
 function New-ArmorApiUriQueryString {
     <#
         .SYNOPSIS
-        The New-ArmorApiUriQueryString function is used to build a valid URI query string.
+        This cmdlet is used to build a valid URI query string.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

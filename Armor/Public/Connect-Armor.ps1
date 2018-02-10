@@ -1,16 +1,19 @@
 function Connect-Armor {
     <#
         .SYNOPSIS
-        Connects to Armor and retrieves an authentication token.
+        This cmdlet connects to Armor and establishes a session.
 
         .DESCRIPTION
-        The Connect-Armor function is used to connect to the Armor RESTful API and supply credentials to the method.
-        Armor then returns a unique, temporary authorization code, which must then be converted into a token to 
-        represent the user's credentials for subsequent calls.
+        This cmdlet connects to the Armor RESTful API and supplies credentials
+        to the method.  The Armor API then returns a unique, temporary
+        authorization code, which is then converted into a token to represent
+        the user's credentials for subsequent calls.  Last, the account context
+        is set.  If an account ID is not specified, one is automatically
+        selected from the list of authorized account IDs.  Returns the session
+        details which are stored in the variable: $Global:ArmorSession.
 
         .INPUTS
-        None
-            You cannot pipe objects to Connect-Armor.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

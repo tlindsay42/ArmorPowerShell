@@ -1,13 +1,18 @@
 function Get-ArmorCompleteDatacenter {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet retrieves Armor Complete datacenters.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves details about the Armor Complete datacenters,
+        regions, and compute zones.  Returns a set of datacenters that
+        correspond to the filter criteria provided by the cmdlet parameters.
+
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

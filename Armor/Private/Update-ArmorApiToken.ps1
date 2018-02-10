@@ -1,10 +1,11 @@
 function Update-ArmorApiToken {
     <#
         .SYNOPSIS
-        Reissues an authentication token if requested prior to session expiration.
+        This cmdlet reissues the authentication token.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet reissues an authentication token and updates the variable
+        storing the session details: $Global:ArmorSession.
 
         .INPUTS
         System.String

@@ -1,14 +1,13 @@
 function Format-ArmorApiJsonRequestBody {
     <#
         .SYNOPSIS
-        Helper function used to create a valid body payload.
+        This cmdlet is used to generate a valid request body payload.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        None
-            You cannot pipe objects to Format-ArmorApiJsonRequestBody.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

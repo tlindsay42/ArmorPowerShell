@@ -1,13 +1,34 @@
 function Get-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        Retrieve any workloads that are associated to your Armor Complete account.
+        This cmdlet retrieves Armor Complete workloads.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Workloads and tiers are logical grouping tools for helping you
+        organize your virtual machines and corresponding resources in your
+        Armor Complete software-defined datacenters.
+
+        Workloads contain tiers, and tiers contain virtual machines.
+
+        Workloads are intended to help you describe the business function of a
+        group of servers, such as 'My Secure Website', which could be useful
+        for chargeback or showback to your customers, as well as helping your
+        staff and the Armor Support teams understand the architecture of your
+        environment.
+
+        Tiers are intended to describe the application tiers within each
+        workload.  A typical three tiered application workload is comprised
+        of presentation, business logic, and persistence tiers.  Common labels
+        for each are: web, application, and database respectively, but you can
+        group your VMs however you choose.
+
+        Returns a set of workloads that correspond to the filter criteria
+        provided by the cmdlet parameters.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

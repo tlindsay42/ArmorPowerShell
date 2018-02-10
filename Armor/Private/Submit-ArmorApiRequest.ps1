@@ -1,7 +1,8 @@
 function Submit-ArmorApiRequest {
     <#
         .SYNOPSIS
-        Helper function used to send data to an endpoint and then format the response for further use.
+        This cmdlet sends data to an Armor API endpoint and then formats the
+        response for further use.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }

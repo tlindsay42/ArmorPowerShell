@@ -1,13 +1,14 @@
 function Remove-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        The Remove-ArmorCompleteWorkload function deletes the specified workload in your account.
+        This cmdlet deletes Armor Complete workloads.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified workload in the Armor Complete account in context will be
+        deleted if is empty.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
 
         .NOTES
         Troy Lindsay

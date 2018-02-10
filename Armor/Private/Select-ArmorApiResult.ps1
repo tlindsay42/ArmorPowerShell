@@ -1,13 +1,14 @@
 function Select-ArmorApiResult {
     <#
         .SYNOPSIS
-        The Select-ArmorApiResult function is used to filter data that has been returned from an endpoint for specific objects important to the user.
+        This cmdlet is used to filter data that has been returned from an
+        endpoint for specific objects important to the user.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        System.Management.Automation.PSCustomObject
+        System.Management.Automation.PSCustomObject[]
 
         .NOTES
         Troy Lindsay

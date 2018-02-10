@@ -1,10 +1,12 @@
 function Get-ArmorAccountContext {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet gets the Armor Anywhere or Armor Complete account context.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        If your user account has access to more than one Armor Anywhere and/or
+        Armor Complete accounts, this cmdlet allows you to get the current
+        context, which all future requests will reference.
 
         .INPUTS
         None- you cannot pipe objects to this cmdlet.

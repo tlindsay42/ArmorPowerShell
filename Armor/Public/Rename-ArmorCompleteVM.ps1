@@ -1,13 +1,16 @@
 function Rename-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
+        This cmdlet renames Armor Complete virtual machines.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified virtual machine in the Armor Complete account in context
+        will be renamed.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

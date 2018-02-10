@@ -1,13 +1,16 @@
 function Rename-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        The Rename-ArmorCompleteWorkload function renames the specified workload in your account.
+        This cmdlet renames Armor Complete workloads.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        The specified workload in the Armor Complete account in context will be
+        renamed.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

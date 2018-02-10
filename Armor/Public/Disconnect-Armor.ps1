@@ -4,11 +4,11 @@ function Disconnect-Armor {
         Disconnects from Armor and destroys the session information.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Disconnects from the Armor API and destroys the $Global:ArmorSession
+        session variable.
 
         .INPUTS
-        None
-            You cannot pipe objects to Disonnect-Armor.
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay

@@ -1,13 +1,18 @@
 function Get-ArmorUser {
     <#
         .SYNOPSIS
-        The Get-ArmorVm retrieves a list of users in your account.
+        This cmdlet retrieves a list of users in your account.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet retrieves details about the user accounts in the
+        Armor Anywhere or Armor Complete account in context.  Returns a set of
+        user accounts that correspond to the filter criteria provided by the
+        cmdlet parameters.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.UInt16
+
+        System.String
 
         .NOTES
         Troy Lindsay

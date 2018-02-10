@@ -1,13 +1,15 @@
 function Invoke-ArmorWebRequest {
     <#
         .SYNOPSIS
-        { required: high level overview }
+        This cmdlet submits web requests to the Armor API.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet sends custom HTTPS requests to the Armor API.  It can
+        be used for calling API endpoints that are not yet covered by the
+        cmdlets in this module.
 
         .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
+        System.String
 
         .NOTES
         Troy Lindsay
