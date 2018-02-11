@@ -56,7 +56,7 @@ function Expand-JsonItem {
             'Array' {
                 $return = @()
 
-                $InputObject.foreach( 
+                $InputObject.ForEach( 
                     {
                         # Recurse
                         $return += $_ |
