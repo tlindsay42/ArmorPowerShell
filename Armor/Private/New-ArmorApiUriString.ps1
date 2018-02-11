@@ -79,13 +79,6 @@ function New-ArmorApiUriString {
 
         Write-Verbose -Message 'Build the URI.'
 
-        # Reset for instances where $ID is set to zero / null so that the base URI is selected
-        if ( $IDs.Count -eq 1 ) {
-            if ( $IDs[0] -eq 0 ) {
-                $IDs = @()
-            }
-        }
-
         switch ( $IDs.Count ) {
             0 {
                 $endpoint = $Endpoints.Where( { $_ -notmatch '{id}' } )
@@ -101,7 +94,7 @@ function New-ArmorApiUriString {
             }
 
             1 {
-                $endpoint = $Endpoints.Where( { $_ -match '/{id}' } )
+                $endpoint = $Endpoints.Where( { $_ -match '/{id}' -and $_ -notmatch '/{id}.*/{id}' } )
 
                 if ( $endpoint.Count -eq 0 ) {
                     throw 'Endpoint with one ID specification not found.'
@@ -112,17 +105,12 @@ function New-ArmorApiUriString {
 
                 $return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
 
-                if ( $IDs[0].Length -gt 0 ) {
-                    # Insert ID in URI string
-                    $return = $return -replace '{id}', $IDs[0]
-                }
-                else {
-                    throw ( 'Invalid ID value for endpoint: {0}.' -f $endpoint[0] )
-                }
+                # Insert ID in URI string
+                $return = $return -replace '{id}', $IDs[0]
             }
 
             2 {
-                $endpoint = $Endpoints.Where( { $_ -match '/{id}.*/{id}' } )
+                $endpoint = $Endpoints.Where( { $_ -match '/{id}.*/{id}' -and $_ -notmatch '/{id}.*/{id}.*/{id}' } )
 
                 if ( $endpoint.Count -eq 0 ) {
                     throw 'Endpoint with two ID specifications not found.'
@@ -133,16 +121,11 @@ function New-ArmorApiUriString {
 
                 $return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
 
-                if ( $IDs[0].Length -gt 0 -and $IDs[1].Length -gt 0 ) {
-                    # Insert first ID in URI string
-                    $return = $return -replace '(.*?)/{id}(.*)', ( '$1/{0}$2' -f $IDs[0] )
+                # Insert first ID in URI string
+                $return = $return -replace '(.*?)/{id}(.*)', ( '$1/{0}$2' -f $IDs[0] )
 
-                    # Insert second ID in URI string
-                    $return = $return -replace '{id}', $IDs[1]
-                }
-                else {
-                    throw ( 'Invalid ID value for endpoint: {0}.' -f $endpoint[0] )
-                }
+                # Insert second ID in URI string
+                $return = $return -replace '{id}', $IDs[1]
             }
 
             Default {
