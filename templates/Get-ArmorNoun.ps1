@@ -31,8 +31,17 @@ function Get-ArmorNoun {
     [CmdletBinding()]
     [OutputType( [PSCustomObject[]] )]
     param (
+        <#
+        { required: description of the specified input parameter's purpose }
+        #>
         [String] $Param1,
+        <#
+        { required: description of the specified input parameter's purpose }
+        #>
         [String] $Param2,
+        <#
+        { required: description of the specified input parameter's purpose }
+        #>
         [String] $Param3,
         [String] $ApiVersion = $Global:ArmorSession.ApiVersion
     )
