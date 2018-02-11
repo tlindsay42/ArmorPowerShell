@@ -21,13 +21,16 @@ function Rename-ArmorCompleteWorkload {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Update+Workload
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Infrastructure/App_UpdateApp
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

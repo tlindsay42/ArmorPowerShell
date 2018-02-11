@@ -19,13 +19,16 @@ function Remove-ArmorCompleteWorkload {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Delete+Workload
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Infrastructure/App_DeleteApp
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

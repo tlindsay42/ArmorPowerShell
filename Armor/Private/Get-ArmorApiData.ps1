@@ -16,16 +16,27 @@ function Get-ArmorApiData {
         GitHub: tlindsay42
 
         .EXAMPLE
-        Get-ArmorApiData -Endpoint 'Connect-Armor'
+        Get-ArmorApiData -Endpoint 'Connect-Armor' -ApiVersion 'v1.0'
 
-        Name                           Value
-        ----                           -----
-        v1.0                           {Query, Result, Filter, Method...}
+        Name        Value
+        ----        -----
+        SuccessCode 200
+        Query       {}
+        Description Create a new login session
+        Body        {Password, Username}
+        Location
+        Method      Post
+        Filter      {}
+        URI         {/auth/authorize}
 
-        
+
         Description
         -----------
-        This command gets all of the data necessary to construct an API request for the Connect-Armor cmdlet.
+        This command gets all of the data necessary to construct an API request
+        for the Connect-Armor cmdlet.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -66,7 +77,7 @@ function Get-ArmorApiData {
 
         Write-Verbose -Message ( 'Beginning {0}.' -f $function )
     } # End of begin
-
+    
     process {
         [Hashtable] $return = $null
 

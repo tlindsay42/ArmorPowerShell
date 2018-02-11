@@ -17,6 +17,20 @@ function Disconnect-Armor {
 
         .EXAMPLE
         Disconnect-Armor
+        Performing the operation "Disconnect" on target "Armor session".
+        [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): Y
+
+        C:\>( Get-Variable -Scope Global ).Where( { $_.Name -eq 'ArmorSession' } ).Count
+        0
+
+
+        Description
+        -----------
+        Disconnects from the Armor API, destroys the $Global:ArmorSession, and
+        then proves that the global scope ArmorSession variable no longer exists.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

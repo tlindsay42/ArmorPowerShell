@@ -19,16 +19,77 @@ function Get-ArmorAccount {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorAccount
+
+        ID       : 65536
+        Name     : Example Parent Account
+        Currency : USD
+        Status   : Claimed
+        Parent   : -1
+        Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
+
+        ID       : 65537
+        Name     : Example Child Account
+        Currency : GBP
+        Status   : Claimed
+        Parent   : 65536
+        Products : {@{AA-CORE=System.Object[]}}
+
+
+        Description
+        -----------
+        Gets all Armor accounts assigned to the logged in user account.
+
+        .EXAMPLE
+        Get-ArmorAccount -Name *Child*
+
+        ID       : 65537
+        Name     : Example Child Account
+        Currency : GBP
+        Status   : Claimed
+        Parent   : 65536
+        Products : {@{AA-CORE=System.Object[]}}
+
+
+        Description
+        -----------
+        Gets all Armor accounts assigned to the logged in user account with a
+        name containing the word 'Child'.
+
+        .EXAMPLE
+        65536, 'Example Child Account' | Get-ArmorAccount
+
+        ID       : 65536
+        Name     : Example Parent Account
+        Currency : USD
+        Status   : Claimed
+        Parent   : -1
+        Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
+
+        ID       : 65537
+        Name     : Example Child Account
+        Currency : GBP
+        Status   : Claimed
+        Parent   : 65536
+        Products : {@{AA-CORE=System.Object[]}}
+
+
+        Description
+        -----------
+        Gets the Armor accounts assigned to the logged in user account with
+        ID=65536 and Name='Example Child Account'.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccount
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Accounts
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Account_Management/Accounts_GetAccounts
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

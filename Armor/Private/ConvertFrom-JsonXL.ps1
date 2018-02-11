@@ -22,6 +22,9 @@ function ConvertFrom-JsonXL {
         http://stackoverflow.com/questions/16854057/convertfrom-json-max-length/27125027
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK

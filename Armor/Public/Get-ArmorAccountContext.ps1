@@ -17,13 +17,28 @@ function Get-ArmorAccountContext {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorAccountContext
+
+        ID       : 65536
+        Name     : Example Parent Account
+        Currency : USD
+        Status   : Claimed
+        Parent   : -1
+        Products :
+
+
+        Description
+        -----------
+        Gets the Armor account currently in context.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountcontext
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Log+into+Armor+API
 
         .LINK
         https://developer.armor.com/

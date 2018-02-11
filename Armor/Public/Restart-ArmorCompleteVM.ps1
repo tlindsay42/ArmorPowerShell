@@ -22,13 +22,16 @@ function Restart-ArmorCompleteVM {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Perform+VM+Power+Actions
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Infrastructure/Vm_PowerActionVm
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

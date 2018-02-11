@@ -39,13 +39,22 @@ function Get-ArmorCompleteWorkload {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Workloads
 
         .LINK
-        https://developer.armor.com/
+        https://docs.armor.com/display/KBSS/Get+Workload
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/App_GetAppList
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/App_GetAppDetail
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

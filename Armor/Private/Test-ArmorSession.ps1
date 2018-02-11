@@ -29,7 +29,11 @@ function Test-ArmorSession {
 
         Description
         -----------
-        Validates that there is an Armor API connection token stored in '$Global:ArmorSession.Token'.
+        Validates that there is an Armor API connection token stored in
+        $Global:ArmorSession.Token.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

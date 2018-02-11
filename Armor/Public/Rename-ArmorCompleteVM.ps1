@@ -21,13 +21,16 @@ function Rename-ArmorCompleteVM {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Update+VM+Name
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Infrastructure/Vm_UpdateVm
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

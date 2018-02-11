@@ -23,13 +23,22 @@ function Get-ArmorUser {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Users
 
         .LINK
-        https://developer.armor.com/
+        https://docs.armor.com/display/KBSS/Get+User
+
+        .LINK
+        https://developer.armor.com/#!/Account_Management/Users_GetUsers
+
+        .LINK
+        https://developer.armor.com/#!/Account_Management/Users_GetUser
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

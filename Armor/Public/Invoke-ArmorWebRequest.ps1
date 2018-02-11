@@ -20,6 +20,9 @@ function Invoke-ArmorWebRequest {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_invoke.html#invoke-armorwebrequest
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK

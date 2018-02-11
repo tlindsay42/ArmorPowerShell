@@ -19,13 +19,16 @@ function Update-ArmorApiToken {
         Update-ArmorApiToken -Token '2261bac252204c2ea93ed32ea1ffd3ab' -ApiVersion 'v1.0'
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Post+Reissue+Token
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Authentication/TenantOAuth_ReissueAsync
     #>
 
     [CmdletBinding()]

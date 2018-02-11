@@ -16,16 +16,67 @@ function Get-ArmorAccountAddress {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorAccountAddress
+
+        AccountID    : 65536
+        Name         : Example Parent Account
+        AddressLine1 : 2360 Campbell Creek Blvd.
+        AddressLine2 : Suite 525 
+        City         : Richardson
+        State        : TX
+        PostalCode   : 75082
+        Country      : US
+
+
+        Description
+        -----------
+        Gets the address of the Armor account currently in context.
+
+        .EXAMPLE
+        Get-ArmorAccountAddress -ID 65537
+
+        AccountID    : 65537
+        Name         : Example Child Account
+        AddressLine1 : 2360 Campbell Creek Blvd.
+        AddressLine2 : Suite 525 
+        City         : Richardson
+        State        : TX
+        PostalCode   : 75082
+        Country      : US
+
+
+        Description
+        -----------
+        Gets the address of Armor account ID 65537.
+
+        .EXAMPLE
+        65536 | Get-ArmorAccountAddress
+
+        AccountID    : 65536
+        Name         : Example Parent Account
+        AddressLine1 : 2360 Campbell Creek Blvd.
+        AddressLine2 : Suite 525 
+        City         : Richardson
+        State        : TX
+        PostalCode   : 75082
+        Country      : US
+
+
+        Description
+        -----------
+        Gets the address of Armor account ID 65536.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Account
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Account_Management/Accounts_GetAccount
     #>
 
     [CmdletBinding()]

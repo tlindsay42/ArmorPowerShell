@@ -23,13 +23,16 @@ function Get-ArmorIdentity {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Authenticated+User+Info
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Authentication/Me_GetMeAsync
     #>
 
     [CmdletBinding()]

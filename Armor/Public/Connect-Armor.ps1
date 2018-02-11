@@ -20,16 +20,131 @@ function Connect-Armor {
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
+        .EXAMPLE
+        Connect-Armor
 
+        PowerShell credential request
+        Enter your credentials.
+        User: your.email.address@your.company.com
+        Password for user your.email.address@your.company.com: ****************
+
+
+        User                   : {your.email.address@your.company.com}
+        Accounts               : {Your Company Account 1, Your Company Account 2}
+        Departments            : {Department 1, Department 2}
+        Permissions            : {@{1=System.Object[]}
+        Features               : {1, 1, 1, 1...}
+        Server                 : api.armor.com
+        Port                   : 443
+        SessionLengthInSeconds : 1800
+        SessionStartTime       : 10/3/17 1:21:22 PM
+        SessionExpirationTime  : 10/3/17 1:51:33 PM
+        ApiVersion             : v1.0
+
+
+        Description
+        -----------
+        Logs into the Armor API with the default parameters and the username
+        and password entered at the prompts.
+
+        .EXAMPLE
+        $pscredential = Get-Credential
+        
+        PowerShell credential request
+        Enter your credentials.
+        User: your.email.address@your.company.com
+        Password for user your.email.address@your.company.com: ****************
+        
+        PS C:\>Connect-Armor -Credential $pscredential
+        ...
+
+        PS C:\>$Global:ArmorSession
+
+        User                   : {your.email.address@your.company.com}
+        Accounts               : {Your Company Account 1, Your Company Account 2}
+        Departments            : {Department 1, Department 2}
+        Permissions            : {@{1=System.Object[]}
+        Features               : {1, 1, 1, 1...}
+        Server                 : api.armor.com
+        Port                   : 443
+        SessionLengthInSeconds : 1800
+        SessionStartTime       : 10/3/17 1:21:22 PM
+        SessionExpirationTime  : 10/3/17 1:51:33 PM
+        ApiVersion             : v1.0
+
+
+        Description
+        -----------
+        Logs into the Armor API with the credentials stored in the
+        $pscredential object, and then outputs the session details.
+
+        .EXAMPLE
+        $session = Connect-Armor -Credential $pscredential -AccountID 12345
+
+        PS C:\>$session -eq $Global:ArmorSession
+        True
+
+
+        Description
+        -----------
+        Logs into the Armor API with the credentials defined in the
+        $pscredential object, sets the account context to '12345', stores the
+        returned session details in the $session variable, and then compares
+        the value to the value of $Global:ArmorSession, which are equal.
+
+        .EXAMPLE
+        Connect-Armor -Credential $pscredential -ApiVersion 'v1.0' | Out-Null
+
+        PS C:\>$Global:ArmorSession.ApiVersion
+        v1.0
+
+
+        Description
+        -----------
+        Logs into the Armor API with the credentials defined in the
+        $pscredential object with the specified API version, and discards the
+        output by piping it to Out-Null.  The API version defined by this
+        cmdlet, either implicitly or explicitly, defines the default API
+        version for the session, which is stored in
+        $Global:ArmorSession.ApiVersion.
+
+        .EXAMPLE
+        Connect-Armor -Credential $pscredential -Server 'localhost' -Port 8443 |
+            Out-Null
+
+
+        Description
+        -----------
+        Logs into a test/dev Armor API instance with the credentials defined in
+        the $pscredential object, and discards the output by piping it to
+        Out-Null.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Log+into+Armor+API
 
         .LINK
-        https://developer.armor.com/
+        https://docs.armor.com/display/KBSS/Post+Authorize
+
+        .LINK
+        https://docs.armor.com/display/KBSS/Post+Token
+
+        .LINK
+        https://docs.armor.com/display/KBSS/Get+Authenticated+User+Info
+
+        .LINK
+        https://developer.armor.com/#!/Authentication/TenantOAuth_AuthorizeAsync
+
+        .LINK
+        https://developer.armor.com/#!/Authentication/TenantOAuth_TokenAsync
+
+        .LINK
+        https://developer.armor.com/#!/Authentication/Me_GetMeAsync
     #>
 
     [CmdletBinding()]

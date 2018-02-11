@@ -39,13 +39,22 @@ function Get-ArmorCompleteWorkloadTier {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkloadtier
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Tiers
 
         .LINK
-        https://developer.armor.com/
+        https://docs.armor.com/display/KBSS/Get+Tier
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/Tier_GetAppTiers
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/Tier_Get
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

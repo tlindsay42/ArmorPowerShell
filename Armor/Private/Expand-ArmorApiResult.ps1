@@ -19,6 +19,9 @@ function Expand-ArmorApiResult {
         {required: show one or more examples using the function}
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK

@@ -22,12 +22,14 @@ function Get-ArmorVM {
         .EXAMPLE
         Get-ArmorVM
 
+
         Description
         -----------
         Returns all VMs in the Armor account that currently has context.
 
         .EXAMPLE
         Get-ArmorVM -Name ARMO25VML01-gen4
+
 
         Description
         -----------
@@ -36,6 +38,7 @@ function Get-ArmorVM {
         .EXAMPLE
         Get-ArmorVM -Name *-gen4
 
+
         Description
         -----------
         Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
@@ -43,18 +46,28 @@ function Get-ArmorVM {
         .EXAMPLE
         Get-ArmorVM -Name *hacked*
 
+
         Description
         -----------
         Returns null.
 
         .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm
+
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+VMs
 
         .LINK
-        https://developer.armor.com/
+        https://docs.armor.com/display/KBSS/Get+VM+Detail
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/Vm_GetVmList
+
+        .LINK
+        https://developer.armor.com/#!/Infrastructure/Vm_GetVmDetail
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

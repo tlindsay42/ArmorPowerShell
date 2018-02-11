@@ -13,10 +13,12 @@ function Update-ArmorNoun {
         Name { optional }
         Twitter: { optional }
         GitHub: { optional }
-        Any other links you'd like here
 
         .EXAMPLE
         {required: show one or more examples using the function}
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

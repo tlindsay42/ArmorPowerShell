@@ -20,16 +20,62 @@ function Get-ArmorCompleteDatacenter {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorCompleteDatacenter |
+            Select-Object -Property ID, Location, Name
+
+        ID Location Name
+        -- -------- ----
+         1 DFW01    US Central
+         2 PHX01    US West
+         3 LHR01    EU West
+         4 AMS01    EU Central
+         5 SIN01    AS East
+
+
+        Description
+        -----------
+        Gets the Armor Complete datacenters and filters the compute zones.
+
+        .EXAMPLE
+        Get-ArmorCompleteDatacenter -ID 2 |
+            Select-Object -Property ID, Location, Name
+
+        ID Location Name
+        -- -------- ----
+         2 PHX01    US West
+
+
+        Description
+        -----------
+        Gets the Armor Complete datacenter with ID=2 and filters the compute
+        zones.
+
+        .EXAMPLE
+        1, 'PHX01' | Get-ArmorCompleteDatacenter |
+            Select-Object -Property ID, Location, Name
+
+        ID Location Name
+        -- -------- ----
+         1 DFW01    US Central
+         2 PHX01    US West
+
+
+        Description
+        -----------
+        Gets the Armor Complete datacenter with ID=1 and Location='PHX01' and
+        filters the compute zones.
+
+        .LINK
+        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
-        https://docs.armor.com/display/KBSS/Armor+API+Guide
+        https://docs.armor.com/display/KBSS/Get+Locations
 
         .LINK
-        https://developer.armor.com/
+        https://developer.armor.com/#!/Infrastructure/Location_Get
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
