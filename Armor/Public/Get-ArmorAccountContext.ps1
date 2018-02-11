@@ -45,7 +45,7 @@ function Get-ArmorAccountContext {
     #>
 
     [CmdletBinding()]
-    [OutputType( 'ArmorAccount' )]
+    [OutputType( [ArmorAccount] )]
     param ()
 
     begin {

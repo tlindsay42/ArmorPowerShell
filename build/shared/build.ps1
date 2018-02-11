@@ -56,7 +56,8 @@ $description = 'This is a community project that provides a powerful command-lin
 
 Every code push is built on {3} via {4}, as well as on {5} and {6} via {7}, and tested using the {8} test & mock framework.
 
-Code coverage scores and reports showing how much of the project is covered by automated unit tests are tracked by {9}.
+$scriptsToProcess = Get-ChildItem -Path "$env:CI_MODULE_PATH\Lib" -File |
+    Resolve-Path -Relative
 
 Every successful build is published on the {10}.' -f
 $text.ArmorComplete, #0
@@ -84,6 +85,7 @@ Update-ModuleManifest `
     -ProcessorArchitecture 'None' `
     -FunctionsToExport ( Get-ChildItem -Path ( '{0}\Public' -f $env:CI_MODULE_PATH ) ).BaseName `
     -FileList ( Get-ChildItem -File -Recurse | Resolve-Path -Relative ) `
+    -ScriptsToProcess $scriptsToProcess `
     -Tags 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation', 'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS' `
     -LicenseUri ( '{0}/blob/master/LICENSE' -f $text.RepoUrl ) `
     -IconUri 'http://i.imgur.com/fbXjkCn.png' `

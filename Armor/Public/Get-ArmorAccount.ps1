@@ -93,7 +93,7 @@ function Get-ArmorAccount {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( 'ArmorAccount[]' )]
+    [OutputType( [ArmorAccount[]] )]
     param (
         <#
         Specifies the ID of the Armor account.

@@ -33,7 +33,7 @@ function Set-ArmorAccountContext {
     #>
 
     [CmdletBinding()]
-    [OutputType( 'ArmorAccount' )]
+    [OutputType( [ArmorAccount] )]
     param (
         <#
         Specifies which Armor account should be used for the context of all

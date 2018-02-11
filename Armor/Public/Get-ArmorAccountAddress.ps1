@@ -80,7 +80,7 @@ function Get-ArmorAccountAddress {
     #>
 
     [CmdletBinding()]
-    [OutputType( 'ArmorAccountAddress' )]
+    [OutputType( [ArmorAccountAddress] )]
     param (
         <#
         Specifies the ID of the Armor account with the desired address details.

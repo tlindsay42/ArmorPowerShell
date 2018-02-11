@@ -36,7 +36,7 @@ function Get-ArmorIdentity {
     #>
 
     [CmdletBinding()]
-    [OutputType( 'ArmorSession' )]
+    [OutputType( [ArmorSession] )]
     param (
         <#
         Specifies the API version for this request.

@@ -148,7 +148,7 @@ function Connect-Armor {
     #>
 
     [CmdletBinding()]
-    [OutputType( 'ArmorSession' )]
+    [OutputType( [ArmorSession] )]
     param (
         <#
         Your Armor API username and password.  If not supplied as a parameter,
