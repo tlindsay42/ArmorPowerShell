@@ -328,7 +328,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Start-ArmorVM'                 = @{
+            'Start-ArmorCompleteVM'         = @{
                 'v1.0' = @{
                     'Description' = 'Power on the specified virtual machine in your account'
                     'URI'         = @(
@@ -342,7 +342,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Stop-ArmorVM'                  = @{
+            'Stop-ArmorCompleteVM'          = @{
                 'v1.0' = @{
                     'Description' = 'Power off the specified virtual machine in your account'
                     'URI'         = @(
