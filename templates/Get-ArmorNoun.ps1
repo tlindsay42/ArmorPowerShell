@@ -6,20 +6,17 @@ function Get-ArmorNoun {
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
+        .INPUTS
+        { required: .NET Framework object types that can be piped in and a description of the input objects }
+
         .NOTES
         Name { required }
         Twitter: { optional }
         GitHub: { optional }
         Any other links you'd like here
 
-        .PARAMETER Parameter
-        { required: description of the specified input parameter's purpose }
-
-        .INPUTS
-        { required: .NET Framework object types that can be piped in and a description of the input objects }
-
-        .OUTPUTS
-        { required: .NET Framework object types that the cmdlet returns and a description of the returned objects }
+        .EXAMPLE
+        {required: show one or more examples using the function}
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell
@@ -29,9 +26,6 @@ function Get-ArmorNoun {
 
         .LINK
         https://developer.armor.com/
-
-        .EXAMPLE
-        {required: show one or more examples using the function}
     #>
 
     [CmdletBinding()]
