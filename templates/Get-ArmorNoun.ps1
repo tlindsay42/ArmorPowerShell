@@ -28,22 +28,42 @@ function Get-ArmorNoun {
         https://developer.armor.com/
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
     param (
         <#
         { required: description of the specified input parameter's purpose }
         #>
-        [String] $Param1,
+        [Parameter(
+            ParameterSetName = 'ID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $ID = 0,
+
         <#
         { required: description of the specified input parameter's purpose }
         #>
-        [String] $Param2,
+        [Parameter(
+            ParameterSetName = 'Name',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [String]
+        $Name = '',
+
         <#
         { required: description of the specified input parameter's purpose }
         #>
-        [String] $Param3,
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [Parameter( Position = 1 )]
+        [ValidateSet( 'v1.0' )]
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {
