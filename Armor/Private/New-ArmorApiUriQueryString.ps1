@@ -27,27 +27,32 @@ function New-ArmorApiUriQueryString {
         https://developer.armor.com/
     #>
 
+    [CmdletBinding()]
     [OutputType( [String] )]
     param (
         <#
         Specifies the query filters available to the endpoint.
         #>
         [Parameter( Position = 0 )]
-        [String[]] $QueryKeys = @(),
+        [AllowEmptyCollection()]
+        [String[]]
+        $QueryKeys = @(),
 
         <#
         Specifies the parameters available within the calling cmdlet.
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNullOrEmpty()]
-        [String[]] $Parameters = @(),
+        [String[]]
+        $Parameters = @(),
 
         <#
         Specifies the endpoint's URI.
         #>
         [Parameter( Position = 2 )]
         [ValidateNotNullOrEmpty()]
-        [String] $Uri = ''
+        [String]
+        $Uri = ''
     )
 
     begin {

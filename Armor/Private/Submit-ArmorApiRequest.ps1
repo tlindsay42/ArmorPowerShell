@@ -37,35 +37,41 @@ function Submit-ArmorApiRequest {
         #>
         [Parameter( Position = 0 )]
         [ValidateScript( { $_ -match '^https://.+/.+$' } )]
-        [String] $Uri = '',
+        [String]
+        $Uri = '',
 
         <#
         Specifies the headers of the Armor API web request.
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
-        [Hashtable] $Headers = $Global:ArmorSession.Headers,
+        [Hashtable]
+        $Headers = $Global:ArmorSession.Headers,
 
         <#
         Specifies the action/method used for the Armor API web request.
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
-        [String] $Method = '',
+        [String]
+        $Method = 'Get',
 
         <#
         Specifies the body of the Armor API request.  Ignored if the request
         method is set to Get.
         #>
         [Parameter( Position = 3 )]
-        [String] $Body = '',
+        [AllowEmptyString()]
+        [String]
+        $Body = '',
 
         <#
         Specifies the success code expected in the response.
         #>
         [Parameter( Position = 4 )]
         [ValidateSet( 200 )]
-        [UInt16] $SuccessCode = 200,
+        [UInt16]
+        $SuccessCode = 200,
 
         <#
         If this cmdlet is called with the -Confirm switch parameter
@@ -73,7 +79,8 @@ function Submit-ArmorApiRequest {
         #>
         [Parameter( Position = 5 )]
         [ValidateNotNullorEmpty()]
-        [String] $Description = ''
+        [String]
+        $Description = ''
     )
 
     begin {

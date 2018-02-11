@@ -34,15 +34,22 @@ function Get-ArmorAccountAddress {
         <#
         Specifies the ID of the Armor account with the desired address details.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = $Global:ArmorSession.GetAccountContext().ID,
+        [UInt16]
+        $ID = $Global:ArmorSession.GetAccountContextID(),
 
         <#
         Specifies the API version for this request.
         #>
+        [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

@@ -35,16 +35,22 @@ function Invoke-ArmorWebRequest {
         <#
         Specifies the Armor API endpoint.
         #>
-        [Parameter( Position = 0 )]
-        [ValidateNotNullorEmpty()]
-        [String] $Endpoint = '/',
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the Armor API endpoint',
+            Position = 0
+        )]
+        [ValidateScript( { $_ -match '^/.+$' } )]
+        [String]
+        $Endpoint,
 
         <#
         Specifies the headers of the Armor API web request.
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
-        [Hashtable] $Headers = $Global:ArmorSession.Headers,
+        [Hashtable]
+        $Headers = $Global:ArmorSession.Headers,
 
         <#
         Specifies the method used for the Armor API web request.  The permitted
@@ -57,14 +63,20 @@ function Invoke-ArmorWebRequest {
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
-        [String] $Method = '',
+        [String]
+        $Method = 'Get',
 
         <#
         Specifies the body of the Armor API web request.  This parameter is
         ignored for Get requests.
         #>
-        [Parameter( Position = 3 )]
-        [String] $Body = '',
+        [Parameter(
+            Position = 3,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [String]
+        $Body = '',
 
         <#
         Specifies the value of the HTTP response code that indicates success
@@ -72,7 +84,8 @@ function Invoke-ArmorWebRequest {
         #>
         [Parameter( Position = 4 )]
         [ValidateSet( 200 )]
-        [UInt16] $SuccessCode = 200,
+        [UInt16]
+        $SuccessCode = 200,
 
         <#
         If the PowerShell $ConfirmPreference value is elevated for this Armor
@@ -81,7 +94,8 @@ function Invoke-ArmorWebRequest {
         #>
         [Parameter( Position = 5 )]
         [ValidateNotNullorEmpty()]
-        [String] $Description = 'Test Armor API request'
+        [String]
+        $Description = 'Test Armor API request'
     )
 
     begin {

@@ -38,8 +38,10 @@ function Get-ArmorIdentity {
         <#
         Specifies the API version for this request.
         #>
+        [Parameter( Position = 0 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

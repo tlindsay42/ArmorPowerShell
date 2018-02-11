@@ -33,23 +33,31 @@ function New-ArmorApiToken {
         <#
         Specifies the temporary authorization code to redeem for a token.
         #>
-        [Parameter( ValueFromPipeline = $true, Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullorEmpty()]
-        [String] $Code = $null,
+        [String]
+        $Code,
 
         <#
         Specifies the type of permission.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'authorization_code' )]
-        [String] $GrantType = 'authorization_code',
+        [String]
+        $GrantType = 'authorization_code',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

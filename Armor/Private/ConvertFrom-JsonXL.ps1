@@ -34,8 +34,14 @@ function ConvertFrom-JsonXL {
         <#
         Specifies the JSON string payload.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
-        [String] $InputObject = ''
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowEmptyString()]
+        [String]
+        $InputObject = ''
     )
 
     begin {

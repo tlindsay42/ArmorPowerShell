@@ -34,16 +34,23 @@ function Remove-ArmorCompleteWorkload {
         <#
         Specifies the ID of the Armor Complete workload.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16]
+        $ID,
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

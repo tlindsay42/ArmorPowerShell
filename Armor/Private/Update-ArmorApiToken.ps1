@@ -34,16 +34,22 @@ function Update-ArmorApiToken {
         <#
         Specifies the Armor API authorization token.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullorEmpty()]
-        [String] $Token = $Global:ArmorSession.GetToken(),
+        [String]
+        $Token = $Global:ArmorSession.GetToken(),
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

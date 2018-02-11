@@ -35,9 +35,16 @@ function Stop-ArmorCompleteVM {
         Specifies the ID of the Armor Complete virtual machine that you want
         to stop.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the ID of the Armor Complete virtual machine that you want to stop',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16]
+        $ID,
 
         <#
         Specifies how you want to stop the Armor Complete virtual machine.
@@ -59,14 +66,16 @@ function Stop-ArmorCompleteVM {
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'Shutdown', 'Off', 'ForceOff' )]
-        [String] $Type = 'Shutdown',
+        [String]
+        $Type = 'Shutdown',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

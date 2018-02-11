@@ -34,8 +34,14 @@ function Expand-ArmorApiResult {
         <#
         Specifies the unformatted API response content.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
-        [PSCustomObject[]] $Results = @(),
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowEmptyCollection()]
+        [PSCustomObject[]]
+        $Results = @(),
 
         <#
         Specifies the key/value pair that contains the name of the key holding
@@ -43,7 +49,8 @@ function Expand-ArmorApiResult {
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
-        [String] $Location = $null
+        [String]
+        $Location = $null
     )
 
     begin {

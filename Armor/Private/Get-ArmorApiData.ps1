@@ -43,16 +43,22 @@ function Get-ArmorApiData {
         <#
         Specifies the cmdlet name to lookup the API data for.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullorEmpty()]
-        [String] $Endpoint = 'Example',
+        [String]
+        $Endpoint = 'Example',
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {

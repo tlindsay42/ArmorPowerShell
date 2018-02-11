@@ -40,28 +40,32 @@ function New-ArmorApiUriString {
         #>
         [Parameter( Position = 0 )]
         [ValidateNotNullOrEmpty()]
-        [String] $Server = $Global:ArmorSession.Server,
+        [String]
+        $Server = $Global:ArmorSession.Server,
 
         <#
         Specifies the Armor API server port.
         #>
         [Parameter( Position = 1 )]
-        [ValidateRange( 0, 65535 )]
-        [UInt16] $Port = $Global:ArmorSession.Port,
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $Port = $Global:ArmorSession.Port,
 
         <#
         Specifies the array of available endpoint paths.
         #>
         [Parameter( Position = 2 )]
         [ValidateNotNull()]
-        [String[]] $Endpoints = @(),
+        [String[]]
+        $Endpoints = @(),
 
         <#
         Specifies the positional ID values to be inserted into the path.
         #>
         [Parameter( Position = 3 )]
         [ValidateNotNull()]
-        [UInt16[]] $IDs = @()
+        [UInt16[]]
+        $IDs = @()
     )
 
     begin {

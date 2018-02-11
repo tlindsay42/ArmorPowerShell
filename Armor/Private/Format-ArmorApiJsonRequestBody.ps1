@@ -34,12 +34,16 @@ function Format-ArmorApiJsonRequestBody {
         Specifies the variables available in the endpoint request body schema.
         #>
         [Parameter( Position = 0 )]
+        [AllowEmptyCollection()]
+        [String[]]
+        $BodyKeys = $null,
 
         <#
         Specifies the parameter names available within the calling cmdlet.
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNullorEmpty()]
+        [PSObject]
         $Parameters = $null
     )
 

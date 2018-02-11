@@ -36,9 +36,15 @@ function Set-ArmorAccountContext {
         Specifies which Armor account should be used for the context of all
         subsequent requests.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateScript( { $_ -in ( Get-ArmorIdentity ).Accounts.ID } )]
-        [UInt16] $ID = $null
+        [UInt16]
+        $ID
     )
 
     begin {

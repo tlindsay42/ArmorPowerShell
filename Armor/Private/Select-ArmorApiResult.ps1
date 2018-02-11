@@ -34,8 +34,14 @@ function Select-ArmorApiResult {
         <#
         Specifies the formatted API response contents.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
-        [PSCustomObject[]] $Results = @(),
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowNull()]
+        [PSCustomObject[]]
+        $Results = @(),
 
         <#
         Specifies the list of parameters that the user can use to filter
@@ -44,7 +50,8 @@ function Select-ArmorApiResult {
         #>
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
-        [Hashtable] $Filter = $null
+        [Hashtable]
+        $Filter = @{}
     )
 
     begin {

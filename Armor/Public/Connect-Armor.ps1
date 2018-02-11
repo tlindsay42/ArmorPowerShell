@@ -40,31 +40,35 @@ function Connect-Armor {
         you will be prompted for your credentials.
         #>
         [Parameter( Position = 0 )]
-        [ValidateNotNullorEmpty()]
-        [PSCredential] $Credential = $null,
+        [ValidateNotNull()]
+        [PSCredential]
+        $Credential = ( Get-Credential ),
 
         <#
         Specifies the Armor account ID to use for all subsequent requests.
         The permitted range is 1-65535.
         #>
         [Parameter( Position = 1 )]
-        [ValidateRange( 0, 65535 )]
-        [UInt16] $AccountID = $null,
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $AccountID = 0,
 
         <#
         Specifies the Armor API server IP address or FQDN.
         #>
         [Parameter( Position = 2 )]
         [ValidateNotNullorEmpty()]
-        [String] $Server = 'api.armor.com',
+        [String]
+        $Server = 'api.armor.com',
 
         <#
         Specifies the Armor API server listening TCP port.  The permitted range
         is: 1-65535.
         #>
         [Parameter( Position = 3 )]
-        [ValidateRange( 0, 65535 )]
-        [UInt16] $Port = 443,
+        [ValidateRange( 1, 65535 )]
+        [UInt16]
+        $Port = 443,
 
         <#
         Specifies the API version for this request.  The specified value is
@@ -77,7 +81,8 @@ function Connect-Armor {
         #>
         [Parameter( Position = 4 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = 'v1.0'
+        [String]
+        $ApiVersion = 'v1.0'
     )
 
     begin {
@@ -94,17 +99,6 @@ function Connect-Armor {
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $Global:ArmorSession.ApiVersion
 
-        if ( $Credential -eq $null ) {
-            $Credential = Get-Credential
-
-            if ( $Credential -eq $null ) {
-                throw 'Failed to set credentials.'
-            }
-        }
-
-        Write-Verbose -Message ( 'Connecting to {0}.' -f $resources.Uri )
-
-        # Create the URI
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
         # Set the Method

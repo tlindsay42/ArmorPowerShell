@@ -33,7 +33,13 @@ function Expand-JsonItem {
         <#
         Specifies the deserialized JSON objects to parse recursively.
         #>
-        [Parameter( Position = 0, ValueFromPipeline = $true )]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [AllowNull()]
+        [PSObject]
         $InputObject = $null
     )
 

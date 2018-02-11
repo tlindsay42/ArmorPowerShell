@@ -37,23 +37,36 @@ function Rename-ArmorCompleteWorkload {
         Specifies the ID of the Armor Complete workload that you want to
         rename.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the ID of the Armor Complete workload that you want to rename',
+            Position = 0,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateRange( 1, 65535 )]
-        [UInt16] $ID = 0,
+        [UInt16]
+        $ID,
 
         <#
         Specifies the new name of the Armor Complete workload.
         #>
-        [Parameter( Position = 1 )]
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the new name for the Armor Complete workload',
+            Position = 1,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateNotNullOrEmpty()]
-        [String] $Name = '',
+        [String]
+        $Name,
 
         <#
         Specifies the API version for this request.
         #>
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {
