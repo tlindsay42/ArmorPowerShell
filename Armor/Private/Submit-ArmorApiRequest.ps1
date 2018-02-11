@@ -93,7 +93,7 @@ function Submit-ArmorApiRequest {
         [PSCustomObject[]] $return = $null
         $request = $null
 
-        if ( $PSCmdlet.ShouldProcess( $ID, $Description ) ) {
+        if ( $PSCmdlet.ShouldProcess( $Uri, $Description ) ) {
             Write-Verbose -Message 'Submitting the request.'
 
             if ( $Method -eq 'Get' ) {
