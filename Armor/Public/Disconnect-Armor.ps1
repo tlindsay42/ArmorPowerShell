@@ -42,6 +42,7 @@ function Disconnect-Armor {
         if ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) ) {
             Write-Verbose -Message 'Disconnecting from Armor.'
 
+            $Global:ArmorSession = $null
             Remove-Variable -Name 'ArmorSession' -Scope 'Global'
         }
     } # End of process

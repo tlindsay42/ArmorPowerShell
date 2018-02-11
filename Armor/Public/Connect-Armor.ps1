@@ -118,6 +118,11 @@ function Connect-Armor {
 
         $content = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
+        # Destroy variables with passwords since they are no longer needed
+        $body = ''
+        Remove-Variable -Name 'Credential'
+        Remove-Variable -Name 'body'
+
         # If we find a temporary authorization code and a success message, we know the request was successful
         if ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' ) {
             Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
