@@ -9,15 +9,17 @@ NAME
     Invoke-ArmorWebRequest
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet submits web requests to the Armor API.
     
     
 SYNTAX
-    Invoke-ArmorWebRequest [[-Endpoint] <String>] [[-Headers] <Hashtable>] [[-Method] <String>] [[-Body] <String>] [[-SuccessCode] <UInt16>] [[-Description] <String>] [<CommonParameters>]
+    Invoke-ArmorWebRequest [-Endpoint] <String> [[-Headers] <Hashtable>] [[-Method] <String>] [[-Body] <String>] [[-SuccessCode] <UInt16>] [[-Description] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet sends custom HTTPS requests to the Armor API.  It can
+    be used for calling API endpoints that are not yet covered by the
+    cmdlets in this module.
     
 
 PARAMETERS

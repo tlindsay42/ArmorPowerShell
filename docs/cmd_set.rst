@@ -9,15 +9,17 @@ NAME
     Set-ArmorAccountContext
     
 SYNOPSIS
-    Sets the Armor account context, so that all future requests reference the specified account.
+    This cmdlet sets the Armor Anywhere or Armor Complete account context.
     
     
 SYNTAX
-    Set-ArmorAccountContext [[-ID] <UInt16>] [<CommonParameters>]
+    Set-ArmorAccountContext [-ID] <UInt16> [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    If your user account has access to more than one Armor Anywhere and/or
+    Armor Complete accounts, this cmdlet allows you to update the context,
+    so that all future requests reference the specified account.
     
 
 PARAMETERS

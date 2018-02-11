@@ -9,15 +9,19 @@ NAME
     Restart-ArmorCompleteVM
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet gracefully reboots virtual machines.
     
     
 SYNTAX
-    Restart-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Restart-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified virtual machine will be gracefully rebooted in the Armor
+    Complete account in context.  VMware Tools or open-vm-tools must be
+    installed and running for this request to succeed.
+    
+    See also: Reset-ArmorCompleteVM
     
 
 PARAMETERS

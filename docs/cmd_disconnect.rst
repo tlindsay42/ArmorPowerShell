@@ -17,7 +17,8 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    Disconnects from the Armor API and destroys the $Global:ArmorSession
+    session variable.
     
 
 PARAMETERS
@@ -35,7 +36,17 @@ PARAMETERS
     
     PS C:\>Disconnect-Armor
     
+    Performing the operation "Disconnect" on target "Armor session".
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): Y
     
+    C:\>( Get-Variable -Scope Global ).Where( { $_.Name -eq 'ArmorSession' } ).Count
+    0
+    
+    
+    Description
+    -----------
+    Disconnects from the Armor API, destroys the $Global:ArmorSession, and
+    then proves that the global scope ArmorSession variable no longer exists.
     
     
     

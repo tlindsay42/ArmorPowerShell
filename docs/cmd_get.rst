@@ -9,7 +9,7 @@ NAME
     Get-ArmorAccount
     
 SYNOPSIS
-    Retrieves a list of Armor account memberships for the currently authenticated user.
+    This cmdlet retrieves Armor account details.
     
     
 SYNTAX
@@ -19,7 +19,9 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves a list of Armor account memberships for the
+    currently authenticated user.  Returns a set of accounts that
+    correspond to the filter criteria provided by the cmdlet parameters.
     
 
 PARAMETERS
@@ -40,9 +42,73 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Get-ArmorAccount
+    
+    ID       : 65536
+    Name     : Example Parent Account
+    Currency : USD
+    Status   : Claimed
+    Parent   : -1
+    Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
+    
+    ID       : 65537
+    Name     : Example Child Account
+    Currency : GBP
+    Status   : Claimed
+    Parent   : 65536
+    Products : {@{AA-CORE=System.Object[]}}
     
     
+    Description
+    -----------
+    Gets all Armor accounts assigned to the logged in user account.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>Get-ArmorAccount -Name *Child*
+    
+    ID       : 65537
+    Name     : Example Child Account
+    Currency : GBP
+    Status   : Claimed
+    Parent   : 65536
+    Products : {@{AA-CORE=System.Object[]}}
+    
+    
+    Description
+    -----------
+    Gets all Armor accounts assigned to the logged in user account with a
+    name containing the word 'Child'.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>65536, 'Example Child Account' | Get-ArmorAccount
+    
+    ID       : 65536
+    Name     : Example Parent Account
+    Currency : USD
+    Status   : Claimed
+    Parent   : -1
+    Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
+    
+    ID       : 65537
+    Name     : Example Child Account
+    Currency : GBP
+    Status   : Claimed
+    Parent   : 65536
+    Products : {@{AA-CORE=System.Object[]}}
+    
+    
+    Description
+    -----------
+    Gets the Armor accounts assigned to the logged in user account with
+    ID=65536 and Name='Example Child Account'.
     
     
     
@@ -59,15 +125,16 @@ NAME
     Get-ArmorAccountAddress
     
 SYNOPSIS
-    Displays the address for the specified Armor account accessible to the current user.
+    This cmdlet retrieves the address on file for Armor accounts.
     
     
 SYNTAX
-    Get-ArmorAccountAddress [[-ID] <UInt16>] [-ApiVersion <String>] [<CommonParameters>]
+    Get-ArmorAccountAddress [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves the address on file for Armor accounts that your
+    user account has access to.
     
 
 PARAMETERS
@@ -85,9 +152,63 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Get-ArmorAccountAddress
+    
+    AccountID    : 65536
+    Name         : Example Parent Account
+    AddressLine1 : 2360 Campbell Creek Blvd.
+    AddressLine2 : Suite 525 
+    City         : Richardson
+    State        : TX
+    PostalCode   : 75082
+    Country      : US
     
     
+    Description
+    -----------
+    Gets the address of the Armor account currently in context.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>Get-ArmorAccountAddress -ID 65537
+    
+    AccountID    : 65537
+    Name         : Example Child Account
+    AddressLine1 : 2360 Campbell Creek Blvd.
+    AddressLine2 : Suite 525 
+    City         : Richardson
+    State        : TX
+    PostalCode   : 75082
+    Country      : US
+    
+    
+    Description
+    -----------
+    Gets the address of Armor account ID 65537.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>65536 | Get-ArmorAccountAddress
+    
+    AccountID    : 65536
+    Name         : Example Parent Account
+    AddressLine1 : 2360 Campbell Creek Blvd.
+    AddressLine2 : Suite 525 
+    City         : Richardson
+    State        : TX
+    PostalCode   : 75082
+    Country      : US
+    
+    
+    Description
+    -----------
+    Gets the address of Armor account ID 65536.
     
     
     
@@ -104,7 +225,7 @@ NAME
     Get-ArmorAccountContext
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet gets the Armor Anywhere or Armor Complete account context.
     
     
 SYNTAX
@@ -112,7 +233,9 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    If your user account has access to more than one Armor Anywhere and/or
+    Armor Complete accounts, this cmdlet allows you to get the current
+    context, which all future requests will reference.
     
 
 PARAMETERS
@@ -124,9 +247,19 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Get-ArmorAccountContext
+    
+    ID       : 65536
+    Name     : Example Parent Account
+    Currency : USD
+    Status   : Claimed
+    Parent   : -1
+    Products :
     
     
+    Description
+    -----------
+    Gets the Armor account currently in context.
     
     
     
@@ -143,7 +276,7 @@ NAME
     Get-ArmorCompleteDatacenter
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet retrieves Armor Complete datacenters.
     
     
 SYNTAX
@@ -155,7 +288,9 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves details about the Armor Complete datacenters,
+    regions, and compute zones.  Returns a set of datacenters that
+    correspond to the filter criteria provided by the cmdlet parameters.
     
 
 PARAMETERS
@@ -179,9 +314,61 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Get-ArmorCompleteDatacenter |
+    
+    Select-Object -Property ID, Location, Name
+    
+    ID Location Name
+    -- -------- ----
+     1 DFW01    US Central
+     2 PHX01    US West
+     3 LHR01    EU West
+     4 AMS01    EU Central
+     5 SIN01    AS East
     
     
+    Description
+    -----------
+    Gets the Armor Complete datacenters and filters the compute zones.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>Get-ArmorCompleteDatacenter -ID 2 |
+    
+    Select-Object -Property ID, Location, Name
+    
+    ID Location Name
+    -- -------- ----
+     2 PHX01    US West
+    
+    
+    Description
+    -----------
+    Gets the Armor Complete datacenter with ID=2 and filters the compute
+    zones.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>1, 'PHX01' | Get-ArmorCompleteDatacenter |
+    
+    Select-Object -Property ID, Location, Name
+    
+    ID Location Name
+    -- -------- ----
+     1 DFW01    US Central
+     2 PHX01    US West
+    
+    
+    Description
+    -----------
+    Gets the Armor Complete datacenter with ID=1 and Location='PHX01' and
+    filters the compute zones.
     
     
     
@@ -198,7 +385,7 @@ NAME
     Get-ArmorCompleteWorkload
     
 SYNOPSIS
-    Retrieve any workloads that are associated to your Armor Complete account.
+    This cmdlet retrieves Armor Complete workloads.
     
     
 SYNTAX
@@ -208,7 +395,26 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    Workloads and tiers are logical grouping tools for helping you
+    organize your virtual machines and corresponding resources in your
+    Armor Complete software-defined datacenters.
+    
+    Workloads contain tiers, and tiers contain virtual machines.
+    
+    Workloads are intended to help you describe the business function of a
+    group of servers, such as 'My Secure Website', which could be useful
+    for chargeback or showback to your customers, as well as helping your
+    staff and the Armor Support teams understand the architecture of your
+    environment.
+    
+    Tiers are intended to describe the application tiers within each
+    workload.  A typical three tiered application workload is comprised
+    of presentation, business logic, and persistence tiers.  Common labels
+    for each are: web, application, and database respectively, but you can
+    group your VMs however you choose.
+    
+    Returns a set of workloads that correspond to the filter criteria
+    provided by the cmdlet parameters.
     
 
 PARAMETERS
@@ -249,7 +455,7 @@ NAME
     Get-ArmorCompleteWorkloadTier
     
 SYNOPSIS
-    Retrieves all the tiers associated with a specified workload.
+    This cmdlet retrieves the tiers in an Armor Complete workload.
     
     
 SYNTAX
@@ -259,7 +465,26 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    Workloads and tiers are logical grouping tools for helping you
+    organize your virtual machines and corresponding resources in your
+    Armor Complete software-defined datacenters.
+    
+    Workloads contain tiers, and tiers contain virtual machines.
+    
+    Workloads are intended to help you describe the business function of a
+    group of servers, such as 'My Secure Website', which could be useful
+    for chargeback or showback to your customers, as well as helping your
+    staff and the Armor Support teams understand the architecture of your
+    environment.
+    
+    Tiers are intended to describe the application tiers within each
+    workload.  A typical three tiered application workload is comprised
+    of presentation, business logic, and persistence tiers.  Common labels
+    for each are: web, application, and database respectively, but you can
+    group your VMs however you choose.
+    
+    Returns a set of tiers in a workload that correspond to the filter
+    criteria provided by the cmdlet parameters.
     
 
 PARAMETERS
@@ -305,7 +530,7 @@ NAME
     Get-ArmorIdentity
     
 SYNOPSIS
-    Return information about the current authenticated user, including account membership and permissions.
+    This cmdlet retrieves details about your Armor user account.
     
     
 SYNTAX
@@ -313,7 +538,12 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves details about your Armor user account that you
+    used to establish the session.  Returns information about the current
+    authenticated user, including account membership and permissions.
+    
+    This also updates the identity information in the session variable:
+    $Global:ArmorSession.
     
 
 PARAMETERS
@@ -347,7 +577,7 @@ NAME
     Get-ArmorUser
     
 SYNOPSIS
-    The Get-ArmorVm retrieves a list of users in your account.
+    This cmdlet retrieves a list of users in your account.
     
     
 SYNTAX
@@ -359,7 +589,10 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves details about the user accounts in the
+    Armor Anywhere or Armor Complete account in context.  Returns a set of
+    user accounts that correspond to the filter criteria provided by the
+    cmdlet parameters.
     
 
 PARAMETERS
@@ -408,7 +641,7 @@ NAME
     Get-ArmorVM
     
 SYNOPSIS
-    The Get-ArmorVM function displays a list of virtual machines in your account.
+    This cmdlet retrieves the virtual machines in your Armor account.
     
     
 SYNTAX
@@ -418,7 +651,10 @@ SYNTAX
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    This cmdlet retrieves details about the virtual machines in the
+    Armor Anywhere or Armor Complete account in context.  Returns a set of
+    virtual machines that correspond to the filter criteria provided by the
+    cmdlet parameters.
     
 
 PARAMETERS
@@ -444,7 +680,6 @@ PARAMETERS
     
     Description
     -----------
-    
     Returns all VMs in the Armor account that currently has context.
     
     
@@ -456,7 +691,6 @@ PARAMETERS
     
     Description
     -----------
-    
     Returns the specified VM in the Armor account that currently has context.
     
     
@@ -468,7 +702,6 @@ PARAMETERS
     
     Description
     -----------
-    
     Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
     
     
@@ -480,7 +713,6 @@ PARAMETERS
     
     Description
     -----------
-    
     Returns null.
     
     

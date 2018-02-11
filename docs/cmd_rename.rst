@@ -9,15 +9,16 @@ NAME
     Rename-ArmorCompleteVM
     
 SYNOPSIS
-    The Rename-ArmorCompleteVM function renames the specified virtual machine in your account.
+    This cmdlet renames Armor Complete virtual machines.
     
     
 SYNTAX
-    Rename-ArmorCompleteVM [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Rename-ArmorCompleteVM [-ID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified virtual machine in the Armor Complete account in context
+    will be renamed.
     
 
 PARAMETERS
@@ -62,15 +63,16 @@ NAME
     Rename-ArmorCompleteWorkload
     
 SYNOPSIS
-    The Rename-ArmorCompleteWorkload function renames the specified workload in your account.
+    This cmdlet renames Armor Complete workloads.
     
     
 SYNTAX
-    Rename-ArmorCompleteWorkload [[-ID] <UInt16>] [[-Name] <String>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Rename-ArmorCompleteWorkload [-ID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified workload in the Armor Complete account in context will be
+    renamed.
     
 
 PARAMETERS

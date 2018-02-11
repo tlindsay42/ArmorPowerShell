@@ -9,15 +9,16 @@ NAME
     Remove-ArmorCompleteWorkload
     
 SYNOPSIS
-    The Remove-ArmorCompleteWorkload function deletes the specified workload in your account.
+    This cmdlet deletes Armor Complete workloads.
     
     
 SYNTAX
-    Remove-ArmorCompleteWorkload [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Remove-ArmorCompleteWorkload [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified workload in the Armor Complete account in context will be
+    deleted if is empty.
     
 
 PARAMETERS

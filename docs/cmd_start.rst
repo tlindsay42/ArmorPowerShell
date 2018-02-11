@@ -9,15 +9,16 @@ NAME
     Start-ArmorCompleteVM
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet powers on Armor Complete virtual machines.
     
     
 SYNTAX
-    Start-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Start-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified virtual machine in the Armor Complete account in context
+    will be powered on.
     
 
 PARAMETERS

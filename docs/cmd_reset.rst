@@ -9,15 +9,21 @@ NAME
     Reset-ArmorCompleteVM
     
 SYNOPSIS
-    { required: high level overview }
+    This cmdlet powers off & on virtual machines.
     
     
 SYNTAX
-    Reset-ArmorCompleteVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Reset-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
-    { required: more detailed description of the function's purpose }
+    The specified virtual machine in the Armor Complete account in context
+    will be hard reset- effectively disconnecting the virtual power cord
+    from the VM, plugging it back in, and then powering it back on.  This
+    reboot method has the potential to cause data corruption and should
+    only be used when necessary.
+    
+    See also: Restart-ArmorCompleteVM
     
 
 PARAMETERS
