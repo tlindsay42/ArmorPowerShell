@@ -29,7 +29,7 @@ function ConvertFrom-JsonXL {
     #>
 
     [CmdletBinding()]
-    [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the JSON string payload.
@@ -51,7 +51,7 @@ function ConvertFrom-JsonXL {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [PSCustomObject] $return = $null
 
         [void][System.Reflection.Assembly]::LoadWithPartialName( 'System.Web.Extensions' )
         
