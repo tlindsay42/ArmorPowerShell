@@ -1,11 +1,11 @@
 function ConvertFrom-JsonXL {
     <#
         .SYNOPSIS
-        Helper JSON function to resolve the ConvertFrom-Json maxJsonLength limitation, which defaults to 2MB.
-        http://stackoverflow.com/questions/16854057/convertfrom-json-max-length/27125027
+        This cmdlet converts large JSON formatted strings to a custom objects.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        This cmdlet resolves the ConvertFrom-Json maxJsonLength limitation,
+        which defaults to 2MB.
 
         .INPUTS
         System.String
@@ -17,6 +17,9 @@ function ConvertFrom-JsonXL {
 
         .EXAMPLE
         {required: show one or more examples using the function}
+
+        .LINK
+        http://stackoverflow.com/questions/16854057/convertfrom-json-max-length/27125027
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

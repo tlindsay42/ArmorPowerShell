@@ -64,8 +64,12 @@ function Expand-ArmorApiResult {
 
         foreach ( $result in $Results ) {
             if ( $Location -and $result.$Location -ne $null ) {
-                # The $Location check assumes that not all endpoints will require finding (and removing) a parent key
-                # if one does exist, this extracts the value so that the $result data is consistent across API versions
+                <#
+                The $Location check assumes that not all endpoints will require
+                finding (and removing) a parent key if one does exist, this
+                extracts the value so that the $result data is consistent
+                across API versions.
+                #>
                 $return += $result.$Location
             }
         }

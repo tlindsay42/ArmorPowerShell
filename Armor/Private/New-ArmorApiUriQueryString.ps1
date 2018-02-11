@@ -68,29 +68,48 @@ function New-ArmorApiUriQueryString {
 
         $queryString = @()
 
-        # Walk through all of the available query options presented by the endpoint
-        # Note: Keys are used to search in case the value changes in the future across different API versions
+        <#
+        Walk through all of the available query options presented by the
+        endpoint.
+
+        Note: Keys are used to search in case the value changes in the future
+        across different API versions.
+        #>
         foreach ( $query in $QueryKeys ) {
-            # Walk through all of the parameters defined in the function
-            # Both the parameter name and parameter alias are used to match against a query option
-            # It is suggested to make the parameter name "human friendly" and set an alias corresponding to the query option name
+            <#
+            Walk through all of the parameters defined in the function.  Both
+            the parameter name and parameter alias are used to match against a
+            query option.   It is suggested to make the parameter name "human
+            friendly" and set an alias corresponding to the query option name.
+            #>
             foreach ( $parameter in $Parameters ) {
-                # If the parameter name matches the query option name, build a query string
+                $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
+
+                <#
+                If the parameter name matches the query option name, build a
+                query string.
+                #>
                 if ( $parameter.Name -eq $query ) {
-                    if ( $resources.Query[$parameter.Name] -and ( Get-Variable -Name $parameter.Name ).Value ) {
-                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Name], ( Get-Variable -Name $parameter.Name ).Value
+                    if ( $resources.Query[$parameter.Name] -and $parameterValue ) {
+                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Name], $parameterValue
                     }
                 }
-                # If the parameter alias matches the query option name, build a query string
+                <#
+                If the parameter alias matches the query option name, build a
+                query string.
+                #>
                 elseif ( $parameter.Aliases -eq $query ) {
-                    if ( $resources.Query[$parameter.Aliases] -and ( Get-Variable -Name $parameter.Name ).Value ) {
-                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Aliases], ( Get-Variable -Name $parameter.Name ).Value
+                    if ( $resources.Query[$parameter.Aliases] -and $parameterValue ) {
+                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Aliases], $parameterValue
                     }
                 }
             }
         }
 
-        # After all query options are exhausted, build a new URI with all defined query options
+        <#
+        After all query options are exhausted, build a new URI with all defined
+        query options.
+        #>
         if ( $queryString.Count -gt 0 ) {
             $return += '?{0}' -f ( $queryString -join '&' )
 
