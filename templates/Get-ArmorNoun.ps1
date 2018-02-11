@@ -29,6 +29,7 @@ function Get-ArmorNoun {
     #>
 
     [CmdletBinding()]
+    [OutputType( [PSCustomObject[]] )]
     param (
         [String] $Param1,
         [String] $Param2,
@@ -51,7 +52,7 @@ function Get-ArmorNoun {
     } # End of begin
 
     process {
-        $return = $null
+            [PSCustomObject[]] $return = $null
 
         # Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
