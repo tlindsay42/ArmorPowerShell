@@ -101,10 +101,7 @@ function Connect-Armor {
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
-        # Set the Method
-        $method = $resources.Method
 
-        # For API version v1.0, create a body with the credentials
         switch ( $Global:ArmorSession.ApiVersion ) {
             'v1.0' {
                 $body = @{
@@ -119,7 +116,7 @@ function Connect-Armor {
             }
         }
 
-        $content = Submit-ArmorApiRequest -Uri $uri -Method $method -Body $body -Description $resources.Description
+        $content = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
         # If we find a temporary authorization code and a success message, we know the request was successful
         if ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' ) {
