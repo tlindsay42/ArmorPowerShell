@@ -10,7 +10,7 @@ function Get-ArmorNoun {
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
         .NOTES
-        Name { required }
+        Name { optional }
         Twitter: { optional }
         GitHub: { optional }
         Any other links you'd like here
@@ -67,46 +67,61 @@ function Get-ArmorNoun {
     )
 
     begin {
-        # The begin section is used to perform one-time loads of data necessary to carry out the function's purpose
-        # If a command needs to be run with each iteration or pipeline input, place it in the process section
+            <#
+            The begin section is used to perform one-time loads of data
+            necessary to carry out the cmdlet's purpose.  If a command needs to
+            be run with each iteration or pipeline input, place it in the
+            process section.
+            #>
 
-        # API data references the name of the function
-        # For convenience, that name is saved here to $function
-        $function = $MyInvocation.MyCommand.Name
+            # The name of the cmdlet
+            $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+            Write-Verbose -Message ( 'Beginning {0}.' -f $function )
 
-        # Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
-        Test-ArmorSession
-    } # End of begin
+            # Check to ensure that a session to the Armor session is valid.
+            Test-ArmorSession
+        } # End of begin
 
-    process {
+        process {
             [PSCustomObject[]] $return = $null
 
-        # Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+            <#
+            Retrieve all of the URI, method, body, query, location, filter, and
+            expected HTTP response success code for the API endpoint.
+            #>
+            $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $IDs
+            # Build the URI
+            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 
-        $uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
+            # Get the collection of parameter values
+            $parameterValues = ( Get-Command -Name $function ).Parameters.Values
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+            # Append a filter to the URI
+            $uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters $parameterValues -Uri $uri
 
-        $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+            # Submit the request to the Armor API
+            $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
-        $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+            # Expand the data in one of the response body values
+            $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
-        if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor item not found.'
-        }
-        else {
-            $return = $results
-        }
+            # Filter the results
+            $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
 
-        $return
-    } # End of process
+            if ( $results.Count -eq 0 ) {
+                Write-Host -Object 'Armor item not found.'
+            }
+            else {
+                $return = $results
+            }
 
-    end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
-    } # End of end
-} # End of function
+            # Pass the return value to the pipeline
+            $return
+        } # End of process
+
+        end {
+            Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        } # End of end
+    } # End of function

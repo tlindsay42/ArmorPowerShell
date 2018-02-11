@@ -10,7 +10,7 @@ function Post-ArmorNoun {
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
         .NOTES
-        Name { required }
+        Name { optional }
         Twitter: { optional }
         GitHub: { optional }
         Any other links you'd like here
@@ -34,21 +34,37 @@ function Post-ArmorNoun {
         <#
         { required: description of the specified input parameter's purpose }
         #>
-        [String] $Param1,
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = 'Please enter the Name of the Armor item that you want to update',
+            ParameterSetName = 'Name',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateRange( 1, 65535 )]
+        [String]
+        $Name,
+
         <#
         { required: description of the specified input parameter's purpose }
         #>
         [String] $Param2,
-        [String] $Param3,
-        [String] $ApiVersion = $Global:ArmorSession.ApiVersion
+        [Parameter( Position = 1 )]
+        [ValidateSet( 'v1.0' )]
+        [String]
+        $ApiVersion = $Global:ArmorSession.ApiVersion
     )
 
     begin {
-        # The begin section is used to perform one-time loads of data necessary to carry out the function's purpose
-        # If a command needs to be run with each iteration or pipeline input, place it in the process section
+        <#
+            The begin section is used to perform one-time loads of data
+            necessary to carry out the cmdlet's purpose.  If a command needs to
+            be run with each iteration or pipeline input, place it in the
+            process section.
+        #>
 
-        # API data references the name of the function
-        # For convenience, that name is saved here to $function
+        # The name of the cmdlet
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message ( 'Beginning {0}.' -f $function )
@@ -63,18 +79,29 @@ function Post-ArmorNoun {
         # Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
+        # Prompt the user before proceeding
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
+            # Build the URI
             $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $IDs
 
-            $body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+            # Get the collection of parameter values
+            $parameterValues = ( Get-Command -Name $function ).Parameters.Values
 
+            # Build the request body
+            $body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters $parameterValues
+
+            # Submit the request to the Armor API
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
         }
 
-        if ( $results.Count -gt 0 ) {
+        if ( $results.Count -eq 0 ) {
+            Write-Host -Object 'Armor item not found.'
+        }
+        else {
             $return = $results
         }
 
+        # Pass the return value to the pipeline
         $return
     } # End of process
 
