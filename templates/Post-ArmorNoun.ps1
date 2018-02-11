@@ -1,4 +1,4 @@
-function Post-ArmorNoun {
+function Update-ArmorNoun {
     <#
         .SYNOPSIS
         { required: high level overview }
