@@ -115,7 +115,12 @@ function Get-ArmorCompleteWorkloadTier {
 
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $WorkloadID, $IDs
+        if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
+            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $WorkloadID, $ID
+        }
+        else {
+            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $WorkloadID
+        }
 
         $uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
 
