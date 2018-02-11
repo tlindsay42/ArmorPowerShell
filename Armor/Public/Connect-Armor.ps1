@@ -111,7 +111,7 @@ function Connect-Armor {
                     $resources.Body.UserName = $Credential.UserName
                     $resources.Body.Password = $Credential.GetNetworkCredential().Password
                 } |
-                    ConvertTo-Json
+                    ConvertTo-Json -ErrorAction 'Stop'
             }
 
             Default {
