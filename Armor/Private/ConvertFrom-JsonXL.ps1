@@ -57,8 +57,8 @@ function ConvertFrom-JsonXL {
         [PSCustomObject] $return = $null
 
         [void][System.Reflection.Assembly]::LoadWithPartialName( 'System.Web.Extensions' )
-        
-        $javaScriptSerializer = New-Object -TypeName System.Web.Script.Serialization.JavaScriptSerializer -Property @{ 'MaxJsonLength' = 64MB }
+
+        $javaScriptSerializer = New-Object -TypeName 'System.Web.Script.Serialization.JavaScriptSerializer' -Property @{ 'MaxJsonLength' = 64MB }
 
         $return = $javaScriptSerializer.DeserializeObject( $InputObject ) |
             Expand-JsonItem
