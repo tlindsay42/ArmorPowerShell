@@ -92,6 +92,7 @@ $text += @{
     'PSGalleryMd'          = $text.MdLinkForm -f $text.PSGallery, $text.PSGalleryProjectUrl, $text.PSGalleryMdLinkTitle
     'PSGalleryMdShield'    = $text.MdImageForm -f $text.PSGallery, $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl
     'PSGalleryRst'         = $text.RstLinkForm -f $text.PSGallery
+    'PSGalleryRstMap'      = $text.RstLinkMap -f $text.PSGallery, $text.PSGalleryProjectUrl
     'PSGalleryRstShield'   = $text.RstImageForm -f $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl, $text.PSGallery
     'ReadTheDocsMd'        = $text.MdBoldLinkForm -f 'full documentation', $text.ReadTheDocsProjectUrl, $text.ReadTheDocsMdLinkTitle
     'ReadTheDocsMdShield'  = $text.MdImageForm -f $text.DocumentationStatus, $text.ReadTheDocsImageUrl, $text.ReadTheDocsProjectUrl
