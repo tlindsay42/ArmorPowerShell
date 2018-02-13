@@ -295,6 +295,7 @@ foreach ( $verb in $verbs ) {
 
     $verb = $verb.ToLower()
     $content |
+        Out-String |
         Out-File -FilePath "${env:CI_BUILD_PATH}/docs/cmd_${verb}.rst", -Encoding 'utf8'
 
     Write-Host -Object "`tcmd_${verb}"
