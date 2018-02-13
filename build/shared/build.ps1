@@ -16,6 +16,7 @@ $text = @{
     'Coveralls'             = 'Coveralls'
     'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/badge.svg?branch=master"
     'CoverallsProjectUrl'   = "https://coveralls.io/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}?branch=master"
+    'CurrentVersion'        = 'Current Version'
     'DocumentationStatus'   = 'Documentation Status'
     'LatestBuild'           = "${env:CI_PROJECT_NAME}: Latest Build"
     'macOS'                 = 'macOS'
@@ -38,6 +39,7 @@ $text = @{
     'RstImageForm'          = ".. image:: {0}`r`n   :target: {1}`r`n   :alt: {2}`r`n`r`n"
     'RstLinkMap'            = ".. _{0}: {1}`r`n`r`n"
     'Title'                 = 'Armor PowerShell Module'
+    'TotalDownloads'        = 'Total Downloads'
     'TravisCi'              = 'Travis CI'
     'TravisCiImageUrl'      = "https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}.svg?branch=master"
     'TravisCiProjectUrl'    = "https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}"
@@ -87,13 +89,13 @@ $text += @{
     'PesterMd'             = $text.MdLinkForm -f $text.Pester, $text.PesterUrl, $text.PesterMdLinkTitle
     'PesterRst'            = $text.RstLinkForm -f $text.Pester
     'PesterRstMap'         = $text.RstLinkMap -f $text.Pester, $text.PesterUrl
-    'PSDownloadsMdShield'  = $text.MdImageForm -f $text.PSGallery, $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl
-    'PSDownloadsRstShield' = $text.RstImageForm -f $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl, $text.PSGallery
+    'PSDownloadsMdShield'  = $text.MdImageForm -f $text.TotalDownloads, $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl
+    'PSDownloadsRstShield' = $text.RstImageForm -f $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl, $text.TotalDownloads
     'PSGalleryMd'          = $text.MdLinkForm -f $text.PSGallery, $text.PSGalleryProjectUrl, $text.PSGalleryMdLinkTitle
-    'PSGalleryMdShield'    = $text.MdImageForm -f $text.PSGallery, $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl
+    'PSGalleryMdShield'    = $text.MdImageForm -f $text.CurrentVersion, $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl
     'PSGalleryRst'         = $text.RstLinkForm -f $text.PSGallery
     'PSGalleryRstMap'      = $text.RstLinkMap -f $text.PSGallery, $text.PSGalleryProjectUrl
-    'PSGalleryRstShield'   = $text.RstImageForm -f $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl, $text.PSGallery
+    'PSGalleryRstShield'   = $text.RstImageForm -f $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl, $text.CurrentVersion
     'ReadTheDocsMd'        = $text.MdBoldLinkForm -f 'full documentation', $text.ReadTheDocsProjectUrl, $text.ReadTheDocsMdLinkTitle
     'ReadTheDocsMdShield'  = $text.MdImageForm -f $text.DocumentationStatus, $text.ReadTheDocsImageUrl, $text.ReadTheDocsProjectUrl
     'ReadTheDocsRstShield' = $text.RstImageForm -f $text.ReadTheDocsImageUrl, $text.ReadTheDocsProjectUrl, $text.DocumentationStatus
@@ -244,7 +246,7 @@ $content += (
     ".. toctree::`r`n" +
     "   :maxdepth: 2`r`n" +
     "   :hidden:`r`n" +
-    "   :caption: User Documentation"
+    "   :caption: User Documentation`r`n"
 )
 
 $fileNames = ( Get-ChildItem -Path './docs' ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).ForEach( { $_.Name.ToLower() } )
