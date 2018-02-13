@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.144'
+ModuleVersion = '1.0.145'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

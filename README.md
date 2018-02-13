@@ -6,7 +6,7 @@ This is a community project that provides a powerful command-line interface for 
 
 Every code push is built on **Windows** via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master 'AppVeyor: ArmorPowerShell: Latest Build Console'), as well as on **macOS** and **Ubuntu Linux** via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell 'Travis CI: ArmorPowerShell: Latest Build Console'), and tested using the [Pester](https://github.com/pester/Pester 'Pester GitHub repo') test & mock framework.
 
-Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by [Coveralls](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master 'Coveralls: ArmorPowerShell: latest report').
+Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by [Coveralls](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master 'Coveralls: ArmorPowerShell: Latest Report').
 
 Every successful build is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor 'PowerShell Gallery').
 
