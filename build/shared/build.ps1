@@ -182,7 +182,7 @@ $location = Get-Location
 Write-Host -Object "`nRestored the working directory to: '${location}'." -ForegroundColor 'Yellow'
 
 Write-Host -Object "`nImport module: '${env:CI_MODULE_NAME}'." -ForegroundColor 'Yellow'
-Import-Module -Name "${env:CI_MODULE_PATH}/${env:CI_MODULE_NAME}.psm1" -Force
+Import-Module -Name "${env:CI_MODULE_PATH}/${env:CI_MODULE_NAME}.psd1" -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
