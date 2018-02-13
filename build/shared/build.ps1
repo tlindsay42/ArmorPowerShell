@@ -25,6 +25,7 @@ $text = @{
     'Pester'                = 'Pester'
     'PesterUrl'             = 'https://github.com/pester/Pester'
     'ProductPage'           = 'Product Page'
+    'PSDownloadsImageUrl'   = "https://img.shields.io/powershellgallery/dt/${env:CI_MODULE_NAME}.svg"
     'PSGallery'             = 'PowerShell Gallery'
     'PSGalleryImageUrl'     = "https://img.shields.io/powershellgallery/v/${env:CI_MODULE_NAME}.svg"
     'PSGalleryProjectUrl'   = "https://www.powershellgallery.com/packages/${env:CI_MODULE_NAME}"
@@ -86,6 +87,8 @@ $text += @{
     'PesterMd'             = $text.MdLinkForm -f $text.Pester, $text.PesterUrl, $text.PesterMdLinkTitle
     'PesterRst'            = $text.RstLinkForm -f $text.Pester
     'PesterRstMap'         = $text.RstLinkMap -f $text.Pester, $text.PesterUrl
+    'PSDownloadsMdShield'  = $text.MdImageForm -f $text.PSGallery, $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl
+    'PSDownloadsRstShield' = $text.RstImageForm -f $text.PSDownloadsImageUrl, $text.PSGalleryProjectUrl, $text.PSGallery
     'PSGalleryMd'          = $text.MdLinkForm -f $text.PSGallery, $text.PSGalleryProjectUrl, $text.PSGalleryMdLinkTitle
     'PSGalleryMdShield'    = $text.MdImageForm -f $text.PSGallery, $text.PSGalleryImageUrl, $text.PSGalleryProjectUrl
     'PSGalleryRst'         = $text.RstLinkForm -f $text.PSGallery
@@ -201,7 +204,7 @@ $markDownDescription = $description -replace
 # Build README.md
 $content = (
     "# $( $text.Title )`r`n`r`n" +
-    $text.AppVeyorMdShield + $text.TravisCiMdShield + $text.CoverallsMdShield + $text.ReadTheDocsMdShield + $text.PSGalleryMdShield +
+    $text.AppVeyorMdShield + $text.TravisCiMdShield + $text.CoverallsMdShield + $text.ReadTheDocsMdShield + $text.PSGalleryMdShield + $text.PSDownloadsImageUrl +
     "`r`n`r`n${markDownDescription}`r`n`r`n" +
     "Please visit the $( $text.ReadTheDocsMd ) for more details."
 ) |
@@ -225,7 +228,7 @@ $content = @()
 $content += (
     "$( $text.Title )`r`n" +
     "========================`r`n`r`n" +
-    $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield + $text.PSGalleryImageUrl +
+    $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield + $text.PSGalleryRstShield + $text.PSDownloadsRstShield +
     $reStructuredTextDescription +
     "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" + 
     $text.ArmorCompleteRstMap +
