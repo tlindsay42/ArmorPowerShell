@@ -19,11 +19,11 @@
 
 .. image:: https://img.shields.io/powershellgallery/v/Armor.svg
    :target: https://www.powershellgallery.com/packages/Armor
-   :alt: PowerShell Gallery
+   :alt: Current Version
 
 .. image:: https://img.shields.io/powershellgallery/dt/Armor.svg
    :target: https://www.powershellgallery.com/packages/Armor
-   :alt: PowerShell Gallery
+   :alt: Total Downloads
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
 
@@ -57,6 +57,7 @@ The source code is `available on GitHub`_.
    :maxdepth: 2
    :hidden:
    :caption: User Documentation
+
    usr_00_requirements.rst
    usr_10_install.rst
    usr_20_update.rst
