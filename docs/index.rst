@@ -49,6 +49,8 @@ The source code is `available on GitHub`_.
 
 .. _Coveralls: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
 
+.. _PowerShell Gallery: https://www.powershellgallery.com/packages/Armor
+
 .. _available on GitHub: 
 
 .. toctree::
