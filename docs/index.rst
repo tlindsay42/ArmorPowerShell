@@ -1,15 +1,55 @@
 ﻿Armor PowerShell Module
 ========================
 
-This is a community project that provides a powerful command-line interface for managing and monitoring your  (secure public cloud) and  (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published .
+.. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
+   :alt: Build Status
 
-Every code push is built on  via , as well as on  and  via , and tested using the  test & mock framework.
+.. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
+   :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
+   :alt: Build Status
 
-Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by .
+.. image:: https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master
+   :target: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
+   :alt: Coverage Status
 
-Every successful build is published on the .
+.. image:: https://readthedocs.org/projects/armorpowershell/badge/?version=latest
+   :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
-The source code is . 
+.. image:: https://img.shields.io/powershellgallery/v/Armor.svg
+   :target: https://www.powershellgallery.com/packages/Armor
+   :alt: PowerShell Gallery
+
+.. image:: https://img.shields.io/powershellgallery/dt/Armor.svg
+   :target: https://www.powershellgallery.com/packages/Armor
+   :alt: PowerShell Gallery
+
+This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
+
+Every code push is built on **Windows** via `AppVeyor`_, as well as on **macOS** and **Ubuntu Linux** via `Travis CI`_, and tested using the `Pester`_ test & mock framework.
+
+Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by `Coveralls`_.
+
+Every successful build is published on the `PowerShell Gallery`_.
+
+The source code is `available on GitHub`_. 
+
+.. _Armor Complete: https://www.armor.com/armor-complete-secure-hosting/
+
+.. _Armor Anywhere: https://www.armor.com/armor-anywhere-security/
+
+.. _RESTful APIs: https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+.. _AppVeyor: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
+
+.. _Travis CI: https://travis-ci.org/tlindsay42/ArmorPowerShell
+
+.. _Pester: https://github.com/pester/Pester
+
+.. _Coveralls: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
+
+.. _available on GitHub: 
 
 .. toctree::
    :maxdepth: 2
