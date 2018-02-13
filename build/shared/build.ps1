@@ -9,6 +9,7 @@ $text = @{
     'ArmorApiGuideUrl'      = 'https://docs.armor.com/display/KBSS/Armor+API+Guide'
     'ArmorComplete'         = 'Armor Complete'
     'ArmorCompleteUrl'      = 'https://www.armor.com/armor-complete-secure-hosting/'
+    'AvailableOnGitHub'     = 'available on GitHub'
     'BoldForm'              = '**{0}**'
     'BuildStatus'           = 'Build Status'
     'CoverageStatus'        = 'Coverage Status'
@@ -16,7 +17,6 @@ $text = @{
     'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/badge.svg?branch=master"
     'CoverallsProjectUrl'   = "https://coveralls.io/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}?branch=master"
     'DocumentationStatus'   = 'Documentation Status'
-    'AvailableOnGitHub'     = 'available on GitHub'
     'LatestBuild'           = "${env:CI_PROJECT_NAME}: Latest Build"
     'macOS'                 = 'macOS'
     'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
