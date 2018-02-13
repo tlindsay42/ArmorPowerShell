@@ -1,6 +1,6 @@
 $table = ( Get-ChildItem -Path 'env:' ).Where(
     {
-        $_.Name -match ( '^(?:CI|{0})(?:_|$)' -f $env:CI_NAME ) -and
+        $_.Name -match "^(?:CI|${env:CI_NAME})(?:_|$)" -and
             $_.Name -notmatch 'EMAIL'
     }
 ) |
