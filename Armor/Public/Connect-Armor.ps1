@@ -216,7 +216,6 @@ function Connect-Armor {
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
-
         switch ( $Global:ArmorSession.ApiVersion ) {
             'v1.0' {
                 $body = @{
