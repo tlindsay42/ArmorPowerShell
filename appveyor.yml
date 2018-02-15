@@ -142,8 +142,8 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: . "${env:CI_BUILD_PATH}/build/shared/out-environmentvariables.ps1"
-  - ps: . "${env:CI_BUILD_PATH}/build/shared/install-dependencies.ps1"
+  - ps: . "${env:CI_BUILD_PATH}/build/Out-EnvironmentVariables.ps1"
+  - ps: . "${env:CI_BUILD_PATH}/build/Install-Dependencies.ps1"
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
@@ -180,7 +180,7 @@ install:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-  - ps: . "${env:CI_BUILD_PATH}/build/shared/build.ps1"
+  - ps: . "${env:CI_BUILD_PATH}/build/Build-Project.ps1"
 
 # scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
 #before_package:
@@ -209,7 +209,7 @@ build_script:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - ps: . "${env:CI_BUILD_PATH}/tests/start-tests.ps1"
+  - ps: . "${env:CI_BUILD_PATH}/tests/Start-Tests.ps1"
 
 # scripts to run after tests
 after_test:
