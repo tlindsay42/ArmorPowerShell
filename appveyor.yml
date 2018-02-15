@@ -142,7 +142,7 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: . "${env:CI_BUILD_PATH}/build/Out-EnvironmentVariables.ps1"
+  - ps: . "${env:CI_BUILD_PATH}/build/Initialize-Environment.ps1"
   - ps: . "${env:CI_BUILD_PATH}/build/Install-Dependencies.ps1"
 
 # enable patching of AssemblyInfo.* files
