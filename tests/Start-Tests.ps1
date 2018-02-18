@@ -1,42 +1,43 @@
-$testsPath = '{0}\tests' -f $env:CI_BUILD_PATH
-$results = 'results'
-$testsResultsPath = '{0}\{1}' -f $testsPath, $results
-$testsResultsFilePath = '{0}\{1}TestsResults.xml' -f $testsResultsPath, $env:CI_NAME
-$codeCoverageResultsFilePath = '{0}\{1}CodeCoverageResults.xml' -f $testsResultsPath, $env:CI_NAME
-$testsResultsDirectory = $null
-
-if ( -not ( Test-Path -Path $testsResultsPath ) ) {
-    $testsResultsDirectory = New-Item -Path $testsPath -Name $results -ItemType 'Directory' -Force -ErrorAction 'Stop'
-
-    if ( -not ( Test-Path -Path $testsResultsPath ) ) {
-        throw ( 'Directory not found: "{0}".' -f $testsResultsDirectory )
-    }
+$splat = @{
+    'Path'                         = $env:CI_TESTS_PATH
+    'OutputFormat'                 = 'NUnitXml'
+    'OutputFile'                   = $env:CI_TEST_RESULTS_PATH
+    'CodeCoverage'                 = Get-ChildItem -Path $env:CI_MODULE_PATH -Include '*.ps1' -Recurse
+    'CodeCoverageOutputFile'       = $env:CI_COVERAGE_RESULTS_PATH
+    'CodeCoverageOutputFileFormat' = 'JaCoCo'
+    'PassThru'                     = $true
 }
 
 Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
-$testsResults = Invoke-Pester -Path $testsPath `
-    -OutputFormat 'NUnitXml' `
-    -OutputFile $testsResultsFilePath `
-    -CodeCoverage ( Get-ChildItem -Path $env:CI_MODULE_PATH -Include '*.ps1' -Recurse ) `
-    -CodeCoverageOutputFile $codeCoverageResultsFilePath `
-    -CodeCoverageOutputFileFormat 'JaCoCo' `
-    -PassThru
+$testsResults = Invoke-Pester @splat
 
-if ( -not ( Test-Path -Path $testsResultsFilePath ) ) {
-    throw ( 'File not found: "{0}".' -f $testsResultsFilePath )
+$pathTest = Test-Path -Path $env:CI_TEST_RESULTS_PATH
+if ( $pathTest -eq $false ) {
+    throw "File not found: '${env:CI_TEST_RESULTS_PATH}'."
+    }
+
+$pathTest = Test-Path -Path $env:CI_COVERAGE_RESULTS_PATH
+if ( $pathTest -eq $false ) {
+    throw "File not found: '${env:CI_COVERAGE_RESULTS_PATH}'."
 }
 
 if ( $env:APPVEYOR -eq $true ) {
-    ( New-Object -TypeName 'System.Net.WebClient' ).UploadFile(
-        ( 'https://ci.appveyor.com/api/testresults/nunit/{0}' -f $env:APPVEYOR_JOB_ID ),
-        ( '{0}\tests\results\AppVeyorTestsResults.xml' -f $env:CI_BUILD_PATH )
+    $webClient = New-Object -TypeName 'System.Net.WebClient'
+    $webClient.UploadFile(
+        "https://ci.appveyor.com/api/testresults/nunit/${env:APPVEYOR_JOB_ID}",
+        $env:CI_TEST_RESULTS_PATH
     )
 
-    $coverage = Format-Coverage -PesterResults $testsResults -CoverallsApiToken $env:COVERALLS_API_KEY -BranchName $env:APPVEYOR_REPO_BRANCH
+    $splat = @{
+        'PesterResults'     = $testsResults
+        'CoverallsApiToken' = $env:COVERALLS_API_KEY
+        'BranchName'        = $env:APPVEYOR_REPO_BRANCH
+    }
+    $coverage = Format-Coverage @splat
 
     Publish-Coverage -Coverage $coverage
 }
 
 if ( $testsResults.FailedCount -gt 0 ) {
-    throw ( '{0} tests failed.' -f $testsResults.FailedCount )
+    throw "$( $testsResults.FailedCount ) tests failed."
 }

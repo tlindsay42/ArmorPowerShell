@@ -66,19 +66,15 @@ image:
 
 # scripts that are called at very beginning, before repo cloning
 init:
-    # CI abstraction variables
   - ps: $env:CI_BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
-  - ps: $env:CI_MODULE_NAME = 'Armor'
-  - ps: $env:CI_MODULE_PATH = "${env:CI_BUILD_PATH}/${env:CI_MODULE_NAME}"
-  - ps: $env:CI_MODULE_VERSION = ( $env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
-  - ps: $env:CI_OWNER_NAME = $env:APPVEYOR_ACCOUNT_NAME
-  - ps: $env:CI_PROJECT_NAME = $env:APPVEYOR_PROJECT_NAME
-    # Coveralls environment variables
-  - ps: $env:CI_NAME = 'AppVeyor'
-  - ps: $env:CI_BUILD_NUMBER = $env:APPVEYOR_BUILD_NUMBER
-  - ps: $env:CI_BUILD_URL = "https://ci.appveyor.com/project/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/build/job/${env:APPVEYOR_JOB_ID}"
-  - ps: $env:CI_BRANCH = $env:APPVEYOR_REPO_BRANCH
-  - ps: $env:CI_PULL_REQUEST = $env:APPVEYOR_PULL_REQUEST_NUMBER
+  - ps: $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'build'
+  - ps: $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
+  - ps: git config --global credential.helper store
+  - ps: Add-Content -Path "${env:USERPROFILE}/.git-credentials" -Value "https://${env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
+  - ps: git config --global user.email $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
+  - ps: git config --global user.name $env:APPVEYOR_REPO_COMMIT_AUTHOR
+  - ps: git config --global core.autocrlf true
+  - ps: git config --global core.safecrlf false
 
 # clone directory
 #clone_folder:
@@ -142,8 +138,8 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: . "${env:CI_BUILD_PATH}/build/Initialize-Environment.ps1"
-  - ps: . "${env:CI_BUILD_PATH}/build/Install-Dependencies.ps1"
+  - ps: . $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH
+  - ps: . $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
@@ -180,7 +176,7 @@ install:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-  - ps: . "${env:CI_BUILD_PATH}/build/Build-Project.ps1"
+  - ps: . $env:CI_BUILD_PROJECT_SCRIPT_PATH
 
 # scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
 #before_package:
@@ -209,16 +205,10 @@ build_script:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - ps: . "${env:CI_BUILD_PATH}/tests/Start-Tests.ps1"
+  - ps: . $env:CI_START_TESTS_SCRIPT_PATH
 
 # scripts to run after tests
-after_test:
-  - git config --global credential.helper store
-  - ps: Add-Content -Path "${env:USERPROFILE}/.git-credentials" -Value "https://${env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
-  - ps: git config --global user.email $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
-  - ps: git config --global user.name $env:APPVEYOR_REPO_COMMIT_AUTHOR
-  - git config --global core.autocrlf true
-  - git config --global core.safecrlf false
+#after_test:
 
 #---------------------------------#
 #      artifacts configuration    #
@@ -226,7 +216,7 @@ after_test:
 
 # Files generated during the build process that should be retained
 artifacts:
-  path: tests/results/AppVeyor*.xml
+  path: $env:CI_RESULTS_ARTIFACTS_PATH
 
 
 #---------------------------------#
@@ -253,7 +243,7 @@ artifacts:
 
 # on successful build
 on_success:
-  - ps: . "${env:CI_BUILD_PATH}/build/appveyor/publish.ps1"
+  - ps: . $env:CI_PUBLISH_PROJECT_SCRIPT_PATH
 
 # on build failure
 #on_failure:
