@@ -22,7 +22,7 @@ elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:CI_PULL_REQUEST ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-    $messageForm = 'Publishing module: "{0}" version "{1}" to {2}.'
+    $messageForm = 'Publishing module: "{0}" version: "{1}" to {2}.'
 
     OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
 
@@ -37,4 +37,6 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to $env:CI_MODULE_VERSION [ci skip]"
     git push --porcelain origin master
+
+    Write-Host -Object ''
 }
