@@ -60,14 +60,14 @@ env:
     # CI abstraction variables
     - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
     - CI_BUILD_SCRIPTS_PATH="${CI_BUILD_PATH}/build"
-    - CI_OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
-    - CI_PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
+    - CI_OWNER_NAME='<placeholder>'
+    - CI_PROJECT_NAME='<placeholder>'
     # Coveralls environment variables
-    - CI_NAME='Travis'
-    - CI_BUILD_NUMBER="${TRAVIS_BUILD_NUMBER}"
-    - CI_BUILD_URL="https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/jobs/${env:TRAVIS_JOB_ID}"
-    - CI_BRANCH="${TRAVIS_BRANCH}"
-    - CI_PULL_REQUEST="${TRAVIS_PULL_REQUEST}"
+    - CI_NAME='<placeholder>'
+    - CI_BUILD_NUMBER='<placeholder>'
+    - CI_BUILD_URL='<placeholder>'
+    - CI_BRANCH='<placeholder>'
+    - CI_PULL_REQUEST='<placeholder>'
     # Module variables
     - CI_MODULE_PATH='<placeholder>'
     - CI_MODULE_MANIFEST_PATH='<placeholder>'
