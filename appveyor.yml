@@ -216,10 +216,10 @@ test_script:
 
 # Files generated during the build process that should be retained
 artifacts:
-  - path: $env:CI_TEST_RESULTS_PATH
+  - path: tests/results/AppVeyorTestsResults.xml
     name: Pester Test Results
     type: Auto
-  - path: $env:CI_COVERAGE_RESULTS_PATH
+  - path: tests/results/AppVeyorCodeCoverageResults.xml
     name: Pester Code Coverage Results
     type: Auto
 
