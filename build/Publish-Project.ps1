@@ -1,11 +1,11 @@
 function OutWarning ( [String] $Message ) {
     Add-AppVeyorMessage -Message $Message -Category 'Warning'
-    Write-Warning -Message ( "`n{0}`n" -f $Message )
+    Write-Warning -Message "`n$Message`n"
 }
 
 function OutInfo ( [String] $Message ) {
     Add-AppVeyorMessage -Message $Message -Category 'Information'
-    Write-Host -Object ( "`n{0}`n" -f $Message ) -ForegroundColor 'Yellow'
+    Write-Host -Object "`n$Message`n" -ForegroundColor 'Yellow'
 }
 
 $skipMessage = 'Skipping publish to the PowerShell Gallery'
@@ -33,7 +33,7 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git checkout master
     git add --all
     git status
-    git commit --signoff --message ( '{0}: Update version to {1} [ci skip]' -f $env:CI_NAME, $env:CI_MODULE_VERSION )
+    git commit --signoff --message "${env:CI_NAME}: Update version to $env:CI_MODULE_VERSION [ci skip]"
     git push --porcelain origin master
 
     OutInfo( ( $messageForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
