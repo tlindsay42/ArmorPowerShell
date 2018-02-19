@@ -123,8 +123,8 @@ matrix:
 
 install:
   - export CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
-  - pwsh -Command '$env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath "build" -ErrorAction "Stop"'
-  - pwsh -Command '$env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath "Initialize-Environment.ps1" -ErrorAction "Stop"'
+  - pwsh -Command '& { $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath "build" -ErrorAction "Stop" }'
+  - pwsh -Command '& { $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath "Initialize-Environment.ps1" -ErrorAction "Stop" }'
   - pwsh -File "${CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH}"
   - pwsh -File "${CI_INSTALL_DEPENDENCIES_SCRIPT_PATH}"
 
