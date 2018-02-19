@@ -57,9 +57,38 @@ language: generic
 # environment variables
 env:
   global:
+    # CI abstraction variables
     - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
     - CI_BUILD_SCRIPTS_PATH="${CI_BUILD_PATH}/build"
+    - CI_OWNER_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f1)"
+    - CI_PROJECT_NAME="$(echo $TRAVIS_REPO_SLUG | cut -d '/' -f2)"
+    # Coveralls environment variables
+    - CI_NAME='Travis'
+    - CI_BUILD_NUMBER='<placeholder>'
+    - CI_BUILD_URL='<placeholder>'
+    - CI_BRANCH='<placeholder>'
+    - CI_PULL_REQUEST='<placeholder>'
+    # Module variables
+    - CI_MODULE_NAME='<placeholder>'
+    - CI_MODULE_PATH='<placeholder>'
+    - CI_MODULE_MANIFEST_PATH='<placeholder>'
+    - CI_MODULE_LIB_PATH='<placeholder>'
+    - CI_MODULE_PRIVATE_PATH='<placeholder>'
+    - CI_MODULE_PUBLIC_PATH='<placeholder>'
+    - CI_MODULE_VERSION='<placeholder>'
+    # Testing variables
+    - CI_TESTS_PATH='<placeholder>'
+    - CI_RESULTS_PATH='<placeholder>'
+    - CI_TEST_RESULTS_PATH='<placeholder>'
+    - CI_COVERAGE_RESULTS_PATH='<placeholder>'
+    # Documentation variables
+    - CI_DOCS_PATH='<placeholder>'
+    # Script path variables
     - CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Initialize-Environment.ps1"
+    - CI_INSTALL_DEPENDENCIES_SCRIPT_PATH='<placeholder>'
+    - CI_BUILD_PROJECT_SCRIPT_PATH='<placeholder>'
+    - CI_START_TESTS_SCRIPT_PATH='<placeholder>'
+    - CI_PUBLISH_PROJECT_SCRIPT_PATH='<placeholder>'
     # Encrypted environment variables
     - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
   #matrix:
