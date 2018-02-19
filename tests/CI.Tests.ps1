@@ -1,7 +1,4 @@
-#Import-Module -Name './Armor/Armor.psm1'
-
 if ( $env:CI -eq $true ) {
-
     Describe 'CI Build Configuration' {
 
         Context 'Environment Variables : CI Abstraction' {
@@ -77,8 +74,6 @@ if ( $env:CI -eq $true ) {
                 It 'set $env:CI_PULL_REQUEST' {
                     $env:CI_PULL_REQUEST |
                         Should -Not -BeNullOrEmpty
-                    $env:CI_PULL_REQUEST |
-                        Should -Match
                 }
             }
         }
