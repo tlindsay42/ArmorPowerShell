@@ -25,3 +25,8 @@ foreach ( $moduleName in 'Pester', 'Coveralls' ) {
 Remove-Variable -Name 'moduleName'
 
 Write-Host -Object ''
+
+& node --version
+& npm --version
+
+& npm install -g sinon@1 markdown-spellcheck

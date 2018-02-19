@@ -41,3 +41,5 @@ if ( $env:APPVEYOR -eq $true ) {
 if ( $testsResults.FailedCount -gt 0 ) {
     throw "$( $testsResults.FailedCount ) tests failed."
 }
+
+& mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
