@@ -14,7 +14,7 @@ $testsResults = Invoke-Pester @splat
 $pathTest = Test-Path -Path $env:CI_TEST_RESULTS_PATH
 if ( $pathTest -eq $false ) {
     throw "File not found: '${env:CI_TEST_RESULTS_PATH}'."
-    }
+}
 
 $pathTest = Test-Path -Path $env:CI_COVERAGE_RESULTS_PATH
 if ( $pathTest -eq $false ) {
@@ -35,11 +35,14 @@ if ( $env:APPVEYOR -eq $true ) {
     }
     $coverage = Format-Coverage @splat
 
+    Write-Host -Object 'Publishing code coverage' -ForegroundColor 'Yellow'
     Publish-Coverage -Coverage $coverage
+    Write-Host -Object ''
 }
 
 if ( $testsResults.FailedCount -gt 0 ) {
     throw "$( $testsResults.FailedCount ) tests failed."
 }
 
+Write-Host -Object "`nChecking the spelling of all documentation in Markdown format." -ForegroundColor 'Yellow'
 & mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
