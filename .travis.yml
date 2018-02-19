@@ -121,8 +121,8 @@ matrix:
 
 before_install:
   - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
-  - pwsh -Command '$env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath "build"'
-  - pwsh -Command '$env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath "Initialize-Environment.ps1"'
+  - CI_BUILD_SCRIPTS_PATH="${CI_BUILD_PATH}/build"
+  - CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Initialize-Environment.ps1"
 
 install:
   - pwsh -File "${CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH}"
