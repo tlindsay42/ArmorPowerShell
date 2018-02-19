@@ -48,7 +48,6 @@ $env:CI_TESTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'tests'
 $env:CI_RESULTS_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'results'
 $env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}TestsResults.xml"
 $env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}CodeCoverageResults.xml"
-
 $env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs'
 
 $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1'
