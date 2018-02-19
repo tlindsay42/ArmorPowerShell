@@ -44,5 +44,7 @@ if ( $testsResults.FailedCount -gt 0 ) {
     throw "$( $testsResults.FailedCount ) tests failed."
 }
 
-Write-Host -Object "`nChecking the spelling of all documentation in Markdown format." -ForegroundColor 'Yellow'
+Write-Host -Object "Checking the spelling of all documentation in Markdown format." -ForegroundColor 'Yellow'
 & mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
+
+Write-Host -Object ''
