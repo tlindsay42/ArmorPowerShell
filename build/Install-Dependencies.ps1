@@ -12,7 +12,7 @@ Remove-Variable -Name 'providerName'
 Get-PackageProvider -Name $providerNames |
     Format-Table -AutoSize -Property 'Name', 'Version'
 
-Write-Host -Object "`nInstalling modules:" -ForegroundColor 'Yellow'
+Write-Host -Object "Installing modules:" -ForegroundColor 'Yellow'
 $moduleNames = 'Pester', 'Coveralls'
 foreach ( $moduleName in $moduleNames ) {
     if ( $env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2015' ) {
@@ -31,9 +31,10 @@ Remove-Variable -Name 'moduleName'
 Get-Module -Name $moduleNames |
     Format-Table -AutoSize -Property 'Name', 'Version'
 
-Write-Host -Object "`nNodeJS version:" -ForegroundColor 'Yellow'
+Write-Host -Object "NodeJS version:" -ForegroundColor 'Yellow' -NoNewline
 & node --version
-Write-Host -Object "`nNodeJS Package Manager (npm) version:" -ForegroundColor 'Yellow'
+Write-Host -Object "`nNodeJS Package Manager (npm) version:" -ForegroundColor 'Yellow' -NoNewline
 & npm --version
 
-& npm install --global sinon@1 markdown-spellcheck 3> ( [System.IO.Path]::GetTempFileName() )
+Write-Host -Object "`nInstalling npm packages:" -ForegroundColor 'Yellow'
+& npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempFileName() )
