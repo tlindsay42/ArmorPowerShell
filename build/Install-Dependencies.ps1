@@ -31,10 +31,12 @@ Remove-Variable -Name 'moduleName'
 Get-Module -Name $moduleNames |
     Format-Table -AutoSize -Property 'Name', 'Version'
 
-Write-Host -Object "NodeJS version:" -ForegroundColor 'Yellow' -NoNewline
+Write-Host -Object 'NodeJS version: ' -ForegroundColor 'Yellow' -NoNewline
 & node --version
-Write-Host -Object "`nNodeJS Package Manager (npm) version:" -ForegroundColor 'Yellow' -NoNewline
+Write-Host -Object 'NodeJS Package Manager (npm) version: ' -ForegroundColor 'Yellow' -NoNewline
 & npm --version
 
-Write-Host -Object "`nInstalling npm packages:" -ForegroundColor 'Yellow'
+Write-Host -Object "`nInstalling npm packages: " -ForegroundColor 'Yellow'
 & npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempFileName() )
+
+Write-Host -Object ''
