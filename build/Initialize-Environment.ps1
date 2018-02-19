@@ -70,9 +70,8 @@ $table = ( Get-ChildItem -Path 'env:' ).Where(
             $_.Name -notmatch 'EMAIL'
     }
 ) |
-    Select-Object -Property 'Name', 'Value' |
     Sort-Object -Property 'Name' |
-    Format-Table -AutoSize |
+    Format-Table -AutoSize -Property 'Name', 'Value' |
     Out-String
 
 # Print all of the continuous integration-related environment variables
