@@ -30,7 +30,7 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'the PowerShell Gallery' ) )
 
     # Publish the new version back to GitHub
-    git checkout master
+    git checkout master 2> ( [System.IO.Path]::GetTempFileName() )
     git add --all
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to $env:CI_MODULE_VERSION [ci skip]"
