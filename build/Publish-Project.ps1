@@ -22,12 +22,14 @@ elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:CI_PULL_REQUEST ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-    $messageForm = '{0} module version "{1}" published to {2}.'
+    $messageForm = 'Publishing module: "{0}" version "{1}" to {2}.'
+
+    OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
 
     # Publish the new version to the PowerShell Gallery
     Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
 
-    OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'the PowerShell Gallery' ) )
+    OutInfo( ( $messageForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
     git checkout master 2> ( [System.IO.Path]::GetTempFileName() )
@@ -35,6 +37,4 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to $env:CI_MODULE_VERSION [ci skip]"
     git push --porcelain origin master
-
-    OutInfo( ( $messageForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 }
