@@ -119,12 +119,12 @@ matrix:
     #access_key:
   #ssh_known_hosts:
 
-before_install:
-  - CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
-  - CI_BUILD_SCRIPTS_PATH="${CI_BUILD_PATH}/build"
-  - CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Initialize-Environment.ps1"
+#before_install:
 
 install:
+  - export CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
+  - pwsh -Command '$env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath "build" -ErrorAction "Stop"'
+  - pwsh -Command '$env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath "Initialize-Environment.ps1" -ErrorAction "Stop"'
   - pwsh -File "${CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH}"
   - pwsh -File "${CI_INSTALL_DEPENDENCIES_SCRIPT_PATH}"
 

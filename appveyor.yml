@@ -66,9 +66,6 @@ image:
 
 # scripts that are called at very beginning, before repo cloning
 init:
-  - ps: $env:CI_BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
-  - ps: $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'build'
-  - ps: $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
   - ps: git config --global credential.helper store
   - ps: Add-Content -Path "${env:USERPROFILE}/.git-credentials" -Value "https://${env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
   - ps: git config --global user.email $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
@@ -138,6 +135,9 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
+  - ps: $env:CI_BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
+  - ps: $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'build'
+  - ps: $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
   - ps: . $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH
   - ps: . $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH
 
