@@ -125,12 +125,6 @@ matrix:
 #before_install:
 
 install:
-<<<<<<< HEAD
-=======
-  - export CI_BUILD_PATH="${TRAVIS_BUILD_DIR}"
-  - export CI_BUILD_SCRIPTS_PATH="${CI_BUILD_PATH}/build"
-  - export CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Initialize-Environment.ps1"
->>>>>>> db373f208dadb7d6f5f714bc24ce3d030d0c6e70
   - pwsh -File "${CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH}"
   - pwsh -File "${CI_INSTALL_DEPENDENCIES_SCRIPT_PATH}"
 
