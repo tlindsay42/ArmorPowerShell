@@ -27,11 +27,11 @@ else {
     throw 'This is not a supported continuous integration environment.'
 }
 
-$env:CI_MODULE_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath $env:CI_MODULE_NAME
-$env:CI_MODULE_MANIFEST_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath "$env:CI_MODULE_NAME.psd1"
-$env:CI_MODULE_LIB_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Lib'
-$env:CI_MODULE_PRIVATE_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Private'
-$env:CI_MODULE_PUBLIC_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Public'
+$env:CI_MODULE_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath $env:CI_MODULE_NAME -ErrorAction 'Stop'
+$env:CI_MODULE_MANIFEST_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath "$env:CI_MODULE_NAME.psd1" -ErrorAction 'Stop'
+$env:CI_MODULE_LIB_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Lib' -ErrorAction 'Stop'
+$env:CI_MODULE_PRIVATE_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Private' -ErrorAction 'Stop'
+$env:CI_MODULE_PUBLIC_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Public' -ErrorAction 'Stop'
 
 if ( $env:APPVEYOR -eq $true ) {
     $env:CI_MODULE_VERSION = ( $env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
@@ -44,16 +44,16 @@ elseif ( $env:TRAVIS -eq $true ) {
     ).Split( "'" )[1]
 }
 
-$env:CI_TESTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'tests'
-$env:CI_RESULTS_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'results'
-$env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}TestsResults.xml"
-$env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}CodeCoverageResults.xml"
-$env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs'
+$env:CI_TESTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'tests' -ErrorAction 'Stop'
+$env:CI_RESULTS_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'results' -ErrorAction 'Stop'
+$env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}TestsResults.xml" -ErrorAction 'Stop'
+$env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}CodeCoverageResults.xml" -ErrorAction 'Stop'
+$env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs' -ErrorAction 'Stop'
 
-$env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1'
-$env:CI_BUILD_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Build-Project.ps1'
-$env:CI_START_TESTS_SCRIPT_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'Start-Tests.ps1'
-$env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1'
+$env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1' -ErrorAction 'Stop'
+$env:CI_BUILD_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Build-Project.ps1' -ErrorAction 'Stop'
+$env:CI_START_TESTS_SCRIPT_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'Start-Tests.ps1' -ErrorAction 'Stop'
+$env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1' -ErrorAction 'Stop'
 
 
 if ( ( Test-Path -Path $env:CI_RESULTS_PATH ) -eq $false ) {
