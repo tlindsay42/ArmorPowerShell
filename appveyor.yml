@@ -66,8 +66,47 @@ image:
 
 # scripts that are called at very beginning, before repo cloning
 init:
+    # CI abstraction variables
+  - ps: $env:CI_BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
+  - ps: $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'build'
+  - ps: $env:CI_OWNER_NAME = $env:APPVEYOR_ACCOUNT_NAME
+  - ps: $env:CI_PROJECT_NAME = $env:APPVEYOR_PROJECT_NAME
+
+    # Coveralls environment variables
+  - ps: $env:CI_NAME = 'AppVeyor'
+  - ps: $env:CI_BUILD_NUMBER = $env:APPVEYOR_BUILD_NUMBER
+  - ps: $env:CI_BUILD_URL = "https://ci.appveyor.com/project/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/build/job/${env:APPVEYOR_JOB_ID}"
+  - ps: $env:CI_BRANCH = $env:APPVEYOR_REPO_BRANCH
+  - ps: $env:CI_PULL_REQUEST = $env:APPVEYOR_PULL_REQUEST_NUMBER
+
+    # Module variables
+  - ps: $env:CI_MODULE_NAME = 'Armor'
+  - ps: $env:CI_MODULE_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath $env:CI_MODULE_NAME -ErrorAction 'Stop'
+  - ps: $env:CI_MODULE_LIB_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Lib' -ErrorAction 'Stop'
+  - ps: $env:CI_MODULE_PRIVATE_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Private' -ErrorAction 'Stop'
+  - ps: $env:CI_MODULE_PUBLIC_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath 'Public' -ErrorAction 'Stop'
+  - ps: $env:CI_MODULE_MANIFEST_PATH = Join-Path -Path $env:CI_MODULE_PATH -ChildPath "${env:CI_MODULE_NAME}.psd1" -ErrorAction 'Stop'
+  - ps: $env:CI_MODULE_VERSION = ( $env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
+
+    # Testing variables
+  - ps: $env:CI_TESTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'tests' -ErrorAction 'Stop'
+  - ps: $env:CI_RESULTS_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'results' -ErrorAction 'Stop'
+  - ps: $env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}TestResults.xml" -ErrorAction 'Stop'
+  - ps: $env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}CodeCoverageResults.xml" -ErrorAction 'Stop'
+
+    # Documentation variables
+  - ps: $env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs' -ErrorAction 'Stop'
+
+    # Script path variables
+  - ps: $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
+  - ps: $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1' -ErrorAction 'Stop'
+  - ps: $env:CI_BUILD_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Build-Project.ps1' -ErrorAction 'Stop'
+  - ps: $env:CI_START_TESTS_SCRIPT_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'Start-Tests.ps1' -ErrorAction 'Stop'
+  - ps: $env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1' -ErrorAction 'Stop'
+
+    # Configure git
   - ps: git config --global credential.helper store
-  - ps: Add-Content -Path "${env:USERPROFILE}/.git-credentials" -Value "https://${env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
+  - ps: Add-Content -Path ( Join-Path -Path $env:USERPROFILE -ChildPath '.git-credentials' ) -Value "https://${env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
   - ps: git config --global user.email $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
   - ps: git config --global user.name $env:APPVEYOR_REPO_COMMIT_AUTHOR
   - ps: git config --global core.autocrlf true
@@ -135,9 +174,6 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: $env:CI_BUILD_PATH = $env:APPVEYOR_BUILD_FOLDER
-  - ps: $env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'build'
-  - ps: $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
   - ps: . $env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH
   - ps: . $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH
 
@@ -216,7 +252,7 @@ test_script:
 
 # Files generated during the build process that should be retained
 artifacts:
-  - path: tests/results/AppVeyorTestsResults.xml
+  - path: tests/results/AppVeyorTestResults.xml
     name: Pester Test Results
     type: Auto
   - path: tests/results/AppVeyorCodeCoverageResults.xml
