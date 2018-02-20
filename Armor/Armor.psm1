@@ -1,9 +1,7 @@
-$filter = '*.ps1'
-
 # Get class definition files, as well as the private and public function definition files.
-$lib = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH -Filter $filter -ErrorAction 'Stop'
-$private = Get-ChildItem -Path $env:CI_MODULE_PRIVATE_PATH -Filter $filter -ErrorAction 'Stop'
-$public = Get-ChildItem -Path $env:CI_MODULE_PUBLIC_PATH -Filter $filter -ErrorAction 'Stop'
+$lib = Get-ChildItem -Path "$PSScriptRoot/Lib/*.ps1" -ErrorAction 'Stop'
+$private = Get-ChildItem -Path "$PSScriptRoot/Private/*.ps1" -ErrorAction 'Stop'
+$public = Get-ChildItem -Path "$PSScriptRoot/Public/*.ps1" -ErrorAction 'Stop'
 
 # Source the definition files
 foreach ( $import in ( $lib + $private + $public ) ) {
@@ -11,4 +9,4 @@ foreach ( $import in ( $lib + $private + $public ) ) {
 }
 
 # Export the Public modules
-Export-ModuleMember -Function $Public.BaseName -ErrorAction 'Stop'
+Export-ModuleMember -Function $public.BaseName -ErrorAction 'Stop'
