@@ -78,7 +78,7 @@ if ( $env:CI -eq $true ) {
             }
 
             It 'should set $env:CI_MODULE_MANIFEST_PATH to a valid module manifest' {
-                Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH |
+                { Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH } |
                     Should -Not -Throw
             }
 
