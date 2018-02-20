@@ -94,11 +94,6 @@ if ( $env:CI -eq $true ) {
                     Should -Be $true
             }
 
-            It 'should set $env:CI_RESULTS_PATH to a directory that exists' {
-                Test-Path -Path $env:CI_RESULTS_PATH -PathType 'Container' |
-                    Should -Be $true
-            }
-
             It 'should set $env:CI_TEST_RESULTS_PATH to a new file' {
                 Test-Path -Path $env:CI_TEST_RESULTS_PATH -PathType 'Leaf' |
                     Should -Be $false

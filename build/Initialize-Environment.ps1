@@ -1,13 +1,3 @@
-if ( ( Test-Path -Path $env:CI_RESULTS_PATH ) -eq $false ) {
-    Write-Host -Object "`nCreating the test results directory." -ForegroundColor 'Yellow'
-
-    New-Item -Path $env:CI_RESULTS_PATH -ItemType 'Directory' -Force -ErrorAction 'Stop'
-
-    if ( ( Test-Path -Path $env:CI_RESULTS_PATH ) -eq $false ) {
-        throw "Directory not found: '${env:CI_RESULTS_PATH}'."
-    }
-}
-
 Write-Host -Object "`nListing all continuous integration environment variables." -ForegroundColor 'Yellow'
 
 ( Get-ChildItem -Path 'env:' ).Where(
