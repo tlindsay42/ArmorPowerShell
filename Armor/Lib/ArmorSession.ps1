@@ -102,7 +102,7 @@ Class ArmorSession {
     [UInt16] $SessionLengthInSeconds
 
     [ValidateNotNull()]
-    [DateTime] $SessionStartTime = ( Get-Date )
+    [DateTime] $SessionStartTime
 
     [ValidateNotNull()]
     [DateTime] $SessionExpirationTime
@@ -117,10 +117,7 @@ Class ArmorSession {
     Hidden [String] $AuthenticationType = 'FH-AUTH'
 
     [ValidateNotNull()]
-    Hidden [Hashtable] $Headers = @{ 
-        'Content-Type' = 'application/json'
-        'Accept'       = 'application/json'
-    }
+    Hidden [Hashtable] $Headers = @{}
 
     # Constructors
     ArmorSession () {}
@@ -135,10 +132,10 @@ Class ArmorSession {
         $this.ApiVersion = $ApiVersion
     }
 
-    [Boolean] AuthorizationExists() {
-        $return = $false
+    [Boolean] AuthorizationExists () {
+        [Boolean] $return = $false
 
-        if ( $this.Headers.Authorization -match ( '^{0} [a-z0-9]+$' -f $this.AuthenticationType ) ) {
+        if ( $this.Headers.Authorization -match "^$( $this.AuthenticationType ) [a-z0-9]+$" ) {
             $return = $true
         }
 
@@ -149,15 +146,18 @@ Class ArmorSession {
         [String] $AccessToken,
         [UInt16] $SessionLengthInSeconds
     ) {
-        if ( $AccessToken -match '^[a-z0-9]+$' ) {
-            $this.Headers.Authorization = '{0} {1}' -f $this.AuthenticationType, $AccessToken
-        }
-        else {
-            throw ( 'Invalid access token: "{0}".' -f $AccessToken )
+        if ( $AccessToken -notmatch '^[a-z0-9]{32}$' ) {
+            throw "Invalid access token: '${AccessToken}'."
         }
 
+        $this.SessionStartTime = Get-Date
         $this.SessionLengthInSeconds = $SessionLengthInSeconds
-        $this.SessionExpirationTime = ( Get-Date ).AddSeconds( $this.SessionLengthInSeconds )
+        $this.SessionExpirationTime = $this.SessionStartTime.AddSeconds( $this.SessionLengthInSeconds )
+
+        $type = 'application/json'
+        $this.Headers.Add( 'Content-Type', $type )
+        $this.Headers.Add( 'Accept', $type )
+        $this.Headers.Add( 'Authorization', "$( $this.AuthenticationType ) ${AccessToken}" )
     }
 
     [ArmorAccount] GetAccountContext () {
@@ -168,23 +168,31 @@ Class ArmorSession {
     }
 
     [UInt16] GetAccountContextID () {
-        return $this.Headers.( $this.AccountContextHeader )
+        [UInt16] $return = $this.Headers.( $this.AccountContextHeader )
+
+        return $return
     }
 
-    [Int32] GetMinutesRemaining() {
-        return ( $this.SessionExpirationTime - ( Get-Date ) ).Minutes
+    [Int32] GetMinutesRemaining () {
+        [Int32] $return = ( $this.SessionExpirationTime - ( Get-Date ) ).Minutes
+
+        return $return
     }
 
-    [Int32] GetSecondsRemaining() {
-        return ( $this.SessionExpirationTime - ( Get-Date ) ).Second
+    [Int32] GetSecondsRemaining () {
+        [Int32] $return = ( $this.SessionExpirationTime - ( Get-Date ) ).Seconds
+
+        return $return
     }
 
-    [String] GetToken() {
-        return $this.Headers.Authorization.Split( ' ' )[-1]
+    [String] GetToken () {
+        [String] $return = $this.Headers.Authorization.Split( ' ' )[-1]
+
+        return $return
     }
 
-    [Boolean] IsActive() {
-        $return = $false
+    [Boolean] IsActive () {
+        [Boolean] $return = $false
 
         if ( $this.SessionExpirationTime -gt ( Get-Date ) ) {
             $return = $true
@@ -208,7 +216,7 @@ Class ArmorSession {
                 Select-Object -First 1
         }
         else {
-            throw ( 'Invalid account context: "{0}".  Available Armor Account IDs are: {1}.' -f $ID, ( $this.Accounts.ID -join ', ' ) )
+            throw "Invalid account context: '${ID}'.  Available Armor Account IDs are: '$( $this.Accounts.ID -join ', ' )'."
         }
 
         return $return
