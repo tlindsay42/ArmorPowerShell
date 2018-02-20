@@ -123,8 +123,8 @@ $manifestPath = "${env:CI_MODULE_PATH}/${env:CI_MODULE_NAME}.psd1"
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
 $manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
 
-Write-Host -Object "`nOld Version: '$( $manifest.Version )'."
-Write-Host -Object "New Version: '${env:CI_MODULE_VERSION}'."
+Write-Host -Object "`tOld Version: '$( $manifest.Version )'."
+Write-Host -Object "`tNew Version: '${env:CI_MODULE_VERSION}'."
 
 Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 
