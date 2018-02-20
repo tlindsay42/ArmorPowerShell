@@ -81,9 +81,8 @@ env:
 
     # Testing variables
     - CI_TESTS_PATH="${CI_BUILD_PATH}/tests"
-    - CI_RESULTS_PATH="${CI_TESTS_PATH}/results"
-    - CI_TEST_RESULTS_PATH="${CI_RESULTS_PATH}/${CI_NAME}TestResults.xml"
-    - CI_COVERAGE_RESULTS_PATH="${CI_RESULTS_PATH}/${CI_NAME}CodeCoverageResults.xml"
+    - CI_TEST_RESULTS_PATH="${CI_BUILD_PATH}/TestResults.xml"
+    - CI_COVERAGE_RESULTS_PATH="${CI_BUILD_PATH}/CodeCoverageResults.xml"
 
     # Documentation variables
     - CI_DOCS_PATH="${CI_BUILD_PATH}/docs"

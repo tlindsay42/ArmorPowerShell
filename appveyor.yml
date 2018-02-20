@@ -90,9 +90,8 @@ init:
 
     # Testing variables
   - ps: $env:CI_TESTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'tests' -ErrorAction 'Stop'
-  - ps: $env:CI_RESULTS_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'results' -ErrorAction 'Stop'
-  - ps: $env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}TestResults.xml" -ErrorAction 'Stop'
-  - ps: $env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_RESULTS_PATH -ChildPath "${env:CI_NAME}CodeCoverageResults.xml" -ErrorAction 'Stop'
+  - ps: $env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'TestResults.xml' -ErrorAction 'Stop'
+  - ps: $env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'CodeCoverageResults.xml' -ErrorAction 'Stop'
 
     # Documentation variables
   - ps: $env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs' -ErrorAction 'Stop'
@@ -252,10 +251,10 @@ test_script:
 
 # Files generated during the build process that should be retained
 artifacts:
-  - path: tests/results/AppVeyorTestResults.xml
+  - path: TestResults.xml
     name: Pester Test Results
     type: Auto
-  - path: tests/results/AppVeyorCodeCoverageResults.xml
+  - path: CodeCoverageResults.xml
     name: Pester Code Coverage Results
     type: Auto
 
