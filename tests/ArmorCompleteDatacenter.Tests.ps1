@@ -5,7 +5,6 @@ $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class' -Fixture {
     #region init
-    [ArmorCompleteDatacenter] $temp = [ArmorCompleteDatacenter]::New()
     #endregion
 
     Context -Name 'Constructors' -Fixture {
@@ -14,6 +13,8 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
                 Should -Not -Throw
         }
     } # End of Context
+
+    [ArmorCompleteDatacenter] $temp = [ArmorCompleteDatacenter]::New()
 
     Context -Name 'Properties/ID' -Fixture {
         $testCases = @(

@@ -5,7 +5,6 @@ $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
     #region init
-    [ArmorUser] $temp = [ArmorUser]::New()
     #endregion
 
     Context -Name 'Constructors' -Fixture {
@@ -14,6 +13,8 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
                 Should -Not -Throw
         }
     } # End of Context
+
+    [ArmorUser] $temp = [ArmorUser]::New()
 
     Context -Name 'Properties/Type' -Fixture {
         $testCases = @(
@@ -124,7 +125,6 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
 
 Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
     #region init
-    [ArmorAccount] $temp = [ArmorAccount]::New()
     #endregion
 
     Context -Name 'Constructors' -Fixture {
@@ -133,6 +133,8 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
     } # End of Context
+
+    [ArmorAccount] $temp = [ArmorAccount]::New()
 
     Context -Name 'Properties/ID' -Fixture {
         $testCases = @(
@@ -268,7 +270,6 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
 
 Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
     #region init
-    [ArmorDepartment] $temp = [ArmorDepartment]::New()
     #endregion
 
     Context -Name 'Constructors' -Fixture {
@@ -277,6 +278,8 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
     } # End of Context
+
+    [ArmorDepartment] $temp = [ArmorDepartment]::New()
 
     Context -Name 'Properties/ID' -Fixture {
         $testCases = @(
@@ -347,7 +350,6 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
 
 Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
     #region init
-    [ArmorFeature] $temp = [ArmorFeature]::New()
     #endregion
 
     Context -Name 'Constructors' -Fixture {
@@ -356,6 +358,8 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
     } # End of Context
+
+    [ArmorFeature] $temp = [ArmorFeature]::New()
 
     Context -Name 'Properties/ID' -Fixture {
         $testCases = @(
