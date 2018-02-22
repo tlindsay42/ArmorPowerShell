@@ -36,6 +36,7 @@ Class ArmorAccount {
     [ValidateRange( -1, 65535 )]
     [Int32] $Parent
 
+    [AllowNull()]
     [PSObject[]] $Products = @()
 
     #Constructors
