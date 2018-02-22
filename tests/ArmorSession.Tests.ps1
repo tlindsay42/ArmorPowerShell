@@ -517,7 +517,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = $null }
         )
         It -Name "should fail when ArmorSession.User is set to '`$null'" -TestCases $testCases -Test {
-            param ( [ArmorUser[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.User = $Value } |
                 Should -Throw
         } # End of It
@@ -526,7 +526,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorUser]::New() }
         )
         It -Name "should not fail when ArmorSession.User is set to '<Value>'" -TestCases $testCases -Test {
-            param ( [ArmorUser] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.User = $Value } |
                 Should -Not -Throw
         } # End of It
@@ -537,7 +537,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = $null }
         )
         It -Name "should fail when ArmorSession.Accounts is set to '`$null'" -TestCases $testCases -Test {
-            param ( [ArmorAccount[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Accounts = $Value } |
                 Should -Throw
         } # End of It
@@ -547,7 +547,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorAccount]::New(), [ArmorAccount]::New() }
         )
         It -Name "should not fail when ArmorSession.Accounts is set to '<Value>'" -TestCases $testCases -Test {
-            param ( [ArmorAccount[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Accounts = $Value } |
                 Should -Not -Throw
         } # End of It
@@ -558,7 +558,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = $null }
         )
         It -Name "should fail when ArmorSession.Departments is set to '`$null'" -TestCases $testCases -Test {
-            param ( [ArmorDepartment[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Departments = $Value } |
                 Should -Throw
         } # End of It
@@ -568,7 +568,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorDepartment]::New(), [ArmorDepartment]::New() }
         )
         It -Name "should not fail when ArmorSession.Departments is set to '<Value>'" -TestCases $testCases -Test {
-            param ( [ArmorDepartment[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Departments = $Value } |
                 Should -Not -Throw
         } # End of It
@@ -600,7 +600,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = $null }
         )
         It -Name "should fail when ArmorSession.Features is set to '`$null'" -TestCases $testCases -Test {
-            param ( [ArmorFeature[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Features = $Value } |
                 Should -Throw
         } # End of It
@@ -610,7 +610,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorFeature]::New(), [ArmorFeature]::New() }
         )
         It -Name "should not fail when ArmorSession.Features is set to '<Value>'" -TestCases $testCases -Test {
-            param ( [ArmorFeature[]] $Value )
+            param ( [PSCustomObject[]] $Value )
             { $temp.Features = $Value } |
                 Should -Not -Throw
         } # End of It
