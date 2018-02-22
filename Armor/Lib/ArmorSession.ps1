@@ -116,11 +116,17 @@ Class ArmorSession {
     [ValidateSet( 'FH-AUTH' )]
     Hidden [String] $AuthenticationType = 'FH-AUTH'
 
+    [ValidateSet( 'application/json' )]
+    Hidden [String] $MediaType = 'application/json'
+
     [ValidateNotNull()]
     Hidden [Hashtable] $Headers = @{}
 
     # Constructors
-    ArmorSession () {}
+    ArmorSession () {
+        $this.Headers.Add( 'Accept', $this.MediaType )
+        $this.Headers.Add( 'Content-Type', $this.MediaType )
+    }
 
     ArmorSession (
         [String] $Server,
@@ -130,6 +136,8 @@ Class ArmorSession {
         $this.Server = $Server
         $this.Port = $Port
         $this.ApiVersion = $ApiVersion
+        $this.Headers.Add( 'Accept', $this.MediaType )
+        $this.Headers.Add( 'Content-Type', $this.MediaType )
     }
 
     [Boolean] AuthorizationExists () {
@@ -153,10 +161,6 @@ Class ArmorSession {
         $this.SessionStartTime = Get-Date
         $this.SessionLengthInSeconds = $SessionLengthInSeconds
         $this.SessionExpirationTime = $this.SessionStartTime.AddSeconds( $this.SessionLengthInSeconds )
-
-        $type = 'application/json'
-        $this.Headers.Add( 'Content-Type', $type )
-        $this.Headers.Add( 'Accept', $type )
         $this.Headers.Add( 'Authorization', "$( $this.AuthenticationType ) ${AccessToken}" )
     }
 
