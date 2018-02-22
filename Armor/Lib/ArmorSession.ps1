@@ -162,7 +162,7 @@ Class ArmorSession {
         $this.SessionStartTime = Get-Date
         $this.SessionLengthInSeconds = $SessionLengthInSeconds
         $this.SessionExpirationTime = $this.SessionStartTime.AddSeconds( $this.SessionLengthInSeconds )
-        $this.Headers.Add( 'Authorization', "$( $this.AuthenticationType ) ${AccessToken}" )
+        $this.Headers.'Authorization' = "$( $this.AuthenticationType ) ${AccessToken}"
     }
 
     [ArmorAccount] GetAccountContext () {
