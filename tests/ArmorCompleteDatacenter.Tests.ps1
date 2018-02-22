@@ -36,6 +36,11 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
             { $temp.ID = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.ID |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Location' -Fixture {
@@ -61,6 +66,11 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
             param ( [String] $Value )
             { $temp.Location = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Location |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -88,6 +98,11 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
             param ( [String] $Value )
             { $temp.Name = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Name |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -121,6 +136,11 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
             param ( [String] $Value )
             { $temp.Zones = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Zones |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 

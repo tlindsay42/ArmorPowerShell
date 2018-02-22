@@ -34,6 +34,11 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
             { $temp.Type = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Type |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/UserName' -Fixture {
@@ -58,6 +63,11 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
             { $temp.UserName = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.UserName |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/FirstName' -Fixture {
@@ -77,6 +87,11 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.FirstName = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.FirstName |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -98,6 +113,11 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
             { $temp.LastName = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.LastName |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Links' -Fixture {
@@ -117,6 +137,11 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
             param ( [PSCustomObject[]] $Value )
             { $temp.Links = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Links |
+                Should -BeOfType 'System.Management.Automation.PSCustomObject'
         } # End of It
     } # End of Context
 
@@ -156,6 +181,11 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             { $temp.ID = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.ID |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Name' -Fixture {
@@ -175,6 +205,36 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.Name = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Name |
+                Should -BeOfType 'System.String'
+        } # End of It
+    } # End of Context
+
+    Context -Name 'Properties/Currency' -Fixture {
+        $testCases = @(
+            @{ 'Value' = '' }
+        )
+        It -Name "should fail when ArmorAccount.Currency is set to '<Value>'" -TestCases $testCases -Test {
+            param ( [String] $Value )
+            { $temp.Currency = $Value } |
+                Should -Throw
+        } # End of It
+
+        $testCases = @(
+            @{ 'Value' = 'Test Account 1' }
+        )
+        It -Name "should not fail when ArmorAccount.Currency is set to '<Value>'" -TestCases $testCases -Test {
+            param ( [String] $Value )
+            { $temp.Currency = $Value } |
+                Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Currency |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -197,6 +257,11 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             { $temp.Status = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Status |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Parent' -Fixture {
@@ -218,6 +283,11 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             param ( [Int32] $Value )
             { $temp.Parent = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Parent |
+                Should -BeOfType 'System.Int32'
         } # End of It
     } # End of Context
 
@@ -263,6 +333,11 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             { $temp.Products = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Products |
+                Should -BeOfType 'System.Management.Automation.PSCustomObject'
+        } # End of It
     } # End of Context
 
     Remove-Variable -Name 'temp'
@@ -301,6 +376,11 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
             { $temp.ID = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.ID |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Name' -Fixture {
@@ -320,6 +400,11 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.Name = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Name |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -342,6 +427,11 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
             param ( [Int32] $Value )
             { $temp.Account = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Account |
+                Should -BeOfType 'System.UInt16'
         } # End of It
     } # End of Context
 
@@ -381,6 +471,11 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             { $temp.AccountID = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.AccountID |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Feature' -Fixture {
@@ -401,6 +496,11 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.Feature = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Feature |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -424,6 +524,11 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             { $temp.ProductID = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.ProductID |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/FeatureID' -Fixture {
@@ -445,6 +550,11 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             param ( [Int32] $Value )
             { $temp.FeatureID = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.FeatureID |
+                Should -BeOfType 'System.UInt16'
         } # End of It
     } # End of Context
 
@@ -534,6 +644,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.User = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.User |
+                Should -BeOfType 'ArmorUser'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Accounts' -Fixture {
@@ -554,6 +669,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [PSCustomObject[]] $Value )
             { $temp.Accounts = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Accounts |
+                Should -BeOfType 'ArmorAccount'
         } # End of It
     } # End of Context
 
@@ -576,6 +696,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.Departments = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Departments |
+                Should -BeOfType 'ArmorDepartment'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Permissions' -Fixture {
@@ -596,6 +721,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [PSObject[]] $Value )
             { $temp.Permissions = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Permissions |
+                Should -BeOfType 'System.Management.Automation.PSCustomObject'
         } # End of It
     } # End of Context
 
@@ -618,6 +748,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.Features = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Features |
+                Should -BeOfType 'ArmorFeature'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/Server' -Fixture {
@@ -639,6 +774,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.Server = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Server |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -663,6 +803,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.Port = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Port |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/SessionLengthInSeconds' -Fixture {
@@ -685,6 +830,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.SessionLengthInSeconds = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.SessionLengthInSeconds |
+                Should -BeOfType 'System.UInt16'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/SessionStartTime' -Fixture {
@@ -705,6 +855,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.SessionStartTime = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.SessionStartTime |
+                Should -BeOfType 'System.DateTime'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/SessionExpirationTime' -Fixture {
@@ -724,6 +879,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [DateTime] $Value )
             { $temp.SessionExpirationTime = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.SessionExpirationTime |
+                Should -BeOfType 'System.DateTime'
         } # End of It
     } # End of Context
 
@@ -746,6 +906,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.ApiVersion = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.ApiVersion |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/AccountContextHeader' -Fixture {
@@ -766,6 +931,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.AccountContextHeader = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.AccountContextHeader |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -788,6 +958,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.AuthenticationType = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.AuthenticationType |
+                Should -BeOfType 'System.String'
+        } # End of It
     } # End of Context
 
     Context -Name 'Properties/MediaType' -Fixture {
@@ -808,6 +983,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             param ( [String] $Value )
             { $temp.MediaType = $Value } |
                 Should -Not -Throw
+        } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.MediaType |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -835,6 +1015,11 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             { $temp.Headers = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name 'should be the expected data type' -Test {
+            $temp.Headers |
+                Should -BeOfType 'System.Collections.Hashtable'
+        } # End of It
     } # End of Context
 
     Context -Name 'Invalid session' -Fixture {
@@ -848,9 +1033,19 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Be $false
         } # End of It
 
+        It -Name 'should return the expected data type' -Test {
+            $temp.IsActive() |
+                Should -BeOfType 'System.Boolean'
+        } # End of It
+
         It -Name 'should not be an authorized session' -Test {
             $temp.AuthorizationExists() |
                 Should -Be $false
+        } # End of It
+
+        It -Name 'should return the expected data type' -Test {
+            $temp.AuthorizationExists() |
+                Should -BeOfType 'System.Boolean'
         } # End of It
     } # End of Context
 
@@ -865,14 +1060,19 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Be $true
         } # End of It
 
+        It -Name 'should return the expected data type' -Test {
+            $temp.IsActive() |
+                Should -BeOfType 'System.Boolean'
+        } # End of It
+
         It -Name 'should be an authorized session' -Test {
             $temp.AuthorizationExists() |
                 Should -Be $true
         } # End of It
 
-        It -Name 'should get seconds remaining before session expiration' -Test {
-            $temp.GetSecondsRemaining() |
-                Should -BeGreaterThan 0
+        It -Name 'should return the expected data type' -Test {
+            $temp.AuthorizationExists() |
+                Should -BeOfType 'System.Boolean'
         } # End of It
 
         It -Name 'should get minutes remaining before session expiration' -Test {
@@ -880,9 +1080,29 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -BeGreaterThan 0
         } # End of It
 
+        It -Name 'should return the expected data type' -Test {
+            $temp.GetMinutesRemaining() |
+                Should -BeOfType 'System.Int32'
+        } # End of It
+
+        It -Name 'should get seconds remaining before session expiration' -Test {
+            $temp.GetSecondsRemaining() |
+                Should -BeGreaterThan 0
+        } # End of It
+
+        It -Name 'should return the expected data type' -Test {
+            $temp.GetSecondsRemaining() |
+                Should -BeOfType 'System.Int32'
+        } # End of It
+
         It -Name 'should get the authentication token' -Test {
             $temp.GetToken() |
                 Should -BeExactly $validToken
+        } # End of It
+
+        It -Name 'should return the expected data type' -Test {
+            $temp.GetToken() |
+                Should -BeOfType 'System.String'
         } # End of It
     } # End of Context
 
@@ -922,14 +1142,29 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Be $accounts[0]
         } # End of It
 
+        It -Name 'should return the expected data type' -Test {
+            $temp.SetAccountContext( 1 ) |
+                Should -BeOfType 'ArmorAccount'
+        } # End of It
+
         It -Name 'should get the current account context' -Test {
             $temp.GetAccountContext() |
                 Should -Be $accounts[0]
         } # End of It
 
+        It -Name 'should return the expected data type' -Test {
+            $temp.GetAccountContext() |
+                Should -BeOfType 'ArmorAccount'
+        } # End of It
+
         It -Name 'should get the current account context ID' -Test {
             $temp.GetAccountContextID() |
                 Should -Be 1
+        } # End of It
+
+        It -Name 'should return the expected data type' -Test {
+            $temp.GetAccountContextID() |
+                Should -BeOfType 'System.UInt16'
         } # End of It
     } # End of Context
 } # End of Describe
