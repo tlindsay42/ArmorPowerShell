@@ -39,7 +39,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.AccountID |
-                Should -BeOfType 'System.UInt16'
+                Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
@@ -65,7 +65,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.Name |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -91,7 +91,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.AddressLine1 |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -108,7 +108,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.AddressLine2 |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -134,7 +134,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.City |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -160,7 +160,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.State |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -186,7 +186,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.PostalCode |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -212,7 +212,7 @@ Describe -Name 'ArmorAccountAddress' -Tag 'ArmorAccountAddress', 'Class' -Fixtur
 
         It -Name 'should be the expected data type' -Test {
             $temp.Country |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 

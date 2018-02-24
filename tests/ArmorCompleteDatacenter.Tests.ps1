@@ -39,7 +39,7 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
 
         It -Name 'should be the expected data type' -Test {
             $temp.ID |
-                Should -BeOfType 'System.UInt16'
+                Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
@@ -70,7 +70,7 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
 
         It -Name 'should be the expected data type' -Test {
             $temp.Location |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -102,7 +102,7 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
 
         It -Name 'should be the expected data type' -Test {
             $temp.Name |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
@@ -140,7 +140,7 @@ Describe -Name 'ArmorCompleteDatacenter' -Tag 'ArmorCompleteDatacenter', 'Class'
 
         It -Name 'should be the expected data type' -Test {
             $temp.Zones |
-                Should -BeOfType 'System.String'
+                Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
