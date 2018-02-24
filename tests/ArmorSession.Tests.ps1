@@ -1176,7 +1176,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
 
         It -Name 'should return the expected data type' -Test {
             $temp.SetAccountContext( 1 ) |
-                Should -BeOfType 'ArmorAccount'
+                Should -BeOfType ( [ArmorAccount] )
         } # End of It
 
         It -Name 'should get the current account context' -Test {
@@ -1186,7 +1186,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
 
         It -Name 'should return the expected data type' -Test {
             $temp.GetAccountContext() |
-                Should -BeOfType 'ArmorAccount'
+                Should -BeOfType ( [ArmorAccount] )
         } # End of It
 
         It -Name 'should get the current account context ID' -Test {
