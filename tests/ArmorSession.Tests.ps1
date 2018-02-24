@@ -645,6 +645,14 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
 
+        # Arrays of custom classes containing zero objects will fail to return type
+        $temp.User = [ArmorUser] @{
+            'Type'      = 'User'
+            'UserName'  = 'user.name@example.company.com'
+            'FirstName' = 'John'
+            'LastName'  = 'Doe'
+            'Links'     = [PSCustomObject] @{ 'UserID' = 12345 }
+        }
         It -Name 'should be the expected data type' -Test {
             $temp.User |
                 Should -BeOfType 'ArmorUser'
@@ -671,6 +679,18 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
 
+        # Arrays of custom classes containing zero objects will fail to return type
+        $temp.Accounts = [ArmorAccount] @{
+            'ID'       = 12345
+            'Name'     = 'Armor Defense, Inc.'
+            'Currency' = 'USD'
+            'Status'   = 'Claimed'
+            'Parent'   = -1
+            'Products' = [PSCustomObject] @{
+                'AA-CORE'        = @( 'Invoicing', 'Payment Methods', 'Pricing', 'Account Contacts' )
+                'ARMOR-COMPLETE' = @( 'Invoicing' )
+            }
+        }
         It -Name 'should be the expected data type' -Test {
             $temp.Accounts |
                 Should -BeOfType 'ArmorAccount'
@@ -697,6 +717,12 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
 
+        # Arrays of custom classes containing zero objects will fail to return type
+        $temp.Departments = [ArmorDepartment] @{
+            'ID'      = 12345
+            'Name'    = 'Engineering'
+            'Account' = 23456
+        }
         It -Name 'should be the expected data type' -Test {
             $temp.Departments |
                 Should -BeOfType 'ArmorDepartment'
@@ -749,6 +775,12 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 Should -Not -Throw
         } # End of It
 
+        # Arrays of custom classes containing zero objects will fail to return type
+        $temp.Departments = [ArmorDepartment] @{
+            'ID'      = 12345
+            'Name'    = 'Engineering'
+            'Account' = 23456
+        }
         It -Name 'should be the expected data type' -Test {
             $temp.Features |
                 Should -BeOfType 'ArmorFeature'
