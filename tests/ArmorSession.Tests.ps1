@@ -655,7 +655,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
         }
         It -Name 'should be the expected data type' -Test {
             $temp.User |
-                Should -BeOfType 'ArmorUser'
+                Should -BeOfType ( [ArmorUser] )
         } # End of It
     } # End of Context
 
@@ -693,7 +693,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
         }
         It -Name 'should be the expected data type' -Test {
             $temp.Accounts |
-                Should -BeOfType 'ArmorAccount'
+                Should -BeOfType ( [ArmorAccount] )
         } # End of It
     } # End of Context
 
@@ -725,7 +725,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
         }
         It -Name 'should be the expected data type' -Test {
             $temp.Departments |
-                Should -BeOfType 'ArmorDepartment'
+                Should -BeOfType ( [ArmorDepartment] )
         } # End of It
     } # End of Context
 
@@ -783,7 +783,7 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
         }
         It -Name 'should be the expected data type' -Test {
             $temp.Features |
-                Should -BeOfType 'ArmorFeature'
+                Should -BeOfType ( [ArmorFeature] )
         } # End of It
     } # End of Context
 
