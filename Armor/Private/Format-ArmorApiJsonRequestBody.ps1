@@ -76,18 +76,20 @@ function Format-ArmorApiJsonRequestBody {
 
         if ( $resources.Method -ne 'Get' ) {
             # Inventory all invoked parameters
-            $setParameters = $PSCmdlet.MyInvocation.BoundParameters
+            $setParameters = $PSCmdlet.MyInvocation.BoundParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 
-            Write-Verbose -Message ( 'List of set parameters: {0}.' -f ( $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } ) -join ', ' ) )
+            Write-Verbose -Message "List of set parameters: $( $setParameters -join ', ' )."
 
             Write-Verbose -Message 'Build the body parameters.'
 
             $bodyString = @{}
 
-            # Walk through all of the available body options presented by the endpoint
-            # Note: Keys are used to search in case the value changes in the future across different API versions
+            <#
+            Walk through all of the available body options presented by the endpoint
+            Note: Keys are used to search in case the value changes in the future across different API versions
+            #>
             foreach ( $bodyKey in $BodyKeys ) {
-                Write-Verbose -Message ( 'Adding {0}...' -f $bodyKey )
+                Write-Verbose -Message "Adding ${bodyKey}..."
 
                 $bodyKeyNoUnderscore = $bodyKey -replace '_', ''
 
@@ -96,19 +98,24 @@ function Format-ArmorApiJsonRequestBody {
                     $arraystring = @{}
 
                     foreach ( $arrayItem in $resources.Body.$bodyKey.Keys ) {
-                        # Walk through all of the parameters defined in the function
-                        # Both the parameter name and parameter alias are used to match against a body option
-                        # It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
+                        <#
+                        Walk through all of the parameters defined in the function
+                        Both the parameter name and parameter alias are used to match against a body option
+                        It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
+                        #>
                         foreach ( $parameter in $Parameters.Where( { $_.Name -notin $excludedParameters } ) ) {
                             # if the parameter name or alias matches the body option name, build a body string
                             if ( $parameter.Name -eq $arrayItem -or $parameter.Aliases -eq $arrayItem) {
+                                $parameter = Get-Variable -Name $parameter.Name
+
                                 # Switch variable types
-                                if ( ( Get-Variable -Name $parameter.Name ).Value.GetType().Name -eq 'SwitchParameter' ) {
-                                    $arraystring.Add( $arrayItem, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
+                                if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
+                                    $arraystring.Add( $arrayItem, $parameterObject.Value.IsPresent )
                                 }
+
                                 # All other variable types
-                                elseif ( ( Get-Variable -Name $parameter.Name ).Value -ne $null ) {
-                                    $arraystring.Add( $arrayItem, ( Get-Variable -Name $parameter.Name ).Value )
+                                elseif ( $parameterObject.Value -ne $null ) {
+                                    $arraystring.Add( $arrayItem, $parameterObject.Value )
                                 }
                             }
                         }
@@ -118,35 +125,39 @@ function Format-ArmorApiJsonRequestBody {
                 }
                 # Non-Array Object
                 else {
-                    # Walk through all of the parameters defined in the function
-                    # Both the parameter name and parameter alias are used to match against a body option
-                    # It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
+                    <#
+                    Walk through all of the parameters defined in the function
+                    Both the parameter name and parameter alias are used to match against a body option
+                    It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
+                    #>
                     foreach ( $parameter in $Parameters.Where( { $_.Name -notin $excludedParameters } ) ) {
+                        $parameterObject = Get-Variable -Name $parameter.Name
+
                         # if the parameter name or alias matches the body option name, build a body string
                         if (
                             ( $parameter.Name -eq $bodyKey -or $parameter.Aliases -contains $bodyKey ) -and
-                            $parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
+                            $parameter.Name -in $setParameters
                         ) {
                             # Switch variable types
-                            if ( ( Get-Variable -Name $parameter.Name ).Value.GetType().Name -eq 'SwitchParameter' ) {
-                                $bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
+                            if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
+                                $bodyString.Add( $bodyKey, $parameterObject.Value.IsPresent )
                             }
                             # All other variable types
-                            elseif ( ( Get-Variable -Name $parameter.Name ).Value -ne $null -and ( Get-Variable -Name $parameter.Name ).Value.Length -gt 0 ) {
-                                $bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
+                            elseif ( $parameterObject.Value -ne $null -and $parameterObject.Value.Length -gt 0 ) {
+                                $bodyString.Add( $bodyKey, $parameterObject.Value )
                             }
                         }
                         elseif (
                             ( $parameter.Name -eq $bodyKeyNoUnderscore -or $parameter.Aliases -contains $bodyKeyNoUnderscore ) -and
-                            $parameter.Name -in $setParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
+                            $parameter.Name -in $setParameters
                         ) {
                             # Switch variable types
-                            if ( ( Get-Variable -Name $parameter.Name ).Value.GetType().Name -eq 'SwitchParameter' ) {
-                                $bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value.IsPresent )
+                            if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
+                                $bodyString.Add( $bodyKey, $parameterObject.Value.IsPresent )
                             }
                             # All other variable types
-                            elseif ( ( Get-Variable -Name $parameter.Name ).Value -ne $null -and ( Get-Variable -Name $parameter.Name ).Value.Length -gt 0 ) {
-                                $bodyString.Add( $bodyKey, ( Get-Variable -Name $parameter.Name ).Value )
+                            elseif ( $parameterObject.Value -ne $null -and $parameterObject.Value.Length -gt 0 ) {
+                                $bodyString.Add( $bodyKey, $parameterObject.Value )
                             }
                         }
                     }
@@ -154,7 +165,7 @@ function Format-ArmorApiJsonRequestBody {
             }
 
             # Store the results in a JSON string
-            $return = ConvertTo-Json -InputObject $bodyString
+            $return = ConvertTo-Json -InputObject $bodyString -ErrorAction 'Stop'
 
             Write-Verbose -Message "Body = ${return}"
         }
