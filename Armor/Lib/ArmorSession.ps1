@@ -168,14 +168,28 @@ Class ArmorSession {
     }
 
     [ArmorAccount] GetAccountContext () {
-        [ArmorAccount] $return = $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } ) |
-            Select-Object -First 1
+        [ArmorAccount] $return = $null
+        
+        if ( $this.Headers.ContainsKey( $this.AccountContextHeader ) ) {
+            $return = $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } ) |
+                Select-Object -First 1
+        }
+        else {
+            throw 'The account context has not been set.'
+        }
 
         return $return
     }
 
     [UInt16] GetAccountContextID () {
-        [UInt16] $return = $this.Headers.( $this.AccountContextHeader )
+        [UInt16] $return = 0
+
+        if ( $this.Headers.ContainsKey( $this.AccountContextHeader ) ) {
+            $return = $this.Headers.( $this.AccountContextHeader )
+        }
+        else {
+            throw 'The account context has not been set.'
+        }
 
         return $return
     }
@@ -193,7 +207,14 @@ Class ArmorSession {
     }
 
     [String] GetToken () {
-        [String] $return = $this.Headers.Authorization.Split( ' ' )[-1]
+        [String] $return = ''
+
+        if ( $this.Headers.ContainsKey( 'Authorization' ) ) {
+            $return = $this.Headers.Authorization.Split( ' ' )[-1]
+        }
+        else {
+            throw 'The session has not been authorized.'
+        }
 
         return $return
     }
