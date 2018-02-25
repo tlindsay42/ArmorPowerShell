@@ -171,19 +171,19 @@ $splat = @{
 Update-ModuleManifest @splat
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
-$manifestContent = Get-Content -Path $manifestPath
+$manifestContent = Get-Content -Path $env:CI_MODULE_MANIFEST_PATH
 $manifestContent -replace "PSGet_${env:CI_MODULE_NAME}|NewManifest", $env:CI_MODULE_NAME |
-    Set-Content -Path $manifestPath -ErrorAction 'Stop'
+    Set-Content -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
+$manifest = Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Pop-Location -ErrorAction 'Stop'
 $location = Get-Location
 Write-Host -Object "`nRestored the working directory to: '${location}'." -ForegroundColor 'Yellow'
 
 Write-Host -Object "`nImport module: '${env:CI_MODULE_NAME}'." -ForegroundColor 'Yellow'
-Import-Module -Name "${env:CI_MODULE_PATH}/${env:CI_MODULE_NAME}.psd1" -Force
+Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
