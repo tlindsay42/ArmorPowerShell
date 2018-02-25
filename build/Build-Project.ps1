@@ -118,10 +118,8 @@ if ( ( Test-Path -Path $env:CI_MODULE_PATH ) -eq $false ) {
 Write-Host -Object "`nSet the working directory to: '${env:CI_MODULE_PATH}'." -ForegroundColor 'Yellow'
 Push-Location -Path $env:CI_MODULE_PATH -ErrorAction 'Stop'
 
-$manifestPath = "${env:CI_MODULE_PATH}/${env:CI_MODULE_NAME}.psd1"
-
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $manifestPath -ErrorAction 'Stop'
+$manifest = Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Write-Host -Object "`tOld Version: '$( $manifest.Version )'."
 Write-Host -Object "`tNew Version: '${env:CI_MODULE_VERSION}'."
@@ -150,7 +148,7 @@ $scriptsToProcess = Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -File |
     Resolve-Path -Relative
 
 $splat = @{
-    'Path'                  = $manifestPath
+    'Path'                  = $env:CI_MODULE_MANIFEST_PATH
     'RootModule'            = "${env:CI_MODULE_NAME}.psm1"
     'ModuleVersion'         = $env:CI_MODULE_VERSION
     'Guid'                  = '226c1ea9-1078-402a-861c-10a845a0d173'
