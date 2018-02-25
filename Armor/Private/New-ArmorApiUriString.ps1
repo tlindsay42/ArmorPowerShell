@@ -74,7 +74,7 @@ function New-ArmorApiUriString {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -92,8 +92,11 @@ function New-ArmorApiUriString {
                 elseif ( $endpoint.Count -ne 1 ) {
                     throw 'More than one endpoint with no ID specification found.'
                 }
+                else {
+                    $endpoint = $endpoint[0]
+                }
 
-                $return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+                $return = "https://${Server}:${Port}${endpoint}"
             }
 
             1 {
@@ -105,8 +108,11 @@ function New-ArmorApiUriString {
                 elseif ( $endpoint.Count -ne 1 ) {
                     throw 'More than one endpoint with one ID specification found.'
                 }
+                else {
+                    $endpoint = $endpoint[0]
+                }
 
-                $return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+                $return = "https://${Server}:${Port}${endpoint}"
 
                 # Insert ID in URI string
                 $return = $return -replace '{id}', $IDs[0]
@@ -121,11 +127,14 @@ function New-ArmorApiUriString {
                 elseif ( $endpoint.Count -ne 1 ) {
                     throw 'More than one endpoint with two ID specifications found.'
                 }
+                else {
+                    $endpoint = $endpoint[0]
+                }
 
-                $return = 'https://{0}:{1}{2}' -f $Server, $Port, $endpoint[0]
+                $return = "https://${Server}:${Port}${endpoint}"
 
                 # Insert first ID in URI string
-                $return = $return -replace '(.*?)/{id}(.*)', ( '$1/{0}$2' -f $IDs[0] )
+                $return = $return -replace '(.*?)/{id}(.*)', "`$1/$( $IDs[0] )`$2"
 
                 # Insert second ID in URI string
                 $return = $return -replace '{id}', $IDs[1]
@@ -136,12 +145,12 @@ function New-ArmorApiUriString {
             }
         }
 
-        Write-Verbose -Message ( 'URI = {0}' -f $return )
+        Write-Verbose -Message "URI = ${return}"
 
         $return
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

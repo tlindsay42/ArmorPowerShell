@@ -69,7 +69,7 @@ function Update-ArmorNoun {
         # The name of the cmdlet
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
 
         # Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
         Test-ArmorSession
@@ -108,6 +108,6 @@ function Update-ArmorNoun {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

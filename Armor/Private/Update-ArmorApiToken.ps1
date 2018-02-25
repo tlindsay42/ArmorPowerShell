@@ -58,7 +58,7 @@ function Update-ArmorApiToken {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -74,6 +74,6 @@ function Update-ArmorApiToken {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

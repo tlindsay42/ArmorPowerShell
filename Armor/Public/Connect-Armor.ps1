@@ -203,7 +203,7 @@ function Connect-Armor {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -226,7 +226,7 @@ function Connect-Armor {
             }
 
             Default {
-                throw ( 'Unknown API version number: {0}.' -f $Global:ArmorSession.ApiVersion )
+                throw "Unknown API version number: '${ApiVersion}'."
             }
         }
 
@@ -239,7 +239,7 @@ function Connect-Armor {
 
         # If we find a temporary authorization code and a success message, we know the request was successful
         if ( $content.Code.Length -gt 0 -and $content.Success -eq 'true' ) {
-            Write-Verbose -Message ( 'Successfully acquired temporary authorization code: {0}' -f $content.Code )
+            Write-Verbose -Message "Successfully acquired temporary authorization code: '$( $content.Code )'"
 
             $token = New-ArmorApiToken -Code $content.Code -GrantType 'authorization_code'
         }
@@ -263,7 +263,7 @@ function Connect-Armor {
             }
         }
 
-        Write-Verbose -Message ( 'Setting the Armor account context to ID {0}.' -f $AccountID )
+        Write-Verbose -Message "Setting the Armor account context to ID '${AccountID}'."
         Set-ArmorAccountContext -ID $AccountID |
             Out-Null
 
@@ -273,6 +273,6 @@ function Connect-Armor {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

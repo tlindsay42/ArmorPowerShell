@@ -84,7 +84,7 @@ function Stop-ArmorCompleteVM {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
 
         Test-ArmorSession
     } # End of begin
@@ -95,7 +95,7 @@ function Stop-ArmorCompleteVM {
         $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
 
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri.Where( { $_ -match ( '/{0}$' -f $Type ) } ) -IDs $ID
+            $uri = New-ArmorApiUriString -Endpoints $resources.Uri.Where( { $_ -match "/${Type}$" } ) -IDs $ID
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
@@ -108,6 +108,6 @@ function Stop-ArmorCompleteVM {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

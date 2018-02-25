@@ -79,7 +79,7 @@ function Get-ArmorNoun {
             # The name of the cmdlet
             $function = $MyInvocation.MyCommand.Name
 
-            Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+            Write-Verbose -Message "Beginning: '${function}'."
 
             # Check to ensure that a session to the Armor session is valid.
             Test-ArmorSession
@@ -124,6 +124,6 @@ function Get-ArmorNoun {
         } # End of process
 
         end {
-            Write-Verbose -Message ( 'Ending {0}.' -f $function )
+            Write-Verbose -Message "Ending: '${function}'."
         } # End of end
     } # End of function

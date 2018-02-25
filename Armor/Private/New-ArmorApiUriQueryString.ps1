@@ -61,7 +61,7 @@ function New-ArmorApiUriQueryString {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -94,7 +94,7 @@ function New-ArmorApiUriQueryString {
                 #>
                 if ( $parameter.Name -eq $query ) {
                     if ( $resources.Query[$parameter.Name] -and $parameterValue ) {
-                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Name], $parameterValue
+                        $queryString += $resources.Query[$parameter.Name] + '=' + $parameterValue
                     }
                 }
                 <#
@@ -103,7 +103,7 @@ function New-ArmorApiUriQueryString {
                 #>
                 elseif ( $parameter.Aliases -eq $query ) {
                     if ( $resources.Query[$parameter.Aliases] -and $parameterValue ) {
-                        $queryString += '{0}={1}' -f $resources.Query[$parameter.Aliases], $parameterValue
+                        $queryString += $resources.Query[$parameter.Aliases] + '=' + $parameterValue
                     }
                 }
             }
@@ -114,15 +114,16 @@ function New-ArmorApiUriQueryString {
         query options.
         #>
         if ( $queryString.Count -gt 0 ) {
-            $return += '?{0}' -f ( $queryString -join '&' )
+            $return += '?'
+            $return += $queryString -join '&'
 
-            Write-Verbose -Message ( 'URI = {0}' -f $return )
+            Write-Verbose -Message "URI = ${return}"
         }
 
         $return
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

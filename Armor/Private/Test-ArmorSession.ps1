@@ -52,7 +52,7 @@ function Test-ArmorSession {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -68,7 +68,7 @@ function Test-ArmorSession {
         if ( $Global:ArmorSession.IsActive() ) {
             $minutesRemaining = $Global:ArmorSession.GetMinutesRemaining()
 
-            Write-Verbose -Message ( '{0} minutes remaining until session expiration.' -f $minutesRemaining )
+            Write-Verbose -Message "${minutesRemaining} minutes remaining until session expiration."
 
             if ( $minutesRemaining -lt 25 ) {
                 Write-Verbose -Message 'Renewing session token.'
@@ -80,11 +80,11 @@ function Test-ArmorSession {
 
             Disconnect-Armor -Confirm:$false
 
-            throw ( 'Session expired at {0}.  Please log in again.' -f $expirationTime )
+            throw "Session expired at ${expirationTime}.  Please log in again."
         }
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

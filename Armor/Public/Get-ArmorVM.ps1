@@ -112,7 +112,7 @@ function Get-ArmorVM {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
 
         Test-ArmorSession
     } # End of begin
@@ -146,6 +146,6 @@ function Get-ArmorVM {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

@@ -60,7 +60,7 @@ function Select-ArmorApiResult {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
 
     process {
@@ -76,7 +76,7 @@ function Select-ArmorApiResult {
 
             foreach ( $filterKey in $Filter.Keys ) {
                 if ( ( Get-Variable -Name $filterKey -ErrorAction 'SilentlyContinue' ).Value -ne $null ) {
-                    Write-Verbose -Message ( 'Filter match = {0}' -f $filterKey )
+                    Write-Verbose -Message "Filter match = ${filterKey}"
 
                     $filterKeyValue = ( Get-Variable -Name $filterKey ).Value
 
@@ -102,6 +102,6 @@ function Select-ArmorApiResult {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

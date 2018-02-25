@@ -75,13 +75,13 @@ function Get-ArmorApiData {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
     
     process {
         [Hashtable] $return = $null
 
-        Write-Verbose -Message ( 'Gather API Data for {0}.' -f $Endpoint )
+        Write-Verbose -Message "Gather API Data for: '${Endpoint}'."
 
         $api = @{
             'Example'                       = @{
@@ -388,10 +388,10 @@ function Get-ArmorApiData {
         } # End of $api
 
         if ( $api.$Endpoint -eq $null ) {
-            throw ( 'Invalid endpoint: {0}' -f $Endpoint )
+            throw "Invalid endpoint: '${Endpoint}'"
         }
         elseif ( $api.$Endpoint.$ApiVersion -eq $null ) {
-            throw ( 'Invalid endpoint version: {0}' -f $ApiVersion )
+            throw "Invalid endpoint version: '${ApiVersion}'"
         }
         else {
             $return = $api.$Endpoint.$ApiVersion
@@ -401,6 +401,6 @@ function Get-ArmorApiData {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

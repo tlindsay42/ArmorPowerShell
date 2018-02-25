@@ -66,7 +66,7 @@ function Reset-ArmorCompleteVM {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
 
         Test-ArmorSession
     } # End of begin
@@ -88,6 +88,6 @@ function Reset-ArmorCompleteVM {
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function

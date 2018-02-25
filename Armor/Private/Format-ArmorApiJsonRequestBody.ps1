@@ -53,7 +53,7 @@ function Format-ArmorApiJsonRequestBody {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message ( 'Beginning {0}.' -f $function )
+        Write-Verbose -Message "Beginning: '${function}'."
 
         $excludedParameters = @(
             'ApiVersion',
@@ -156,13 +156,13 @@ function Format-ArmorApiJsonRequestBody {
             # Store the results in a JSON string
             $return = ConvertTo-Json -InputObject $bodyString
 
-            Write-Verbose -Message ( 'Body = {0}' -f $return )
+            Write-Verbose -Message "Body = ${return}"
         }
 
         $return
     } # End of process
 
     end {
-        Write-Verbose -Message ( 'Ending {0}.' -f $function )
+        Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function
