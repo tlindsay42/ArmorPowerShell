@@ -125,6 +125,7 @@ Class ArmorSession {
 
     # Constructors
     ArmorSession () {
+        $this.SessionExpirationTime = Get-Date
         $this.Headers.Add( 'Accept', $this.MediaType )
         $this.Headers.Add( 'Content-Type', $this.MediaType )
     }
@@ -137,6 +138,7 @@ Class ArmorSession {
         $this.Server = $Server
         $this.Port = $Port
         $this.ApiVersion = $ApiVersion
+        $this.SessionExpirationTime = Get-Date
         $this.Headers.Add( 'Accept', $this.MediaType )
         $this.Headers.Add( 'Content-Type', $this.MediaType )
     }
