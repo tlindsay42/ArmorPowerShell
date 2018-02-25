@@ -3,12 +3,14 @@ $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
-Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
+$class = 'ArmorUser'
+$describe = $Global:ClassForm -f $class
+Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     #endregion
 
-    Context -Name 'Constructors' -Fixture {
-        It -Name 'should create an object with the default constructor' -Test {
+    Context -Name $Global:Constructors -Fixture {
+        It -Name $Global:DefaultConstructorForm -Test {
             { [ArmorUser]::New() } |
                 Should -Not -Throw
         }
@@ -16,131 +18,144 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
 
     [ArmorUser] $temp = [ArmorUser]::New()
 
-    Context -Name 'Properties/Type' -Fixture {
+    $property = 'Type'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorUser.Type is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Type = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'User' }
         )
-        It -Name "should not fail when ArmorUser.Type is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Type = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Type |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/UserName' -Fixture {
+    $property = 'UserName'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' },
             @{ 'Value' = 'username' },
             @{ 'Value' = 'username@example' },
             @{ 'Value' = 'username@example.c' }
         )
-        It -Name "should fail when ArmorUser.UserName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.UserName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'username@example.com' },
-            @{ 'Value' = 'user.name@example.com' }
+            @{ 'Value' = 'user.name@example.com' },
+            @{ 'Value' = 'user.name@example.company.com' }
         )
-        It -Name "should not fail when ArmorUser.UserName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.UserName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.UserName |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/FirstName' -Fixture {
+    $property = 'FirstName'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorUser.FirstName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.FirstName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 'First' }
+            @{ 'Value' = 'First' },
+            @{ 'Value' = 'First Name' }
         )
-        It -Name "should not fail when ArmorUser.FirstName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.FirstName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.FirstName |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/LastName' -Fixture {
+    $property = 'LastName'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorUser.LastName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.LastName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 'Last' }
+            @{ 'Value' = 'Last' },
+            @{ 'Value' = 'Last Name' }
         )
-        It -Name "should not fail when ArmorUser.LastName is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.LastName = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.LastName |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Links' -Fixture {
+    $property = 'Links'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorUser.Links is set to `$null" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Links = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = [PSCustomObject] @{ 'UserID' = 1 } }
         )
-        It -Name "should not fail when ArmorUser.Links is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Links = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Links |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.Management.Automation.PSCustomObject] )
         } # End of It
     } # End of Context
@@ -148,12 +163,14 @@ Describe -Name 'ArmorUser' -Tag 'ArmorUser', 'Class' -Fixture {
     Remove-Variable -Name 'temp'
 } # End of Describe
 
-Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
+$class = 'ArmorAccount'
+$describe = $Global:ClassForm -f $class
+Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     #endregion
 
-    Context -Name 'Constructors' -Fixture {
-        It -Name 'should create an object with the default constructor' -Test {
+    Context -Name $Global:Constructors -Fixture {
+        It -Name $Global:DefaultConstructorForm -Test {
             { [ArmorAccount]::New() } |
                 Should -Not -Throw
         } # End of It
@@ -161,14 +178,16 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
 
     [ArmorAccount] $temp = [ArmorAccount]::New()
 
-    Context -Name 'Properties/ID' -Fixture {
+    $property = 'ID'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorAccount.ID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -176,75 +195,82 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorAccount.ID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.ID |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Name' -Fixture {
+    $property = 'Name'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorAccount.Name is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Name = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'Test Account 1' }
         )
-        It -Name "should not fail when ArmorAccount.Name is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Name = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Name |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Currency' -Fixture {
+    $property = 'Currency'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorAccount.Currency is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Currency = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 'Test Account 1' }
+            @{ 'Value' = 'USD' },
+            @{ 'Value' = 'GBP' }
         )
-        It -Name "should not fail when ArmorAccount.Currency is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Currency = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Currency |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Status' -Fixture {
+    $property = 'Status'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorAccount.Status is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Status = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -252,26 +278,28 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             @{ 'Value' = 'Claimed' },
             @{ 'Value' = 'Cancelled' }
         )
-        It -Name "should not fail when ArmorAccount.Status is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Status = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Status |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Parent' -Fixture {
+    $property = 'Parent'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = -2 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorAccount.Parent is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Parent = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -279,29 +307,23 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             @{ 'Value' = -1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorAccount.Parent is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Parent = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Parent |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Products' -Fixture {
+    $property = 'Products'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
-        )
-        It -Name "should not fail when ArmorAccount.Products is set to `$null" -TestCases $testCases -Test {
-            param ( [PSCustomObject[]] $Value )
-            { $temp.Products = $Value } |
-                Should -Not -Throw
-        } # End of It
-
-        $testCases = @(
             @{
                 'Value' = [PSCustomObject] @{
                     'AA-CORE' = @( 'Invoicing', 'Payment Methods', 'Pricing', 'Account Contacts' )
@@ -328,14 +350,14 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
             },
             @{ 'Value' = [PSCustomObject] @{ 'ARMOR-COMPLETE' = @( 'Invoicing' ) } }
         )
-        It -Name "should not fail when ArmorAccount.Products is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Products = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Products |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.Management.Automation.PSCustomObject] )
         } # End of It
     } # End of Context
@@ -343,12 +365,14 @@ Describe -Name 'ArmorAccount' -Tag 'ArmorAccount', 'Class' -Fixture {
     Remove-Variable -Name 'temp'
 } # End of Describe
 
-Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
+$class = 'ArmorDepartment'
+$describe = $Global:ClassForm -f $class
+Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     #endregion
 
-    Context -Name 'Constructors' -Fixture {
-        It -Name 'should create an object with the default constructor' -Test {
+    Context -Name $Global:Constructors -Fixture {
+        It -Name $Global:DefaultConstructorForm -Test {
             { [ArmorDepartment]::New() } |
                 Should -Not -Throw
         } # End of It
@@ -356,14 +380,16 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
 
     [ArmorDepartment] $temp = [ArmorDepartment]::New()
 
-    Context -Name 'Properties/ID' -Fixture {
+    $property = 'ID'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorDepartment.ID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -371,51 +397,55 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorDepartment.ID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.ID |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Name' -Fixture {
+    $property = 'Name'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorDepartment.Name is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Name = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'Test Department 1' }
         )
-        It -Name "should not fail when ArmorDepartment.Name is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Name = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Name |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Account' -Fixture {
+    $property = 'Account'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorDepartment.Account is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Account = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -423,14 +453,14 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorDepartment.Account is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Account = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Account |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
@@ -438,12 +468,14 @@ Describe -Name 'ArmorDepartment' -Tag 'ArmorDepartment', 'Class' -Fixture {
     Remove-Variable -Name 'temp'
 } # End of Describe
 
-Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
+$class = 'ArmorFeature'
+$describe = $Global:ClassForm -f $class
+Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     #endregion
 
-    Context -Name 'Constructors' -Fixture {
-        It -Name 'should create an object with the default constructor' -Test {
+    Context -Name $Global:Constructors -Fixture {
+        It -Name $Global:DefaultConstructorForm -Test {
             { [ArmorFeature]::New() } |
                 Should -Not -Throw
         } # End of It
@@ -451,14 +483,16 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
 
     [ArmorFeature] $temp = [ArmorFeature]::New()
 
-    Context -Name 'Properties/ID' -Fixture {
+    $property = 'AccountID'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorFeature.AccountID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.AccountID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -466,25 +500,27 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorFeature.AccountID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.AccountID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.AccountID |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Feature' -Fixture {
+    $property = 'Feature'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorFeature.Feature is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Feature = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -492,26 +528,28 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             @{ 'Value' = 'Advanced Backup' },
             @{ 'Value' = 'Encryption' }
         )
-        It -Name "should not fail when ArmorFeature.Feature is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Feature = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Feature |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/ProductID' -Fixture {
+    $property = 'ProductID'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorFeature.ProductID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ProductID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -519,26 +557,28 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorFeature.ProductID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.ProductID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.ProductID |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/FeatureID' -Fixture {
+    $property = 'FeatureID'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = -1 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorFeature.FeatureID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.FeatureID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -546,14 +586,14 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
             @{ 'Value' = 0 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorFeature.FeatureID is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.FeatureID = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.FeatureID |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
@@ -561,7 +601,9 @@ Describe -Name 'ArmorFeature' -Tag 'ArmorFeature', 'Class' -Fixture {
     Remove-Variable -Name 'temp'
 } # End of Describe
 
-Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
+$class = 'ArmorSession'
+$describe = $Global:ClassForm -f $class
+Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     $validServer = 'api.armor.com'
     $validPort = 443
@@ -569,31 +611,27 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
     $validMediaType = 'application/json'
     $validSessionLength = 1800
     $validToken = 'ee3b7d9cc1204434a990d896926d0433'
+
+    [ArmorAccount[]] $accounts = @()
+    $accounts += @{
+        'ID'       = 1
+        'Name'     = 'Test account 1'
+        'Currency' = 'USD'
+        'Parent'   = -1
+        'Products' = $null
+    }
+    $accounts += @{
+        'ID'       = 2
+        'Name'     = 'Test account 2'
+        'Currency' = 'GBP'
+        'Parent'   = 1
+        'Products' = $null
+    }
     #endregion
 
-    Context -Name 'Constructors' -Fixture {
-        It -Name 'should not fail when creating an object with no parameters' -Test {
+    Context -Name $Global:Constructors -Fixture {
+        It -Name $Global:DefaultConstructorForm -Test {
             { [ArmorSession]::New() } |
-                Should -Not -Throw
-        } # End of It
-
-        $testCases = @(
-            @{
-                'Server'     = $validServer
-                'Port'       = $validPort
-            },
-            @{
-                'Server'     = 'banana'
-                'Port'       = 80
-            },
-            @{
-                'Server'     = 'google.com'
-                'Port'       = 8443
-            }
-        )
-        It -Name 'should not fail when creating an object with invalid parameters' -TestCases $testCases -Test {
-            param ( [String] $Server, [UInt16] $Port )
-            { [ArmorSession]::New( $Server, $Port, $validApiVersion ) } |
                 Should -Not -Throw
         } # End of It
 
@@ -617,55 +655,79 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 'ApiVersion' = 'v1'
             }
         )
-        It -Name 'should fail when creating an object with invalid parameters' -TestCases $testCases -Test {
+        $testName = (
+            'should fail when creating an object with parameters: ' +
+            "'Server': <Server> 'Port': <Port> 'ApiVersion': <ApiVersion>"
+        )
+        It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Server, [UInt16] $Port, [String] $ApiVersion )
             { [ArmorSession]::New( $Server, $Port, $ApiVersion ) } |
                 Should -Throw
+        } # End of It
+
+        $testCases = @(
+            @{
+                'Server'     = $validServer
+                'Port'       = $validPort
+            },
+            @{
+                'Server'     = 'localhost'
+                'Port'       = 80
+            },
+            @{
+                'Server'     = 'api.armor.local'
+                'Port'       = 8443
+            }
+        )
+        $testName = (
+            'should not fail when creating an object with parameters: ' +
+            "'Server': <Server> 'Port': <Port> 'ApiVersion': '${validApiVersion}'"
+        )
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Server, [UInt16] $Port )
+            { [ArmorSession]::New( $Server, $Port, $validApiVersion ) } |
+                Should -Not -Throw
         } # End of It
     } # End of Context
 
     [ArmorSession] $temp = [ArmorSession]::New( $validServer, $validPort, $validApiVersion )
 
-    Context -Name 'Properties/User' -Fixture {
+    $property = 'User'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.User is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.User = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = [ArmorUser]::New() }
         )
-        It -Name "should not fail when ArmorSession.User is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.User = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        # Arrays of custom classes containing zero objects will fail to return type
-        $temp.User = [ArmorUser] @{
-            'Type'      = 'User'
-            'UserName'  = 'user.name@example.company.com'
-            'FirstName' = 'John'
-            'LastName'  = 'Doe'
-            'Links'     = [PSCustomObject] @{ 'UserID' = 12345 }
-        }
-        It -Name 'should be the expected data type' -Test {
-            $temp.User |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [ArmorUser] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Accounts' -Fixture {
+    $property = 'Accounts'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.Accounts is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Accounts = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -673,37 +735,27 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorAccount]::New() },
             @{ 'Value' = [ArmorAccount]::New(), [ArmorAccount]::New() }
         )
-        It -Name "should not fail when ArmorSession.Accounts is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Accounts = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        # Arrays of custom classes containing zero objects will fail to return type
-        $temp.Accounts = [ArmorAccount] @{
-            'ID'       = 12345
-            'Name'     = 'Armor Defense, Inc.'
-            'Currency' = 'USD'
-            'Status'   = 'Claimed'
-            'Parent'   = -1
-            'Products' = [PSCustomObject] @{
-                'AA-CORE'        = @( 'Invoicing', 'Payment Methods', 'Pricing', 'Account Contacts' )
-                'ARMOR-COMPLETE' = @( 'Invoicing' )
-            }
-        }
-        It -Name 'should be the expected data type' -Test {
-            $temp.Accounts |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [ArmorAccount] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Departments' -Fixture {
+    $property = 'Departments'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.Departments is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Departments = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -711,31 +763,27 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorDepartment]::New() },
             @{ 'Value' = [ArmorDepartment]::New(), [ArmorDepartment]::New() }
         )
-        It -Name "should not fail when ArmorSession.Departments is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
-            { $temp.Departments = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        # Arrays of custom classes containing zero objects will fail to return type
-        $temp.Departments = [ArmorDepartment] @{
-            'ID'      = 12345
-            'Name'    = 'Engineering'
-            'Account' = 23456
-        }
-        It -Name 'should be the expected data type' -Test {
-            $temp.Departments |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [ArmorDepartment] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Permissions' -Fixture {
+    $property = 'Permissions'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.Permissions is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSObject[]] $Value )
-            { $temp.Permissions = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -743,23 +791,25 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [PSCustomObject] @{ 1 = @( 1, 10, 100 ) } },
             @{ 'Value' = [PSCustomObject] @{ 1 = @( 1, 10, 100 ) }, [PSCustomObject] @{ 2 = @( 1, 10, 100 ) } }
         )
-        It -Name "should not fail when ArmorSession.Permissions is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSObject[]] $Value )
-            { $temp.Permissions = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Permissions |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.Management.Automation.PSCustomObject] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Features' -Fixture {
+    $property = 'Features'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.Features is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
             { $temp.Features = $Value } |
                 Should -Throw
@@ -769,59 +819,57 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = [ArmorFeature]::New() },
             @{ 'Value' = [ArmorFeature]::New(), [ArmorFeature]::New() }
         )
-        It -Name "should not fail when ArmorSession.Features is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
             { $temp.Features = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        # Arrays of custom classes containing zero objects will fail to return type
-        $temp.Departments = [ArmorDepartment] @{
-            'ID'      = 12345
-            'Name'    = 'Engineering'
-            'Account' = 23456
-        }
-        It -Name 'should be the expected data type' -Test {
+        It -Name $Global:PropertyTypeForm -Test {
             $temp.Features |
                 Should -BeOfType ( [ArmorFeature] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Server' -Fixture {
+    $property = 'Server'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = '' }
         )
-        It -Name "should fail when ArmorSession.Server is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Server = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = $validServer },
-            @{ 'Value' = 'banana' },
-            @{ 'Value' = 'google.com' }
+            @{ 'Value' = 'localhost' },
+            @{ 'Value' = 'api.armor.local' }
         )
-        It -Name "should not fail when ArmorSession.Server is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.Server = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Server |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Port' -Fixture {
+    $property = 'Port'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 65536 }
         )
-        It -Name "should fail when ArmorSession.Port is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Port = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -830,26 +878,28 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 65535 }
         )
-        It -Name "should not fail when ArmorSession.Port is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.Port = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Port |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/SessionLengthInSeconds' -Fixture {
+    $property = 'SessionLengthInSeconds'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 0 },
             @{ 'Value' = 1801 }
         )
-        It -Name "should fail when ArmorSession.SessionLengthInSeconds is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.SessionLengthInSeconds = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -857,179 +907,193 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
             @{ 'Value' = 1 },
             @{ 'Value' = 1800 }
         )
-        It -Name "should not fail when ArmorSession.SessionLengthInSeconds is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
-            { $temp.SessionLengthInSeconds = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.SessionLengthInSeconds |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/SessionStartTime' -Fixture {
+    $property = 'SessionStartTime'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.SessionStartTime is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSObject] $Value )
-            { $temp.SessionStartTime = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = Get-Date }
         )
-        It -Name "should not fail when ArmorSession.SessionStartTime is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [DateTime] $Value )
-            { $temp.SessionStartTime = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.SessionStartTime |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.DateTime] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/SessionExpirationTime' -Fixture {
+    $property = 'SessionExpirationTime'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.SessionExpirationTime is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSObject] $Value )
-            { $temp.SessionExpirationTime = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = Get-Date }
         )
-        It -Name "should not fail when ArmorSession.SessionExpirationTime is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [DateTime] $Value )
-            { $temp.SessionExpirationTime = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.SessionExpirationTime |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.DateTime] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/ApiVersion' -Fixture {
+    $property = 'ApiVersion'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 'v0.1' },
             @{ 'Value' = 'v1' }
         )
-        It -Name "should fail when ArmorSession.ApiVersion is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.ApiVersion = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = $validApiVersion }
         )
-        It -Name "should not fail when ArmorSession.ApiVersion is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.ApiVersion = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.ApiVersion |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/AccountContextHeader' -Fixture {
+    $property = 'AccountContextHeader'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 'Account-Context' },
             @{ 'Value' = 'X-Account-Context1' }
         )
-        It -Name "should fail when ArmorSession.AccountContextHeader is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.AccountContextHeader = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'X-Account-Context' }
         )
-        It -Name "should not fail when ArmorSession.AccountContextHeader is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.AccountContextHeader = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.AccountContextHeader |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/AuthenticationType' -Fixture {
+    $property = 'AuthenticationType'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 'Bearer' },
             @{ 'Value' = 'FH-AUTH1' }
         )
-        It -Name "should fail when ArmorSession.AuthenticationType is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.AuthenticationType = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = 'FH-AUTH' }
         )
-        It -Name "should not fail when ArmorSession.AuthenticationType is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.AuthenticationType = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.AuthenticationType |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/MediaType' -Fixture {
+    $property = 'MediaType'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = 'application/javascript' },
             @{ 'Value' = 'application/xml' }
         )
-        It -Name "should fail when ArmorSession.MediaType is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.MediaType = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{ 'Value' = $validMediaType }
         )
-        It -Name "should not fail when ArmorSession.MediaType is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
-            { $temp.MediaType = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.MediaType |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Properties/Headers' -Fixture {
+    $property = 'Headers'
+    $context = $Global:PropertyForm -f $property
+    Context -Name $context -Fixture {
         $testCases = @(
             @{ 'Value' = $null }
         )
-        It -Name "should fail when ArmorSession.Headers is set to '`$null'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Hashtable] $Value )
-            { $temp.Headers = $Value } |
+            { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
@@ -1042,160 +1106,250 @@ Describe -Name 'ArmorSession' -Tag 'ArmorSession', 'Class' -Fixture {
                 }
             }
         )
-        It -Name "should not fail when ArmorSession.Headers is set to '<Value>'" -TestCases $testCases -Test {
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Hashtable] $Value )
-            { $temp.Headers = $Value } |
+            { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
-        It -Name 'should be the expected data type' -Test {
-            $temp.Headers |
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
                 Should -BeOfType ( [System.Collections.Hashtable] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Invalid session' -Fixture {
-        It -Name 'should fail to authorize an invalid token' -Test {
-            { $temp.Authorize( '-', $validSessionLength ) } |
+    $method = 'Authorize'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        $testCases = @(
+            @{ 'Value' = '' },
+            @{ 'Value' = '-' },
+            @{ 'Value' = '63724fcc-e004-44d2-88a2-d5f5877386d3' }
+        )
+        It -Name 'should not authorize a session when passed an invalid token: <Value>' -TestCases $testCases -Test {
+            param ( [String] $Value )
+            { $temp.$method( $Value, $validSessionLength ) } |
                 Should -Throw
         } # End of It
+    } # End of Context
 
-        It -Name 'should not be an active session' -Test {
-            $temp.IsActive() |
+    $returnForm = "should return 'false'"
+
+    $method = 'IsActive'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $returnForm -Test {
+            $temp.$method() |
                 Should -Be $false
         } # End of It
+    } # End of Context
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.IsActive() |
-                Should -BeOfType ( [System.Boolean] )
-        } # End of It
-
-        It -Name 'should not be an authorized session' -Test {
-            $temp.AuthorizationExists() |
+    $method = 'AuthorizationExists'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $returnForm -Test {
+            $temp.$method() |
                 Should -Be $false
         } # End of It
+    } # End of Context
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.AuthorizationExists() |
+    $testName = 'should be less than one since the session has not been authorized'
+
+    $method = 'GetMinutesRemaining'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $testName -Test {
+            $temp.$method() |
+                Should -BeLessThan 1
+        } # End of It
+
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
+                Should -BeOfType ( [System.Int32] )
+        } # End of It
+    } # End of Context
+
+    $method = 'GetSecondsRemaining'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $testName -Test {
+            $temp.$method() |
+                Should -BeLessThan 1
+        } # End of It
+
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
+                Should -BeOfType ( [System.Int32] )
+        } # End of It
+    } # End of Context
+
+    $method = 'GetToken'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should fail to get an authentication token since the session has not been authorized' -Test {
+            { $temp.$method() } |
+                Should -Throw
+        } # End of It
+    } # End of Context
+
+    $method = 'SetAccountContext'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should fail to set the account context when no accounts have been loaded' -Test {
+            { [ArmorSession]::New().$method( 1 ) } |
+                Should -Throw
+        } # End of It
+    } # End of Context
+
+    $method = 'GetAccountContext'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should fail to get the account context since it has not been set' -Test {
+            { $temp.$method() } |
+                Should -Throw
+        } # End of It
+    } # End of Context
+
+    $method = 'GetAccountContextID'
+    $context = $Global:MethodNegativeForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should fail to get the account context ID since it has not been set' -Test {
+            { $temp.$method() } |
+                Should -Throw
+        } # End of It
+    } # End of Context
+
+    $method = 'Authorize'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
+        $testCases = @(
+            @{ 'Value' = $validToken }
+        )
+        It -Name 'should authorize a session when passed a valid token: <Value>' -TestCases $testCases -Test {
+            param ( [String] $Value )
+            $temp.$method( $Value, $validSessionLength ) |
+                Should -Be $null
+        } # End of It
+    } # End of Context
+
+    $returnForm = "should return 'true'"
+
+    $method = 'IsActive'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $returnForm -Test {
+            $temp.$method() |
+                Should -Be $true
+        } # End of It
+
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Valid session' -Fixture {
-        It -Name 'should authorize the session' -Test {
-            $temp.Authorize( $validToken, $validSessionLength ) |
-                Should -Be $null
-        } # End of It
-
-        It -Name 'should be an active session' -Test {
-            $temp.IsActive() |
+    $method = 'AuthorizationExists'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
+        It -Name $returnForm -Test {
+            $temp.$method() |
                 Should -Be $true
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.IsActive() |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         } # End of It
+    } # End of Context
 
-        It -Name 'should be an authorized session' -Test {
-            $temp.AuthorizationExists() |
-                Should -Be $true
-        } # End of It
-
-        It -Name 'should return the expected data type' -Test {
-            $temp.AuthorizationExists() |
-                Should -BeOfType ( [System.Boolean] )
-        } # End of It
-
+    $method = 'GetMinutesRemaining'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
         It -Name 'should get minutes remaining before session expiration' -Test {
-            $temp.GetMinutesRemaining() |
+            $temp.$method() |
                 Should -BeGreaterThan 0
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.GetMinutesRemaining() |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
+    } # End of Context
 
+    $method = 'GetSecondsRemaining'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
         It -Name 'should get seconds remaining before session expiration' -Test {
-            $temp.GetSecondsRemaining() |
+            $temp.$method() |
                 Should -BeGreaterThan 0
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.GetSecondsRemaining() |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
+    } # End of Context
 
+    $method = 'GetToken'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
         It -Name 'should get the authentication token' -Test {
-            $temp.GetToken() |
+            $temp.$method() |
                 Should -BeExactly $validToken
         } # End of It
 
         It -Name 'should return the expected data type' -Test {
-            $temp.GetToken() |
+            $temp.$method() |
                 Should -BeOfType ( [System.String] )
         } # End of It
     } # End of Context
 
-    Context -Name 'Account Context' -Fixture {
-        #region init
-        [ArmorAccount[]] $accounts = @()
-        $accounts += @{
-            'ID'       = 1
-            'Name'     = 'Test account 1'
-            'Currency' = 'USD'
-            'Parent'   = -1
-            'Products' = $null
-        }
-        $accounts += @{
-            'ID'       = 2
-            'Name'     = 'Test account 2'
-            'Currency' = 'GBP'
-            'Parent'   = 1
-            'Products' = $null
-        }
-
+    $method = 'SetAccountContext'
+    $context = $Global:MethodForm -f $method
+    Context -Name $context -Fixture {
         $temp.Accounts = $accounts
-        #endregion
 
-        It -Name 'should fail to set the account context when no accounts have been loaded' -Test {
-            { [ArmorSession]::New().SetAccountContext( 1 ) } |
+        It -Name 'should fail to set the account context to invalid account ID' -Test {
+            param ( [Int32] $Value )
+            { $temp.$method( $Value ) } |
                 Should -Throw
         } # End of It
 
-        It -Name 'should fail to set the account context to an invalid account ID' -Test {
-            { $temp.SetAccountContext( 3 ) } |
-                Should -Throw
-        } # End of It
-
-        It -Name 'should set the account context to a valid account ID' -Test {
-            $temp.SetAccountContext( 1 ) |
+        It -Name 'should not fail to set the account context to a valid account ID' -Test {
+            $temp.$method( 1 ) |
                 Should -Be $accounts[0]
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.SetAccountContext( 1 ) |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method( 1 ) |
                 Should -BeOfType ( [ArmorAccount] )
         } # End of It
+    } # End of Context
 
-        It -Name 'should get the current account context' -Test {
-            $temp.GetAccountContext() |
+    $method = 'GetAccountContext'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should get the expected account context' -Test {
+            $temp.$method() |
                 Should -Be $accounts[0]
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.GetAccountContext() |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [ArmorAccount] )
         } # End of It
+    } # End of Context
 
-        It -Name 'should get the current account context ID' -Test {
-            $temp.GetAccountContextID() |
+    $method = 'GetAccountContextID'
+    $context = $Global:MethodPositiveForm -f $method
+    Context -Name $context -Fixture {
+        It -Name 'should get the expected account context ID' -Test {
+            $temp.$method() |
                 Should -Be 1
         } # End of It
 
-        It -Name 'should return the expected data type' -Test {
-            $temp.GetAccountContextID() |
+        It -Name $Global:MethodTypeForm -Test {
+            $temp.$method() |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It
     } # End of Context

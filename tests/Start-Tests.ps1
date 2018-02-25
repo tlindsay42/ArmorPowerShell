@@ -1,3 +1,17 @@
+$Global:ClassForm = 'Class/{0}'
+$Global:Constructors = 'Constructors'
+$Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
+$Global:ConstructorFailForm = 'should fail when creating an object with invalid parameters'
+$Global:ConstructorPassForm = 'should not fail when creating an object with valid parameters'
+$Global:PropertyForm = 'Property/{0}'
+$Global:PropertyFailForm = "should fail when set to: <Value>"
+$Global:PropertyPassForm = "should not fail when set to: <Value>"
+$Global:PropertyTypeForm = 'should be the expected data type'
+$Global:MethodForm = 'Method/{0}'
+$Global:MethodNegativeForm = '{0} (Negative)' -f $Global:MethodForm
+$Global:MethodPositiveForm = '{0} (Positive)' -f $Global:MethodForm
+$Global:MethodTypeForm = 'should return the expected data type'
+
 $splat = @{
     'Path'                         = $env:CI_TESTS_PATH
     'OutputFormat'                 = 'NUnitXml'
