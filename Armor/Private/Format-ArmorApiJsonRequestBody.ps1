@@ -67,7 +67,9 @@ function Format-ArmorApiJsonRequestBody {
             'InformationVariable',
             'OutVariable',
             'OutBuffer',
-            'PipelineVariable'
+            'PipelineVariable',
+            'WhatIf',
+            'Confirm'
         )
     } # End of begin
 
