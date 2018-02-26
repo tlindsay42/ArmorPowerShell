@@ -19,9 +19,6 @@ function ConvertFrom-JsonXL {
         {required: show one or more examples using the function}
 
         .LINK
-        http://stackoverflow.com/questions/16854057/convertfrom-json-max-length/27125027
-
-        .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
@@ -32,6 +29,9 @@ function ConvertFrom-JsonXL {
 
         .LINK
         https://developer.armor.com/
+
+        .LINK
+        http://stackoverflow.com/questions/16854057/convertfrom-json-max-length/27125027
     #>
 
     [CmdletBinding()]
