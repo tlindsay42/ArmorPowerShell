@@ -16,7 +16,7 @@ function Reset-ArmorCompleteVM {
         System.UInt16
 
         .NOTES
-        Name Troy Lindsay
+        Troy Lindsay
         Twitter: @troylindsay42
         GitHub: tlindsay42
 
