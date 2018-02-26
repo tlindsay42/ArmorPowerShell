@@ -325,7 +325,7 @@ function Get-ArmorApiData {
                     'SuccessCode' = '200'
                 }
             }
-            'Restart-ArmorVM'               = @{
+            'Restart-ArmorCompleteVM'               = @{
                 'v1.0' = @{
                     'Description' = 'Reboot the specified virtual machine in your account'
                     'URI'         = @(
