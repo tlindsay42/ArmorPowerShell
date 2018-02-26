@@ -3,6 +3,11 @@ $filePath = Join-Path -Path $env:CI_MODULE_PUBLIC_PATH -ChildPath $systemUnderTe
 
 . $filePath
 
+$classFiles = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH
+foreach ( $classFile in $classFiles ) {
+    . $classFile.FullName
+}
+
 $privateFunctionFiles = Get-ChildItem -Path $env:CI_MODULE_PRIVATE_PATH
 foreach ( $privateFunctionFile in $privateFunctionFiles ) {
     . $privateFunctionFile.FullName
