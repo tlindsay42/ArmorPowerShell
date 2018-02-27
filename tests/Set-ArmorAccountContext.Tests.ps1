@@ -117,9 +117,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     } # End of Context
 
     Context -Name 'Execution' -Fixture {
-        Mock -CommandName Get-ArmorIdentity -Verifiable -MockWith {
-            @{ 'Accounts' = @{ 'ID' = 1, 2 } }
-        }
         Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
 
         $testName = 'should fail to set the account context'
@@ -142,7 +139,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         } # End of It
 
         Assert-VerifiableMock
-        Assert-MockCalled -CommandName Get-ArmorIdentity -Times 3
         Assert-MockCalled -CommandName Test-ArmorSession -Times 2
     } # End of Context
 } # End of Describe
