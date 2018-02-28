@@ -254,8 +254,11 @@ function Connect-Armor {
 
         $Global:ArmorSession.Authorize( $token.Access_Token, $token.Expires_In )
 
+        Get-ArmorIdentity |
+            Out-Null
+
         if ( $AccountID -eq 0 ) {
-            $AccountID = ( Get-ArmorIdentity ).Accounts.ID |
+            $AccountID = $Global:ArmorSession.Accounts.ID |
                 Select-Object -First 1
 
             if ( $AccountID -eq 0 ) {
@@ -263,7 +266,7 @@ function Connect-Armor {
             }
         }
 
-        Write-Verbose -Message "Setting the Armor account context to ID '${AccountID}'."
+        Write-Verbose -Message "Setting the Armor account context ID to: '${AccountID}'."
         Set-ArmorAccountContext -ID $AccountID |
             Out-Null
 

@@ -67,7 +67,7 @@ function Get-ArmorApiData {
         Specifies the API version for this request.
         #>
         [Parameter( Position = 1 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateScript( { $_ -match '^v\d+\.\d+$' } )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )

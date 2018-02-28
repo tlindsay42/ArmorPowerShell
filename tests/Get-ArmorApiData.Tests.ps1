@@ -100,6 +100,10 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             @{
                 'Endpoint'   = 'Example'
                 'ApiVersion' = 'Garbage'
+            },
+            @{
+                'Endpoint'   = 'Example'
+                'ApiVersion' = 'v0.1'
             }
         )
         $testName = 'should fail when set to: Endpoint: <Endpoint>, ApiVersion: <ApiVersion>'

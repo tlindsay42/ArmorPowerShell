@@ -1,12 +1,10 @@
+Remove-Module -Name $env:CI_MODULE_NAME -ErrorAction 'SilentlyContinue'
+Import-Module -Name $env:CI_MODULE_MANIFEST_PATH
+
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 $filePath = Join-Path -Path $env:CI_MODULE_PUBLIC_PATH -ChildPath $systemUnderTest
 
 . $filePath
-
-$classFiles = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH
-foreach ( $classFile in $classFiles ) {
-    . $classFile.FullName
-}
 
 $privateFunctionFiles = Get-ChildItem -Path $env:CI_MODULE_PRIVATE_PATH
 foreach ( $privateFunctionFile in $privateFunctionFiles ) {
@@ -119,9 +117,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     } # End of Context
 
     Context -Name 'Execution' -Fixture {
-        Mock -CommandName Get-ArmorIdentity -Verifiable -MockWith {
-            @{ 'Accounts' = @{ 'ID' = 1, 2 } }
-        }
         Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
 
         $testName = 'should fail to set the account context'
@@ -144,7 +139,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         } # End of It
 
         Assert-VerifiableMock
-        Assert-MockCalled -CommandName Get-ArmorIdentity -Times 3
         Assert-MockCalled -CommandName Test-ArmorSession -Times 2
     } # End of Context
 } # End of Describe

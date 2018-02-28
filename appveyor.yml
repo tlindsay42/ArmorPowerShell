@@ -93,6 +93,9 @@ init:
   - ps: $env:CI_TEST_RESULTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'TestResults.xml' -ErrorAction 'Stop'
   - ps: $env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'CodeCoverageResults.xml' -ErrorAction 'Stop'
 
+    # Deployment variables
+  - ps: $env:CI_DEPLOY_SCRIPTS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'deploy' -ErrorAction 'Stop'
+
     # Documentation variables
   - ps: $env:CI_DOCS_PATH = Join-Path -Path $env:CI_BUILD_PATH -ChildPath 'docs' -ErrorAction 'Stop'
 
@@ -101,7 +104,7 @@ init:
   - ps: $env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1' -ErrorAction 'Stop'
   - ps: $env:CI_BUILD_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Build-Project.ps1' -ErrorAction 'Stop'
   - ps: $env:CI_START_TESTS_SCRIPT_PATH = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'Start-Tests.ps1' -ErrorAction 'Stop'
-  - ps: $env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1' -ErrorAction 'Stop'
+  - ps: $env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $env:CI_DEPLOY_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1' -ErrorAction 'Stop'
 
     # Configure git
   - ps: git config --global credential.helper store

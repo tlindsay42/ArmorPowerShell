@@ -1,12 +1,10 @@
+Remove-Module -Name $env:CI_MODULE_NAME -ErrorAction 'SilentlyContinue'
+Import-Module -Name $env:CI_MODULE_MANIFEST_PATH
+
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 $filePath = Join-Path -Path $env:CI_MODULE_PUBLIC_PATH -ChildPath $systemUnderTest
 
 . $filePath
-
-$classFiles = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH
-foreach ( $classFile in $classFiles ) {
-    . $classFile.FullName
-}
 
 $privateFunctionFiles = Get-ChildItem -Path $env:CI_MODULE_PRIVATE_PATH
 foreach ( $privateFunctionFile in $privateFunctionFiles ) {
@@ -14,9 +12,6 @@ foreach ( $privateFunctionFile in $privateFunctionFiles ) {
 }
 
 $Global:ArmorSession = [ArmorSession]::New( 'api.armor.com', 443, 'v1.0' )
-$Global:ArmorSession.SessionLengthInSeconds = 1800
-$Global:ArmorSession.SessionStartTime = Get-Date
-$Global:ArmorSession.SessionExpirationTime = $Global:ArmorSession.SessionStartTime.AddSeconds( $Global:ArmorSession.SessionLengthInSeconds )
 
 $function = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:PublicFunctionForm -f $function
@@ -115,21 +110,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             @{
                 'StatusCode'        = 200
                 'StatusDescription' = 'OK'
-                'Content'           = (
-                    '{"hostType":"Virtual Machine", "canUseFluidScale":false, "disks":[ {"id":33263, ' +
-                    '"capacity":30720, "name":"Disk 1", "type":"SSD"}], "isDeleted":false, "canReplicate":false, ' +
-                    '"id":27464, "coreInstanceId":"10e28e85-fbfe-4100-b181-887d7e6fcdf5", ' +
-                    '"biosUuid":"34d75660-d17c-4fae-8658-835a3570600e", "name":"VM1", "provider":"4", ' +
-                    '"location":"SIN01", "zone":"SIN01-CD01", "ipAddress":"100.69.215.11", "status":100, ' +
-                    '"appId":21654, "appName":"WL2", "osId":null, "os":"Ubuntu 16.04", "deployed":true, ' +
-                    '"cpu":1, "memory":2048, "storage":30720, "notes":null, "vCenterId":14, ' +
-                    '"vCenterName":"SIN01T01-VC01", "vcdOrgVdcId":5855, "isRecoveryVm":false, ' +
-                    '"coreDateRegistered":null, "coreLastPing":null, "vmDateCreated":null, "product": ' +
-                    '{"sku":"A1-123", "size":"A1", "isExpired":false, "storagePolicyClass":null}, ' +
-                    '"vmServices":null, "uuid":"urn:vcloud:vm:e7b5cbbf-e38a-4d6a-a1a3-e6c7db092dcd", ' +
-                    '"isHealthy":null, "health":0, "tags":[], "scheduledEvents":[], "advBackupStatus":false, ' +
-                    '"advBackupSku":null, "vmBackupInProgress":false, "profileName":null, "multiVmVapp":false}'
-                )
+                'Content'           = $Global:VmJsonPaylod
             }
         }
         $testName = $Global:MethodTypeForm

@@ -45,7 +45,7 @@ function Set-ArmorAccountContext {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
-        [ValidateScript( { $_ -in ( Get-ArmorIdentity ).Accounts.ID } )]
+        [ValidateScript( { $_ -in $Global:ArmorSession.Accounts.ID } )]
         [UInt16]
         $ID
     )
