@@ -1,4 +1,4 @@
-Remove-Module -Name $env:CI_MODULE_NAME
+Remove-Module -Name $env:CI_MODULE_NAME -ErrorAction 'SilentlyContinue'
 Import-Module -Name $env:CI_MODULE_MANIFEST_PATH
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'

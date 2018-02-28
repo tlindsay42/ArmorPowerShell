@@ -1,12 +1,10 @@
+Remove-Module -Name $env:CI_MODULE_NAME -ErrorAction 'SilentlyContinue'
+Import-Module -Name $env:CI_MODULE_MANIFEST_PATH
+
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 $filePath = Join-Path -Path $env:CI_MODULE_PUBLIC_PATH -ChildPath $systemUnderTest
 
 . $filePath
-
-$classFiles = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH
-foreach ( $classFile in $classFiles ) {
-    . $classFile.FullName
-}
 
 $privateFunctionFiles = Get-ChildItem -Path $env:CI_MODULE_PRIVATE_PATH
 foreach ( $privateFunctionFile in $privateFunctionFiles ) {
@@ -14,9 +12,6 @@ foreach ( $privateFunctionFile in $privateFunctionFiles ) {
 }
 
 $Global:ArmorSession = [ArmorSession]::New( 'api.armor.com', 443, 'v1.0' )
-$Global:ArmorSession.SessionLengthInSeconds = 1800
-$Global:ArmorSession.SessionStartTime = Get-Date
-$Global:ArmorSession.SessionExpirationTime = $Global:ArmorSession.SessionStartTime.AddSeconds( $Global:ArmorSession.SessionLengthInSeconds )
 
 $function = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:PublicFunctionForm -f $function
