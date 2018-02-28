@@ -1,3 +1,9 @@
+param (
+    [String[]] $Tag,
+    [String[]] $ExcludeTag,
+    [Switch] $Coverage = $true
+)
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
@@ -27,13 +33,24 @@ $Global:FunctionParameterNameForm = "should have parameter: <Name>"
 $Global:ShouldBeForm = "should be: '{0}'"
 
 $splat = @{
-    'Path'                         = $env:CI_TESTS_PATH
-    'OutputFormat'                 = 'NUnitXml'
-    'OutputFile'                   = $env:CI_TEST_RESULTS_PATH
-    'CodeCoverage'                 = Get-ChildItem -Path $env:CI_MODULE_PATH -Include '*.psm1', '*.ps1' -Recurse
-    'CodeCoverageOutputFile'       = $env:CI_COVERAGE_RESULTS_PATH
-    'CodeCoverageOutputFileFormat' = 'JaCoCo'
-    'PassThru'                     = $true
+    'Path'         = "${env:CI_TESTS_PATH}"
+    'OutputFormat' = 'NUnitXml'
+    'OutputFile'   = $Env:CI_TEST_RESULTS_PATH
+}
+
+if ( $Tag.Count -gt 0 ) {
+    $splat.Tag = $Tag
+}
+
+if ( $ExcludeTag.Count -gt 0 ) {
+    $splat.ExcludeTag = $ExcludeTag
+}
+
+if ( $Coverage -eq $true ) {
+    $splat.CodeCoverage = Get-ChildItem -Path $Env:CI_MODULE_PATH -Include '*.psm1', '*.ps1' -Recurse
+    $splat.CodeCoverageOutputFile = $Env:CI_COVERAGE_RESULTS_PATH
+    $splat.CodeCoverageOutputFileFormat = 'JaCoCo'
+    $splat.PassThru = $true
 }
 
 Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
@@ -45,7 +62,7 @@ if ( $pathTest -eq $false ) {
 }
 
 $pathTest = Test-Path -Path $env:CI_COVERAGE_RESULTS_PATH
-if ( $pathTest -eq $false ) {
+if ( $pathTest -eq $false -and $Coverage -eq $true ) {
     throw "File not found: '${env:CI_COVERAGE_RESULTS_PATH}'."
 }
 
