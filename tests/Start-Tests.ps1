@@ -31,6 +31,21 @@ $Global:FunctionHelpLinkValidForm = "should be a valid help link: '{0}'"
 $Global:FunctionParameterCountForm = "should have {0} parameters"
 $Global:FunctionParameterNameForm = "should have parameter: <Name>"
 $Global:ShouldBeForm = "should be: '{0}'"
+$Global:VmJsonPaylod = (
+    '{"hostType":"Virtual Machine", "canUseFluidScale":false, "disks":[ {"id":33263, ' +
+    '"capacity":30720, "name":"Disk 1", "type":"SSD"}], "isDeleted":false, "canReplicate":false, ' +
+    '"id":27464, "coreInstanceId":"10e28e85-fbfe-4100-b181-887d7e6fcdf5", ' +
+    '"biosUuid":"34d75660-d17c-4fae-8658-835a3570600e", "name":"VM1", "provider":"4", ' +
+    '"location":"SIN01", "zone":"SIN01-CD01", "ipAddress":"100.69.215.11", "status":100, ' +
+    '"appId":21654, "appName":"WL2", "osId":null, "os":"Ubuntu 16.04", "deployed":true, ' +
+    '"cpu":1, "memory":2048, "storage":30720, "notes":null, "vCenterId":14, ' +
+    '"vCenterName":"SIN01T01-VC01", "vcdOrgVdcId":5855, "isRecoveryVm":false, ' +
+    '"coreDateRegistered":null, "coreLastPing":null, "vmDateCreated":null, "product": ' +
+    '{"sku":"A1-123", "size":"A1", "isExpired":false, "storagePolicyClass":null}, ' +
+    '"vmServices":null, "uuid":"urn:vcloud:vm:e7b5cbbf-e38a-4d6a-a1a3-e6c7db092dcd", ' +
+    '"isHealthy":null, "health":0, "tags":[], "scheduledEvents":[], "advBackupStatus":false, ' +
+    '"advBackupSku":null, "vmBackupInProgress":false, "profileName":null, "multiVmVapp":false}'
+)
 
 $splat = @{
     'Path'         = "${env:CI_TESTS_PATH}"
@@ -64,25 +79,6 @@ if ( $pathTest -eq $false ) {
 $pathTest = Test-Path -Path $env:CI_COVERAGE_RESULTS_PATH
 if ( $pathTest -eq $false -and $Coverage -eq $true ) {
     throw "File not found: '${env:CI_COVERAGE_RESULTS_PATH}'."
-}
-
-if ( $env:APPVEYOR -eq $true ) {
-    $webClient = New-Object -TypeName 'System.Net.WebClient'
-    $webClient.UploadFile(
-        "https://ci.appveyor.com/api/testresults/nunit/${env:APPVEYOR_JOB_ID}",
-        $env:CI_TEST_RESULTS_PATH
-    )
-
-    $splat = @{
-        'PesterResults'     = $testsResults
-        'CoverallsApiToken' = $env:COVERALLS_API_KEY
-        'BranchName'        = $env:APPVEYOR_REPO_BRANCH
-    }
-    $coverage = Format-Coverage @splat
-
-    Write-Host -Object 'Publishing code coverage' -ForegroundColor 'Yellow'
-    Publish-Coverage -Coverage $coverage
-    Write-Host -Object ''
 }
 
 if ( $testsResults.FailedCount -gt 0 ) {
