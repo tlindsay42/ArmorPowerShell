@@ -97,10 +97,10 @@ if ( $env:APPVEYOR -eq $true ) {
         'CoverallsApiToken' = $env:COVERALLS_API_KEY
         'BranchName'        = $env:CI_BRANCH
     }
-    $coverage = Format-Coverage @splat
+    $coverageResults = Format-Coverage @splat
 
     Write-Host -Object 'Publishing code coverage' -ForegroundColor 'Yellow'
-    Publish-Coverage -Coverage $coverage
+    Publish-Coverage -Coverage $coverageResults
     Write-Host -Object ''
 }
 
