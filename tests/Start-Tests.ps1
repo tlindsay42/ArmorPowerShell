@@ -31,7 +31,7 @@ $Global:FunctionHelpLinkValidForm = "should be a valid help link: '{0}'"
 $Global:FunctionParameterCountForm = "should have {0} parameters"
 $Global:FunctionParameterNameForm = "should have parameter: <Name>"
 $Global:ShouldBeForm = "should be: '{0}'"
-$Global:VmJsonPaylod = (
+$Global:JsonResponseBodyVM = (
     '{"hostType":"Virtual Machine", "canUseFluidScale":false, "disks":[ {"id":33263, ' +
     '"capacity":30720, "name":"Disk 1", "type":"SSD"}], "isDeleted":false, "canReplicate":false, ' +
     '"id":27464, "coreInstanceId":"10e28e85-fbfe-4100-b181-887d7e6fcdf5", ' +
