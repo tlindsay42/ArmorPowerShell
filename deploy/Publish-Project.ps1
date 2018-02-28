@@ -12,6 +12,25 @@ $skipMessage = 'Skipping publish to the PowerShell Gallery'
 $message = $null
 $messageForm = '{0} for {1} "{2}".'
 
+if ( $env:APPVEYOR -eq $true ) {
+    $webClient = New-Object -TypeName 'System.Net.WebClient'
+    $webClient.UploadFile(
+        "https://ci.appveyor.com/api/testresults/nunit/${env:APPVEYOR_JOB_ID}",
+        $env:CI_TEST_RESULTS_PATH
+    )
+
+    $splat = @{
+        'PesterResults'     = $testsResults
+        'CoverallsApiToken' = $env:COVERALLS_API_KEY
+        'BranchName'        = $env:CI_BRANCH
+    }
+    $coverage = Format-Coverage @splat
+
+    Write-Host -Object 'Publishing code coverage' -ForegroundColor 'Yellow'
+    Publish-Coverage -Coverage $coverage
+    Write-Host -Object ''
+}
+
 if ( $env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f $skipMessage, 'continuous integration platform', $env:CI_NAME )
 }

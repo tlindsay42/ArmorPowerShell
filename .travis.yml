@@ -84,6 +84,9 @@ env:
     - CI_TEST_RESULTS_PATH="${CI_BUILD_PATH}/TestResults.xml"
     - CI_COVERAGE_RESULTS_PATH="${CI_BUILD_PATH}/CodeCoverageResults.xml"
 
+    # Deployment variables
+    - CI_DEPLOY_SCRIPTS_PATH="${CI_BUILD_PATH}/deploy"
+
     # Documentation variables
     - CI_DOCS_PATH="${CI_BUILD_PATH}/docs"
 
@@ -92,7 +95,7 @@ env:
     - CI_INSTALL_DEPENDENCIES_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Install-Dependencies.ps1"
     - CI_BUILD_PROJECT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Build-Project.ps1"
     - CI_START_TESTS_SCRIPT_PATH="${CI_TESTS_PATH}/Start-Tests.ps1"
-    - CI_PUBLISH_PROJECT_SCRIPT_PATH="${CI_BUILD_SCRIPTS_PATH}/Publish-Project.ps1"
+    - CI_PUBLISH_PROJECT_SCRIPT_PATH="${CI_DEPLOY_SCRIPTS_PATH}/Publish-Project.ps1"
 
     # Encrypted environment variables
     - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
