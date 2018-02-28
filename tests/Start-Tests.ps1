@@ -85,6 +85,25 @@ if ( $testsResults.FailedCount -gt 0 ) {
     throw "$( $testsResults.FailedCount ) tests failed."
 }
 
+if ( $env:APPVEYOR -eq $true ) {
+    $webClient = New-Object -TypeName 'System.Net.WebClient'
+    $webClient.UploadFile(
+        "https://ci.appveyor.com/api/testresults/nunit/${env:APPVEYOR_JOB_ID}",
+        $env:CI_TEST_RESULTS_PATH
+    )
+
+    $splat = @{
+        'PesterResults'     = $testsResults
+        'CoverallsApiToken' = $env:COVERALLS_API_KEY
+        'BranchName'        = $env:CI_BRANCH
+    }
+    $coverage = Format-Coverage @splat
+
+    Write-Host -Object 'Publishing code coverage' -ForegroundColor 'Yellow'
+    Publish-Coverage -Coverage $coverage
+    Write-Host -Object ''
+}
+
 Write-Host -Object "Checking the spelling of all documentation in Markdown format." -ForegroundColor 'Yellow'
 & mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
 
