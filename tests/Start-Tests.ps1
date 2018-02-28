@@ -46,6 +46,18 @@ $Global:JsonResponseBodyVM = (
     '"isHealthy":null, "health":0, "tags":[], "scheduledEvents":[], "advBackupStatus":false, ' +
     '"advBackupSku":null, "vmBackupInProgress":false, "profileName":null, "multiVmVapp":false}'
 )
+$Global:JsonResponseBodyWorkload = (
+    '{"id":1, "name":"WL1", "location":"DFW01", "zone":"DFW01T01-VC01", "status":8, "deployed":false, ' +
+    '"tierCount":1, "vmCount":1, "totalCpu":2, "totalMemory":6144, "totalStorage":30720, "tiers":' +
+    '[ {"id":1, "name":"DFW01", "vms":[ {"id":1, "coreInstanceId":"bdb0a9ba-5621-410f-bdaf-364d09f3bd47", ' +
+    '"biosUuid":"25e91dab-f1bc-48aa-9239-9c9213d00ee9", "name":"DFW01-MariaDB01", "provider":null, ' +
+    '"location":null, "zone":null, "ipAddress":null, "status":8, "appId":0, "appName":null, "osId":null, ' +
+    '"os":"CentOS 7.1", "deployed":false, "cpu":2, "memory":6144, "storage":30720, "notes":null, "vCenterId":0, ' +
+    '"vCenterName":null, "vcdOrgVdcId":0, "isRecoveryVm":false, "coreDateRegistered":null, "coreLastPing":null, ' +
+    '"vmDateCreated":null, "product":null, "vmServices":null, "uuid":null, "isHealthy":null, "health":0, "tags":[], ' +
+    '"scheduledEvents":null, "advBackupStatus":false, "advBackupSku":null, "vmBackupInProgress":false, ' +
+    '"profileName":null, "multiVmVapp":false}]}], "notes":null, "health":0, "tags":["db", "production"]}'
+)
 
 $splat = @{
     'Path'         = "${env:CI_TESTS_PATH}"
