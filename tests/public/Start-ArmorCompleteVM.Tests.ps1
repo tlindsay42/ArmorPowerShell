@@ -112,7 +112,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 'Content'           = $Global:JsonResponseBody.VMs1
             }
         }
-        $testName = $Global:MethodTypeForm
+        $testName = $Global:ReturnTypeForm
         It -Name $testName -Test {
             Start-ArmorCompleteVM -ID 1 -Confirm:$false |
                 Should -BeOfType ( [PSCustomObject] )

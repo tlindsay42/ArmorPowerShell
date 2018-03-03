@@ -117,7 +117,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
             }
         }
-        $testName = $Global:MethodTypeForm
+        $testName = $Global:ReturnTypeForm
         It -Name $testName -Test {
             Rename-ArmorCompleteWorkload -ID 1 -Name 'Test' -Confirm:$false |
                 Should -BeOfType ( [PSCustomObject] )

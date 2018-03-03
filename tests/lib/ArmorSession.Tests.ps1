@@ -1163,7 +1163,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeLessThan 1
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
@@ -1177,7 +1177,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeLessThan 1
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
@@ -1242,7 +1242,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $true
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         } # End of It
@@ -1256,7 +1256,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $true
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         } # End of It
@@ -1270,7 +1270,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeGreaterThan 0
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
@@ -1284,7 +1284,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeGreaterThan 0
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         } # End of It
@@ -1320,7 +1320,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $accounts[0]
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method( 1 ) |
                 Should -BeOfType ( [ArmorAccount] )
         } # End of It
@@ -1334,7 +1334,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $accounts[0]
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [ArmorAccount] )
         } # End of It
@@ -1348,7 +1348,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be 1
         } # End of It
 
-        It -Name $Global:MethodTypeForm -Test {
+        It -Name $Global:ReturnTypeForm -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.UInt16] )
         } # End of It

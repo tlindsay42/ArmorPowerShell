@@ -132,7 +132,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 Should -Be $value
         } # End of It
 
-        $testName = $Global:MethodTypeForm
+        $testName = $Global:ReturnTypeForm
         It -Name $testName -Test {
             Set-ArmorAccountContext -ID 1 |
                 Should -BeOfType ( [ArmorAccount] )

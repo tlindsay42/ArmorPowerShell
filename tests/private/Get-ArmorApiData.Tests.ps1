@@ -119,7 +119,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 'ApiVersion' = 'v1.0'
             }
         )
-        $testName = $Global:MethodTypeForm
+        $testName = $Global:ReturnTypeForm
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Endpoint, [String] $ApiVersion )
             Get-ArmorApiData -Endpoint $Endpoint -ApiVersion $ApiVersion |
