@@ -11,12 +11,13 @@ function OutInfo ( [String] $Message ) {
 $message = $null
 $messageForm = "Skipping publish to the PowerShell Gallery for {0}: '{1}'."
 $skipKeyword = '[skip publish]'
+$commitMessageKeyword = 'commit message keyword'
 
 if ( $env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f 'continuous integration platform', $env:CI_NAME )
 }
 elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match $skipKeyword ) {
-    OutWarning( ( $messageForm -f 'commit message keyword', $skipKeyword ) )
+    OutWarning( ( $messageForm -f $commitMessageKeyword, $skipKeyword ) )
 }
 elseif ( $env:CI_BRANCH -ne 'master' ) {
     OutWarning( ( $messageForm -f 'branch', $env:CI_BRANCH ) )
@@ -25,14 +26,20 @@ elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f 'pull request', $env:CI_PULL_REQUEST ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-    $messageForm = 'Publishing module: "{0}" version: "{1}" to {2}.'
+    $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
 
-    OutInfo( ( $messageForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
+    $skipKeyword = '[skip psgallery]'
+    if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match $skipKeyword ) {
+        OutWarning( ( $messageForm -f $commitMessageKeyword, $skipKeyword ) )
+    }
+    else {
+        OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
 
-    # Publish the new version to the PowerShell Gallery
-    Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
+        # Publish the new version to the PowerShell Gallery
+        Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
+    }
 
-    OutInfo( ( $messageForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
+    OutInfo( ( $publishForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
     git checkout master 2> ( [System.IO.Path]::GetTempFileName() )
