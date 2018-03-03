@@ -60,7 +60,12 @@ $Global:JsonResponseBodyWorkload = (
 )
 
 $splat = @{
-    'Path'         = "${env:CI_TESTS_PATH}"
+    'Path' = (
+        "${env:CI_TESTS_PATH}/config",
+        "${env:CI_TESTS_PATH}/lib",
+        "${env:CI_TESTS_PATH}/private",
+        "${env:CI_TESTS_PATH}/public"
+    )
     'OutputFormat' = 'NUnitXml'
     'OutputFile'   = $Env:CI_TEST_RESULTS_PATH
 }
