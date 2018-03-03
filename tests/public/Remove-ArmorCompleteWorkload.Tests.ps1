@@ -112,7 +112,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             @{
                 'StatusCode'        = 200
                 'StatusDescription' = 'OK'
-                'Content'           = $Global:JsonResponseBodyWorkload
+                'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
             }
         }
         $testName = $Global:MethodTypeForm

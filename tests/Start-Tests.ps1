@@ -31,33 +31,14 @@ $Global:FunctionHelpLinkValidForm = "should be a valid help link: '{0}'"
 $Global:FunctionParameterCountForm = "should have {0} parameters"
 $Global:FunctionParameterNameForm = "should have parameter: <Name>"
 $Global:ShouldBeForm = "should be: '{0}'"
-$Global:JsonResponseBodyVM = (
-    '{"hostType":"Virtual Machine", "canUseFluidScale":false, "disks":[ {"id":33263, ' +
-    '"capacity":30720, "name":"Disk 1", "type":"SSD"}], "isDeleted":false, "canReplicate":false, ' +
-    '"id":27464, "coreInstanceId":"10e28e85-fbfe-4100-b181-887d7e6fcdf5", ' +
-    '"biosUuid":"34d75660-d17c-4fae-8658-835a3570600e", "name":"VM1", "provider":"4", ' +
-    '"location":"SIN01", "zone":"SIN01-CD01", "ipAddress":"100.69.215.11", "status":100, ' +
-    '"appId":21654, "appName":"WL2", "osId":null, "os":"Ubuntu 16.04", "deployed":true, ' +
-    '"cpu":1, "memory":2048, "storage":30720, "notes":null, "vCenterId":14, ' +
-    '"vCenterName":"SIN01T01-VC01", "vcdOrgVdcId":5855, "isRecoveryVm":false, ' +
-    '"coreDateRegistered":null, "coreLastPing":null, "vmDateCreated":null, "product": ' +
-    '{"sku":"A1-123", "size":"A1", "isExpired":false, "storagePolicyClass":null}, ' +
-    '"vmServices":null, "uuid":"urn:vcloud:vm:e7b5cbbf-e38a-4d6a-a1a3-e6c7db092dcd", ' +
-    '"isHealthy":null, "health":0, "tags":[], "scheduledEvents":[], "advBackupStatus":false, ' +
-    '"advBackupSku":null, "vmBackupInProgress":false, "profileName":null, "multiVmVapp":false}'
-)
-$Global:JsonResponseBodyWorkload = (
-    '{"id":1, "name":"WL1", "location":"DFW01", "zone":"DFW01T01-VC01", "status":8, "deployed":false, ' +
-    '"tierCount":1, "vmCount":1, "totalCpu":2, "totalMemory":6144, "totalStorage":30720, "tiers":' +
-    '[ {"id":1, "name":"DFW01", "vms":[ {"id":1, "coreInstanceId":"bdb0a9ba-5621-410f-bdaf-364d09f3bd47", ' +
-    '"biosUuid":"25e91dab-f1bc-48aa-9239-9c9213d00ee9", "name":"DFW01-MariaDB01", "provider":null, ' +
-    '"location":null, "zone":null, "ipAddress":null, "status":8, "appId":0, "appName":null, "osId":null, ' +
-    '"os":"CentOS 7.1", "deployed":false, "cpu":2, "memory":6144, "storage":30720, "notes":null, "vCenterId":0, ' +
-    '"vCenterName":null, "vcdOrgVdcId":0, "isRecoveryVm":false, "coreDateRegistered":null, "coreLastPing":null, ' +
-    '"vmDateCreated":null, "product":null, "vmServices":null, "uuid":null, "isHealthy":null, "health":0, "tags":[], ' +
-    '"scheduledEvents":null, "advBackupStatus":false, "advBackupSku":null, "vmBackupInProgress":false, ' +
-    '"profileName":null, "multiVmVapp":false}]}], "notes":null, "health":0, "tags":["db", "production"]}'
-)
+
+$jsonPath = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'db'
+$Global:JsonResponseBody = @{
+    'VMs1'                 = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'VMs_1.json' )
+    'VMs2'                 = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'VMs_2.json' )
+    'Workloads1Tiers1VMs1' = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'Workloads_1-Tiers_1-VMs_1.json' )
+    'Workloads1Tiers1VMs2' = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'Workloads_1-Tiers_1-VMs_2.json' )
+}
 
 $splat = @{
     'Path' = (

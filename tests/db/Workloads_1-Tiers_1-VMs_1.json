@@ -1,0 +1,63 @@
+{
+    "id": 1,
+    "name": "WL1",
+    "location": "DFW01",
+    "zone": "DFW01T01-VC01",
+    "status": 4,
+    "deployed": false,
+    "tierCount": 1,
+    "vmCount": 1,
+    "totalCpu": 1,
+    "totalMemory": 2048,
+    "totalStorage": 30720,
+    "tiers": [
+        {
+            "id": 1,
+            "name": "TR1",
+            "vms": [
+                {
+                    "id": 1,
+                    "coreInstanceId": "11a40b6d-dc67-4bfa-9cca-ccdde5e9dc91",
+                    "biosUuid": "50025520-a8dc-4d5b-91ad-d3d4535d8f1e",
+                    "name": "VM1",
+                    "provider": null,
+                    "location": null,
+                    "zone": null,
+                    "ipAddress": null,
+                    "status": 4,
+                    "appId": 0,
+                    "appName": null,
+                    "osId": null,
+                    "os": "Ubuntu 16.04",
+                    "deployed": false,
+                    "cpu": 1,
+                    "memory": 2048,
+                    "storage": 30720,
+                    "notes": null,
+                    "vCenterId": 0,
+                    "vCenterName": null,
+                    "vcdOrgVdcId": 0,
+                    "isRecoveryVm": false,
+                    "coreDateRegistered": null,
+                    "coreLastPing": null,
+                    "vmDateCreated": null,
+                    "product": null,
+                    "vmServices": null,
+                    "uuid": null,
+                    "isHealthy": null,
+                    "health": 1,
+                    "tags": [],
+                    "scheduledEvents": null,
+                    "advBackupStatus": false,
+                    "advBackupSku": null,
+                    "vmBackupInProgress": false,
+                    "profileName": null,
+                    "multiVmVapp": false
+                }
+            ]
+        }
+    ],
+    "notes": null,
+    "health": 2,
+    "tags": []
+}
