@@ -10,9 +10,13 @@ function OutInfo ( [String] $Message ) {
 
 $message = $null
 $messageForm = "Skipping publish to the PowerShell Gallery for {1}: '{2}'."
+$skipKeyword = '[skip publish]'
 
 if ( $env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f 'continuous integration platform', $env:CI_NAME )
+}
+elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match $skipKeyword ) {
+    OutWarning( ( $messageForm -f 'commit message keyword', $skipKeyword ) )
 }
 elseif ( $env:CI_BRANCH -ne 'master' ) {
     OutWarning( ( $messageForm -f 'branch', $env:CI_BRANCH ) )
