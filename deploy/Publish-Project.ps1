@@ -9,7 +9,7 @@ function OutInfo ( [String] $Message ) {
 }
 
 $message = $null
-$messageForm = "Skipping publish to the PowerShell Gallery for {1}: '{2}'."
+$messageForm = "Skipping publish to the PowerShell Gallery for {0}: '{1}'."
 $skipKeyword = '[skip publish]'
 
 if ( $env:APPVEYOR -ne $true ) {
