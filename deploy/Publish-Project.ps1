@@ -8,18 +8,17 @@ function OutInfo ( [String] $Message ) {
     Write-Host -Object "`n$Message`n" -ForegroundColor 'Yellow'
 }
 
-$skipMessage = 'Skipping publish to the PowerShell Gallery'
 $message = $null
-$messageForm = '{0} for {1} "{2}".'
+$messageForm = "Skipping publish to the PowerShell Gallery for {1}: '{2}'."
 
 if ( $env:APPVEYOR -ne $true ) {
-    Write-Warning -Message ( $messageForm -f $skipMessage, 'continuous integration platform', $env:CI_NAME )
+    Write-Warning -Message ( $messageForm -f 'continuous integration platform', $env:CI_NAME )
 }
 elseif ( $env:CI_BRANCH -ne 'master' ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'branch', $env:CI_BRANCH ) )
+    OutWarning( ( $messageForm -f 'branch', $env:CI_BRANCH ) )
 }
 elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
-    OutWarning( ( $messageForm -f $skipMessage, 'pull request', $env:CI_PULL_REQUEST ) )
+    OutWarning( ( $messageForm -f 'pull request', $env:CI_PULL_REQUEST ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $messageForm = 'Publishing module: "{0}" version: "{1}" to {2}.'
