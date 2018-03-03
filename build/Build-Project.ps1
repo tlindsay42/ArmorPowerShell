@@ -205,7 +205,8 @@ $markDownDescription = $description -replace
 # Build README.md
 $content = (
     "# $( $text.Title )`r`n`r`n" +
-    $text.AppVeyorMdShield + $text.TravisCiMdShield + $text.CoverallsMdShield + $text.ReadTheDocsMdShield + $text.PSGalleryMdShield + $text.PSDownloadsMdShield +
+    $text.PSGalleryMdShield + $text.PSDownloadsMdShield + "`r`n" +
+    $text.AppVeyorMdShield + $text.TravisCiMdShield + $text.CoverallsMdShield + $text.ReadTheDocsMdShield +
     "`r`n`r`n${markDownDescription}`r`n`r`n" +
     "Please visit the $( $text.ReadTheDocsMd ) for more details."
 ) |
@@ -229,7 +230,8 @@ $content = @()
 $content += (
     "$( $text.Title )`r`n" +
     "========================`r`n`r`n" +
-    $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield + $text.PSGalleryRstShield + $text.PSDownloadsRstShield +
+    $text.PSGalleryRstShield + $text.PSDownloadsRstShield + "`r`n" +
+    $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield +
     $reStructuredTextDescription +
     "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" + 
     $text.ArmorCompleteRstMap +
