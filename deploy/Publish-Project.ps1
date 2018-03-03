@@ -43,3 +43,6 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
     Write-Host -Object ''
 }
+else {
+    throw 'Unknown deployment condition.'
+}
