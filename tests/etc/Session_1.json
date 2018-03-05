@@ -1,0 +1,256 @@
+{
+  "User": [
+    {
+      "Type": "user",
+      "UserName": "first.last@example.company.com",
+      "FirstName": "First",
+      "LastName": "Last",
+      "Links": ""
+    }
+  ],
+  "Accounts": [
+    {
+      "ID": 1,
+      "Name": "Example Account 1",
+      "Currency": "USD",
+      "Status": "Claimed",
+      "Parent": -1,
+      "Products": null
+    },
+    {
+      "ID": 2,
+      "Name": "Example Account 2",
+      "Currency": "GBP",
+      "Status": "Claimed",
+      "Parent": 1,
+      "Products": null
+    },
+    {
+      "ID": 3,
+      "Name": "Example Account 3",
+      "Currency": "USD",
+      "Status": "Cancelled",
+      "Parent": 1,
+      "Products": null
+    },
+    {
+      "ID": 4,
+      "Name": "Example Account 4",
+      "Currency": "GBP",
+      "Status": "Cancelled",
+      "Parent": 1,
+      "Products": null
+    }
+  ],
+  "Departments": [
+    {
+      "ID": 1,
+      "Name": "Example Department 1",
+      "Account": 1
+    },
+    {
+      "ID": 2,
+      "Name": "Example Department 2",
+      "Account": 1
+    }
+  ],
+  "Permissions": [
+    {
+      "1": "1 10 100 108 109 11 116 119 12 121 122 123 127 128 129 13 130 131 132 133 134 14 143 144 145 146 149 15 152 153 158 159 16 160 161 17 18 180 183 184 185 19 190 194 195 197 198 199 20 200 201 202 203 204 206 207 208 209 21 212 218 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 53 54 55 56 59 61 62 63 64 65 66 67 68 69 7 71 72 75 76 77 78 79 8 80 88 89 9 90 92 93 95 97 98",
+      "2": "1 10 100 108 109 11 116 119 12 121 122 123 127 128 129 13 130 131 132 133 134 14 143 144 145 146 149 15 152 153 158 159 16 160 161 17 18 180 183 184 185 19 190 194 195 197 198 199 20 200 201 202 203 204 206 207 208 209 21 212 218 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 53 54 55 56 59 61 62 63 64 65 66 67 68 69 7 71 72 75 76 77 78 79 8 80 88 89 9 90 92 93 95 97 98",
+      "3": "1 10 100 108 109 11 116 119 12 121 122 123 127 128 129 13 130 131 132 133 134 14 143 144 145 146 149 15 152 153 158 159 16 160 161 17 18 180 183 184 185 19 190 194 195 197 198 199 20 200 201 202 203 204 206 207 208 209 21 212 218 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 53 54 55 56 59 61 62 63 64 65 66 67 68 69 7 71 72 75 76 77 78 79 8 80 88 89 9 90 92 93 95 97 98",
+      "4": "1 10 100 108 109 11 116 119 12 121 122 123 127 128 129 13 130 131 132 133 134 14 143 144 145 146 149 15 152 153 158 159 16 160 161 17 18 180 183 184 185 19 190 194 195 197 198 199 20 200 201 202 203 204 206 207 208 209 21 212 218 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 53 54 55 56 59 61 62 63 64 65 66 67 68 69 7 71 72 75 76 77 78 79 8 80 88 89 9 90 92 93 95 97 98"
+    }
+  ],
+  "Features": [
+    {
+      "AccountID": 1,
+      "Feature": "AA-CORE",
+      "ProductID": 1,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 1,
+      "Feature": "AA-CORE.INVOICING",
+      "ProductID": 1,
+      "FeatureID": 19
+    },
+    {
+      "AccountID": 1,
+      "Feature": "AA-CORE.PAYMENT-METHODS",
+      "ProductID": 1,
+      "FeatureID": 20
+    },
+    {
+      "AccountID": 1,
+      "Feature": "AA-CORE.PRICING",
+      "ProductID": 1,
+      "FeatureID": 21
+    },
+    {
+      "AccountID": 1,
+      "Feature": "AA-CORE.ACCOUNT-CONTACTS",
+      "ProductID": 1,
+      "FeatureID": 22
+    },
+    {
+      "AccountID": 1,
+      "Feature": "ARMOR-COMPLETE",
+      "ProductID": 3,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 1,
+      "Feature": "ARMOR-COMPLETE.INVOICING",
+      "ProductID": 3,
+      "FeatureID": 18
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE",
+      "ProductID": 1,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.SERVER-AGENT",
+      "ProductID": 1,
+      "FeatureID": 1
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.OPERATING-SYSTEM-SERVER-HARDENING",
+      "ProductID": 1,
+      "FeatureID": 2
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.OPERATING-SYSTEM-PATCHING",
+      "ProductID": 1,
+      "FeatureID": 3
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.MONITORING",
+      "ProductID": 1,
+      "FeatureID": 4
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.ANTI-MALWARE-AND-VIRUS-PROTECTION",
+      "ProductID": 1,
+      "FeatureID": 5
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.LOG-MONITORING-AND-MANAGEMENT",
+      "ProductID": 1,
+      "FeatureID": 6
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.VULNERABILITY-SCANNING",
+      "ProductID": 1,
+      "FeatureID": 7
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.FILE-INTEGRITY-MONITORING",
+      "ProductID": 1,
+      "FeatureID": 8
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.INVOICING",
+      "ProductID": 1,
+      "FeatureID": 19
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.PAYMENT-METHODS",
+      "ProductID": 1,
+      "FeatureID": 20
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.PRICING",
+      "ProductID": 1,
+      "FeatureID": 21
+    },
+    {
+      "AccountID": 2,
+      "Feature": "AA-CORE.ACCOUNT-CONTACTS",
+      "ProductID": 1,
+      "FeatureID": 22
+    },
+    {
+      "AccountID": 3,
+      "Feature": "ARMOR-COMPLETE",
+      "ProductID": 3,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 3,
+      "Feature": "ARMOR-COMPLETE.INVOICING",
+      "ProductID": 3,
+      "FeatureID": 18
+    },
+    {
+      "AccountID": 4,
+      "Feature": "AA-CORE",
+      "ProductID": 1,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 4,
+      "Feature": "AA-CORE.INVOICING",
+      "ProductID": 1,
+      "FeatureID": 19
+    },
+    {
+      "AccountID": 4,
+      "Feature": "AA-CORE.PAYMENT-METHODS",
+      "ProductID": 1,
+      "FeatureID": 20
+    },
+    {
+      "AccountID": 4,
+      "Feature": "AA-CORE.PRICING",
+      "ProductID": 1,
+      "FeatureID": 21
+    },
+    {
+      "AccountID": 4,
+      "Feature": "AA-CORE.ACCOUNT-CONTACTS",
+      "ProductID": 1,
+      "FeatureID": 22
+    },
+    {
+      "AccountID": 4,
+      "Feature": "ARMOR-COMPLETE",
+      "ProductID": 3,
+      "FeatureID": 0
+    },
+    {
+      "AccountID": 4,
+      "Feature": "ARMOR-COMPLETE.INVOICING",
+      "ProductID": 3,
+      "FeatureID": 18
+    }
+  ],
+  "Server": "api.armor.com",
+  "Port": 443,
+  "ApiVersion": "v1.0",
+  "AccountContextHeader": "X-Account-Context",
+  "AuthenticationType": "FH-AUTH",
+  "MediaType": "application/json",
+  "Headers": {
+    "Content-Type": "application/json",
+    "Authorization": "FH-AUTH efa32575460946e7ad80c32ecbef47a0",
+    "Accept": "application/json",
+    "X-Account-Context": 1
+  },
+  "SessionLengthInSeconds": 1800,
+  "SessionStartTime": "2018-03-03T15:52:28.8091923-06:00",
+  "SessionExpirationTime": "2018-03-03T16:22:28.8091923-06:00"
+}
