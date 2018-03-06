@@ -10,14 +10,14 @@ function OutInfo ( [String] $Message ) {
 
 $message = $null
 $messageForm = "Skipping publish to the PowerShell Gallery for {0}: '{1}'."
-$skipKeyword = '[skip publish]'
+$skipKeyword = 'skip publish'
 $commitMessageKeyword = 'commit message keyword'
 
 if ( $env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f 'continuous integration platform', $env:CI_NAME )
 }
-elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match $skipKeyword ) {
-    OutWarning( ( $messageForm -f $commitMessageKeyword, $skipKeyword ) )
+elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
+    OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
 }
 elseif ( $env:CI_BRANCH -ne 'master' ) {
     OutWarning( ( $messageForm -f 'branch', $env:CI_BRANCH ) )
@@ -28,9 +28,9 @@ elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
 
-    $skipKeyword = '[skip psgallery]'
-    if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match $skipKeyword ) {
-        OutWarning( ( $messageForm -f $commitMessageKeyword, $skipKeyword ) )
+    $skipKeyword = 'skip psgallery'
+    if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
+        OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
     }
     else {
         OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
