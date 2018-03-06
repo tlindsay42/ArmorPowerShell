@@ -71,6 +71,8 @@ function Format-ArmorApiRequestBody {
             'WhatIf',
             'Confirm'
         )
+
+        $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
     } # End of begin
 
     process {
@@ -105,16 +107,16 @@ function Format-ArmorApiRequestBody {
                         Both the parameter name and parameter alias are used to match against a body option
                         It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
                         #>
-                        foreach ( $parameter in $Parameters.Where( { $_.Name -notin $excludedParameters } ) ) {
+                        foreach ( $parameter in $filteredParameters ) {
                             # if the parameter name or alias matches the body option name, build a body string
                             if ( $parameter.Name -eq $item -or $parameter.Aliases -contains $item) {
-                                $parameterObject = Get-Variable -Name $parameter.Name
+                                $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
 
-                                if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
-                                    $list.Add( $item, $parameterObject.Value.IsPresent )
+                                if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
+                                    $list.Add( $item, $parameterValue.IsPresent )
                                 }
-                                elseif ( $parameterObject.Value.Length -gt 0 ) {
-                                    $list.Add( $item, $parameterObject.Value )
+                                elseif ( $parameterValue.Length -gt 0 ) {
+                                    $list.Add( $item, $parameterValue )
                                 }
                                 else {
                                     Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
@@ -132,8 +134,8 @@ function Format-ArmorApiRequestBody {
                     Both the parameter name and parameter alias are used to match against a body option
                     It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
                     #>
-                    foreach ( $parameter in $Parameters.Where( { $_.Name -notin $excludedParameters } ) ) {
-                        $parameterObject = Get-Variable -Name $parameter.Name
+                    foreach ( $parameter in $filteredParameters ) {
+                        $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
 
                         # if the parameter name or alias matches the body option name, build a body string
                         if (
@@ -145,12 +147,12 @@ function Format-ArmorApiRequestBody {
                             )
                         ) {
                             # Switch variable types
-                            if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
-                                $body.Add( $key, $parameterObject.Value.IsPresent )
+                            if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
+                                $body.Add( $key, $parameterValue.IsPresent )
                             }
                             # All other variable types
-                            elseif ( $parameterObject.Value.Length -gt 0 ) {
-                                $body.Add( $key, $parameterObject.Value )
+                            elseif ( $parameterValue.Length -gt 0 ) {
+                                $body.Add( $key, $parameterValue )
                             }
                             else {
                                 Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
