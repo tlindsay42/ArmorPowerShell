@@ -66,7 +66,9 @@ function Update-ArmorApiToken {
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 
-        $body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values
+        $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
+        $parameters = ( Get-Command -Name $function ).Parameters.Values
+        $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 

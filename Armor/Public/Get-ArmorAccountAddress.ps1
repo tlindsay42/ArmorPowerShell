@@ -124,7 +124,9 @@ function Get-ArmorAccountAddress {
             Write-Verbose 'Implementing workaround for specific account query bug.'
         }
 
-        $uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters ( Get-Command -Name $function ).Parameters.Values -Uri $uri
+        $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name
+        $parameters = ( Get-Command -Name $function ).Parameters.Values
+        $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $results = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $resources.Method -Description $resources.Description
 

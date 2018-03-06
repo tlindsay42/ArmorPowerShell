@@ -1,4 +1,4 @@
-function Format-ArmorApiJsonRequestBody {
+function Format-ArmorApiRequestBody {
     <#
         .SYNOPSIS
         This cmdlet is used to generate a valid request body payload.
@@ -39,7 +39,7 @@ function Format-ArmorApiJsonRequestBody {
         [Parameter( Position = 0 )]
         [AllowEmptyCollection()]
         [String[]]
-        $BodyKeys = $null,
+        $Keys = $null,
 
         <#
         Specifies the parameter names available within the calling cmdlet.
@@ -84,22 +84,22 @@ function Format-ArmorApiJsonRequestBody {
 
             Write-Verbose -Message 'Build the body parameters.'
 
-            $bodyString = @{}
+            $body = @{}
 
             <#
             Walk through all of the available body options presented by the endpoint
             Note: Keys are used to search in case the value changes in the future across different API versions
             #>
-            foreach ( $bodyKey in $BodyKeys ) {
-                Write-Verbose -Message "Adding ${bodyKey}..."
+            foreach ( $key in $Keys ) {
+                Write-Verbose -Message "Adding ${key}..."
 
-                $bodyKeyNoUnderscore = $bodyKey -replace '_', ''
+                $keyNoUnderscore = $key -replace '_', ''
 
                 # Array Object
-                if ( $resources.Body.$bodyKey.GetType().BaseType.Name -eq 'Array' ) {
-                    $arraystring = @{}
+                if ( $key.GetType().BaseType.Name -eq 'Array' ) {
+                    $list = @{}
 
-                    foreach ( $arrayItem in $resources.Body.$bodyKey.Keys ) {
+                    foreach ( $item in $key ) {
                         <#
                         Walk through all of the parameters defined in the function
                         Both the parameter name and parameter alias are used to match against a body option
@@ -107,23 +107,23 @@ function Format-ArmorApiJsonRequestBody {
                         #>
                         foreach ( $parameter in $Parameters.Where( { $_.Name -notin $excludedParameters } ) ) {
                             # if the parameter name or alias matches the body option name, build a body string
-                            if ( $parameter.Name -eq $arrayItem -or $parameter.Aliases -eq $arrayItem) {
-                                $parameter = Get-Variable -Name $parameter.Name
+                            if ( $parameter.Name -eq $item -or $parameter.Aliases -contains $item) {
+                                $parameterObject = Get-Variable -Name $parameter.Name
 
-                                # Switch variable types
                                 if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
-                                    $arraystring.Add( $arrayItem, $parameterObject.Value.IsPresent )
+                                    $list.Add( $item, $parameterObject.Value.IsPresent )
                                 }
-
-                                # All other variable types
-                                elseif ( $parameterObject.Value -ne $null ) {
-                                    $arraystring.Add( $arrayItem, $parameterObject.Value )
+                                elseif ( $parameterObject.Value.Length -gt 0 ) {
+                                    $list.Add( $item, $parameterObject.Value )
+                                }
+                                else {
+                                    Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
                                 }
                             }
                         }
                     }
 
-                    $bodyString.Add( $bodyKey, @( $arraystring ) )
+                    $body.Add( $key, @( $list ) )
                 }
                 # Non-Array Object
                 else {
@@ -137,29 +137,23 @@ function Format-ArmorApiJsonRequestBody {
 
                         # if the parameter name or alias matches the body option name, build a body string
                         if (
-                            ( $parameter.Name -eq $bodyKey -or $parameter.Aliases -contains $bodyKey ) -and
-                            $parameter.Name -in $setParameters
+                            $parameter.Name -in $setParameters -and (
+                                $parameter.Name -eq $key -or
+                                $parameter.Name -eq $keyNoUnderscore -or
+                                $parameter.Aliases -contains $key -or
+                                $parameter.Aliases -contains $keyNoUnderscore
+                            )
                         ) {
                             # Switch variable types
                             if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
-                                $bodyString.Add( $bodyKey, $parameterObject.Value.IsPresent )
+                                $body.Add( $key, $parameterObject.Value.IsPresent )
                             }
                             # All other variable types
-                            elseif ( $parameterObject.Value -ne $null -and $parameterObject.Value.Length -gt 0 ) {
-                                $bodyString.Add( $bodyKey, $parameterObject.Value )
+                            elseif ( $parameterObject.Value.Length -gt 0 ) {
+                                $body.Add( $key, $parameterObject.Value )
                             }
-                        }
-                        elseif (
-                            ( $parameter.Name -eq $bodyKeyNoUnderscore -or $parameter.Aliases -contains $bodyKeyNoUnderscore ) -and
-                            $parameter.Name -in $setParameters
-                        ) {
-                            # Switch variable types
-                            if ( $parameterObject.Value.GetType().Name -eq 'SwitchParameter' ) {
-                                $bodyString.Add( $bodyKey, $parameterObject.Value.IsPresent )
-                            }
-                            # All other variable types
-                            elseif ( $parameterObject.Value -ne $null -and $parameterObject.Value.Length -gt 0 ) {
-                                $bodyString.Add( $bodyKey, $parameterObject.Value )
+                            else {
+                                Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
                             }
                         }
                     }
@@ -167,7 +161,7 @@ function Format-ArmorApiJsonRequestBody {
             }
 
             # Store the results in a JSON string
-            $return = ConvertTo-Json -InputObject $bodyString -ErrorAction 'Stop'
+            $return = ConvertTo-Json -InputObject $body -ErrorAction 'Stop'
 
             Write-Verbose -Message "Body = ${return}"
         }

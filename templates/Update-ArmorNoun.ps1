@@ -90,7 +90,9 @@ function Update-ArmorNoun {
             $parameterValues = ( Get-Command -Name $function ).Parameters.Values
 
             # Build the request body
-            $body = Format-ArmorApiJsonRequestBody -BodyKeys $resources.Body.Keys -Parameters $parameterValues
+            $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
+            $parameters = ( Get-Command -Name $function ).Parameters.Values
+            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             # Submit the request to the Armor API
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
