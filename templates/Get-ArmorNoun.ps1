@@ -89,10 +89,10 @@ function Get-ArmorNoun {
             [PSCustomObject[]] $return = $null
 
             <#
-            Retrieve all of the URI, method, body, query, location, filter, and
-            expected HTTP response success code for the API endpoint.
+            Retrieve the endpoints, method, body, query, location, filter, and
+            expected HTTP response success code for the function.
             #>
-            $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+            $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
             # Build the URI
             $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID

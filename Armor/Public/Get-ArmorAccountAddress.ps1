@@ -116,7 +116,7 @@ function Get-ArmorAccountAddress {
         $headers = $Global:ArmorSession.Headers.Clone()
         $headers.( $Global:ArmorSession.AccountContextHeader ) = $ID
 
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
 

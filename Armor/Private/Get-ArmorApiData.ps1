@@ -16,7 +16,7 @@ function Get-ArmorApiData {
         GitHub: tlindsay42
 
         .EXAMPLE
-        Get-ArmorApiData -Endpoint 'Connect-Armor' -ApiVersion 'v1.0'
+        Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0'
 
         Name        Value
         ----        -----
@@ -48,8 +48,9 @@ function Get-ArmorApiData {
         https://developer.armor.com/
     #>
 
-    [CmdletBinding()]
-    [OutputType( [Hashtable] )]
+    [CmdletBinding( DefaultParameterSetName = 'ApiVersion' )]
+    [OutputType( [PSCustomObject], ParameterSetName = 'ApiVersion' )]
+    [OutputType( [String[]], ParameterSetName = 'ApiVersions' )]
     param (
         <#
         Specifies the cmdlet name to lookup the API data for.
@@ -61,15 +62,31 @@ function Get-ArmorApiData {
         )]
         [ValidateNotNullorEmpty()]
         [String]
-        $Endpoint = 'Example',
+        $FunctionName = 'Example',
 
         <#
         Specifies the API version for this request.
         #>
-        [Parameter( Position = 1 )]
+        [Parameter(
+            ParameterSetName = 'ApiVersion',
+            Position = 1,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateScript( { $_ -match '^v\d+\.\d+$' } )]
         [String]
-        $ApiVersion = $Global:ArmorSession.ApiVersion
+        $ApiVersion = $Global:ArmorSession.ApiVersion,
+
+        <#
+        Specifies that the available API versions for the specified function
+        should be enumerated.
+        #>
+        [Parameter(
+            ParameterSetName = 'ApiVersions',
+            Position = 1,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [Switch]
+        $ApiVersions = $false
     )
 
     begin {
@@ -79,322 +96,32 @@ function Get-ArmorApiData {
     } # End of begin
     
     process {
-        [Hashtable] $return = $null
-
-        Write-Verbose -Message "Gather API Data for: '${Endpoint}'."
-
-        $api = @{
-            'Example'                       = @{
-                'v1.0' = @{
-                    'Description' = 'Details about the API endpoint'
-                    'URI'         = 'The URI expressed as /endpoint'
-                    'Method'      = 'Method to use against the endpoint'
-                    'Body'        = 'Parameters to use in the request body'
-                    'Query'       = 'Parameters to use in the URI query'
-                    'Location'    = 'If the result content is stored in a higher level key, express it here to be unwrapped in the return'
-                    'Filter'      = 'If the result content needs to be filtered based on key names, express them here'
-                    'SuccessCode' = 'The expected HTTP status code for a successful call'
-                }
-            }
-            'Connect-Armor'                 = @{
-                'v1.0' = @{
-                    'Description' = 'Create a new login session'
-                    'URI'         = @(
-                        '/auth/authorize'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{
-                        'Username' = 'Username'
-                        'Password' = 'Password'
-                    }
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Remove-ArmorCompleteWorkload'  = @{
-                'v1.0' = @{
-                    'Description' = 'Deletes the specified workload in your account'
-                    'URI'         = @(
-                        '/apps/{id}'
-                    )
-                    'Method'      = 'Delete'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '202'
-                }
-            }
-            'Get-ArmorAccount'              = @{
-                'v1.0' = @{
-                    'Description' = 'Retrieves a list of Armor account memberships'
-                    'URI'         = @(
-                        '/accounts'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'Name' = 'Name'
-                        'ID'   = 'ID'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorAccountAddress'       = @{
-                'v1.0' = @{
-                    'Description' = 'Retrieves the address on file for the specified Armor account'
-                    'URI'         = @(
-                        '/accounts/{id}'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorCompleteDatacenter'   = @{
-                'v1.0' = @{
-                    'Description' = 'Return a set of available locations for provisioning new Armor Complete servers'
-                    'URI'         = @(
-                        '/locations'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'Name'     = 'Name'
-                        'Location' = 'Location'
-                        'ID'       = 'ID'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorCompleteWorkload'     = @{
-                'v1.0' = @{
-                    'Description' = 'Retrieve any workloads that are associated to your account'
-                    'URI'         = @(
-                        '/apps',
-                        '/apps/{id}'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'Name' = 'Name'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorCompleteWorkloadTier' = @{
-                'v1.0' = @{
-                    'Description' = 'Retrieves all the tiers associated with a specified workload'
-                    'URI'         = @(
-                        '/apps/{id}/tiers',
-                        '/apps/{id}/tiers/{id}'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'Name' = 'Name'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorIdentity'             = @{
-                'v1.0' = @{
-                    'Description' = 'Return information about the current authenticated user, including account membership and permissions'
-                    'URI'         = @(
-                        '/me'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorUser'                 = @{
-                'v1.0' = @{
-                    'Description' = 'Retrieves a list of users in your account'
-                    'URI'         = @(
-                        '/users',
-                        '/users/{id}'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'FirstName' = 'FirstName'
-                        'LastName'  = 'LastName'
-                        'UserName'  = 'Email'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'Get-ArmorVM'                   = @{
-                'v1.0' = @{
-                    'Description' = 'Displays a list of virtual machines in your account'
-                    'URI'         = @(
-                        '/vms',
-                        '/vms/{id}'
-                    )
-                    'Method'      = 'Get'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{
-                        'Name' = 'Name'
-                    }
-                    'SuccessCode' = '200'
-                }
-            }
-            'New-ArmorApiToken'             = @{
-                'v1.0' = @{
-                    'Description' = 'Creates an authentication token from an authorization code'
-                    'URI'         = @(
-                        '/auth/token'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{
-                        'code'       = 'GUID'
-                        'grant_type' = 'authorization_code'
-                    }
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Rename-ArmorCompleteVM'        = @{
-                'v1.0' = @{
-                    'Description' = 'Renames the specified virtual machine in your account'
-                    'URI'         = @(
-                        '/vms/{id}'
-                    )
-                    'Method'      = 'Put'
-                    'Body'        = @{
-                        'id'   = 'ID'
-                        'name' = 'Name'
-                    }
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Rename-ArmorCompleteWorkload'  = @{
-                'v1.0' = @{
-                    'Description' = 'Renames the specified workload in your account'
-                    'URI'         = @(
-                        '/apps/{id}'
-                    )
-                    'Method'      = 'Put'
-                    'Body'        = @{
-                        'id'   = 'ID'
-                        'name' = 'Name'
-                    }
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Reset-ArmorCompleteVM'         = @{
-                'v1.0' = @{
-                    'Description' = 'Abruptly reset the specified virtual machine in your account'
-                    'URI'         = @(
-                        '/vms/{id}/power/reset'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Restart-ArmorCompleteVM'       = @{
-                'v1.0' = @{
-                    'Description' = 'Reboot the specified virtual machine in your account'
-                    'URI'         = @(
-                        '/vms/{id}/power/reboot'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Start-ArmorCompleteVM'         = @{
-                'v1.0' = @{
-                    'Description' = 'Power on the specified virtual machine in your account'
-                    'URI'         = @(
-                        '/vms/{id}/power/on'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Stop-ArmorCompleteVM'          = @{
-                'v1.0' = @{
-                    'Description' = 'Power off the specified virtual machine in your account'
-                    'URI'         = @(
-                        '/vms/{id}/power/shutdown',
-                        '/vms/{id}/power/off',
-                        '/vms/{id}/power/forceOff'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{}
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-            'Update-ArmorApiToken'          = @{
-                'v1.0' = @{
-                    'Description' = 'Reissues an authentication token if requested before session expiration'
-                    'URI'         = @(
-                        '/auth/token/reissue'
-                    )
-                    'Method'      = 'Post'
-                    'Body'        = @{
-                        'token' = 'GUID'
-                    }
-                    'Query'       = @{}
-                    'Location'    = ''
-                    'Filter'      = @{}
-                    'SuccessCode' = '200'
-                }
-            }
-        } # End of $api
-
-        if ( $api.$Endpoint -eq $null ) {
-            throw "Invalid endpoint: '${Endpoint}'"
-        }
-        elseif ( $api.$Endpoint.$ApiVersion -eq $null ) {
-            throw "Invalid endpoint version: '${ApiVersion}'"
+        if ( $ApiVersions -eq $true ) {
+            [String[]] $return = $null
         }
         else {
-            $return = $api.$Endpoint.$ApiVersion
+            [PSCustomObject] $return = $null
+        }
+
+        Write-Verbose -Message "Gather API Data for: '${FunctionName}'."
+
+        $modulePath = Split-Path -Path $PSScriptRoot -Parent
+        $filePath = Join-Path -Path $modulePath -ChildPath 'Etc'
+        $filePath = Join-Path -Path $filePath -ChildPath 'ApiData.json'
+        $api = Get-Content -Path $filePath |
+            ConvertFrom-Json -ErrorAction 'Stop'
+
+        if ( $api.$FunctionName -eq $null ) {
+            throw "Invalid endpoint: '${FunctionName}'"
+        }
+        elseif ( $api.$FunctionName.$ApiVersion -eq $null -and $ApiVersions -eq $false ) {
+            throw "Invalid endpoint version: '${ApiVersion}'"
+        }
+        elseif ( $ApiVersions -eq $true ) {
+            $return = ( $api.$FunctionName | Get-Member -MemberType 'NoteProperty' ).Name
+        }
+        else {
+            $return = $api.$FunctionName.$ApiVersion
         }
 
         $return

@@ -115,7 +115,7 @@ function Get-ArmorUser {
     process {
         [PSCustomObject[]] $return = $null
 
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
             $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID

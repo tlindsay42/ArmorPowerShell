@@ -141,7 +141,7 @@ function Get-ArmorAccount {
     process {
         [ArmorAccount[]] $return = $null
 
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 

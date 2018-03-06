@@ -212,7 +212,7 @@ function Connect-Armor {
         Write-Verbose -Message 'Storing all session details in $Global:ArmorSession.'
         [ArmorSession] $Global:ArmorSession = [ArmorSession]::New( $Server, $Port, $ApiVersion )
 
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $Global:ArmorSession.ApiVersion
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $Global:ArmorSession.ApiVersion
 
         $uri = New-ArmorApiUriString -Endpoints $resources.Uri
 

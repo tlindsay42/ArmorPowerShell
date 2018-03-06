@@ -78,8 +78,11 @@ function Update-ArmorNoun {
     process {
         [PSCustomObject[]] $return = $null
 
-        # Retrieve all of the URI, method, body, query, location, filter, and success details for the API endpoint
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+        <#
+        Retrieve the endpoints, method, body, query, location, filter, and
+        expected HTTP response success code for the function.
+        #>
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         # Prompt the user before proceeding
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {

@@ -1,13 +1,19 @@
+Remove-Module -Name "${env:CI_MODULE_NAME}*" -ErrorAction 'SilentlyContinue'
+Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 $filePath = Join-Path -Path $env:CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PublicFunctionForm -f $function
-Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
+$describe = $Global:PrivateFunctionForm -f $function
+Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
+    $validFunctionName = 'Example'
+    $invalidFunctionName = 'Garbage'
+    $validApiVersion = 'v1.0'
     #endregion
 
     Context -Name $Global:FunctionName -Fixture {
@@ -36,12 +42,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 Should -BeExactly $value
         } # End of It
 
-        $value = 'System.Collections.Hashtable'
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value
-        It -Name $testName -Test {
-            $help.ReturnValues.ReturnValue.Type.Name |
-                Should -BeExactly $value
-        } # End of It
+        foreach ( $value in @( 'System.Management.Automation.PSObject', 'System.String[]' ) ) {
+            It -Name $testName -Test {
+                $value |
+                    Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
+            } # End of It
+        }
 
         $value = $Global:FunctionHelpNotes
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Notes', ( $value -replace '\n', ', ' )
@@ -72,7 +79,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     } # End of Context
 
     Context -Name 'Parameters' -Fixture {
-        $value = 2
+        $value = 3
         $testName = $Global:FunctionParameterCountForm -f $value
         It -Name $testName -TestCases $testCases -Test {
             $help.Parameters.Parameter.Count |
@@ -80,8 +87,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         } # End of It
 
         $testCases = @(
-            @{ 'Name' = 'Endpoint' },
-            @{ 'Name' = 'ApiVersion' }
+            @{ 'Name' = 'FunctionName' },
+            @{ 'Name' = 'ApiVersion' },
+            @{ 'Name' = 'ApiVersions' }
         )
         $testName = $Global:FunctionParameterNameForm
         It -Name $testName -TestCases $testCases -Test {
@@ -94,36 +102,74 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     Context -Name 'Execution' -Fixture {
         $testCases = @(
             @{
-                'Endpoint'   = 'Garbage'
-                'ApiVersion' = 'v1.0'
+                'FunctionName' = $invalidFunctionName
+                'ApiVersion'   = $validApiVersion
             },
             @{
-                'Endpoint'   = 'Example'
-                'ApiVersion' = 'Garbage'
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = $invalidFunctionName
             },
             @{
-                'Endpoint'   = 'Example'
-                'ApiVersion' = 'v0.1'
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = 'v0.1'
+            },
+            @{
+                'FunctionName' = ''
+                'ApiVersion'   = $validApiVersion
+            },
+            @{
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = ''
+            },
+            @{
+                'FunctionName' = $validFunctionName, $validFunctionName
+                'ApiVersion'   = $validApiVersion
+            },
+            @{
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = $validApiVersion, $validApiVersion
             }
         )
-        $testName = 'should fail when set to: Endpoint: <Endpoint>, ApiVersion: <ApiVersion>'
+        $testName = 'should fail when set to: FunctionName: <FunctionName>, ApiVersion: <ApiVersion>'
         It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Endpoint, [String] $ApiVersion )
-            { Get-ArmorApiData -Endpoint $Endpoint -ApiVersion $ApiVersion } |
+            param ( [String] $FunctionName, [String] $ApiVersion )
+            { Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion } |
+                Should -Throw
+        } # End of It
+
+        $testCases = @(
+            @{ 'FunctionName' = $invalidFunctionName },
+            @{ 'FunctionName' = '' },
+            @{ 'FunctionName' = $validFunctionName, $validFunctionName }
+        )
+        $testName = 'should fail when set to: FunctionName: <FunctionName>, ApiVersions: $true'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            { Get-ArmorApiData -FunctionName $FunctionName -ApiVersions } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
             @{
-                'Endpoint'   = 'Example'
-                'ApiVersion' = 'v1.0'
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = $validApiVersion
             }
         )
         $testName = $Global:ReturnTypeForm
         It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Endpoint, [String] $ApiVersion )
-            Get-ArmorApiData -Endpoint $Endpoint -ApiVersion $ApiVersion |
-                Should -BeOfType ( [Hashtable] )
+            param ( [String] $FunctionName, [String] $ApiVersion )
+            Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion |
+                Should -BeOfType ( [PSCustomObject] )
+        } # End of It
+
+        $testCases = @(
+            @{ 'FunctionName' = $validFunctionName }
+        )
+        $testName = $Global:ReturnTypeForm
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            Get-ArmorApiData -FunctionName $FunctionName -ApiVersions |
+                Should -BeOfType ( [String] )
         } # End of It
     } # End of Context
 } # End of Describe

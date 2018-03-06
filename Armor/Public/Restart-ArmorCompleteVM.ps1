@@ -72,7 +72,7 @@ function Restart-ArmorCompleteVM {
     process {
         [PSCustomObject[]] $return = $null
 
-        $resources = Get-ArmorApiData -Endpoint $function -ApiVersion $ApiVersion
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
             $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
