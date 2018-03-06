@@ -99,8 +99,6 @@ function Stop-ArmorCompleteVM {
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-            $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
-
             $return = $results
         }
 
