@@ -60,8 +60,9 @@ function Rename-ArmorCompleteVM {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
+        [Alias( 'Name' )]
         [String]
-        $Name,
+        $NewName,
 
         <#
         Specifies the API version for this request.

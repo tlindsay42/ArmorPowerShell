@@ -95,7 +95,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
         $testCases = @(
             @{ 'Name' = 'ID' },
-            @{ 'Name' = 'Name' },
+            @{ 'Name' = 'NewName' },
             @{ 'Name' = 'ApiVersion' },
             @{ 'Name' = 'WhatIf' },
             @{ 'Name' = 'Confirm' }
