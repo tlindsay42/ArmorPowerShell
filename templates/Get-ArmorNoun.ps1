@@ -101,7 +101,9 @@ function Get-ArmorNoun {
             $parameterValues = ( Get-Command -Name $function ).Parameters.Values
 
             # Append a filter to the URI
-            $uri = New-ArmorApiUriQueryString -QueryKeys $resources.Query.Keys -Parameters $parameterValues -Uri $uri
+            $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name
+            $parameters = ( Get-Command -Name $function ).Parameters.Values
+            $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
             # Submit the request to the Armor API
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description

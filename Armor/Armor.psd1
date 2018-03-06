@@ -108,6 +108,7 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\ApiData.json', 'Lib\ArmorAccountAddr
                'Private\Expand-ArmorApiResult.ps1', 'Private\Expand-JsonItem.ps1', 
                'Private\Format-ArmorApiRequestBody.ps1', 
                'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1', 
+               'Private\New-ArmorApiUriQuery.ps1', 
                'Private\New-ArmorApiUri.ps1', 
                'Private\Select-ArmorApiResult.ps1', 
                'Private\Submit-ArmorApiRequest.ps1', 

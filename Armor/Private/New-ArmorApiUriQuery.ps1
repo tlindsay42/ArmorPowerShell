@@ -1,4 +1,4 @@
-function New-ArmorApiUriQueryString {
+function New-ArmorApiUriQuery {
     <#
         .SYNOPSIS
         This cmdlet is used to build a valid URI query string.
@@ -39,7 +39,7 @@ function New-ArmorApiUriQueryString {
         [Parameter( Position = 0 )]
         [AllowEmptyCollection()]
         [String[]]
-        $QueryKeys = @(),
+        $Keys = @(),
 
         <#
         Specifies the parameters available within the calling cmdlet.
@@ -78,7 +78,7 @@ function New-ArmorApiUriQueryString {
         Note: Keys are used to search in case the value changes in the future
         across different API versions.
         #>
-        foreach ( $query in $QueryKeys ) {
+        foreach ( $key in $Keys ) {
             <#
             Walk through all of the parameters defined in the function.  Both
             the parameter name and parameter alias are used to match against a
@@ -89,21 +89,15 @@ function New-ArmorApiUriQueryString {
                 $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
 
                 <#
-                If the parameter name matches the query option name, build a
-                query string.
+                If the parameter name matches the query option name or one of
+                its aliases, build a query string.
                 #>
-                if ( $parameter.Name -eq $query ) {
-                    if ( $resources.Query[$parameter.Name] -and $parameterValue ) {
-                        $queryString += $resources.Query[$parameter.Name] + '=' + $parameterValue
+                if ( $parameter.Name -eq $key -or $parameter.Aliases -contains $key ) {
+                    if ( $parameterValue.Length -gt 0 ) {
+                        $queryString += $key + '=' + $parameterValue
                     }
-                }
-                <#
-                If the parameter alias matches the query option name, build a
-                query string.
-                #>
-                elseif ( $parameter.Aliases -eq $query ) {
-                    if ( $resources.Query[$parameter.Aliases] -and $parameterValue ) {
-                        $queryString += $resources.Query[$parameter.Aliases] + '=' + $parameterValue
+                    else {
+                        Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
                     }
                 }
             }
