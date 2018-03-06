@@ -112,7 +112,8 @@ function Get-ArmorNoun {
             $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
             # Filter the results
-            $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+            $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
+            $results = Select-ArmorApiResult -Results $results -Filters $filters
 
             if ( $results.Count -eq 0 ) {
                 Write-Host -Object 'Armor item not found.'

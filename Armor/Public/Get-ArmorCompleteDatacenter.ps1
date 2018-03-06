@@ -148,7 +148,8 @@ function Get-ArmorCompleteDatacenter {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        $results = Select-ArmorApiResult -Results $results -Filter $resources.Filter
+        $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
+        $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {
             Write-Host -Object 'Armor Complete datacenter not found.'

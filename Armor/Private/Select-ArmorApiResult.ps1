@@ -42,7 +42,7 @@ function Select-ArmorApiResult {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
-        [AllowNull()]
+        [AllowEmptyCollection()]
         [PSCustomObject[]]
         $Results = @(),
 
@@ -52,9 +52,9 @@ function Select-ArmorApiResult {
         value corresponds to the response data's key.
         #>
         [Parameter( Position = 1 )]
-        [ValidateNotNull()]
-        [Hashtable]
-        $Filter = @{}
+        [AllowEmptyCollection()]
+        [PSCustomObject[]]
+        $Filters = @()
     )
 
     begin {
@@ -66,7 +66,7 @@ function Select-ArmorApiResult {
     process {
         [PSCustomObject[]] $return = $null
 
-        if ( $Results.Count -eq 0 -or $Filter.Keys.Count -eq 0 ) {
+        if ( $Results.Count -eq 0 -or $Filters.Count -eq 0 ) {
             $return = $Results
         }
         else {
@@ -74,23 +74,33 @@ function Select-ArmorApiResult {
 
             Write-Verbose -Message 'Filter the results.'
 
-            foreach ( $filterKey in $Filter.Keys ) {
-                if ( ( Get-Variable -Name $filterKey -ErrorAction 'SilentlyContinue' ).Value -ne $null ) {
-                    Write-Verbose -Message "Filter match = ${filterKey}"
+            foreach ( $filter in $Filters ) {
+                $filterValue = ( Get-Variable -Name $filter -ErrorAction 'SilentlyContinue' ).Value
 
-                    $filterKeyValue = ( Get-Variable -Name $filterKey ).Value
+                if ( $filterValue -ne '' ) {
+                    Write-Verbose -Message "Filter match = ${filter}=${filterValue}"
 
-                    # For when a location is one layer deep
-                    if ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 1 ) {
-                        # The $filterKeyValue check assumes that not all filters will be used in each call
-                        # If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-                        $filteredResults = $filteredResults.Where( { $_.( $Filter[$filterKey] ) -like $filterKeyValue } )
-                    }
-                    # For when a location is two layers deep
-                    elseif ( $filterKeyValue -and $Filter[$filterKey].Split( '.' ).Count -eq 2 ) {
-                        # The $filterKeyValue check assumes that not all filters will be used in each call
-                        # If it does exist, the results are filtered using the $filterKeyValue's value against the $Filter[$filterKey]'s key name
-                        $filteredResults = $filteredResults.Where( { $_.( $Filter[$filterKey].Split( '.' )[0] ).( $Filter[$filterKey].Split( '.' )[-1] ) -like $filterKeyValue } )
+                    $filterList = $filterValue.ToString().Split( '.' )
+
+                    switch ( $filterList.Count ) {
+                        1 {
+                            $filteredResults = $filteredResults.Where( { $_.$filter -like $filterValue } )
+                        }
+                        
+                        2 {
+                            $parentFilter = $filterList[0]
+                            $childFilter = $filterList[1]
+
+                            if ( $parentFilter -eq '' -or $childFilter -eq '' ) {
+                                throw "Invalid Armor API filter configuration: '${filterValue}'"
+                            }
+
+                            $filteredResults = $filteredResults.Where( { $_.$parentFilter.$childFilter -like $filterValue } )
+                        }
+
+                        default {
+                            throw "Unsupported Armor API filter configuration: '${filterValue}'"
+                        }
                     }
                 }
             }
