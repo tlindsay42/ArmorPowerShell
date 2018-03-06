@@ -254,7 +254,7 @@ function Connect-Armor {
 
         $Global:ArmorSession.Authorize( $token.Access_Token, $token.Expires_In )
 
-        Get-ArmorIdentity |
+        Get-ArmorIdentity -ErrorAction 'Stop' |
             Out-Null
 
         if ( $AccountID -eq 0 ) {
@@ -267,7 +267,7 @@ function Connect-Armor {
         }
 
         Write-Verbose -Message "Setting the Armor account context ID to: '${AccountID}'."
-        Set-ArmorAccountContext -ID $AccountID |
+        Set-ArmorAccountContext -ID $AccountID -ErrorAction 'Stop' |
             Out-Null
 
         $return = $Global:ArmorSession
