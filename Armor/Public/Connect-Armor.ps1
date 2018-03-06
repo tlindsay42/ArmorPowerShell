@@ -197,7 +197,10 @@ function Connect-Armor {
         [Parameter( Position = 4 )]
         [ValidateSet( 'v1.0' )]
         [String]
-        $ApiVersion = 'v1.0'
+        $ApiVersion = (
+            Get-ArmorApiData -FunctionName $MyInvocation.MyCommand.Name -ApiVersions |
+                Select-Object -Last 1
+        )
     )
 
     begin {
