@@ -60,7 +60,7 @@ function Get-ArmorIdentity {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri
+        $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 

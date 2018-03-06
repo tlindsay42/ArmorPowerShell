@@ -72,7 +72,7 @@ function Start-ArmorCompleteVM {
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 

@@ -87,10 +87,7 @@ function Update-ArmorNoun {
         # Prompt the user before proceeding
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
             # Build the URI
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $IDs
-
-            # Get the collection of parameter values
-            $parameterValues = ( Get-Command -Name $function ).Parameters.Values
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $IDs
 
             # Build the request body
             $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name

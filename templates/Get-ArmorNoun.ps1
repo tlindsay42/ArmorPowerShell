@@ -95,7 +95,7 @@ function Get-ArmorNoun {
             $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
             # Build the URI
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
             # Get the collection of parameter values
             $parameterValues = ( Get-Command -Name $function ).Parameters.Values

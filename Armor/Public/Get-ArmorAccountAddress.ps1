@@ -118,7 +118,7 @@ function Get-ArmorAccountAddress {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+        $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
         if ( $ID -gt 0 ) {
             Write-Verbose 'Implementing workaround for specific account query bug.'

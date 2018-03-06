@@ -115,7 +115,7 @@ function Invoke-ArmorWebRequest {
         $jsonBody = $Body |
             ConvertTo-Json -ErrorAction 'Stop'
 
-        $uri = New-ArmorApiUriString -Endpoints $Endpoint
+        $uri = New-ArmorApiUri -Endpoints $Endpoint
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $Method -Body $jsonBody -SuccessCode $SuccessCode -Description $Description
 

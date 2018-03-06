@@ -123,10 +123,10 @@ function Get-ArmorVM {
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PsCmdlet.ParameterSetName -and $ID -gt 0 ) {
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
         }
         else {
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
         }
 
         $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name

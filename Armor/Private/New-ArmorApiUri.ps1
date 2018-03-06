@@ -1,4 +1,4 @@
-function New-ArmorApiUriString {
+function New-ArmorApiUri {
     <#
         .SYNOPSIS
         This cmdlet is used to build a valid URI.
@@ -15,7 +15,7 @@ function New-ArmorApiUriString {
         GitHub: tlindsay42
 
         .EXAMPLE
-        New-ArmorApiUriString -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
+        New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
 
 
         Description
@@ -140,7 +140,7 @@ function New-ArmorApiUriString {
                 $return = $return -replace '{id}', $IDs[1]
             }
 
-            Default {
+            default {
                 throw 'Unsupported number of ID values in endpoint.'
             }
         }

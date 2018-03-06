@@ -214,7 +214,7 @@ function Connect-Armor {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $Global:ArmorSession.ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri
+        $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
         switch ( $Global:ArmorSession.ApiVersion ) {
             'v1.0' {

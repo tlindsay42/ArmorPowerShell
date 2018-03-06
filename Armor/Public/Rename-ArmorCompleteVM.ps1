@@ -86,7 +86,7 @@ function Rename-ArmorCompleteVM {
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
-            $uri = New-ArmorApiUriString -Endpoints $resources.Uri -IDs $ID
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
             $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
             $parameters = ( Get-Command -Name $function ).Parameters.Values

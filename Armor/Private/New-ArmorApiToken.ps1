@@ -74,7 +74,7 @@ function New-ArmorApiToken {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        $uri = New-ArmorApiUriString -Endpoints $resources.Uri
+        $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
         $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
         $parameters = ( Get-Command -Name $function ).Parameters.Values
