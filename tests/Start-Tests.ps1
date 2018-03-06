@@ -4,6 +4,22 @@ param (
     [Switch] $Coverage = $true
 )
 
+function GetTestResponseBody ( [String] $FileName ) {
+    [String] $return = ''
+
+    $path = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'etc'
+    $filePath = Join-Path -Path $path -ChildPath $FileName
+    if ( ( Test-Path -Path $filePath ) -eq $true ) {
+        $return = Get-Content -Path $filePath
+
+        if ( ( ConvertFrom-Json -InputObject $return -ErrorAction 'SilentlyContinue' ) -eq '' ) {
+            throw "Invalid JSON content: '${filePath}'"
+        }
+    }
+
+    $return
+}
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
@@ -32,21 +48,19 @@ $Global:FunctionParameterCountForm = "should have {0} parameters"
 $Global:FunctionParameterNameForm = "should have parameter: <Name>"
 $Global:ShouldBeForm = "should be: '{0}'"
 
-$jsonPath = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'db'
 $Global:JsonResponseBody = @{
-    'VMs1'                 = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'VMs_1.json' )
-    'VMs2'                 = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'VMs_2.json' )
-    'Workloads1Tiers1VMs1' = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'Workloads_1-Tiers_1-VMs_1.json' )
-    'Workloads1Tiers1VMs2' = Get-Content -Path ( Join-Path -Path $jsonPath -ChildPath 'Workloads_1-Tiers_1-VMs_2.json' )
+    'Authorize1'           = GetTestResponseBody( 'Authorize_1.json' )
+    'Identity1'            = GetTestResponseBody( 'Identity_1.json' )
+    'Session1'             = GetTestResponseBody( 'Session_1.json' )
+    'Token1'               = GetTestResponseBody( 'Token_1.json' )
+    'VMs1'                 = GetTestResponseBody( 'VMs_1.json' )
+    'VMs2'                 = GetTestResponseBody( 'VMs_2.json' )
+    'Workloads1Tiers1VMs1' = GetTestResponseBody( 'Workloads_1-Tiers_1-VMs_1.json' )
+    'Workloads1Tiers1VMs2' = GetTestResponseBody( 'Workloads_1-Tiers_1-VMs_2.json' )
 }
 
 $splat = @{
-    'Path' = (
-        "${env:CI_TESTS_PATH}/config",
-        "${env:CI_TESTS_PATH}/lib",
-        "${env:CI_TESTS_PATH}/private",
-        "${env:CI_TESTS_PATH}/public"
-    )
+    'Path' = Get-ChildItem -Path $PSScriptRoot -Recurse -Directory -Exclude 'etc'
     'OutputFormat' = 'NUnitXml'
     'OutputFile'   = $Env:CI_TEST_RESULTS_PATH
 }
