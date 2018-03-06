@@ -90,7 +90,7 @@ function Expand-JsonItem {
                 break
             }
 
-            Default {
+            default {
                 $return = $InputObject
             }
         }
