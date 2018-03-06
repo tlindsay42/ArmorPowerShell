@@ -118,7 +118,8 @@ function Get-ArmorApiData {
             throw "Invalid endpoint version: '${ApiVersion}'"
         }
         elseif ( $ApiVersions -eq $true ) {
-            $return = ( $api.$FunctionName | Get-Member -MemberType 'NoteProperty' ).Name
+            $return = ( $api.$FunctionName | Get-Member -MemberType 'NoteProperty' ).Name |
+                Sort-Object
         }
         else {
             $return = $api.$FunctionName.$ApiVersion
