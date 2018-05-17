@@ -13,7 +13,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Rename-ArmorCompleteVM [-ID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Rename-ArmorCompleteVM [-ID] <UInt16> [-NewName] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -26,7 +26,7 @@ PARAMETERS
         Specifies the ID of the Armor Complete virtual machine that you want to
         rename.
         
-    -Name <String>
+    -NewName <String>
         Specifies the new name for the Armor Complete virtual machine.
         
     -ApiVersion <String>
@@ -67,7 +67,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Rename-ArmorCompleteWorkload [-ID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Rename-ArmorCompleteWorkload [-ID] <UInt16> [-NewName] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -80,7 +80,7 @@ PARAMETERS
         Specifies the ID of the Armor Complete workload that you want to
         rename.
         
-    -Name <String>
+    -NewName <String>
         Specifies the new name of the Armor Complete workload.
         
     -ApiVersion <String>
