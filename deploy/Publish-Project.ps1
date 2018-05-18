@@ -48,8 +48,9 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git checkout master 2> ( [System.IO.Path]::GetTempFileName() )
     git add --all
     git status
-    git commit --signoff --message "${env:CI_NAME}: Update version to $env:CI_MODULE_VERSION [ci skip]"
-    git push --porcelain origin master
+    git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
+    git tag "v${env:CI_MODULE_VERSION}"
+    git push --porcelain --follow-tags origin master
 
     Write-Host -Object ''
 }
