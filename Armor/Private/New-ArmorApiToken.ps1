@@ -85,6 +85,7 @@ function New-ArmorApiToken {
         $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
+        # For homogeneity
         $return = $results
 
         $return
