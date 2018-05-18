@@ -63,6 +63,7 @@ pull_requests:
 image:
   - Visual Studio 2015
   - Visual Studio 2017
+  - Ubuntu
 
 # scripts that are called at very beginning, before repo cloning
 init:
@@ -172,6 +173,8 @@ environment:
   #- iis                 # start IIS
   #- msmq                # start Queuing services
   #- mongodb             # start MongoDB
+  #- docker              # start Docker
+  #- mssql               # start SQL Server 2017 for Linux
 
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch

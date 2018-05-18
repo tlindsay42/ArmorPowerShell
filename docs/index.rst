@@ -1,6 +1,15 @@
 ﻿Armor PowerShell Module
 ========================
 
+.. image:: https://img.shields.io/powershellgallery/v/Armor.svg
+   :target: https://www.powershellgallery.com/packages/Armor
+   :alt: Current Version
+
+.. image:: https://img.shields.io/powershellgallery/dt/Armor.svg
+   :target: https://www.powershellgallery.com/packages/Armor
+   :alt: Total Downloads
+
+
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
    :alt: Build Status
@@ -16,14 +25,6 @@
 .. image:: https://readthedocs.org/projects/armorpowershell/badge/?version=latest
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-
-.. image:: https://img.shields.io/powershellgallery/v/Armor.svg
-   :target: https://www.powershellgallery.com/packages/Armor
-   :alt: Current Version
-
-.. image:: https://img.shields.io/powershellgallery/dt/Armor.svg
-   :target: https://www.powershellgallery.com/packages/Armor
-   :alt: Total Downloads
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
 
