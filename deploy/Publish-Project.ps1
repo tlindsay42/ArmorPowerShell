@@ -25,6 +25,9 @@ elseif ( $env:CI_BRANCH -ne 'master' ) {
 elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f 'pull request', $env:CI_PULL_REQUEST ) )
 }
+elseif ( $env:APPVEYOR_JOB_NUMBER -ne 1 ) {
+    OutWarning( ( $messageForm -f 'job', $env:APPVEYOR_JOB_NUMBER ) )
+}
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
 
