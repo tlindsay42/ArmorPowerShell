@@ -18,6 +18,21 @@ function GetTestResponseBody ( [String] $FileName ) {
     }
 
     $return
+} # End of Function
+
+function TestAdvancedFunctionName (
+    [String] $ExpectedFunctionName,
+    [String] $FoundFunctionName
+) {
+    Context -Name 'Function Name' -Fixture {
+        $testName = "should be: '${ExpectedFunctionName}'"
+        It -Name $testName -Test {
+            $FoundFunctionName |
+                Should -BeExactly $ExpectedFunctionName
+        }
+    } # End of Context
+} # End of Function
+
 }
 
 $Global:ClassForm = 'Class/{0}'

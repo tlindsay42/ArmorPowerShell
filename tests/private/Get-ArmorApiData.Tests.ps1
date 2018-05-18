@@ -16,13 +16,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $validApiVersion = 'v1.0'
     #endregion
 
-    Context -Name $Global:FunctionName -Fixture {
-        $testName = $Global:ShouldBeForm -f $function
-        It -Name $testName -Test {
-            $help.Name |
-                Should -BeExactly $function
+    $splat = @{
+        'ExpectedFunctionName' = $function
+        'FoundFunctionName'    = $help.Name
         }
-    } # End of Context
+    TestAdvancedFunctionName @splat
 
     Context -Name $Global:FunctionHelpContext -Fixture {
         $testCases = @(

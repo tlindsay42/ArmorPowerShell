@@ -27,13 +27,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     $validCode = 'VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu='
     #endregion
 
-    Context -Name $Global:FunctionName -Fixture {
-        $testName = $Global:ShouldBeForm -f $function
-        It -Name $testName -Test {
-            $help.Name |
-                Should -BeExactly $function
+    $splat = @{
+        'ExpectedFunctionName' = $function
+        'FoundFunctionName'    = $help.Name
         }
-    } # End of Context
+    TestAdvancedFunctionName @splat
 
     Context -Name $Global:FunctionHelpContext -Fixture {
         $testCases = @(
