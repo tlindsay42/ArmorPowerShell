@@ -100,7 +100,7 @@ Class ArmorSession {
     [UInt16] $Port = 443
 
     [ValidateRange( 1, 1800 )]
-    [UInt16] $SessionLengthInSeconds
+    [UInt16] $SessionLengthInMinutes
 
     [ValidateNotNull()]
     [DateTime] $SessionStartTime
@@ -155,15 +155,15 @@ Class ArmorSession {
 
     [Void] Authorize (
         [String] $AccessToken,
-        [UInt16] $SessionLengthInSeconds
+        [UInt16] $SessionLengthInMinutes
     ) {
         if ( $AccessToken -notmatch '^[a-z0-9]{32}$' ) {
             throw "Invalid access token: '${AccessToken}'."
         }
 
         $this.SessionStartTime = Get-Date
-        $this.SessionLengthInSeconds = $SessionLengthInSeconds
-        $this.SessionExpirationTime = $this.SessionStartTime.AddSeconds( $this.SessionLengthInSeconds )
+        $this.SessionLengthInMinutes = $SessionLengthInMinutes
+        $this.SessionExpirationTime = $this.SessionStartTime.AddMinutes( $this.SessionLengthInMinutes )
         $this.Headers.'Authorization' = "$( $this.AuthenticationType ) ${AccessToken}"
     }
 

@@ -36,9 +36,9 @@ function Connect-Armor {
         Features               : {1, 1, 1, 1...}
         Server                 : api.armor.com
         Port                   : 443
-        SessionLengthInSeconds : 1800
+        SessionLengthInMinutes : 15
         SessionStartTime       : 10/3/17 1:21:22 PM
-        SessionExpirationTime  : 10/3/17 1:51:33 PM
+        SessionExpirationTime  : 10/3/17 1:36:33 PM
         ApiVersion             : v1.0
 
 
@@ -67,9 +67,9 @@ function Connect-Armor {
         Features               : {1, 1, 1, 1...}
         Server                 : api.armor.com
         Port                   : 443
-        SessionLengthInSeconds : 1800
+        SessionLengthInMinutes : 15
         SessionStartTime       : 10/3/17 1:21:22 PM
-        SessionExpirationTime  : 10/3/17 1:51:33 PM
+        SessionExpirationTime  : 10/3/17 1:36:33 PM
         ApiVersion             : v1.0
 
 

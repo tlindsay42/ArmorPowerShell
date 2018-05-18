@@ -609,7 +609,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $validPort = 443
     $validApiVersion = 'v1.0'
     $validMediaType = 'application/json'
-    $validSessionLength = 1800
+    $validSessionLength = 15
     $validToken = 'ee3b7d9cc1204434a990d896926d0433'
 
     [ArmorAccount[]] $accounts = @()
@@ -890,7 +890,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         } # End of It
     } # End of Context
 
-    $property = 'SessionLengthInSeconds'
+    $property = 'SessionLengthInMinutes'
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
@@ -905,7 +905,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
 
         $testCases = @(
             @{ 'Value' = 1 },
-            @{ 'Value' = 1800 }
+            @{ 'Value' = 15 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int32] $Value )

@@ -250,7 +250,7 @@
         "Accept": "application/json",
         "X-Account-Context": 1
     },
-    "SessionLengthInSeconds": 1800,
+    "SessionLengthInMinutes": 15,
     "SessionStartTime": "2018-03-03T15:52:28.8091923-06:00",
-    "SessionExpirationTime": "2018-03-03T16:22:28.8091923-06:00"
+    "SessionExpirationTime": "2018-03-03T16:07:28.8091923-06:00"
 }

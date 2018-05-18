@@ -70,7 +70,7 @@ function Test-ArmorSession {
 
             Write-Verbose -Message "${minutesRemaining} minutes remaining until session expiration."
 
-            if ( $minutesRemaining -lt 25 ) {
+            if ( $minutesRemaining -lt 10 ) {
                 Write-Verbose -Message 'Renewing session token.'
                 Update-ArmorApiToken -Token $Global:ArmorSession.GetToken()
             }
