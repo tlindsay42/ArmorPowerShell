@@ -8,7 +8,9 @@ function Get-ArmorApiData {
         based on the specified cmdlet name.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        String
+
+        System.Management.Automation.PSObject
 
         .NOTES
         Troy Lindsay
@@ -94,7 +96,7 @@ function Get-ArmorApiData {
 
         Write-Verbose -Message "Beginning: '${function}'."
     } # End of begin
-    
+
     process {
         if ( $ApiVersions -eq $true ) {
             [String[]] $return = $null
