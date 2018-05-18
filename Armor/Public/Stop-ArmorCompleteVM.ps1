@@ -7,6 +7,21 @@ function Stop-ArmorCompleteVM {
         The specified virtual machine in the Armor Complete account in context
         will be powered off.
 
+        Types:
+
+        - Shutdown initiates a graceful shutdown of the operating system.
+          VMware Tools or open-vm-tools must be installed and running for this
+          request to succeed.  This the recommend way to stop your VMs.
+
+        - Off initiates a hard shutdown of the VM- effectively disconnecting
+          the virtual power cord from the VM.  This shutdown method has the
+          potential to cause data corruption and should only be used when
+          necessary.
+
+        - ForceOff should not be used.  It breaks the state of the environment
+          by marking the VM as powered off in the Armor Management Portal (AMP)
+          and vCloud Director, but leaves the VM running in vSphere.
+
         .INPUTS
         System.UInt16
 
