@@ -8,9 +8,7 @@ function Get-ArmorApiData {
         based on the specified cmdlet name.
 
         .INPUTS
-        String
-
-        System.Management.Automation.PSObject
+        None- you cannot pipe objects to this cmdlet.
 
         .NOTES
         Troy Lindsay
