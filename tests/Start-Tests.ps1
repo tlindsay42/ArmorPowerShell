@@ -1,7 +1,7 @@
 param (
     [String[]] $Tag,
     [String[]] $ExcludeTag,
-    [Switch] $Coverage = $true
+    [Boolean] $Coverage = $true
 )
 
 function GetTestResponseBody ( [String] $FileName ) {
