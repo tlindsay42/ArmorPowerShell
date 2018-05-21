@@ -33,6 +33,21 @@ function TestAdvancedFunctionName (
     } # End of Context
 } # End of Function
 
+function TestAdvancedFunctionHelpMain (
+    [System.Management.Automation.PSCustomObject] $Help
+) {
+    Context -Name 'Comment-Based Help' -Fixture {
+        $testName = 'should have content in section: <Property>'
+        $testCases = @(
+            @{ 'Property' = 'Synopsis' },
+            @{ 'Property' = 'Description' }
+        )
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Property )
+            $Help.$Property.Length |
+                Should -BeGreaterThan 0
+        } # End of It
+    } # End of Context
 }
 
 $Global:ClassForm = 'Class/{0}'

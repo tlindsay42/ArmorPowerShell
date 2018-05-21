@@ -19,16 +19,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         }
     TestAdvancedFunctionName @splat
 
-    Context -Name $Global:FunctionHelpContext -Fixture {
-        $testCases = @(
-            @{ 'Property' = 'Synopsis' },
-            @{ 'Property' = 'Description' }
-        )
-        It -Name $Global:FunctionHelpContentForm -TestCases $testCases -Test {
-            param ( [String] $Property )
-            $help.$Property.Length |
-                Should -BeGreaterThan 0
-        } # End of It
+    TestAdvancedFunctionHelpMain -Help $help
 
         $value = $Global:FunctionHelpNoInputs
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Inputs', $value
