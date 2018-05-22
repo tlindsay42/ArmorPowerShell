@@ -33,10 +33,8 @@ function TestAdvancedFunctionName (
     } # End of Context
 } # End of Function
 
-function TestAdvancedFunctionHelpMain (
-    [System.Management.Automation.PSCustomObject] $Help
-) {
-    Context -Name 'Comment-Based Help' -Fixture {
+function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
+    Context -Name 'Comment-Based Help: Main' -Fixture {
         $testName = 'should have content in section: <Property>'
         $testCases = @(
             @{ 'Property' = 'Synopsis' },
