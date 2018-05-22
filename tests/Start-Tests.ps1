@@ -50,6 +50,55 @@ function TestAdvancedFunctionHelpMain (
     } # End of Context
 }
 
+function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
+    Context -Name 'Comment-Based Help: Inputs' -Fixture {
+        $pipelineInputParameterTypes = @()
+        $psCustomObject = 'PSCustomObject'
+        $inputTypes = $Help.InputTypes.InputType.Type.Name.Split( "`n" ).Where( { $_.Length -gt 0 } )
+
+        $pipelineInputParameterTypes += ( $Help.Parameters.Parameter | Where-Object -FilterScript { $_.PipelineInput -match '^true.*ByValue' } ).Type.Name |
+            Sort-Object -Unique
+
+        if (
+            $Help.Parameters.Parameter.Where( { $_.PipelineInput -match '^true.*ByPropertyName' } ).Type.Name.Count -gt 0 -and
+            $psCustomObject -notin $pipelineInputParameterTypes
+        ) {
+            $pipelineInputParameterTypes += $psCustomObject
+        }
+
+        $testName = "should have at least: '1' entry"
+        It -Name $testName -Test {
+            $inputTypes.Count |
+                Should -BeGreaterThan 0
+        } # End of It
+
+        foreach ( $inputType in $inputTypes ) {
+            if ( $inputType -match '^None' ) {
+                $testName = "should not have any pipeline input parameters since 'Inputs' is set to: '${inputType}'"
+                It -Name $testName -Test {
+                    $pipelineInputParameterTypes.Count |
+                        Should -Be 0
+                } # End of It
+            }
+            else {
+                $testName = "should have a pipeline input parameter of type: '${inputType}'"
+                It -Name $testName -Test {
+                    $inputType |
+                        Should -BeIn $pipelineInputParameterTypes
+                } # End of It
+            }
+        }
+
+        foreach ( $inputType in $pipelineInputParameterTypes ) {
+            $testName = "should have an 'Inputs' entry for type: '${inputType}'"
+            It -Name $testName -Test {
+                $inputType |
+                    Should -BeIn $inputTypes
+            } # End of It
+        }
+    } # End of Context
+}
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'

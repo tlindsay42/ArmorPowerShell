@@ -55,12 +55,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 Should -BeGreaterThan 0
         } # End of It
 
-        $value = 'System.UInt16'
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Inputs', $value
-        It -Name $testName -Test {
-            $help.InputTypes.InputType.Type.Name |
-                Should -BeExactly $value
-        } # End of It
+    TestAdvancedFunctionHelpInputs -Help $help
 
         $value = 'ArmorAccount'
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value

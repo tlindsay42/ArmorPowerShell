@@ -39,15 +39,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 Should -BeGreaterThan 0
         } # End of It
 
-        $testCases = @(
-            @{ 'Value' = 'System.UInt16' }
-        )
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Inputs', '<Value>'
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Value )
-            $Value |
-                Should -BeIn $help.InputTypes.InputType.Type.Name.Split( "`n" )
-        } # End of It
+    TestAdvancedFunctionHelpInputs -Help $help
 
         $value = 'System.Management.Automation.PSObject[]'
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value

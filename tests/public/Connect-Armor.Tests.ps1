@@ -35,12 +35,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
     TestAdvancedFunctionHelpMain -Help $help
 
-        $value = $Global:FunctionHelpNoInputs
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Inputs', $value
-        It -Name $testName -Test {
-            $help.InputTypes.InputType.Type.Name |
-                Should -BeExactly $value
-        } # End of It
+    TestAdvancedFunctionHelpInputs -Help $help
 
         $value = 'ArmorSession'
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value

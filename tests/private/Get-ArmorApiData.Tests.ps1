@@ -24,12 +24,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
     TestAdvancedFunctionHelpMain -Help $help
 
-        $value = $Global:FunctionHelpNoInputs
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Inputs', $value
-        It -Name $testName -Test {
-            $help.InputTypes.InputType.Type.Name |
-                Should -BeExactly $value
-        } # End of It
+    TestAdvancedFunctionHelpInputs -Help $help
 
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value
         foreach ( $value in @( 'System.Management.Automation.PSObject', 'System.String[]' ) ) {
