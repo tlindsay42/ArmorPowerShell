@@ -20,24 +20,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     $help = Get-Help -Name $function -Full
     #endregion
 
-    Context -Name $Global:FunctionName -Fixture {
-        $testName = $Global:ShouldBeForm -f $function
-        It -Name $testName -Test {
-            $help.Name |
-                Should -BeExactly $function
+    $splat = @{
+        'ExpectedFunctionName' = $function
+        'FoundFunctionName'    = $help.Name
         }
-    } # End of Context
+    TestAdvancedFunctionName @splat
 
-    Context -Name $Global:FunctionHelpContext -Fixture {
-        $testCases = @(
-            @{ 'Property' = 'Synopsis' },
-            @{ 'Property' = 'Description' }
-        )
-        It -Name $Global:FunctionHelpContentForm -TestCases $testCases -Test {
-            param ( [String] $Property )
-            $help.$Property.Length |
-                Should -BeGreaterThan 0
-        } # End of It
+    TestAdvancedFunctionHelpMain -Help $help
 
     TestAdvancedFunctionHelpInputs -Help $help
 
