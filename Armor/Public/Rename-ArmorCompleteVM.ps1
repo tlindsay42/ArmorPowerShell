@@ -8,9 +8,7 @@ function Rename-ArmorCompleteVM {
         will be renamed.
 
         .INPUTS
-        System.UInt16
-
-        System.String
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -94,7 +92,7 @@ function Rename-ArmorCompleteVM {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
-            
+
             $return = $results
         }
 

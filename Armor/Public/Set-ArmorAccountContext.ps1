@@ -9,7 +9,9 @@ function Set-ArmorAccountContext {
         so that all future requests reference the specified account.
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay

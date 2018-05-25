@@ -26,9 +26,11 @@ function Get-ArmorCompleteWorkloadTier {
         criteria provided by the cmdlet parameters.
 
         .INPUTS
-        System.UInt16
+        UInt16
 
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -154,4 +156,3 @@ function Get-ArmorCompleteWorkloadTier {
         Write-Verbose -Message "Ending: '${function}'."
     } # End of end
 } # End of function
- 

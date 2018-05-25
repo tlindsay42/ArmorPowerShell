@@ -8,7 +8,9 @@ function Remove-ArmorCompleteWorkload {
         deleted if is empty.
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay

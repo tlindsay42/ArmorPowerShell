@@ -8,7 +8,9 @@ function Start-ArmorCompleteVM {
         will be powered on.
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay

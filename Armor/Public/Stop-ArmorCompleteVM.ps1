@@ -23,7 +23,9 @@ function Stop-ArmorCompleteVM {
           and vCloud Director, but leaves the VM running in vSphere.
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay

@@ -11,7 +11,9 @@ function Restart-ArmorCompleteVM {
         See also: Reset-ArmorCompleteVM
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
