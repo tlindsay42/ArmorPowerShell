@@ -144,7 +144,7 @@ $functionsToExport = ( Get-ChildItem -Path "${env:CI_MODULE_PATH}/Public" ).Base
 $fileList = Get-ChildItem -Path "${env:CI_MODULE_PATH}" -File -Recurse |
     Resolve-Path -Relative
 
-$classesWithDependencies = 'ArmorSession.ps1'
+$classesWithDependencies = 'ArmorSession.ps1', 'ArmorUser.ps1'
 $scriptsToProcess = @()
 $scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Exclude $classesWithDependencies -File |
     Resolve-Path -Relative

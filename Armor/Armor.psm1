@@ -1,5 +1,5 @@
 # Get class definition files, as well as the private and public function definition files.
-$classesWithDependencies = 'ArmorSession.ps1'
+$classesWithDependencies = 'ArmorSession.ps1', 'ArmorUser.ps1'
 $lib = @()
 $lib += Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -Exclude $classesWithDependencies -ErrorAction 'Stop'
 $lib += Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -Include $classesWithDependencies -ErrorAction 'Stop'
