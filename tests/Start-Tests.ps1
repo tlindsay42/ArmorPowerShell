@@ -34,7 +34,8 @@ function TestAdvancedFunctionName (
 } # End of Function
 
 function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
-    Context -Name 'Comment-Based Help: Main' -Fixture {
+    $contextName = $Global:FunctionHelpForm -f 'Main'
+    Context -Name $contextName -Fixture {
         $testName = 'should have content in section: <Property>'
         $testCases = @(
             @{ 'Property' = 'Synopsis' },
@@ -49,10 +50,13 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
 }
 
 function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
-    Context -Name 'Comment-Based Help: Inputs' -Fixture {
+    $contextName = $Global:FunctionHelpForm -f 'Inputs'
+    Context -Name $contextName -Fixture {
+        #region init
         $pipelineInputParameterTypes = @()
         $psCustomObject = 'PSCustomObject'
         $inputTypes = $Help.InputTypes.InputType.Type.Name.Split( "`n" ).Where( { $_.Length -gt 0 } )
+        #endregion
 
         $pipelineInputParameterTypes += ( $Help.Parameters.Parameter | Where-Object -FilterScript { $_.PipelineInput -match '^true.*ByValue' } ).Type.Name |
             Sort-Object -Unique
@@ -109,12 +113,15 @@ $Global:PropertyTypeForm = 'should be the expected data type'
 $Global:MethodForm = 'Method/{0}'
 $Global:MethodNegativeForm = '{0} (Negative)' -f $Global:MethodForm
 $Global:MethodPositiveForm = '{0} (Positive)' -f $Global:MethodForm
-$Global:ReturnTypeForm = 'should return the expected data type'
+$Global:Execution = 'Execution'
+$Global:ReturnTypeContext = 'Return Type'
+$Global:ReturnTypeForm = 'should return the expected data type: <ExpectedReturnType>'
 $Global:PrivateFunctionForm = 'Private/Function/{0}'
 $Global:PublicFunctionForm = 'Public/Function/{0}'
 $Global:FunctionName = 'Function Name'
 $Global:FunctionHelpContext = 'Comment-Based Help'
 $Global:FunctionHelpContentForm = 'should have content in section: <Property>'
+$Global:FunctionHelpForm = 'Comment-Based Help/{0}'
 $Global:FunctionHelpNoInputs = 'None- you cannot pipe objects to this cmdlet.'
 $Global:FunctionHelpSpecificContentForm = "should have set '{0}' to '{1}'"
 $Global:FunctionHelpNotes = "Troy Lindsay`nTwitter: @troylindsay42`nGitHub: tlindsay42"
