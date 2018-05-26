@@ -37,40 +37,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
     TestAdvancedFunctionHelpInputs -Help $help
 
-        $value = 'ArmorSession'
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value
-        It -Name $testName -Test {
-            $help.ReturnValues.ReturnValue.Type.Name |
-                Should -BeExactly $value
-        } # End of It
-
-        $value = $Global:FunctionHelpNotes
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Notes', ( $value -replace '\n', ', ' )
-        It -Name $testName -Test {
-            $help.AlertSet.Alert.Text |
-                Should -BeExactly $value
-        } # End of It
-
-        $testName = $Global:FunctionHelpExampleEntry
-        It -Name $testName -Test {
-            $help.Examples.Example.Remarks.Length |
-                Should -BeGreaterThan 0
-        } # End of It
-
-        $testName = $Global:FunctionHelpLinkEntry
-        It -Name $testName -Test {
-            $help.RelatedLinks.NavigationLink.Uri.Count |
-                Should -BeGreaterThan 3
-        } # End of It
-
-        foreach ( $uri in $help.RelatedLinks.NavigationLink.Uri ) {
-            $testName = $Global:FunctionHelpLinkValidForm -f $uri
-            It -Name $testName -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
-                    Should -Be 200
-            } # End of It
+    $splat = @{
+        'ExpectedOutputTypeNames' = 'ArmorSession'
+        'Help'                    = $help
         }
-    } # End of Context
+    TestAdvancedFunctionHelpOutputs @splat
 
     Context -Name 'Parameters' -Fixture {
         $value = 5

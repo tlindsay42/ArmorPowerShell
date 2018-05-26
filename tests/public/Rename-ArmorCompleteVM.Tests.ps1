@@ -30,12 +30,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
     TestAdvancedFunctionHelpInputs -Help $help
 
-        $value = 'System.Management.Automation.PSObject[]'
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value
-        It -Name $testName -Test {
-            $help.ReturnValues.ReturnValue.Type.Name |
-                Should -BeExactly $value
-        } # End of It
+    $splat = @{
+        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject[]'
+        'Help'                    = $help
+    }
+    TestAdvancedFunctionHelpOutputs @splat
 
         $value = $Global:FunctionHelpNotes
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Notes', ( $value -replace '\n', ', ' )

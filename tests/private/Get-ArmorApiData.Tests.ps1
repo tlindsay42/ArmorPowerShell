@@ -26,13 +26,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
     TestAdvancedFunctionHelpInputs -Help $help
 
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Outputs', $value
-        foreach ( $value in @( 'System.Management.Automation.PSObject', 'System.String[]' ) ) {
-            It -Name $testName -Test {
-                $value |
-                    Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-            } # End of It
+    $splat = @{
+        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.String[]'
+        'Help'                    = $help
         }
+    TestAdvancedFunctionHelpOutputs @splat
 
         $value = $Global:FunctionHelpNotes
         $testName = $Global:FunctionHelpSpecificContentForm -f 'Notes', ( $value -replace '\n', ', ' )

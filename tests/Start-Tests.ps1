@@ -117,6 +117,44 @@ function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
     } # End of Context
 }
 
+function TestAdvancedFunctionHelpOutputs ( [String[]] $ExpectedOutputTypeNames, [PSObject] $Help ) {
+    $contextName = $Global:FunctionHelpForm -f 'Outputs'
+    Context -Name $contextName -Fixture {
+        #region init
+        $outputTypes = $Help.ReturnValues.ReturnValue.Type.Name
+        $expectedOutputTypeCount = $ExpectedOutputTypeNames.Count
+        #endregion
+
+        $testName = "should have at least one entry"
+        It -Name $testName -Test {
+            $outputTypes.Count |
+                Should -BeGreaterThan 0
+        } # End of It
+
+        $testName = "should have: '${expectedOutputTypeCount}' output types"
+        It -Name $testName -Test {
+            $outputTypes.Count |
+                Should -Be $expectedOutputTypeCount
+        } # End of It
+
+        foreach ( $outputType in $outputTypes ) {
+            $testName = "should have an 'Outputs' entry for type: '${outputType}'"
+            It -Name $testName -Test {
+                $outputType |
+                    Should -BeIn $ExpectedOutputTypeNames
+            } # End of It
+        }
+
+        foreach ( $outputType in $ExpectedOutputTypeNames ) {
+            $testName = "should have an 'OutputType' entry for type: '${outputType}'"
+            It -Name $testName -Test {
+                $outputType |
+                    Should -BeIn $outputTypes
+            } # End of It
+        }
+    } # End of Context
+}
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
