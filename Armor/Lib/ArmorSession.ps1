@@ -1,81 +1,8 @@
-Class ArmorUser {
-    [ValidateNotNullOrEmpty()]
-    [String] $Type
-
-    [ValidatePattern( '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' )]
-    [Alias( 'Name' )]
-    [String] $UserName
-
-    [ValidateNotNullOrEmpty()]
-    [String] $FirstName
-
-    [ValidateNotNullOrEmpty()]
-    [String] $LastName
-
-    [ValidateNotNull()]
-    [PSCustomObject[]] $Links = @()
-
-    #Constructors
-    ArmorUser () {}
+foreach ( $className in 'ArmorUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFeature' ) {
+    $classPath = Split-Path -Path $MyInvocation.MyCommand.Path -Parent |
+        Join-Path -ChildPath "${className}.ps1"
+    . $classPath
 }
-
-
-Class ArmorAccount {
-    [ValidateRange( 1, 65535 )]
-    [UInt16] $ID
-
-    [ValidateNotNullOrEmpty()]
-    [String] $Name
-
-    [ValidateNotNullOrEmpty()]
-    [String] $Currency
-
-    [ValidateNotNullOrEmpty()]
-    [String] $Status
-
-    [ValidateRange( -1, 65535 )]
-    [Int32] $Parent
-
-    [AllowNull()]
-    [PSObject[]] $Products = @()
-
-    #Constructors
-    ArmorAccount () {}
-}
-
-
-Class ArmorDepartment {
-    [ValidateRange( 1, 65535 )]
-    [UInt16] $ID
-
-    [ValidateNotNullOrEmpty()]
-    [String] $Name
-
-    [ValidateRange( 1, 65535 )]
-    [UInt16] $Account
-
-    #Constructors
-    ArmorDepartment () {}
-}
-
-
-Class ArmorFeature {
-    [ValidateRange( 1, 65535 )]
-    [UInt16] $AccountID
-
-    [ValidateNotNullOrEmpty()]
-    [String] $Feature
-
-    [ValidateRange( 1, 65535 )]
-    [UInt16] $ProductID
-
-    [ValidateRange( 0, 65535 )]
-    [UInt16] $FeatureID
-
-    #Constructors
-    ArmorFeature () {}
-}
-
 
 Class ArmorSession {
     [ValidateNotNull()]
@@ -169,7 +96,7 @@ Class ArmorSession {
 
     [ArmorAccount] GetAccountContext () {
         [ArmorAccount] $return = $null
-        
+
         if ( $this.Headers.ContainsKey( $this.AccountContextHeader ) ) {
             $return = $this.Accounts.Where( { $_.ID -eq $this.Headers.( $this.AccountContextHeader ) } ) |
                 Select-Object -First 1

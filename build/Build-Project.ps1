@@ -144,7 +144,11 @@ $functionsToExport = ( Get-ChildItem -Path "${env:CI_MODULE_PATH}/Public" ).Base
 $fileList = Get-ChildItem -Path "${env:CI_MODULE_PATH}" -File -Recurse |
     Resolve-Path -Relative
 
-$scriptsToProcess = Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -File |
+$classesWithDependencies = 'ArmorSession.ps1'
+$scriptsToProcess = @()
+$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -Exclude $classesWithDependencies -File |
+    Resolve-Path -Relative
+$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -Include $classesWithDependencies -File |
     Resolve-Path -Relative
 
 $splat = @{
@@ -233,7 +237,7 @@ $content += (
     $text.PSGalleryRstShield + $text.PSDownloadsRstShield + "`r`n" +
     $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield +
     $reStructuredTextDescription +
-    "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" + 
+    "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" +
     $text.ArmorCompleteRstMap +
     $text.ArmorAnywhereRstMap +
     $text.RestfulApiRstMap +

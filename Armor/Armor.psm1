@@ -1,5 +1,8 @@
 # Get class definition files, as well as the private and public function definition files.
-$lib = Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -ErrorAction 'Stop'
+$classesWithDependencies = 'ArmorSession.ps1'
+$lib = @()
+$lib += Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -Exclude $classesWithDependencies -ErrorAction 'Stop'
+$lib += Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -Include $classesWithDependencies -ErrorAction 'Stop'
 $private = Get-ChildItem -Path "${PSScriptRoot}/Private/*.ps1" -ErrorAction 'Stop'
 $public = Get-ChildItem -Path "${PSScriptRoot}/Public/*.ps1" -ErrorAction 'Stop'
 
