@@ -42,7 +42,7 @@ function Get-ArmorUser {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( [PSCustomObject[]] )]
+    [OutputType( [ArmorUser[]] )]
     param (
         <#
         Specifies the ID of the Armor user account.
@@ -113,7 +113,7 @@ function Get-ArmorUser {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorUser[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
