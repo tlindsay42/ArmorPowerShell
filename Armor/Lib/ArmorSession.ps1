@@ -4,7 +4,7 @@ foreach ( $className in 'ArmorSessionUser', 'ArmorAccount', 'ArmorDepartment', '
     . $classPath
 }
 
-Class ArmorSession {
+class ArmorSession {
     [ValidateNotNull()]
     [ArmorSessionUser] $User
 

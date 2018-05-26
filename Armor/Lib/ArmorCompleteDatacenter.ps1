@@ -1,4 +1,4 @@
-Class ArmorCompleteDatacenter {
+class ArmorCompleteDatacenter {
     [ValidateRange( 1, 5 )]
     [UInt16]
     $ID

@@ -1,4 +1,4 @@
-Class ArmorDepartment {
+class ArmorDepartment {
     [ValidateRange( 1, 65535 )]
     [UInt16] $ID
 

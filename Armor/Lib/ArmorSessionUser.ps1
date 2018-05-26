@@ -1,4 +1,4 @@
-Class ArmorSessionUser {
+class ArmorSessionUser {
     [ValidateNotNullOrEmpty()]
     [String] $Type
 

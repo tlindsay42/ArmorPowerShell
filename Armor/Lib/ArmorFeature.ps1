@@ -1,4 +1,4 @@
-Class ArmorFeature {
+class ArmorFeature {
     [ValidateRange( 1, 65535 )]
     [UInt16] $AccountID
 
