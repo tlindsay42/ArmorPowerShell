@@ -1,4 +1,3 @@
-Remove-Module -Name "${env:CI_MODULE_NAME}*" -ErrorAction 'SilentlyContinue'
 Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
@@ -19,7 +18,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $splat = @{
         'ExpectedFunctionName' = $function
         'FoundFunctionName'    = $help.Name
-        }
+    }
     TestAdvancedFunctionName @splat
 
     TestAdvancedFunctionHelpMain -Help $help
@@ -29,7 +28,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $splat = @{
         'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.String[]'
         'Help'                    = $help
-        }
+    }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
@@ -41,31 +40,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $splat = @{
         'ExpectedNotes' = $Global:FunctionHelpNotes
         'Help'          = $help
-        }
+    }
     TestAdvancedFunctionHelpNotes @splat
 
-    Context -Name 'Parameters' -Fixture {
-        $value = 3
-        $testName = $Global:FunctionParameterCountForm -f $value
-        It -Name $testName -TestCases $testCases -Test {
-            $help.Parameters.Parameter.Count |
-                Should -Be $value
-        } # End of It
-
-        $testCases = @(
-            @{ 'Name' = 'FunctionName' },
-            @{ 'Name' = 'ApiVersion' },
-            @{ 'Name' = 'ApiVersions' }
-        )
-        $testName = $Global:FunctionParameterNameForm
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Name )
-            $Name |
-                Should -BeIn $help.Parameters.Parameter.Name
-        } # End of It
-    } # End of Context
-
-    Context -Name 'Execution' -Fixture {
+    Context -Name $Global:Execution -Fixture {
         $testCases = @(
             @{
                 'FunctionName' = $invalidFunctionName
@@ -104,6 +82,19 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         } # End of It
 
         $testCases = @(
+            @{
+                'FunctionName' = $validFunctionName
+                'ApiVersion'   = $validApiVersion
+            }
+        )
+        $testName = 'should not fail when set to: FunctionName: <FunctionName>, ApiVersion: <ApiVersion>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName, [String] $ApiVersion )
+            { Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion } |
+                Should -Not -Throw
+        } # End of It
+
+        $testCases = @(
             @{ 'FunctionName' = $invalidFunctionName },
             @{ 'FunctionName' = '' },
             @{ 'FunctionName' = $validFunctionName, $validFunctionName }
@@ -116,26 +107,39 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         } # End of It
 
         $testCases = @(
+            @{ 'FunctionName' = $validFunctionName }
+        )
+        $testName = 'should not fail when set to: FunctionName: <FunctionName>, ApiVersions: $true'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            { Get-ArmorApiData -FunctionName $FunctionName -ApiVersions } |
+                Should -Not -Throw
+        } # End of It
+    } # End of Context
+
+    Context -Name $Global:ReturnTypeContext -Fixture {
+        $testCases = @(
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = $validApiVersion
+                'FoundReturnType'    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
+                'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+            },
+            @{
+                'FoundReturnType'    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersions -ErrorAction 'Stop' ).GetType().FullName
+                'ExpectedReturnType' = 'System.String'
             }
         )
         $testName = $Global:ReturnTypeForm
         It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $FunctionName, [String] $ApiVersion )
-            Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion |
-                Should -BeOfType ( [PSCustomObject] )
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
+                Should -Be $ExpectedReturnType
         } # End of It
 
-        $testCases = @(
-            @{ 'FunctionName' = $validFunctionName }
-        )
-        $testName = $Global:ReturnTypeForm
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $FunctionName )
-            Get-ArmorApiData -FunctionName $FunctionName -ApiVersions |
-                Should -BeOfType ( [String] )
-        } # End of It
+        # $testName = "has an 'OutputType' entry for <FoundReturnType>"
+        # It -Name $testName -TestCases $testCases -Test {
+        #     param ( [String] $FoundReturnType )
+        #     $FoundReturnType |
+        #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
+        # } # End of It
     } # End of Context
 } # End of Describe

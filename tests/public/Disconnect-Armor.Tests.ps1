@@ -1,10 +1,6 @@
-Remove-Module -Name "${env:CI_MODULE_NAME}*" -ErrorAction 'SilentlyContinue'
 Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $env:CI_MODULE_PUBLIC_PATH -ChildPath $systemUnderTest
-
-. $filePath
 
 $function = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:PublicFunctionForm -f $function
@@ -16,7 +12,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     $splat = @{
         'ExpectedFunctionName' = $function
         'FoundFunctionName'    = $help.Name
-        }
+    }
     TestAdvancedFunctionName @splat
 
     TestAdvancedFunctionHelpMain -Help $help
@@ -41,51 +37,25 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     }
     TestAdvancedFunctionHelpNotes @splat
 
-        $testName = $Global:FunctionHelpLinkEntry
-        It -Name $testName -Test {
-            $help.RelatedLinks.NavigationLink.Uri.Count |
-                Should -BeGreaterThan 3
-        } # End of It
-
-        foreach ( $uri in $help.RelatedLinks.NavigationLink.Uri ) {
-            $testName = $Global:FunctionHelpLinkValidForm -f $uri
-            It -Name $testName -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
-                    Should -Be 200
-            } # End of It
-        }
-    } # End of Context
-
-    Context -Name 'Parameters' -Fixture {
-        $value = 2
-        $testName = $Global:FunctionParameterCountForm -f $value
-        It -Name $testName -TestCases $testCases -Test {
-            $help.Parameters.Parameter.Count |
-                Should -Be $value
-        } # End of It
-
-        $testCases = @(
-            @{ 'Name' = 'WhatIf' },
-            @{ 'Name' = 'Confirm' }
-        )
-        $testName = $Global:FunctionParameterNameForm
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Name )
-            $Name |
-                Should -BeIn $help.Parameters.Parameter.Name
-        } # End of It
-    } # End of Context
-
-    Context -Name 'Execution' -Fixture {
+    Context -Name $Global:Execution -Fixture {
         $testName = "should not fail"
         It -Name $testName -Test {
             { Disconnect-Armor -Confirm:$false } |
                 Should -Not -Throw
         } # End of It
+    } # End of Context
 
-        $testName = "should return '`$null'"
-        It -Name $testName -Test {
-            Disconnect-Armor -Confirm:$false |
+    Context -Name $Global:ReturnTypeContext -Fixture {
+        $testCases = @(
+            @{
+                'FoundReturnType'    = Disconnect-Armor -Confirm:$false
+                'ExpectedReturnType' = 'System.Void'
+            }
+        )
+        $testName = $Global:ReturnTypeForm
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
                 Should -BeNullOrEmpty
         } # End of It
     } # End of Context

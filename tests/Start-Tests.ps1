@@ -65,7 +65,7 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
                 ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
                     Should -Be 200
             } # End of It
-}
+        }
     } # End of Context
 } # End of Function
 
@@ -201,8 +201,6 @@ function TestAdvancedFunctionHelpNotes ( [String] $ExpectedNotes, [PSObject] $He
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
-$Global:ConstructorFailForm = 'should fail when creating an object with invalid parameters'
-$Global:ConstructorPassForm = 'should not fail when creating an object with valid parameters'
 $Global:PropertyForm = 'Property/{0}'
 $Global:PropertyFailForm = "should fail when set to: <Value>"
 $Global:PropertyPassForm = "should not fail when set to: <Value>"
@@ -215,19 +213,8 @@ $Global:ReturnTypeContext = 'Return Type'
 $Global:ReturnTypeForm = 'should return the expected data type: <ExpectedReturnType>'
 $Global:PrivateFunctionForm = 'Private/Function/{0}'
 $Global:PublicFunctionForm = 'Public/Function/{0}'
-$Global:FunctionName = 'Function Name'
-$Global:FunctionHelpContext = 'Comment-Based Help'
-$Global:FunctionHelpContentForm = 'should have content in section: <Property>'
 $Global:FunctionHelpForm = 'Comment-Based Help/{0}'
-$Global:FunctionHelpNoInputs = 'None- you cannot pipe objects to this cmdlet.'
-$Global:FunctionHelpSpecificContentForm = "should have set '{0}' to '{1}'"
 $Global:FunctionHelpNotes = "Troy Lindsay`nTwitter: @troylindsay42`nGitHub: tlindsay42"
-$Global:FunctionHelpExampleEntry = "should have at least one 'Example' entry"
-$Global:FunctionHelpLinkEntry = "should have at least four help 'Link' entries"
-$Global:FunctionHelpLinkValidForm = "should be a valid help link: '{0}'"
-$Global:FunctionParameterCountForm = "should have {0} parameters"
-$Global:FunctionParameterNameForm = "should have parameter: <Name>"
-$Global:ShouldBeForm = "should be: '{0}'"
 
 $Global:JsonResponseBody = @{
     'Authorize1'           = GetTestResponseBody( 'Authorize_1.json' )
