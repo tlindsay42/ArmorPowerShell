@@ -1,4 +1,4 @@
-Class ArmorUser {
+Class ArmorSessionUser {
     [ValidateNotNullOrEmpty()]
     [String] $Type
 
@@ -16,5 +16,5 @@ Class ArmorUser {
     [PSCustomObject[]] $Links = @()
 
     #Constructors
-    ArmorUser () {}
+    ArmorSessionUser () {}
 }

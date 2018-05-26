@@ -1,5 +1,5 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-foreach ( $class in 'ArmorUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFeature' ) {
+foreach ( $class in 'ArmorSessionUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFeature' ) {
     $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath "${class}.ps1"
 
     . $filePath
@@ -113,18 +113,17 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = [ArmorUser]::New() },
-            @{ 'Value' = [ArmorUser]::New(), [ArmorUser]::New() }
+            @{ 'Value' = [ArmorSessionUser]::New() }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
-            param ( [PSCustomObject[]] $Value )
+            param ( [PSCustomObject] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
-                Should -BeOfType ( [ArmorUser] )
+                Should -BeOfType ( [ArmorSessionUser] )
         } # End of It
     } # End of Context
 

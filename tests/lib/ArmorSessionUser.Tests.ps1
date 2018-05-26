@@ -3,7 +3,7 @@ $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
-$class = 'ArmorUser'
+$class = 'ArmorSessionUser'
 $describe = $Global:ClassForm -f $class
 Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
@@ -11,12 +11,12 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
 
     Context -Name $Global:Constructors -Fixture {
         It -Name $Global:DefaultConstructorForm -Test {
-            { [ArmorUser]::New() } |
+            { [ArmorSessionUser]::New() } |
                 Should -Not -Throw
         }
     } # End of Context
 
-    [ArmorUser] $temp = [ArmorUser]::New()
+    [ArmorSessionUser] $temp = [ArmorSessionUser]::New()
 
     $property = 'Type'
     $context = $Global:PropertyForm -f $property

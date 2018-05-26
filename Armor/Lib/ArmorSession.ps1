@@ -1,4 +1,4 @@
-foreach ( $className in 'ArmorUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFeature' ) {
+foreach ( $className in 'ArmorSessionUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFeature' ) {
     $classPath = Split-Path -Path $MyInvocation.MyCommand.Path -Parent |
         Join-Path -ChildPath "${className}.ps1"
     . $classPath
@@ -6,7 +6,7 @@ foreach ( $className in 'ArmorUser', 'ArmorAccount', 'ArmorDepartment', 'ArmorFe
 
 Class ArmorSession {
     [ValidateNotNull()]
-    [ArmorUser[]] $User = @()
+    [ArmorSessionUser] $User
 
     [ValidateNotNull()]
     [ArmorAccount[]] $Accounts = @()

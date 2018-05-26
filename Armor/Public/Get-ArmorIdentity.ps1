@@ -57,6 +57,7 @@ function Get-ArmorIdentity {
 
     process {
         [ArmorSession] $return = $null
+        [ArmorSessionUser[]] $temp = @()
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
@@ -64,7 +65,9 @@ function Get-ArmorIdentity {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        $Global:ArmorSession.User = $results.User
+        $temp = $results.User
+        $Global:ArmorSession.User = $temp |
+            Select-Object -First 1
         $Global:ArmorSession.Accounts = $results.Accounts
         $Global:ArmorSession.Departments = $results.Departments
         $Global:ArmorSession.Permissions = $results.Permissions
