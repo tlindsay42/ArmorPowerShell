@@ -157,7 +157,7 @@ PARAMETERS
     AccountID    : 65536
     Name         : Example Parent Account
     AddressLine1 : 2360 Campbell Creek Blvd.
-    AddressLine2 : Suite 525 
+    AddressLine2 : Suite 525
     City         : Richardson
     State        : TX
     PostalCode   : 75082
@@ -178,7 +178,7 @@ PARAMETERS
     AccountID    : 65537
     Name         : Example Child Account
     AddressLine1 : 2360 Campbell Creek Blvd.
-    AddressLine2 : Suite 525 
+    AddressLine2 : Suite 525
     City         : Richardson
     State        : TX
     PostalCode   : 75082
@@ -199,7 +199,7 @@ PARAMETERS
     AccountID    : 65536
     Name         : Example Parent Account
     AddressLine1 : 2360 Campbell Creek Blvd.
-    AddressLine2 : Suite 525 
+    AddressLine2 : Suite 525
     City         : Richardson
     State        : TX
     PostalCode   : 75082
