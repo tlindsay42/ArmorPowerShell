@@ -54,19 +54,15 @@ function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
     Context -Name $contextName -Fixture {
         #region init
         $pipelineInputParameterTypes = @()
-        $psCustomObject = 'PSCustomObject'
         $inputTypes = $Help.InputTypes.InputType.Type.Name.Split( "`n" ).Where( { $_.Length -gt 0 } )
         #endregion
 
+        if ( ( $Help.Parameters.Parameter | Where-Object -FilterScript { $_.PipelineInput -match '^true.*ByPropertyName' } ).Type.Name.Count -gt 0 ) {
+            $pipelineInputParameterTypes += 'PSCustomObject'
+        }
+
         $pipelineInputParameterTypes += ( $Help.Parameters.Parameter | Where-Object -FilterScript { $_.PipelineInput -match '^true.*ByValue' } ).Type.Name |
             Sort-Object -Unique
-
-        if (
-            $Help.Parameters.Parameter.Where( { $_.PipelineInput -match '^true.*ByPropertyName' } ).Type.Name.Count -gt 0 -and
-            $psCustomObject -notin $pipelineInputParameterTypes
-        ) {
-            $pipelineInputParameterTypes += $psCustomObject
-        }
 
         $testName = "should have at least: '1' entry"
         It -Name $testName -Test {
