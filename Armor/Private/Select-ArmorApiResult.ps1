@@ -75,18 +75,27 @@ function Select-ArmorApiResult {
             Write-Verbose -Message 'Filter the results.'
 
             foreach ( $filter in $Filters ) {
-                $filterValue = ( Get-Variable -Name $filter -ErrorAction 'SilentlyContinue' ).Value
+                $filterValueName = $filter.Definition.Split( '=' )[-1]
+                $filterValue = ( Get-Variable -Name $filter.Name -ErrorAction 'SilentlyContinue' ).Value.ToString()
 
-                if ( $filterValue -ne '' ) {
-                    Write-Verbose -Message "Filter match = ${filter}=${filterValue}"
+                if ( $filterValue.Length -gt 0 ) {
+                    Write-Verbose -Message "Filter match = ${filterValueName}=${filterValue}"
 
-                    $filterList = $filterValue.ToString().Split( '.' )
+                    if ( $filterValue -match '.' -and $filterValueName -notin 'Email' ) {
+                        $filterList = $filterValue.Split( '.' )
+                    }
+                    else {
+                        $filterList = @( $filterValue )
+                    }
 
+                    Write-Verbose -Message ( 'Filter depth: ' + $filterList.Count )
                     switch ( $filterList.Count ) {
                         1 {
-                            $filteredResults = $filteredResults.Where( { $_.$filter -like $filterValue } )
+                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
+                            $filteredResults = $filteredResults.Where( { $_.$filterValueName -like $filterValue } )
+                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
                         }
-                        
+
                         2 {
                             $parentFilter = $filterList[0]
                             $childFilter = $filterList[1]
@@ -95,7 +104,9 @@ function Select-ArmorApiResult {
                                 throw "Invalid Armor API filter configuration: '${filterValue}'"
                             }
 
+                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
                             $filteredResults = $filteredResults.Where( { $_.$parentFilter.$childFilter -like $filterValue } )
+                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
                         }
 
                         default {

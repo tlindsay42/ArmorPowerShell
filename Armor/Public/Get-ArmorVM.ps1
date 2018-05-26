@@ -135,7 +135,8 @@ function Get-ArmorVM {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
+        $filters = $resources.Filter |
+            Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {

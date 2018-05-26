@@ -139,7 +139,8 @@ function Get-ArmorCompleteWorkloadTier {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
-        $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
+        $filters = $resources.Filter |
+            Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {

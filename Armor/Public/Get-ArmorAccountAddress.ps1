@@ -21,7 +21,7 @@ function Get-ArmorAccountAddress {
         AccountID    : 65536
         Name         : Example Parent Account
         AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525 
+        AddressLine2 : Suite 525
         City         : Richardson
         State        : TX
         PostalCode   : 75082
@@ -38,7 +38,7 @@ function Get-ArmorAccountAddress {
         AccountID    : 65537
         Name         : Example Child Account
         AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525 
+        AddressLine2 : Suite 525
         City         : Richardson
         State        : TX
         PostalCode   : 75082
@@ -55,7 +55,7 @@ function Get-ArmorAccountAddress {
         AccountID    : 65536
         Name         : Example Parent Account
         AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525 
+        AddressLine2 : Suite 525
         City         : Richardson
         State        : TX
         PostalCode   : 75082
@@ -130,7 +130,8 @@ function Get-ArmorAccountAddress {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $resources.Method -Description $resources.Description
 
-        $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
+        $filters = $resources.Filter |
+            Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {

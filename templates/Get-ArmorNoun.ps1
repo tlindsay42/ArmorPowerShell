@@ -69,64 +69,65 @@ function Get-ArmorNoun {
     )
 
     begin {
-            <#
-            The begin section is used to perform one-time loads of data
-            necessary to carry out the cmdlet's purpose.  If a command needs to
-            be run with each iteration or pipeline input, place it in the
-            process section.
-            #>
+        <#
+        The begin section is used to perform one-time loads of data
+        necessary to carry out the cmdlet's purpose.  If a command needs to
+        be run with each iteration or pipeline input, place it in the
+        process section.
+        #>
 
-            # The name of the cmdlet
-            $function = $MyInvocation.MyCommand.Name
+        # The name of the cmdlet
+        $function = $MyInvocation.MyCommand.Name
 
-            Write-Verbose -Message "Beginning: '${function}'."
+        Write-Verbose -Message "Beginning: '${function}'."
 
-            # Check to ensure that a session to the Armor session is valid.
-            Test-ArmorSession
-        } # End of begin
+        # Check to ensure that a session to the Armor session is valid.
+        Test-ArmorSession
+    } # End of begin
 
-        process {
-            [PSCustomObject[]] $return = $null
+    process {
+        [PSCustomObject[]] $return = $null
 
-            <#
-            Retrieve the endpoints, method, body, query, location, filter, and
-            expected HTTP response success code for the function.
-            #>
-            $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
+        <#
+        Retrieve the endpoints, method, body, query, location, filter, and
+        expected HTTP response success code for the function.
+        #>
+        $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-            # Build the URI
-            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
+        # Build the URI
+        $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
-            # Get the collection of parameter values
-            $parameterValues = ( Get-Command -Name $function ).Parameters.Values
+        # Get the collection of parameter values
+        $parameterValues = ( Get-Command -Name $function ).Parameters.Values
 
-            # Append a filter to the URI
-            $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name
-            $parameters = ( Get-Command -Name $function ).Parameters.Values
-            $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
+        # Append a filter to the URI
+        $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name
+        $parameters = ( Get-Command -Name $function ).Parameters.Values
+        $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
-            # Submit the request to the Armor API
-            $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+        # Submit the request to the Armor API
+        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
-            # Expand the data in one of the response body values
-            $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
+        # Expand the data in one of the response body values
+        $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 
-            # Filter the results
-            $filters = ( $resources.Filter | Get-Member -MemberType 'NoteProperty' ).Name
-            $results = Select-ArmorApiResult -Results $results -Filters $filters
+        # Filter the results
+        $filters = $resources.Filter |
+            Get-Member -MemberType 'NoteProperty'
+        $results = Select-ArmorApiResult -Results $results -Filters $filters
 
-            if ( $results.Count -eq 0 ) {
-                Write-Host -Object 'Armor item not found.'
-            }
-            else {
-                $return = $results
-            }
+        if ( $results.Count -eq 0 ) {
+            Write-Host -Object 'Armor item not found.'
+        }
+        else {
+            $return = $results
+        }
 
-            # Pass the return value to the pipeline
-            $return
-        } # End of process
+        # Pass the return value to the pipeline
+        $return
+    } # End of process
 
-        end {
-            Write-Verbose -Message "Ending: '${function}'."
-        } # End of end
-    } # End of function
+    end {
+        Write-Verbose -Message "Ending: '${function}'."
+    } # End of end
+} # End of function
