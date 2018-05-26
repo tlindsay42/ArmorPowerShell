@@ -186,6 +186,18 @@ function TestAdvancedFunctionHelpParameters ( [String[]] $ExpectedParameterNames
     } # End of Context
 } # End of Function
 
+function TestAdvancedFunctionHelpNotes ( [String] $ExpectedNotes, [PSObject] $Help ) {
+    $contextName = $Global:FunctionHelpForm -f 'Notes'
+    Context -Name $contextName -Fixture {
+        $inlineNotes = $ExpectedNotes -replace '\n', ', '
+        $testName = "should have set 'Notes' to '${inlineNotes}'"
+        It -Name $testName -Test {
+            $Help.AlertSet.Alert.Text |
+                Should -BeExactly $ExpectedNotes
+        } # End of It
+    } # End of Context
+} # End of Function
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'

@@ -49,15 +49,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
     TestAdvancedFunctionHelpParameters @splat
 
-        # Convert the temporary authorization code to an API token
-        Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
-            @{
-                'StatusCode' = 200
-                'Content'    = $Global:JsonResponseBody.Token1
+    $splat = @{
+        'ExpectedNotes' = $Global:FunctionHelpNotes
+        'Help'          = $help
             }
-        } -ParameterFilter {
-            $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
-        }
+    TestAdvancedFunctionHelpNotes @splat
 
         # Get the user's identity information
         Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $env:CI_MODULE_NAME -MockWith {

@@ -38,26 +38,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     }
     TestAdvancedFunctionHelpParameters @splat
 
-        $testName = $Global:FunctionHelpExampleEntry
-        It -Name $testName -Test {
-            $help.Examples.Example.Remarks.Length |
-                Should -BeGreaterThan 0
-        } # End of It
-
-        $testName = $Global:FunctionHelpLinkEntry
-        It -Name $testName -Test {
-            $help.RelatedLinks.NavigationLink.Uri.Count |
-                Should -BeGreaterThan 3
-        } # End of It
-
-        foreach ( $uri in $help.RelatedLinks.NavigationLink.Uri ) {
-            $testName = $Global:FunctionHelpLinkValidForm -f $uri
-            It -Name $testName -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
-                    Should -Be 200
-            } # End of It
+    $splat = @{
+        'ExpectedNotes' = $Global:FunctionHelpNotes
+        'Help'          = $help
         }
-    } # End of Context
+    TestAdvancedFunctionHelpNotes @splat
 
     Context -Name 'Parameters' -Fixture {
         $value = 3

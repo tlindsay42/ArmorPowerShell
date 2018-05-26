@@ -35,11 +35,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     }
     TestAdvancedFunctionHelpParameters @splat
 
-        $testName = $Global:FunctionHelpExampleEntry
-        It -Name $testName -Test {
-            $help.Examples.Example.Remarks.Length |
-                Should -BeGreaterThan 0
-        } # End of It
+    $splat = @{
+        'ExpectedNotes' = $Global:FunctionHelpNotes
+        'Help'          = $help
+    }
+    TestAdvancedFunctionHelpNotes @splat
 
         $testName = $Global:FunctionHelpLinkEntry
         It -Name $testName -Test {
