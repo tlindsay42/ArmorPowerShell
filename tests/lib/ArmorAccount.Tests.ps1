@@ -3,7 +3,7 @@ $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
-$class = 'ArmorAccount'
+$class = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:ClassForm -f $class
 Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
