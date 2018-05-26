@@ -57,18 +57,23 @@ function New-ArmorApiUri {
         <#
         Specifies the array of available endpoint paths.
         #>
-        [Parameter( Position = 2 )]
-        [ValidateNotNull()]
+        [Parameter(
+            Mandatory = $true,
+            Position = 2
+        )]
+        [ValidateNotNullOrEmpty()]
         [String[]]
-        $Endpoints = @(),
+        $Endpoints,
 
         <#
         Specifies the positional ID values to be inserted into the path.
         #>
         [Parameter( Position = 3 )]
-        [ValidateNotNull()]
+        [ValidateCount( 0, 2 )]
+        [ValidateRange( 1, 65535 )]
+        [AllowEmptyCollection()]
         [UInt16[]]
-        $IDs = @()
+        $IDs
     )
 
     begin {
