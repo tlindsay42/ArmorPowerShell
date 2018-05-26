@@ -139,10 +139,6 @@ function New-ArmorApiUri {
                 # Insert second ID in URI string
                 $return = $return -replace '{id}', $IDs[1]
             }
-
-            default {
-                throw 'Unsupported number of ID values in endpoint.'
-            }
         }
 
         Write-Verbose -Message "URI = ${return}"

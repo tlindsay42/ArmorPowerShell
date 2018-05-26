@@ -49,12 +49,12 @@ function Connect-Armor {
 
         .EXAMPLE
         $pscredential = Get-Credential
-        
+
         PowerShell credential request
         Enter your credentials.
         User: your.email.address@your.company.com
         Password for user your.email.address@your.company.com: ****************
-        
+
         PS C:\>Connect-Armor -Credential $pscredential
         ...
 
@@ -227,10 +227,6 @@ function Connect-Armor {
                 } |
                     ConvertTo-Json -ErrorAction 'Stop'
             }
-
-            Default {
-                throw "Unknown API version number: '${ApiVersion}'."
-            }
         }
 
         $content = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
@@ -263,10 +259,6 @@ function Connect-Armor {
         if ( $AccountID -eq 0 ) {
             $AccountID = $Global:ArmorSession.Accounts.ID |
                 Select-Object -First 1
-
-            if ( $AccountID -eq 0 ) {
-                throw 'Failed to get the default Armor account ID.'
-            }
         }
 
         Write-Verbose -Message "Setting the Armor account context ID to: '${AccountID}'."
