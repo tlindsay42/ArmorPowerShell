@@ -46,8 +46,28 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
             $Help.$Property.Length |
                 Should -BeGreaterThan 0
         } # End of It
-    } # End of Context
+
+        $testName = "should have at least one 'Example' entry"
+        It -Name $testName -Test {
+            $Help.Examples.Example.Remarks.Length |
+                Should -BeGreaterThan 0
+        } # End of It
+
+        $testName = "should have at least four help 'Link' entries"
+        It -Name $testName -Test {
+            $Help.RelatedLinks.NavigationLink.Uri.Count |
+                Should -BeGreaterThan 3
+        } # End of It
+
+        foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
+            $testName = "should be a valid help link: '${uri}'"
+            It -Name $testName -Test {
+                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
+                    Should -Be 200
+            } # End of It
 }
+    } # End of Context
+} # End of Function
 
 function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
     $contextName = $Global:FunctionHelpForm -f 'Inputs'
