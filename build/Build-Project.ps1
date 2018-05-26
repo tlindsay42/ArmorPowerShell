@@ -146,9 +146,9 @@ $fileList = Get-ChildItem -Path "${env:CI_MODULE_PATH}" -File -Recurse |
 
 $classesWithDependencies = 'ArmorSession.ps1'
 $scriptsToProcess = @()
-$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -Exclude $classesWithDependencies -File |
+$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Exclude $classesWithDependencies -File |
     Resolve-Path -Relative
-$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib" -Include $classesWithDependencies -File |
+$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Include $classesWithDependencies -File |
     Resolve-Path -Relative
 
 $splat = @{
