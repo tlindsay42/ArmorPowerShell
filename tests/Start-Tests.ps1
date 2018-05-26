@@ -155,6 +155,37 @@ function TestAdvancedFunctionHelpOutputs ( [String[]] $ExpectedOutputTypeNames, 
     } # End of Context
 }
 
+function TestAdvancedFunctionHelpParameters ( [String[]] $ExpectedParameterNames, [PSObject] $Help ) {
+    $contextName = $Global:FunctionHelpForm -f 'Parameters'
+    Context -Name $contextName -Fixture {
+        #region init
+        $expectedParameterCount = $ExpectedParameterNames.Count
+        #endregion
+
+        $testName = "should have: '${expectedParameterCount}' parameters"
+        It -Name $testName -Test {
+            @( $Help.Parameters.Parameter ).Count |
+                Should -Be $expectedParameterCount
+        } # End of It
+
+        foreach ( $parameterName in $ExpectedParameterNames ) {
+            $testName = "should have parameter: '${parameterName}'"
+            It -Name $testName -Test {
+                $parameterName |
+                    Should -BeIn $Help.Parameters.Parameter.Name
+            } # End of It
+
+            if ( $parameterName -notin 'WhatIf', 'Confirm' ) {
+                $testName = "should have a description set for parameter: '${parameterName}'"
+                It -Name $testName -Test {
+                    ( $Help.Parameters.Parameter | Where-Object -FilterScript { $_.Name -eq $parameterName } ).Description.Length |
+                        Should -BeGreaterThan 0
+                } # End of It
+            }
+        }
+    } # End of Context
+} # End of Function
+
 $Global:ClassForm = 'Class/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'

@@ -32,12 +32,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
     TestAdvancedFunctionHelpOutputs @splat
 
-        $value = $Global:FunctionHelpNotes
-        $testName = $Global:FunctionHelpSpecificContentForm -f 'Notes', ( $value -replace '\n', ', ' )
-        It -Name $testName -Test {
-            $help.AlertSet.Alert.Text |
-                Should -BeExactly $value
-        } # End of It
+    $splat = @{
+        'ExpectedParameterNames' = 'FunctionName', 'ApiVersion', 'ApiVersions'
+        'Help'                   = $help
+    }
+    TestAdvancedFunctionHelpParameters @splat
 
         $testName = $Global:FunctionHelpExampleEntry
         It -Name $testName -Test {

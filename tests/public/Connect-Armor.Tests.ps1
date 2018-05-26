@@ -43,39 +43,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         }
     TestAdvancedFunctionHelpOutputs @splat
 
-    Context -Name 'Parameters' -Fixture {
-        $value = 5
-        $testName = $Global:FunctionParameterCountForm -f $value
-        It -Name $testName -TestCases $testCases -Test {
-            $help.Parameters.Parameter.Count |
-                Should -Be $value
-        } # End of It
-
-        $testCases = @(
-            @{ 'Name' = 'Credential' },
-            @{ 'Name' = 'AccountID' },
-            @{ 'Name' = 'Server' },
-            @{ 'Name' = 'Port' },
-            @{ 'Name' = 'ApiVersion' }
-        )
-        $testName = $Global:FunctionParameterNameForm
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $Name )
-            $Name |
-                Should -BeIn $help.Parameters.Parameter.Name
-        } # End of It
-    } # End of Context
-
-    Context -Name 'Return Type' -Fixture {
-        # Get the temporary authorization code
-        Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
-            @{
-                'StatusCode' = 200
-                'Content'    = $Global:JsonResponseBody.Authorize1
+    $splat = @{
+        'ExpectedParameterNames' = 'Credential', 'AccountID', 'Server', 'Port', 'ApiVersion'
+        'Help'                   = $help
             }
-        } -ParameterFilter {
-            $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
-        }
+    TestAdvancedFunctionHelpParameters @splat
 
         # Convert the temporary authorization code to an API token
         Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
