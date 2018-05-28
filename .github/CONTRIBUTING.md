@@ -119,8 +119,8 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 Unsure where to begin contributing to ArmorPowerShell? You can start by looking through these `Type: Good First Issue` and `Type: Help Wanted` issues:
 
-* [Good First Issues][good_first_issue]: issues which should only require a few lines of code and a test or two.
-* [Help Wanted Issues][help_wanted]: issues which should be a bit more involved than `Good First Issue` issues, but should follow an existing template.
+* [Good First Issues][good_first_issue]: beginner issues that should only require a few lines of code and a test or two.
+* [Help Wanted Issues][help_wanted]: issues that should be a bit more involved than `Good First Issue` issues, but should follow existing templates.
 
 ### Pull Requests
 
