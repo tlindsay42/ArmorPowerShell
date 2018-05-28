@@ -47,16 +47,16 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     OutInfo( ( $publishForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
-    git checkout "'${env:CI_BRANCH}'" 2> ( [System.IO.Path]::GetTempFileName() )
+    git checkout $env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
     git add --all
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
-    git push --porcelain origin "'${env:CI_BRANCH}'"
+    git push --porcelain --set-upstream --verbose origin $env:CI_BRANCH
 
     if ( $env:CI_BRANCH -eq 'master' ) {
         $tag = "v${env:CI_MODULE_VERSION}"
         git tag --annotate $tag --message $tag
-        git push --porcelain origin $tag
+        git push --porcelain --verbose origin $tag
     }
 
     Write-Host -Object ''
