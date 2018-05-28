@@ -39,6 +39,7 @@ $text = @{
     'ReadTheDocsProjectUrl' = "http://${projectNameLowerCase}.readthedocs.io/en/latest/?badge=latest"
     'RepoUrl'               = "https://github.com/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}"
     'RestfulApi'            = 'RESTful APIs'
+    'RstExplicitLineBreak'  = '.. |br| raw:: html'
     'RstLinkForm'           = '`{0}`_'
     'RstImageForm'          = ".. image:: {0}`r`n   :target: {1}`r`n   :alt: {2}`r`n`r`n"
     'RstLinkMap'            = ".. _{0}: {1}`r`n`r`n"
@@ -247,11 +248,13 @@ $content += (
     "$( $text.Title )`r`n" +
     "========================`r`n`r`n" +
     $text.PSGalleryRstShield + "`r`n" +
-    $text.PSDownloadsRstShield + "`r`n`r`n" +
+    $text.PSDownloadsRstShield + "`r`n" +
+    $text.RstExplicitLineBreak + "`r`n" +
     $text.AppVeyorRstShield + "`r`n" +
     $text.TravisCiRstShield + "`r`n" +
     $text.CoverallsRstShield + "`r`n" +
-    $text.ReadTheDocsRstShield + "`r`n`r`n" +
+    $text.ReadTheDocsRstShield + "`r`n" +
+    $text.RstExplicitLineBreak + "`r`n" +
     $text.GitterRstShield + "`r`n`r`n" +
     $reStructuredTextDescription +
     "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" +
