@@ -190,6 +190,6 @@ Please open an issue on `tlindsay42/ArmorPowerShell` if you have suggestions for
 [faq]: http://armorpowershell.readthedocs.io/en/latest/usr_90_faq.html
 [psgallery]: https://www.powershellgallery.com/packages/Armor
 [issue_search]: https://github.com/tlindsay42/ArmorPowerShell/issues?utf8=%E2%9C%93&q=is%3Aissue
-[bugs]: bug_report.md
+[bugs]: https://github.com/tlindsay42/ArmorPowerShell/blob/master/.github/ISSUE_TEMPLATE/bug_report.md
 [good_first_issue]: https://github.com/tlindsay42/ArmorPowerShell/labels/Type%3A%20Good%20First%20Issue
 [help_wanted]: https://github.com/tlindsay42/ArmorPowerShell/labels/Type%3A%20Help%20Wanted
