@@ -272,9 +272,17 @@ artifacts:
 # scripts to run before deployment
 #before_deploy:
 
-# providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
-# provider names are case-sensitive!
-#deploy: off
+deploy:
+  provider: GitHub
+  release: v$(appveyor_build_version)
+  description: v$(appveyor_build_version)
+  auth_token:
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true
 
 # to run your custom scripts instead of provider deployments
 #deploy_script:
