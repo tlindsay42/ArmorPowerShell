@@ -318,3 +318,9 @@ notifications:
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
+  - provider: Webhook # Gitter
+    url:
+      secure: VMG8UrlePL6sWol/IyQFbaCGkOLY9jFz+3wRnBG+rf95z9hLULTCpi+lN4xhSxwi4PyVEtDfstxeUA4/3+aP+g==
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
