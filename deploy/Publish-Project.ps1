@@ -49,8 +49,13 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git add --all
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
-    git tag "v${env:CI_MODULE_VERSION}"
-    git push --porcelain --follow-tags origin master
+    git push --porcelain origin "'${env:CI_BRANCH}'"
+
+    if ( $env:CI_BRANCH -eq 'master' ) {
+        $tag = "v${env:CI_MODULE_VERSION}"
+        git tag --annotate $tag --message $tag
+        git push --porcelain origin $tag
+    }
 
     Write-Host -Object ''
 }
