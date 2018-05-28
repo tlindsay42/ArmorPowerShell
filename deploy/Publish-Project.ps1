@@ -9,7 +9,7 @@ function OutInfo ( [String] $Message ) {
 }
 
 $message = $null
-$messageForm = "Skipping publish to the PowerShell Gallery for {0}: '{1}'."
+$messageForm = "Skipping publish to the PowerShell Gallery & GitHub for {0}: '{1}'."
 $skipKeyword = 'skip publish'
 $commitMessageKeyword = 'commit message keyword'
 
@@ -19,8 +19,8 @@ if ( $env:APPVEYOR -ne $true ) {
 elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
     OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
 }
-elseif ( $env:CI_BRANCH -ne 'master' ) {
-    OutWarning( ( $messageForm -f 'branch', $env:CI_BRANCH ) )
+elseif ( $env:APPVEYOR_REPO_TAG -eq $true ) {
+    OutWarning( ( $messageForm -f 'tag build', $true ) )
 }
 elseif ( $env:CI_PULL_REQUEST -gt 0 ) {
     OutWarning( ( $messageForm -f 'pull request', $env:CI_PULL_REQUEST ) )
@@ -31,21 +31,23 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -ne 1 ) {
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
 
-    $skipKeyword = 'skip psgallery'
-    if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
-        OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
-    }
-    else {
-        OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
+    if ( $env:CI_BRANCH -eq 'master' ) {
+        $skipKeyword = 'skip psgallery'
+        if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
+            OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
+        }
+        else {
+            OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
 
-        # Publish the new version to the PowerShell Gallery
-        Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
+            # Publish the new version to the PowerShell Gallery
+            Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
+        }
     }
 
     OutInfo( ( $publishForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
-    git checkout master 2> ( [System.IO.Path]::GetTempFileName() )
+    git checkout "'${env:CI_BRANCH}'" 2> ( [System.IO.Path]::GetTempFileName() )
     git add --all
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
