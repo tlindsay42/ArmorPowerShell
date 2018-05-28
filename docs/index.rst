@@ -11,7 +11,7 @@
    :alt: Total Downloads
 
 
-
+.. |br| raw:: html
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
    :alt: Build Status
@@ -32,7 +32,7 @@
    :alt: Documentation Status
 
 
-
+.. |br| raw:: html
 .. image:: https://badges.gitter.im/ArmorPowerShell/Lobby.svg
    :target: https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
    :alt: Join the chat at https://gitter.im/ArmorPowerShell/Lobby
