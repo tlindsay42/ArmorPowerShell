@@ -247,15 +247,15 @@ $content = @()
 $content += (
     "$( $text.Title )`r`n" +
     "========================`r`n`r`n" +
-    $text.PSGalleryRstShield + "`r`n" +
-    $text.PSDownloadsRstShield + "`r`n" +
-    $text.RstExplicitLineBreak + "`r`n" +
-    $text.AppVeyorRstShield + "`r`n" +
-    $text.TravisCiRstShield + "`r`n" +
-    $text.CoverallsRstShield + "`r`n" +
-    $text.ReadTheDocsRstShield + "`r`n" +
-    $text.RstExplicitLineBreak + "`r`n" +
-    $text.GitterRstShield + "`r`n`r`n" +
+    $text.PSGalleryRstShield +
+    $text.PSDownloadsRstShield +
+    $text.RstExplicitLineBreak +
+    $text.AppVeyorRstShield +
+    $text.TravisCiRstShield +
+    $text.CoverallsRstShield +
+    $text.ReadTheDocsRstShield +
+    $text.RstExplicitLineBreak +
+    $text.GitterRstShield +
     $reStructuredTextDescription +
     "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n.. |br| raw:: html`r`n`r`n" +
     $text.ArmorCompleteRstMap +
