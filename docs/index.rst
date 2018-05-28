@@ -5,26 +5,39 @@
    :target: https://www.powershellgallery.com/packages/Armor
    :alt: Current Version
 
+
 .. image:: https://img.shields.io/powershellgallery/dt/Armor.svg
    :target: https://www.powershellgallery.com/packages/Armor
    :alt: Total Downloads
+
 
 
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
    :alt: Build Status
 
+
 .. image:: https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master
    :target: https://travis-ci.org/tlindsay42/ArmorPowerShell
    :alt: Build Status
+
 
 .. image:: https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master
    :target: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
    :alt: Coverage Status
 
+
 .. image:: https://readthedocs.org/projects/armorpowershell/badge/?version=latest
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
+
+
+
+.. image:: https://badges.gitter.im/ArmorPowerShell/Lobby.svg
+   :target: https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+   :alt: Join the chat at https://gitter.im/ArmorPowerShell/Lobby
+
+
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your `Armor Complete`_ (secure public cloud) and `Armor Anywhere`_ (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published `RESTful APIs`_.
 
@@ -51,6 +64,8 @@ The source code is `available on GitHub`_.
 .. _Coveralls: https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master
 
 .. _PowerShell Gallery: https://www.powershellgallery.com/packages/Armor
+
+.. _Gitter: https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 .. _available on GitHub: 
 
