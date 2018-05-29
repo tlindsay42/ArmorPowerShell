@@ -47,7 +47,7 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     OutInfo( ( $publishForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
-    git checkout $env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
+    git checkout --quiet $env:CI_BRANCH
     git add --all
     git status
     git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
