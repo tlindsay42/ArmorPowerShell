@@ -50,7 +50,7 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git checkout --quiet $env:CI_BRANCH
     git add --all
     git status
-    git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
+    git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION}"
     git push --porcelain --set-upstream origin $env:CI_BRANCH
 
     if ( $env:CI_BRANCH -eq 'master' ) {
