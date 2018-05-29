@@ -272,9 +272,17 @@ artifacts:
 # scripts to run before deployment
 #before_deploy:
 
-# providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
-# provider names are case-sensitive!
-#deploy: off
+deploy:
+  provider: GitHub
+  release: v$(appveyor_build_version)
+  description: v$(appveyor_build_version)
+  auth_token:
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true
 
 # to run your custom scripts instead of provider deployments
 #deploy_script:
@@ -315,6 +323,12 @@ notifications:
     incoming_webhook:
       secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
     channel: '#develop'
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
+  - provider: Webhook # Gitter
+    url:
+      secure: VMG8UrlePL6sWol/IyQFbaCGkOLY9jFz+3wRnBG+rf95z9hLULTCpi+lN4xhSxwi4PyVEtDfstxeUA4/3+aP+g==
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true

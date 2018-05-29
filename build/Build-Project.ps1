@@ -18,6 +18,10 @@ $text = @{
     'CoverallsProjectUrl'   = "https://coveralls.io/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}?branch=master"
     'CurrentVersion'        = 'Current Version'
     'DocumentationStatus'   = 'Documentation Status'
+    'Gitter'                = 'Gitter'
+    'GitterImageAlt'        = 'Join the chat at https://gitter.im/ArmorPowerShell/Lobby'
+    'GitterImageUrl'        = 'https://badges.gitter.im/ArmorPowerShell/Lobby.svg'
+    'GitterProjectUrl'      = 'https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge'
     'LatestBuild'           = "${env:CI_PROJECT_NAME}: Latest Build"
     'macOS'                 = 'macOS'
     'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
@@ -35,6 +39,7 @@ $text = @{
     'ReadTheDocsProjectUrl' = "http://${projectNameLowerCase}.readthedocs.io/en/latest/?badge=latest"
     'RepoUrl'               = "https://github.com/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}"
     'RestfulApi'            = 'RESTful APIs'
+    'RstExplicitLineBreak'  = "|br|`r`n`r`n"
     'RstLinkForm'           = '`{0}`_'
     'RstImageForm'          = ".. image:: {0}`r`n   :target: {1}`r`n   :alt: {2}`r`n`r`n"
     'RstLinkMap'            = ".. _{0}: {1}`r`n`r`n"
@@ -85,6 +90,9 @@ $text += @{
     'CoverallsRstShield'   = $text.RstImageForm -f $text.CoverallsImageUrl, $text.CoverallsProjectUrl, $text.CoverageStatus
     'GitHubRst'            = $text.RstLinkForm -f $text.AvailableOnGitHub
     'GitHubRstMap'         = $text.RstLinkMap -f $text.AvailableOnGitHub, $repoUrl
+    'GitterMdShield'       = $text.MdImageForm -f $text.GitterImageAlt, $text.GitterImageUrl, $text.GitterProjectUrl
+    'GitterRstMap'         = $text.RstLinkMap -f $text.Gitter, $text.GitterProjectUrl
+    'GitterRstShield'      = $text.RstImageForm -f $text.GitterImageUrl, $text.GitterProjectUrl, $text.GitterImageAlt
     'macOSBold'            = $text.BoldForm -f $text.macOS
     'PesterMd'             = $text.MdLinkForm -f $text.Pester, $text.PesterUrl, $text.PesterMdLinkTitle
     'PesterRst'            = $text.RstLinkForm -f $text.Pester
@@ -209,9 +217,14 @@ $markDownDescription = $description -replace
 # Build README.md
 $content = (
     "# $( $text.Title )`r`n`r`n" +
-    $text.PSGalleryMdShield + $text.PSDownloadsMdShield + "`r`n" +
-    $text.AppVeyorMdShield + $text.TravisCiMdShield + $text.CoverallsMdShield + $text.ReadTheDocsMdShield +
-    "`r`n`r`n${markDownDescription}`r`n`r`n" +
+    $text.PSGalleryMdShield + "`r`n" +
+    $text.PSDownloadsMdShield + "`r`n`r`n" +
+    $text.AppVeyorMdShield + "`r`n" +
+    $text.TravisCiMdShield + "`r`n" +
+    $text.CoverallsMdShield + "`r`n" +
+    $text.ReadTheDocsMdShield + "`r`n`r`n" +
+    $text.GitterMdShield + "`r`n`r`n" +
+    "${markDownDescription}`r`n`r`n" +
     "Please visit the $( $text.ReadTheDocsMd ) for more details."
 ) |
     Out-File -FilePath "${env:CI_BUILD_PATH}/README.md" -Encoding 'utf8'
@@ -234,10 +247,17 @@ $content = @()
 $content += (
     "$( $text.Title )`r`n" +
     "========================`r`n`r`n" +
-    $text.PSGalleryRstShield + $text.PSDownloadsRstShield + "`r`n" +
-    $text.AppVeyorRstShield + $text.TravisCiRstShield + $text.CoverallsRstShield + $text.ReadTheDocsRstShield +
+    $text.PSGalleryRstShield +
+    $text.PSDownloadsRstShield +
+    $text.RstExplicitLineBreak +
+    $text.AppVeyorRstShield +
+    $text.TravisCiRstShield +
+    $text.CoverallsRstShield +
+    $text.ReadTheDocsRstShield +
+    $text.RstExplicitLineBreak +
+    $text.GitterRstShield +
     $reStructuredTextDescription +
-    "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" +
+    "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n.. |br| raw:: html`r`n`r`n" +
     $text.ArmorCompleteRstMap +
     $text.ArmorAnywhereRstMap +
     $text.RestfulApiRstMap +
@@ -246,6 +266,7 @@ $content += (
     $text.PesterRstMap +
     $text.CoverallsRstMap +
     $text.PSGalleryRstMap +
+    $text.GitterRstMap +
     $text.GitHubRstMap +
     ".. toctree::`r`n" +
     "   :maxdepth: 2`r`n" +
