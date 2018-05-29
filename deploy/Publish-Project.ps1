@@ -28,21 +28,21 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -ne 1 ) {
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     $messageForm = "Skipping publish to {0} for {1}: '{2}'."
-    $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
+    $publishForm = "Publishing {0}: '{1}' version: '{2}' to {3}."
 
     if ( $env:CI_BRANCH -eq 'master' ) {
         if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
             OutWarning( ( $messageForm -f 'The PowerShell Gallery', $commitMessageKeyword, "[${skipKeyword}]" ) )
         }
         else {
-            OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
+            OutInfo( ( $publishForm -f 'module', $env:CI_MODULE_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
 
             # Publish the new version to the PowerShell Gallery
             Publish-Module -Path $env:CI_MODULE_PATH -NuGetApiKey $env:NUGET_API_KEY -ErrorAction 'Stop'
         }
     }
 
-    OutInfo( ( $publishForm -f $env:CI_MODULE_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
+    OutInfo( ( $publishForm -f 'project', $env:CI_PROJECT_NAME, $env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
     # Publish the new version back to GitHub
     git checkout --quiet $env:CI_BRANCH
@@ -56,6 +56,9 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
             OutWarning( ( $messageForm -f 'GitHub Releases', $commitMessageKeyword, "[${skipKeyword}]" ) )
         }
         else {
+            OutInfo( ( $publishForm -f 'project', $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'GitHub Releases' ) )
+
+            # Publish the new version to GitHub Releases
             git tag $tag
             git push --porcelain origin $tag
         }
