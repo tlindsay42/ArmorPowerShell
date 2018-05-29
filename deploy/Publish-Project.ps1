@@ -9,15 +9,13 @@ function OutInfo ( [String] $Message ) {
 }
 
 $message = $null
-$messageForm = "Skipping publish to the PowerShell Gallery & GitHub for {0}: '{1}'."
+$messageForm = "Skipping publish to The PowerShell Gallery & GitHub Releases for {0}: '{1}'."
 $skipKeyword = 'skip publish'
 $commitMessageKeyword = 'commit message keyword'
+$tag = "v${env:CI_MODULE_VERSION}"
 
 if ( $env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f 'continuous integration platform', $env:CI_NAME )
-}
-elseif ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
-    OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
 }
 elseif ( $env:APPVEYOR_REPO_TAG -eq $true ) {
     OutWarning( ( $messageForm -f 'tag build', $true ) )
@@ -29,12 +27,12 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -ne 1 ) {
     OutWarning( ( $messageForm -f 'job', $env:APPVEYOR_JOB_NUMBER ) )
 }
 elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
+    $messageForm = "Skipping publish to {0} for {1}: '{2}'."
     $publishForm = "Publishing module: '{0}' version: '{1}' to {2}."
 
     if ( $env:CI_BRANCH -eq 'master' ) {
-        $skipKeyword = 'skip psgallery'
         if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
-            OutWarning( ( $messageForm -f $commitMessageKeyword, "[${skipKeyword}]" ) )
+            OutWarning( ( $messageForm -f 'The PowerShell Gallery', $commitMessageKeyword, "[${skipKeyword}]" ) )
         }
         else {
             OutInfo( ( $publishForm -f $env:CI_PROJECT_NAME, $env:CI_MODULE_VERSION, 'The PowerShell Gallery' ) )
@@ -50,13 +48,17 @@ elseif ( $env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     git checkout --quiet $env:CI_BRANCH
     git add --all
     git status
-    git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION}"
+    git commit --signoff --message "${env:CI_NAME}: Update version to ${env:CI_MODULE_VERSION} [ci skip]"
     git push --porcelain --set-upstream origin $env:CI_BRANCH
 
     if ( $env:CI_BRANCH -eq 'master' ) {
-        $tag = "v${env:CI_MODULE_VERSION}"
-        git tag --annotate $tag --message $tag
-        git push --porcelain origin $tag
+        if ( $env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
+            OutWarning( ( $messageForm -f 'GitHub Releases', $commitMessageKeyword, "[${skipKeyword}]" ) )
+        }
+        else {
+            git tag $tag
+            git push --porcelain origin $tag
+        }
     }
 
     Write-Host -Object ''
