@@ -170,7 +170,7 @@ class ArmorUser {
     )]
     [String] $TimeZone
 
-    [ValidateNotNull()]
+    [ValidateNotNullOrEmpty()]
     [CultureInfo] $Culture
 
     [ValidateNotNull()]
@@ -182,6 +182,7 @@ class ArmorUser {
     [ValidateSet( 'Standard' )]
     [String] $MfaPinMode
 
+    [ValidateRange( 1, 65535 )]
     [AllowEmptyCollection()]
     [UInt16[]] $Permissions = @()
 
