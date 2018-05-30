@@ -9,7 +9,7 @@
    :target: https://www.powershellgallery.com/packages/Armor
    :alt: Total Downloads
 
-|br|
+|
 
 .. image:: https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true
    :target: https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master
@@ -27,7 +27,7 @@
    :target: http://armorpowershell.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-|br|
+|
 
 .. image:: https://badges.gitter.im/ArmorPowerShell/Lobby.svg
    :target: https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
@@ -42,8 +42,6 @@ Code coverage scores and reports showing how much of the project is covered by a
 Every successful build is published on the `PowerShell Gallery`_.
 
 The source code is `available on GitHub`_. 
-
-.. |br| raw:: html
 
 .. _Armor Complete: https://www.armor.com/armor-complete-secure-hosting/
 
