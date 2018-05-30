@@ -1,13 +1,4 @@
 {
-    "User": [
-        {
-            "Type": "user",
-            "UserName": "first.last@example.company.com",
-            "FirstName": "First",
-            "LastName": "Last",
-            "Links": ""
-        }
-    ],
     "Accounts": [
         {
             "ID": 1,
@@ -244,11 +235,12 @@
     "AccountContextHeader": "X-Account-Context",
     "AuthenticationType": "FH-AUTH",
     "MediaType": "application/json",
-    "Headers": {
-        "Content-Type": "application/json",
-        "Authorization": "FH-AUTH efa32575460946e7ad80c32ecbef47a0",
-        "Accept": "application/json",
-        "X-Account-Context": 1
+    "User": {
+        "Type": "user",
+        "UserName": "first.last@example.company.com",
+        "FirstName": "First",
+        "LastName": "Last",
+        "Links": ""
     },
     "SessionLengthInMinutes": 15,
     "SessionStartTime": "2018-03-03T15:52:28.8091923-06:00",
