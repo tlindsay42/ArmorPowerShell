@@ -276,11 +276,10 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'en-USA' },
-            @{ 'Value' = 'en-hybrid of hillbilly, valley girl, inner city slang, and various grunts' }
+            @{ 'Value' = $null }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
-            param ( [String] $Value )
+            param ( [CultureInfo] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
