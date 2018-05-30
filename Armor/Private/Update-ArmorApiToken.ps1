@@ -8,7 +8,9 @@ function Update-ArmorApiToken {
         storing the session details: $Global:ArmorSession.
 
         .INPUTS
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -49,7 +51,10 @@ function Update-ArmorApiToken {
         <#
         Specifies the API version for this request.
         #>
-        [Parameter( Position = 1 )]
+        [Parameter(
+            Position = 1,
+            ValueFromPipelineByPropertyName = $true
+        )]
         [ValidateSet( 'v1.0' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
