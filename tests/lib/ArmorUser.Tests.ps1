@@ -281,7 +281,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
 
         $testCases = @(
             @{ 'Value' = 'en-US' },
-            @{ 'Value' = 'en-UK' },
+            @{ 'Value' = 'en-GB' },
             @{ 'Value' = 'zh-SG' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
