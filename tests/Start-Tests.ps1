@@ -164,8 +164,14 @@ function TestAdvancedFunctionHelpParameters ( [String[]] $ExpectedParameterNames
 
         $testName = "should have: '${expectedParameterCount}' parameters"
         It -Name $testName -Test {
-            @( $Help.Parameters.Parameter ).Count |
-                Should -Be $expectedParameterCount
+            if ( $Help.Parameters.Parameter.Count -eq $null ) {
+                @( $Help.Parameters.Parameter ).Count |
+                    Should -Be $expectedParameterCount
+            }
+            else {
+                $Help.Parameters.Parameter.Count |
+                    Should -Be $expectedParameterCount
+            }
         } # End of It
 
         foreach ( $parameterName in $ExpectedParameterNames ) {
