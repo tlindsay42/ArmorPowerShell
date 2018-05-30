@@ -90,8 +90,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 'First' },
-            @{ 'Value' = 'First Name' }
+            @{ 'Value' = 'Jean Luc' },
+            @{ 'Value' = 'Beverly' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -118,8 +118,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 'Last' },
-            @{ 'Value' = 'Last Name' }
+            @{ 'Value' = 'Picard' },
+            @{ 'Value' = 'Crusher' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
