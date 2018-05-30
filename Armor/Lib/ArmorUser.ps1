@@ -170,10 +170,9 @@ class ArmorUser {
     )]
     [String] $TimeZone
 
-    [ValidateNotNullOrEmpty()]
+    [ValidateNotNull()]
     [CultureInfo] $Culture
 
-    [ValidateNotNull()]
     [Boolean] $IsMfaEnabled = $true
 
     [ValidateSet( 'PhoneApp', 'VoiceCall' )]
@@ -192,7 +191,6 @@ class ArmorUser {
     [ValidateNotNull()]
     [DateTime] $PasswordLastSet
 
-    [ValidateNotNull()]
     [Boolean] $MustChangePassword
 
     [ValidateNotNull()]
