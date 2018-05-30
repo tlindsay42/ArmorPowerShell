@@ -1,4 +1,10 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
+foreach ( $class in 'ArmorPhoneNumber' ) {
+    $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath "${class}.ps1"
+
+    . $filePath
+}
+
 $filePath = Join-Path -Path $env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 . $filePath
