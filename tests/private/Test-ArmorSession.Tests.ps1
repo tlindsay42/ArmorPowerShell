@@ -88,6 +88,22 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         } # End of It
 
+        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+            Mock -CommandName Update-ArmorApiToken -Verifiable -MockWith {}
+
+            [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+                ConvertFrom-Json -ErrorAction 'Stop'
+            $Global:ArmorSession.Headers.Authorization = 'FH-AUTH d4641394719f4513a80f25de11a85138'
+            $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( ( $Global:ArmorSession.SessionLengthInMinutes * ( 1 / 3 ) ) )
+            $testName = "should not fail and renew the session when it expires at: '$( $Global:ArmorSession.SessionExpirationTime )'"
+            It -Name $testName -Test {
+                { Test-ArmorSession } |
+                    Should -Not -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Update-ArmorApiToken -Times 1
+        }
+
         [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
