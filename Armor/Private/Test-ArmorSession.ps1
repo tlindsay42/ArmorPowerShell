@@ -7,13 +7,13 @@ function Test-ArmorSession {
         Test to see if a session has been established with the Armor API and
         that it has not yet expired.  If no token is found, an error will be
         thrown.  If the session has expired, Disconnect-Armor will be called
-        with confirmation disabled to clean up the session.  If less than 25
-        minutes remain in the session, Update-ArmorApiToken will be called to
+        with confirmation disabled to clean up the session.  If less than 2/3
+        of the session length remain, Update-ArmorApiToken will be called to
         renew the session.
 
         This cmdlet should be called in the Begin section of public cmdlets
         for optimal performance, so that the session is not tested repeatedly
-        during the 
+        when pipeline input is processed.
 
         .INPUTS
         None- you cannot pipe objects to this cmdlet.
@@ -29,8 +29,8 @@ function Test-ArmorSession {
 
         Description
         -----------
-        Validates that there is an Armor API connection token stored in
-        $Global:ArmorSession.Token.
+        Validates that the Armor API session stored in $Global:ArmorSession is
+        still active.
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html
@@ -70,7 +70,7 @@ function Test-ArmorSession {
 
             Write-Verbose -Message "${minutesRemaining} minutes remaining until session expiration."
 
-            if ( $minutesRemaining -lt 10 ) {
+            if ( $minutesRemaining -lt ( $Global:ArmorSession.SessionLengthInMinutes * ( 2 / 3 ) ) ) {
                 Write-Verbose -Message 'Renewing session token.'
                 Update-ArmorApiToken -Token $Global:ArmorSession.GetToken()
             }
