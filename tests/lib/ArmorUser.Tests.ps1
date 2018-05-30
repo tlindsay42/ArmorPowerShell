@@ -294,6 +294,11 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
+
+        It -Name $Global:PropertyTypeForm -Test {
+            $temp.$property |
+                Should -BeOfType ( [System.Globalization.CultureInfo] )
+        } # End of It
     } # End of Context
 
     $property = 'IsMfaEnabled'
