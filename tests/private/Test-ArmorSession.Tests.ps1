@@ -45,7 +45,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         #region init
         #endregion
 
-        $Global:ArmorSession = $null
+        [ArmorSession] $Global:ArmorSession = $null
         $testName = 'should fail when the $Global:ArmorSession is $null'
         It -Name $testName -Test {
             { Test-ArmorSession } |
@@ -78,7 +78,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         } # End of It
 
-        $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $testName = "should fail when the session expired at: '$( $Global:ArmorSession.SessionExpirationTime )'"
         It -Name $testName -Test {
@@ -86,7 +86,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         } # End of It
 
-        $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
@@ -98,7 +98,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     } # End of Context
 
     Context -Name $Global:ReturnTypeContext -Fixture {
-        $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
