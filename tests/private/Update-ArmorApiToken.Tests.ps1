@@ -70,7 +70,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 }
             )
-            $testName = 'should fail when Token: <Token> ApiVersion: <ApiVersion>'
+            $testName = 'should fail when Token: <Token> ApiVersion: <ApiVersion> access_token: 2c307390e95843'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Token, [String] $ApiVersion )
                 { Update-ArmorApiToken -Token $Token -ApiVersion $ApiVersion } |
@@ -98,7 +98,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 }
             )
-            $testName = 'should not fail when Token: <Token> ApiVersion: <ApiVersion>'
+            $testName = 'should not fail when Token: <Token> ApiVersion: <ApiVersion> access_token: 2c307390e95843e38804f40ca8cac03e'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Token, [String] $ApiVersion )
                 { Update-ArmorApiToken -Token $Token -ApiVersion $ApiVersion } |
