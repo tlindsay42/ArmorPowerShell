@@ -70,7 +70,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         )
         $testName = 'should fail when the session authorization is: <Authorization>'
         It -Name $testName -TestCases $testCases -Test {
-            param ( [ArmorSession] $Session, [String] $Authorization )
+            param ( [PSCustomObject] $Session, [String] $Authorization )
             {
                 [ArmorSession] $Global:ArmorSession = $Session
                 $Global:ArmorSession.Headers.Authorization = $Authorization
