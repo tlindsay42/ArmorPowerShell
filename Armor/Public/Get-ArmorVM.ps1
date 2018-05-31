@@ -124,7 +124,7 @@ function Get-ArmorVM {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        if ( $PsCmdlet.ParameterSetName -and $ID -gt 0 ) {
+        if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
         }
         else {
