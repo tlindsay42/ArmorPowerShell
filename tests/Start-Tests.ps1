@@ -226,6 +226,7 @@ $Global:JsonResponseBody = @{
     'Authorize1'           = GetTestResponseBody( 'Authorize_1.json' )
     'Identity1'            = GetTestResponseBody( 'Identity_1.json' )
     'Session1'             = GetTestResponseBody( 'Session_1.json' )
+    'Tiers1VMs1'           = GetTestResponseBody( 'Tiers_1-VMs_1.json' )
     'Token1'               = GetTestResponseBody( 'Token_1.json' )
     'VMs1'                 = GetTestResponseBody( 'VMs_1.json' )
     'VMs2'                 = GetTestResponseBody( 'VMs_2.json' )
