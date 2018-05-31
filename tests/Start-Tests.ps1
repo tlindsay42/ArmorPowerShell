@@ -224,6 +224,7 @@ $Global:FunctionHelpNotes = "Troy Lindsay`nTwitter: @troylindsay42`nGitHub: tlin
 
 $Global:JsonResponseBody = @{
     'Authorize1'           = GetTestResponseBody( 'Authorize_1.json' )
+    'Datacenters5'         = GetTestResponseBody( 'Datacenters_5.json' )
     'Identity1'            = GetTestResponseBody( 'Identity_1.json' )
     'Session1'             = GetTestResponseBody( 'Session_1.json' )
     'Tiers1VMs1'           = GetTestResponseBody( 'Tiers_1-VMs_1.json' )

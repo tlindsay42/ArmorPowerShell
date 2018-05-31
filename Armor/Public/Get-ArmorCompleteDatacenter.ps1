@@ -10,9 +10,11 @@ function Get-ArmorCompleteDatacenter {
 
 
         .INPUTS
-        System.UInt16
+        UInt16
 
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -149,22 +151,17 @@ function Get-ArmorCompleteDatacenter {
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
         if ( $PsCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
-        $filters = $resources.Filter |
-            Get-Member -MemberType 'NoteProperty'
+            $filters = $resources.Filter |
+                Get-Member -MemberType 'NoteProperty'
 
             if ( $PsCmdlet.ParameterSetName -ne 'ID' ) {
                 $filters = $filters.Where( { $_.Name -ne 'ID' } )
             }
 
-        $results = Select-ArmorApiResult -Results $results -Filters $filters
+            $results = Select-ArmorApiResult -Results $results -Filters $filters
         }
 
-        if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor Complete datacenter not found.'
-        }
-        else {
-            $return = $results
-        }
+        $return = $results
 
         $return
     } # End of process

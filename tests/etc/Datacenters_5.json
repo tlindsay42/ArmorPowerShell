@@ -1,0 +1,26 @@
+[{
+    "id": 1,
+    "location": "DFW01",
+    "name": "US Central",
+    "zones": ["DFW01T01-VC03", "DFW01T01-VC01", "DFW01T01-VC02", "DFW01T01-VC04", "DFW01R01-VC01"]
+}, {
+    "id": 2,
+    "location": "PHX01",
+    "name": "US West",
+    "zones": ["PHX01T01-VC03", "PHX01T01-VC02", "PHX01T01-VC01", "PHX01R01-VC01"]
+}, {
+    "id": 3,
+    "location": "LHR01",
+    "name": "EU West",
+    "zones": ["LHR01T01-VC01"]
+}, {
+    "id": 4,
+    "location": "AMS01",
+    "name": "EU Central",
+    "zones": ["AMS01T01-VC01"]
+}, {
+    "id": 5,
+    "location": "SIN01",
+    "name": "AS EAST",
+    "zones": ["SIN01T01-VC01"]
+}]
