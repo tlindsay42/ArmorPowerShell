@@ -9,12 +9,14 @@ function Invoke-ArmorWebRequest {
         cmdlets in this module.
 
         .INPUTS
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
         Twitter: @troylindsay42
-        GitHub: @tlindsay42
+        GitHub: tlindsay42
 
         .EXAMPLE
         {required: show one or more examples using the function}
@@ -34,6 +36,7 @@ function Invoke-ArmorWebRequest {
 
     [CmdletBinding()]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the Armor API endpoint.
@@ -78,6 +81,7 @@ function Invoke-ArmorWebRequest {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [AllowEmptyString()]
         [String]
         $Body = '',
 
