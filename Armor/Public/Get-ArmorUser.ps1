@@ -10,9 +10,11 @@ function Get-ArmorUser {
         cmdlet parameters.
 
         .INPUTS
-        System.UInt16
+        UInt16
 
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
