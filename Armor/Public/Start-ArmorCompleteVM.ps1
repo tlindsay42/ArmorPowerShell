@@ -35,6 +35,7 @@ function Start-ArmorCompleteVM {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the ID of the VM to power on in the Armor Complete account in

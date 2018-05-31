@@ -61,6 +61,7 @@ function Get-ArmorCompleteWorkload {
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload.

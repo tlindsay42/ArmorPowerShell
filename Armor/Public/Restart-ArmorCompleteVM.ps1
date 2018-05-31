@@ -38,6 +38,7 @@ function Restart-ArmorCompleteVM {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the ID of the Armor Complete virtual machine that you want to

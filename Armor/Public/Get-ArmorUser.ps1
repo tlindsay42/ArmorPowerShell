@@ -45,6 +45,7 @@ function Get-ArmorUser {
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [ArmorUser[]] )]
+    [OutputType( [ArmorUser] )]
     param (
         <#
         Specifies the ID of the Armor user account.

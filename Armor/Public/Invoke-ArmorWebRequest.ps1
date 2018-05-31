@@ -34,6 +34,7 @@ function Invoke-ArmorWebRequest {
 
     [CmdletBinding()]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the Armor API endpoint.

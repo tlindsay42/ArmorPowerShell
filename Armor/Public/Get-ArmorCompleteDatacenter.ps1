@@ -82,6 +82,7 @@ function Get-ArmorCompleteDatacenter {
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [ArmorCompleteDatacenter[]] )]
+    [OutputType( [ArmorCompleteDatacenter] )]
     param (
         <#
         Specifies the ID of the Armor Complete datacenter.

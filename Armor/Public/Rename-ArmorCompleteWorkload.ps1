@@ -33,6 +33,7 @@ function Rename-ArmorCompleteWorkload {
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload that you want to

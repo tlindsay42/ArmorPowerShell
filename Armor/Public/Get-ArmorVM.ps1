@@ -74,6 +74,7 @@ function Get-ArmorVM {
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the IDs of the virtual machines that you want to retrieve.

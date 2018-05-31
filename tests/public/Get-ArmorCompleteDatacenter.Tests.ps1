@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorCompleteDatacenter[]'
+        'ExpectedOutputTypeNames' = 'ArmorCompleteDatacenter', 'ArmorCompleteDatacenter[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
