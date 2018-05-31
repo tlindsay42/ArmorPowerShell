@@ -26,7 +26,7 @@ class ArmorSession {
     [ValidateRange( 1, 65535 )]
     [UInt16] $Port = 443
 
-    [ValidateRange( 1, 1800 )]
+    [ValidateRange( 1, 15 )]
     [UInt16] $SessionLengthInMinutes
 
     [ValidateNotNull()]
@@ -84,14 +84,19 @@ class ArmorSession {
         [String] $AccessToken,
         [UInt16] $SessionLengthInMinutes
     ) {
+        $now = Get-Date
+
         if ( $AccessToken -notmatch '^[a-z0-9]{32}$' ) {
             throw "Invalid access token: '${AccessToken}'."
         }
 
-        $this.SessionStartTime = Get-Date
+        if ( $this.SessionStartTime -eq '0001-01-01 00:00:00' ) {
+            $this.SessionStartTime = $now
+        }
+
         $this.SessionLengthInMinutes = $SessionLengthInMinutes
-        $this.SessionExpirationTime = $this.SessionStartTime.AddMinutes( $this.SessionLengthInMinutes )
-        $this.Headers.'Authorization' = "$( $this.AuthenticationType ) ${AccessToken}"
+        $this.SessionExpirationTime = $now.AddMinutes( $this.SessionLengthInMinutes )
+        $this.Headers.Authorization = "$( $this.AuthenticationType ) ${AccessToken}"
     }
 
     [ArmorAccount] GetAccountContext () {
