@@ -105,7 +105,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
         } # End of InModuleScope
     } # End of Context
 
@@ -140,7 +140,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Should -Be $ExpectedReturnType
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
 
             # $testName = "has an 'OutputType' entry for <FoundReturnType>"
             # It -Name $testName -TestCases $testCases -Test {

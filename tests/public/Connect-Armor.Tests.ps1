@@ -128,7 +128,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             } # End of It
 
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 2
         } # End of InModuleScope
     } # End of Context
 
@@ -217,13 +217,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Be $ExpectedReturnType
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ParameterFilter {
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
             }
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ParameterFilter {
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
             }
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ModuleName $env:CI_MODULE_NAME
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ModuleName $env:CI_MODULE_NAME
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {

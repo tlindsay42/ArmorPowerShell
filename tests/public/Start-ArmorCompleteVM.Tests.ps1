@@ -87,8 +87,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
         } # End of InModuleScope
     } # End of Context
 
@@ -116,8 +116,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Be $ExpectedReturnType
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             # $testName = "has an 'OutputType' entry for <FoundReturnType>"
             # It -Name $testName -TestCases $testCases -Test {
