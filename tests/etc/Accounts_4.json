@@ -1,0 +1,38 @@
+[{
+    "id": 1,
+    "currency": "USD       ",
+    "name": "Armor",
+    "status": "Claimed",
+    "parent": -1,
+    "products": {
+        "AA-CORE": ["Invoicing", "Payment Methods", "Pricing", "Account Contacts"],
+        "ARMOR-COMPLETE": ["Invoicing"]
+    }
+}, {
+    "id": 2,
+    "currency": "USD       ",
+    "name": "Armor QA (old)",
+    "status": "Claimed",
+    "parent": 1,
+    "products": {
+        "AA-CORE": ["Server Agent", "Operating System Server Hardening", "Operating System Patching", "Monitoring", "Anti-Malware and Virus Protection", "Log Monitoring and Management", "Vulnerability Scanning", "File Integrity Monitoring", "Invoicing", "Payment Methods", "Pricing", "Account Contacts"]
+    }
+}, {
+    "id": 3,
+    "currency": "GBP       ",
+    "name": "Armor Ltd",
+    "status": "Claimed",
+    "parent": 1,
+    "products": {
+        "ARMOR-COMPLETE": ["Invoicing"]
+    }
+}, {
+    "id": 4,
+    "currency": "USD       ",
+    "name": "Armor QA (old)",
+    "status": "Cancelled",
+    "parent": 1,
+    "products": {
+        "ARMOR-COMPLETE": ["Invoicing"]
+    }
+}]

@@ -9,9 +9,11 @@ function Get-ArmorAccount {
         correspond to the filter criteria provided by the cmdlet parameters.
 
         .INPUTS
-        System.UInt16
+        UInt16
 
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -93,6 +95,7 @@ function Get-ArmorAccount {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
+    [OutputType( [ArmorAccount] )]
     [OutputType( [ArmorAccount[]] )]
     param (
         <#
@@ -151,12 +154,24 @@ function Get-ArmorAccount {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        $filters = $resources.Filter |
-            Get-Member -MemberType 'NoteProperty'
-        $results = Select-ArmorApiResult -Results $results -Filters $filters
+        if ( $PsCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
+            $filters = $resources.Filter |
+                Get-Member -MemberType 'NoteProperty'
+
+            if ( $PsCmdlet.ParameterSetName -ne 'ID' ) {
+                $filters = $filters.Where( { $_.Name -ne 'ID' } )
+            }
+
+            $results = Select-ArmorApiResult -Results $results -Filters $filters
+        }
 
         if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor account not found.'
+            if ( $PsCmdlet.ParameterSetName -eq 'ID' ) {
+                Write-Error -Message "Armor account not found: ID: '${ID}'."
+            }
+            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+                Write-Error -Message "Armor account not found: Name: '${Name}'."
+            }
         }
         else {
             $return = $results
