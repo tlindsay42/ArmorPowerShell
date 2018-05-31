@@ -223,6 +223,7 @@ $Global:FunctionHelpForm = 'Comment-Based Help/{0}'
 $Global:FunctionHelpNotes = "Troy Lindsay`nTwitter: @troylindsay42`nGitHub: tlindsay42"
 
 $Global:JsonResponseBody = @{
+    'Address1'             = GetTestResponseBody( 'Address_1.json' )
     'Authorize1'           = GetTestResponseBody( 'Authorize_1.json' )
     'Datacenters5'         = GetTestResponseBody( 'Datacenters_5.json' )
     'Identity1'            = GetTestResponseBody( 'Identity_1.json' )

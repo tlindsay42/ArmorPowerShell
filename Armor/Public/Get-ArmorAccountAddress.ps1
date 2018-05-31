@@ -8,7 +8,9 @@ function Get-ArmorAccountAddress {
         user account has access to.
 
         .INPUTS
-        System.UInt16
+        UInt16
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -130,7 +132,7 @@ function Get-ArmorAccountAddress {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $resources.Method -Description $resources.Description
 
-            $return = $results
+        $return = $results
 
         $return
     } # End of process
