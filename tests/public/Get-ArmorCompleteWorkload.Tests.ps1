@@ -123,8 +123,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1
+            Assert-MockCalled -CommandName Test-ArmorSession -Times 3
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times 3
         } # End of InModuleScope
     } # End of Context
 
