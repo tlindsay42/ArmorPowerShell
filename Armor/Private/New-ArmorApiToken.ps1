@@ -7,7 +7,9 @@ function New-ArmorApiToken {
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        System.String
+        String
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -15,7 +17,7 @@ function New-ArmorApiToken {
         GitHub: tlindsay42
 
         .EXAMPLE
-        New-ArmorApiToken -Code 'HJTX3gAAAAN2q1UP7cvFtOh1qffrfWIpKetdnIgvOfpJRSC5W7b3vVqMBn8pZHtRY8I4nLRzW95gdWPdRMVUrgsnJ2mwqB8kgxOu8lhH1LOggfwrRCvxLGvGmwET59gIzJ60rxpEdM0dTLw58kNnWVbaQI1NmPQJwjvD/1RIPTnOL5d+z29wyJ/BI/POlPKNlVfHsJGYJl8ql0/3D3czNGhXCqfV20Uj0r8EX7zsQz/9t1YCqKKj9OpPv3sypXS6h4hNb/v4yLD33G+EnwOajJQ62sA='
+        New-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html
