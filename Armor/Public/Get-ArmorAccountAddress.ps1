@@ -130,16 +130,7 @@ function Get-ArmorAccountAddress {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $resources.Method -Description $resources.Description
 
-        $filters = $resources.Filter |
-            Get-Member -MemberType 'NoteProperty'
-        $results = Select-ArmorApiResult -Results $results -Filters $filters
-
-        if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor account not found.'
-        }
-        else {
             $return = $results
-        }
 
         $return
     } # End of process
