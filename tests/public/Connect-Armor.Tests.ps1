@@ -216,13 +216,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             } # End of It
-
-            $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-                $FoundReturnType |
-                    Should -BeIn ( Get-Help -Name 'Connect-Armor' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
@@ -232,15 +225,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
             Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ModuleName $env:CI_MODULE_NAME
 
-            # # Get the temporary authorization code
-            # Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
-            #     @{
-            #         'StatusCode' = 200
-            #         'Content'    = $Global:JsonResponseBody.Authorize1
-            #     }
-            # } -ParameterFilter {
-            #     $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
-            # }
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Connect-Armor' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe

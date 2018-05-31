@@ -61,7 +61,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $invalidID = 0
             #endregion
 
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             $testCases = @(
                 @{ 'ID' = $invalidID }
             )
@@ -71,6 +70,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 { Set-ArmorAccountContext -ID $ID } |
                     Should -Throw
             } # End of It
+
+            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
 
             $testCases = @(
                 @{ 'ID' = $Global:ArmorSession.Accounts[0].ID },
@@ -82,12 +83,15 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 ( Set-ArmorAccountContext -ID $ID ).ID |
                     Should -Be $ID
             } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
         } # End of InModuleScope
     } # End of Context
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Set-ArmorAccountContext -ID 1 -ErrorAction 'Stop' ).GetType().FullName
@@ -100,6 +104,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {

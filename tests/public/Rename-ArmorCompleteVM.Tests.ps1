@@ -50,14 +50,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $validApiVersion = 'v1.0'
             #endregion
 
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
-            Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
-                @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.VMs1
-                }
-            }
             $testCases = @(
                 @{
                     'ID'         = $invalidID
@@ -82,6 +74,15 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Throw
             } # End of It
 
+            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
+                @{
+                    'StatusCode'        = 200
+                    'StatusDescription' = 'OK'
+                    'Content'           = $Global:JsonResponseBody.VMs1
+                }
+            }
+
             $testCases = @(
                 @{
                     'ID'         = $validID
@@ -95,6 +96,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 { Rename-ArmorCompleteVM -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Not -Throw
             } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1
         } # End of InModuleScope
     } # End of Context
 
@@ -108,6 +112,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'Content'           = $Global:JsonResponseBody.VMs1
                 }
             }
+
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Rename-ArmorCompleteVM -ID 1 -NewName 'FakeName' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
@@ -120,6 +125,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times 1
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times 1
 
             # $testName = "has an 'OutputType' entry for <FoundReturnType>"
             # It -Name $testName -TestCases $testCases -Test {

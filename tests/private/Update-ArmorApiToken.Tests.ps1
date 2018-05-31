@@ -118,7 +118,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 ConvertFrom-Json -ErrorAction 'Stop'
             $Global:ArmorSession.Headers.Authorization = "FH-AUTH d4641394719f4513a80f25de11a85138"
 
-            Mock -CommandName Submit-ArmorApiRequest -MockWith {
+            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
                     'access_token' = '2c307390e95843e38804f40ca8cac03e'
                     'id_token'     = $null
@@ -139,6 +139,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
 
             # $testName = "has an 'OutputType' entry for <FoundReturnType>"
             # It -Name $testName -TestCases $testCases -Test {
