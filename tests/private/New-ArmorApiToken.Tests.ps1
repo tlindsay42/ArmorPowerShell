@@ -49,6 +49,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $validGrantType = 'authorization_code'
             $invalidApiVersion = 'v0.0'
             $validApiVersion = 'v1.0'
+
+            $Global:ArmorSession = [ArmorSession]::New()
             #endregion
 
             $testCases = @(
@@ -111,6 +113,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 'ApiVersion'  = 'v1.0'
                 'ErrorAction' = 'Stop'
             }
+
+            $Global:ArmorSession = [ArmorSession]::New()
             #endregion
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
