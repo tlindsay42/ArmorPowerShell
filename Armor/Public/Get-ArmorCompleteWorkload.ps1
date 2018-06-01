@@ -60,8 +60,8 @@ function Get-ArmorCompleteWorkload {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorCompleteWorkload[]] )]
+    [OutputType( [ArmorCompleteWorkload] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload.
@@ -108,7 +108,7 @@ function Get-ArmorCompleteWorkload {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorCompleteWorkload[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 

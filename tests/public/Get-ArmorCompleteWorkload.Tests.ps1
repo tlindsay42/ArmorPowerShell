@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkload', 'ArmorCompleteWorkload[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
@@ -73,10 +73,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 },
                 @{
-                    'Name'       = 'Garbage'
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -96,6 +92,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
                 }
             }
+
+            $testCases = @(
+                @{
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                }
+            )
+            $testName = 'should fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Name, [String] $ApiVersion )
+                { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                    Should -Throw
+            } # End of It
 
             $testCases = @(
                 @{
@@ -145,11 +154,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Get-ArmorCompleteWorkload -ID 1 -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorCompleteWorkload'
                 },
                 @{
                     'FoundReturnType'    = ( Get-ArmorCompleteWorkload -Name 'WL1' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorCompleteWorkload'
                 }
             )
             $testName = $Global:ReturnTypeForm
