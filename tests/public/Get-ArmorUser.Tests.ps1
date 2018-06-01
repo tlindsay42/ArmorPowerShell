@@ -161,26 +161,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FirstName'  = ''
-                    'LastName'   = $validLastName
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
-                    'FirstName'  = $validFirstName
-                    'LastName'   = ''
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
                     'FirstName'  = $validFirstName
                     'LastName'   = $validLastName
-                    'ApiVersion' = $invalidApiVersion
+                    'ApiVersion' = $validApiVersion
                 }
             )
-            $testName = 'should fail when set to: FirstName: <FirstName>, LastName: <LastName>, ApiVersion: <ApiVersion>'
+            $testName = 'should not fail when set to: FirstName: <FirstName>, LastName: <LastName>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $FirstName, [String] $LastName, [String] $ApiVersion )
                 { Get-ArmorUser -FirstName $FirstName -LastName $LastName -ApiVersion $ApiVersion } |
-                    Should -Throw
+                    Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
