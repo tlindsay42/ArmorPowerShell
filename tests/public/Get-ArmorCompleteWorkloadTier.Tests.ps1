@@ -87,6 +87,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 },
                 @{
                     'WorkloadID' = $validID
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
+                    'WorkloadID' = $validID
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -94,7 +99,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $WorkloadID, [String] $Name, [String] $ApiVersion )
-                { Get-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion } |
+                { Get-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
             } # End of It
 
@@ -128,11 +133,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 @{
                     'WorkloadID' = $validID
                     'Name'       = $validName
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
-                    'WorkloadID' = $validID
-                    'Name'       = 'Garbage'
                     'ApiVersion' = $validApiVersion
                 }
             )

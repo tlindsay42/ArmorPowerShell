@@ -117,7 +117,12 @@ function Get-ArmorNoun {
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor item not found.'
+            if ( $PsCmdlet.ParameterSetName -eq 'ID' ) {
+                Write-Error -Message "Armor object not found: ID: '${ID}'."
+            }
+            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+                Write-Error -Message "Armor object not found: Name: '${Name}'."
+            }
         }
         else {
             $return = $results

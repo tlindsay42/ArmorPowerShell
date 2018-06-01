@@ -74,6 +74,10 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 },
                 @{
+                    'UserName'   = 'garbage@garbage.com'
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
                     'UserName'   = $validUserName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -81,7 +85,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should fail when set to: UserName: <UserName>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $UserName, [String] $ApiVersion )
-                { Get-ArmorUser -UserName $UserName -ApiVersion $ApiVersion } |
+                { Get-ArmorUser -UserName $UserName -ApiVersion $ApiVersion -Verbose -ErrorAction 'Stop' } |
                     Should -Throw
             } # End of It
 
@@ -89,6 +93,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 @{
                     'FirstName'  = ''
                     'LastName'  = $validLastName
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
+                    'FirstName'  = 'Name'
+                    'LastName'   = 'NotFound'
                     'ApiVersion' = $validApiVersion
                 },
                 @{
@@ -137,10 +146,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'UserName'   = $validUserName
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
-                    'UserName'   = 'Garbage'
                     'ApiVersion' = $validApiVersion
                 }
             )

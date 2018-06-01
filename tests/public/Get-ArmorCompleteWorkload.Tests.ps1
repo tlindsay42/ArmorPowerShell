@@ -73,6 +73,10 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 },
                 @{
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -80,7 +84,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Name, [String] $ApiVersion )
-                { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion } |
+                { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
             } # End of It
 
@@ -112,10 +116,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'Name'       = $validName
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
-                    'Name'       = 'Garbage'
                     'ApiVersion' = $validApiVersion
                 }
             )

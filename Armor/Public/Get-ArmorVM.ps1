@@ -142,8 +142,8 @@ function Get-ArmorVM {
             Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
-        if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor VM not found.'
+        if ( $results.Count -eq 0 -and $PsCmdlet.ParameterSetName -eq 'Name' ) {
+            Write-Error -Message "Armor VM not found: Name: '${Name}'."
         }
         else {
             $return = $results

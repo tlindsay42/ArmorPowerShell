@@ -138,7 +138,13 @@ function Get-ArmorUser {
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor user not found.'
+            Write-Host -Object $PsCmdlet.ParameterSetName
+            if ( $PsCmdlet.ParameterSetName -eq 'UserName' ) {
+                Write-Error -Message "Armor user not found: UserName: '${UserName}'."
+            }
+            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+                Write-Error -Message "Armor user not found: FirstName: '${FirstName}', LastName: '${LastName}'."
+            }
         }
         else {
             $return = $results
