@@ -77,10 +77,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 },
                 @{
-                    'Name'       = 'Garbage'
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -100,6 +96,38 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'Content'           = $Global:JsonResponseBody.Accounts4
                 }
             }
+
+            $testCases = @(
+                @{
+                    'ID'         = 7
+                    'ApiVersion' = $validApiVersion
+                }
+            )
+            $testName = 'should fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $ID, [String] $ApiVersion )
+                { Get-ArmorAccount -ID $ID -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                    Should -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+
+            $testCases = @(
+                @{
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                }
+            )
+            $testName = 'should fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Name, [String] $ApiVersion )
+                { Get-ArmorAccount -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                    Should -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testCases = @(
                 @{

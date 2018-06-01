@@ -73,10 +73,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ApiVersion' = $validApiVersion
                 },
                 @{
-                    'Name'       = 'Garbage'
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -96,6 +92,22 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'Content'           = $Global:JsonResponseBody.VMs1
                 }
             }
+
+            $testCases = @(
+                @{
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                }
+            )
+            $testName = 'should fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Name, [String] $ApiVersion )
+                { Get-ArmorVM -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                    Should -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testCases = @(
                 @{

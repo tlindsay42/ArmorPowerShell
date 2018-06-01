@@ -87,11 +87,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 },
                 @{
                     'WorkloadID' = $validID
-                    'Name'       = 'Garbage'
-                    'ApiVersion' = $validApiVersion
-                },
-                @{
-                    'WorkloadID' = $validID
                     'Name'       = $validName
                     'ApiVersion' = $invalidApiVersion
                 }
@@ -111,6 +106,23 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'Content'           = $Global:JsonResponseBody.Tiers1VMs1
                 }
             }
+
+            $testCases = @(
+                @{
+                    'WorkloadID' = $validID
+                    'Name'       = 'Garbage'
+                    'ApiVersion' = $validApiVersion
+                }
+            )
+            $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $WorkloadID, [String] $Name, [String] $ApiVersion )
+                { Get-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                    Should -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testCases = @(
                 @{
