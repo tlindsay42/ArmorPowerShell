@@ -1,13 +1,20 @@
 if ( $Env:CI -eq $true ) {
     Describe -Name 'Environment Variables' -Tag 'Environment Variables', 'Config' -Fixture {
         Context -Name 'CI Abstraction' -Fixture {
-            It -Name 'should set $Env:CI_BUILD_PATH to a directory that exists' -Test {
-                Test-Path -Path $Env:CI_BUILD_PATH -PathType 'Container' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_BUILD_SCRIPTS_PATH to a directory that exists' -Test {
-                Test-Path -Path $Env:CI_BUILD_SCRIPTS_PATH -PathType 'Container' |
+            $testCases = @(
+                @{
+                    'VariableName' = '$Env:CI_BUILD_PATH'
+                    'Path'         = $Env:CI_BUILD_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_BUILD_SCRIPTS_PATH'
+                    'Path'         = $Env:CI_BUILD_SCRIPTS_PATH
+                }
+            )
+            $testName = 'should set: <VariableName> to a directory that exists'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Path )
+                Test-Path -Path $Path -PathType 'Container' |
                     Should -Be $true
             } # End of It
 
@@ -38,15 +45,29 @@ if ( $Env:CI -eq $true ) {
                     Should -Be 200
             } # End of It
 
-            It -Name 'should set $Env:CI_BRANCH' -Test {
-                $Env:CI_BRANCH |
+            $testCases = @(
+                @{
+                    'VariableName' = '$Env:CI_BRANCH'
+                    'String'       = $Env:CI_BRANCH
+                }
+            )
+            $testName = 'should set: <VariableName>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $String )
+                $String |
                     Should -Not -BeNullOrEmpty
             } # End of It
 
             if ( $Env:CI_PULL_REQUEST -ne $null ) {
-                It -Name 'should set $Env:CI_PULL_REQUEST' -Test {
+                It -Name 'should set: $Env:CI_PULL_REQUEST' -Test {
                     $Env:CI_PULL_REQUEST |
                         Should -Not -BeNullOrEmpty
+                } # End of It
+            }
+            else {
+                It -Name 'should not set: $Env:CI_PULL_REQUEST' -Test {
+                    $Env:CI_PULL_REQUEST |
+                        Should -BeNullOrEmpty
                 } # End of It
             }
         } # End of Context
@@ -57,18 +78,28 @@ if ( $Env:CI -eq $true ) {
                     Should -Be 'Armor'
             } # End of It
 
-            It -Name 'should set $Env:CI_MODULE_LIB_PATH to a directory that exists' -Test {
-                Test-Path -Path $Env:CI_MODULE_LIB_PATH -PathType 'Container' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_MODULE_PRIVATE_PATH to a directory that exists' -Test {
-                Test-Path -Path $Env:CI_MODULE_PRIVATE_PATH -PathType 'Container' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_MODULE_PUBLIC_PATH to a directory that exists' -Test {
-                Test-Path -Path $Env:CI_MODULE_PUBLIC_PATH -PathType 'Container' |
+            $testCases = @(
+                @{
+                    'VariableName' = '$Env:CI_MODULE_ETC_PATH'
+                    'Path'         = $Env:CI_MODULE_ETC_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_MODULE_LIB_PATH'
+                    'Path'         = $Env:CI_MODULE_LIB_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_MODULE_PRIVATE_PATH'
+                    'Path'         = $Env:CI_MODULE_PRIVATE_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_MODULE_PUBLIC_PATH'
+                    'Path'         = $Env:CI_MODULE_PUBLIC_PATH
+                }
+            )
+            $testName = 'should set: <VariableName> to a directory that exists'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Path )
+                Test-Path -Path $Path -PathType 'Container' |
                     Should -Be $true
             } # End of It
 
@@ -94,13 +125,20 @@ if ( $Env:CI -eq $true ) {
                     Should -Be $true
             } # End of It
 
-            It -Name 'should set $Env:CI_TEST_RESULTS_PATH to a new file' -Test {
-                Test-Path -Path $Env:CI_TEST_RESULTS_PATH -PathType 'Leaf' |
-                    Should -Be $false
-            } # End of It
-
-            It -Name 'should set $Env:CI_COVERAGE_RESULTS_PATH to a new file' -Test {
-                Test-Path -Path $Env:CI_COVERAGE_RESULTS_PATH -PathType 'Leaf' |
+            $testCases = @(
+                @{
+                    'VariableName' = '$Env:CI_TEST_RESULTS_PATH'
+                    'Path'         = $Env:CI_TEST_RESULTS_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_COVERAGE_RESULTS_PATH'
+                    'Path'         = $Env:CI_COVERAGE_RESULTS_PATH
+                }
+            )
+            $testName = 'should set: <VariableName> to a new file'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Path )
+                Test-Path -Path $Path -PathType 'Leaf' |
                     Should -Be $false
             } # End of It
         } # End of Context
@@ -113,28 +151,24 @@ if ( $Env:CI -eq $true ) {
         } # End of Context
 
         Context -Name 'CI Script Paths' -Fixture {
-            It -Name 'should set $Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH to a file that exists' -Test {
-                Test-Path -Path $Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH -PathType 'Leaf' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH to a file that exists' -Test {
-                Test-Path -Path $Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH -PathType 'Leaf' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_BUILD_PROJECT_SCRIPT_PATH to a file that exists' -Test {
-                Test-Path -Path $Env:CI_BUILD_PROJECT_SCRIPT_PATH -PathType 'Leaf' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_START_TESTS_SCRIPT_PATH to a file that exists' -Test {
-                Test-Path -Path $Env:CI_START_TESTS_SCRIPT_PATH -PathType 'Leaf' |
-                    Should -Be $true
-            } # End of It
-
-            It -Name 'should set $Env:CI_PUBLISH_PROJECT_SCRIPT_PATH to a file that exists' -Test {
-                Test-Path -Path $Env:CI_PUBLISH_PROJECT_SCRIPT_PATH -PathType 'Leaf' |
+            $testCases = @(
+                @{
+                    'VariableName' = '$Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH'
+                    'Path'         = $Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH'
+                    'Path'         = $Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH
+                },
+                @{
+                    'VariableName' = '$Env:CI_PUBLISH_PROJECT_SCRIPT_PATH'
+                    'Path'         = $Env:CI_PUBLISH_PROJECT_SCRIPT_PATH
+                }
+            )
+            $testName = 'should set: <VariableName> to a file that exists'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Path )
+                Test-Path -Path $Path -PathType 'Leaf' |
                     Should -Be $true
             } # End of It
         } # End of Context
@@ -143,15 +177,20 @@ if ( $Env:CI -eq $true ) {
     if ( $Env:APPVEYOR -eq $true ) {
         Describe -Name 'Git' -Tag 'Git', 'Config' -Fixture {
             Context -Name 'Configuration Files' -Fixture {
-                It -Name 'should have a git config file' -Test {
-                    Join-Path -Path $Env:USERPROFILE -ChildPath '.gitconfig' |
-                        Test-Path -PathType 'Leaf' |
-                        Should -Be $true
-                } # End of It
-
-                It -Name 'should have a git credential file' -Test {
-                    Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials' |
-                        Test-Path -PathType 'Leaf' |
+                $testCases = @(
+                    @{
+                        'FileType' = 'git config'
+                        'Path'     = Join-Path -Path $Env:USERPROFILE -ChildPath '.gitconfig'
+                    },
+                    @{
+                        'FileType' = 'git credential'
+                        'Path'     = Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials'
+                    }
+                )
+                $testName = 'should have a: <FileType> file'
+                It -Name $testName -TestCases $testCases -Test {
+                    param ( [String] $Path )
+                    Test-Path -Path $Path -PathType 'Leaf' |
                         Should -Be $true
                 } # End of It
             } # End of Context
