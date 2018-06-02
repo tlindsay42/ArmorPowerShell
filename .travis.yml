@@ -66,7 +66,7 @@ env:
     # Coveralls environment variables
     - CI_NAME='Travis'
     - CI_BUILD_NUMBER="${TRAVIS_BUILD_NUMBER}"
-    - CI_BUILD_URL="https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/jobs/${env:TRAVIS_JOB_ID}"
+    - CI_BUILD_URL="https://travis-ci.org/${CI_OWNER_NAME}/${CI_PROJECT_NAME}/jobs/${TRAVIS_JOB_ID}"
     - CI_BRANCH="${TRAVIS_BRANCH}"
     - CI_PULL_REQUEST="${TRAVIS_PULL_REQUEST}"
 

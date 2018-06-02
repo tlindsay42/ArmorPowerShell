@@ -1,4 +1,5 @@
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+'ArmorCompleteWorkloadTier', 'ArmorStatus'
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 

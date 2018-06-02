@@ -1,4 +1,4 @@
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
@@ -157,11 +157,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Get-ArmorVM -ID 1 -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorVM'
                 },
                 @{
                     'FoundReturnType'    = ( Get-ArmorVM -Name 'VM1' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorVM'
                 }
             )
             $testName = $Global:ReturnTypeForm

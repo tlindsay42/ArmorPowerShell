@@ -7,7 +7,7 @@ param (
 function GetTestResponseBody ( [String] $FileName ) {
     [String] $return = ''
 
-    $path = Join-Path -Path $env:CI_TESTS_PATH -ChildPath 'etc'
+    $path = Join-Path -Path $Env:CI_TESTS_PATH -ChildPath 'etc'
     $filePath = Join-Path -Path $path -ChildPath $FileName
     if ( ( Test-Path -Path $filePath ) -eq $true ) {
         $return = Get-Content -Path $filePath
@@ -262,31 +262,31 @@ if ( $Coverage -eq $true ) {
 Write-Host -Object "`nInvoking Pester test framework." -ForegroundColor 'Yellow'
 $testsResults = Invoke-Pester @splat
 
-$pathTest = Test-Path -Path $env:CI_TEST_RESULTS_PATH
+$pathTest = Test-Path -Path $Env:CI_TEST_RESULTS_PATH
 if ( $pathTest -eq $false ) {
-    throw "File not found: '${env:CI_TEST_RESULTS_PATH}'."
+    throw "File not found: '${Env:CI_TEST_RESULTS_PATH}'."
 }
 
-$pathTest = Test-Path -Path $env:CI_COVERAGE_RESULTS_PATH
+$pathTest = Test-Path -Path $Env:CI_COVERAGE_RESULTS_PATH
 if ( $pathTest -eq $false -and $Coverage -eq $true ) {
-    throw "File not found: '${env:CI_COVERAGE_RESULTS_PATH}'."
+    throw "File not found: '${Env:CI_COVERAGE_RESULTS_PATH}'."
 }
 
 if ( $testsResults.FailedCount -gt 0 ) {
     throw "$( $testsResults.FailedCount ) tests failed."
 }
 
-if ( $env:APPVEYOR -eq $true ) {
+if ( $Env:APPVEYOR -eq $true ) {
     $webClient = New-Object -TypeName 'System.Net.WebClient'
     $webClient.UploadFile(
-        "https://ci.appveyor.com/api/testresults/nunit/${env:APPVEYOR_JOB_ID}",
-        $env:CI_TEST_RESULTS_PATH
+        "https://ci.appveyor.com/api/testresults/nunit/${Env:APPVEYOR_JOB_ID}",
+        $Env:CI_TEST_RESULTS_PATH
     )
 
     $splat = @{
         'PesterResults'     = $testsResults
-        'CoverallsApiToken' = $env:COVERALLS_API_KEY
-        'BranchName'        = $env:CI_BRANCH
+        'CoverallsApiToken' = $Env:COVERALLS_API_KEY
+        'BranchName'        = $Env:CI_BRANCH
     }
     $coverageResults = Format-Coverage @splat
 

@@ -1,7 +1,7 @@
 Install
 ========================
 
-This repository contains a folder named `Armor`_. The folder needs to be installed into one of your PowerShell Module Paths using one of the installation methods outlined in the next section. To see the full list of available PowerShell Module paths, use ``$env:PSModulePath.Split( ';' )`` in a PowerShell terminal window.
+This repository contains a folder named `Armor`_. The folder needs to be installed into one of your PowerShell Module Paths using one of the installation methods outlined in the next section. To see the full list of available PowerShell Module paths, use ``$Env:PSModulePath.Split( ';' )`` in a PowerShell terminal window.
 
 .. _Armor: https://www.armor.com
 
@@ -9,7 +9,7 @@ Common PowerShell module paths include:
 
 1. Current User: ``%USERPROFILE%\Documents\WindowsPowerShell\Modules\``
 2. All Users: ``%ProgramFiles%\WindowsPowerShell\Modules\``
-3. OneDrive: ``$env:OneDrive\Documents\WindowsPowerShell\Modules\``
+3. OneDrive: ``$Env:OneDrive\Documents\WindowsPowerShell\Modules\``
 
 Option 1: PowerShell Gallery Installation (Recommended)
 ------------------------
@@ -25,7 +25,7 @@ Option 2: PowerShell Gallery Download
 1. Ensure you have the `Windows Management Framework 5.0`_ or greater installed.
 2. Open a Powershell console with the *Run as Administrator* option.
 3. Run ``Set-ExecutionPolicy`` using the parameter *RemoteSigned* or *Bypass*.
-4. Run ``Save-Module -Name Armor -Path <path>`` to download the module from the PowerShell Gallery. Note that the first time you install from the remote repository it may ask you to first trust the repository. 
+4. Run ``Save-Module -Name Armor -Path <path>`` to download the module from the PowerShell Gallery. Note that the first time you install from the remote repository it may ask you to first trust the repository.
 5. Copy the contents of the Armor module folder onto your workstation into the desired PowerShell Module path.
 
 Option 3: Manual Installation
@@ -46,7 +46,7 @@ PowerShell will create a folder for each new version of any module you install. 
 
 ``Get-Module -ListAvailable -Name Armor``
 
-The ``-ListAvailable`` switch will pull up all installed versions from any path found in ``$env:PSModulePath``. Check to make sure the version you wanted is installed. You can safely remove old versions, if desired.
+The ``-ListAvailable`` switch will pull up all installed versions from any path found in ``$Env:PSModulePath``. Check to make sure the version you wanted is installed. You can safely remove old versions, if desired.
 
 To see which version is currently loaded, use:
 

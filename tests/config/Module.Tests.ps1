@@ -1,7 +1,7 @@
 Describe -Name 'Module' -Tag 'Module' -Fixture {
     Context -Name 'Import' -Fixture {
-        It -Name "should import module: '${env:CI_MODULE_NAME}'" -Test {
-            { Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force } |
+        It -Name "should import module: '${Env:CI_MODULE_NAME}'" -Test {
+            { Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force } |
                 Should -Not -Throw
         } # End of It
     } # End of Context
@@ -10,18 +10,18 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
     Get the last index because the script files in ScriptsToProcess are
     returned as earlier index items.
     #>
-    $moduleInfo = ( Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -PassThru )[-1]
+    $moduleInfo = ( Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -PassThru )[-1]
 
     Context -Name 'Manifest' -Fixture {
         $author = 'Troy Lindsay'
         $testCases = @(
             @{
                 'Property' = 'RootModule'
-                'Value'    = "${env:CI_MODULE_NAME}.psm1"
+                'Value'    = "${Env:CI_MODULE_NAME}.psm1"
             },
             @{
                 'Property' = 'Version'
-                'Value'    = $env:CI_MODULE_VERSION
+                'Value'    = $Env:CI_MODULE_VERSION
             },
             @{
                 'Property' = 'GUID'
@@ -135,7 +135,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         } # End of It
     } # End of Context
 
-    $fileNames = Get-ChildItem -Path $env:CI_MODULE_PUBLIC_PATH -File
+    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -File
     $functionNames = $moduleInfo.ExportedFunctions.Keys
 
     Context -Name 'ExportedFunctions' -Fixture {
@@ -154,7 +154,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
     } # End of Context
 
-    $fileNames = Get-ChildItem -Path $env:CI_MODULE_LIB_PATH -File
+    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_LIB_PATH -File
 
     Context -Name 'ScriptsToProcess' -Fixture {
         foreach ( $fileName in $fileNames ) {
@@ -172,7 +172,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
     } # End of Context
 
-    $fileNames = Get-ChildItem -Path $env:CI_MODULE_PATH -File -Recurse
+    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse
 
     Context -Name 'FileList' -Fixture {
         foreach ( $fileName in $fileNames ) {

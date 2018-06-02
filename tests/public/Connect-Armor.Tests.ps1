@@ -1,4 +1,4 @@
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
@@ -198,7 +198,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
 
             # Get the user's identity information
-            Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $env:CI_MODULE_NAME -MockWith {
+            Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $Env:CI_MODULE_NAME -MockWith {
                 @{
                     'StatusCode' = 200
                     'Content'    = $Global:JsonResponseBody.Identity1
@@ -223,7 +223,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
             }
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ModuleName $env:CI_MODULE_NAME
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ModuleName $Env:CI_MODULE_NAME
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {

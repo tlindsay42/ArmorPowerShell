@@ -1,4 +1,4 @@
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
@@ -178,7 +178,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 },
                 @{
                     'FoundReturnType'    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorCompleteWorkloadTier'
                 }
             )
             $testName = $Global:ReturnTypeForm

@@ -1,9 +1,9 @@
-$projectNameLowerCase = $env:CI_PROJECT_NAME.ToLower()
+$projectNameLowerCase = $Env:CI_PROJECT_NAME.ToLower()
 
 $text = @{
     'AppVeyor'              = 'AppVeyor'
     'AppVeyorImageUrl'      = 'https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true'
-    'AppVeyorProjectUrl'    = "https://ci.appveyor.com/project/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/branch/master"
+    'AppVeyorProjectUrl'    = "https://ci.appveyor.com/project/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}/branch/master"
     'ArmorAnywhere'         = 'Armor Anywhere'
     'ArmorAnywhereUrl'      = 'https://www.armor.com/armor-anywhere-security/'
     'ArmorApiGuideUrl'      = 'https://docs.armor.com/display/KBSS/Armor+API+Guide'
@@ -14,15 +14,15 @@ $text = @{
     'BuildStatus'           = 'Build Status'
     'CoverageStatus'        = 'Coverage Status'
     'Coveralls'             = 'Coveralls'
-    'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}/badge.svg?branch=master"
-    'CoverallsProjectUrl'   = "https://coveralls.io/github/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}?branch=master"
+    'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}/badge.svg?branch=master"
+    'CoverallsProjectUrl'   = "https://coveralls.io/github/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}?branch=master"
     'CurrentVersion'        = 'Current Version'
     'DocumentationStatus'   = 'Documentation Status'
     'Gitter'                = 'Gitter'
     'GitterImageAlt'        = 'Join the chat at https://gitter.im/ArmorPowerShell/Lobby'
     'GitterImageUrl'        = 'https://badges.gitter.im/ArmorPowerShell/Lobby.svg'
     'GitterProjectUrl'      = 'https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge'
-    'LatestBuild'           = "${env:CI_PROJECT_NAME}: Latest Build"
+    'LatestBuild'           = "${Env:CI_PROJECT_NAME}: Latest Build"
     'macOS'                 = 'macOS'
     'MdBoldLinkForm'        = "**[{0}]({1} '{2}')**"
     'MdImageForm'           = '[![{0}]({1})]({2}) '
@@ -30,14 +30,14 @@ $text = @{
     'Pester'                = 'Pester'
     'PesterUrl'             = 'https://github.com/pester/Pester'
     'ProductPage'           = 'Product Page'
-    'PSDownloadsImageUrl'   = "https://img.shields.io/powershellgallery/dt/${env:CI_MODULE_NAME}.svg"
+    'PSDownloadsImageUrl'   = "https://img.shields.io/powershellgallery/dt/${Env:CI_MODULE_NAME}.svg"
     'PSGallery'             = 'PowerShell Gallery'
-    'PSGalleryImageUrl'     = "https://img.shields.io/powershellgallery/v/${env:CI_MODULE_NAME}.svg"
-    'PSGalleryProjectUrl'   = "https://www.powershellgallery.com/packages/${env:CI_MODULE_NAME}"
+    'PSGalleryImageUrl'     = "https://img.shields.io/powershellgallery/v/${Env:CI_MODULE_NAME}.svg"
+    'PSGalleryProjectUrl'   = "https://www.powershellgallery.com/packages/${Env:CI_MODULE_NAME}"
     'ReadTheDocs'           = 'ReadTheDocs'
     'ReadTheDocsImageUrl'   = "https://readthedocs.org/projects/${projectNameLowerCase}/badge/?version=latest"
     'ReadTheDocsProjectUrl' = "http://${projectNameLowerCase}.readthedocs.io/en/latest/?badge=latest"
-    'RepoUrl'               = "https://github.com/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}"
+    'RepoUrl'               = "https://github.com/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}"
     'RestfulApi'            = 'RESTful APIs'
     'RstExplicitLineBreak'  = "|`r`n`r`n"
     'RstLinkForm'           = '`{0}`_'
@@ -46,8 +46,8 @@ $text = @{
     'Title'                 = 'Armor PowerShell Module'
     'TotalDownloads'        = 'Total Downloads'
     'TravisCi'              = 'Travis CI'
-    'TravisCiImageUrl'      = "https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}.svg?branch=master"
-    'TravisCiProjectUrl'    = "https://travis-ci.org/${env:CI_OWNER_NAME}/${env:CI_PROJECT_NAME}"
+    'TravisCiImageUrl'      = "https://travis-ci.org/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}.svg?branch=master"
+    'TravisCiProjectUrl'    = "https://travis-ci.org/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}"
     'Ubuntu'                = 'Ubuntu Linux'
     'Windows'               = 'Windows'
 }
@@ -62,7 +62,7 @@ $text += @{
     'AppVeyorMdLinkTitle'      = "$( $text.AppVeyor ): $( $text.LatestBuildConsole )"
     'ArmorAnywhereMdLinkTitle' = "$( $text.ArmorAnywhere ) $( $text.ProductPage )"
     'ArmorCompleteMdLinkTitle' = "$( $text.ArmorComplete ) $( $text.ProductPage )"
-    'CoverallsMdLinkTitle'     = "$( $text.Coveralls ): ${env:CI_PROJECT_NAME}: Latest Report"
+    'CoverallsMdLinkTitle'     = "$( $text.Coveralls ): ${Env:CI_PROJECT_NAME}: Latest Report"
     'PesterMdLinkTitle'        = "$( $text.Pester ) GitHub repo"
     'PSGalleryMdLinkTitle'     = $text.PSGallery
     'ReadTheDocsMdLinkTitle'   = "$( $text.ReadTheDocs ): $( $text.LatestBuild )"
@@ -119,18 +119,18 @@ $text += @{
     'WindowsBold'          = $text.BoldForm -f $text.Windows
 }
 
-if ( ( Test-Path -Path $env:CI_MODULE_PATH ) -eq $false ) {
-    throw "Module directory: '${env:CI_MODULE_PATH}' not found."
+if ( ( Test-Path -Path $Env:CI_MODULE_PATH ) -eq $false ) {
+    throw "Module directory: '${Env:CI_MODULE_PATH}' not found."
 }
 
-Write-Host -Object "`nSet the working directory to: '${env:CI_MODULE_PATH}'." -ForegroundColor 'Yellow'
-Push-Location -Path $env:CI_MODULE_PATH -ErrorAction 'Stop'
+Write-Host -Object "`nSet the working directory to: '${Env:CI_MODULE_PATH}'." -ForegroundColor 'Yellow'
+Push-Location -Path $Env:CI_MODULE_PATH -ErrorAction 'Stop'
 
 Write-Host -Object "`nTest and import the module manifest." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
+$manifest = Test-ModuleManifest -Path $Env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Write-Host -Object "`tOld Version: '$( $manifest.Version )'."
-Write-Host -Object "`tNew Version: '${env:CI_MODULE_VERSION}'."
+Write-Host -Object "`tNew Version: '${Env:CI_MODULE_VERSION}'."
 
 Write-Host -Object "`nUpdate the module manifest." -ForegroundColor 'Yellow'
 
@@ -147,9 +147,9 @@ $description = (
     "build is published on the $( $text.PSGallery )."
 )
 
-$functionsToExport = ( Get-ChildItem -Path "${env:CI_MODULE_PATH}/Public" ).BaseName
+$functionsToExport = ( Get-ChildItem -Path "${Env:CI_MODULE_PUBLIC_PATH}" ).BaseName
 
-$fileList = Get-ChildItem -Path "${env:CI_MODULE_PATH}" -File -Recurse |
+$fileList = Get-ChildItem -Path "${Env:CI_MODULE_PATH}" -File -Recurse |
     Resolve-Path -Relative
 
 $classesWithDependencies = 'ArmorSession.ps1', 'ArmorUser.ps1'
@@ -160,9 +160,9 @@ $scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Incl
     Resolve-Path -Relative
 
 $splat = @{
-    'Path'                  = $env:CI_MODULE_MANIFEST_PATH
-    'RootModule'            = "${env:CI_MODULE_NAME}.psm1"
-    'ModuleVersion'         = $env:CI_MODULE_VERSION
+    'Path'                  = $Env:CI_MODULE_MANIFEST_PATH
+    'RootModule'            = "${Env:CI_MODULE_NAME}.psm1"
+    'ModuleVersion'         = $Env:CI_MODULE_VERSION
     'Guid'                  = '226c1ea9-1078-402a-861c-10a845a0d173'
     'Author'                = 'Troy Lindsay'
     'CompanyName'           = 'Armor'
@@ -183,19 +183,19 @@ $splat = @{
 Update-ModuleManifest @splat
 
 Write-Host -Object "`nAdjust a couple of PowerShell manifest auto-generated items." -ForegroundColor 'Yellow'
-$manifestContent = Get-Content -Path $env:CI_MODULE_MANIFEST_PATH
-$manifestContent -replace "PSGet_${env:CI_MODULE_NAME}|NewManifest", $env:CI_MODULE_NAME |
-    Set-Content -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
+$manifestContent = Get-Content -Path $Env:CI_MODULE_MANIFEST_PATH
+$manifestContent -replace "PSGet_${Env:CI_MODULE_NAME}|NewManifest", $Env:CI_MODULE_NAME |
+    Set-Content -Path $Env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Write-Host -Object "`nTest and import the module manifest again." -ForegroundColor 'Yellow'
-$manifest = Test-ModuleManifest -Path $env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
+$manifest = Test-ModuleManifest -Path $Env:CI_MODULE_MANIFEST_PATH -ErrorAction 'Stop'
 
 Pop-Location -ErrorAction 'Stop'
 $location = Get-Location
 Write-Host -Object "`nRestored the working directory to: '${location}'." -ForegroundColor 'Yellow'
 
-Write-Host -Object "`nImport module: '${env:CI_MODULE_NAME}'." -ForegroundColor 'Yellow'
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+Write-Host -Object "`nImport module: '${Env:CI_MODULE_NAME}'." -ForegroundColor 'Yellow'
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
@@ -227,7 +227,7 @@ $content = (
     "${markDownDescription}`r`n`r`n" +
     "Please visit the $( $text.ReadTheDocsMd ) for more details."
 ) |
-    Out-File -FilePath "${env:CI_BUILD_PATH}/README.md" -Encoding 'utf8'
+    Out-File -FilePath "${Env:CI_BUILD_PATH}/README.md" -Encoding 'utf8'
 
 # Enrich keywords in the description for use in index.rst (reStructuredText formatting)
 $reStructuredTextDescription = $description -replace
@@ -288,7 +288,7 @@ $content += (
 )
 
 # Build the command documentation menu
-$verbs = ( Get-Command -Module $env:CI_MODULE_NAME ).Verb.ForEach( { $_.ToLower() } ) |
+$verbs = ( Get-Command -Module $Env:CI_MODULE_NAME ).Verb.ForEach( { $_.ToLower() } ) |
     Select-Object -Unique
 foreach ( $verb in $verbs ) {
     $content += "   cmd_${verb}"
@@ -298,12 +298,12 @@ $content += ''
 
 # Write the index file
 $content |
-    Out-File -FilePath "${env:CI_BUILD_PATH}/docs/index.rst" -Encoding 'utf8'
+    Out-File -FilePath "${Env:CI_BUILD_PATH}/docs/index.rst" -Encoding 'utf8'
 
 Write-Host -Object "`tindex"
 
 # Build the command documentation files for each verb
-$verbs = ( Get-Command -Module $env:CI_MODULE_NAME ).Verb |
+$verbs = ( Get-Command -Module $Env:CI_MODULE_NAME ).Verb |
     Select-Object -Unique
 foreach ( $verb in $verbs ) {
     $content = @()
@@ -313,7 +313,7 @@ foreach ( $verb in $verbs ) {
     $content += ''
 
     # Build the command documentation from the comment-based help
-    $commands = ( Get-Command -Module $env:CI_MODULE_NAME ).Where( { $_.Verb -eq $verb } )
+    $commands = ( Get-Command -Module $Env:CI_MODULE_NAME ).Where( { $_.Verb -eq $verb } )
     foreach ( $command in $commands ) {
         $content += $command.Name
         $content += '-------------------------'
@@ -323,7 +323,7 @@ foreach ( $verb in $verbs ) {
 
     $verb = $verb.ToLower()
     $content |
-        Out-File -FilePath "${env:CI_BUILD_PATH}/docs/cmd_${verb}.rst" -Encoding 'utf8'
+        Out-File -FilePath "${Env:CI_BUILD_PATH}/docs/cmd_${verb}.rst" -Encoding 'utf8'
 
     Write-Host -Object "`tcmd_${verb}"
 }

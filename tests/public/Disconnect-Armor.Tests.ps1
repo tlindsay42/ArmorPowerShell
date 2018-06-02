@@ -1,4 +1,4 @@
-Import-Module -Name $env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 

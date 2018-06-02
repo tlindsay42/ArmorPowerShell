@@ -1,8 +1,8 @@
 Write-Host -Object "`nListing all continuous integration environment variables." -ForegroundColor 'Yellow'
 
-( Get-ChildItem -Path 'env:' ).Where(
+( Get-ChildItem -Path 'Env:' ).Where(
     {
-        $_.Name -match "^(?:CI|${env:CI_NAME})(?:_|$)" -and
+        $_.Name -match "^(?:CI|${Env:CI_NAME})(?:_|$)" -and
             $_.Name -notmatch 'EMAIL'
     }
 ) |

@@ -15,7 +15,7 @@ Get-PackageProvider -Name $providerNames |
 Write-Host -Object "Installing modules:" -ForegroundColor 'Yellow'
 $moduleNames = 'Pester', 'Coveralls'
 foreach ( $moduleName in $moduleNames ) {
-    if ( $env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2015' ) {
+    if ( $Env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2015' ) {
         Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -Force -Confirm:$false |
             Out-Null
     }
@@ -23,7 +23,7 @@ foreach ( $moduleName in $moduleNames ) {
         Install-Module -Name $moduleName -Scope 'CurrentUser' -Repository 'PSGallery' -SkipPublisherCheck -Force -Confirm:$false |
             Out-Null
     }
-    
+
     Import-Module -Name $moduleName
 }
 Remove-Variable -Name 'moduleName'
