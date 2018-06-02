@@ -83,6 +83,7 @@ init:
     # Module variables
   - ps: $Env:CI_MODULE_NAME = 'Armor'
   - ps: $Env:CI_MODULE_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath $Env:CI_MODULE_NAME -ErrorAction 'Stop'
+  - ps: $Env:CI_MODULE_ETC_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Etc' -ErrorAction 'Stop'
   - ps: $Env:CI_MODULE_LIB_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Lib' -ErrorAction 'Stop'
   - ps: $Env:CI_MODULE_PRIVATE_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Private' -ErrorAction 'Stop'
   - ps: $Env:CI_MODULE_PUBLIC_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Public' -ErrorAction 'Stop'

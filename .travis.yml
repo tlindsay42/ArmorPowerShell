@@ -73,6 +73,7 @@ env:
     # Module variables
     - CI_MODULE_NAME='Armor'
     - CI_MODULE_PATH="${CI_BUILD_PATH}/${CI_MODULE_NAME}"
+    - CI_MODULE_ETC_PATH="${CI_MODULE_PATH}/Etc"
     - CI_MODULE_LIB_PATH="${CI_MODULE_PATH}/Lib"
     - CI_MODULE_PRIVATE_PATH="${CI_MODULE_PATH}/Private"
     - CI_MODULE_PUBLIC_PATH="${CI_MODULE_PATH}/Public"
