@@ -152,6 +152,9 @@ $functionsToExport = ( Get-ChildItem -Path "${Env:CI_MODULE_PUBLIC_PATH}" ).Base
 $fileList = Get-ChildItem -Path "${Env:CI_MODULE_PATH}" -File -Recurse |
     Resolve-Path -Relative
 
+$aliasesToExport = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' |
+    ConvertFrom-Json -ErrorAction 'Stop'
+
 $classesWithDependencies = 'ArmorSession.ps1', 'ArmorUser.ps1'
 $scriptsToProcess = @()
 $scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Exclude $classesWithDependencies -File |
@@ -172,6 +175,7 @@ $splat = @{
     'ProcessorArchitecture' = 'None'
     'ScriptsToProcess'      = $scriptsToProcess
     'FunctionsToExport'     = $functionsToExport
+    'AliasesToExport'       = $aliasesToExport
     'FileList'              = $fileList
     'Tags'                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
         'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
