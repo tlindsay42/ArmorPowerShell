@@ -47,13 +47,13 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
                 Should -BeGreaterThan 0
         } # End of It
 
-        $testName = "should have at least one 'Example' entry"
+        $testName = "should have at least one: 'Example' entry"
         It -Name $testName -Test {
             $Help.Examples.Example.Remarks.Length |
                 Should -BeGreaterThan 0
         } # End of It
 
-        $testName = "should have at least four help 'Link' entries"
+        $testName = "should have at least four help: 'Link' entries"
         It -Name $testName -Test {
             $Help.RelatedLinks.NavigationLink.Uri.Count |
                 Should -BeGreaterThan 3
@@ -92,7 +92,7 @@ function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
 
         foreach ( $inputType in $inputTypes ) {
             if ( $inputType -match '^None' ) {
-                $testName = "should not have any pipeline input parameters since 'Inputs' is set to: '${inputType}'"
+                $testName = "should not have any pipeline input parameters since: 'Inputs' is set to: '${inputType}'"
                 It -Name $testName -Test {
                     $pipelineInputParameterTypes.Count |
                         Should -Be 0
@@ -108,7 +108,7 @@ function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
         }
 
         foreach ( $inputType in $pipelineInputParameterTypes ) {
-            $testName = "should have an 'Inputs' entry for type: '${inputType}'"
+            $testName = "should have an: 'Inputs' entry for type: '${inputType}'"
             It -Name $testName -Test {
                 $inputType |
                     Should -BeIn $inputTypes
@@ -138,7 +138,7 @@ function TestAdvancedFunctionHelpOutputs ( [String[]] $ExpectedOutputTypeNames, 
         } # End of It
 
         foreach ( $outputType in $outputTypes ) {
-            $testName = "should have an 'Outputs' entry for type: '${outputType}'"
+            $testName = "should have an: 'Outputs' entry for type: '${outputType}'"
             It -Name $testName -Test {
                 $outputType |
                     Should -BeIn $ExpectedOutputTypeNames
@@ -146,7 +146,7 @@ function TestAdvancedFunctionHelpOutputs ( [String[]] $ExpectedOutputTypeNames, 
         }
 
         foreach ( $outputType in $ExpectedOutputTypeNames ) {
-            $testName = "should have an 'OutputType' entry for type: '${outputType}'"
+            $testName = "should have an: 'OutputType' entry for type: '${outputType}'"
             It -Name $testName -Test {
                 $outputType |
                     Should -BeIn $outputTypes
@@ -196,7 +196,7 @@ function TestAdvancedFunctionHelpNotes ( [String] $ExpectedNotes, [PSObject] $He
     $contextName = $Global:FunctionHelpForm -f 'Notes'
     Context -Name $contextName -Fixture {
         $inlineNotes = $ExpectedNotes -replace '\n', ', '
-        $testName = "should have set 'Notes' to '${inlineNotes}'"
+        $testName = "should have set: 'Notes' to: '${inlineNotes}'"
         It -Name $testName -Test {
             $Help.AlertSet.Alert.Text |
                 Should -BeExactly $ExpectedNotes
