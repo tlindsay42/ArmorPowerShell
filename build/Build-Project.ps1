@@ -39,10 +39,10 @@ $text = @{
     'ReadTheDocsProjectUrl' = "http://${projectNameLowerCase}.readthedocs.io/en/latest/?badge=latest"
     'RepoUrl'               = "https://github.com/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}"
     'RestfulApi'            = 'RESTful APIs'
-    'RstExplicitLineBreak'  = "|`r`n`r`n"
+    'RstExplicitLineBreak'  = "|`n`n"
     'RstLinkForm'           = '`{0}`_'
-    'RstImageForm'          = ".. image:: {0}`r`n   :target: {1}`r`n   :alt: {2}`r`n`r`n"
-    'RstLinkMap'            = ".. _{0}: {1}`r`n`r`n"
+    'RstImageForm'          = ".. image:: {0}`n   :target: {1}`n   :alt: {2}`n`n"
+    'RstLinkMap'            = ".. _{0}: {1}`n`n"
     'Title'                 = 'Armor PowerShell Module'
     'TotalDownloads'        = 'Total Downloads'
     'TravisCi'              = 'Travis CI'
@@ -249,12 +249,13 @@ $reStructuredTextDescription = $description -replace
     $text.TravisCi, $text.TravisCiRst -replace
     $text.Pester, $text.PesterRst -replace
     $text.Coveralls, $text.CoverallsRst -replace
-    $text.PSGallery, $text.PSGalleryRst
+    $text.PSGallery, $text.PSGalleryRst -replace
+    "`r", ''
 
 $content = @()
 $content += (
-    "$( $text.Title )`r`n" +
-    "========================`r`n`r`n" +
+    "$( $text.Title )`n" +
+    "========================`n`n" +
     $text.PSGalleryRstShield +
     $text.PSDownloadsRstShield +
     $text.RstExplicitLineBreak +
@@ -265,7 +266,7 @@ $content += (
     $text.RstExplicitLineBreak +
     $text.GitterRstShield +
     $reStructuredTextDescription +
-    "`r`n`r`nThe source code is $( $text.GitHubRst ). `r`n`r`n" +
+    "`n`nThe source code is $( $text.GitHubRst ). `n`n" +
     $text.ArmorCompleteRstMap +
     $text.ArmorAnywhereRstMap +
     $text.RestfulApiRstMap +
@@ -276,10 +277,10 @@ $content += (
     $text.PSGalleryRstMap +
     $text.GitterRstMap +
     $text.GitHubRstMap +
-    ".. toctree::`r`n" +
-    "   :maxdepth: 2`r`n" +
-    "   :hidden:`r`n" +
-    "   :caption: User Documentation`r`n"
+    ".. toctree::`n" +
+    "   :maxdepth: 2`n" +
+    "   :hidden:`n" +
+    "   :caption: User Documentation`n"
 )
 
 $fileNames = ( Get-ChildItem -Path './docs' ).Where( { $_.Name -match '^usr_\d\d_.*.rst$' } ).ForEach( { $_.Name.ToLower() } )
@@ -288,10 +289,10 @@ foreach ( $fileName in $fileNames ) {
 }
 
 $content += (
-    "`r`n`r`n.. toctree::`r`n" +
-    "   :maxdepth: 2`r`n" +
-    "   :hidden:`r`n" +
-    "   :caption: Command Documentation`r`n" +
+    "`n`n.. toctree::`n" +
+    "   :maxdepth: 2`n" +
+    "   :hidden:`n" +
+    "   :caption: Command Documentation`n" +
     "   "
 )
 
