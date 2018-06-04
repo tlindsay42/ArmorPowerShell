@@ -44,23 +44,28 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
     OutInfo( ( $publishForm -f 'project', $Env:CI_PROJECT_NAME, $Env:APPVEYOR_BUILD_VERSION, 'GitHub' ) )
 
-    # Publish the new version back to GitHub
-    git checkout --quiet $Env:CI_BRANCH
-    git add --all
-    git status
-    git commit --signoff --message "${Env:CI_NAME}: Update version to ${Env:CI_MODULE_VERSION} [ci skip]"
-    git push --porcelain --set-upstream origin $Env:CI_BRANCH
+    if ( $Env:APPVEYOR_RE_BUILD -eq $true ) {
+        OutWarning( ( $messageForm -f 'GitHub', 'rebuild', $true ) )
+    }
+    else {
+        # Publish the new version back to GitHub
+        git checkout --quiet $Env:CI_BRANCH
+        git add --all
+        git status
+        git commit --signoff --message "${Env:CI_NAME}: Update version to ${Env:CI_MODULE_VERSION} [ci skip]"
+        git push --porcelain --set-upstream origin $Env:CI_BRANCH
 
-    if ( $Env:CI_BRANCH -eq 'master' ) {
-        if ( $Env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
-            OutWarning( ( $messageForm -f 'GitHub Releases', $commitMessageKeyword, "[${skipKeyword}]" ) )
-        }
-        else {
-            OutInfo( ( $publishForm -f 'project', $Env:CI_PROJECT_NAME, $Env:CI_MODULE_VERSION, 'GitHub Releases' ) )
+        if ( $Env:CI_BRANCH -eq 'master' ) {
+            if ( $Env:APPVEYOR_REPO_COMMIT_MESSAGE -match "\[${skipKeyword}\]" ) {
+                OutWarning( ( $messageForm -f 'GitHub Releases', $commitMessageKeyword, "[${skipKeyword}]" ) )
+            }
+            else {
+                OutInfo( ( $publishForm -f 'project', $Env:CI_PROJECT_NAME, $Env:CI_MODULE_VERSION, 'GitHub Releases' ) )
 
-            # Publish the new version to GitHub Releases
-            git tag $tag
-            git push --porcelain origin $tag
+                # Publish the new version to GitHub Releases
+                git tag $tag
+                git push --porcelain origin $tag
+            }
         }
     }
 
