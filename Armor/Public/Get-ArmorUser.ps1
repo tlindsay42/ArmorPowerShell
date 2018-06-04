@@ -120,7 +120,7 @@ function Get-ArmorUser {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
+        if ( $PSCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
         }
         else {
@@ -138,10 +138,10 @@ function Get-ArmorUser {
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {
-            if ( $PsCmdlet.ParameterSetName -eq 'UserName' ) {
+            if ( $PSCmdlet.ParameterSetName -eq 'UserName' ) {
                 Write-Error -Message "Armor user not found: UserName: '${UserName}'."
             }
-            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+            elseif ( $PSCmdlet.ParameterSetName -eq 'Name' ) {
                 Write-Error -Message "Armor user not found: FirstName: '${FirstName}', LastName: '${LastName}'."
             }
         }

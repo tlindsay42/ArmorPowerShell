@@ -117,10 +117,10 @@ function Get-ArmorNoun {
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
         if ( $results.Count -eq 0 ) {
-            if ( $PsCmdlet.ParameterSetName -eq 'ID' ) {
+            if ( $PSCmdlet.ParameterSetName -eq 'ID' ) {
                 Write-Error -Message "Armor object not found: ID: '${ID}'."
             }
-            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+            elseif ( $PSCmdlet.ParameterSetName -eq 'Name' ) {
                 Write-Error -Message "Armor object not found: Name: '${Name}'."
             }
         }

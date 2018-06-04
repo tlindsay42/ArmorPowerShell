@@ -140,10 +140,10 @@ function Get-ArmorVM {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
+        if ( $PSCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints[1] -IDs $ID
         }
-        elseif ( $PsCmdlet.ParameterSetName -eq 'CoreInstanceID' ) {
+        elseif ( $PSCmdlet.ParameterSetName -eq 'CoreInstanceID' ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints[2] -IDs $CoreInstanceID
         }
         else {
@@ -160,7 +160,7 @@ function Get-ArmorVM {
             Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
-        if ( $results.Count -eq 0 -and $PsCmdlet.ParameterSetName -eq 'Name' ) {
+        if ( $results.Count -eq 0 -and $PSCmdlet.ParameterSetName -eq 'Name' ) {
             Write-Error -Message "Armor VM not found: Name: '${Name}'."
         }
         else {

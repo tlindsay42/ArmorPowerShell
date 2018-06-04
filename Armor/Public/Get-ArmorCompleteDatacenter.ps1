@@ -151,11 +151,11 @@ function Get-ArmorCompleteDatacenter {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        if ( $PsCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
+        if ( $PSCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
             $filters = $resources.Filter |
                 Get-Member -MemberType 'NoteProperty'
 
-            if ( $PsCmdlet.ParameterSetName -ne 'ID' ) {
+            if ( $PSCmdlet.ParameterSetName -ne 'ID' ) {
                 $filters = $filters.Where( { $_.Name -ne 'ID' } )
             }
 

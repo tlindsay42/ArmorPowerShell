@@ -127,7 +127,7 @@ function Get-ArmorCompleteWorkloadTier {
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
+        if ( $PSCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $WorkloadID, $ID
         }
         else {
@@ -144,7 +144,7 @@ function Get-ArmorCompleteWorkloadTier {
             Get-Member -MemberType 'NoteProperty'
         $results = Select-ArmorApiResult -Results $results -Filters $filters
 
-        if ( $results.Count -eq 0 -and $PsCmdlet.ParameterSetName -eq 'Name' ) {
+        if ( $results.Count -eq 0 -and $PSCmdlet.ParameterSetName -eq 'Name' ) {
             Write-Error -Message "Armor workload tier not found: Name: '${Name}'."
         }
         else {

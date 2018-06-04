@@ -154,11 +154,11 @@ function Get-ArmorAccount {
 
         $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
 
-        if ( $PsCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
+        if ( $PSCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
             $filters = $resources.Filter |
                 Get-Member -MemberType 'NoteProperty'
 
-            if ( $PsCmdlet.ParameterSetName -ne 'ID' ) {
+            if ( $PSCmdlet.ParameterSetName -ne 'ID' ) {
                 $filters = $filters.Where( { $_.Name -ne 'ID' } )
             }
 
@@ -166,10 +166,10 @@ function Get-ArmorAccount {
         }
 
         if ( $results.Count -eq 0 ) {
-            if ( $PsCmdlet.ParameterSetName -eq 'ID' ) {
+            if ( $PSCmdlet.ParameterSetName -eq 'ID' ) {
                 Write-Error -Message "Armor account not found: ID: '${ID}'."
             }
-            elseif ( $PsCmdlet.ParameterSetName -eq 'Name' ) {
+            elseif ( $PSCmdlet.ParameterSetName -eq 'Name' ) {
                 Write-Error -Message "Armor account not found: Name: '${Name}'."
             }
         }

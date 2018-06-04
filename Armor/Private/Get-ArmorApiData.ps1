@@ -116,10 +116,10 @@ function Get-ArmorApiData {
         if ( $api.$FunctionName -eq $null ) {
             throw "Invalid endpoint: '${FunctionName}'"
         }
-        elseif ( $api.$FunctionName.$ApiVersion -eq $null -and $ApiVersions -eq $false ) {
+        elseif ( $PSCmdlet.ParameterSetName -eq 'ApiVersion' -and $api.$FunctionName.$ApiVersion -eq $null ) {
             throw "Invalid endpoint version: '${ApiVersion}'"
         }
-        elseif ( $ApiVersions -eq $true ) {
+        elseif ( $PSCmdlet.ParameterSetName -eq 'ApiVersions' -and $ApiVersions -eq $true ) {
             $return = ( $api.$FunctionName | Get-Member -MemberType 'NoteProperty' ).Name |
                 Sort-Object
         }
