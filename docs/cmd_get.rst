@@ -647,6 +647,8 @@ SYNOPSIS
 SYNTAX
     Get-ArmorVM [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParameters>]
     
+    Get-ArmorVM [[-CoreInstanceID] <Guid>] [[-ApiVersion] <String>] [<CommonParameters>]
+    
     Get-ArmorVM [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
     
     
@@ -660,6 +662,9 @@ DESCRIPTION
 PARAMETERS
     -ID <UInt16>
         Specifies the IDs of the virtual machines that you want to retrieve.
+        
+    -CoreInstanceID <Guid>
+        Specifies the Armor Anywhere Core Agent instance IDs of the virtual machines that you want to retrieve.
         
     -Name <String>
         Specifies the names of the virtual machines that you want to retrieve.
