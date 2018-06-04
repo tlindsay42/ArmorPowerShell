@@ -53,7 +53,7 @@ function New-ArmorApiUriQuery {
         Specifies the endpoint's URI.
         #>
         [Parameter( Position = 2 )]
-        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { $_ -match 'https://.+/\w+' } )]
         [String]
         $Uri = ''
     )
@@ -108,8 +108,7 @@ function New-ArmorApiUriQuery {
         query options.
         #>
         if ( $queryString.Count -gt 0 ) {
-            $return += '?'
-            $return += $queryString -join '&'
+            $return += '?' + ( $queryString -join '&' )
 
             Write-Verbose -Message "URI = ${return}"
         }
