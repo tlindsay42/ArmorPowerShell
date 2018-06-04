@@ -39,8 +39,8 @@ function Reset-ArmorCompleteVM {
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorVM[]] )]
+    [OutputType( [ArmorVM] )]
     param (
         <#
         Specifies the ID of the Armor Complete virtual machine that you want to
@@ -75,7 +75,7 @@ function Reset-ArmorCompleteVM {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorVM[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 

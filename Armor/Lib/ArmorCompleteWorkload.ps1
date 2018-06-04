@@ -1,3 +1,9 @@
+foreach ( $className in 'ArmorCompleteWorkloadTier', 'ArmorStatus' ) {
+    $classPath = Split-Path -Path $MyInvocation.MyCommand.Path -Parent |
+        Join-Path -ChildPath "${className}.ps1"
+    . $classPath
+}
+
 class ArmorCompleteWorkload {
     [ValidateRange( 1, 65535 )]
     [UInt16] $ID
@@ -25,7 +31,7 @@ class ArmorCompleteWorkload {
     )]
     [String] $Zone
 
-    [UInt16] $Status
+    [ArmorStatus] $Status
 
     [Boolean] $Deployed
 
@@ -42,7 +48,7 @@ class ArmorCompleteWorkload {
     [Boolean] $IsRecoveryWorkload
 
     [AllowEmptyCollection()]
-    [PSCustomObject[]] $Tiers
+    [ArmorCompleteWorkloadTier[]] $Tiers
 
     [AllowEmptyString()]
     [String] $Notes

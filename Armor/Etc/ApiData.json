@@ -151,7 +151,8 @@
             "Description": "Displays a list of virtual machines in your account",
             "Endpoints": [
                 "/vms",
-                "/vms/{id}"
+                "/vms/{id}",
+                "/vms/core/{id}"
             ],
             "Method": "Get",
             "Body": {},

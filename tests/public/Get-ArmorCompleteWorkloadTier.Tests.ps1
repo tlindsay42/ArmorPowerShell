@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkloadTier', 'ArmorCompleteWorkloadTier[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
@@ -174,7 +174,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -ID 1 -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorCompleteWorkloadTier'
                 },
                 @{
                     'FoundReturnType'    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
@@ -191,12 +191,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'Get-ArmorCompleteWorkloadTier' -Full ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Get-ArmorCompleteWorkloadTier' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe

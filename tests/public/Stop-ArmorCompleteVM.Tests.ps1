@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'ExpectedOutputTypeNames' = 'ArmorVM', 'ArmorVM[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
@@ -116,7 +116,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Stop-ArmorCompleteVM -ID 1 -Type 'Off' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorVM'
                 }
             )
             $testName = $Global:ReturnTypeForm
@@ -129,12 +129,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'Stop-ArmorCompleteVM' -Full ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Stop-ArmorCompleteVM' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe

@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkload', 'ArmorCompleteWorkload[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
@@ -93,7 +93,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should not fail when set to: ID: <ID>, NewName: <NewName>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $ID, [String] $NewName, [String] $ApiVersion )
-                { Rename-ArmorCompleteVM -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
+                { Rename-ArmorCompleteWorkload -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
@@ -116,7 +116,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'FoundReturnType'    = ( Rename-ArmorCompleteWorkload -ID 1 -NewName 'FakeName' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    'ExpectedReturnType' = 'ArmorCompleteWorkload'
                 }
             )
             $testName = $Global:ReturnTypeForm
@@ -129,12 +129,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'Rename-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Rename-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe

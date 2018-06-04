@@ -205,6 +205,7 @@ function TestAdvancedFunctionHelpNotes ( [String] $ExpectedNotes, [PSObject] $He
 } # End of Function
 
 $Global:ClassForm = 'Class/{0}'
+$Global:EnumForm = 'Enum/{0}'
 $Global:Constructors = 'Constructors'
 $Global:DefaultConstructorForm = 'should not fail when creating an object with the default constructor'
 $Global:PropertyForm = 'Property/{0}'

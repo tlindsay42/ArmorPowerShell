@@ -61,7 +61,7 @@ function New-ArmorApiUri {
             Mandatory = $true,
             Position = 2
         )]
-        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { $_ -match '^/' } )]
         [String[]]
         $Endpoints,
 
@@ -70,9 +70,9 @@ function New-ArmorApiUri {
         #>
         [Parameter( Position = 3 )]
         [ValidateCount( 0, 2 )]
-        [ValidateRange( 1, 65535 )]
+        [ValidateScript( { $_ -match '^(?:\d+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$' } )]
         [AllowEmptyCollection()]
-        [UInt16[]]
+        [String[]]
         $IDs
     )
 

@@ -64,10 +64,12 @@ PowerShellVersion = '5.0'
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
 ScriptsToProcess = 'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1',
-               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1',
-               'Lib\ArmorDepartment.ps1', 'Lib\ArmorFeature.ps1', 'Lib\ArmorPhoneNumber.s1',
-               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorSession.ps1',
-               'Lib\ArmorUser.ps1'
+               'Lib\ArmorCompleteDatacenter.ps1',
+               'Lib\ArmorDepartment.ps1', 'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1',
+               'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSessionUser.ps1', 'Lib\ArmorVmProduct.ps1',
+               'Lib\ArmorSession.ps1', 'Lib\ArmorStatus.ps1', 'Lib\ArmorUser.ps1',
+               'Lib\ArmorVM.ps1', 'Lib\ArmorCompleteWorkloadTier.ps1',
+               'Lib\ArmorCompleteWorkload.ps1'
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -105,13 +107,16 @@ AliasesToExport = 'Get-ArmorCompleteVM'
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\ApiData.json', 'Lib\ArmorAccount.ps1',
+FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json',
+               'Etc\ClassesWithDependenciesImportOrder.json',
+               'Lib\ArmorAccount.ps1',
                'Lib\ArmorAccountAddress.ps1', 'Lib\ArmorCompleteDatacenter.ps1',
-               'Lib\ArmorCompleteWorkload.ps1', 'Lib\ArmorDepartment.ps1',
-               'Lib\ArmorFeature.ps1',
+               'Lib\ArmorCompleteWorkload.ps1',
+               'Lib\ArmorCompleteWorkloadTier.ps1', 'Lib\ArmorDepartment.ps1',
+               'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1',
                'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSession.ps1',
-               'Lib\ArmorSessionUser.ps1',
-               'Lib\ArmorUser.ps1',
+               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorStatus.ps1', 'Lib\ArmorUser.ps1',
+               'Lib\ArmorVM.ps1', 'Lib\ArmorVmProduct.ps1',
                'Private\ConvertFrom-JsonXL.ps1',
                'Private\Expand-ArmorApiResult.ps1', 'Private\Expand-JsonItem.ps1',
                'Private\Format-ArmorApiRequestBody.ps1',

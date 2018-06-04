@@ -22,13 +22,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'ExpectedOutputTypeNames' = 'ArmorVM', 'ArmorVM[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'Name', 'ApiVersion'
+        'ExpectedParameterNames' = 'ID', 'CoreInstanceID', 'Name', 'ApiVersion'
         'Help'                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
@@ -44,6 +44,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             #region init
             $invalidID = 0
             $validID = 1
+            $invalidCoreInstanceID = 'a3443a81-d773-4daf-abd-abde1362291f'
+            $validCoreInstanceID = '019f4c39-2be2-4738-8e0a-3349a8fd8769'
             $invalidName = ''
             $validName = 'VM1'
             $invalidApiVersion = 'v0.0'
@@ -64,6 +66,23 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $ID, [String] $ApiVersion )
                 { Get-ArmorVM -ID $ID -ApiVersion $ApiVersion } |
+                    Should -Throw
+            } # End of It
+
+            $testCases = @(
+                @{
+                    'CoreInstanceID' = $invalidCoreInstanceID
+                    'ApiVersion'     = $validApiVersion
+                },
+                @{
+                    'CoreInstanceID' = $validCoreInstanceID
+                    'ApiVersion'     = $invalidApiVersion
+                }
+            )
+            $testName = 'should fail when set to: CoreInstanceID: <CoreInstanceID>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $CoreInstanceID, [String] $ApiVersion )
+                { Get-ArmorVM -CoreInstanceID $CoreInstanceID -ApiVersion $ApiVersion } |
                     Should -Throw
             } # End of It
 
@@ -127,6 +146,22 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
+                    'CoreInstanceID' = $validCoreInstanceID
+                    'ApiVersion'     = $validApiVersion
+                }
+            )
+            $testName = 'should not fail when set to: CoreInstanceID: <CoreInstanceID>, ApiVersion: <ApiVersion>'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $CoreInstanceID, [String] $ApiVersion )
+                { Get-ArmorVM -CoreInstanceID $CoreInstanceID -ApiVersion $ApiVersion } |
+                    Should -Not -Throw
+            } # End of It
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+
+            $testCases = @(
+                @{
                     'Name'       = $validName
                     'ApiVersion' = $validApiVersion
                 }
@@ -160,6 +195,10 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     'ExpectedReturnType' = 'ArmorVM'
                 },
                 @{
+                    'FoundReturnType'    = ( Get-ArmorVM -CoreInstanceID '2a4dd463-ea7c-4369-be47-75a69c2c5519' -ErrorAction 'Stop' ).GetType().FullName
+                    'ExpectedReturnType' = 'ArmorVM'
+                },
+                @{
                     'FoundReturnType'    = ( Get-ArmorVM -Name 'VM1' -ErrorAction 'Stop' ).GetType().FullName
                     'ExpectedReturnType' = 'ArmorVM'
                 }
@@ -174,12 +213,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'Get-ArmorVM' -Full ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Get-ArmorVM' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe

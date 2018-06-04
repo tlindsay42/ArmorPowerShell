@@ -60,8 +60,8 @@ function Get-ArmorCompleteWorkloadTier {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorCompleteWorkloadTier[]] )]
+    [OutputType( [ArmorCompleteWorkloadTier] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload that contains the
@@ -71,6 +71,7 @@ function Get-ArmorCompleteWorkloadTier {
             Mandatory = $true,
             HelpMessage = 'Please enter the ID of the Armor Complete workload that contains the tiers that you want to retrieve',
             Position = 0,
+            ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateRange( 1, 65535 )]
@@ -84,7 +85,6 @@ function Get-ArmorCompleteWorkloadTier {
         [Parameter(
             ParameterSetName = 'ID',
             Position = 1,
-            ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateRange( 1, 65535 )]
@@ -123,7 +123,7 @@ function Get-ArmorCompleteWorkloadTier {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorCompleteWorkloadTier[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 

@@ -12,6 +12,8 @@ function Get-ArmorVM {
         .INPUTS
         UInt16
 
+        Guid
+
         String
 
         PSCustomObject
@@ -73,8 +75,8 @@ function Get-ArmorVM {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorVM[]] )]
+    [OutputType( [ArmorVM] )]
     param (
         <#
         Specifies the IDs of the virtual machines that you want to retrieve.
@@ -90,6 +92,19 @@ function Get-ArmorVM {
         $ID = 0,
 
         <#
+        Specifies the Armor Anywhere Core Agent instance IDs of the virtual machines that you want to retrieve.
+        #>
+        [Parameter(
+            ParameterSetName = 'CoreInstanceID',
+            Position = 0,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [ValidateScript( { $_ -ne '00000000-0000-0000-0000-000000000000' } )]
+        [Guid]
+        $CoreInstanceID,
+
+        <#
         Specifies the names of the virtual machines that you want to retrieve.
         Wildcard matches are supported.
         #>
@@ -101,7 +116,7 @@ function Get-ArmorVM {
         )]
         [AllowEmptyString()]
         [String]
-        $Name = '',
+        $Name,
 
         <#
         Specifies the API version for this request.
@@ -121,12 +136,15 @@ function Get-ArmorVM {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorVM[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
         if ( $PsCmdlet.ParameterSetName -eq 'ID' -and $ID -gt 0 ) {
-            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints[1] -IDs $ID
+        }
+        elseif ( $PsCmdlet.ParameterSetName -eq 'CoreInstanceID' ) {
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints[2] -IDs $CoreInstanceID
         }
         else {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints

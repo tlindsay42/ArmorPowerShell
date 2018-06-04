@@ -34,8 +34,8 @@ function Start-ArmorCompleteVM {
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorVM[]] )]
+    [OutputType( [ArmorVM] )]
     param (
         <#
         Specifies the ID of the VM to power on in the Armor Complete account in
@@ -70,7 +70,7 @@ function Start-ArmorCompleteVM {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorVM[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 

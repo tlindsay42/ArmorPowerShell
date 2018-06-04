@@ -32,8 +32,8 @@ function Rename-ArmorCompleteWorkload {
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]
-    [OutputType( [PSCustomObject[]] )]
-    [OutputType( [PSCustomObject] )]
+    [OutputType( [ArmorCompleteWorkload[]] )]
+    [OutputType( [ArmorCompleteWorkload] )]
     param (
         <#
         Specifies the ID of the Armor Complete workload that you want to
@@ -81,7 +81,7 @@ function Rename-ArmorCompleteWorkload {
     } # End of begin
 
     process {
-        [PSCustomObject[]] $return = $null
+        [ArmorCompleteWorkload[]] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 

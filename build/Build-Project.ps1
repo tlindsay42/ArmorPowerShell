@@ -147,20 +147,24 @@ $description = (
     "build is published on the $( $text.PSGallery )."
 )
 
-$functionsToExport = ( Get-ChildItem -Path "${Env:CI_MODULE_PUBLIC_PATH}" ).BaseName
+$functionsToExport = ( Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -ErrorAction 'Stop' ).BaseName
 
-$fileList = Get-ChildItem -Path "${Env:CI_MODULE_PATH}" -File -Recurse |
-    Resolve-Path -Relative
+$fileList = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse -ErrorAction 'Stop' |
+    Resolve-Path -Relative -ErrorAction 'Stop'
 
 $aliasesToExport = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' |
     ConvertFrom-Json -ErrorAction 'Stop'
 
-$classesWithDependencies = 'ArmorSession.ps1', 'ArmorUser.ps1'
+$classesWithDependencies = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/ClassesWithDependenciesImportOrder.json" -ErrorAction 'Stop' |
+    ConvertFrom-Json -ErrorAction 'Stop'
+
 $scriptsToProcess = @()
-$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Exclude $classesWithDependencies -File |
+$scriptsToProcess += Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/*.ps1" -Exclude $classesWithDependencies -File -ErrorAction 'Stop' |
     Resolve-Path -Relative
-$scriptsToProcess += Get-ChildItem -Path "${env:CI_MODULE_PATH}/Lib/*.ps1" -Include $classesWithDependencies -File |
-    Resolve-Path -Relative
+
+foreach ( $classWithDependencies in $classesWithDependencies ) {
+    $scriptsToProcess += Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/${classWithDependencies}.ps1" -ErrorAction 'Stop'
+}
 
 $splat = @{
     'Path'                  = $Env:CI_MODULE_MANIFEST_PATH
@@ -179,7 +183,7 @@ $splat = @{
     'FileList'              = $fileList
     'Tags'                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
         'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
-    'LicenseUri'            = "$( $text.RepoUrl )/blob/master/LICENSE.txt"
+    'LicenseUri'            = $text.RepoUrl + '/blob/master/LICENSE.txt'
     'IconUri'               = 'http://i.imgur.com/fbXjkCn.png'
     'ErrorAction'           = 'Stop'
 }

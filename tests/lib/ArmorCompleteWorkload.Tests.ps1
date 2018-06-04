@@ -1,4 +1,10 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
+foreach ( $class in 'ArmorDisk', 'ArmorVmProduct', 'ArmorStatus', 'ArmorVM', 'ArmorCompleteWorkloadTier' ) {
+    $filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath "${class}.ps1"
+
+    . $filePath
+}
+
 $filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
 
 . $filePath
@@ -151,27 +157,27 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ 'Value' = 'Banana' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
-            param ( [Int32] $Value )
+            param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
         } # End of It
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ 'Value' = -1 },
+            @{ 'Value' = 19 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
-            param ( [UInt16] $Value )
+            param ( [Int16] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         } # End of It
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
-                Should -BeOfType ( [System.UInt16] )
+                Should -BeOfType ( [ArmorStatus] )
         } # End of It
     } # End of Context
 
@@ -357,8 +363,18 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = [PSCustomObject] @() },
             @{ 'Value' = [PSCustomObject] @{ 'Tier1' = '1' } }
+        )
+        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
+            param ( [PSCustomObject[]] $Value )
+            { $temp.$property = $Value } |
+                Should -Throw
+        } # End of It
+
+        $testCases = @(
+            @{ 'Value' = @() },
+            @{ 'Value' = [ArmorCompleteWorkloadTier]::New() },
+            @{ 'Value' = [ArmorCompleteWorkloadTier]::New(), [ArmorCompleteWorkloadTier]::New() }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
@@ -368,7 +384,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
-                Should -BeOfType ( [PSCustomObject] )
+                Should -BeOfType ( [ArmorCompleteWorkloadTier] )
         } # End of It
     } # End of Context
 

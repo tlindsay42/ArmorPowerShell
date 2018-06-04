@@ -1,4 +1,3 @@
-'ArmorCompleteWorkloadTier', 'ArmorStatus'
 Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
@@ -172,12 +171,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'Get-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name 'Get-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
+            } # End of It
         } # End of InModuleScope
     } # End of Context
 } # End of Describe
