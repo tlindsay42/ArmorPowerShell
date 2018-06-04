@@ -36,18 +36,37 @@ function Format-ArmorApiRequestBody {
         <#
         Specifies the variables available in the endpoint request body schema.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0
+        )]
         [AllowEmptyCollection()]
+        [ValidateNotNullorEmpty()]
         [String[]]
-        $Keys = $null,
+        $Keys = @(),
 
         <#
         Specifies the parameter names available within the calling cmdlet.
         #>
-        [Parameter( Position = 1 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 1
+        )]
+        [ValidateCount( 1, 65535 )]
         [ValidateNotNullorEmpty()]
-        [PSObject]
-        $Parameters = $null
+        [PSCustomObject[]]
+        $Parameters,
+
+        <#
+        Specifies the action/method used for the Armor API web request.
+        #>
+        [Parameter(
+            Mandatory = $true,
+            Position = 2
+        )]
+        [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
+        [String]
+        $Method
     )
 
     begin {
@@ -71,14 +90,13 @@ function Format-ArmorApiRequestBody {
             'WhatIf',
             'Confirm'
         )
-
-        $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
     } # End of begin
 
     process {
         [String] $return = $null
+        $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
 
-        if ( $resources.Method -ne 'Get' ) {
+        if ( $Method -ne 'Get' ) {
             # Inventory all invoked parameters
             $setParameters = $PSCmdlet.MyInvocation.BoundParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 
@@ -97,66 +115,28 @@ function Format-ArmorApiRequestBody {
 
                 $keyNoUnderscore = $key -replace '_', ''
 
-                # Array Object
-                if ( $key.GetType().BaseType.Name -eq 'Array' ) {
-                    $list = @{}
+                <#
+                Walk through all of the parameters defined in the function
+                Both the parameter name and parameter alias are used to match against a body option
+                It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
+                #>
+                foreach ( $parameter in $filteredParameters ) {
+                    $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
 
-                    foreach ( $item in $key ) {
-                        <#
-                        Walk through all of the parameters defined in the function
-                        Both the parameter name and parameter alias are used to match against a body option
-                        It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
-                        #>
-                        foreach ( $parameter in $filteredParameters ) {
-                            # if the parameter name or alias matches the body option name, build a body string
-                            if ( $parameter.Name -eq $item -or $parameter.Aliases -contains $item) {
-                                $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
-
-                                if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
-                                    $list.Add( $item, $parameterValue.IsPresent )
-                                }
-                                elseif ( $parameterValue.Length -gt 0 ) {
-                                    $list.Add( $item, $parameterValue )
-                                }
-                                else {
-                                    Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
-                                }
-                            }
+                    # if the parameter name or alias matches the body option name, build a body string
+                    if (
+                        $parameter.Name -in $setParameters -and (
+                            $parameter.Name -eq $key -or
+                            $parameter.Name -eq $keyNoUnderscore -or
+                            $parameter.Aliases -contains $key -or
+                            $parameter.Aliases -contains $keyNoUnderscore
+                        )
+                    ) {
+                        if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
+                            $body.Add( $key, $parameterValue.IsPresent )
                         }
-                    }
-
-                    $body.Add( $key, @( $list ) )
-                }
-                # Non-Array Object
-                else {
-                    <#
-                    Walk through all of the parameters defined in the function
-                    Both the parameter name and parameter alias are used to match against a body option
-                    It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
-                    #>
-                    foreach ( $parameter in $filteredParameters ) {
-                        $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
-
-                        # if the parameter name or alias matches the body option name, build a body string
-                        if (
-                            $parameter.Name -in $setParameters -and (
-                                $parameter.Name -eq $key -or
-                                $parameter.Name -eq $keyNoUnderscore -or
-                                $parameter.Aliases -contains $key -or
-                                $parameter.Aliases -contains $keyNoUnderscore
-                            )
-                        ) {
-                            # Switch variable types
-                            if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
-                                $body.Add( $key, $parameterValue.IsPresent )
-                            }
-                            # All other variable types
-                            elseif ( $parameterValue.Length -gt 0 ) {
-                                $body.Add( $key, $parameterValue )
-                            }
-                            else {
-                                Write-Verbose -Message "Parameter: '$( $parameter.Name )' = `$null"
-                            }
+                        else {
+                            $body.Add( $key, $parameterValue )
                         }
                     }
                 }

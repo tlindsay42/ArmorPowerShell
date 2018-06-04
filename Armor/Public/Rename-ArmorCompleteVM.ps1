@@ -90,7 +90,7 @@ function Rename-ArmorCompleteVM {
 
             $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
             $parameters = ( Get-Command -Name $function ).Parameters.Values
-            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
+            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters -Method $resources.Method
 
             $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
 
