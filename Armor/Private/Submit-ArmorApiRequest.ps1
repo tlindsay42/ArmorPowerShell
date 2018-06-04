@@ -33,6 +33,7 @@ function Submit-ArmorApiRequest {
 
     [CmdletBinding( SupportsShouldProcess = $true )]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the Uniform Resource Identifier (URI) of the Armor API
@@ -97,7 +98,7 @@ function Submit-ArmorApiRequest {
         $request = $null
 
         if ( $PSCmdlet.ShouldProcess( $Uri, $Description ) ) {
-            Write-Verbose -Message 'Submitting the request.'
+            Write-Verbose -Message "Submitting the request: $( $Method.ToUpper() ) ${Uri}"
 
             if ( $Method -eq 'Get' ) {
                 $getHeaders = $Headers.Clone()
@@ -110,19 +111,8 @@ function Submit-ArmorApiRequest {
             }
 
             if ( $request.StatusCode -eq $SuccessCode ) {
-                if ( $request.Content.Length -gt 2MB ) {
-                    # Because some calls require more than the default payload limit of 2MB, ConvertFrom-JsonXL dynamically adjusts the payload limit
-                    Write-Verbose -Message 'Converting JSON payload more than 2MB.'
-
-                    $return = $request.Content |
-                        ConvertFrom-JsonXL
-                }
-                else {
-                    Write-Verbose -Message 'Converting JSON payload less than or equal to 2MB.'
-
-                    $return = $request.Content |
-                        ConvertFrom-Json
-                }
+                $return = $request.Content |
+                    ConvertFrom-Json
             }
             else {
                 throw $request.StatusDescription

@@ -1,0 +1,150 @@
+Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+
+$systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
+$filePath = Join-Path -Path $Env:CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
+
+. $filePath
+
+$function = $systemUnderTest.Split( '.' )[0]
+$describe = $Global:PrivateFunctionForm -f $function
+Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
+    #region init
+    $help = Get-Help -Name $function -Full
+    $invalidUri = 'http://insecure.api/vms'
+    $validUri = 'https://api.armor.com/vms'
+    $invalidHeaders = @{}
+    $validHeaders = @{}
+    $invalidMethod = 'Upload'
+    $validMethod = 'Get'
+    $validBody = ''
+    $invalidSuccessCode = 0
+    $validSuccessCode = 200
+    $validDescription = 'Get VMs'
+    #endregion
+
+    $splat = @{
+        'ExpectedFunctionName' = $function
+        'FoundFunctionName'    = $help.Name
+    }
+    TestAdvancedFunctionName @splat
+
+    TestAdvancedFunctionHelpMain -Help $help
+
+    TestAdvancedFunctionHelpInputs -Help $help
+
+    $splat = @{
+        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        'Help'                    = $help
+    }
+    TestAdvancedFunctionHelpOutputs @splat
+
+    $splat = @{
+        'ExpectedParameterNames' = 'Uri', 'Headers', 'Method', 'Body', 'SuccessCode', 'Description', 'WhatIf', 'Confirm'
+        'Help'                   = $help
+    }
+    TestAdvancedFunctionHelpParameters @splat
+
+    $splat = @{
+        'ExpectedNotes' = $Global:FunctionHelpNotes
+        'Help'          = $help
+    }
+    TestAdvancedFunctionHelpNotes @splat
+
+    Context -Name $Global:Execution -Fixture {
+        $testCases = @(
+            @{
+                'Uri'         = $invalidUri
+                'Headers'     = $validHeaders
+                'Method'      = $validMethod
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $invalidHeaders
+                'Method'      = $validMethod
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = $invalidMethod
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = $validMethod
+                'Body'        = $validBody
+                'SuccessCode' = $invalidSuccessCode
+            }
+        )
+        $testName = 'should fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
+            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode -Description $validDescription } |
+                Should -Throw
+        } # End of It
+
+        Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
+            @{
+                'StatusCode' = 200
+                'Content'    = $Global:JsonResponseBody.VMs1
+            }
+        }
+
+        $testCases = @(
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = $validMethod
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            }
+        )
+        $testName = 'should not fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
+            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode -Description $validDescription } |
+                Should -Not -Throw
+        } # End of It
+        Assert-VerifiableMock
+        Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+    } # End of Context
+
+    Context -Name $Global:ReturnTypeContext -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
+            @{
+                'StatusCode' = 200
+                'Content'    = $Global:JsonResponseBody.VMs1
+            }
+        }
+
+        $testCases = @(
+            @{
+                'FoundReturnType'    = ( Submit-ArmorApiRequest -Uri 'https://api.armor.mock/vms' -ErrorAction 'Stop' ).GetType().FullName
+                'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+            }
+        )
+        $testName = $Global:ReturnTypeForm
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
+                Should -Be $ExpectedReturnType
+        } # End of It
+        Assert-VerifiableMock
+        Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+
+        # $testName = "has an 'OutputType' entry for <FoundReturnType>"
+        # It -Name $testName -TestCases $testCases -Test {
+        #     param ( [String] $FoundReturnType )
+        #     $FoundReturnType |
+        #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
+        # } # End of It
+    } # End of Context
+} # End of Describe
