@@ -14,7 +14,6 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $validUri = 'https://api.armor.com/vms'
     $invalidHeaders = @{}
     $validHeaders = @{}
-    $invalidMethod = 'Upload'
     $validMethod = 'Get'
     $validBody = ''
     $invalidSuccessCode = 0
@@ -69,7 +68,28 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             @{
                 'Uri'         = $validUri
                 'Headers'     = $validHeaders
-                'Method'      = $invalidMethod
+                'Method'      = 'Head'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Merge'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Options'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Trace'
                 'Body'        = $validBody
                 'SuccessCode' = $validSuccessCode
             },
@@ -99,7 +119,35 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             @{
                 'Uri'         = $validUri
                 'Headers'     = $validHeaders
-                'Method'      = $validMethod
+                'Method'      = 'Delete'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Get'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Patch'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Post'
+                'Body'        = $validBody
+                'SuccessCode' = $validSuccessCode
+            },
+            @{
+                'Uri'         = $validUri
+                'Headers'     = $validHeaders
+                'Method'      = 'Put'
                 'Body'        = $validBody
                 'SuccessCode' = $validSuccessCode
             }
