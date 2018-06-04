@@ -24,7 +24,7 @@ function Start-ArmorCompleteVM {
         http://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Perform+VM+Power+Actions

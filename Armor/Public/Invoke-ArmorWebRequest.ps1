@@ -25,7 +25,7 @@ function Invoke-ArmorWebRequest {
         http://armorpowershell.readthedocs.io/en/latest/cmd_invoke.html#invoke-armorwebrequest
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Invoke-ArmorWebRequest.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Armor+API+Guide

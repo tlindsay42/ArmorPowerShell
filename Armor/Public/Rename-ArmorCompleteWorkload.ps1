@@ -22,7 +22,7 @@ function Rename-ArmorCompleteWorkload {
         http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Update+Workload

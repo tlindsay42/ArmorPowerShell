@@ -44,7 +44,7 @@ function Get-ArmorCompleteWorkload {
         http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkload.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+Workloads

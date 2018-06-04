@@ -85,7 +85,7 @@ function Get-ArmorAccount {
         http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccount
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+Accounts

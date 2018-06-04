@@ -71,7 +71,7 @@ function Get-ArmorCompleteDatacenter {
         http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteDatacenter.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+Locations

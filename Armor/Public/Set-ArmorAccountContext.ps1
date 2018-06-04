@@ -25,7 +25,7 @@ function Set-ArmorAccountContext {
         http://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Set-ArmorAccountContext.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Log+into+Armor+API

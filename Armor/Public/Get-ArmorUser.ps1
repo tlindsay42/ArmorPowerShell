@@ -28,7 +28,7 @@ function Get-ArmorUser {
         http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorUser.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+Users

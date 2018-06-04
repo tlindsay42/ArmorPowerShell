@@ -24,7 +24,7 @@ function Update-ArmorApiToken {
         http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Update-ArmorApiToken.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Post+Reissue+Token

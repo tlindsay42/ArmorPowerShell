@@ -72,7 +72,7 @@ function Get-ArmorAccountAddress {
         http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountAddress.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+Account

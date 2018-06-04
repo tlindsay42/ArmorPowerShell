@@ -22,7 +22,7 @@ function Rename-ArmorCompleteVM {
         http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Update+VM+Name

@@ -21,7 +21,7 @@ function New-ArmorApiUriQuery {
         http://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUriQuery.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Armor+API+Guide

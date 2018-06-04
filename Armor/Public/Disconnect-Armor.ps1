@@ -33,7 +33,7 @@ function Disconnect-Armor {
         http://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Disconnect-Armor.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Armor+API+Guide
