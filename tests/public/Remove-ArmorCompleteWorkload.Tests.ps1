@@ -68,8 +68,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
+                    'StatusCode'        = 202
+                    'StatusDescription' = 'Accepted'
                     'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
                 }
             }
@@ -97,8 +97,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
+                    'StatusCode'        = 202
+                    'StatusDescription' = 'Accepted'
                     'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
                 }
             }
