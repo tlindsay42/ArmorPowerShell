@@ -41,7 +41,6 @@ function Format-ArmorApiRequestBody {
             Position = 0
         )]
         [AllowEmptyCollection()]
-        [AllowEmptyString()]
         [AllowNull()]
         [String[]]
         $Keys,
