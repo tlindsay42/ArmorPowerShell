@@ -41,9 +41,10 @@ function Format-ArmorApiRequestBody {
             Position = 0
         )]
         [AllowEmptyCollection()]
-        [ValidateNotNullorEmpty()]
+        [AllowEmptyString()]
+        [AllowNull()]
         [String[]]
-        $Keys = @(),
+        $Keys,
 
         <#
         Specifies the parameter names available within the calling cmdlet.
