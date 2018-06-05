@@ -39,10 +39,13 @@ function Submit-ArmorApiRequest {
         Specifies the Uniform Resource Identifier (URI) of the Armor API
         resource to which the web request is sent.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0
+        )]
         [ValidateScript( { $_ -match '^https://.+/.+$' } )]
         [String]
-        $Uri = '',
+        $Uri,
 
         <#
         Specifies the headers of the Armor API web request.
@@ -55,7 +58,10 @@ function Submit-ArmorApiRequest {
         <#
         Specifies the action/method used for the Armor API web request.
         #>
-        [Parameter( Position = 2 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 2
+        )]
         [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
         [String]
         $Method = 'Get',
@@ -72,10 +78,13 @@ function Submit-ArmorApiRequest {
         <#
         Specifies the success code expected in the response.
         #>
-        [Parameter( Position = 4 )]
-        [ValidateSet( 200 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 4
+        )]
+        [ValidateSet( 200, 202 )]
         [UInt16]
-        $SuccessCode = 200,
+        $SuccessCode,
 
         <#
         If this cmdlet is called with the -Confirm switch parameter
