@@ -130,7 +130,14 @@ function Get-ArmorAccountAddress {
         $parameters = ( Get-Command -Name $function ).Parameters.Values
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Headers $headers -Method $resources.Method -Description $resources.Description
+        $splat = @{
+            'Uri'         = $uri
+            'Headers'     = $headers
+            'Method'      = $resources.Method
+            'SuccessCode' = $resources.SuccessCode
+            'Description' = $resources.Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         $return = $results
 

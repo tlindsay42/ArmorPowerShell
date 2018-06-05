@@ -106,7 +106,13 @@ function Get-ArmorNoun {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         # Submit the request to the Armor API
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+        $splat = @{
+            'Uri'         = $uri
+            'Method'      = $resources.Method
+            'SuccessCode' = $resources.SuccessCode
+            'Description' = $resources.Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         # Expand the data in one of the response body values
         $results = Expand-ArmorApiResult -Results $results -Location $resources.Location

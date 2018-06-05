@@ -90,7 +90,7 @@ function Invoke-ArmorWebRequest {
         for this Armor API web request.
         #>
         [Parameter( Position = 4 )]
-        [ValidateSet( 200 )]
+        [ValidateSet( 200, 202 )]
         [UInt16]
         $SuccessCode = 200,
 
@@ -121,7 +121,14 @@ function Invoke-ArmorWebRequest {
 
         $uri = New-ArmorApiUri -Endpoints $Endpoint
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $Method -Body $jsonBody -SuccessCode $SuccessCode -Description $Description
+        $splat = @{
+            'Uri'         = $uri
+            'Method'      = $Method
+            'Body'        = $jsonBody
+            'SuccessCode' = $SuccessCode
+            'Description' = $Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         $return = $results
 

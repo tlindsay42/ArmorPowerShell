@@ -75,7 +75,14 @@ function Update-ArmorApiToken {
         $parameters = ( Get-Command -Name $function ).Parameters.Values
         $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters -Method $resources.Method
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+        $splat = @{
+            'Uri'         = $uri
+            'Method'      = $resources.Method
+            'Body'        = $body
+            'SuccessCode' = $resources.SuccessCode
+            'Description' = $resources.Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
     } # End of process

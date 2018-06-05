@@ -95,15 +95,17 @@ function Update-ArmorNoun {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters -Method $resources.Method
 
             # Submit the request to the Armor API
-            $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+            $splat = @{
+                'Uri'         = $uri
+                'Method'      = $resources.Method
+                'Body'        = $body
+                'SuccessCode' = $resources.SuccessCode
+                'Description' = $resources.Description
+            }
+            $results = Submit-ArmorApiRequest @splat
         }
 
-        if ( $results.Count -eq 0 ) {
-            Write-Host -Object 'Armor item not found.'
-        }
-        else {
-            $return = $results
-        }
+        $return = $results
 
         # Pass the return value to the pipeline
         $return

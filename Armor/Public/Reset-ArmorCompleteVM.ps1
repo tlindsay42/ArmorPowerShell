@@ -82,7 +82,18 @@ function Reset-ArmorCompleteVM {
         if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
             $uri = New-ArmorApiUri -Endpoints $resources.Endpoints -IDs $ID
 
-            $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
+            $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
+            $parameters = ( Get-Command -Name $function ).Parameters.Values
+            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters -Method $resources.Method
+
+            $splat = @{
+                'Uri'         = $uri
+                'Method'      = $resources.Method
+                'Body'        = $body
+                'SuccessCode' = $resources.SuccessCode
+                'Description' = $resources.Description
+            }
+            $results = Submit-ArmorApiRequest @splat
 
             $return = $results
         }

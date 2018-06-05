@@ -152,7 +152,13 @@ function Get-ArmorAccount {
         $parameters = ( Get-Command -Name $function ).Parameters.Values
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Description $resources.Description
+        $splat = @{
+            'Uri'         = $uri
+            'Method'      = $resources.Method
+            'SuccessCode' = $resources.SuccessCode
+            'Description' = $resources.Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         if ( $PSCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
             $filters = $resources.Filter |

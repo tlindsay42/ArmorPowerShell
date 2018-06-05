@@ -123,7 +123,13 @@ function Get-ArmorCompleteWorkload {
         $parameters = ( Get-Command -Name $function ).Parameters.Values
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
-        $results = Submit-ArmorApiRequest -Uri $uri -Method $resources.Method -Body $body -Description $resources.Description
+        $splat = @{
+            'Uri'         = $uri
+            'Method'      = $resources.Method
+            'SuccessCode' = $resources.SuccessCode
+            'Description' = $resources.Description
+        }
+        $results = Submit-ArmorApiRequest @splat
 
         $filters = $resources.Filter |
             Get-Member -MemberType 'NoteProperty'
