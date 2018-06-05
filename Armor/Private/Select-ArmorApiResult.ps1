@@ -8,7 +8,9 @@ function Select-ArmorApiResult {
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        System.Management.Automation.PSCustomObject[]
+        PSObject[]
+
+        PSCustomObject
 
         .NOTES
         Troy Lindsay
@@ -33,6 +35,7 @@ function Select-ArmorApiResult {
 
     [CmdletBinding()]
     [OutputType( [PSCustomObject[]] )]
+    [OutputType( [PSCustomObject] )]
     param (
         <#
         Specifies the formatted API response contents.
@@ -81,19 +84,19 @@ function Select-ArmorApiResult {
                 if ( $filterValue.Length -gt 0 ) {
                     Write-Verbose -Message "Filter match = ${filterValueName}=${filterValue}"
 
-                    if ( $filterValue -match '.' -and $filterValueName -notin 'Email' ) {
-                        $filterList = $filterValue.Split( '.' )
+                    if ( $filterValueName -match '\.' ) {
+                        $filterList = $filterValueName.Split( '.' )
                     }
                     else {
-                        $filterList = @( $filterValue )
+                        $filterList = @( $filterValueName )
                     }
 
                     Write-Verbose -Message ( 'Filter depth: ' + $filterList.Count )
                     switch ( $filterList.Count ) {
                         1 {
-                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
+                            Write-Verbose -Message ( 'Results count pre-filter: ' + $filteredResults.Count )
                             $filteredResults = $filteredResults.Where( { $_.$filterValueName -like $filterValue } )
-                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
+                            Write-Verbose -Message ( 'Results count post-filter: ' + $filteredResults.Count )
                         }
 
                         2 {
@@ -104,9 +107,9 @@ function Select-ArmorApiResult {
                                 throw "Invalid Armor API filter configuration: '${filterValue}'"
                             }
 
-                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
+                            Write-Verbose -Message ( 'Results count pre-filter: ' + $filteredResults.Count )
                             $filteredResults = $filteredResults.Where( { $_.$parentFilter.$childFilter -like $filterValue } )
-                            Write-Verbose -Message ( 'Filtered results count: ' + $filteredResults.Count )
+                            Write-Verbose -Message ( 'Results count post-filter: ' + $filteredResults.Count )
                         }
 
                         default {
