@@ -36,26 +36,37 @@ function New-ArmorApiUriQuery {
         <#
         Specifies the query filters available to the endpoint.
         #>
-        [Parameter( Position = 0 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0
+        )]
         [AllowEmptyCollection()]
+        [AllowNull()]
         [String[]]
-        $Keys = @(),
+        $Keys,
 
         <#
         Specifies the parameters available within the calling cmdlet.
         #>
-        [Parameter( Position = 1 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 1
+        )]
+        [ValidateCount( 1, 65535 )]
         [ValidateNotNullOrEmpty()]
-        [String[]]
-        $Parameters = @(),
+        [PSCustomObject[]]
+        $Parameters,
 
         <#
         Specifies the endpoint's URI.
         #>
-        [Parameter( Position = 2 )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 2
+        )]
         [ValidateScript( { $_ -match 'https://.+/\w+' } )]
         [String]
-        $Uri = ''
+        $Uri
     )
 
     begin {
