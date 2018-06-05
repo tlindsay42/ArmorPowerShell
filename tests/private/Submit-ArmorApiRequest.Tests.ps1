@@ -11,7 +11,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
     $invalidUri = 'http://insecure.api/vms'
-    $validUri = 'https://api.armor.com/vms'
+    $validUri = 'https://api.armor.mock/vms'
     $invalidHeaders = @{}
     $validHeaders = @{}
     $validMethod = 'Get'
@@ -110,7 +110,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
             @{
-                'StatusCode' = 200
+                'StatusCode' = $validSuccessCode
                 'Content'    = $Global:JsonResponseBody.VMs1
             }
         }
@@ -164,18 +164,24 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
+        $splat = @{
+            'Uri'         = $validUri
+            'Method'      = $validMethod
+            'SuccessCode' = $validSuccessCode
+            'ErrorAction' = 'Stop'
+        }
         #endregion
 
         Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
             @{
-                'StatusCode' = 200
+                'StatusCode' = $validSuccessCode
                 'Content'    = $Global:JsonResponseBody.VMs1
             }
         }
 
         $testCases = @(
             @{
-                'FoundReturnType'    = ( Submit-ArmorApiRequest -Uri 'https://api.armor.mock/vms' -ErrorAction 'Stop' ).GetType().FullName
+                'FoundReturnType'    = ( Submit-ArmorApiRequest @splat ).GetType().FullName
                 'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
             }
         )
