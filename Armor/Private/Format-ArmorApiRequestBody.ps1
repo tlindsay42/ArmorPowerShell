@@ -1,10 +1,12 @@
 function Format-ArmorApiRequestBody {
     <#
         .SYNOPSIS
-        This cmdlet is used to generate a valid request body payload.
+        Generates the JSON request body payload for an Armor API request.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Retrieves the values of the parameters defined in the parent function
+        that match the names of the specified keys, builds the JSON request
+        body, and then returns the request body payload.
 
         .INPUTS
         None- you cannot pipe objects to this cmdlet.
@@ -15,7 +17,29 @@ function Format-ArmorApiRequestBody {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        function Test-FormatArmorApiRequestBody {
+            param ( [String] $String, [String[]] $Array, [Switch] $Switch )
+            $keys = 'String', 'Array', 'Switch'
+            $parameters = ( Get-Command -Name $MyInvocation.MyCommand.Name ).Parameters.Values
+            Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
+        }
+        Test-FormatArmorApiRequestBody -String 'test1' -Array 'test2a', 'test2b' -Switch
+
+        {
+            "String": "test1",
+            "Array": [
+                "test2a",
+                "test2b"
+            ],
+            "Switch": true
+        }
+
+
+        Description
+        -----------
+        Calls Format-ArmorApiRequestBody from within an example function to
+        demonstrate the JSON request body payload output for three different
+        parameter data types.
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html
@@ -85,55 +109,55 @@ function Format-ArmorApiRequestBody {
         [String] $return = $null
         $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
 
-            # Inventory all invoked parameters
-            $setParameters = $PSCmdlet.MyInvocation.BoundParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
+        # Inventory all invoked parameters
+        $setParameters = $PSCmdlet.MyInvocation.BoundParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 
-            Write-Verbose -Message "List of set parameters: $( $setParameters -join ', ' )."
+        Write-Verbose -Message "List of set parameters: $( $setParameters -join ', ' )."
 
-            Write-Verbose -Message 'Build the body parameters.'
+        Write-Verbose -Message 'Build the body parameters.'
 
-            $body = @{}
+        $body = @{}
+
+        <#
+        Walk through all of the available body options presented by the endpoint
+        Note: Keys are used to search in case the value changes in the future across different API versions
+        #>
+        foreach ( $key in $Keys ) {
+            Write-Verbose -Message "Adding ${key}..."
+
+            $keyNoUnderscore = $key -replace '_', ''
 
             <#
-            Walk through all of the available body options presented by the endpoint
-            Note: Keys are used to search in case the value changes in the future across different API versions
+            Walk through all of the parameters defined in the function
+            Both the parameter name and parameter alias are used to match against a body option
+            It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
             #>
-            foreach ( $key in $Keys ) {
-                Write-Verbose -Message "Adding ${key}..."
+            foreach ( $parameter in $filteredParameters ) {
+                $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
 
-                $keyNoUnderscore = $key -replace '_', ''
-
-                <#
-                Walk through all of the parameters defined in the function
-                Both the parameter name and parameter alias are used to match against a body option
-                It is suggested to make the parameter name "human friendly" and set an alias corresponding to the body option name
-                #>
-                foreach ( $parameter in $filteredParameters ) {
-                    $parameterValue = ( Get-Variable -Name $parameter.Name ).Value
-
-                    # if the parameter name or alias matches the body option name, build a body string
-                    if (
-                        $parameter.Name -in $setParameters -and (
-                            $parameter.Name -eq $key -or
-                            $parameter.Name -eq $keyNoUnderscore -or
-                            $parameter.Aliases -contains $key -or
-                            $parameter.Aliases -contains $keyNoUnderscore
-                        )
-                    ) {
-                        if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
-                            $body.Add( $key, $parameterValue.IsPresent )
-                        }
-                        else {
-                            $body.Add( $key, $parameterValue )
-                        }
+                # if the parameter name or alias matches the body option name, build a body string
+                if (
+                    $parameter.Name -in $setParameters -and (
+                        $parameter.Name -eq $key -or
+                        $parameter.Name -eq $keyNoUnderscore -or
+                        $parameter.Aliases -contains $key -or
+                        $parameter.Aliases -contains $keyNoUnderscore
+                    )
+                ) {
+                    if ( $parameterValue.GetType().Name -eq 'SwitchParameter' ) {
+                        $body.Add( $key, $parameterValue.IsPresent )
+                    }
+                    else {
+                        $body.Add( $key, $parameterValue )
                     }
                 }
             }
+        }
 
-            # Store the results in a JSON string
-            $return = ConvertTo-Json -InputObject $body -ErrorAction 'Stop'
+        # Store the results in a JSON string
+        $return = ConvertTo-Json -InputObject $body -ErrorAction 'Stop'
 
-            Write-Verbose -Message "Body = ${return}"
+        Write-Verbose -Message "Body = ${return}"
 
         $return
     } # End of process
