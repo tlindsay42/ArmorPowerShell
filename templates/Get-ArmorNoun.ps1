@@ -114,9 +114,6 @@ function Get-ArmorNoun {
         }
         $results = Submit-ArmorApiRequest @splat
 
-        # Expand the data in one of the response body values
-        $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
-
         # Filter the results
         $filters = $resources.Filter |
             Get-Member -MemberType 'NoteProperty'
