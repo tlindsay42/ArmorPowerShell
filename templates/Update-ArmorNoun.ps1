@@ -15,7 +15,7 @@ function Update-ArmorNoun {
         GitHub: { optional }
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        { required: show one or more examples using the function }
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html

@@ -37,7 +37,7 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
     $contextName = $Global:FunctionHelpForm -f 'Main'
     Context -Name $contextName -Fixture {
         #region init
-        $template = '{ required: .+ }'
+        $template = '{ ?required: .+ ?}'
         #endregion
 
         $testCases = @(
