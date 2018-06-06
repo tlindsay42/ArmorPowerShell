@@ -1,7 +1,7 @@
 function Stop-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        This cmdlet powers off Armor Complete virtual machines.
+        Stops Armor Complete virtual machines.
 
         .DESCRIPTION
         The specified virtual machine in the Armor Complete account in context
@@ -33,7 +33,19 @@ function Stop-ArmorCompleteVM {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        ( Stop-ArmorCompleteVM -ID 1 -Type Shutdown -Confirm:$false ).Name
+
+        TEST-VM
+
+        .EXAMPLE
+        ( Get-ArmorVM -ID 1 | Stop-ArmorCompleteVM -Type Poweroff ).Name
+
+        Confirm
+        Are you sure you want to perform this action?
+        Performing the operation "Power off the specified virtual machine in your account" on target "1".
+        [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): y
+
+        TEST-VM
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/cmd_stop.html#stop-armorcompletevm
@@ -76,17 +88,17 @@ function Stop-ArmorCompleteVM {
           VMware Tools or open-vm-tools must be installed and running for this
           request to succeed.  This the recommend way to stop your VMs.
 
-        - Off initiates a hard shutdown of the VM- effectively disconnecting
-          the virtual power cord from the VM.  This shutdown method has the
-          potential to cause data corruption and should only be used when
-          necessary.
+        - Poweroff initiates a hard shutdown of the VM- effectively
+          disconnecting the virtual power cord from the VM.  This shutdown
+          method has the potential to cause data corruption and should only be
+          used when necessary.
 
         - ForceOff should not be used.  It breaks the state of the environment
           by marking the VM as powered off in the Armor Management Portal (AMP)
           and vCloud Director, but leaves the VM running in vSphere.
         #>
         [Parameter( Position = 1 )]
-        [ValidateSet( 'Shutdown', 'Off', 'ForceOff' )]
+        [ValidateSet( 'Shutdown', 'Poweroff', 'ForceOff' )]
         [String]
         $Type = 'Shutdown',
 
@@ -109,11 +121,28 @@ function Stop-ArmorCompleteVM {
 
     process {
         [ArmorVM[]] $return = $null
+        $description = ''
+        $stopType = $Type
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
 
-        if ( $PSCmdlet.ShouldProcess( $ID, $resources.Description ) ) {
-            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints.Where( { $_ -match "/${Type}$" } ) -IDs $ID
+        switch ( $Type ) {
+            'Shutdown' {
+                $description = $resources.Description -f 'Gracefully shutdown'
+            }
+
+            'Poweroff' {
+                $description = $resources.Description -f 'Power off'
+                $stopType = 'Off'
+            }
+
+            'ForceOff' {
+                $description = $resources.Description -f 'Force poweroff'
+            }
+        }
+
+        if ( $PSCmdlet.ShouldProcess( $ID, $description ) ) {
+            $uri = New-ArmorApiUri -Endpoints $resources.Endpoints.Where( { $_ -match "/${stopType}$" } ) -IDs $ID
 
             $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
             $parameters = ( Get-Command -Name $function ).Parameters.Values

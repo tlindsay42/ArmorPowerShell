@@ -86,11 +86,21 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testCases = @(
                 @{
                     'ID'         = $validID
-                    'Type'       = $validType
+                    'Type'       = 'Shutdown'
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
+                    'ID'         = $validID
+                    'Type'       = 'Poweroff'
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
+                    'ID'         = $validID
+                    'Type'       = 'ForceOff'
                     'ApiVersion' = $validApiVersion
                 }
             )
-            $testName = 'should fail when set to: ID: <ID>, Type: <Type>, ApiVersion: <ApiVersion>'
+            $testName = 'should not fail when set to: ID: <ID>, Type: <Type>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $ID, [String] $Type, [String] $ApiVersion )
                 { Stop-ArmorCompleteVM -ID $ID -Type $Type -ApiVersion $ApiVersion -Confirm:$false } |
@@ -115,7 +125,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Stop-ArmorCompleteVM -ID 1 -Type 'Off' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
+                    'FoundReturnType'    = ( Stop-ArmorCompleteVM -ID 1 -Type 'Poweroff' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
                     'ExpectedReturnType' = 'ArmorVM'
                 }
             )

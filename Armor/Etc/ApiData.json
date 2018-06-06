@@ -273,7 +273,7 @@
     },
     "Stop-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "Power off the specified virtual machine in your account",
+            "Description": "{0} the specified virtual machine in your account",
             "Endpoints": [
                 "/vms/{id}/power/shutdown",
                 "/vms/{id}/power/off",
