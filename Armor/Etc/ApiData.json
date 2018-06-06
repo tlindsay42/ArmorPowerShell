@@ -6,10 +6,13 @@
                 "The URI(s) expressed as /endpoint"
             ],
             "Method": "Method to use against the endpoint",
-            "Body": "Parameters to use in the request body",
+            "Body": {
+              "Description": "Parameters to use in the request body"
+            },
             "Query": "Parameters to use in the Endpoints query",
-            "Location": "If the result content is stored in a higher level key, express it here to be unwrapped in the return",
-            "Filter": "If the result content needs to be filtered based on key names, express them here",
+            "Filter": {
+              "Description": "If the result content needs to be filtered based on key names, express them here"
+            },
             "SuccessCode": "The expected HTTP status code for a successful call"
         }
     },
@@ -31,7 +34,7 @@
     },
     "Get-ArmorAccount": {
         "v1.0": {
-            "Description": "Retrieves a list of Armor account memberships",
+            "Description": "Retrieve a list of Armor account memberships",
             "Endpoints": [
                 "/accounts"
             ],
@@ -47,7 +50,7 @@
     },
     "Get-ArmorAccountAddress": {
         "v1.0": {
-            "Description": "Retrieves the address on file for the specified Armor account",
+            "Description": "Retrieve the address on file for the specified Armor account",
             "Endpoints": [
                 "/accounts/{id}"
             ],
@@ -60,7 +63,7 @@
     },
     "Get-ArmorCompleteDatacenter": {
         "v1.0": {
-            "Description": "Return a set of available locations for provisioning new Armor Complete servers",
+            "Description": "Retrieve Armor Complete datacenter locations",
             "Endpoints": [
                 "/locations"
             ],
@@ -77,7 +80,7 @@
     },
     "Get-ArmorCompleteWorkload": {
         "v1.0": {
-            "Description": "Retrieve any workloads that are associated to your account",
+            "Description": "Retrieve workload details",
             "Endpoints": [
                 "/apps",
                 "/apps/{id}"
@@ -93,7 +96,7 @@
     },
     "Get-ArmorCompleteWorkloadTier": {
         "v1.0": {
-            "Description": "Retrieves all the tiers associated with a specified workload",
+            "Description": "Retrieve workload tier details",
             "Endpoints": [
                 "/apps/{id}/tiers",
                 "/apps/{id}/tiers/{id}"
@@ -109,7 +112,7 @@
     },
     "Get-ArmorIdentity": {
         "v1.0": {
-            "Description": "Return information about the current authenticated user, including account membership and permissions",
+            "Description": "Retrieve identity details about the authenticated user",
             "Endpoints": [
                 "/me"
             ],
@@ -122,7 +125,7 @@
     },
     "Get-ArmorUser": {
         "v1.0": {
-            "Description": "Retrieves a list of users in your account",
+            "Description": "Retrieve user account details",
             "Endpoints": [
                 "/users",
                 "/users/{id}"
@@ -140,7 +143,7 @@
     },
     "Get-ArmorVM": {
         "v1.0": {
-            "Description": "Displays a list of virtual machines in your account",
+            "Description": "Retrieve virtual machine details",
             "Endpoints": [
                 "/vms",
                 "/vms/{id}",
@@ -157,7 +160,7 @@
     },
     "New-ArmorApiToken": {
         "v1.0": {
-            "Description": "Creates an authentication token from an authorization code",
+            "Description": "Create an authentication token from an active authorization code",
             "Endpoints": [
                 "/auth/token"
             ],
@@ -173,7 +176,7 @@
     },
     "Remove-ArmorCompleteWorkload": {
         "v1.0": {
-            "Description": "Deletes the specified workload in your account",
+            "Description": "Delete the specified workload",
             "Endpoints": [
                 "/apps/{id}"
             ],
@@ -186,7 +189,7 @@
     },
     "Rename-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "Renames the specified virtual machine in your account",
+            "Description": "Rename the specified virtual machine",
             "Endpoints": [
                 "/vms/{id}"
             ],
@@ -202,7 +205,7 @@
     },
     "Rename-ArmorCompleteWorkload": {
         "v1.0": {
-            "Description": "Renames the specified workload in your account",
+            "Description": "Rename the specified workload",
             "Endpoints": [
                 "/apps/{id}"
             ],
@@ -218,7 +221,7 @@
     },
     "Reset-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "Abruptly reset the specified virtual machine in your account",
+            "Description": "Abruptly reset the specified virtual machine",
             "Endpoints": [
                 "/vms/{id}/power/reset"
             ],
@@ -231,7 +234,7 @@
     },
     "Restart-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "Reboot the specified virtual machine in your account",
+            "Description": "Reboot the specified virtual machine",
             "Endpoints": [
                 "/vms/{id}/power/reboot"
             ],
@@ -244,7 +247,7 @@
     },
     "Start-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "Power on the specified virtual machine in your account",
+            "Description": "Power on the specified virtual machine",
             "Endpoints": [
                 "/vms/{id}/power/on"
             ],
@@ -257,7 +260,7 @@
     },
     "Stop-ArmorCompleteVM": {
         "v1.0": {
-            "Description": "{0} the specified virtual machine in your account",
+            "Description": "{0} the specified virtual machine",
             "Endpoints": [
                 "/vms/{id}/power/shutdown",
                 "/vms/{id}/power/off",
@@ -272,7 +275,7 @@
     },
     "Update-ArmorApiToken": {
         "v1.0": {
-            "Description": "Reissues an authentication token if requested before session expiration",
+            "Description": "Retrieve a new authentication token if session is valid",
             "Endpoints": [
                 "/auth/token/reissue"
             ],
