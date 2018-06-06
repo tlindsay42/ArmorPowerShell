@@ -36,15 +36,26 @@ function TestAdvancedFunctionName (
 function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
     $contextName = $Global:FunctionHelpForm -f 'Main'
     Context -Name $contextName -Fixture {
-        $testName = 'should have content in section: <Property>'
+        #region init
+        $template = '{ required: .+ }'
+        #endregion
+
         $testCases = @(
             @{ 'Property' = 'Synopsis' },
             @{ 'Property' = 'Description' }
         )
+        $testName = 'should have content in section: <Property>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Property )
             $Help.$Property.Length |
                 Should -BeGreaterThan 0
+        } # End of It
+
+        $testName = "should not match the template entry: '${template}' in section: <Property>"
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Property )
+            $Help.$Property |
+                Should -Not -Match $template
         } # End of It
 
         $testName = "should have at least one: 'Example' entry"
@@ -53,20 +64,29 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
                 Should -BeGreaterThan 0
         } # End of It
 
-        $testName = "should have at least four help: 'Link' entries"
-        It -Name $testName -Test {
-            $Help.RelatedLinks.NavigationLink.Uri.Count |
-                Should -BeGreaterThan 3
-        } # End of It
-
-        foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
-            $testName = "should be a valid help link: '${uri}'"
+        for ( $i = 0; $i -lt ( $Help.Examples.Example | Measure-Object ).Count; $i++ ) {
+            $testName = "should not match the template entry: '${template}' in: 'Example $( $i + 1 )'"
             It -Name $testName -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
-                    Should -Be 200
+                param ( [String] $Property )
+                $Help.Examples.Example[$i] |
+                    Should -Not -Match $template
             } # End of It
         }
-    } # End of Context
+
+            $testName = "should have at least four help: 'Link' entries"
+            It -Name $testName -Test {
+                $Help.RelatedLinks.NavigationLink.Uri.Count |
+                    Should -BeGreaterThan 3
+            } # End of It
+
+            foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
+                $testName = "should be a valid help link: '${uri}'"
+                It -Name $testName -Test {
+                    ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
+                        Should -Be 200
+                } # End of It
+            }
+        } # End of Context
 } # End of Function
 
 function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {
