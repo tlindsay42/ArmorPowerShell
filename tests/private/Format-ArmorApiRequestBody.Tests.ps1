@@ -17,12 +17,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         'Array'     = 'test1', 'test2'
         'Switch'    = $true
     }
-    $validMethod = 'Post'
 
     function Test-FormatArmorApiRequestBody1 {
         param ( [String] $Code, [String] $GrantType, [String[]] $Array, [Switch] $Switch )
         $parameters = ( Get-Command -Name $MyInvocation.MyCommand.Name ).Parameters.Values
-        Format-ArmorApiRequestBody -Keys $validKeys -Parameters $parameters -Method $validMethod
+        Format-ArmorApiRequestBody -Keys $validKeys -Parameters $parameters
     }
     #endregion
 
@@ -43,7 +42,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Keys', 'Parameters', 'Method'
+        'ExpectedParameterNames' = 'Keys', 'Parameters'
         'Help'                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
@@ -62,53 +61,28 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             @{
                 'Keys'       = ''
                 'Parameters' = $validParameters
-                'Method'     = $validMethod
             },
             @{
                 'Keys'       = 'key1', ''
                 'Parameters' = $validParameters
-                'Method'     = $validMethod
             },
             @{
                 'Keys'       = $validKeys
                 'Parameters' = ''
-                'Method'     = $validMethod
             },
             @{
                 'Keys'       = $validKeys
                 'Parameters' = @()
-                'Method'     = $validMethod
             },
             @{
                 'Keys'       = $validKeys
                 'Parameters' = 'parameter1', ''
-                'Method'     = $validMethod
-            },
-            @{
-                'Keys'       = $validKeys
-                'Parameters' = $validParameters
-                'Method'     = 'Head'
-            },
-            @{
-                'Keys'       = $validKeys
-                'Parameters' = $validParameters
-                'Method'     = 'Merge'
-            },
-            @{
-                'Keys'       = $validKeys
-                'Parameters' = $validParameters
-                'Method'     = 'Options'
-            },
-            @{
-                'Keys'       = $validKeys
-                'Parameters' = $validParameters
-                'Method'     = 'Trace'
             }
         )
-        $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>, Method: <Method>'
+        $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>'
         It -Name $testName -TestCases $testCases -Test {
-            param ( [String[]] $Keys, [PSCustomObject[]] $Parameters, [String] $Method )
-            { Format-ArmorApiRequestBody -Keys $Keys -Parameters $Parameters -Method $Method } |
+            param ( [String[]] $Keys, [PSCustomObject[]] $Parameters )
+            { Format-ArmorApiRequestBody -Keys $Keys -Parameters $Parameters } |
                 Should -Throw
         } # End of It
 

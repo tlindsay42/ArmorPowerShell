@@ -55,18 +55,7 @@ function Format-ArmorApiRequestBody {
         [ValidateCount( 1, 65535 )]
         [ValidateNotNullorEmpty()]
         [PSCustomObject[]]
-        $Parameters,
-
-        <#
-        Specifies the action/method used for the Armor API web request.
-        #>
-        [Parameter(
-            Mandatory = $true,
-            Position = 2
-        )]
-        [ValidateSet( 'Delete', 'Get', 'Patch', 'Post', 'Put' )]
-        [String]
-        $Method
+        $Parameters
     )
 
     begin {
@@ -96,7 +85,6 @@ function Format-ArmorApiRequestBody {
         [String] $return = $null
         $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
 
-        if ( $Method -ne 'Get' ) {
             # Inventory all invoked parameters
             $setParameters = $PSCmdlet.MyInvocation.BoundParameters.Values.Name.Where( { $_ -notin $excludedParameters } )
 
@@ -146,7 +134,6 @@ function Format-ArmorApiRequestBody {
             $return = ConvertTo-Json -InputObject $body -ErrorAction 'Stop'
 
             Write-Verbose -Message "Body = ${return}"
-        }
 
         $return
     } # End of process

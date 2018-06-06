@@ -73,7 +73,7 @@ function Update-ArmorApiToken {
 
         $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
         $parameters = ( Get-Command -Name $function ).Parameters.Values
-        $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters -Method $resources.Method
+        $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
         $splat = @{
             'Uri'         = $uri
