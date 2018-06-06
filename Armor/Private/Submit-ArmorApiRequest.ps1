@@ -5,7 +5,11 @@ function Submit-ArmorApiRequest {
         response for further use.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Sends HTTPS requests to a web page or web service via
+        Invoke-WebRequest. If the expected HTTP response code is received, the
+        response content is converted from JSON and passed to the pipeline;
+        otherwise, the HTTP response code description is thrown as a
+        terminating error.
 
         .INPUTS
         None- you cannot pipe objects to this cmdlet.
@@ -16,7 +20,35 @@ function Submit-ArmorApiRequest {
         GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200 | Select-Object -Property User
+
+        user
+        ----
+        @{type=user; username=user.name@example.tld; firstName=User; lastName=Name; links=}
+
+        Description
+        -----------
+        Submits a GET request to the Armor Identity API endpoint during a valid
+        session, converts the JSON response body to an object, passes the
+        object to the pipeline, and then outputs the object.
+
+        .EXAMPLE
+        Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}' -Description 'Test Description' -Confirm | Select-Object -Property Name
+
+        Confirm
+        Are you sure you want to perform this action?
+        Performing the operation "Test Description" on target "https://api.armor.com/vms/1".
+        [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): y
+
+        name
+        ----
+        app1
+
+        Description
+        -----------
+        Submits a GET request to the Armor Identity API endpoint during a valid
+        session, converts the JSON response body to an object, passes the
+        object to the pipeline, and then outputs the object.
 
         .LINK
         http://armorpowershell.readthedocs.io/en/latest/index.html
