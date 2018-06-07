@@ -152,8 +152,7 @@ $functionsToExport = ( Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -ErrorActi
 $fileList = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse -ErrorAction 'Stop' |
     Resolve-Path -Relative -ErrorAction 'Stop'
 
-$aliasesToExport = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' |
-    ConvertFrom-Json -ErrorAction 'Stop'
+$aliasesToExport = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' | ConvertFrom-Json -ErrorAction 'Stop' ).Name
 
 $classesWithDependencies = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/ClassesWithDependenciesImportOrder.json" -ErrorAction 'Stop' |
     ConvertFrom-Json -ErrorAction 'Stop'
