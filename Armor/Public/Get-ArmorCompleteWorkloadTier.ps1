@@ -4,26 +4,25 @@ function Get-ArmorCompleteWorkloadTier {
         This cmdlet retrieves the tiers in an Armor Complete workload.
 
         .DESCRIPTION
-        Workloads and tiers are logical grouping tools for helping you
-        organize your virtual machines and corresponding resources in your
-        Armor Complete software-defined datacenters.
+        Workloads and tiers are logical grouping tools for helping you organize your
+        virtual machines and corresponding resources in your Armor Complete
+        software-defined datacenters.
 
         Workloads contain tiers, and tiers contain virtual machines.
 
-        Workloads are intended to help you describe the business function of a
-        group of servers, such as 'My Secure Website', which could be useful
-        for chargeback or showback to your customers, as well as helping your
-        staff and the Armor Support teams understand the architecture of your
-        environment.
+        Workloads are intended to help you describe the business function of a group of
+        servers, such as 'My Secure Website', which could be useful for chargeback or
+        showback to your customers, as well as helping your staff and the Armor Support
+        teams understand the architecture of your environment.
 
-        Tiers are intended to describe the application tiers within each
-        workload.  A typical three tiered application workload is comprised
-        of presentation, business logic, and persistence tiers.  Common labels
-        for each are: web, application, and database respectively, but you can
-        group your VMs however you choose.
+        Tiers are intended to describe the application tiers within each workload.  A
+        typical three tiered application workload is comprised of presentation,
+        business logic, and persistence tiers.  Common labels for each are: web,
+        application, and database respectively, but you can group your VMs however you
+        choose.
 
-        Returns a set of tiers in a workload that correspond to the filter
-        criteria provided by the cmdlet parameters.
+        Returns a set of tiers in a workload that correspond to the filter criteria
+        provided by the cmdlet parameters.
 
         .INPUTS
         UInt16
@@ -33,15 +32,38 @@ function Get-ArmorCompleteWorkloadTier {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorCompleteWorkloadTier -WorkloadID 1
+        Retrieves the details for all workload tiers in the workload with WorkloadID=1
+        in the Armor Complete account that currently has context.
+
+        .EXAMPLE
+        Get-ArmorCompleteWorkloadTier -WorkloadID 1 -ID 1
+        Retrieves the details for the workload tier with ID=1 in the workload with
+        WorkloadID=1.
+
+        .EXAMPLE
+        Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'Database'
+        Retrieves the details for the workload tier with Name='Database' in the workload with WorkloadID=1.
+
+        .EXAMPLE
+        2, 3 | Get-ArmorCompleteWorkloadTier -ApiVersion 'v1.0'
+        Retrieves the API version 1.0 details for all of the workload tiers in workloads with WorkloadID=2 and WorkloadID=3 via pipeline values.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Get-ArmorCompleteWorkloadTier
+        Retrieves the details for the workload tier with ID=1 in the workload with WorkloadID=1 via property names in the pipeline.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'Presentation' } | Get-ArmorCompleteWorkloadTier
+        Retrieves the details for the workload tier with Name='Presentation' in the workload with WorkloadID=1 via property names in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkloadtier
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkloadtier
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkloadTier.ps1
@@ -63,10 +85,7 @@ function Get-ArmorCompleteWorkloadTier {
     [OutputType( [ArmorCompleteWorkloadTier[]] )]
     [OutputType( [ArmorCompleteWorkloadTier] )]
     param (
-        <#
-        Specifies the ID of the Armor Complete workload that contains the
-        tier(s).
-        #>
+        # Specifies the ID of the workload that contains the tier(s).
         [Parameter(
             Mandatory = $true,
             HelpMessage = 'Please enter the ID of the Armor Complete workload that contains the tiers that you want to retrieve',
@@ -78,10 +97,7 @@ function Get-ArmorCompleteWorkloadTier {
         [UInt16]
         $WorkloadID,
 
-        <#
-        Specifies the IDs of the tiers in the Armor Complete that you want to
-        retrieve.
-        #>
+        # Specifies the ID of the workload tier.
         [Parameter(
             ParameterSetName = 'ID',
             Position = 1,
@@ -91,10 +107,7 @@ function Get-ArmorCompleteWorkloadTier {
         [UInt16]
         $ID = 0,
 
-        <#
-        Specifies the names of the tiers in the Armor Complete that you want to
-        retrieve.  Wildcard searches are permitted.
-        #>
+        # Specifies the names of the workload tiers.
         [Parameter(
             ParameterSetName = 'Name',
             Position = 1,
@@ -102,12 +115,11 @@ function Get-ArmorCompleteWorkloadTier {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
+        [SupportsWildcards()]
         [String]
         $Name = '',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String]
