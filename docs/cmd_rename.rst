@@ -9,7 +9,7 @@ NAME
     Rename-ArmorCompleteVM
     
 SYNOPSIS
-    This cmdlet renames Armor Complete virtual machines.
+    Renames Armor Complete virtual machines.
     
     
 SYNTAX
@@ -17,8 +17,8 @@ SYNTAX
     
     
 DESCRIPTION
-    The specified virtual machine in the Armor Complete account in context
-    will be renamed.
+    The specified virtual machine in the Armor Complete account in context will be
+    renamed.
     
 
 PARAMETERS
@@ -44,9 +44,18 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Rename-ArmorCompleteVM -ID 1 -NewName TEST-VM
+    
+    Renames the VM with ID=1 to 'TEST-VM'.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-VM' } | Rename-ArmorCompleteVM
+    
+    Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
     
     
     
@@ -63,7 +72,7 @@ NAME
     Rename-ArmorCompleteWorkload
     
 SYNOPSIS
-    This cmdlet renames Armor Complete workloads.
+    Renames Armor Complete workloads.
     
     
 SYNTAX
@@ -77,8 +86,7 @@ DESCRIPTION
 
 PARAMETERS
     -ID <UInt16>
-        Specifies the ID of the Armor Complete workload that you want to
-        rename.
+        Specifies the ID of the Armor Complete workload that you want to rename.
         
     -NewName <String>
         Specifies the new name of the Armor Complete workload.
@@ -98,9 +106,19 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Rename-ArmorCompleteWorkload -ID 1 -NewName TEST-WORKLOAD
+    
+    Renames the workload with ID=1 to 'TEST-WORKLOAD'.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
+    
+    Renames the workload with ID=1 to 'TEST-WORKLOAD' via property names in the
+    pipeline.
     
     
     

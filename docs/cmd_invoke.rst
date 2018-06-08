@@ -17,9 +17,8 @@ SYNTAX
     
     
 DESCRIPTION
-    This cmdlet sends custom HTTPS requests to the Armor API.  It can
-    be used for calling API endpoints that are not yet covered by the
-    cmdlets in this module.
+    This cmdlet sends custom HTTPS requests to the Armor API.  It can be used for
+    calling API endpoints that are not yet covered by the cmdlets in this module.
     
 
 PARAMETERS
@@ -30,8 +29,8 @@ PARAMETERS
         Specifies the headers of the Armor API web request.
         
     -Method <String>
-        Specifies the method used for the Armor API web request.  The permitted
-        values are:
+        Specifies the method used for the Armor API web request.  The permitted values
+        are:
         - Delete
         - Get
         - Patch
@@ -39,17 +38,17 @@ PARAMETERS
         - Put
         
     -Body <String>
-        Specifies the body of the Armor API web request.  This parameter is
-        ignored for Get requests.
+        Specifies the body of the Armor API web request.  This parameter is ignored for
+        Get requests.
         
     -SuccessCode <UInt16>
-        Specifies the value of the HTTP response code that indicates success
-        for this Armor API web request.
+        Specifies the value of the HTTP response code that indicates success for this
+        Armor API web request.
         
     -Description <String>
-        If the PowerShell $ConfirmPreference value is elevated for this Armor
-        API web request by setting the -Confirm parameter to $true, this
-        specifies the text to display at the user prompt.
+        If the PowerShell $ConfirmPreference value is elevated for this Armor API web
+        request by setting the -Confirm parameter to $true, this specifies the text to
+        display at the user prompt.
         
     <CommonParameters>
         This cmdlet supports the common parameters: Verbose, Debug,
@@ -59,9 +58,18 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Invoke-ArmorWebRequest -Endpoint '/me'
+    
+    Retrieves the current user's identity details.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>Invoke-ArmorWebRequest -Endpoint '/vms' -Headers $Global:ArmorSession.Headers
+    
+    Retrieves VM details using the session headers.
     
     
     

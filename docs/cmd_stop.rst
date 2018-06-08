@@ -9,7 +9,7 @@ NAME
     Stop-ArmorCompleteVM
     
 SYNOPSIS
-    This cmdlet powers off Armor Complete virtual machines.
+    Stops Armor Complete virtual machines.
     
     
 SYNTAX
@@ -17,47 +17,33 @@ SYNTAX
     
     
 DESCRIPTION
-    The specified virtual machine in the Armor Complete account in context
-    will be powered off.
-    
-    Types:
-    
-    - Shutdown initiates a graceful shutdown of the operating system.
-      VMware Tools or open-vm-tools must be installed and running for this
-      request to succeed.  This the recommend way to stop your VMs.
-    
-    - Off initiates a hard shutdown of the VM- effectively disconnecting
-      the virtual power cord from the VM.  This shutdown method has the
-      potential to cause data corruption and should only be used when
-      necessary.
-    
-    - ForceOff should not be used.  It breaks the state of the environment
-      by marking the VM as powered off in the Armor Management Portal (AMP)
-      and vCloud Director, but leaves the VM running in vSphere.
+    The specified virtual machine in the Armor Complete account in context will be
+    powered down.
     
 
 PARAMETERS
     -ID <UInt16>
-        Specifies the ID of the Armor Complete virtual machine that you want
-        to stop.
+        Specifies the ID of the Armor Complete virtual machine that you want to stop.
         
     -Type <String>
         Specifies how you want to stop the Armor Complete virtual machine.
         
-        Types:
-        
-        - Shutdown initiates a graceful shutdown of the operating system.
-          VMware Tools or open-vm-tools must be installed and running for this
-          request to succeed.  This the recommend way to stop your VMs.
-        
-        - Off initiates a hard shutdown of the VM- effectively disconnecting
-          the virtual power cord from the VM.  This shutdown method has the
-          potential to cause data corruption and should only be used when
-          necessary.
-        
-        - ForceOff should not be used.  It breaks the state of the environment
-          by marking the VM as powered off in the Armor Management Portal (AMP)
-          and vCloud Director, but leaves the VM running in vSphere.
+        - Shutdown
+          - Initiates a graceful shutdown of the operating system.
+          - VMware Tools or open-vm-tools must be installed, running, and in a good
+            state for this request to succeed.
+          - This is the recommend way to stop your VMs.
+        - Poweroff
+          - Initiates a hard shutdown of the VM- effectively disconnecting the virtual
+            power cord from the VM.
+          - This shutdown method has the potential to cause data corruption.
+          - This should only be used when necessary.
+        - ForceOff
+          - Breaks the state of the environment by marking the VM as powered off in
+            the Armor Management Portal (AMP), but leaves the VM running in the Armor
+            Complete cloud.
+          - This should not be used unless recommended by a Senior Armor Support team
+            member.
         
     -ApiVersion <String>
         Specifies the API version for this request.
@@ -74,9 +60,31 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Stop-ArmorCompleteVM -ID 1 -Type Shutdown
+    
+    If confirmed, gracefully shutdown the specified Armor Complete VM.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>2 | Stop-ArmorCompleteVM -Type Poweroff -Confirm:$false
+    
+    Power off the Armor Complete VM with ID=2 via pipeline value without prompting
+    for confirmation.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>Get-ArmorVM -ID 3 | Stop-ArmorCompleteVM -Type ForceOff -Confirm:$false
+    
+    Break the state of the Armor Complete VM with ID=3 via parameter name in the
+    pipeline without prompting for confirmation, so that the VM appears to be
+    powered off in the Armor Management Portal (AMP), but is still powered on in
+    the Armor Complete cloud.
     
     
     

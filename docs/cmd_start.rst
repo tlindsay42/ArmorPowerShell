@@ -9,7 +9,7 @@ NAME
     Start-ArmorCompleteVM
     
 SYNOPSIS
-    This cmdlet powers on Armor Complete virtual machines.
+    Starts Armor Complete virtual machines.
     
     
 SYNTAX
@@ -17,8 +17,8 @@ SYNTAX
     
     
 DESCRIPTION
-    The specified virtual machine in the Armor Complete account in context
-    will be powered on.
+    The specified virtual machine in the Armor Complete account in context will be
+    powered on.
     
 
 PARAMETERS
@@ -41,9 +41,27 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Start-ArmorCompleteVM -ID 1
+    
+    Power on the Armor Complete VM with ID=1.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>2 | Start-ArmorCompleteVM
+    
+    Power on the Armor Complete VM with ID=2 via pipeline value.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>Get-ArmorVM -ID 3 | Start-ArmorCompleteVM
+    
+    Power on the Armor Complete VM with ID=3 via property name in the pipeline.
     
     
     

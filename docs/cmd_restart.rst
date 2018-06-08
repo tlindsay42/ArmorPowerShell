@@ -9,7 +9,7 @@ NAME
     Restart-ArmorCompleteVM
     
 SYNOPSIS
-    This cmdlet gracefully reboots virtual machines.
+    Gracefully reboots virtual machines.
     
     
 SYNTAX
@@ -17,9 +17,9 @@ SYNTAX
     
     
 DESCRIPTION
-    The specified virtual machine will be gracefully rebooted in the Armor
-    Complete account in context.  VMware Tools or open-vm-tools must be
-    installed and running for this request to succeed.
+    The specified virtual machine will be gracefully rebooted in the Armor Complete
+    account in context.  VMware Tools or open-vm-tools must be installed and
+    running for this request to succeed.
     
     See also: Reset-ArmorCompleteVM
     
@@ -44,9 +44,27 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Retart-ArmorCompleteVM -ID 1
+    
+    Gracefully reboot on the specified Armor Complete VM.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>1 | Retart-ArmorCompleteVM
+    
+    Reboot the Armor Complete VM with ID=1 specified via pipeline value.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>Get-ArmorVM -ID 1 | Retart-ArmorCompleteVM
+    
+    Reboot the Armor Complete VM with ID=1 via property name in the pipeline.
     
     
     

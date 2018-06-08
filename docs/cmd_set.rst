@@ -9,7 +9,7 @@ NAME
     Set-ArmorAccountContext
     
 SYNOPSIS
-    This cmdlet sets the Armor Anywhere or Armor Complete account context.
+    Sets the Armor Anywhere or Armor Complete account context.
     
     
 SYNTAX
@@ -17,9 +17,9 @@ SYNTAX
     
     
 DESCRIPTION
-    If your user account has access to more than one Armor Anywhere and/or
-    Armor Complete accounts, this cmdlet allows you to update the context,
-    so that all future requests reference the specified account.
+    If your user account has access to more than one Armor Anywhere and/or Armor
+    Complete accounts, this cmdlet allows you to update the context, so that all
+    future requests reference the specified account.
     
 
 PARAMETERS
@@ -35,9 +35,28 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Set-ArmorAccountContext -ID 1
+    
+    Set the account context to the specified account ID so that all subsequent
+    commands reference that account.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>2 | Set-ArmorAccountContext
+    
+    Set the account context to 2 via the value in the pipeline.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>Get-ArmorAccount -ID 3 | Set-ArmorAccountContext
+    
+    Set the account context to 3 via the ID property name in the pipeline.
     
     
     

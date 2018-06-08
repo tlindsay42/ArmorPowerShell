@@ -17,8 +17,8 @@ SYNTAX
     
     
 DESCRIPTION
-    The specified workload in the Armor Complete account in context will be
-    deleted if is empty.
+    The specified workload in the Armor Complete account in context will be deleted
+    if is empty.
     
 
 PARAMETERS
@@ -40,9 +40,29 @@ PARAMETERS
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\>{required: show one or more examples using the function}
+    PS C:\>Remove-ArmorCompleteWorkload -ID 1
+    
+    If confirmed and empty of child objects, deletes workload with ID=1.
     
     
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS C:\>1 | Remove-ArmorCompleteWorkload
+    
+    If confirmed and empty of child objects, deletes workload with ID=1 identified
+    via pipeline value.
+    
+    
+    
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\>[PSCustomObject] @{ 'ID' = 1 | Remove-ArmorCompleteWorkload
+    
+    If confirmed and empty of child objects, deletes workload with ID=1 identified
+    via property name in the pipeline.
     
     
     
