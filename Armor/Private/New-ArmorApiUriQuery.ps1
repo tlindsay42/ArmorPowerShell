@@ -1,10 +1,12 @@
 function New-ArmorApiUriQuery {
     <#
         .SYNOPSIS
-        Builds a valid URI query string.
+        Builds the Armor API URI with a server-side filter.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Builds a server-side filtering URL with a query string if there are any
+        parameter names or aliases specified in the calling cmdlet that match
+        the filter keys in the `Query` key.
 
         .INPUTS
         None- this function does not accept pipeline inputs.
@@ -15,7 +17,9 @@ function New-ArmorApiUriQuery {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name; New-ArmorApiUriQuery -Keys $keys; $parameters = ( Get-Command -Name $function ).Parameters.Values; New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri 'https://api.armor.com/vms'
+        This is not a real example, but if valid, it would return the input URI with a
+        'Name' server-side filter (eg: https://api.armor.com/vms?name=TEST-VM)
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
