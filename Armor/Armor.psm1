@@ -1,19 +1,6 @@
 $aliases = Get-Content -Path "${PSScriptRoot}/Etc/Aliases.json" -ErrorAction 'Stop' |
     ConvertFrom-Json -ErrorAction 'Stop'
 
-foreach ( $alias in $aliases ) {
-    $splat = @{
-        'Name' = $alias.Name
-        'Value' = $alias.Value
-        'Description' = $alias.Description
-        'Option' = 'AllScope'
-        'Scope' = 'Global'
-        'Force' = $true
-        'ErrorAction' = 'Stop'
-    }
-    New-Alias @splat
-}
-
 # Get class definition files, as well as the private and public function definition files.
 $classesWithDependencies = Get-Content -Path "${PSScriptRoot}/Etc/ClassesWithDependenciesImportOrder.json" -ErrorAction 'Stop' |
     ConvertFrom-Json -ErrorAction 'Stop'
