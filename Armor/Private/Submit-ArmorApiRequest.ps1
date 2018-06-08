@@ -1,54 +1,34 @@
 function Submit-ArmorApiRequest {
     <#
         .SYNOPSIS
-        This cmdlet sends data to an Armor API endpoint and then formats the
-        response for further use.
+        Sends data to an Armor API endpoint and then formats the response for further
+        use.
 
         .DESCRIPTION
-        Sends HTTPS requests to a web page or web service via
-        Invoke-WebRequest. If the expected HTTP response code is received, the
-        response content is converted from JSON and passed to the pipeline;
-        otherwise, the HTTP response code description is thrown as a
-        terminating error.
+        Sends HTTPS requests to a web page or web service via Invoke-WebRequest. If the
+        expected HTTP response code is received, the response content is converted from
+        JSON and passed to the pipeline; otherwise, the HTTP response code description
+        is thrown as a terminating error.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200 | Select-Object -Property User
-
-        user
-        ----
-        @{type=user; username=user.name@example.tld; firstName=User; lastName=Name; links=}
-
-        Description
-        -----------
         Submits a GET request to the Armor Identity API endpoint during a valid
-        session, converts the JSON response body to an object, passes the
-        object to the pipeline, and then outputs the object.
+        session, converts the JSON response body to an object, passes the object to the
+        pipeline, and then outputs the object.
 
         .EXAMPLE
         Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}' -Description 'Test Description' -Confirm | Select-Object -Property Name
-
-        Confirm
-        Are you sure you want to perform this action?
-        Performing the operation "Test Description" on target "https://api.armor.com/vms/1".
-        [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): y
-
-        name
-        ----
-        app1
-
-        Description
-        -----------
         Submits a GET request to the Armor Identity API endpoint during a valid
-        session, converts the JSON response body to an object, passes the
-        object to the pipeline, and then outputs the object.
+        session, converts the JSON response body to an object, passes the object to the
+        pipeline, and then outputs the object.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
@@ -68,8 +48,8 @@ function Submit-ArmorApiRequest {
     [OutputType( [PSCustomObject] )]
     param (
         <#
-        Specifies the Uniform Resource Identifier (URI) of the Armor API
-        resource to which the web request is sent.
+        Specifies the Uniform Resource Identifier (URI) of the Armor API resource to
+        which the web request is sent.
         #>
         [Parameter(
             Mandatory = $true,
@@ -79,17 +59,13 @@ function Submit-ArmorApiRequest {
         [String]
         $Uri,
 
-        <#
-        Specifies the headers of the Armor API web request.
-        #>
+        # Specifies the headers of the Armor API web request.
         [Parameter( Position = 1 )]
         [ValidateNotNull()]
         [Hashtable]
         $Headers = $Global:ArmorSession.Headers,
 
-        <#
-        Specifies the action/method used for the Armor API web request.
-        #>
+        # Specifies the action/method used for the Armor API web request.
         [Parameter(
             Mandatory = $true,
             Position = 2
@@ -99,17 +75,15 @@ function Submit-ArmorApiRequest {
         $Method = 'Get',
 
         <#
-        Specifies the body of the Armor API request.  Ignored if the request
-        method is set to Get.
+        Specifies the body of the Armor API request.  Ignored if the request method is
+        set to Get.
         #>
         [Parameter( Position = 3 )]
         [AllowEmptyString()]
         [String]
         $Body = '',
 
-        <#
-        Specifies the success code expected in the response.
-        #>
+        # Specifies the success code expected in the response.
         [Parameter(
             Mandatory = $true,
             Position = 4
@@ -119,8 +93,8 @@ function Submit-ArmorApiRequest {
         $SuccessCode,
 
         <#
-        If this cmdlet is called with the -Confirm switch parameter
-        set to true, this optional description will be displayed at the prompt.
+        If this cmdlet is called with the -Confirm switch parameter set to true, this
+        optional description will be displayed at the prompt.
         #>
         [Parameter( Position = 5 )]
         [ValidateNotNullorEmpty()]
