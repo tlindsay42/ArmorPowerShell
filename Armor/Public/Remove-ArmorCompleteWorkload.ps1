@@ -4,8 +4,8 @@ function Remove-ArmorCompleteWorkload {
         This cmdlet deletes Armor Complete workloads.
 
         .DESCRIPTION
-        The specified workload in the Armor Complete account in context will be
-        deleted if is empty.
+        The specified workload in the Armor Complete account in context will be deleted
+        if is empty.
 
         .INPUTS
         UInt16
@@ -13,15 +13,26 @@ function Remove-ArmorCompleteWorkload {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Remove-ArmorCompleteWorkload -ID 1
+        If confirmed and empty of child objects, deletes workload with ID=1.
+
+        .EXAMPLE
+        1 | Remove-ArmorCompleteWorkload
+        If confirmed and empty of child objects, deletes workload with ID=1 identified
+        via pipeline value.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1 | Remove-ArmorCompleteWorkload
+        If confirmed and empty of child objects, deletes workload with ID=1 identified
+        via property name in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload
+        https://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteWorkload.ps1
@@ -37,9 +48,7 @@ function Remove-ArmorCompleteWorkload {
     [OutputType( [ArmorCompleteWorkload[]] )]
     [OutputType( [ArmorCompleteWorkload] )]
     param (
-        <#
-        Specifies the ID of the Armor Complete workload.
-        #>
+        # Specifies the ID of the Armor Complete workload.
         [Parameter(
             Mandatory = $true,
             Position = 0,
@@ -50,9 +59,7 @@ function Remove-ArmorCompleteWorkload {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
