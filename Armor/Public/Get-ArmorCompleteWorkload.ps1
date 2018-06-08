@@ -4,26 +4,25 @@ function Get-ArmorCompleteWorkload {
         This cmdlet retrieves Armor Complete workloads.
 
         .DESCRIPTION
-        Workloads and tiers are logical grouping tools for helping you
-        organize your virtual machines and corresponding resources in your
-        Armor Complete software-defined datacenters.
+        Workloads and tiers are logical grouping tools for helping you organize your
+        virtual machines and corresponding resources in your Armor Complete
+        software-defined datacenters.
 
         Workloads contain tiers, and tiers contain virtual machines.
 
-        Workloads are intended to help you describe the business function of a
-        group of servers, such as 'My Secure Website', which could be useful
-        for chargeback or showback to your customers, as well as helping your
-        staff and the Armor Support teams understand the architecture of your
-        environment.
+        Workloads are intended to help you describe the business function of a group of
+        servers, such as 'My Secure Website', which could be useful for chargeback or
+        showback to your customers, as well as helping your staff and the Armor Support
+        teams understand the architecture of your environment.
 
-        Tiers are intended to describe the application tiers within each
-        workload.  A typical three tiered application workload is comprised
-        of presentation, business logic, and persistence tiers.  Common labels
-        for each are: web, application, and database respectively, but you can
-        group your VMs however you choose.
+        Tiers are intended to describe the application tiers within each workload.  A
+        typical three tiered application workload is comprised of presentation,
+        business logic, and persistence tiers.  Common labels for each are: web,
+        application, and database respectively, but you can group your VMs however you
+        choose.
 
-        Returns a set of workloads that correspond to the filter criteria
-        provided by the cmdlet parameters.
+        Returns a set of workloads that correspond to the filter criteria provided by
+        the cmdlet parameters.
 
         .INPUTS
         UInt16
@@ -33,15 +32,40 @@ function Get-ArmorCompleteWorkload {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorCompleteWorkload
+        Retrieves the details for all workloads in the Armor Complete account that
+        currently has context.
+
+        .EXAMPLE
+        Get-ArmorCompleteWorkload -ID 1
+        Retrieves the details for the workload with ID=1.
+
+        .EXAMPLE
+        Get-ArmorCompleteWorkload -Name 'LAMP stack'
+        Retrieves the details for the workload with Name='LAMP stack'.
+
+        .EXAMPLE
+        2, 'WISP stack' | Get-ArmorCompleteWorkload -ApiVersion 'v1.0'
+        Retrieves the API version 1.0 details for the workloads with ID=2 and
+        Name='WISP stack' via pipeline values.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'Name' = 'Secure stack' } | Get-ArmorCompleteWorkload
+        Retrieves the details for the workload with Name='Secure stack' via property
+        name in the pipeline.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorCompleteWorkload
+        Retrieves the details for the workload with ID=1 via property name in the
+        pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkload.ps1
@@ -63,9 +87,7 @@ function Get-ArmorCompleteWorkload {
     [OutputType( [ArmorCompleteWorkload[]] )]
     [OutputType( [ArmorCompleteWorkload] )]
     param (
-        <#
-        Specifies the ID of the Armor Complete workload.
-        #>
+        # Specifies the ID of the Armor Complete workload.
         [Parameter(
             ParameterSetName = 'ID',
             Position = 0,
@@ -76,10 +98,7 @@ function Get-ArmorCompleteWorkload {
         [UInt16]
         $ID = 0,
 
-        <#
-        Specifies the name of the Armor Complete workload.  Wildcard searches
-        are permitted.
-        #>
+        # Specifies the name of the Armor Complete workload.
         [Parameter(
             ParameterSetName = 'Name',
             Position = 0,
@@ -91,9 +110,7 @@ function Get-ArmorCompleteWorkload {
         [String]
         $Name,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
