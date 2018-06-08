@@ -1,7 +1,7 @@
 function Rename-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        This cmdlet renames Armor Complete workloads.
+        Renames Armor Complete workloads.
 
         .DESCRIPTION
         The specified workload in the Armor Complete account in context will be
@@ -11,15 +11,21 @@ function Rename-ArmorCompleteWorkload {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Rename-ArmorCompleteWorkload -ID 1 -NewName TEST-WORKLOAD
+        Renames the workload with ID=1 to 'TEST-WORKLOAD'.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
+        Renames the workload with ID=1 to 'TEST-WORKLOAD' via property names in the
+        pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload
+        https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1
@@ -35,10 +41,7 @@ function Rename-ArmorCompleteWorkload {
     [OutputType( [ArmorCompleteWorkload[]] )]
     [OutputType( [ArmorCompleteWorkload] )]
     param (
-        <#
-        Specifies the ID of the Armor Complete workload that you want to
-        rename.
-        #>
+        # Specifies the ID of the Armor Complete workload that you want to rename.
         [Parameter(
             Mandatory = $true,
             HelpMessage = 'Please enter the ID of the Armor Complete workload that you want to rename',
@@ -49,9 +52,7 @@ function Rename-ArmorCompleteWorkload {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the new name of the Armor Complete workload.
-        #>
+        # Specifies the new name of the Armor Complete workload.
         [Parameter(
             Mandatory = $true,
             HelpMessage = 'Please enter the new name for the Armor Complete workload',
@@ -63,9 +64,7 @@ function Rename-ArmorCompleteWorkload {
         [String]
         $NewName,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String]
