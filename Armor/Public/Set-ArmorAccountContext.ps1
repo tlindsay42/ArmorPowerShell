@@ -1,12 +1,12 @@
 function Set-ArmorAccountContext {
     <#
         .SYNOPSIS
-        This cmdlet sets the Armor Anywhere or Armor Complete account context.
+        Sets the Armor Anywhere or Armor Complete account context.
 
         .DESCRIPTION
-        If your user account has access to more than one Armor Anywhere and/or
-        Armor Complete accounts, this cmdlet allows you to update the context,
-        so that all future requests reference the specified account.
+        If your user account has access to more than one Armor Anywhere and/or Armor
+        Complete accounts, this cmdlet allows you to update the context, so that all
+        future requests reference the specified account.
 
         .INPUTS
         UInt16
@@ -14,15 +14,25 @@ function Set-ArmorAccountContext {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Set-ArmorAccountContext -ID 1
+        Set the account context to the specified account ID so that all subsequent
+        commands reference that account.
+
+        .EXAMPLE
+        2 | Set-ArmorAccountContext
+        Set the account context to 2 via the value in the pipeline.
+
+        .EXAMPLE
+        Get-ArmorAccount -ID 3 | Set-ArmorAccountContext
+        Set the account context to 3 via the ID property name in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext
+        https://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Set-ArmorAccountContext.ps1
