@@ -1,11 +1,11 @@
 function Update-ArmorApiToken {
     <#
         .SYNOPSIS
-        This cmdlet reissues the authentication token.
+        Retrieves a new authentication token.
 
         .DESCRIPTION
-        This cmdlet reissues an authentication token and updates the variable
-        storing the session details: $Global:ArmorSession.
+        Retrieves a new Armor API authentication token and updates the variable storing
+        the session details: $Global:ArmorSession.
 
         .INPUTS
         String
@@ -13,9 +13,9 @@ function Update-ArmorApiToken {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Update-ArmorApiToken -Token '2261bac252204c2ea93ed32ea1ffd3ab' -ApiVersion 'v1.0'
@@ -36,9 +36,7 @@ function Update-ArmorApiToken {
     [CmdletBinding()]
     [OutputType( [Void] )]
     param (
-        <#
-        Specifies the Armor API authorization token.
-        #>
+        # Specifies the Armor API authorization token.
         [Parameter(
             Position = 0,
             ValueFromPipeline = $true,
@@ -48,9 +46,7 @@ function Update-ArmorApiToken {
         [String]
         $Token = $Global:ArmorSession.GetToken(),
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter(
             Position = 1,
             ValueFromPipelineByPropertyName = $true
