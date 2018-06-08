@@ -1,126 +1,50 @@
 function Connect-Armor {
     <#
         .SYNOPSIS
-        This cmdlet connects to Armor and establishes a session.
+        Connects to the Armor API and establishes a session.
 
         .DESCRIPTION
-        This cmdlet connects to the Armor RESTful API and supplies credentials
-        to the method.  The Armor API then returns a unique, temporary
-        authorization code, which is then converted into a token to represent
-        the user's credentials for subsequent calls.  Last, the account context
-        is set.  If an account ID is not specified, one is automatically
-        selected from the list of authorized account IDs.  Returns the session
-        details which are stored in the variable: $Global:ArmorSession.
+        Connects to the Armor RESTful API and supplies credentials to the method.  The
+        Armor API then returns a unique, temporary authorization code, which is then
+        converted into a token to represent the user's credentials for subsequent
+        calls.  Last, the account context is set.  If an account ID is not specified,
+        one is automatically selected from the list of authorized account IDs.  Returns
+        the session details which are stored in the variable: $Global:ArmorSession.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Connect-Armor
-
-        PowerShell credential request
-        Enter your credentials.
-        User: your.email.address@your.company.com
-        Password for user your.email.address@your.company.com: ****************
-
-
-        User                   : {your.email.address@your.company.com}
-        Accounts               : {Your Company Account 1, Your Company Account 2}
-        Departments            : {Department 1, Department 2}
-        Permissions            : {@{1=System.Object[]}
-        Features               : {1, 1, 1, 1...}
-        Server                 : api.armor.com
-        Port                   : 443
-        SessionLengthInMinutes : 15
-        SessionStartTime       : 10/3/17 1:21:22 PM
-        SessionExpirationTime  : 10/3/17 1:36:33 PM
-        ApiVersion             : v1.0
-
-
-        Description
-        -----------
-        Logs into the Armor API with the default parameters and the username
-        and password entered at the prompts.
+        Prompts for the username and password, and then attempts to log into the Armor
+        API.
 
         .EXAMPLE
-        $pscredential = Get-Credential
-
-        PowerShell credential request
-        Enter your credentials.
-        User: your.email.address@your.company.com
-        Password for user your.email.address@your.company.com: ****************
-
-        PS C:\>Connect-Armor -Credential $pscredential
-        ...
-
-        PS C:\>$Global:ArmorSession
-
-        User                   : {your.email.address@your.company.com}
-        Accounts               : {Your Company Account 1, Your Company Account 2}
-        Departments            : {Department 1, Department 2}
-        Permissions            : {@{1=System.Object[]}
-        Features               : {1, 1, 1, 1...}
-        Server                 : api.armor.com
-        Port                   : 443
-        SessionLengthInMinutes : 15
-        SessionStartTime       : 10/3/17 1:21:22 PM
-        SessionExpirationTime  : 10/3/17 1:36:33 PM
-        ApiVersion             : v1.0
-
-
-        Description
-        -----------
-        Logs into the Armor API with the credentials stored in the
-        $pscredential object, and then outputs the session details.
+        Connect-Armor -Credential $pscredential
+        Attempts to log into the Armor API with the credentials stored in the
+        $pscredential object.
 
         .EXAMPLE
-        $session = Connect-Armor -Credential $pscredential -AccountID 12345
-
-        PS C:\>$session -eq $Global:ArmorSession
-        True
-
-
-        Description
-        -----------
-        Logs into the Armor API with the credentials defined in the
-        $pscredential object, sets the account context to '12345', stores the
-        returned session details in the $session variable, and then compares
-        the value to the value of $Global:ArmorSession, which are equal.
+        Connect-Armor -Credential $pscredential -AccountID 12345
+        Attempts to log into the Armor API with the credentials stored in the
+        $pscredential object, and sets the account context to '12345'.
 
         .EXAMPLE
-        Connect-Armor -Credential $pscredential -ApiVersion 'v1.0' | Out-Null
-
-        PS C:\>$Global:ArmorSession.ApiVersion
-        v1.0
-
-
-        Description
-        -----------
-        Logs into the Armor API with the credentials defined in the
-        $pscredential object with the specified API version, and discards the
-        output by piping it to Out-Null.  The API version defined by this
-        cmdlet, either implicitly or explicitly, defines the default API
-        version for the session, which is stored in
-        $Global:ArmorSession.ApiVersion.
+        Connect-Armor -Credential $pscredential -ApiVersion 'v1.0'
+        Attempts to log into the Armor API with the credentials stored in the $pscredential object and sets the specified API version as the default for the session, which is stored in $Global:ArmorSession.ApiVersion.
 
         .EXAMPLE
-        Connect-Armor -Credential $pscredential -Server 'localhost' -Port 8443 |
-            Out-Null
-
-
-        Description
-        -----------
-        Logs into a test/dev Armor API instance with the credentials defined in
-        the $pscredential object, and discards the output by piping it to
-        Out-Null.
+        Connect-Armor -Credential $pscredential -Server 'localhost' -Port 8443
+        Attempts to log into a local test/dev Armor API instance listening on port
+        8443/tcp with the credentials stored in the $pscredential object.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor
+        https://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Connect-Armor.ps1
@@ -151,8 +75,8 @@ function Connect-Armor {
     [OutputType( [ArmorSession] )]
     param (
         <#
-        Your Armor API username and password.  If not supplied as a parameter,
-        you will be prompted for your credentials.
+        Your Armor API username and password.  If not supplied as a parameter, you will
+        be prompted for your credentials.
         #>
         [Parameter( Position = 0 )]
         [ValidateNotNull()]
@@ -160,25 +84,23 @@ function Connect-Armor {
         $Credential = ( Get-Credential ),
 
         <#
-        Specifies the Armor account ID to use for all subsequent requests.
-        The permitted range is 1-65535.
+        Specifies the Armor account ID to use for all subsequent requests.  The
+        permitted range is 1-65535.
         #>
         [Parameter( Position = 1 )]
         [ValidateRange( 1, 65535 )]
         [UInt16]
         $AccountID = 0,
 
-        <#
-        Specifies the Armor API server IP address or FQDN.
-        #>
+        # Specifies the Armor API server IP address or FQDN.
         [Parameter( Position = 2 )]
         [ValidateNotNullorEmpty()]
         [String]
         $Server = 'api.armor.com',
 
         <#
-        Specifies the Armor API server listening TCP port.  The permitted range
-        is: 1-65535.
+        Specifies the Armor API server listening TCP port.  The permitted range is:
+        1-65535.
         #>
         [Parameter( Position = 3 )]
         [ValidateRange( 1, 65535 )]
@@ -186,21 +108,18 @@ function Connect-Armor {
         $Port = 443,
 
         <#
-        Specifies the API version for this request.  The specified value is
-        also set as the default API version for the session as a parameter of
-        the session variable: '$Global:ArmorSession.ApiVersion'.
+        Specifies the API version for this request.  The specified value is also set as
+        the default API version for the session as a parameter of the session variable:
+        '$Global:ArmorSession.ApiVersion'.
 
-        The API version can be specified when any other public cmdlets are
-        called or the value of '$Global:ArmorSession.ApiVersion' can be updated
-        afterward to set a different default API version for the session.
+        The API version can be specified when any other public cmdlets are called or
+        the value of '$Global:ArmorSession.ApiVersion' can be updated afterward to set
+        a different default API version for the session.
         #>
         [Parameter( Position = 4 )]
         [ValidateSet( 'v1.0' )]
         [String]
-        $ApiVersion = (
-            Get-ArmorApiData -FunctionName $MyInvocation.MyCommand.Name -ApiVersions |
-                Select-Object -Last 1
-        )
+        $ApiVersion = 'v1.0'
     )
 
     begin {
