@@ -1,11 +1,11 @@
 function Start-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        This cmdlet powers on Armor Complete virtual machines.
+        Starts Armor Complete virtual machines.
 
         .DESCRIPTION
-        The specified virtual machine in the Armor Complete account in context
-        will be powered on.
+        The specified virtual machine in the Armor Complete account in context will be
+        powered on.
 
         .INPUTS
         UInt16
@@ -13,15 +13,24 @@ function Start-ArmorCompleteVM {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Start-ArmorCompleteVM -ID 1
+        Power on the Armor Complete VM with ID=1.
+
+        .EXAMPLE
+        2 | Start-ArmorCompleteVM
+        Power on the Armor Complete VM with ID=2 via pipeline value.
+
+        .EXAMPLE
+        Get-ArmorVM -ID 3 | Start-ArmorCompleteVM
+        Power on the Armor Complete VM with ID=3 via property name in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm
+        https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1
@@ -52,9 +61,7 @@ function Start-ArmorCompleteVM {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
