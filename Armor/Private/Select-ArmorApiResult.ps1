@@ -1,11 +1,13 @@
 function Select-ArmorApiResult {
     <#
         .SYNOPSIS
-        Filters objects that has been returned from an endpoint for specific objects
-        simportant to the user.
+        Criteria-based object filtering.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Filters objects returned from an Armor API endpoint for result object
+        property values matching parameter values.
+
+        Wildcard filtering is supported via the use of the `-like` operator.
 
         .INPUTS
         PSObject[]
@@ -18,7 +20,14 @@ function Select-ArmorApiResult {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        $results = Submit-ArmorApiRequest -Uri 'https://api.armor.com/vms'; $filters = $resources.Filter | Get-Member -MemberType 'NoteProperty'; $results = Select-ArmorApiResult -Results $results -Filters $filters
+        Sets $results to the VMs matching the parameters defined in the calling cmdlet:
+        `Get-ArmorVM`, such as 'Name'='TEST-VM'.
+
+        There are no available use cases for the bi-level filter yet, but one example
+        is to define a filter key in ApiData.json such as `"SKU": "Product.SKU"`,
+        and then define a $SKU parameter for `Get-ArmorVM`, so that you could then
+        filter for VMs by SKU via the `Get-ArmorVM` cmdlet.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
@@ -51,6 +60,11 @@ function Select-ArmorApiResult {
         Specifies the list of parameters that the user can use to filter response data.
         Each key is the parameter name without the "$" and each value corresponds to
         the response data's key.
+
+        If a '.' is included in the key name, the filter key name will be split so that
+        the first part of the filter key will be applied to a root-level property in
+        the result object, and the second part will be applied to a child property
+        within the parent property.
         #>
         [Parameter( Position = 1 )]
         [AllowEmptyCollection()]
