@@ -1,25 +1,30 @@
 function Rename-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        This cmdlet renames Armor Complete virtual machines.
+        Renames Armor Complete virtual machines.
 
         .DESCRIPTION
-        The specified virtual machine in the Armor Complete account in context
-        will be renamed.
+        The specified virtual machine in the Armor Complete account in context will be
+        renamed.
 
         .INPUTS
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Rename-ArmorCompleteVM -ID 1 -NewName TEST-VM
+        Renames the VM with ID=1 to 'TEST-VM'.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-VM' } | Rename-ArmorCompleteVM
+        Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm
+        https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1
@@ -49,9 +54,7 @@ function Rename-ArmorCompleteVM {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the new name for the Armor Complete virtual machine.
-        #>
+        # Specifies the new name for the Armor Complete virtual machine.
         [Parameter(
             Mandatory = $true,
             HelpMessage = 'Please enter the new name for the Armor Complete virtual machine',
@@ -63,9 +66,7 @@ function Rename-ArmorCompleteVM {
         [String]
         $NewName,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String]
