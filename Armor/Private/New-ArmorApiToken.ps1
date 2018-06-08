@@ -7,17 +7,17 @@ function New-ArmorApiToken {
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        String
-
-        PSCustomObject
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         New-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
+        Submits the temporary authorization code to retrieve a new Armor API session
+        token.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
@@ -35,30 +35,22 @@ function New-ArmorApiToken {
     [CmdletBinding()]
     [OutputType( [PSCustomObject] )]
     param (
-        <#
-        Specifies the temporary authorization code to redeem for a token.
-        #>
+        # Specifies the temporary authorization code to redeem for a token.
         [Parameter(
             Mandatory = $true,
-            Position = 0,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true
+            Position = 0
         )]
         [ValidateNotNullorEmpty()]
         [String]
         $Code,
 
-        <#
-        Specifies the type of permission.
-        #>
+        # Specifies the type of permission.
         [Parameter( Position = 1 )]
         [ValidateSet( 'authorization_code' )]
         [String]
         $GrantType = 'authorization_code',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 2 )]
         [ValidateSet( 'v1.0' )]
         [String]
