@@ -1,13 +1,12 @@
 function Get-ArmorUser {
     <#
         .SYNOPSIS
-        This cmdlet retrieves a list of users in your account.
+        Retrieves details about the user accounts in your account.
 
         .DESCRIPTION
-        This cmdlet retrieves details about the user accounts in the
-        Armor Anywhere or Armor Complete account in context.  Returns a set of
-        user accounts that correspond to the filter criteria provided by the
-        cmdlet parameters.
+        Retrieves details about the user accounts in the Armor Anywhere or Armor
+        Complete account in context.  Returns a set of user accounts that correspond to
+        the filter criteria provided by the cmdlet parameters.
 
         .INPUTS
         UInt16
@@ -17,15 +16,22 @@ function Get-ArmorUser {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorUser
+        Retrieves the details for all user accounts in the Armor account that currently
+        has context.
+
+        .EXAMPLE
+        Get-ArmorUser -ID 1
+        Retrieves the details for all user accounts in the Armor account that currently
+        has context.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorUser.ps1
@@ -47,9 +53,7 @@ function Get-ArmorUser {
     [OutputType( [ArmorUser[]] )]
     [OutputType( [ArmorUser] )]
     param (
-        <#
-        Specifies the ID of the Armor user account.
-        #>
+        # Specifies the ID of the Armor user account.
         [Parameter(
             ParameterSetName = 'ID',
             Position = 0,
@@ -60,10 +64,7 @@ function Get-ArmorUser {
         [UInt16]
         $ID = 0,
 
-        <#
-        Specifies the username of the Armor user account.  Wildcard searches
-        are permitted.
-        #>
+        # Specifies the username of the Armor user account.
         [Parameter(
             ParameterSetName = 'UserName',
             Position = 0,
@@ -74,10 +75,7 @@ function Get-ArmorUser {
         [String]
         $UserName = '',
 
-        <#
-        Specifies the first name of the Armor user account.  Wildcard searches
-        are permitted.
-        #>
+        # Specifies the first name of the Armor user account.
         [Parameter(
             ParameterSetName = 'Name',
             ValueFromPipelineByPropertyName = $true
@@ -86,10 +84,7 @@ function Get-ArmorUser {
         [String]
         $FirstName = '',
 
-        <#
-        Specifies the last name of the Armor user account.  Wildcard searches
-        are permitted.
-        #>
+        # Specifies the last name of the Armor user account.
         [Parameter(
             ParameterSetName = 'Name',
             ValueFromPipelineByPropertyName = $true
@@ -98,9 +93,7 @@ function Get-ArmorUser {
         [String]
         $LastName = '',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
