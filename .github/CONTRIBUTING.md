@@ -187,7 +187,7 @@ The labels are grouped by their purpose, but it's not required that every issue 
 Please open an issue on `tlindsay42/ArmorPowerShell` if you have suggestions for new labels.
 
 [gitter]: https://gitter.im/ArmorPowerShell/Lobby
-[faq]: http://armorpowershell.readthedocs.io/en/latest/usr_90_faq.html
+[faq]: https://armorpowershell.readthedocs.io/en/latest/usr_90_faq.html
 [psgallery]: https://www.powershellgallery.com/packages/Armor
 [issue_search]: https://github.com/tlindsay42/ArmorPowerShell/issues?utf8=%E2%9C%93&q=is%3Aissue
 [bugs]: https://github.com/tlindsay42/ArmorPowerShell/blob/master/.github/ISSUE_TEMPLATE/bug_report.md
