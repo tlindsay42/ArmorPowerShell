@@ -1,8 +1,8 @@
 function Select-ArmorApiResult {
     <#
         .SYNOPSIS
-        This cmdlet is used to filter data that has been returned from an
-        endpoint for specific objects important to the user.
+        Filters objects that has been returned from an endpoint for specific objects
+        simportant to the user.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
@@ -13,9 +13,9 @@ function Select-ArmorApiResult {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         {required: show one or more examples using the function}
@@ -37,9 +37,7 @@ function Select-ArmorApiResult {
     [OutputType( [PSCustomObject[]] )]
     [OutputType( [PSCustomObject] )]
     param (
-        <#
-        Specifies the formatted API response contents.
-        #>
+        # Specifies the formatted API response contents.
         [Parameter(
             Position = 0,
             ValueFromPipeline = $true,
@@ -50,9 +48,9 @@ function Select-ArmorApiResult {
         $Results = @(),
 
         <#
-        Specifies the list of parameters that the user can use to filter
-        response data.  Each key is the parameter name without the "$" and each
-        value corresponds to the response data's key.
+        Specifies the list of parameters that the user can use to filter response data.
+        Each key is the parameter name without the "$" and each value corresponds to
+        the response data's key.
         #>
         [Parameter( Position = 1 )]
         [AllowEmptyCollection()]
