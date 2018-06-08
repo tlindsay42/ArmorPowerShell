@@ -114,6 +114,7 @@ function Get-ArmorVM {
             ValueFromPipelineByPropertyName = $true
         )]
         [AllowEmptyString()]
+        [SupportsWildcards()]
         [String]
         $Name = '',
 

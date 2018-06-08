@@ -121,6 +121,7 @@ function Get-ArmorAccount {
             ValueFromPipelineByPropertyName = $true
         )]
         [AllowEmptyString()]
+        [SupportsWildcards()]
         [String]
         $Name = '',
 

@@ -72,6 +72,7 @@ function Get-ArmorUser {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
+        [SupportsWildcards()]
         [String]
         $UserName = '',
 
@@ -81,6 +82,7 @@ function Get-ArmorUser {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
+        [SupportsWildcards()]
         [String]
         $FirstName = '',
 
@@ -90,6 +92,7 @@ function Get-ArmorUser {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
+        [SupportsWildcards()]
         [String]
         $LastName = '',
 

@@ -48,19 +48,23 @@ function Get-ArmorCompleteWorkloadTier {
 
         .EXAMPLE
         Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'Database'
-        Retrieves the details for the workload tier with Name='Database' in the workload with WorkloadID=1.
+        Retrieves the details for the workload tier with Name='Database' in the
+        workload with WorkloadID=1.
 
         .EXAMPLE
         2, 3 | Get-ArmorCompleteWorkloadTier -ApiVersion 'v1.0'
-        Retrieves the API version 1.0 details for all of the workload tiers in workloads with WorkloadID=2 and WorkloadID=3 via pipeline values.
+        Retrieves the API version 1.0 details for all of the workload tiers in
+        workloads with WorkloadID=2 and WorkloadID=3 via pipeline values.
 
         .EXAMPLE
         [PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Get-ArmorCompleteWorkloadTier
-        Retrieves the details for the workload tier with ID=1 in the workload with WorkloadID=1 via property names in the pipeline.
+        Retrieves the details for the workload tier with ID=1 in the workload with
+        WorkloadID=1 via property names in the pipeline.
 
         .EXAMPLE
         [PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'Presentation' } | Get-ArmorCompleteWorkloadTier
-        Retrieves the details for the workload tier with Name='Presentation' in the workload with WorkloadID=1 via property names in the pipeline.
+        Retrieves the details for the workload tier with Name='Presentation' in the
+        workload with WorkloadID=1 via property names in the pipeline.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkloadtier

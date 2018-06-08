@@ -87,6 +87,7 @@ function Get-ArmorCompleteWorkload {
             ValueFromPipelineByPropertyName = $true
         )]
         [AllowEmptyString()]
+        [SupportsWildcards()]
         [String]
         $Name,
 
