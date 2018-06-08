@@ -1,12 +1,12 @@
 function Restart-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        This cmdlet gracefully reboots virtual machines.
+        Gracefully reboots virtual machines.
 
         .DESCRIPTION
-        The specified virtual machine will be gracefully rebooted in the Armor
-        Complete account in context.  VMware Tools or open-vm-tools must be
-        installed and running for this request to succeed.
+        The specified virtual machine will be gracefully rebooted in the Armor Complete
+        account in context.  VMware Tools or open-vm-tools must be installed and
+        running for this request to succeed.
 
         See also: Reset-ArmorCompleteVM
 
@@ -16,15 +16,24 @@ function Restart-ArmorCompleteVM {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Retart-ArmorCompleteVM -ID 1
+        Gracefully reboot on the specified Armor Complete VM.
+
+        .EXAMPLE
+        1 | Retart-ArmorCompleteVM
+        Reboot the Armor Complete VM with ID=1 specified via pipeline value.
+
+        .EXAMPLE
+        Get-ArmorVM -ID 1 | Retart-ArmorCompleteVM
+        Reboot the Armor Complete VM with ID=1 via property name in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm
+        https://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Restart-ArmorCompleteVM.ps1
@@ -55,9 +64,7 @@ function Restart-ArmorCompleteVM {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
