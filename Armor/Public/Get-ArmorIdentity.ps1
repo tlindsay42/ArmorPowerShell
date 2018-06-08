@@ -1,29 +1,34 @@
 function Get-ArmorIdentity {
     <#
         .SYNOPSIS
-        This cmdlet retrieves details about your Armor user account.
+        Retrieves identity details about your Armor user account.
 
         .DESCRIPTION
-        This cmdlet retrieves details about your Armor user account that you
-        used to establish the session.  Returns information about the current
-        authenticated user, including account membership and permissions.
+        Retrieves details about your Armor user account that you used to establish the
+        session, including account membership and permissions.
 
         This also updates the identity information in the session variable:
         $Global:ArmorSession.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Get-ArmorIdentity
+        Retrieves the identity details about your Armor user account.
+
+        .EXAMPLE
+        Get-ArmorIdentity -ApiVersion 1.0
+        Retrieves the Armor API version 1.0 identity details about your Armor user
+        account.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorIdentity.ps1
@@ -38,9 +43,7 @@ function Get-ArmorIdentity {
     [CmdletBinding()]
     [OutputType( [ArmorSession] )]
     param (
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 0 )]
         [ValidateSet( 'v1.0' )]
         [String]
