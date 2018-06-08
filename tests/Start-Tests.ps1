@@ -241,7 +241,7 @@ $Global:ReturnTypeForm = 'should return the expected data type: <ExpectedReturnT
 $Global:PrivateFunctionForm = 'Private/Function/{0}'
 $Global:PublicFunctionForm = 'Public/Function/{0}'
 $Global:FunctionHelpForm = 'Comment-Based Help/{0}'
-$Global:FunctionHelpNotes = "Troy Lindsay`nTwitter: @troylindsay42`nGitHub: tlindsay42"
+$Global:FunctionHelpNotes = "- Troy Lindsay`n- Twitter: @troylindsay42`n- GitHub: tlindsay42"
 
 $Global:JsonResponseBody = @{
     'Accounts4'            = GetTestResponseBody( 'Accounts_4.json' )
