@@ -51,7 +51,7 @@ function Submit-ArmorApiRequest {
         object to the pipeline, and then outputs the object.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/index.html
+        https://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Submit-ArmorApiRequest.ps1

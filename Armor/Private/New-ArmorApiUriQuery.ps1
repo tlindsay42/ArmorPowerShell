@@ -18,7 +18,7 @@ function New-ArmorApiUriQuery {
         {required: show one or more examples using the function}
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/index.html
+        https://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUriQuery.ps1

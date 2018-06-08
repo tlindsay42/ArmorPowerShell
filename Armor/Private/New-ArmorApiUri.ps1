@@ -23,7 +23,7 @@ function New-ArmorApiUri {
         This will return 'https://api.armor.com:443/auth/authorize'.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/index.html
+        https://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUri.ps1

@@ -38,7 +38,7 @@ function Get-ArmorApiData {
         for the Connect-Armor cmdlet.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/index.html
+        https://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Get-ArmorApiData.ps1

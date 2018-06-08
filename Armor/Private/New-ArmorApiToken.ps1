@@ -20,7 +20,7 @@ function New-ArmorApiToken {
         New-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/index.html
+        https://armorpowershell.readthedocs.io/en/latest/index.html
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1
