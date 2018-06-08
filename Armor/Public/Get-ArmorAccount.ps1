@@ -1,12 +1,12 @@
 function Get-ArmorAccount {
     <#
         .SYNOPSIS
-        This cmdlet retrieves Armor account details.
+        Retrieves Armor account details.
 
         .DESCRIPTION
-        This cmdlet retrieves a list of Armor account memberships for the
-        currently authenticated user.  Returns a set of accounts that
-        correspond to the filter criteria provided by the cmdlet parameters.
+        Retrieves a list of Armor account memberships for the currently authenticated
+        user.  Returns a set of accounts that correspond to the filter criteria
+        provided by the cmdlet parameters.
 
         .INPUTS
         UInt16
@@ -16,73 +16,36 @@ function Get-ArmorAccount {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorAccount
-
-        ID       : 65536
-        Name     : Example Parent Account
-        Currency : USD
-        Status   : Claimed
-        Parent   : -1
-        Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
-
-        ID       : 65537
-        Name     : Example Child Account
-        Currency : GBP
-        Status   : Claimed
-        Parent   : 65536
-        Products : {@{AA-CORE=System.Object[]}}
-
-
-        Description
-        -----------
         Gets all Armor accounts assigned to the logged in user account.
 
         .EXAMPLE
         Get-ArmorAccount -Name *Child*
-
-        ID       : 65537
-        Name     : Example Child Account
-        Currency : GBP
-        Status   : Claimed
-        Parent   : 65536
-        Products : {@{AA-CORE=System.Object[]}}
-
-
-        Description
-        -----------
-        Gets all Armor accounts assigned to the logged in user account with a
-        name containing the word 'Child'.
+        Gets all Armor accounts assigned to the logged in user account with a name
+        containing the word 'Child'.
 
         .EXAMPLE
-        65536, 'Example Child Account' | Get-ArmorAccount
+        1, 'Example Child Account' | Get-ArmorAccount
+        Gets the Armor accounts assigned to the logged in user account with ID=1 and
+        Name='Example Child Account' via pipeline values.
 
-        ID       : 65536
-        Name     : Example Parent Account
-        Currency : USD
-        Status   : Claimed
-        Parent   : -1
-        Products : {@{AA-CORE=System.Object[]; ARMOR-COMPLETE=System.Object[]}}
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccount
+        Gets the Armor account assigned to the logged in user account with ID=1 via
+        property name in the pipeline.
 
-        ID       : 65537
-        Name     : Example Child Account
-        Currency : GBP
-        Status   : Claimed
-        Parent   : 65536
-        Products : {@{AA-CORE=System.Object[]}}
-
-
-        Description
-        -----------
-        Gets the Armor accounts assigned to the logged in user account with
-        ID=65536 and Name='Example Child Account'.
+        .EXAMPLE
+        [PSCustomObject] @{ 'Name' = 'My Secure Account' } | Get-ArmorAccount
+        Gets the Armor account assigned to the logged in user account with
+        Name='My Secure Account' via property name in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccount
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccount
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1
@@ -98,9 +61,7 @@ function Get-ArmorAccount {
     [OutputType( [ArmorAccount] )]
     [OutputType( [ArmorAccount[]] )]
     param (
-        <#
-        Specifies the ID of the Armor account.
-        #>
+        # Specifies the ID of the Armor account.
         [Parameter(
             ParameterSetName = 'ID',
             Position = 0,
@@ -111,9 +72,7 @@ function Get-ArmorAccount {
         [UInt16]
         $ID = 0,
 
-        <#
-        Specifies the name of the Armor account.  Wildcard searches are permitted.
-        #>
+        # Specifies the name of the Armor account.
         [Parameter(
             ParameterSetName = 'Name',
             Position = 0,
@@ -125,9 +84,7 @@ function Get-ArmorAccount {
         [String]
         $Name = '',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
