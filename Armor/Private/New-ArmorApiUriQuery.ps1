@@ -1,18 +1,18 @@
 function New-ArmorApiUriQuery {
     <#
         .SYNOPSIS
-        This cmdlet is used to build a valid URI query string.
+        Builds a valid URI query string.
 
         .DESCRIPTION
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         {required: show one or more examples using the function}
@@ -33,9 +33,7 @@ function New-ArmorApiUriQuery {
     [CmdletBinding()]
     [OutputType( [String] )]
     param (
-        <#
-        Specifies the query filters available to the endpoint.
-        #>
+        # Specifies the query filters available to the endpoint.
         [Parameter(
             Mandatory = $true,
             Position = 0
@@ -45,9 +43,7 @@ function New-ArmorApiUriQuery {
         [String[]]
         $Keys,
 
-        <#
-        Specifies the parameters available within the calling cmdlet.
-        #>
+        # Specifies the parameters available within the calling cmdlet.
         [Parameter(
             Mandatory = $true,
             Position = 1
@@ -57,9 +53,7 @@ function New-ArmorApiUriQuery {
         [PSCustomObject[]]
         $Parameters,
 
-        <#
-        Specifies the endpoint's URI.
-        #>
+        # Specifies the endpoint's URI.
         [Parameter(
             Mandatory = $true,
             Position = 2
