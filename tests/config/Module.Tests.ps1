@@ -112,21 +112,32 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
                 'Value'    = 'http://i.imgur.com/fbXjkCn.png'
             }
         )
-        It -Name "should have set property: <Property> to: <Value>" -TestCases $testCases -Test {
+        It -Name 'should have set property: <Property> to: <Value>' -TestCases $testCases -Test {
             param ( [String] $Property, [String] $Value )
             $moduleInfo.$Property.ToString() |
                 Should -BeExactly $Value
         } # End of It
 
         $testCases = @(
-            @{ 'Property' = 'ExportedCmdlets' }
+            @{ 'Property' = 'ExportedCmdlets' },
             @{ 'Property' = 'ExportedVariables' }
-            @{ 'Property' = 'ExportedAliases' }
         )
-        It -Name "should have set property: <Property> to an empty collection" -TestCases $testCases -Test {
+        It -Name 'should have set property: <Property> to an empty collection' -TestCases $testCases -Test {
             param ( [String] $Property )
             $moduleInfo.$Property.Count |
                 Should -BeExactly 0
+        } # End of It
+
+        $testCases = @(
+            @{
+                'Property' = 'ExportedAliases'
+                'Value'    = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' | ConvertFrom-Json -ErrorAction 'Stop' ).Count
+            }
+        )
+        It -Name 'should have set property: <Property> to: <Value>' -TestCases $testCases -Test {
+            param ( [String] $Property, [UInt16] $Value )
+            $moduleInfo.$Property.Count |
+                Should -Be $Value
         } # End of It
 
         It -Name "should have set property: 'Tags'" -Test {
