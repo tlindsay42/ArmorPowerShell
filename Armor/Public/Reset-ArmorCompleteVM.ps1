@@ -1,14 +1,13 @@
 function Reset-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        This cmdlet powers off & on virtual machines.
+        Resets Armor Complete virtual machines.
 
         .DESCRIPTION
-        The specified virtual machine in the Armor Complete account in context
-        will be hard reset- effectively disconnecting the virtual power cord
-        from the VM, plugging it back in, and then powering it back on.  This
-        reboot method has the potential to cause data corruption and should
-        only be used when necessary.
+        The specified virtual machine in the Armor Complete account in context will be
+        hard reset- effectively disconnecting the virtual power cord from the VM,
+        plugging it back in, and then powering it back on.  This reboot method has the
+        potential to cause data corruption and should only be used when necessary.
 
         See also: Restart-ArmorCompleteVM
 
@@ -18,15 +17,25 @@ function Reset-ArmorCompleteVM {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        {required: show one or more examples using the function}
+        Reset-ArmorCompleteVM -ID 1
+        If confirmed, powers off & on the Armor Complete VM with ID=1.
+
+        .EXAMPLE
+        1 | Reset-ArmorCompleteVM -Confirm:$false
+        Powers off & on the Armor Complete VM with ID=1 via pipeline value.
+
+        .EXAMPLE
+        Get-ArmorVM -ID 1 | Reset-ArmorCompleteVM -Confirm:$false
+        Powers off & on the Armor Complete VM with ID=1 via property name in the
+        pipeline without confirmation.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm
+        https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Reset-ArmorCompleteVM.ps1
@@ -43,8 +52,8 @@ function Reset-ArmorCompleteVM {
     [OutputType( [ArmorVM] )]
     param (
         <#
-        Specifies the ID of the Armor Complete virtual machine that you want to
-        power off & on.
+        Specifies the ID of the Armor Complete virtual machine that you want to power
+        off & on.
         #>
         [Parameter(
             Mandatory = $true,
@@ -57,9 +66,7 @@ function Reset-ArmorCompleteVM {
         [UInt16]
         $ID,
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
