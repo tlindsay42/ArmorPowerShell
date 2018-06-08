@@ -1,36 +1,24 @@
 function Test-ArmorSession {
     <#
         .SYNOPSIS
-        This cmdlet tests the Armor API session.
+        Tests the validity of the Armor API session.
 
         .DESCRIPTION
-        Test to see if a session has been established with the Armor API and
-        that it has not yet expired.  If no token is found, an error will be
-        thrown.  If the session has expired, Disconnect-Armor will be called
-        with confirmation disabled to clean up the session.  If less than 2/3
-        of the session length remain, Update-ArmorApiToken will be called to
-        renew the session.
+        Test to see if a session has been established with the Armor API and that it has not yet expired.  If no token is found, an error will be thrown.  If the session has expired, Disconnect-Armor will be called with confirmation disabled to clean up the session.  If less than 2/3 of the session length remain, Update-ArmorApiToken will be called to renew the session.
 
-        This cmdlet should be called in the Begin section of public cmdlets
-        for optimal performance, so that the session is not tested repeatedly
-        when pipeline input is processed.
+        This cmdlet should be called in the Begin section of public cmdlets for optimal performance, so that the session is not tested repeatedly when pipeline input is processed.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Test-ArmorSession
-
-
-        Description
-        -----------
-        Validates that the Armor API session stored in $Global:ArmorSession is
-        still active.
+        Validates that the Armor API session stored in $Global:ArmorSession is still active.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
