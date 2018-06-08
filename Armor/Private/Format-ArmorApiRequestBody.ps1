@@ -4,42 +4,22 @@ function Format-ArmorApiRequestBody {
         Generates the JSON request body payload for an Armor API request.
 
         .DESCRIPTION
-        Retrieves the values of the parameters defined in the parent function
-        that match the names of the specified keys, builds the JSON request
-        body, and then returns the request body payload.
+        Retrieves the values of the parameters defined in the parent function that
+        match the names of the specified keys, builds the JSON request body, and then
+        returns the request body payload.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
-        function Test-FormatArmorApiRequestBody {
-            param ( [String] $String, [String[]] $Array, [Switch] $Switch )
-            $keys = 'String', 'Array', 'Switch'
-            $parameters = ( Get-Command -Name $MyInvocation.MyCommand.Name ).Parameters.Values
-            Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
-        }
-        Test-FormatArmorApiRequestBody -String 'test1' -Array 'test2a', 'test2b' -Switch
-
-        {
-            "String": "test1",
-            "Array": [
-                "test2a",
-                "test2b"
-            ],
-            "Switch": true
-        }
-
-
-        Description
-        -----------
-        Calls Format-ArmorApiRequestBody from within an example function to
-        demonstrate the JSON request body payload output for three different
-        parameter data types.
+        Format-ArmorApiRequestBody -Keys 'key1', 'key2' -Parameters $parameters
+        Generates a JSON document with the names and values of objects in the
+        $parameters array with names matching key1 & key2.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
@@ -57,9 +37,7 @@ function Format-ArmorApiRequestBody {
     [CmdletBinding()]
     [OutputType( [String] )]
     param (
-        <#
-        Specifies the variables available in the endpoint request body schema.
-        #>
+        # Specifies the variables available in the endpoint request body schema.
         [Parameter(
             Mandatory = $true,
             Position = 0
@@ -69,9 +47,7 @@ function Format-ArmorApiRequestBody {
         [String[]]
         $Keys,
 
-        <#
-        Specifies the parameter names available within the calling cmdlet.
-        #>
+        # Specifies the parameter names available within the calling cmdlet.
         [Parameter(
             Mandatory = $true,
             Position = 1
