@@ -1,13 +1,12 @@
 function Get-ArmorVM {
     <#
         .SYNOPSIS
-        This cmdlet retrieves the virtual machines in your Armor account.
+        Retrieves virtual machine details.
 
         .DESCRIPTION
-        This cmdlet retrieves details about the virtual machines in the
-        Armor Anywhere or Armor Complete account in context.  Returns a set of
-        virtual machines that correspond to the filter criteria provided by the
-        cmdlet parameters.
+        Retrieves details about the virtual machines in the Armor Anywhere or Armor
+        Complete account in context.  Returns a set of virtual machines that correspond
+        to the filter criteria provided by the cmdlet parameters.
 
         .INPUTS
         UInt16
@@ -19,47 +18,50 @@ function Get-ArmorVM {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorVM
-
-
-        Description
-        -----------
-        Returns all VMs in the Armor account that currently has context.
+        Retrieves the details for all VMs in the Armor account that currently has
+        context.
 
         .EXAMPLE
-        Get-ArmorVM -Name ARMO25VML01-gen4
-
-
-        Description
-        -----------
-        Returns the specified VM in the Armor account that currently has context.
+        Get-ArmorVM -ID 1
+        Retrieves the details for the VM with ID=1.
 
         .EXAMPLE
-        Get-ArmorVM -Name *-gen4
-
-
-        Description
-        -----------
-        Returns all VMs in the Armor account that currently has context that have a name that ends with '-gen4'.
+        Get-ArmorVM -Name 'web1'
+        Retrieves the details for the VM with Name='web1'.
 
         .EXAMPLE
-        Get-ArmorVM -Name *hacked*
+        Get-ArmorVM -Name db*
+        Retrieves all VMs in the Armor account that currently has context that have a
+        name that starts with 'db'.
 
+        .EXAMPLE
+        1 | Get-ArmorVM
+        Retrieves the details for the VM with ID=1 via pipeline value.
 
-        Description
-        -----------
-        Returns null.
+        .EXAMPLE
+        '*secure*' | Get-ArmorVM
+        Retrieves all VMs containing the word 'secure' in the name via pipeline value.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorVM
+        Retrieves the details for the VM with ID=1 via property name in the pipeline.
+
+        .EXAMPLE
+        [PSCustomObject] @{ 'Name' = 'app1' } | Get-ArmorVM
+        Retrieves the details for the VM with Name='app1' via property name in the
+        pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1
+        https://github.com/tlindsay42/ArmorPowerShell
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+VMs
@@ -75,12 +77,11 @@ function Get-ArmorVM {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]
+    [Alias( 'Get-ArmorCompleteVM' )]
     [OutputType( [ArmorVM[]] )]
     [OutputType( [ArmorVM] )]
     param (
-        <#
-        Specifies the IDs of the virtual machines that you want to retrieve.
-        #>
+        # Specifies the IDs of the virtual machines that you want to retrieve.
         [Parameter(
             ParameterSetName = 'ID',
             Position = 0,
@@ -92,7 +93,8 @@ function Get-ArmorVM {
         $ID = 0,
 
         <#
-        Specifies the Armor Anywhere Core Agent instance IDs of the virtual machines that you want to retrieve.
+        Specifies the Armor Anywhere Core Agent instance IDs of the virtual machines
+        that you want to retrieve.
         #>
         [Parameter(
             ParameterSetName = 'CoreInstanceID',
@@ -104,10 +106,7 @@ function Get-ArmorVM {
         [Guid]
         $CoreInstanceID,
 
-        <#
-        Specifies the names of the virtual machines that you want to retrieve.
-        Wildcard matches are supported.
-        #>
+        # Specifies the names of the virtual machines that you want to retrieve.
         [Parameter(
             ParameterSetName = 'Name',
             Position = 0,
@@ -116,11 +115,9 @@ function Get-ArmorVM {
         )]
         [AllowEmptyString()]
         [String]
-        $Name,
+        $Name = '',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
