@@ -7,19 +7,15 @@ function New-ArmorApiUri {
         { required: more detailed description of the function's purpose }
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs.
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
-
-
-        Description
-        -----------
         This will return 'https://api.armor.com:443/auth/authorize'.
 
         .LINK
@@ -38,25 +34,19 @@ function New-ArmorApiUri {
     [CmdletBinding()]
     [OutputType( [String] )]
     param (
-        <#
-        Specifies the Armor API server IP address or FQDN.
-        #>
+        # Specifies the Armor API server IP address or FQDN.
         [Parameter( Position = 0 )]
         [ValidateNotNullOrEmpty()]
         [String]
         $Server = $Global:ArmorSession.Server,
 
-        <#
-        Specifies the Armor API server port.
-        #>
+        # Specifies the Armor API server port.
         [Parameter( Position = 1 )]
         [ValidateRange( 1, 65535 )]
         [UInt16]
         $Port = $Global:ArmorSession.Port,
 
-        <#
-        Specifies the array of available endpoint paths.
-        #>
+        # Specifies the array of available endpoint paths.
         [Parameter(
             Mandatory = $true,
             Position = 2
@@ -65,9 +55,7 @@ function New-ArmorApiUri {
         [String[]]
         $Endpoints,
 
-        <#
-        Specifies the positional ID values to be inserted into the path.
-        #>
+        # Specifies the positional ID values to be inserted into the path.
         [Parameter( Position = 3 )]
         [ValidateCount( 0, 2 )]
         [ValidateScript( { $_ -match '^(?:\d+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$' } )]
