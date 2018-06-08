@@ -1,38 +1,27 @@
 function Get-ArmorAccountContext {
     <#
         .SYNOPSIS
-        This cmdlet gets the Armor Anywhere or Armor Complete account context.
+        Retrieves the Armor Anywhere or Armor Complete account currently in context.
 
         .DESCRIPTION
-        If your user account has access to more than one Armor Anywhere and/or
-        Armor Complete accounts, this cmdlet allows you to get the current
-        context, which all future requests will reference.
+        If your user account has access to more than one Armor Anywhere and/or Armor
+        Complete accounts, this cmdlet allows you to get the current context, which all
+        future requests will reference.
 
         .INPUTS
-        None- you cannot pipe objects to this cmdlet.
+        None- this function does not accept pipeline inputs
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorAccountContext
-
-        ID       : 65536
-        Name     : Example Parent Account
-        Currency : USD
-        Status   : Claimed
-        Parent   : -1
-        Products :
-
-
-        Description
-        -----------
-        Gets the Armor account currently in context.
+        Retrieves the Armor account currently in context.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountcontext
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountcontext
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountContext.ps1
