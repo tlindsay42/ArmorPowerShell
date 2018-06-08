@@ -1,11 +1,11 @@
 function Get-ArmorApiData {
     <#
         .SYNOPSIS
-        This cmdlet retrieves data for making requests to the Armor API.
+        Retrieves data for making requests to the Armor API.
 
         .DESCRIPTION
-        This cmdlet gets all of the data necessary to construct an API request
-        based on the specified cmdlet name.
+        Retrieves the data necessary to construct an API request based on the specified
+        cmdlet name.
 
         .INPUTS
         String
@@ -13,29 +13,29 @@ function Get-ArmorApiData {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0'
+        Retrieves the data necessary to construct a request for `Connect-Armor` for
+        Armor API version 1.0.
 
-        Name        Value
-        ----        -----
-        SuccessCode 200
-        Query       {}
-        Description Create a new login session
-        Body        {Password, Username}
-        Location
-        Method      Post
-        Filter      {}
-        URI         {/auth/authorize}
+        .EXAMPLE
+        Get-ArmorApiData -FunctionName 'Get-ArmorVM' -ApiVersions
+        Retrieves the Armor API versions available for `Get-ArmorVM`.
 
+        .EXAMPLE
+        'Get-ArmorCompleteWorkload', 'Get-ArmorCompleteWorkloadTier' | Get-ArmorApiData -ApiVersion 'v1.0'
+        Retrieves the data necessary to construct a request for
+        `Get-ArmorCompleteWorkload` and `Get-ArmorCompleteWorkloadTier` for Armor API
+        version 1.0.
 
-        Description
-        -----------
-        This command gets all of the data necessary to construct an API request
-        for the Connect-Armor cmdlet.
+        .EXAMPLE
+        'Rename-ArmorCompleteVM', 'Rename-ArmorCompleteWorkload' | Get-ArmorApiData -ApiVersions
+        Retrieves the Armor API versions available for `Rename-ArmorCompleteVM` and
+        `Rename-ArmorCompleteWorkload`.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
@@ -54,9 +54,7 @@ function Get-ArmorApiData {
     [OutputType( [PSCustomObject], ParameterSetName = 'ApiVersion' )]
     [OutputType( [String[]], ParameterSetName = 'ApiVersions' )]
     param (
-        <#
-        Specifies the cmdlet name to lookup the API data for.
-        #>
+        # Specifies the cmdlet name to lookup the API data for.
         [Parameter(
             Position = 0,
             ValueFromPipeline = $true,
@@ -66,9 +64,7 @@ function Get-ArmorApiData {
         [String]
         $FunctionName = 'Example',
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter(
             ParameterSetName = 'ApiVersion',
             Position = 1,
@@ -79,8 +75,8 @@ function Get-ArmorApiData {
         $ApiVersion = $Global:ArmorSession.ApiVersion,
 
         <#
-        Specifies that the available API versions for the specified function
-        should be enumerated.
+        Specifies that the available API versions for the specified function should be
+        enumerated.
         #>
         [Parameter(
             ParameterSetName = 'ApiVersions',
