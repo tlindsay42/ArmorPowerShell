@@ -1,10 +1,11 @@
 function New-ArmorApiUri {
     <#
         .SYNOPSIS
-        This cmdlet is used to build a valid URI.
+        Builds the Armor API URI with the endpoint.
 
         .DESCRIPTION
-        { required: more detailed description of the function's purpose }
+        Builds the Armor API URI with the appropriate endpoint for the number of IDs
+        specified.
 
         .INPUTS
         None- this function does not accept pipeline inputs.
@@ -15,8 +16,16 @@ function New-ArmorApiUri {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoint '/auth/authorize'
+        New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoints '/auth/authorize'
         This will return 'https://api.armor.com:443/auth/authorize'.
+
+        .EXAMPLE
+        New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoints '/vms', '/vms/{0}' -IDs 1
+        This will return 'https://api.armor.com:443/vms/1'.
+
+        .EXAMPLE
+        New-ArmorApiUri -Server 'api.armor.com' -Port 443 -Endpoint '/apps/{id}/tiers', '/apps/{id}/tiers/{id}' -IDs 1, 2
+        This will return 'https://api.armor.com:443/apps/1/tiers/2'.
 
         .LINK
         https://armorpowershell.readthedocs.io/en/latest/index.html
