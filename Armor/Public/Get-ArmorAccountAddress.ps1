@@ -1,10 +1,10 @@
 function Get-ArmorAccountAddress {
     <#
         .SYNOPSIS
-        This cmdlet retrieves the address on file for Armor accounts.
+        Retrieves the mailing address on file for Armor accounts.
 
         .DESCRIPTION
-        This cmdlet retrieves the address on file for Armor accounts that your
+        This cmdlet retrieves the mailing address on file for Armor accounts that your
         user account has access to.
 
         .INPUTS
@@ -13,63 +13,30 @@ function Get-ArmorAccountAddress {
         PSCustomObject
 
         .NOTES
-        Troy Lindsay
-        Twitter: @troylindsay42
-        GitHub: tlindsay42
+        - Troy Lindsay
+        - Twitter: @troylindsay42
+        - GitHub: tlindsay42
 
         .EXAMPLE
         Get-ArmorAccountAddress
-
-        AccountID    : 65536
-        Name         : Example Parent Account
-        AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525
-        City         : Richardson
-        State        : TX
-        PostalCode   : 75082
-        Country      : US
-
-
-        Description
-        -----------
-        Gets the address of the Armor account currently in context.
+        Retrieves the mailing address of the Armor account currently in context.
 
         .EXAMPLE
-        Get-ArmorAccountAddress -ID 65537
-
-        AccountID    : 65537
-        Name         : Example Child Account
-        AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525
-        City         : Richardson
-        State        : TX
-        PostalCode   : 75082
-        Country      : US
-
-
-        Description
-        -----------
-        Gets the address of Armor account ID 65537.
+        Get-ArmorAccountAddress -ID 1
+        Retrieves the mailing address of the Armor account with ID 1.
 
         .EXAMPLE
-        65536 | Get-ArmorAccountAddress
+        1, 2 | Get-ArmorAccountAddress
+        Retrieves the mailing address of the Armor accounts with ID=1 and ID=2 via
+        pipeline values.
 
-        AccountID    : 65536
-        Name         : Example Parent Account
-        AddressLine1 : 2360 Campbell Creek Blvd.
-        AddressLine2 : Suite 525
-        City         : Richardson
-        State        : TX
-        PostalCode   : 75082
-        Country      : US
-
-
-        Description
-        -----------
-        Gets the address of Armor account ID 65536.
+        .EXAMPLE
+        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccountAddress
+        Retrieves the mailing address of the Armor account with ID=1 and ID=2 via
+        property names in the pipeline.
 
         .LINK
-        http://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
+        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountAddress.ps1
@@ -84,9 +51,7 @@ function Get-ArmorAccountAddress {
     [CmdletBinding()]
     [OutputType( [ArmorAccountAddress] )]
     param (
-        <#
-        Specifies the ID of the Armor account with the desired address details.
-        #>
+        # Specifies the ID of the Armor account with the desired address details.
         [Parameter(
             Position = 0,
             ValueFromPipeline = $true,
@@ -96,9 +61,7 @@ function Get-ArmorAccountAddress {
         [UInt16]
         $ID = $Global:ArmorSession.GetAccountContextID(),
 
-        <#
-        Specifies the API version for this request.
-        #>
+        # Specifies the API version for this request.
         [Parameter( Position = 1 )]
         [ValidateSet( 'v1.0' )]
         [String]
