@@ -17,13 +17,14 @@
 version: 1.0.{build}
 
 # branches to build
-#branches:
+branches:
   # whitelist
   #only:
     #- master
 
   # blacklist
-  #except:
+  except:
+  - gh-pages
 
 # Do not build on tags
 skip_tags: true

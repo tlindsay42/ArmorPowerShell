@@ -13,13 +13,14 @@
 #---------------------------------#
 
 # branches to build
-#branches:
+branches:
   # whitelist
   #only:
     #- master
 
   # blacklist
-  #except:
+  except:
+  - gh-pages
 
 #jobs:
   #include:
