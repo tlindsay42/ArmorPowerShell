@@ -53,7 +53,7 @@ pull_requests:
 #skip_branch_with_pr:
 
 # Maximum number of concurrent jobs for the project
-#max_jobs:
+max_jobs: 5
 
 
 #---------------------------------#
