@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccount
-schema: 2.0.0
----
-
 # Get-ArmorAccount
 
 ## SYNOPSIS
@@ -23,8 +16,10 @@ Get-ArmorAccount [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves a list of Armor account memberships for the currently authenticated user.
-Returns a set of accounts that correspond to the filter criteria provided by the cmdlet parameters.
+Retrieves a list of Armor account memberships for the currently authenticated
+user.
+Returns a set of accounts that correspond to the filter criteria
+provided by the cmdlet parameters.
 
 ## EXAMPLES
 
@@ -40,28 +35,32 @@ Gets all Armor accounts assigned to the logged in user account.
 Get-ArmorAccount -Name *Child*
 ```
 
-Gets all Armor accounts assigned to the logged in user account with a name containing the word 'Child'.
+Gets all Armor accounts assigned to the logged in user account with a name
+containing the word 'Child'.
 
 ### EXAMPLE 3
 ```
 1, 'Example Child Account' | Get-ArmorAccount
 ```
 
-Gets the Armor accounts assigned to the logged in user account with ID=1 and Name='Example Child Account' via pipeline values.
+Gets the Armor accounts assigned to the logged in user account with ID=1 and
+Name='Example Child Account' via pipeline values.
 
 ### EXAMPLE 4
 ```
 [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccount
 ```
 
-Gets the Armor account assigned to the logged in user account with ID=1 via property name in the pipeline.
+Gets the Armor account assigned to the logged in user account with ID=1 via
+property name in the pipeline.
 
 ### EXAMPLE 5
 ```
 [PSCustomObject] @{ 'Name' = 'My Secure Account' } | Get-ArmorAccount
 ```
 
-Gets the Armor account assigned to the logged in user account with Name='My Secure Account' via property name in the pipeline.
+Gets the Armor account assigned to the logged in user account with
+Name='My Secure Account' via property name in the pipeline.
 
 ## PARAMETERS
 

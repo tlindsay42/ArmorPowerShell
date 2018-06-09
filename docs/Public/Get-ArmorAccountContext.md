@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountcontext
-schema: 2.0.0
----
-
 # Get-ArmorAccountContext
 
 ## SYNOPSIS
@@ -17,7 +10,9 @@ Get-ArmorAccountContext [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-If your user account has access to more than one Armor Anywhere and/or Armor Complete accounts, this cmdlet allows you to get the current context, which all future requests will reference.
+If your user account has access to more than one Armor Anywhere and/or Armor
+Complete accounts, this cmdlet allows you to get the current context, which all
+future requests will reference.
 
 ## EXAMPLES
 

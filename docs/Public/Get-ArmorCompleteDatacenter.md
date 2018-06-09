@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter
-schema: 2.0.0
----
-
 # Get-ArmorCompleteDatacenter
 
 ## SYNOPSIS
@@ -28,8 +21,10 @@ Get-ArmorCompleteDatacenter [[-Location] <String>] [[-ApiVersion] <String>] [<Co
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves details about the Armor Complete datacenters, regions, and compute zones.
-Returns a set of datacenters that correspond to the filter criteria provided by the cmdlet parameters.
+Retrieves details about the Armor Complete datacenters, regions, and compute
+zones.
+Returns a set of datacenters that correspond to the filter criteria
+provided by the cmdlet parameters.
 
 ## EXAMPLES
 
@@ -52,14 +47,16 @@ Retrieves the details for the Armor Complete datacenter with ID=2.
 1, 'PHX01' | Get-ArmorCompleteDatacenter
 ```
 
-Retrieves the details for the Armor Complete datacenter with ID=1 and Location='PHX01' via pipeline values.
+Retrieves the details for the Armor Complete datacenter with ID=1 and
+Location='PHX01' via pipeline values.
 
 ### EXAMPLE 4
 ```
 [PSCustomObject] @{ 'Location' = 'EU West' } | Get-ArmorCompleteDatacenter
 ```
 
-Retrieves the details for the Armor Complete datacenter with Name='EU West' via property name in the pipeline.
+Retrieves the details for the Armor Complete datacenter with Name='EU West' via
+property name in the pipeline.
 
 ## PARAMETERS
 

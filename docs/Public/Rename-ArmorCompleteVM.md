@@ -1,47 +1,40 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload
-schema: 2.0.0
----
-
-# Rename-ArmorCompleteWorkload
+# Rename-ArmorCompleteVM
 
 ## SYNOPSIS
-Renames Armor Complete workloads.
+Renames Armor Complete virtual machines.
 
 ## SYNTAX
 
 ```
-Rename-ArmorCompleteWorkload [-ID] <UInt16> [-NewName] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm]
+Rename-ArmorCompleteVM [-ID] <UInt16> [-NewName] <String> [[-ApiVersion] <String>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The specified workload in the Armor Complete account in context will be
+The specified virtual machine in the Armor Complete account in context will be
 renamed.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Rename-ArmorCompleteWorkload -ID 1 -NewName TEST-WORKLOAD
+Rename-ArmorCompleteVM -ID 1 -NewName TEST-VM
 ```
 
-Renames the workload with ID=1 to 'TEST-WORKLOAD'.
+Renames the VM with ID=1 to 'TEST-VM'.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
+[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-VM' } | Rename-ArmorCompleteVM
 ```
 
-Renames the workload with ID=1 to 'TEST-WORKLOAD' via property names in the
-pipeline.
+Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
 
 ## PARAMETERS
 
 ### -ID
-Specifies the ID of the Armor Complete workload that you want to rename.
+Specifies the ID of the Armor Complete virtual machine that you want to
+rename.
 
 ```yaml
 Type: UInt16
@@ -56,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -NewName
-Specifies the new name of the Armor Complete workload.
+Specifies the new name for the Armor Complete virtual machine.
 
 ```yaml
 Type: String
@@ -126,9 +119,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## OUTPUTS
 
-### ArmorCompleteWorkload[]
+### ArmorVM[]
 
-### ArmorCompleteWorkload
+### ArmorVM
 
 ## NOTES
 - Troy Lindsay
@@ -137,11 +130,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload](https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload)
+[https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1)
 
-[https://docs.armor.com/display/KBSS/Update+Workload](https://docs.armor.com/display/KBSS/Update+Workload)
+[https://docs.armor.com/display/KBSS/Update+VM+Name](https://docs.armor.com/display/KBSS/Update+VM+Name)
 
-[https://developer.armor.com/#!/Infrastructure/App_UpdateApp](https://developer.armor.com/#!/Infrastructure/App_UpdateApp)
+[https://developer.armor.com/#!/Infrastructure/Vm_UpdateVm](https://developer.armor.com/#!/Infrastructure/Vm_UpdateVm)
 

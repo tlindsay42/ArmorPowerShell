@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor
-schema: 2.0.0
----
-
 # Disconnect-Armor
 
 ## SYNOPSIS
@@ -17,7 +10,8 @@ Disconnect-Armor [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Disconnects from the Armor API and destroys the $Global:ArmorSession session variable.
+Disconnects from the Armor API and destroys the $Global:ArmorSession session
+variable.
 
 ## EXAMPLES
 
@@ -26,7 +20,8 @@ Disconnects from the Armor API and destroys the $Global:ArmorSession session var
 Disconnect-Armor
 ```
 
-Disconnects from the Armor API and destroys the $Global:ArmorSession session variable.
+Disconnects from the Armor API and destroys the $Global:ArmorSession session
+variable.
 
 ## PARAMETERS
 

@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
-schema: 2.0.0
----
-
 # Get-ArmorAccountAddress
 
 ## SYNOPSIS
@@ -17,7 +10,8 @@ Get-ArmorAccountAddress [[-ID] <UInt16>] [[-ApiVersion] <String>] [<CommonParame
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves the mailing address on file for Armor accounts that your user account has access to.
+This cmdlet retrieves the mailing address on file for Armor accounts that your
+user account has access to.
 
 ## EXAMPLES
 
@@ -40,14 +34,16 @@ Retrieves the mailing address of the Armor account with ID 1.
 1, 2 | Get-ArmorAccountAddress
 ```
 
-Retrieves the mailing address of the Armor accounts with ID=1 and ID=2 via pipeline values.
+Retrieves the mailing address of the Armor accounts with ID=1 and ID=2 via
+pipeline values.
 
 ### EXAMPLE 4
 ```
 [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccountAddress
 ```
 
-Retrieves the mailing address of the Armor account with ID=1 and ID=2 via property names in the pipeline.
+Retrieves the mailing address of the Armor account with ID=1 and ID=2 via
+property names in the pipeline.
 
 ## PARAMETERS
 

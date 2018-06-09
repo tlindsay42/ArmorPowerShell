@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor
-schema: 2.0.0
----
-
 # Connect-Armor
 
 ## SYNOPSIS
@@ -18,11 +11,16 @@ Connect-Armor [[-Credential] <PSCredential>] [[-AccountID] <UInt16>] [[-Server] 
 ```
 
 ## DESCRIPTION
-This cmdlet connects to the Armor RESTful API and supplies credentials to the method.
-The Armor API then returns a unique, temporary authorization code, which is then converted into a token to represent the user's credentials for subsequent calls.
+Connects to the Armor RESTful API and supplies credentials to the method.
+The
+Armor API then returns a unique, temporary authorization code, which is then
+converted into a token to represent the user's credentials for subsequent
+calls.
 Last, the account context is set.
-If an account ID is not specified, one is automatically selected from the list of authorized account IDs.
-Returns the session details which are stored in the variable: $Global:ArmorSession.
+If an account ID is not specified,
+one is automatically selected from the list of authorized account IDs.
+Returns
+the session details which are stored in the variable: $Global:ArmorSession.
 
 ## EXAMPLES
 
@@ -31,21 +29,24 @@ Returns the session details which are stored in the variable: $Global:ArmorSessi
 Connect-Armor
 ```
 
-Prompts for the username and password, and then attempts to log into the Armor API.
+Prompts for the username and password, and then attempts to log into the Armor
+API.
 
 ### EXAMPLE 2
 ```
 Connect-Armor -Credential $pscredential
 ```
 
-Attempts to log into the Armor API with the credentials stored in the $pscredential object.
+Attempts to log into the Armor API with the credentials stored in the
+$pscredential object.
 
 ### EXAMPLE 3
 ```
 Connect-Armor -Credential $pscredential -AccountID 12345
 ```
 
-Attempts to log into the Armor API with the credentials stored in the $pscredential object, and sets the account context to '12345'.
+Attempts to log into the Armor API with the credentials stored in the
+$pscredential object, and sets the account context to '12345'.
 
 ### EXAMPLE 4
 ```
@@ -59,13 +60,15 @@ Attempts to log into the Armor API with the credentials stored in the $pscredent
 Connect-Armor -Credential $pscredential -Server 'localhost' -Port 8443
 ```
 
-Attempts to log into a local test/dev Armor API instance listening on port 8443/tcp with the credentials stored in the $pscredential object.
+Attempts to log into a local test/dev Armor API instance listening on port
+8443/tcp with the credentials stored in the $pscredential object.
 
 ## PARAMETERS
 
 ### -Credential
 Your Armor API username and password.
-If not supplied as a parameter, you will be prompted for your credentials.
+If not supplied as a parameter, you will
+be prompted for your credentials.
 
 ```yaml
 Type: PSCredential
@@ -81,7 +84,8 @@ Accept wildcard characters: False
 
 ### -AccountID
 Specifies the Armor account ID to use for all subsequent requests.
-The permitted range is 1-65535.
+The
+permitted range is 1-65535.
 
 ```yaml
 Type: UInt16
@@ -112,7 +116,8 @@ Accept wildcard characters: False
 
 ### -Port
 Specifies the Armor API server listening TCP port.
-The permitted range is: 1-65535.
+The permitted range is:
+1-65535.
 
 ```yaml
 Type: UInt16
@@ -128,9 +133,13 @@ Accept wildcard characters: False
 
 ### -ApiVersion
 Specifies the API version for this request.
-The specified value is also set as the default API version for the session as a parameter of the session variable: '$Global:ArmorSession.ApiVersion'.
+The specified value is also set as
+the default API version for the session as a parameter of the session variable:
+'$Global:ArmorSession.ApiVersion'.
 
-The API version can be specified when any other public cmdlets are called or the value of '$Global:ArmorSession.ApiVersion' can be updated afterward to set a different default API version for the session.
+The API version can be specified when any other public cmdlets are called or
+the value of '$Global:ArmorSession.ApiVersion' can be updated afterward to set
+a different default API version for the session.
 
 ```yaml
 Type: String

@@ -1,59 +1,46 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm
-schema: 2.0.0
----
-
-# Reset-ArmorCompleteVM
+# Start-ArmorCompleteVM
 
 ## SYNOPSIS
-Resets Armor Complete virtual machines.
+Starts Armor Complete virtual machines.
 
 ## SYNTAX
 
 ```
-Reset-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The specified virtual machine in the Armor Complete account in context will be
-hard reset- effectively disconnecting the virtual power cord from the VM,
-plugging it back in, and then powering it back on.
-This reboot method has the
-potential to cause data corruption and should only be used when necessary.
-
-See also: Restart-ArmorCompleteVM
+powered on.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Reset-ArmorCompleteVM -ID 1
+Start-ArmorCompleteVM -ID 1
 ```
 
-If confirmed, powers off & on the Armor Complete VM with ID=1.
+Power on the Armor Complete VM with ID=1.
 
 ### EXAMPLE 2
 ```
-1 | Reset-ArmorCompleteVM -Confirm:$false
+2 | Start-ArmorCompleteVM
 ```
 
-Powers off & on the Armor Complete VM with ID=1 via pipeline value.
+Power on the Armor Complete VM with ID=2 via pipeline value.
 
 ### EXAMPLE 3
 ```
-Get-ArmorVM -ID 1 | Reset-ArmorCompleteVM -Confirm:$false
+Get-ArmorVM -ID 3 | Start-ArmorCompleteVM
 ```
 
-Powers off & on the Armor Complete VM with ID=1 via property name in the
-pipeline without confirmation.
+Power on the Armor Complete VM with ID=3 via property name in the pipeline.
 
 ## PARAMETERS
 
 ### -ID
-Specifies the ID of the Armor Complete virtual machine that you want to power
-off & on.
+Specifies the ID of the VM to power on in the Armor Complete account in
+context.
 
 ```yaml
 Type: UInt16
@@ -136,9 +123,9 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm)
+[https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Reset-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Reset-ArmorCompleteVM.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1)
 
 [https://docs.armor.com/display/KBSS/Perform+VM+Power+Actions](https://docs.armor.com/display/KBSS/Perform+VM+Power+Actions)
 

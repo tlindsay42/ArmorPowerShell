@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_stop.html#stop-armorcompletevm
-schema: 2.0.0
----
-
 # Stop-ArmorCompleteVM
 
 ## SYNOPSIS

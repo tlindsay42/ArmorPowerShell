@@ -1,10 +1,3 @@
----
-external help file: Armor-help.xml
-Module Name: Armor
-online version: https://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload
-schema: 2.0.0
----
-
 # Remove-ArmorCompleteWorkload
 
 ## SYNOPSIS
