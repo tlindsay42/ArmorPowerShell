@@ -312,13 +312,6 @@ notifications:
     auth_token:
       secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
       template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
-  - provider: Slack
-    incoming_webhook:
-      secure: Nd9G51DE8YpoOOF7ld2ZblBBzCcbkBxchFpE7Opc+RXJ8IEqBGplzeahMISj23z7bggF+bC2C6DoNpCTQE3DipzRd3YlFuDO0qqAGRdt8gw=
-    channel: '#develop'
-    on_build_success: true
-    on_build_failure: true
-    on_build_status_changed: true
   - provider: Webhook # Gitter
     url:
       secure: VMG8UrlePL6sWol/IyQFbaCGkOLY9jFz+3wRnBG+rf95z9hLULTCpi+lN4xhSxwi4PyVEtDfstxeUA4/3+aP+g==
