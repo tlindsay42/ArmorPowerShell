@@ -22,7 +22,7 @@ Get-ArmorVM [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 Retrieves details about the virtual machines in the Armor Anywhere or Armor
-Complete account in context.
+Complete account in context. 
 Returns a set of virtual machines that correspond
 to the filter criteria provided by the cmdlet parameters.
 
@@ -179,7 +179,7 @@ PSCustomObject
 
 [https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/)
 
-[https://github.com/tlindsay42/ArmorPowerShell](https://github.com/tlindsay42/ArmorPowerShell)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1)
 
 [https://docs.armor.com/display/KBSS/Get+VMs](https://docs.armor.com/display/KBSS/Get+VMs)
 

@@ -11,7 +11,7 @@ Restart-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Conf
 
 ## DESCRIPTION
 The specified virtual machine will be gracefully rebooted in the Armor Complete
-account in context.
+account in context. 
 VMware Tools or open-vm-tools must be installed and
 running for this request to succeed.
 

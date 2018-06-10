@@ -17,7 +17,7 @@ Get-ArmorAccount [[-Name] <String>] [[-ApiVersion] <String>] [<CommonParameters>
 
 ## DESCRIPTION
 Retrieves a list of Armor account memberships for the currently authenticated
-user.
+user. 
 Returns a set of accounts that correspond to the filter criteria
 provided by the cmdlet parameters.
 
@@ -134,7 +134,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1)
 

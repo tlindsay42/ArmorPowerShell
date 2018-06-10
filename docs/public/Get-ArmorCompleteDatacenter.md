@@ -22,7 +22,7 @@ Get-ArmorCompleteDatacenter [[-Location] <String>] [[-ApiVersion] <String>] [<Co
 
 ## DESCRIPTION
 Retrieves details about the Armor Complete datacenters, regions, and compute
-zones.
+zones. 
 Returns a set of datacenters that correspond to the filter criteria
 provided by the cmdlet parameters.
 

@@ -12,7 +12,7 @@ Reset-ArmorCompleteVM [-ID] <UInt16> [[-ApiVersion] <String>] [-WhatIf] [-Confir
 ## DESCRIPTION
 The specified virtual machine in the Armor Complete account in context will be
 hard reset- effectively disconnecting the virtual power cord from the VM,
-plugging it back in, and then powering it back on.
+plugging it back in, and then powering it back on. 
 This reboot method has the
 potential to cause data corruption and should only be used when necessary.
 

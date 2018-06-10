@@ -22,7 +22,7 @@ Get-ArmorUser [-FirstName <String>] [-LastName <String>] [[-ApiVersion] <String>
 
 ## DESCRIPTION
 Retrieves details about the user accounts in the Armor Anywhere or Armor
-Complete account in context.
+Complete account in context. 
 Returns a set of user accounts that correspond to
 the filter criteria provided by the cmdlet parameters.
 

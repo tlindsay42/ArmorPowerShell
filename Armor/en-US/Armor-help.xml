@@ -545,8 +545,8 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
-        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/</maml:linkText>
-        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/</maml:uri>
+        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/</maml:linkText>
+        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1</maml:linkText>
@@ -2078,8 +2078,8 @@
         <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell</maml:linkText>
-        <maml:uri>https://github.com/tlindsay42/ArmorPowerShell</maml:uri>
+        <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1</maml:linkText>
+        <maml:uri>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>https://docs.armor.com/display/KBSS/Get+VMs</maml:linkText>
@@ -2720,8 +2720,8 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
-        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/</maml:linkText>
-        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/</maml:uri>
+        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/</maml:linkText>
+        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1</maml:linkText>
@@ -2927,8 +2927,8 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
-        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/</maml:linkText>
-        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/</maml:uri>
+        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/</maml:linkText>
+        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1</maml:linkText>

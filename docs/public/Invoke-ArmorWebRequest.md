@@ -11,7 +11,7 @@ Invoke-ArmorWebRequest [-Endpoint] <String> [[-Headers] <Hashtable>] [[-Method] 
 ```
 
 ## DESCRIPTION
-This cmdlet sends custom HTTPS requests to the Armor API.
+This cmdlet sends custom HTTPS requests to the Armor API. 
 It can be used for
 calling API endpoints that are not yet covered by the cmdlets in this module.
 
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -Method
-Specifies the method used for the Armor API web request.
+Specifies the method used for the Armor API web request. 
 The permitted values
 are:
 - Delete
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -Body
-Specifies the body of the Armor API web request.
+Specifies the body of the Armor API web request. 
 This parameter is ignored for
 Get requests.
 

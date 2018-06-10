@@ -87,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Body
-Specifies the body of the Armor API request.
+Specifies the body of the Armor API request. 
 Ignored if the request method is
 set to Get.
 

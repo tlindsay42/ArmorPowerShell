@@ -27,10 +27,10 @@ servers, such as 'My Secure Website', which could be useful for chargeback or
 showback to your customers, as well as helping your staff and the Armor Support
 teams understand the architecture of your environment.
 
-Tiers are intended to describe the application tiers within each workload.
+Tiers are intended to describe the application tiers within each workload. 
 A
 typical three tiered application workload is comprised of presentation,
-business logic, and persistence tiers.
+business logic, and persistence tiers. 
 Common labels for each are: web,
 application, and database respectively, but you can group your VMs however you
 choose.

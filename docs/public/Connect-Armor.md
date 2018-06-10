@@ -11,14 +11,14 @@ Connect-Armor [[-Credential] <PSCredential>] [[-AccountID] <UInt16>] [[-Server] 
 ```
 
 ## DESCRIPTION
-Connects to the Armor RESTful API and supplies credentials to the method.
+Connects to the Armor RESTful API and supplies credentials to the method. 
 The
 Armor API then returns a unique, temporary authorization code, which is then
 converted into a token to represent the user's credentials for subsequent
-calls.
-Last, the account context is set.
+calls. 
+Last, the account context is set. 
 If an account ID is not specified,
-one is automatically selected from the list of authorized account IDs.
+one is automatically selected from the list of authorized account IDs. 
 Returns
 the session details which are stored in the variable: $Global:ArmorSession.
 
@@ -66,7 +66,7 @@ Attempts to log into a local test/dev Armor API instance listening on port
 ## PARAMETERS
 
 ### -Credential
-Your Armor API username and password.
+Your Armor API username and password. 
 If not supplied as a parameter, you will
 be prompted for your credentials.
 
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -AccountID
-Specifies the Armor account ID to use for all subsequent requests.
+Specifies the Armor account ID to use for all subsequent requests. 
 The
 permitted range is 1-65535.
 
@@ -115,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Port
-Specifies the Armor API server listening TCP port.
+Specifies the Armor API server listening TCP port. 
 The permitted range is:
 1-65535.
 
@@ -132,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -ApiVersion
-Specifies the API version for this request.
+Specifies the API version for this request. 
 The specified value is also set as
 the default API version for the session as a parameter of the session variable:
 '$Global:ArmorSession.ApiVersion'.

@@ -1,4 +1,4 @@
-# Armor PowerShell Module
+﻿# The Armor Community PowerShell Module
 
 [![Current Version](https://img.shields.io/powershellgallery/v/Armor.svg)](https://www.powershellgallery.com/packages/Armor)
 [![Total Downloads](https://img.shields.io/powershellgallery/dt/Armor.svg)](https://www.powershellgallery.com/packages/Armor)
@@ -6,8 +6,6 @@
 [![Build Status](https://ci.appveyor.com/api/projects/status/x4ik2enxvdc5h0x6/branch/master?svg=true)](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master)
 [![Build Status](https://travis-ci.org/tlindsay42/ArmorPowerShell.svg?branch=master)](https://travis-ci.org/tlindsay42/ArmorPowerShell)
 [![Coverage Status](https://coveralls.io/repos/github/tlindsay42/ArmorPowerShell/badge.svg?branch=master)](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master)
-[![Documentation Status](https://readthedocs.org/projects/armorpowershell/badge/?version=latest)](http://armorpowershell.readthedocs.io/en/latest/?badge=latest)
-
 [![Join the chat at https://gitter.im/ArmorPowerShell/Lobby](https://badges.gitter.im/ArmorPowerShell/Lobby.svg)](https://gitter.im/ArmorPowerShell/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a community project that provides a powerful command-line interface for managing and monitoring your **[Armor Complete](https://www.armor.com/armor-complete-secure-hosting/ 'Armor Complete Product Page')** (secure public cloud) and **[Armor Anywhere](https://www.armor.com/armor-anywhere-security/ 'Armor Anywhere Product Page')** (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide').
@@ -18,6 +16,4 @@ Code coverage scores and reports showing how much of the project is covered by a
 
 Every successful build is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor 'PowerShell Gallery').
 
-Please visit the **[full documentation](http://armorpowershell.readthedocs.io/en/latest/?badge=latest 'ReadTheDocs: ArmorPowerShell: Latest Build')** for more details.
-
-The source code is [available on GitHub](https://github.com/tlindsay42/ArmorPowerShell).
+Please visit the **[full documentation](https://tlindsay42.github.io/ArmorPowerShell/ 'GitHubPages: ArmorPowerShell: Latest Build')** for more details.
