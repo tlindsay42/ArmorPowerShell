@@ -25,7 +25,7 @@ function Rename-ArmorCompleteWorkload {
         pipeline.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/
+        https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1

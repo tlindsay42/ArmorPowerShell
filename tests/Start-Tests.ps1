@@ -37,6 +37,7 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
     $contextName = $Global:FunctionHelpForm -f 'Main'
     Context -Name $contextName -Fixture {
         #region init
+        $name = $Help.Name
         $template = '{ ?required: .+ ?}'
         #endregion
 
@@ -73,20 +74,34 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
             } # End of It
         }
 
-            $testName = "should have at least four help: 'Link' entries"
-            It -Name $testName -Test {
-                $Help.RelatedLinks.NavigationLink.Uri.Count |
-                    Should -BeGreaterThan 3
-            } # End of It
+        $testName = "should have at least four help: 'Link' entries"
+        It -Name $testName -Test {
+            $Help.RelatedLinks.NavigationLink.Uri.Count |
+                Should -BeGreaterThan 3
+        } # End of It
 
-            foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
-                $testName = "should be a valid help link: '${uri}'"
-                It -Name $testName -Test {
-                    ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
-                        Should -Be 200
-                } # End of It
-            }
-        } # End of Context
+        foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
+            $testName = "should be a valid help link: '${uri}'"
+            It -Name $testName -Test {
+                ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
+                    Should -Be 200
+            } # End of It
+        }
+
+        $uri = "^https://tlindsay42.github.io/ArmorPowerShell/(?:private|public)/${name}/$"
+        $testName = "should match: '${uri}' link 1"
+        It -Name $testName -Test {
+            $Help.RelatedLinks.NavigationLink.Uri[0] |
+                Should -Match $uri
+        } # End of It
+
+        $uri = "^https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/(?:Private|Public)/${name}.ps1$"
+        $testName = "should match: '${uri}' for link 2"
+        It -Name $testName -Test {
+            $Help.RelatedLinks.NavigationLink.Uri[1] |
+                Should -Match $uri
+        } # End of It
+    } # End of Context
 } # End of Function
 
 function TestAdvancedFunctionHelpInputs ( [PSObject] $Help ) {

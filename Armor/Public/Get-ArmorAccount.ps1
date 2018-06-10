@@ -45,7 +45,7 @@ function Get-ArmorAccount {
         Name='My Secure Account' via property name in the pipeline.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccount.ps1

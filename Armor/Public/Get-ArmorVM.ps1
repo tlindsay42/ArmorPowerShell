@@ -61,7 +61,7 @@ function Get-ArmorVM {
         https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorVM.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Get+VMs
