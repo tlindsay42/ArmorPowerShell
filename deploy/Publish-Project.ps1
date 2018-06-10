@@ -48,11 +48,15 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         OutWarning( ( $messageForm -f 'GitHub', 'rebuild', $true ) )
     }
     else {
-        # Publish the documentation to GitHub Pages
-        mkdocs gh-deploy
+        # Checkout the appropriate branch
+        git checkout --quiet $Env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
+
+        if ( $Env:APPVEYOR_ACCOUNT_NAME -eq $Env:CI_OWNER_NAME ) {
+            # Publish the documentation to GitHub Pages
+            mkdocs gh-deploy
+        }
 
         # Publish the new version back to GitHub
-        git checkout --quiet $Env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
         git add --all
         git status
         git commit --signoff --message "${Env:CI_NAME}: Update version to ${Env:CI_MODULE_VERSION} [ci skip]"
