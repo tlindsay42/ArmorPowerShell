@@ -1,7 +1,7 @@
 function Restart-ArmorCompleteVM {
     <#
         .SYNOPSIS
-        Gracefully reboots virtual machines.
+        Reboots Armor Complete virtual machines gracefully.
 
         .DESCRIPTION
         The specified virtual machine will be gracefully rebooted in the Armor Complete

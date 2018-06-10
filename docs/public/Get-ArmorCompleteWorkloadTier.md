@@ -1,7 +1,7 @@
 # Get-ArmorCompleteWorkloadTier
 
 ## SYNOPSIS
-This cmdlet retrieves the tiers in an Armor Complete workload.
+Retrieves tiers in an Armor Complete workload.
 
 ## SYNTAX
 

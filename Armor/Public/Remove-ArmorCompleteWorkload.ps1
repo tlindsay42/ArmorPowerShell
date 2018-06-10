@@ -1,7 +1,7 @@
 function Remove-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        This cmdlet deletes Armor Complete workloads.
+        Deletes Armor Complete workloads.
 
         .DESCRIPTION
         The specified workload in the Armor Complete account in context will be deleted

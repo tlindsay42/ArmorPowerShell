@@ -1,7 +1,7 @@
 # Get-ArmorCompleteWorkload
 
 ## SYNOPSIS
-This cmdlet retrieves Armor Complete workloads.
+Retrieves Armor Complete workloads.
 
 ## SYNTAX
 

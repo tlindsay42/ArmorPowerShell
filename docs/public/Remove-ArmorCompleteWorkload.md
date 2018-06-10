@@ -1,7 +1,7 @@
 # Remove-ArmorCompleteWorkload
 
 ## SYNOPSIS
-This cmdlet deletes Armor Complete workloads.
+Deletes Armor Complete workloads.
 
 ## SYNTAX
 

@@ -1,7 +1,7 @@
 # Invoke-ArmorWebRequest
 
 ## SYNOPSIS
-This cmdlet submits web requests to the Armor API.
+Sends custom requests to Armor API endpoints.
 
 ## SYNTAX
 

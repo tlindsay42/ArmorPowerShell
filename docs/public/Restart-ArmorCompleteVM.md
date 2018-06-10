@@ -1,7 +1,7 @@
 # Restart-ArmorCompleteVM
 
 ## SYNOPSIS
-Gracefully reboots virtual machines.
+Reboots Armor Complete virtual machines gracefully.
 
 ## SYNTAX
 

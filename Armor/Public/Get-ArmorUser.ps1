@@ -1,7 +1,7 @@
 function Get-ArmorUser {
     <#
         .SYNOPSIS
-        Retrieves details about the user accounts in your account.
+        Retrieves Armor user account details.
 
         .DESCRIPTION
         Retrieves details about the user accounts in the Armor Anywhere or Armor

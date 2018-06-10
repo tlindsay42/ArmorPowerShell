@@ -1,7 +1,7 @@
 function Get-ArmorVM {
     <#
         .SYNOPSIS
-        Retrieves virtual machine details.
+        Retrieves Armor Complete and Armor Anywhere virtual machine details.
 
         .DESCRIPTION
         Retrieves details about the virtual machines in the Armor Anywhere or Armor

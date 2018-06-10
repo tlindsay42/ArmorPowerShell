@@ -1,7 +1,7 @@
 function Invoke-ArmorWebRequest {
     <#
         .SYNOPSIS
-        This cmdlet submits web requests to the Armor API.
+        Sends custom requests to Armor API endpoints.
 
         .DESCRIPTION
         This cmdlet sends custom HTTPS requests to the Armor API.  It can be used for

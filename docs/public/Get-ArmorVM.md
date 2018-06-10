@@ -1,7 +1,7 @@
 # Get-ArmorVM
 
 ## SYNOPSIS
-Retrieves virtual machine details.
+Retrieves Armor Complete and Armor Anywhere virtual machine details.
 
 ## SYNTAX
 

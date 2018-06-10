@@ -1,7 +1,7 @@
 function Get-ArmorCompleteWorkload {
     <#
         .SYNOPSIS
-        This cmdlet retrieves Armor Complete workloads.
+        Retrieves Armor Complete workloads.
 
         .DESCRIPTION
         Workloads and tiers are logical grouping tools for helping you organize your
