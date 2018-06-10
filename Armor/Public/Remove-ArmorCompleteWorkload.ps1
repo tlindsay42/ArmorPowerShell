@@ -32,7 +32,7 @@ function Remove-ArmorCompleteWorkload {
         via property name in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload
+        https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteWorkload/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteWorkload.ps1

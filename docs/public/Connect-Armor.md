@@ -172,7 +172,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor](https://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Connect-Armor/](https://tlindsay42.github.io/ArmorPowerShell/public/Connect-Armor/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Connect-Armor.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Connect-Armor.ps1)
 

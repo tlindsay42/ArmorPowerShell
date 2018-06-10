@@ -20,7 +20,7 @@ function New-ArmorApiToken {
         token.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1

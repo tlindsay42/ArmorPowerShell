@@ -30,7 +30,7 @@ function Select-ArmorApiResult {
         filter for VMs by SKU via the `Get-ArmorVM` cmdlet.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/Select-ArmorApiResult/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Select-ArmorApiResult.ps1

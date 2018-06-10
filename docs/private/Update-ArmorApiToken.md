@@ -73,7 +73,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/index.html](https://armorpowershell.readthedocs.io/en/latest/index.html)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Update-ArmorApiToken/](https://tlindsay42.github.io/ArmorPowerShell/private/Update-ArmorApiToken/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Update-ArmorApiToken.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Update-ArmorApiToken.ps1)
 

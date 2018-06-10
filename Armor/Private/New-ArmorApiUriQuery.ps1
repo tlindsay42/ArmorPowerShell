@@ -22,7 +22,7 @@ function New-ArmorApiUriQuery {
         'Name' server-side filter (eg: https://api.armor.com/vms?name=TEST-VM)
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiUriQuery/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUriQuery.ps1

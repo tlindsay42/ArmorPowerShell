@@ -88,7 +88,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/index.html](https://armorpowershell.readthedocs.io/en/latest/index.html)
+[https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/](https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1)
 

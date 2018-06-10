@@ -69,7 +69,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorIdentity/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorIdentity/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorIdentity.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorIdentity.ps1)
 

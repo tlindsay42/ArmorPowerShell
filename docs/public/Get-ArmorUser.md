@@ -146,7 +146,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorUser/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorUser/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorUser.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorUser.ps1)
 

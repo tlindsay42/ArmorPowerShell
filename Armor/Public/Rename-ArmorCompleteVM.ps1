@@ -24,7 +24,7 @@ function Rename-ArmorCompleteVM {
         Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompletevm
+        https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteVM.ps1

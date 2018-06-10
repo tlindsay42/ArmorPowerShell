@@ -77,7 +77,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext](https://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Set-ArmorAccountContext/](https://tlindsay42.github.io/ArmorPowerShell/public/Set-ArmorAccountContext/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Set-ArmorAccountContext.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Set-ArmorAccountContext.ps1)
 

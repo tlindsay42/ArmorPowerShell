@@ -26,7 +26,7 @@ function Invoke-ArmorWebRequest {
         Retrieves VM details using the session headers.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_invoke.html#invoke-armorwebrequest
+        https://tlindsay42.github.io/ArmorPowerShell/public/Invoke-ArmorWebRequest/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Invoke-ArmorWebRequest.ps1

@@ -21,7 +21,7 @@ function Test-ArmorSession {
         Validates that the Armor API session stored in $Global:ArmorSession is still active.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/Test-ArmorSession/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Test-ArmorSession.ps1

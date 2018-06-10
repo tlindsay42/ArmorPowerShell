@@ -21,7 +21,7 @@ function Disconnect-Armor {
         variable.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor
+        https://tlindsay42.github.io/ArmorPowerShell/public/Disconnect-Armor/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Disconnect-Armor.ps1

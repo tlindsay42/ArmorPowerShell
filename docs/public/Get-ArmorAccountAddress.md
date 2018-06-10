@@ -98,7 +98,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountAddress.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountAddress.ps1)
 

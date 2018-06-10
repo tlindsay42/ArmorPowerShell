@@ -124,7 +124,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload](https://armorpowershell.readthedocs.io/en/latest/cmd_remove.html#remove-armorcompleteworkload)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteWorkload/](https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteWorkload/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteWorkload.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteWorkload.ps1)
 

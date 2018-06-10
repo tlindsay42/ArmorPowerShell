@@ -67,7 +67,7 @@ function Get-ArmorCompleteWorkloadTier {
         workload with WorkloadID=1 via property names in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkloadtier
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkloadTier/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkloadTier.ps1

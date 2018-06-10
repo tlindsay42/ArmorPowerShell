@@ -34,7 +34,7 @@ function Stop-ArmorCompleteVM {
         the Armor Complete cloud.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_stop.html#stop-armorcompletevm
+        https://tlindsay42.github.io/ArmorPowerShell/public/Stop-ArmorCompleteVM/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Stop-ArmorCompleteVM.ps1

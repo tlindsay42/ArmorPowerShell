@@ -38,7 +38,7 @@ function Get-ArmorApiData {
         `Rename-ArmorCompleteWorkload`.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/Get-ArmorApiData/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Get-ArmorApiData.ps1

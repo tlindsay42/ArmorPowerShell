@@ -18,7 +18,7 @@ function Get-ArmorNoun {
         { required: show one or more examples using the function }
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

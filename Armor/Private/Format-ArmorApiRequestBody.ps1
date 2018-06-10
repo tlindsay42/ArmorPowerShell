@@ -22,7 +22,7 @@ function Format-ArmorApiRequestBody {
         $parameters array with names matching key1 & key2.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/Format-ArmorApiRequestBody/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Format-ArmorApiRequestBody.ps1

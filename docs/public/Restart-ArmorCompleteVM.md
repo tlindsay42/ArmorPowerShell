@@ -127,7 +127,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Restart-ArmorCompleteVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Restart-ArmorCompleteVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Restart-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Restart-ArmorCompleteVM.ps1)
 

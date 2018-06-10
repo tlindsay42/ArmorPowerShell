@@ -123,7 +123,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Start-ArmorCompleteVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Start-ArmorCompleteVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1)
 

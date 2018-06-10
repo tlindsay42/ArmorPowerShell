@@ -40,7 +40,7 @@ function Get-ArmorCompleteDatacenter {
         property name in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteDatacenter/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteDatacenter.ps1

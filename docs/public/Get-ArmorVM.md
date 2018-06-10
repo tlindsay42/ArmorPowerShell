@@ -177,7 +177,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell](https://github.com/tlindsay42/ArmorPowerShell)
 

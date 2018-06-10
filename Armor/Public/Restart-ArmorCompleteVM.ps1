@@ -33,7 +33,7 @@ function Restart-ArmorCompleteVM {
         Reboot the Armor Complete VM with ID=1 via property name in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_restart.html#restart-armorcompletevm
+        https://tlindsay42.github.io/ArmorPowerShell/public/Restart-ArmorCompleteVM/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Restart-ArmorCompleteVM.ps1

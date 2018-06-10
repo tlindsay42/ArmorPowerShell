@@ -58,7 +58,7 @@ function Get-ArmorVM {
         pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorvm
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell

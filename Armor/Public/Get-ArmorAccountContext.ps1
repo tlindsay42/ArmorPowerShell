@@ -21,7 +21,7 @@ function Get-ArmorAccountContext {
         Retrieves the Armor account currently in context.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountcontext
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountContext/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountContext.ps1

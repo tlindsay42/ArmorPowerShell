@@ -159,7 +159,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_stop.html#stop-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_stop.html#stop-armorcompletevm)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Stop-ArmorCompleteVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Stop-ArmorCompleteVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Stop-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Stop-ArmorCompleteVM.ps1)
 

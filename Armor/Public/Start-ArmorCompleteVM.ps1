@@ -30,7 +30,7 @@ function Start-ArmorCompleteVM {
         Power on the Armor Complete VM with ID=3 via property name in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_start.html#start-armorcompletevm
+        https://tlindsay42.github.io/ArmorPowerShell/public/Start-ArmorCompleteVM/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Start-ArmorCompleteVM.ps1

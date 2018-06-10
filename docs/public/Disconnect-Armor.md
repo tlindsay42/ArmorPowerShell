@@ -75,7 +75,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor](https://armorpowershell.readthedocs.io/en/latest/cmd_disconnect.html#disconnect-armor)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Disconnect-Armor/](https://tlindsay42.github.io/ArmorPowerShell/public/Disconnect-Armor/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Disconnect-Armor.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Disconnect-Armor.ps1)
 

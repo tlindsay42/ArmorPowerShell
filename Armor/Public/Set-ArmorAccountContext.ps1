@@ -32,7 +32,7 @@ function Set-ArmorAccountContext {
         Set the account context to 3 via the ID property name in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_set.html#set-armoraccountcontext
+        https://tlindsay42.github.io/ArmorPowerShell/public/Set-ArmorAccountContext/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Set-ArmorAccountContext.ps1

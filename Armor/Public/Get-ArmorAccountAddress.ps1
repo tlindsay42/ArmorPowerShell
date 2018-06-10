@@ -36,7 +36,7 @@ function Get-ArmorAccountAddress {
         property names in the pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoraccountaddress
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorAccountAddress.ps1

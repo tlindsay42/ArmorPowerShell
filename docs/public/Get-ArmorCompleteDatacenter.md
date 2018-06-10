@@ -145,7 +145,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompletedatacenter)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteDatacenter/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteDatacenter/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteDatacenter.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteDatacenter.ps1)
 

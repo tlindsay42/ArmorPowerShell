@@ -44,7 +44,7 @@ function Connect-Armor {
         8443/tcp with the credentials stored in the $pscredential object.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_connect.html#connect-armor
+        https://tlindsay42.github.io/ArmorPowerShell/public/Connect-Armor/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Connect-Armor.ps1

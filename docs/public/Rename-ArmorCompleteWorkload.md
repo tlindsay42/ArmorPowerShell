@@ -130,7 +130,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload](https://armorpowershell.readthedocs.io/en/latest/cmd_rename.html#rename-armorcompleteworkload)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1)
 

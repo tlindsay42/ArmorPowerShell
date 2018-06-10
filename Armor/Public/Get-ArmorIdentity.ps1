@@ -28,7 +28,7 @@ function Get-ArmorIdentity {
         account.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoridentity
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorIdentity/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorIdentity.ps1

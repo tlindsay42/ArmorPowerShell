@@ -129,7 +129,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm](https://armorpowershell.readthedocs.io/en/latest/cmd_reset.html#reset-armorcompletevm)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Reset-ArmorCompleteVM/](https://tlindsay42.github.io/ArmorPowerShell/public/Reset-ArmorCompleteVM/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Reset-ArmorCompleteVM.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Reset-ArmorCompleteVM.ps1)
 

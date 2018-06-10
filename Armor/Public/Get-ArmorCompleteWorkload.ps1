@@ -65,7 +65,7 @@ function Get-ArmorCompleteWorkload {
         pipeline.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkload/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkload.ps1

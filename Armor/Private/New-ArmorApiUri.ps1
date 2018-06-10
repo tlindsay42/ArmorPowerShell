@@ -28,7 +28,7 @@ function New-ArmorApiUri {
         This will return 'https://api.armor.com:443/apps/1/tiers/2'.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/index.html
+        https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiUri/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUri.ps1

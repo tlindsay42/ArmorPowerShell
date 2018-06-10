@@ -31,7 +31,7 @@ function Get-ArmorUser {
         has context.
 
         .LINK
-        https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armoruser
+        https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorUser/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorUser.ps1

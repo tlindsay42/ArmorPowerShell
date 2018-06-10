@@ -158,7 +158,7 @@ PSCustomObject
 
 ## RELATED LINKS
 
-[https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload](https://armorpowershell.readthedocs.io/en/latest/cmd_get.html#get-armorcompleteworkload)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkload/](https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkload/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkload.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Get-ArmorCompleteWorkload.ps1)
 
