@@ -218,7 +218,13 @@ Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 
 
 # Update the external help files
 New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
-New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $externalHelpDirectory -ErrorAction 'Stop'
+
+
+if ( $PSVersionTable.OS -match 'Windows' ) {
+    # Build the cabinet file for supporting updatable help
+    # This is only supported on Windows for now
+    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $externalHelpDirectory -ErrorAction 'Stop'
+}
 
 # Remove the metadata from the documentation pages again
 New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -NoMetadata -ErrorAction 'Stop'
