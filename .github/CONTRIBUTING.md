@@ -33,7 +33,7 @@ The following is a set of guidelines for contributing to the community Armor Pow
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [ArmorPowerShell Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior on [**Gitter**][gitter].
+This project and everyone participating in it is governed by the [ArmorPowerShell Code of Conduct][code_of_conduct]. By participating, you are expected to uphold this code. Please report unacceptable behavior on [**Gitter**][gitter].
 
 ## I don't want to read this whole thing I just have a question!!!
 
@@ -70,13 +70,13 @@ Before creating bug reports, please check [this list](#before-submitting-a-bug-r
 
 #### How Do I Submit A (Good) Bug Report?
 
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue using [the bug report template][bugs].
+Bugs are tracked as [GitHub issues][issues]. Create an issue using [the bug report template][bugs].
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
 * **Use a clear and descriptive title** for the issue to identify the problem.
 * **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining which command exactly you used in the terminal. When listing steps, **don't just say what you did, but explain how you did it**.
-* **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
+* **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks][md_code_blocks].
 * **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
 * **Explain which behavior you expected to see instead and why.**
 * **Include screenshots** which show you following the described steps and clearly demonstrate the problem.
@@ -84,7 +84,7 @@ Explain the problem and include additional details to help maintainers reproduce
 Provide more context by answering these questions:
 
 * **Did the problem start happening recently** (e.g. after updating to a new version of ArmorPowerShell) or was this always a problem?
-* If the problem started happening recently, **can you reproduce the problem in an older version of ArmorPowerShell?** What's the most recent version in which the problem doesn't happen? You can download older versions of ArmorPowerShell from [the releases page](https://github.com/tlindsay42/ArmorPowerShell/releases).
+* If the problem started happening recently, **can you reproduce the problem in an older version of ArmorPowerShell?** What's the most recent version in which the problem doesn't happen? You can download older versions of ArmorPowerShell from [the releases page][releases].
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 
 Include details about your configuration and environment:
@@ -97,20 +97,20 @@ Include details about your configuration and environment:
 
 This section guides you through submitting an enhancement suggestion for ArmorPowerShell, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
 
-Before creating enhancement suggestions, please check [this list](#before-submitting-an-enhancement-suggestion) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template](ISSUE_TEMPLATE.md), including the steps that you imagine you would take if the feature you're requesting existed.
+Before creating enhancement suggestions, please check [this list](#before-submitting-an-enhancement-suggestion) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template][enhancement], including the steps that you imagine you would take if the feature you're requesting existed.
 
 #### Before Submitting An Enhancement Suggestion
 
 * **Check if you're using [the latest version of ArmorPowerShell][psgallery]**.
-* **Perform a [cursory search](https://github.com/search?q=+is%3Aissue+user%3AArmorPowerShell)** to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
+* **Perform a [cursory search][issue_search]** to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 
 #### How Do I Submit A (Good) Enhancement Suggestion?
 
-Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/). create an issue on that repository and provide the following information:
+Enhancement suggestions are tracked as [GitHub issues][issues]. create an issue on that repository and provide the following information:
 
 * **Use a clear and descriptive title** for the issue to identify the suggestion.
 * **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
-* **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
+* **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks][md_code_blocks].
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
 * **Include screenshots** which help you demonstrate the steps or point out the part of ArmorPowerShell which the suggestion is related to.
 * **Explain why this enhancement would be useful** to most ArmorPowerShell users.
@@ -124,7 +124,7 @@ Unsure where to begin contributing to ArmorPowerShell? You can start by looking 
 
 ### Pull Requests
 
-* Fill in [the required template](PULL_REQUEST_TEMPLATE.md)
+* Fill in [the required template][pr]
 * Do not include issue numbers in the PR title
 * Include screenshots and animated GIFs in your pull request whenever possible.
 * Follow the [PowerShell](#powershell-styleguide) styleguides.
@@ -168,7 +168,7 @@ Unsure where to begin contributing to ArmorPowerShell? You can start by looking 
 
 ### PowerShell Styleguide
 
-All PowerShell must adhere to the style of this project, which follows [The PowerShell Best Practice and Style Guide](https://github.com/PoshCode/PowerShellPracticeAndStyle).
+All PowerShell must adhere to the style of this project, which follows [The PowerShell Best Practice and Style Guide][style_guide].
 
 <!-->
 ### Documentation Styleguide
@@ -180,16 +180,25 @@ All PowerShell must adhere to the style of this project, which follows [The Powe
 
 This section lists the labels we use to help us track and manage issues and pull requests. Most labels are used across all ArmorPowerShell repositories, but some are specific to `tlindsay42/ArmorPowerShell`.
 
-[GitHub search](https://help.github.com/articles/searching-issues/) makes it easy to use labels for finding groups of issues or pull requests you're interested in. For example, you might be interested in [open pull requests in `tlindsay42/ArmorPowerShell` which haven't been reviewed yet](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+repo%3Atlindsay42%2FArmorPowerShell). To help you find issues and pull requests, each label is listed with search links for finding open items with that label in `tlindsay42/ArmorPowerShell` only and also across all ArmorPowerShell repositories. We  encourage you to read about [other search filters](https://help.github.com/articles/searching-issues/) which will help you write more focused queries.
+[GitHub search][searching_issues] makes it easy to use labels for finding groups of issues or pull requests you're interested in. For example, you might be interested in [open pull requests in `tlindsay42/ArmorPowerShell` which haven't been reviewed yet][open_prs]. To help you find issues and pull requests, each label is listed with search links for finding open items with that label in `tlindsay42/ArmorPowerShell` only and also across all ArmorPowerShell repositories. We  encourage you to read about [other search filters][searching_issues] which will help you write more focused queries.
 
 The labels are grouped by their purpose, but it's not required that every issue have a label from every group or that an issue can't have more than one label from the same group.
 
 Please open an issue on `tlindsay42/ArmorPowerShell` if you have suggestions for new labels.
 
+[code_of_conduct]: https://github.com/tlindsay42/ArmorPowerShell/blob/master/.github/CODE_OF_CONDUCT.md
 [gitter]: https://gitter.im/ArmorPowerShell/Lobby
-[faq]: https://armorpowershell.readthedocs.io/en/latest/usr_90_faq.html
+[faq]: https://tlindsay42.github.io/ArmorPowerShell/user/FAQs/
+[enhancement]: https://github.com/tlindsay42/ArmorPowerShell/issues/new?template=feature_request.md
 [psgallery]: https://www.powershellgallery.com/packages/Armor
 [issue_search]: https://github.com/tlindsay42/ArmorPowerShell/issues?utf8=%E2%9C%93&q=is%3Aissue
-[bugs]: https://github.com/tlindsay42/ArmorPowerShell/blob/master/.github/ISSUE_TEMPLATE/bug_report.md
+[issues]: https://guides.github.com/features/issues/
+[bugs]: https://github.com/tlindsay42/ArmorPowerShell/issues/new?template=bug_report.md
+[md_code_blocks]: https://help.github.com/articles/markdown-basics/#multiple-lines
+[releases]: https://github.com/tlindsay42/ArmorPowerShell/releases
 [good_first_issue]: https://github.com/tlindsay42/ArmorPowerShell/labels/Type%3A%20Good%20First%20Issue
 [help_wanted]: https://github.com/tlindsay42/ArmorPowerShell/labels/Type%3A%20Help%20Wanted
+[pr]: https://github.com/tlindsay42/ArmorPowerShell/blob/master/.github/PULL_REQUEST_TEMPLATE.md
+[style_guide]: https://github.com/PoshCode/PowerShellPracticeAndStyle
+[searching_issues]: https://help.github.com/articles/searching-issues/
+[open_prs]: https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+repo%3Atlindsay42%2FArmorPowerShell
