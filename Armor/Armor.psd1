@@ -140,7 +140,10 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json',
                'Public\Restart-ArmorCompleteVM.ps1',
                'Public\Set-ArmorAccountContext.ps1',
                'Public\Start-ArmorCompleteVM.ps1',
-               'Public\Stop-ArmorCompleteVM.ps1'
+               'Public\Stop-ArmorCompleteVM.ps1', 'en-US\Armor-help.xml',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.cab',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_HelpInfo.xml',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.zip'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
