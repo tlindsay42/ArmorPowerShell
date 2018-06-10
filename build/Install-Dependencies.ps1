@@ -41,5 +41,6 @@ npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempF
 
 Write-Host -Object "`nInstalling python packages: " -ForegroundColor 'Yellow'
 pip install --quiet mkdocs
+mkdocs --version
 
 Write-Host -Object ''
