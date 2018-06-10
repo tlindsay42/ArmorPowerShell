@@ -332,6 +332,6 @@ if ( $Env:APPVEYOR -eq $true ) {
 }
 
 Write-Host -Object "Checking the spelling of all documentation in Markdown format." -ForegroundColor 'Yellow'
-& mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
+mdspell --en-us --ignore-numbers --ignore-acronyms --report '**/*.md'
 
 Write-Host -Object ''

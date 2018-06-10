@@ -32,11 +32,14 @@ Get-Module -Name $moduleNames |
     Format-Table -AutoSize -Property 'Name', 'Version'
 
 Write-Host -Object 'NodeJS version: ' -ForegroundColor 'Yellow' -NoNewline
-& node --version
+node --version
 Write-Host -Object 'NodeJS Package Manager (npm) version: ' -ForegroundColor 'Yellow' -NoNewline
-& npm --version
+npm --version
 
 Write-Host -Object "`nInstalling npm packages: " -ForegroundColor 'Yellow'
-& npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempFileName() )
+npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempFileName() )
+
+Write-Host -Object "`nInstalling python packages: " -ForegroundColor 'Yellow'
+pip install mkdocs
 
 Write-Host -Object ''
