@@ -183,7 +183,7 @@ $splat = @{
     'Tags'                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
         'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
     'LicenseUri'            = $text.RepoUrl + '/blob/master/LICENSE.txt'
-    'IconUri'               = 'http://i.imgur.com/fbXjkCn.png'
+    'IconUri'               = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
     'ErrorAction'           = 'Stop'
 }
 

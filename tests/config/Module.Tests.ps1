@@ -109,7 +109,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             },
             @{
                 'Property' = 'IconURI'
-                'Value'    = 'http://i.imgur.com/fbXjkCn.png'
+                'Value'    = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
             }
         )
         It -Name 'should have set property: <Property> to: <Value>' -TestCases $testCases -Test {

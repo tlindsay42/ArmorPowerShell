@@ -63,15 +63,15 @@ PowerShellVersion = '5.0'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = 'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1', 
-               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1', 
-               'Lib\ArmorCompleteWorkloadTier.ps1', 'Lib\ArmorDepartment.ps1', 
-               'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1', 
-               'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSession.ps1', 
-               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorStatus.ps1', 
-               'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1', 'Lib\ArmorVmProduct.ps1', 
-               'Lib\ArmorSession.ps1', 'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1', 
-               'Lib\ArmorCompleteWorkloadTier.ps1', 
+ScriptsToProcess = 'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1',
+               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1',
+               'Lib\ArmorCompleteWorkloadTier.ps1', 'Lib\ArmorDepartment.ps1',
+               'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1',
+               'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSession.ps1',
+               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorStatus.ps1',
+               'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1', 'Lib\ArmorVmProduct.ps1',
+               'Lib\ArmorSession.ps1', 'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1',
+               'Lib\ArmorCompleteWorkloadTier.ps1',
                'Lib\ArmorCompleteWorkload.ps1'
 
 # Type files (.ps1xml) to be loaded when importing this module
@@ -84,14 +84,14 @@ ScriptsToProcess = 'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1',
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount', 
-               'Get-ArmorAccountAddress', 'Get-ArmorAccountContext', 
-               'Get-ArmorCompleteDatacenter', 'Get-ArmorCompleteWorkload', 
-               'Get-ArmorCompleteWorkloadTier', 'Get-ArmorIdentity', 'Get-ArmorUser', 
-               'Get-ArmorVM', 'Invoke-ArmorWebRequest', 
-               'Remove-ArmorCompleteWorkload', 'Rename-ArmorCompleteVM', 
-               'Rename-ArmorCompleteWorkload', 'Reset-ArmorCompleteVM', 
-               'Restart-ArmorCompleteVM', 'Set-ArmorAccountContext', 
+FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount',
+               'Get-ArmorAccountAddress', 'Get-ArmorAccountContext',
+               'Get-ArmorCompleteDatacenter', 'Get-ArmorCompleteWorkload',
+               'Get-ArmorCompleteWorkloadTier', 'Get-ArmorIdentity', 'Get-ArmorUser',
+               'Get-ArmorVM', 'Invoke-ArmorWebRequest',
+               'Remove-ArmorCompleteWorkload', 'Rename-ArmorCompleteVM',
+               'Rename-ArmorCompleteWorkload', 'Reset-ArmorCompleteVM',
+               'Restart-ArmorCompleteVM', 'Set-ArmorAccountContext',
                'Start-ArmorCompleteVM', 'Stop-ArmorCompleteVM'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -110,36 +110,36 @@ AliasesToExport = 'Get-ArmorCompleteVM'
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json', 
-               'Etc\ClassesWithDependenciesImportOrder.json', 
-               'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1', 
-               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1', 
-               'Lib\ArmorCompleteWorkloadTier.ps1', 'Lib\ArmorDepartment.ps1', 
-               'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1', 
-               'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSession.ps1', 
-               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorStatus.ps1', 
-               'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1', 'Lib\ArmorVmProduct.ps1', 
-               'Private\Format-ArmorApiRequestBody.ps1', 
-               'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1', 
-               'Private\New-ArmorApiUri.ps1', 'Private\New-ArmorApiUriQuery.ps1', 
-               'Private\Select-ArmorApiResult.ps1', 
-               'Private\Submit-ArmorApiRequest.ps1', 
-               'Private\Test-ArmorSession.ps1', 'Private\Update-ArmorApiToken.ps1', 
-               'Public\Connect-Armor.ps1', 'Public\Disconnect-Armor.ps1', 
-               'Public\Get-ArmorAccount.ps1', 'Public\Get-ArmorAccountAddress.ps1', 
-               'Public\Get-ArmorAccountContext.ps1', 
-               'Public\Get-ArmorCompleteDatacenter.ps1', 
-               'Public\Get-ArmorCompleteWorkload.ps1', 
-               'Public\Get-ArmorCompleteWorkloadTier.ps1', 
-               'Public\Get-ArmorIdentity.ps1', 'Public\Get-ArmorUser.ps1', 
-               'Public\Get-ArmorVM.ps1', 'Public\Invoke-ArmorWebRequest.ps1', 
-               'Public\Remove-ArmorCompleteWorkload.ps1', 
-               'Public\Rename-ArmorCompleteVM.ps1', 
-               'Public\Rename-ArmorCompleteWorkload.ps1', 
-               'Public\Reset-ArmorCompleteVM.ps1', 
-               'Public\Restart-ArmorCompleteVM.ps1', 
-               'Public\Set-ArmorAccountContext.ps1', 
-               'Public\Start-ArmorCompleteVM.ps1', 
+FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json',
+               'Etc\ClassesWithDependenciesImportOrder.json',
+               'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1',
+               'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1',
+               'Lib\ArmorCompleteWorkloadTier.ps1', 'Lib\ArmorDepartment.ps1',
+               'Lib\ArmorDisk.ps1', 'Lib\ArmorFeature.ps1',
+               'Lib\ArmorPhoneNumber.ps1', 'Lib\ArmorSession.ps1',
+               'Lib\ArmorSessionUser.ps1', 'Lib\ArmorStatus.ps1',
+               'Lib\ArmorUser.ps1', 'Lib\ArmorVM.ps1', 'Lib\ArmorVmProduct.ps1',
+               'Private\Format-ArmorApiRequestBody.ps1',
+               'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1',
+               'Private\New-ArmorApiUri.ps1', 'Private\New-ArmorApiUriQuery.ps1',
+               'Private\Select-ArmorApiResult.ps1',
+               'Private\Submit-ArmorApiRequest.ps1',
+               'Private\Test-ArmorSession.ps1', 'Private\Update-ArmorApiToken.ps1',
+               'Public\Connect-Armor.ps1', 'Public\Disconnect-Armor.ps1',
+               'Public\Get-ArmorAccount.ps1', 'Public\Get-ArmorAccountAddress.ps1',
+               'Public\Get-ArmorAccountContext.ps1',
+               'Public\Get-ArmorCompleteDatacenter.ps1',
+               'Public\Get-ArmorCompleteWorkload.ps1',
+               'Public\Get-ArmorCompleteWorkloadTier.ps1',
+               'Public\Get-ArmorIdentity.ps1', 'Public\Get-ArmorUser.ps1',
+               'Public\Get-ArmorVM.ps1', 'Public\Invoke-ArmorWebRequest.ps1',
+               'Public\Remove-ArmorCompleteWorkload.ps1',
+               'Public\Rename-ArmorCompleteVM.ps1',
+               'Public\Rename-ArmorCompleteWorkload.ps1',
+               'Public\Reset-ArmorCompleteVM.ps1',
+               'Public\Restart-ArmorCompleteVM.ps1',
+               'Public\Set-ArmorAccountContext.ps1',
+               'Public\Start-ArmorCompleteVM.ps1',
                'Public\Stop-ArmorCompleteVM.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
@@ -157,7 +157,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/tlindsay42/ArmorPowerShell'
 
         # A URL to an icon representing this module.
-        IconUri = 'http://i.imgur.com/fbXjkCn.png'
+        IconUri= 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
@@ -166,7 +166,7 @@ PrivateData = @{
         # ExternalModuleDependencies = ''
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
