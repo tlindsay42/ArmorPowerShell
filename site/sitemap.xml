@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+
+
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Requirements/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Install/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Update/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Uninstall/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Getting_Started/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Project_Architecture/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/Licensing/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//user/FAQs/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+
+
+
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Armor/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Connect-Armor/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Disconnect-Armor/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorAccount/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorAccountAddress/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorAccountContext/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorCompleteDatacenter/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorCompleteWorkload/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorCompleteWorkloadTier/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorIdentity/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorUser/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Get-ArmorVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Invoke-ArmorWebRequest/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Remove-ArmorCompleteWorkload/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Rename-ArmorCompleteWorkload/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Rename-ArmorCompleteVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Reset-ArmorCompleteVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Restart-ArmorCompleteVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Set-ArmorAccountContext/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Start-ArmorCompleteVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//public/Stop-ArmorCompleteVM/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+
+
+
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Format-ArmorApiRequestBody/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Get-ArmorApiData/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/New-ArmorApiToken/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/New-ArmorApiUri/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/New-ArmorApiUriQuery/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Select-ArmorApiResult/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Submit-ArmorApiRequest/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Test-ArmorSession/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+     <loc>https://tlindsay42.github.io/ArmorPowerShell//private/Update-ArmorApiToken/</loc>
+     <lastmod>2018-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+
+
+
+</urlset>
