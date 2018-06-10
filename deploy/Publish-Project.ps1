@@ -52,6 +52,9 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         git checkout --quiet $Env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
 
         if ( $Env:APPVEYOR_ACCOUNT_NAME -eq $Env:CI_OWNER_NAME ) {
+            # fetch the GitHub Pages documentation branch
+            git fetch origin gh-pages
+
             # Publish the documentation to GitHub Pages
             mkdocs gh-deploy
         }
