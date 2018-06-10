@@ -106,4 +106,4 @@ Rename-ArmorCompleteVM -ID 12345 -NewName 'NewName' -Confirm:$false
 
 This will make the change without asking for confirmation.  Please be careful!
 
-[screenshot]: https://i.imgur.com/sR6AN22.png
+[screenshot]: /img/20171103-ArmorSession_screenshot.png
