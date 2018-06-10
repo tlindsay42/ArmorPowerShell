@@ -2,7 +2,7 @@
 
 If you installed the module via the PowerShell Gallery, please implement the following when you want to uninstall the module:
 
-1. Open a Powershell console with the *Run as Administrator* option.
+1. Open a PowerShell console with the *Run as Administrator* option.
 1. Run `Uninstall-Module -Name 'Armor'`.
 
 ## Option 2: Delete the Armor module directory

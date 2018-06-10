@@ -9,14 +9,14 @@ Common PowerShell module paths include:
 ## Option 1: PowerShell Gallery Installation (Recommended)
 
 1. Ensure you have the [Windows Management Framework 5.0][wmf5] or greater installed.
-1. Open a Powershell console with the *Run as Administrator* option.
+1. Open a PowerShell console with the *Run as Administrator* option.
 1. Run `Set-ExecutionPolicy` using the parameter *RemoteSigned* or *Bypass*.
 1. Run `Install-Module -Name 'Armor' -Scope 'CurrentUser'` to download the module from the PowerShell Gallery. Note that the first time you install from the remote repository it may ask you to first trust the repository.
 
 ## Option 2: PowerShell Gallery Download
 
 1. Ensure you have the [Windows Management Framework 5.0][wmf5] or greater installed.
-1. Open a Powershell console with the *Run as Administrator* option.
+1. Open a PowerShell console with the *Run as Administrator* option.
 1. Run `Set-ExecutionPolicy` using the parameter *RemoteSigned* or *Bypass*.
 1. Run `Save-Module -Name 'Armor' -Path <path>` to download the module from the PowerShell Gallery. Note that the first time you install from the remote repository it may ask you to first trust the repository.
 1. Copy the contents of the Armor module folder onto your workstation into the desired PowerShell Module path.
@@ -25,7 +25,7 @@ Common PowerShell module paths include:
 
 1. Download the latest [release version][release] to your workstation.
 1. Copy the contents of the *Armor* folder onto your workstation into the desired PowerShell Module path.
-1. Open a Powershell console with the *Run as Administrator* option.
+1. Open a PowerShell console with the *Run as Administrator* option.
 1. Run `Set-ExecutionPolicy` using the parameter *RemoteSigned* or *Bypass*.
 
 ## Verification
