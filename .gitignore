@@ -41,5 +41,6 @@ Thumbs.db
 ######################
 .vscode/
 .candidate/
+site/
 TestResults.xml
 CodeCoverageResults.xml

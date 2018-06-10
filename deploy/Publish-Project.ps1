@@ -48,6 +48,13 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         OutWarning( ( $messageForm -f 'GitHub', 'rebuild', $true ) )
     }
     else {
+        if ( $Env:APPVEYOR_ACCOUNT_NAME -eq $Env:CI_OWNER_NAME ) {
+            # Publish the documentation to GitHub Pages
+            git fetch --quiet origin 'gh-pages' 2> ( [System.IO.Path]::GetTempFileName() )
+            git checkout --quiet 'gh-pages' 2> ( [System.IO.Path]::GetTempFileName() )
+            mkdocs gh-deploy
+        }
+
         # Publish the new version back to GitHub
         git checkout --quiet $Env:CI_BRANCH 2> ( [System.IO.Path]::GetTempFileName() )
         git add --all
