@@ -229,4 +229,7 @@ foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.
     New-MarkdownHelp -Command $file.BaseName -Force -NoMetadata -OutputFolder $docsPrivatePath -ErrorAction 'Stop'
 }
 
+# Build the documentation site
+mkdocs build --verbose
+
 Write-Host -Object ''
