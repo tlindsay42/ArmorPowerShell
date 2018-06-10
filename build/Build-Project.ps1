@@ -216,6 +216,9 @@ New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPat
 # Update the module page content
 Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 'Stop'
 
+# Update the external help version
+( Get-Content -Path $modulePage ) -replace '^Help Version: \S+$', "Help Version: ${Env:CI_MODULE_VERSION}"
+
 # Update the external help files
 New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
 
