@@ -110,7 +110,11 @@ AliasesToExport = 'Get-ArmorCompleteVM'
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json',
+FileList = 'Armor.psd1', 'Armor.psm1', 'en-US\Armor-help.xml',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.cab',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.zip',
+               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_HelpInfo.xml',
+               'Etc\Aliases.json', 'Etc\ApiData.json',
                'Etc\ClassesWithDependenciesImportOrder.json',
                'Lib\ArmorAccount.ps1', 'Lib\ArmorAccountAddress.ps1',
                'Lib\ArmorCompleteDatacenter.ps1', 'Lib\ArmorCompleteWorkload.ps1',
@@ -140,10 +144,7 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'Etc\Aliases.json', 'Etc\ApiData.json',
                'Public\Restart-ArmorCompleteVM.ps1',
                'Public\Set-ArmorAccountContext.ps1',
                'Public\Start-ArmorCompleteVM.ps1',
-               'Public\Stop-ArmorCompleteVM.ps1', 'en-US\Armor-help.xml',
-               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.cab',
-               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_HelpInfo.xml',
-               'en-US\Armor_226c1ea9-1078-402a-861c-10a845a0d173_en-US_HelpContent.zip'
+               'Public\Stop-ArmorCompleteVM.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
@@ -160,13 +161,19 @@ PrivateData = @{
         ProjectUri = 'https://github.com/tlindsay42/ArmorPowerShell'
 
         # A URL to an icon representing this module.
-        IconUri= 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
+        IconUri = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
 
+        # Prerelease string of this module
+        # Prerelease = ''
+
+        # Flag to indicate whether the module requires explicit user acceptance for install/update
+        # RequireLicenseAcceptance = $false
+
         # External dependent modules of this module
-        # ExternalModuleDependencies = ''
+        # ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
 
