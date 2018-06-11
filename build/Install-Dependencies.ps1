@@ -1,3 +1,5 @@
+$tempFile = [System.IO.Path]::GetTempFileName()
+
 Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 
 Write-Host -Object "`nInstalling package providers:" -ForegroundColor 'Yellow'
@@ -37,7 +39,8 @@ Write-Host -Object 'NodeJS Package Manager (npm) version: ' -ForegroundColor 'Ye
 npm --version
 
 Write-Host -Object "`nInstalling npm packages: " -ForegroundColor 'Yellow'
-npm install --global sinon@1 markdown-spellcheck 2> ( [System.IO.Path]::GetTempFileName() )
+npm install --global sinon@1 markdown-spellcheck 2> $tempFile
+Get-Content -Path $tempFile
 
 Write-Host -Object "`nInstalling python packages: " -ForegroundColor 'Yellow'
 pip install --quiet mkdocs
