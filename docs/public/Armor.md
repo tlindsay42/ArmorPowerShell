@@ -2,7 +2,7 @@
 Module Name: Armor
 Module Guid: 226c1ea9-1078-402a-861c-10a845a0d173
 Download Help Link: https://github.com/tlindsay42/ArmorPowerShell/tree/master/Armor/en-US/
-Help Version: 1.0.248
+Help Version: 1.0.249
 Locale: en-US
 ---
 
