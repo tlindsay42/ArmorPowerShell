@@ -82,7 +82,11 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         git checkout --quiet 'gh-pages' 2> $tempFile
         Get-Content -Path $tempFile
 
-        git pull origin 'gh-pages'
+        git clean -d -x --force 2> $tempFile
+        Get-Content -Path $tempFile
+
+        git pull origin 'gh-pages' 2> $tempFile
+        Get-Content -Path $tempFile
 
         git checkout --quiet $Env:CI_BRANCH 2> $tempFile
         Get-Content -Path $tempFile
