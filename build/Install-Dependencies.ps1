@@ -43,7 +43,8 @@ npm install --global sinon@1 markdown-spellcheck 2> $tempFile
 Get-Content -Path $tempFile
 
 Write-Host -Object "`nInstalling python packages: " -ForegroundColor 'Yellow'
-pip install --quiet mkdocs
+pip install mkdocs 2> $tempFile
+Get-Content -Path $tempFile
 mkdocs --version
 
 Write-Host -Object ''
