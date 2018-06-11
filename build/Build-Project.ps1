@@ -240,6 +240,6 @@ foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.
 }
 
 # Build the documentation site
-mkdocs build
+mkdocs build 2>&1
 
 Write-Host -Object ''
