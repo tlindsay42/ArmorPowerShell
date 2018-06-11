@@ -54,3 +54,5 @@ pages:
     - Update-ArmorApiToken: "private/Update-ArmorApiToken.md"
 theme: "readthedocs"
 strict: true
+markdown_extensions:
+  - admonition
