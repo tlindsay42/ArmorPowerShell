@@ -20,4 +20,4 @@ If you deployed the module via download from GitHub, please implement the follow
 1. Download the latest [release version][release] to your workstation.
 1. Copy the contents of the *Armor* folder onto your workstation into the desired PowerShell Module path.
 
-[release] https://github.com/tlindsay42/ArmorPowerShell/releases
+[release]: https://github.com/tlindsay42/ArmorPowerShell/releases
