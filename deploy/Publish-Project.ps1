@@ -76,13 +76,13 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         OutInfo( ( $publishForm -f 'documentation', $Env:CI_PROJECT_NAME, $Env:CI_MODULE_VERSION, 'GitHub Pages' ) )
 
         # Publish the documentation to GitHub Pages
-        git fetch origin 2> $tempFile
+        git fetch --force --verbose origin 'gh-pages' 2> $tempFile
         Get-Content -Path $tempFile
 
-        git checkout 'gh-pages' 2> $tempFile
+        git checkout --force 'gh-pages' 2> $tempFile
         Get-Content -Path $tempFile
 
-        git pull --force origin 'gh-pages' 2> $tempFile
+        git pull --allow-unrelated-histories --force --verbose origin 'gh-pages' 2> $tempFile
         Get-Content -Path $tempFile
 
         git checkout $Env:CI_BRANCH 2> $tempFile
