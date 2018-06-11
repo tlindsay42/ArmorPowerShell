@@ -116,6 +116,7 @@ init:
   - ps: git config --global user.name $Env:APPVEYOR_REPO_COMMIT_AUTHOR
   - ps: git config --global core.autocrlf true
   - ps: git config --global core.safecrlf false
+  - ps: git config --global push.default tracking
 
 # clone directory
 #clone_folder:
