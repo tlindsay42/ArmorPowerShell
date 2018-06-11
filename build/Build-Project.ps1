@@ -1,4 +1,4 @@
-$projectNameLowerCase = $Env:CI_PROJECT_NAME.ToLower()
+$tempFile = [System.IO.Path]::GetTempFileName()
 
 $text = @{
     'AppVeyor'              = 'AppVeyor'
@@ -202,6 +202,7 @@ $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAc
     "Please visit the $( $text.GitHubPagesMd ) for more details." |
     Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
 
+Write-Host -Object "`nCopy the readme page to the root index page of the documentation site." -ForegroundColor 'Yellow'
 $indexPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md' -ErrorAction 'Stop'
 Copy-Item -Path $readmePath -Destination $indexPath -Force -ErrorAction 'Stop'
 
@@ -210,36 +211,40 @@ $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAc
 $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
 $externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
 
-# Update the cmdlet documentation content and add metadata for building external help files
+Write-Host -Object "`nUpdate the cmdlet documentation content and add metadata for building external help files." -ForegroundColor 'Yellow'
 New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -ErrorAction 'Stop'
 
-# Update the module page content
+Write-Host -Object "`nUpdate the module page content." -ForegroundColor 'Yellow'
 Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 'Stop'
 
-# Update the external help version
+Write-Host -Object "`nUpdate the external help version." -ForegroundColor 'Yellow'
 ( Get-Content -Path $modulePage ) -replace '^Help Version: \S+$', "Help Version: ${Env:CI_MODULE_VERSION}" |
     Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
 
-# Update the external help files
+Write-Host -Object "`nUpdate the external help files." -ForegroundColor 'Yellow'
 New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
 
-
 if ( $PSVersionTable.OS -match 'Windows' ) {
-    # Build the cabinet file for supporting updatable help
-    # This is only supported on Windows for now
+    Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
+    Write-Host -Object "`nThis is only supported on Windows for now."
     New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $externalHelpDirectory -ErrorAction 'Stop'
 }
 
-# Remove the metadata from the documentation pages again
+Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
 New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -NoMetadata -ErrorAction 'Stop'
 
-# Update the private function documentation content
+Write-Host -Object "`nUpdate the private function documentation content." -ForegroundColor 'Yellow'
 foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' -ErrorAction 'Stop' ) ) {
     . $file.FullName
     New-MarkdownHelp -Command $file.BaseName -Force -NoMetadata -OutputFolder $docsPrivatePath -ErrorAction 'Stop'
 }
 
-# Build the documentation site
-mkdocs build 2>&1
+Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
+mkdocs build 2> $tempFile
+Get-Content -Path $tempFile
+
+Write-Host -Object "`nRemove the test site directory." -ForegroundColor 'Yellow'
+$sitePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'site' -ErrorAction 'Stop'
+Remove-Item -Path $sitePath -Recurse -Force -Confirm:$false -ErrorAction 'Stop'
 
 Write-Host -Object ''
