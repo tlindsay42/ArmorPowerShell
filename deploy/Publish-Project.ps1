@@ -14,6 +14,7 @@ $skipKeyword = 'skip publish'
 $commitMessageKeyword = 'commit message keyword'
 $tag = "v${Env:CI_MODULE_VERSION}"
 $tempFile = [System.IO.Path]::GetTempFileName()
+$commitMessage = "${Env:CI_NAME}: Update version to ${Env:CI_MODULE_VERSION} [ci skip]"
 
 if ( $Env:APPVEYOR -ne $true ) {
     Write-Warning -Message ( $messageForm -f 'continuous integration platform', $Env:CI_NAME )
@@ -55,7 +56,7 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
         git add --all
         git status
-        git commit --signoff --message "${Env:CI_NAME}: Update version to ${Env:CI_MODULE_VERSION} [ci skip]"
+        git commit --signoff --message $commitMessage
         git push --porcelain --set-upstream origin $Env:CI_BRANCH
 
         if ( $Env:CI_BRANCH -eq 'master' ) {
@@ -75,20 +76,7 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     if ( $Env:APPVEYOR_ACCOUNT_NAME -eq $Env:CI_OWNER_NAME -and $Env:CI_BRANCH -eq 'master' ) {
         OutInfo( ( $publishForm -f 'documentation', $Env:CI_PROJECT_NAME, $Env:CI_MODULE_VERSION, 'GitHub Pages' ) )
 
-        # Publish the documentation to GitHub Pages
-        git fetch --force --verbose origin 'gh-pages' 2> $tempFile
-        Get-Content -Path $tempFile
-
-        git checkout --force 'gh-pages' 2> $tempFile
-        Get-Content -Path $tempFile
-
-        git pull --allow-unrelated-histories --force --verbose origin 'gh-pages' 2> $tempFile
-        Get-Content -Path $tempFile
-
-        git checkout $Env:CI_BRANCH 2> $tempFile
-        Get-Content -Path $tempFile
-
-        mkdocs gh-deploy 2> $tempFile
+        mkdocs gh-deploy --clean --message $commitMessage --force --verbose 2> $tempFile
         Get-Content -Path $tempFile
     }
 

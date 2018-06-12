@@ -9,6 +9,7 @@ site_description: "This is a community project that provides a powerful command-
 site_author: "Troy Lindsay"
 copyright: "(c) 2017-2018 Troy Lindsay. All rights reserved."
 google_analytics: ["UA-117909744-3", "ArmorPowerShell"]
+remote_branch: "gh-pages"
 pages:
   - Home: "index.md"
   - User Documentation:
