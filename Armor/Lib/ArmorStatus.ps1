@@ -64,4 +64,16 @@ enum ArmorStatus {
 
     # The vApp is resolved and partially deployed
     VAPP_PARTIALLY_DEPLOYED = 19
+
+    # Undocumented at this time
+    CHANGES_PENDING = 100
+
+    # Undocumented at this time
+    COMPLETE = 101
+
+    # Undocumented at this time
+    BUSY = 102
+
+    # Undocumented at this time
+    TEMPLATE_PENDING = 103
 }

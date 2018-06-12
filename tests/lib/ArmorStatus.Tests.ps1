@@ -97,10 +97,22 @@ Describe -Name $describe -Tag 'Enum', $enum -Fixture {
             @{
                 'ValueName'   = [ArmorStatus]::VAPP_PARTIALLY_DEPLOYED
                 'ValueNumber' = 19
-            # },
-            # @{
-            #     'ValueName'   = [ArmorStatus]::UNKNOWN_WORKLOAD_STATE
-            #     'ValueNumber' = 100
+            },
+            @{
+                'ValueName'   = [ArmorStatus]::CHANGES_PENDING
+                'ValueNumber' = 100
+            },
+            @{
+                'ValueName'   = [ArmorStatus]::COMPLETE
+                'ValueNumber' = 101
+            },
+            @{
+                'ValueName'   = [ArmorStatus]::BUSY
+                'ValueNumber' = 102
+            },
+            @{
+                'ValueName'   = [ArmorStatus]::TEMPLATE_PENDING
+                'ValueNumber' = 103
             }
         )
         It -Name 'should set: ValueName: <ValueName>, ValueNumber: <ValueNumber>' -TestCases $testCases -Test {
