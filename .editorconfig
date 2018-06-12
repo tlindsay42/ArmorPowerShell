@@ -18,9 +18,6 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 
-[**.rst]
-end_of_line = lf
-
 [LICENSE.txt]
 indent_style = space
 indent_size = 3
