@@ -46,6 +46,10 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             @{
                 'Property' = 'Prefix'
                 'Value'    = ''
+            },
+            @{
+                'Property' = 'HelpInfoURI'
+                'Value'    = 'https://tlindsay42.github.io/ArmorPowerShell/'
             }
         )
         It -Name "should have set property: <Property> to: <Value>" -TestCases $testCases -Test {
@@ -67,8 +71,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             @{ 'Property' = 'NestedModules' },
             @{ 'Property' = 'ExportedDscResources' },
             @{ 'Property' = 'ModuleList' },
-            @{ 'Property' = 'ReleaseNotes' },
-            @{ 'Property' = 'HelpInfoURI' }
+            @{ 'Property' = 'ReleaseNotes' }
         )
         It -Name "should have set property: <Property> to: `$null" -TestCases $testCases -Test {
             param ( [String] $Property )
