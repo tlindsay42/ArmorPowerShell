@@ -1,11 +1,5 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-foreach ( $class in 'ArmorDisk', 'ArmorVmProduct', 'ArmorStatus', 'ArmorVM' ) {
-    $filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath "${class}.ps1"
-
-    . $filePath
-}
-
-$filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath $systemUnderTest
+$filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath 'ArmorTypes.ps1'
 
 . $filePath
 
