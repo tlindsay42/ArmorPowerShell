@@ -1,14 +1,14 @@
 ---
 Module Name: Armor
 Module Guid: 226c1ea9-1078-402a-861c-10a845a0d173
-Download Help Link: https://github.com/tlindsay42/ArmorPowerShell/tree/master/Armor/en-US/
-Help Version: 1.0.255
+Download Help Link: https://tlindsay42.github.io/ArmorPowerShell/
+Help Version: 1.0.257
 Locale: en-US
 ---
 
 # Armor Module
 ## Description
-Armor command-line interface.
+The Armor command-line interface
 
 ## Armor Cmdlets
 ### [Connect-Armor](Connect-Armor.md)
