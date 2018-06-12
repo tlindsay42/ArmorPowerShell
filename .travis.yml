@@ -33,8 +33,7 @@ language: generic
 #gemfile:
 #mono:
 #php:
-python:
-  - "3.6"
+#python:
 #rvm:
 
 #git:

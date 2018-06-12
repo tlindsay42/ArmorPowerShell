@@ -42,9 +42,18 @@ Write-Host -Object "`nInstalling npm packages: " -ForegroundColor 'Yellow'
 npm install --global sinon@1 markdown-spellcheck 2> $tempFile
 Get-Content -Path $tempFile
 
-Write-Host -Object "`nInstalling python packages: " -ForegroundColor 'Yellow'
-pip3 install mkdocs 2> $tempFile
-Get-Content -Path $tempFile
+Write-Host -Object "`nInstalling mkdocs: " -ForegroundColor 'Yellow'
+if ( $Env:CI_WINDOWS -eq $true ) {
+    pip install mkdocs 2> $tempFile
+    Get-Content -Path $tempFile
+}
+elseif ( $Env:CI_LINUX -eq $true -or $Env:TRAVIS_OS_NAME -eq 'linux' ) {
+    apt-get install mkdocs
+}
+elseif ( ( uname -s ) -eq 'Darwin' ) {
+    brew install mkdocs
+}
+
 mkdocs --version
 
 Write-Host -Object ''
