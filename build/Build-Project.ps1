@@ -224,7 +224,7 @@ Write-Host -Object "`nUpdate the external help version." -ForegroundColor 'Yello
 Write-Host -Object "`nUpdate the external help files." -ForegroundColor 'Yellow'
 New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
 
-if ( $PSVersionTable.OS -match 'Windows' ) {
+if ( $Env:CI_WINDOWS -eq $true ) {
     Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
     Write-Host -Object "`nThis is only supported on Windows for now."
     New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_BUILD_PATH -ErrorAction 'Stop'
