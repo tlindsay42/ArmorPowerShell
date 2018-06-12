@@ -227,7 +227,7 @@ New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force
 if ( $PSVersionTable.OS -match 'Windows' ) {
     Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
     Write-Host -Object "`nThis is only supported on Windows for now."
-    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $externalHelpDirectory -ErrorAction 'Stop'
+    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_BUILD_PATH -ErrorAction 'Stop'
 }
 
 Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
