@@ -122,16 +122,8 @@ $fileList = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse -ErrorAction 
 
 $aliasesToExport = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' | ConvertFrom-Json -ErrorAction 'Stop' ).Name
 
-$classesWithDependencies = Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/ClassesWithDependenciesImportOrder.json" -ErrorAction 'Stop' |
-    ConvertFrom-Json -ErrorAction 'Stop'
-
-$scriptsToProcess = @()
-$scriptsToProcess += Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/*.ps1" -Exclude $classesWithDependencies -File -ErrorAction 'Stop' |
+$scriptsToProcess = Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/*.ps1" -File -ErrorAction 'Stop' |
     Resolve-Path -Relative
-
-foreach ( $classWithDependencies in $classesWithDependencies ) {
-    $scriptsToProcess += Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/${classWithDependencies}.ps1" -ErrorAction 'Stop'
-}
 
 $splat = @{
     'Path'                  = $Env:CI_MODULE_MANIFEST_PATH
