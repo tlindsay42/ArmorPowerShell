@@ -125,6 +125,8 @@ $aliasesToExport = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" 
 $scriptsToProcess = Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/*.ps1" -File -ErrorAction 'Stop' |
     Resolve-Path -Relative
 
+$helpInfoUri = 'https://tlindsay42.github.io/ArmorPowerShell/'
+
 $splat = @{
     'Path'                  = $Env:CI_MODULE_MANIFEST_PATH
     'RootModule'            = "${Env:CI_MODULE_NAME}.psm1"
@@ -144,6 +146,7 @@ $splat = @{
         'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
     'LicenseUri'            = $text.RepoUrl + '/blob/master/LICENSE.txt'
     'IconUri'               = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
+    'HelpInfoUri'           = $helpInfoUri
     'ErrorAction'           = 'Stop'
 }
 
@@ -203,14 +206,28 @@ $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAc
 $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
 $externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
 
+Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
+Remove-Item -Path "$docsPrivatePath/*.md" -Force
+Remove-Item -Path "$docsPublicPath/*.md" -Force
+
 Write-Host -Object "`nUpdate the cmdlet documentation content and add metadata for building external help files." -ForegroundColor 'Yellow'
-New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -ErrorAction 'Stop'
+$splat = @{
+    'Module'         = $Env:CI_MODULE_NAME
+    'Force'          = $true
+    'OutputFolder'   = $docsPublicPath
+    'WithModulePage' = $true
+    'HelpVersion'    = $Env:CI_MODULE_VERSION
+    'Locale'         = 'en-US'
+    'FwLink'         = $helpInfoUri
+    'ErrorAction'    = 'Stop'
+}
+New-MarkdownHelp @splat
 
 Write-Host -Object "`nUpdate the module page content." -ForegroundColor 'Yellow'
 Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 'Stop'
 
-Write-Host -Object "`nUpdate the external help version." -ForegroundColor 'Yellow'
-( Get-Content -Path $modulePage ) -replace '^Help Version: \S+$', "Help Version: ${Env:CI_MODULE_VERSION}" |
+Write-Host -Object "`nUpdate the external help module description." -ForegroundColor 'Yellow'
+( Get-Content -Path $modulePage ) -replace '^{{Manually Enter Description Here}}$', "The Armor command-line interface" |
     Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
 
 Write-Host -Object "`nUpdate the external help files." -ForegroundColor 'Yellow'
@@ -218,8 +235,8 @@ New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force
 
 if ( $Env:CI_WINDOWS -eq $true ) {
     Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
-    Write-Host -Object "`nThis is only supported on Windows for now."
-    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_BUILD_PATH -ErrorAction 'Stop'
+    Write-Host -Object 'This is only supported on Windows for now.'
+    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_DOCS_PATH -ErrorAction 'Stop'
 }
 
 Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
@@ -232,11 +249,7 @@ foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.
 }
 
 Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
-mkdocs build 2> $tempFile
+mkdocs build --clean --strict 2> $tempFile
 Get-Content -Path $tempFile
-
-Write-Host -Object "`nRemove the test site directory." -ForegroundColor 'Yellow'
-$sitePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'site' -ErrorAction 'Stop'
-Remove-Item -Path $sitePath -Recurse -Force -Confirm:$false -ErrorAction 'Stop'
 
 Write-Host -Object ''

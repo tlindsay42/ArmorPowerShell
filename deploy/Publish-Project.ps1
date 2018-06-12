@@ -76,7 +76,7 @@ elseif ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     if ( $Env:APPVEYOR_ACCOUNT_NAME -eq $Env:CI_OWNER_NAME -and $Env:CI_BRANCH -eq 'master' ) {
         OutInfo( ( $publishForm -f 'documentation', $Env:CI_PROJECT_NAME, $Env:CI_MODULE_VERSION, 'GitHub Pages' ) )
 
-        mkdocs gh-deploy --clean --message $commitMessage --force --verbose 2> $tempFile
+        mkdocs gh-deploy --clean --message $commitMessage --force 2> $tempFile
         Get-Content -Path $tempFile
     }
 
