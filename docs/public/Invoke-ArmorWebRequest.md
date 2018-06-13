@@ -33,6 +33,40 @@ Retrieves VM details using the session headers.
 
 ## PARAMETERS
 
+### -Body
+Specifies the body of the Armor API web request. 
+This parameter is ignored for
+Get requests.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Description
+If the PowerShell $ConfirmPreference value is elevated for this Armor API web
+request by setting the -Confirm parameter to $true, this specifies the text to
+display at the user prompt.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: Test Armor API request
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Endpoint
 Specifies the Armor API endpoint.
 
@@ -85,23 +119,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Body
-Specifies the body of the Armor API web request. 
-This parameter is ignored for
-Get requests.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -SuccessCode
 Specifies the value of the HTTP response code that indicates success for this
 Armor API web request.
@@ -114,23 +131,6 @@ Aliases:
 Required: False
 Position: 5
 Default value: 200
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Description
-If the PowerShell $ConfirmPreference value is elevated for this Armor API web
-request by setting the -Confirm parameter to $true, this specifies the text to
-display at the user prompt.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 6
-Default value: Test Armor API request
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

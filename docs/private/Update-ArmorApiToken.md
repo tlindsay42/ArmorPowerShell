@@ -22,21 +22,6 @@ Update-ArmorApiToken -Token '2261bac252204c2ea93ed32ea1ffd3ab' -ApiVersion 'v1.0
 
 ## PARAMETERS
 
-### -Token
-Specifies the Armor API authorization token.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: $Global:ArmorSession.GetToken()
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ApiVersion
 Specifies the API version for this request.
 
@@ -49,6 +34,21 @@ Required: False
 Position: 2
 Default value: $Global:ArmorSession.ApiVersion
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Token
+Specifies the Armor API authorization token.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: $Global:ArmorSession.GetToken()
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

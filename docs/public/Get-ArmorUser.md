@@ -46,34 +46,19 @@ has context.
 
 ## PARAMETERS
 
-### -ID
-Specifies the ID of the Armor user account.
-
-```yaml
-Type: UInt16
-Parameter Sets: ID
-Aliases:
-
-Required: False
-Position: 1
-Default value: 0
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -UserName
-Specifies the username of the Armor user account.
+### -ApiVersion
+Specifies the API version for this request.
 
 ```yaml
 Type: String
-Parameter Sets: UserName
+Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: True
+Position: 2
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
 
 ### -FirstName
@@ -91,6 +76,21 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: True
 ```
 
+### -ID
+Specifies the ID of the Armor user account.
+
+```yaml
+Type: UInt16
+Parameter Sets: ID
+Aliases:
+
+Required: False
+Position: 1
+Default value: 0
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -LastName
 Specifies the last name of the Armor user account.
 
@@ -106,19 +106,19 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: True
 ```
 
-### -ApiVersion
-Specifies the API version for this request.
+### -UserName
+Specifies the username of the Armor user account.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: UserName
 Aliases:
 
 Required: False
-Position: 2
-Default value: $Global:ArmorSession.ApiVersion
-Accept pipeline input: False
-Accept wildcard characters: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: True
 ```
 
 ### CommonParameters

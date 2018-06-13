@@ -33,6 +33,21 @@ pipeline.
 
 ## PARAMETERS
 
+### -ApiVersion
+Specifies the API version for this request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ID
 Specifies the ID of the Armor Complete workload that you want to rename.
 
@@ -63,17 +78,17 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ApiVersion
-Specifies the API version for this request.
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: cf
 
 Required: False
-Position: 3
-Default value: $Global:ArmorSession.ApiVersion
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -86,21 +101,6 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named

@@ -40,17 +40,34 @@ pipeline, and then outputs the object.
 
 ## PARAMETERS
 
-### -Uri
-Specifies the Uniform Resource Identifier (URI) of the Armor API resource to
-which the web request is sent.
+### -Body
+Specifies the body of the Armor API request. 
+Ignored if the request method is
+set to Get.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 1
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Description
+If this cmdlet is called with the -Confirm switch parameter set to true, this
+optional description will be displayed at the prompt.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -86,23 +103,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Body
-Specifies the body of the Armor API request. 
-Ignored if the request method is
-set to Get.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SuccessCode
 Specifies the success code expected in the response.
 
@@ -118,17 +118,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Description
-If this cmdlet is called with the -Confirm switch parameter set to true, this
-optional description will be displayed at the prompt.
+### -Uri
+Specifies the Uniform Resource Identifier (URI) of the Armor API resource to
+which the web request is sent.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
 Required: False
-Position: 6
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -142,21 +157,6 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named

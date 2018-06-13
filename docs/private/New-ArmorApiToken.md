@@ -24,6 +24,21 @@ token.
 
 ## PARAMETERS
 
+### -ApiVersion
+Specifies the API version for this request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Code
 Specifies the temporary authorization code to redeem for a token.
 
@@ -50,21 +65,6 @@ Aliases:
 Required: False
 Position: 2
 Default value: Authorization_code
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ApiVersion
-Specifies the API version for this request.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: $Global:ArmorSession.ApiVersion
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

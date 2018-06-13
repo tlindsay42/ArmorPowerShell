@@ -92,18 +92,18 @@ workload with WorkloadID=1 via property names in the pipeline.
 
 ## PARAMETERS
 
-### -WorkloadID
-Specifies the ID of the workload that contains the tier(s).
+### -ApiVersion
+Specifies the API version for this request.
 
 ```yaml
-Type: UInt16
+Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 1
-Default value: 0
-Accept pipeline input: True (ByPropertyName, ByValue)
+Required: False
+Position: 3
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -137,18 +137,18 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: True
 ```
 
-### -ApiVersion
-Specifies the API version for this request.
+### -WorkloadID
+Specifies the ID of the workload that contains the tier(s).
 
 ```yaml
-Type: String
+Type: UInt16
 Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: 3
-Default value: $Global:ArmorSession.ApiVersion
-Accept pipeline input: False
+Required: True
+Position: 1
+Default value: 0
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

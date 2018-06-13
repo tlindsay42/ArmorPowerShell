@@ -47,21 +47,6 @@ property names in the pipeline.
 
 ## PARAMETERS
 
-### -ID
-Specifies the ID of the Armor account with the desired address details.
-
-```yaml
-Type: UInt16
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: $Global:ArmorSession.GetAccountContextID()
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ApiVersion
 Specifies the API version for this request.
 
@@ -74,6 +59,21 @@ Required: False
 Position: 2
 Default value: $Global:ArmorSession.ApiVersion
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ID
+Specifies the ID of the Armor account with the desired address details.
+
+```yaml
+Type: UInt16
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: $Global:ArmorSession.GetAccountContextID()
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

@@ -60,6 +60,21 @@ property name in the pipeline.
 
 ## PARAMETERS
 
+### -ApiVersion
+Specifies the API version for this request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ID
 Specifies the ID of the Armor Complete datacenter.
 
@@ -72,21 +87,6 @@ Required: False
 Position: 1
 Default value: 0
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -Name
-Specifies the name of the Armor Complete region.
-
-```yaml
-Type: String
-Parameter Sets: Name
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -105,18 +105,18 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ApiVersion
-Specifies the API version for this request.
+### -Name
+Specifies the name of the Armor Complete region.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Name
 Aliases:
 
 Required: False
-Position: 2
-Default value: $Global:ArmorSession.ApiVersion
-Accept pipeline input: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

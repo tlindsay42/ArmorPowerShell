@@ -88,6 +88,21 @@ pipeline.
 
 ## PARAMETERS
 
+### -ApiVersion
+Specifies the API version for this request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: $Global:ArmorSession.ApiVersion
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ID
 Specifies the ID of the Armor Complete workload.
 
@@ -116,21 +131,6 @@ Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: True
-```
-
-### -ApiVersion
-Specifies the API version for this request.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: $Global:ArmorSession.ApiVersion
-Accept pipeline input: False
-Accept wildcard characters: False
 ```
 
 ### CommonParameters

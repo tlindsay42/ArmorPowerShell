@@ -65,23 +65,6 @@ Attempts to log into a local test/dev Armor API instance listening on port
 
 ## PARAMETERS
 
-### -Credential
-Your Armor API username and password. 
-If not supplied as a parameter, you will
-be prompted for your credentials.
-
-```yaml
-Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: ( Get-Credential )
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -AccountID
 Specifies the Armor account ID to use for all subsequent requests. 
 The
@@ -95,38 +78,6 @@ Aliases:
 Required: False
 Position: 2
 Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Server
-Specifies the Armor API server IP address or FQDN.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: Api.armor.com
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Port
-Specifies the Armor API server listening TCP port. 
-The permitted range is:
-1-65535.
-
-```yaml
-Type: UInt16
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: 443
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -149,6 +100,55 @@ Aliases:
 Required: False
 Position: 5
 Default value: V1.0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Credential
+Your Armor API username and password. 
+If not supplied as a parameter, you will
+be prompted for your credentials.
+
+```yaml
+Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: ( Get-Credential )
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Port
+Specifies the Armor API server listening TCP port. 
+The permitted range is:
+1-65535.
+
+```yaml
+Type: UInt16
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: 443
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Server
+Specifies the Armor API server IP address or FQDN.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: Api.armor.com
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

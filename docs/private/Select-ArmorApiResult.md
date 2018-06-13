@@ -32,21 +32,6 @@ filter for VMs by SKU via the \`Get-ArmorVM\` cmdlet.
 
 ## PARAMETERS
 
-### -Results
-Specifies the formatted API response contents.
-
-```yaml
-Type: PSObject[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: @()
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -Filters
 Specifies the list of parameters that the user can use to filter response data.
 Each key is the parameter name without the "$" and each value corresponds to
@@ -66,6 +51,21 @@ Required: False
 Position: 2
 Default value: @()
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Results
+Specifies the formatted API response contents.
+
+```yaml
+Type: PSObject[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: @()
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

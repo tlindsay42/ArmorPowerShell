@@ -40,21 +40,6 @@ via property name in the pipeline.
 
 ## PARAMETERS
 
-### -ID
-Specifies the ID of the Armor Complete workload.
-
-```yaml
-Type: UInt16
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: 0
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ApiVersion
 Specifies the API version for this request.
 
@@ -70,19 +55,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -ID
+Specifies the ID of the Armor Complete workload.
 
 ```yaml
-Type: SwitchParameter
+Type: UInt16
 Parameter Sets: (All)
-Aliases: wi
+Aliases:
 
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Required: True
+Position: 1
+Default value: 0
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -93,6 +77,22 @@ Prompts you for confirmation before running the cmdlet.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
 
 Required: False
 Position: Named

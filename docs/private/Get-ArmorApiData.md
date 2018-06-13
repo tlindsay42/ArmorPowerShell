@@ -55,21 +55,6 @@ Retrieves the Armor API versions available for \`Rename-ArmorCompleteVM\` and
 
 ## PARAMETERS
 
-### -FunctionName
-Specifies the cmdlet name to lookup the API data for.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: Example
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ApiVersion
 Specifies the API version for this request.
 
@@ -98,6 +83,21 @@ Required: False
 Position: 2
 Default value: False
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -FunctionName
+Specifies the cmdlet name to lookup the API data for.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: Example
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
