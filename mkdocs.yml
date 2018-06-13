@@ -111,6 +111,7 @@ pages:
     - Get-ArmorUser: "public/Get-ArmorUser.md"
     - Get-ArmorVM: "public/Get-ArmorVM.md"
     - Invoke-ArmorWebRequest: "public/Invoke-ArmorWebRequest.md"
+    - New-ArmorCompleteWorkloadTier: "public/New-ArmorCompleteWorkloadTier.md"
     - Remove-ArmorCompleteWorkload: "public/Remove-ArmorCompleteWorkload.md"
     - Rename-ArmorCompleteWorkload: "public/Rename-ArmorCompleteWorkload.md"
     - Rename-ArmorCompleteVM: "public/Rename-ArmorCompleteVM.md"
@@ -120,6 +121,7 @@ pages:
     - Start-ArmorCompleteVM: "public/Start-ArmorCompleteVM.md"
     - Stop-ArmorCompleteVM: "public/Stop-ArmorCompleteVM.md"
   - Private Functions:
+    - Expand-ArmorApiResult: "private/Expand-ArmorApiResult.md"
     - Format-ArmorApiRequestBody: "private/Format-ArmorApiRequestBody.md"
     - Get-ArmorApiData: "private/Get-ArmorApiData.md"
     - New-ArmorApiToken: "private/New-ArmorApiToken.md"

@@ -1,291 +1,328 @@
 {
-    "Example": {
-        "v1.0": {
-            "Description": "Details about the API endpoint",
-            "Endpoints": [
-                "The URI(s) expressed as /endpoint"
-            ],
-            "Method": "Method to use against the endpoint",
-            "Body": {
-              "Description": "Parameters to use in the request body"
-            },
-            "Query": "Parameters to use in the Endpoints query",
-            "Filter": {
-              "Description": "If the result content needs to be filtered based on key names, express them here"
-            },
-            "SuccessCode": "The expected HTTP status code for a successful call"
-        }
-    },
-    "Connect-Armor": {
-        "v1.0": {
-            "Description": "Create a new login session",
-            "Endpoints": [
-                "/auth/authorize"
-            ],
-            "Method": "Post",
-            "Body": {
-                "Username": "Username",
-                "Password": "Password"
-            },
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorAccount": {
-        "v1.0": {
-            "Description": "Retrieve a list of Armor account memberships",
-            "Endpoints": [
-                "/accounts"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "Name": "Name",
-                "ID": "ID"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorAccountAddress": {
-        "v1.0": {
-            "Description": "Retrieve the address on file for the specified Armor account",
-            "Endpoints": [
-                "/accounts/{id}"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorCompleteDatacenter": {
-        "v1.0": {
-            "Description": "Retrieve Armor Complete datacenter locations",
-            "Endpoints": [
-                "/locations"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "Name": "Name",
-                "Location": "Location",
-                "ID": "ID"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorCompleteWorkload": {
-        "v1.0": {
-            "Description": "Retrieve workload details",
-            "Endpoints": [
-                "/apps",
-                "/apps/{id}"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "Name": "Name"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorCompleteWorkloadTier": {
-        "v1.0": {
-            "Description": "Retrieve workload tier details",
-            "Endpoints": [
-                "/apps/{id}/tiers",
-                "/apps/{id}/tiers/{id}"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "Name": "Name"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorIdentity": {
-        "v1.0": {
-            "Description": "Retrieve identity details about the authenticated user",
-            "Endpoints": [
-                "/me"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorUser": {
-        "v1.0": {
-            "Description": "Retrieve user account details",
-            "Endpoints": [
-                "/users",
-                "/users/{id}"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "FirstName": "FirstName",
-                "LastName": "LastName",
-                "UserName": "Email"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "Get-ArmorVM": {
-        "v1.0": {
-            "Description": "Retrieve virtual machine details",
-            "Endpoints": [
-                "/vms",
-                "/vms/{id}",
-                "/vms/core/{id}"
-            ],
-            "Method": "Get",
-            "Body": {},
-            "Query": {},
-            "Filter": {
-                "Name": "Name"
-            },
-            "SuccessCode": "200"
-        }
-    },
-    "New-ArmorApiToken": {
-        "v1.0": {
-            "Description": "Create an authentication token from an active authorization code",
-            "Endpoints": [
-                "/auth/token"
-            ],
-            "Method": "Post",
-            "Body": {
-                "code": "GUID",
-                "grant_type": "authorization_code"
-            },
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Remove-ArmorCompleteWorkload": {
-        "v1.0": {
-            "Description": "Delete the specified workload",
-            "Endpoints": [
-                "/apps/{id}"
-            ],
-            "Method": "Delete",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "202"
-        }
-    },
-    "Rename-ArmorCompleteVM": {
-        "v1.0": {
-            "Description": "Rename the specified virtual machine",
-            "Endpoints": [
-                "/vms/{id}"
-            ],
-            "Method": "Put",
-            "Body": {
-                "id": "ID",
-                "name": "Name"
-            },
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Rename-ArmorCompleteWorkload": {
-        "v1.0": {
-            "Description": "Rename the specified workload",
-            "Endpoints": [
-                "/apps/{id}"
-            ],
-            "Method": "Put",
-            "Body": {
-                "id": "ID",
-                "name": "Name"
-            },
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Reset-ArmorCompleteVM": {
-        "v1.0": {
-            "Description": "Abruptly reset the specified virtual machine",
-            "Endpoints": [
-                "/vms/{id}/power/reset"
-            ],
-            "Method": "Post",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Restart-ArmorCompleteVM": {
-        "v1.0": {
-            "Description": "Reboot the specified virtual machine",
-            "Endpoints": [
-                "/vms/{id}/power/reboot"
-            ],
-            "Method": "Post",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Start-ArmorCompleteVM": {
-        "v1.0": {
-            "Description": "Power on the specified virtual machine",
-            "Endpoints": [
-                "/vms/{id}/power/on"
-            ],
-            "Method": "Post",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Stop-ArmorCompleteVM": {
-        "v1.0": {
-            "Description": "{0} the specified virtual machine",
-            "Endpoints": [
-                "/vms/{id}/power/shutdown",
-                "/vms/{id}/power/off",
-                "/vms/{id}/power/forceOff"
-            ],
-            "Method": "Post",
-            "Body": {},
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
-    },
-    "Update-ArmorApiToken": {
-        "v1.0": {
-            "Description": "Retrieve a new authentication token if session is valid",
-            "Endpoints": [
-                "/auth/token/reissue"
-            ],
-            "Method": "Post",
-            "Body": {
-                "token": "GUID"
-            },
-            "Query": {},
-            "Filter": {},
-            "SuccessCode": "200"
-        }
+  "Example": {
+    "v1.0": {
+      "Description": "Details about the API endpoint",
+      "Endpoints": [
+        "The URI(s) expressed as /endpoint"
+      ],
+      "Method": "Method to use against the endpoint",
+      "Body": {
+        "Description": "Parameters to use in the request body"
+      },
+      "Query": "Parameters to use in the Endpoints query",
+      "Location": "Returns the property matching this key rather than the full result",
+      "Filter": {
+        "Description": "If the result content needs to be filtered based on key names, express them here"
+      },
+      "SuccessCode": "The expected HTTP status code for a successful call"
     }
+  },
+  "Connect-Armor": {
+    "v1.0": {
+      "Description": "Create a new login session",
+      "Endpoints": [
+        "/auth/authorize"
+      ],
+      "Method": "Post",
+      "Body": {
+        "Username": "Username",
+        "Password": "Password"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorAccount": {
+    "v1.0": {
+      "Description": "Retrieve a list of Armor account memberships",
+      "Endpoints": [
+        "/accounts"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "Name": "Name",
+        "ID": "ID"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorAccountAddress": {
+    "v1.0": {
+      "Description": "Retrieve the address on file for the specified Armor account",
+      "Endpoints": [
+        "/accounts/{id}"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorCompleteDatacenter": {
+    "v1.0": {
+      "Description": "Retrieve Armor Complete datacenter locations",
+      "Endpoints": [
+        "/locations"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "Name": "Name",
+        "Location": "Location",
+        "ID": "ID"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorCompleteWorkload": {
+    "v1.0": {
+      "Description": "Retrieve workload details",
+      "Endpoints": [
+        "/apps",
+        "/apps/{id}"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "Name": "Name"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorCompleteWorkloadTier": {
+    "v1.0": {
+      "Description": "Retrieve workload tier details",
+      "Endpoints": [
+        "/apps/{id}/tiers",
+        "/apps/{id}/tiers/{id}"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "Name": "Name"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorIdentity": {
+    "v1.0": {
+      "Description": "Retrieve identity details about the authenticated user",
+      "Endpoints": [
+        "/me"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorUser": {
+    "v1.0": {
+      "Description": "Retrieve user account details",
+      "Endpoints": [
+        "/users",
+        "/users/{id}"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "FirstName": "FirstName",
+        "LastName": "LastName",
+        "UserName": "Email"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Get-ArmorVM": {
+    "v1.0": {
+      "Description": "Retrieve virtual machine details",
+      "Endpoints": [
+        "/vms",
+        "/vms/{id}",
+        "/vms/core/{id}"
+      ],
+      "Method": "Get",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {
+        "Name": "Name"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "New-ArmorApiToken": {
+    "v1.0": {
+      "Description": "Create an authentication token from an active authorization code",
+      "Endpoints": [
+        "/auth/token"
+      ],
+      "Method": "Post",
+      "Body": {
+        "code": "GUID",
+        "grant_type": "authorization_code"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "New-ArmorCompleteWorkloadTier": {
+    "v1.0": {
+      "Description": "Create workload tier",
+      "Endpoints": [
+        "/apps/{id}/tiers"
+      ],
+      "Method": "Post",
+      "Body": {
+        "name": "Name"
+      },
+      "Query": {},
+      "Location": "Tiers",
+      "Filter": {
+        "Name": "Name"
+      },
+      "SuccessCode": "200"
+    }
+  },
+  "Remove-ArmorCompleteWorkload": {
+    "v1.0": {
+      "Description": "Delete the specified workload",
+      "Endpoints": [
+        "/apps/{id}"
+      ],
+      "Method": "Delete",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "202"
+    }
+  },
+  "Rename-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Rename the specified virtual machine",
+      "Endpoints": [
+        "/vms/{id}"
+      ],
+      "Method": "Put",
+      "Body": {
+        "id": "ID",
+        "name": "Name"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Rename-ArmorCompleteWorkload": {
+    "v1.0": {
+      "Description": "Rename the specified workload",
+      "Endpoints": [
+        "/apps/{id}"
+      ],
+      "Method": "Put",
+      "Body": {
+        "id": "ID",
+        "name": "Name"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Reset-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Abruptly reset the specified virtual machine",
+      "Endpoints": [
+        "/vms/{id}/power/reset"
+      ],
+      "Method": "Post",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Restart-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Reboot the specified virtual machine",
+      "Endpoints": [
+        "/vms/{id}/power/reboot"
+      ],
+      "Method": "Post",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Start-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Power on the specified virtual machine",
+      "Endpoints": [
+        "/vms/{id}/power/on"
+      ],
+      "Method": "Post",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Stop-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "{0} the specified virtual machine",
+      "Endpoints": [
+        "/vms/{id}/power/shutdown",
+        "/vms/{id}/power/off",
+        "/vms/{id}/power/forceOff"
+      ],
+      "Method": "Post",
+      "Body": {},
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
+  "Update-ArmorApiToken": {
+    "v1.0": {
+      "Description": "Retrieve a new authentication token if session is valid",
+      "Endpoints": [
+        "/auth/token/reissue"
+      ],
+      "Method": "Post",
+      "Body": {
+        "token": "GUID"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  }
 }
