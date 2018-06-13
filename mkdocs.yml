@@ -1,15 +1,89 @@
 # https://www.mkdocs.org/user-guide/configuration/
 
+# Project information
 site_name: "The Armor Community PowerShell Module"
-site_url: "https://tlindsay42.github.io/ArmorPowerShell/"
-repo_url: "https://github.com/tlindsay42/ArmorPowerShell/"
-repo_name: "GitHub"
-edit_uri: "blob/master/docs/"
 site_description: "This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs."
 site_author: "Troy Lindsay"
-copyright: "(c) 2017-2018 Troy Lindsay. All rights reserved."
-google_analytics: ["UA-117909744-3", "ArmorPowerShell"]
+site_url: "https://tlindsay42.github.io/ArmorPowerShell/"
+
+# Repository
+repo_name: "tlindsay42/ArmorPowerShell"
+repo_url: "https://github.com/tlindsay42/ArmorPowerShell/"
 remote_branch: "gh-pages"
+edit_uri: "blob/master/docs/"
+
+# Copyright
+copyright: "Copyright &copy; 2017-2018 Troy Lindsay. All rights reserved."
+
+# Google Analytics
+google_analytics: ["UA-117909744-3", "ArmorPowerShell"]
+
+# Configuration
+theme:
+  name: "material"
+
+  # 404 page
+  static_templates:
+    - "404.html"
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: "en"
+  feature:
+    tabs: false
+  palette:
+    primary: "grey"
+    accent: "dark orange"
+  font:
+    text: "Roboto"
+    code: "Roboto Mono"
+  favicon: "img/favicon.ico"
+  logo: "img/armor_logo.svg"
+
+# Customization
+extra:
+  social:
+    - type: "globe"
+      link: "https://www.troylindsay.io"
+    - type: "github-alt"
+      link: "https://github.com/tlindsay42"
+    - type: "twitter"
+      link: "https://twitter.com/troylindsay42"
+    - type: "linkedin"
+      link: "https://www.linkedin.com/in/troylindsay"
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
 pages:
   - Home: "index.md"
   - User Documentation:
@@ -55,7 +129,3 @@ pages:
     - Submit-ArmorApiRequest: "private/Submit-ArmorApiRequest.md"
     - Test-ArmorSession: "private/Test-ArmorSession.md"
     - Update-ArmorApiToken: "private/Update-ArmorApiToken.md"
-theme: "readthedocs"
-strict: true
-markdown_extensions:
-  - admonition

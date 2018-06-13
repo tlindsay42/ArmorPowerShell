@@ -43,17 +43,12 @@ npm install --global sinon@1 markdown-spellcheck 2> $tempFile
 Get-Content -Path $tempFile
 
 Write-Host -Object "`nInstalling mkdocs: " -ForegroundColor 'Yellow'
-if ( $Env:CI_WINDOWS -eq $true ) {
-    pip install mkdocs 2> $tempFile
+if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
+    $requirementsPath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'requirements.txt'
+    pip install --requirement $requirementsPath 2> $tempFile
     Get-Content -Path $tempFile
+    Get-Command -Name 'mkdocs' -ErrorAction 'Stop'
+    mkdocs --version
 }
-elseif ( $Env:CI_LINUX -eq $true -or $Env:TRAVIS_OS_NAME -eq 'linux' ) {
-    apt-get install mkdocs
-}
-elseif ( ( uname -s ) -eq 'Darwin' ) {
-    brew install mkdocs
-}
-
-mkdocs --version
 
 Write-Host -Object ''

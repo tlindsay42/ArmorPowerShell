@@ -197,10 +197,7 @@ $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAc
     "Please visit the $( $text.GitHubPagesMd ) for more details." |
     Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
 
-Write-Host -Object "`nCopy the readme page to the root index page of the documentation site." -ForegroundColor 'Yellow'
-$indexPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md' -ErrorAction 'Stop'
-Copy-Item -Path $readmePath -Destination $indexPath -Force -ErrorAction 'Stop'
-
+if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 $docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
 $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
 $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
@@ -251,5 +248,6 @@ foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.
 Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
 mkdocs build --clean --strict 2> $tempFile
 Get-Content -Path $tempFile
+}
 
 Write-Host -Object ''
