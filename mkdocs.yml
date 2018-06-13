@@ -88,9 +88,9 @@ pages:
   - Home: "index.md"
   - User Documentation:
     - Requirements: "user/Requirements.md"
-    - Install: "user/Install.md"
-    - Update: "user/Update.md"
-    - Uninstall: "user/Uninstall.md"
+    - Install Guide: "user/Install.md"
+    - Update Guide: "user/Update.md"
+    - Uninstall Guide: "user/Uninstall.md"
     - Getting Started: "user/Getting_Started.md"
     - Project Architecture: "user/Project_Architecture.md"
     - Licensing: "user/Licensing.md"
