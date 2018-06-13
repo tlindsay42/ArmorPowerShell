@@ -1,3 +1,4 @@
+#region init
 $tempFile = [System.IO.Path]::GetTempFileName()
 
 $text = @{
@@ -86,7 +87,9 @@ $text += @{
     'UbuntuBold'           = $text.BoldForm -f $text.Ubuntu
     'WindowsBold'          = $text.BoldForm -f $text.Windows
 }
+#endregion
 
+#region module
 if ( ( Test-Path -Path $Env:CI_MODULE_PATH ) -eq $false ) {
     throw "Module directory: '${Env:CI_MODULE_PATH}' not found."
 }
@@ -166,7 +169,9 @@ Write-Host -Object "`nRestored the working directory to: '${location}'." -Foregr
 
 Write-Host -Object "`nImport module: '${Env:CI_MODULE_NAME}'." -ForegroundColor 'Yellow'
 Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+#endregion
 
+#region documentation
 # Update the docs
 Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
 
@@ -272,5 +277,6 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     mkdocs build --clean --strict 2> $tempFile
     Get-Content -Path $tempFile
 }
+#endregion
 
 Write-Host -Object ''
