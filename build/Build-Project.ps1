@@ -209,14 +209,15 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
     Write-Host -Object "`nUpdate the cmdlet documentation content and add metadata for building external help files." -ForegroundColor 'Yellow'
     $splat = @{
-        'Module'         = $Env:CI_MODULE_NAME
-        'Force'          = $true
-        'OutputFolder'   = $docsPublicPath
-        'WithModulePage' = $true
-        'HelpVersion'    = $Env:CI_MODULE_VERSION
-        'Locale'         = 'en-US'
-        'FwLink'         = $helpInfoUri
-        'ErrorAction'    = 'Stop'
+        'Module'                = $Env:CI_MODULE_NAME
+        'Force'                 = $true
+        'AlphabeticParamsOrder' = $true
+        'OutputFolder'          = $docsPublicPath
+        'WithModulePage'        = $true
+        'HelpVersion'           = $Env:CI_MODULE_VERSION
+        'Locale'                = 'en-US'
+        'FwLink'                = $helpInfoUri
+        'ErrorAction'           = 'Stop'
     }
     New-MarkdownHelp @splat
 
@@ -238,11 +239,30 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
     Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
     New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -NoMetadata -ErrorAction 'Stop'
+    Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages." -ForegroundColor 'Yellow'
+    $splat = @{
+        'Module'                = $Env:CI_MODULE_NAME
+        'Force'                 = $true
+        'AlphabeticParamsOrder' = $true
+        'OutputFolder'          = $docsPublicPath
+        'NoMetadata'            = $true
+        'ErrorAction'           = 'Stop'
+    }
+    New-MarkdownHelp @splat
 
     Write-Host -Object "`nUpdate the private function documentation content." -ForegroundColor 'Yellow'
     foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' -ErrorAction 'Stop' ) ) {
         . $file.FullName
-        New-MarkdownHelp -Command $file.BaseName -Force -NoMetadata -OutputFolder $docsPrivatePath -ErrorAction 'Stop'
+
+        $splat = @{
+            'Command'               = $file.BaseName
+            'Force'                 = $true
+            'AlphabeticParamsOrder' = $true
+            'OutputFolder'          = $docsPrivatePath
+            'NoMetadata'            = $true
+            'ErrorAction'           = 'Stop'
+        }
+        New-MarkdownHelp @splat
     }
 
     Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
