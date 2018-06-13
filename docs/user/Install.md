@@ -60,4 +60,4 @@ Where `$version` is set to the desired version number.
 
 [armor]: https://www.armor.com
 [wmf5]: https://www.microsoft.com/en-us/download/details.aspx?id=50395
-[release] https://github.com/tlindsay42/ArmorPowerShell/releases
+[release]: https://github.com/tlindsay42/ArmorPowerShell/releases
