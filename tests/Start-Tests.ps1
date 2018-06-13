@@ -39,6 +39,10 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
         #region init
         $name = $Help.Name
         $template = '{ ?required: .+ ?}'
+        $uriRegex = @(
+            "^https://tlindsay42.github.io/ArmorPowerShell/(?:private|public)/${name}/$",
+            "^https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/(?:Private|Public)/${name}.ps1$"
+        )
         #endregion
 
         $testCases = @(
@@ -80,7 +84,14 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
                 Should -BeGreaterThan 3
         } # End of It
 
-        foreach ( $uri in $Help.RelatedLinks.NavigationLink.Uri ) {
+        $helpLinks = $Help.RelatedLinks.NavigationLink.Uri
+        if ( $Env:CI_COMMIT_MESSAGE -match '\[new\]' ) {
+            $helpLinks = $helpLinks.Where( {
+                    $_ -notmatch ( $uriRegex -join '|' )
+                }
+            )
+        }
+        foreach ( $uri in $helpLinks ) {
             $testName = "should be a valid help link: '${uri}'"
             It -Name $testName -Test {
                 ( Invoke-WebRequest -Method 'Get' -Uri $uri ).StatusCode |
@@ -88,14 +99,14 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
             } # End of It
         }
 
-        $uri = "^https://tlindsay42.github.io/ArmorPowerShell/(?:private|public)/${name}/$"
+        $uri = $uriRegex[0]
         $testName = "should match: '${uri}' link 1"
         It -Name $testName -Test {
             $Help.RelatedLinks.NavigationLink.Uri[0] |
                 Should -Match $uri
         } # End of It
 
-        $uri = "^https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/(?:Private|Public)/${name}.ps1$"
+        $uri = $uriRegex[1]
         $testName = "should match: '${uri}' for link 2"
         It -Name $testName -Test {
             $Help.RelatedLinks.NavigationLink.Uri[1] |

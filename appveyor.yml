@@ -73,6 +73,7 @@ init:
   - ps: $Env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'build'
   - ps: $Env:CI_OWNER_NAME = $Env:APPVEYOR_ACCOUNT_NAME
   - ps: $Env:CI_PROJECT_NAME = $Env:APPVEYOR_PROJECT_NAME
+  - ps: $Env:CI_COMMIT_MESSAGE = $Env:APPVEYOR_REPO_COMMIT_MESSAGE
 
     # Coveralls environment variables
   - ps: $Env:CI_NAME = 'AppVeyor'
