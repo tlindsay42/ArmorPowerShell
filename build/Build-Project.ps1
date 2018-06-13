@@ -134,7 +134,7 @@ $splat = @{
     'Guid'                  = '226c1ea9-1078-402a-861c-10a845a0d173'
     'Author'                = 'Troy Lindsay'
     'CompanyName'           = 'Armor'
-    'Copyright'             = "(c) 2017-${year} Troy Lindsay. All rights reserved."
+    'Copyright'             = "© 2017-${year} Troy Lindsay. All rights reserved."
     'Description'           = $description
     'PowerShellVersion'     = '5.0'
     'ProcessorArchitecture' = 'None'
@@ -198,56 +198,56 @@ $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAc
     Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
 
 if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-$docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
-$docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
-$modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
-$externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
+    $docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
+    $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
+    $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
+    $externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
 
-Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
-Remove-Item -Path "$docsPrivatePath/*.md" -Force
-Remove-Item -Path "$docsPublicPath/*.md" -Force
+    Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
+    Remove-Item -Path "$docsPrivatePath/*.md" -Force
+    Remove-Item -Path "$docsPublicPath/*.md" -Force
 
-Write-Host -Object "`nUpdate the cmdlet documentation content and add metadata for building external help files." -ForegroundColor 'Yellow'
-$splat = @{
-    'Module'         = $Env:CI_MODULE_NAME
-    'Force'          = $true
-    'OutputFolder'   = $docsPublicPath
-    'WithModulePage' = $true
-    'HelpVersion'    = $Env:CI_MODULE_VERSION
-    'Locale'         = 'en-US'
-    'FwLink'         = $helpInfoUri
-    'ErrorAction'    = 'Stop'
-}
-New-MarkdownHelp @splat
+    Write-Host -Object "`nUpdate the cmdlet documentation content and add metadata for building external help files." -ForegroundColor 'Yellow'
+    $splat = @{
+        'Module'         = $Env:CI_MODULE_NAME
+        'Force'          = $true
+        'OutputFolder'   = $docsPublicPath
+        'WithModulePage' = $true
+        'HelpVersion'    = $Env:CI_MODULE_VERSION
+        'Locale'         = 'en-US'
+        'FwLink'         = $helpInfoUri
+        'ErrorAction'    = 'Stop'
+    }
+    New-MarkdownHelp @splat
 
-Write-Host -Object "`nUpdate the module page content." -ForegroundColor 'Yellow'
-Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 'Stop'
+    Write-Host -Object "`nUpdate the module page content." -ForegroundColor 'Yellow'
+    Update-MarkdownHelpModule -Path $docsPublicPath -RefreshModulePage -ErrorAction 'Stop'
 
-Write-Host -Object "`nUpdate the external help module description." -ForegroundColor 'Yellow'
-( Get-Content -Path $modulePage ) -replace '^{{Manually Enter Description Here}}$', "The Armor command-line interface" |
-    Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
+    Write-Host -Object "`nUpdate the external help module description." -ForegroundColor 'Yellow'
+    ( Get-Content -Path $modulePage ) -replace '^{{Manually Enter Description Here}}$', "The Armor command-line interface" |
+        Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
 
-Write-Host -Object "`nUpdate the external help files." -ForegroundColor 'Yellow'
-New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
+    Write-Host -Object "`nUpdate the external help files." -ForegroundColor 'Yellow'
+    New-ExternalHelp -Path $docsPublicPath -OutputPath $externalHelpDirectory -Force -ErrorAction 'Stop'
 
-if ( $Env:CI_WINDOWS -eq $true ) {
-    Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
-    Write-Host -Object 'This is only supported on Windows for now.'
-    New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_DOCS_PATH -ErrorAction 'Stop'
-}
+    if ( $Env:CI_WINDOWS -eq $true ) {
+        Write-Host -Object "`nBuild the cabinet file for supporting updatable help." -ForegroundColor 'Yellow'
+        Write-Host -Object 'This is only supported on Windows for now.'
+        New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_DOCS_PATH -ErrorAction 'Stop'
+    }
 
-Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
-New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -NoMetadata -ErrorAction 'Stop'
+    Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages again." -ForegroundColor 'Yellow'
+    New-MarkdownHelp -Module $Env:CI_MODULE_NAME -Force -OutputFolder $docsPublicPath -NoMetadata -ErrorAction 'Stop'
 
-Write-Host -Object "`nUpdate the private function documentation content." -ForegroundColor 'Yellow'
-foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' -ErrorAction 'Stop' ) ) {
-    . $file.FullName
-    New-MarkdownHelp -Command $file.BaseName -Force -NoMetadata -OutputFolder $docsPrivatePath -ErrorAction 'Stop'
-}
+    Write-Host -Object "`nUpdate the private function documentation content." -ForegroundColor 'Yellow'
+    foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' -ErrorAction 'Stop' ) ) {
+        . $file.FullName
+        New-MarkdownHelp -Command $file.BaseName -Force -NoMetadata -OutputFolder $docsPrivatePath -ErrorAction 'Stop'
+    }
 
-Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
-mkdocs build --clean --strict 2> $tempFile
-Get-Content -Path $tempFile
+    Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
+    mkdocs build --clean --strict 2> $tempFile
+    Get-Content -Path $tempFile
 }
 
 Write-Host -Object ''

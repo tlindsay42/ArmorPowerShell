@@ -37,7 +37,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             },
             @{
                 'Property' = 'Copyright'
-                'Value'    = "(c) 2017-$( ( Get-Date ).Year ) ${author}. All rights reserved."
+                'Value'    = "© 2017-$( ( Get-Date ).Year ) ${author}. All rights reserved."
             },
             @{
                 'Property' = 'ProcessorArchitecture'
