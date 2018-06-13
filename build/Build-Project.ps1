@@ -172,41 +172,63 @@ Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 #endregion
 
 #region documentation
-# Update the docs
-Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
-
-# Enrich keywords in the description for use in README.md (Markdown formatting)
-$markDownDescription = $description -replace
-    $text.ArmorComplete, $text.ArmorCompleteMd -replace
-    $text.ArmorAnywhere, $text.ArmorAnywhereMd -replace
-    $text.RestfulApi, $text.RestfulApiMd -replace
-    $text.Windows, $text.WindowsBold -replace
-    $text.AppVeyor, $text.AppVeyorMd -replace
-    $text.macOS, $text.macOSBold -replace
-    $text.Ubuntu, $text.UbuntuBold -replace
-    $text.TravisCi, $text.TravisCiMd -replace
-    $text.Pester, $text.PesterMd -replace
-    $text.Coveralls, $text.CoverallsMd -replace
-    $text.PSGallery, $text.PSGalleryMd
-
-$readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAction 'Stop'
-# Build README.md
-"# $( $text.Title )`r`n`r`n" +
-    $text.PSGalleryMdShield + "`r`n" +
-    $text.PSDownloadsMdShield + "`r`n`r`n" +
-    $text.AppVeyorMdShield + "`r`n" +
-    $text.TravisCiMdShield + "`r`n" +
-    $text.CoverallsMdShield + "`r`n" +
-    $text.GitterMdShield + "`r`n`r`n" +
-    "${markDownDescription}`r`n`r`n" +
-    "Please visit the $( $text.GitHubPagesMd ) for more details." |
-    Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
-
 if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
+    # Update the docs
+    Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
+    $docsUserPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'user' -ErrorAction 'Stop'
     $docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
     $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
     $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
     $externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
+
+
+    # /README.md -> /docs/index.md
+    $splat = @{
+        'Path'        = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md'
+        'Destination' = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md'
+        'Force'       = $true
+        'ErrorAction' = 'Stop'
+    }
+    Copy-Item @splat
+
+    # /.github/CONTRIBUTING.md -> /docs/user/Contributing.md
+    $splat.Path = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath '.github' |
+        Join-Path -ChildPath 'CONTRIBUTING.md'
+    $splat.Destination = Join-Path -Path $docsUserPath -ChildPath 'Contributing.md'
+    Copy-Item @splat
+
+    # /.github/CODE_OF_CONDUCT.md -> /docs/user/Code_of_Conduct.md
+    $splat.Path = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath '.github' |
+        Join-Path -ChildPath 'CODE_OF_CONDUCT.md'
+    $splat.Destination = Join-Path -Path $docsUserPath -ChildPath 'Code_of_Conduct.md'
+    Copy-Item @splat
+
+    # Enrich keywords in the description for use in README.md (Markdown formatting)
+    $markDownDescription = $description -replace
+        $text.ArmorComplete, $text.ArmorCompleteMd -replace
+        $text.ArmorAnywhere, $text.ArmorAnywhereMd -replace
+        $text.RestfulApi, $text.RestfulApiMd -replace
+        $text.Windows, $text.WindowsBold -replace
+        $text.AppVeyor, $text.AppVeyorMd -replace
+        $text.macOS, $text.macOSBold -replace
+        $text.Ubuntu, $text.UbuntuBold -replace
+        $text.TravisCi, $text.TravisCiMd -replace
+        $text.Pester, $text.PesterMd -replace
+        $text.Coveralls, $text.CoverallsMd -replace
+        $text.PSGallery, $text.PSGalleryMd
+
+    $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAction 'Stop'
+    # Build README.md
+    "# $( $text.Title )`r`n`r`n" +
+        $text.PSGalleryMdShield + "`r`n" +
+        $text.PSDownloadsMdShield + "`r`n`r`n" +
+        $text.AppVeyorMdShield + "`r`n" +
+        $text.TravisCiMdShield + "`r`n" +
+        $text.CoverallsMdShield + "`r`n" +
+        $text.GitterMdShield + "`r`n`r`n" +
+        "${markDownDescription}`r`n`r`n" +
+        "Please visit the $( $text.GitHubPagesMd ) for more details." |
+        Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
 
     Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
     Remove-Item -Path "$docsPrivatePath/*.md" -Force

@@ -1,1 +1,0 @@
-C:/Users/tlind/IDrive-Sync/git/ArmorPowerShell/.github/CODE_OF_CONDUCT.md
