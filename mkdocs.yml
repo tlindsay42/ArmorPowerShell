@@ -36,7 +36,7 @@ theme:
     tabs: false
   palette:
     primary: "grey"
-    accent: "dark orange"
+    accent: "deep orange"
   font:
     text: "Roboto"
     code: "Roboto Mono"
