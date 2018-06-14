@@ -413,7 +413,8 @@ pages:
     Write-Host -Object "`nRemove the metadata from the module description documentation page." -ForegroundColor 'Yellow'
     Get-Content -Path $modulePage |
         Select-Object -Skip 8 |
-        Out-File -FilePath $modulePage -Force -ErrorAction 'Stop'
+        Out-String |
+        Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
 
     Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
     mkdocs build --clean --strict 2> $tempFile
