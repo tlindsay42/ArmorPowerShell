@@ -133,7 +133,6 @@ function Invoke-ArmorWebRequest {
                 'Method'      = $Method
                 'Body'        = $jsonBody
                 'SuccessCode' = $SuccessCode
-                'Description' = $Description
             }
             $results = Submit-ArmorApiRequest @splat
 

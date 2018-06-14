@@ -104,7 +104,6 @@ function Get-ArmorAccountAddress {
             'Headers'     = $headers
             'Method'      = $resources.Method
             'SuccessCode' = $resources.SuccessCode
-            'Description' = $resources.Description
         }
         $results = Submit-ArmorApiRequest @splat
 

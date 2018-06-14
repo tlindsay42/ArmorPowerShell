@@ -104,7 +104,6 @@ function Rename-ArmorCompleteVM {
                 'Method'      = $resources.Method
                 'Body'        = $body
                 'SuccessCode' = $resources.SuccessCode
-                'Description' = $resources.Description
             }
             $results = Submit-ArmorApiRequest @splat
 

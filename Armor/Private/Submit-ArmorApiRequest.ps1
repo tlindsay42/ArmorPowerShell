@@ -19,13 +19,13 @@ function Submit-ArmorApiRequest {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200 | Select-Object -Property User
+        Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200
         Submits a GET request to the Armor Identity API endpoint during a valid
         session, converts the JSON response body to an object, passes the object to the
         pipeline, and then outputs the object.
 
         .EXAMPLE
-        Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}' -Description 'Test Description' -Confirm | Select-Object -Property Name
+        Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
         Submits a GET request to the Armor Identity API endpoint during a valid
         session, converts the JSON response body to an object, passes the object to the
         pipeline, and then outputs the object.
@@ -49,7 +49,7 @@ function Submit-ArmorApiRequest {
         Armor API request transmission
     #>
 
-    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
+    [CmdletBinding()]
     [OutputType( [PSCustomObject[]] )]
     [OutputType( [PSCustomObject] )]
     param (
@@ -96,16 +96,7 @@ function Submit-ArmorApiRequest {
         )]
         [ValidateSet( 200, 202 )]
         [UInt16]
-        $SuccessCode,
-
-        <#
-        If this cmdlet is called with the -Confirm switch parameter set to true, this
-        optional description will be displayed at the prompt.
-        #>
-        [Parameter( Position = 5 )]
-        [ValidateNotNullorEmpty()]
-        [String]
-        $Description = ''
+        $SuccessCode
     )
 
     begin {
@@ -118,26 +109,24 @@ function Submit-ArmorApiRequest {
         [PSCustomObject[]] $return = $null
         $request = $null
 
-        if ( $PSCmdlet.ShouldProcess( $Uri, $Description ) ) {
-            Write-Verbose -Message "Submitting the request: $( $Method.ToUpper() ) ${Uri}"
+        Write-Verbose -Message "Submitting the request: $( $Method.ToUpper() ) ${Uri}"
 
-            if ( $Method -eq 'Get' ) {
-                $getHeaders = $Headers.Clone()
-                $getHeaders.Remove( 'Content-Type' )
+        if ( $Method -eq 'Get' ) {
+            $getHeaders = $Headers.Clone()
+            $getHeaders.Remove( 'Content-Type' )
 
-                $request = Invoke-WebRequest -Uri $Uri -Headers $getHeaders -Method $Method
-            }
-            else {
-                $request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
-            }
+            $request = Invoke-WebRequest -Uri $Uri -Headers $getHeaders -Method $Method
+        }
+        else {
+            $request = Invoke-WebRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body
+        }
 
-            if ( $request.StatusCode -eq $SuccessCode ) {
-                $return = $request.Content |
-                    ConvertFrom-Json
-            }
-            else {
-                throw $request.StatusDescription
-            }
+        if ( $request.StatusCode -eq $SuccessCode ) {
+            $return = $request.Content |
+                ConvertFrom-Json
+        }
+        else {
+            throw $request.StatusDescription
         }
 
         $return

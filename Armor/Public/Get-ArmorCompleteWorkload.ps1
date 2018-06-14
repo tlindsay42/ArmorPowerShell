@@ -151,7 +151,6 @@ function Get-ArmorCompleteWorkload {
             'Uri'         = $uri
             'Method'      = $resources.Method
             'SuccessCode' = $resources.SuccessCode
-            'Description' = $resources.Description
         }
         $results = Submit-ArmorApiRequest @splat
 

@@ -38,7 +38,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Uri', 'Headers', 'Method', 'Body', 'SuccessCode', 'Description', 'WhatIf', 'Confirm'
+        'ExpectedParameterNames' = 'Uri', 'Headers', 'Method', 'Body', 'SuccessCode'
         'Help'                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
@@ -104,7 +104,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = 'should fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode -Description $validDescription } |
+            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Throw
         } # End of It
 
@@ -155,7 +155,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = 'should not fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode -Description $validDescription } |
+            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Not -Throw
         } # End of It
         Assert-VerifiableMock
