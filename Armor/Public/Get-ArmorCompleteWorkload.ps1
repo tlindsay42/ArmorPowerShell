@@ -81,6 +81,12 @@ function Get-ArmorCompleteWorkload {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/App_GetAppDetail
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

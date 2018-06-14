@@ -74,6 +74,12 @@ function Get-ArmorVM {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Vm_GetVmDetail
+
+        .COMPONENT
+        Armor Complete & Armor Anywhere
+
+        .FUNCTIONALITY
+        Armor Complete & Armor Anywhere infrastructure management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

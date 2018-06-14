@@ -42,6 +42,12 @@ function Set-ArmorAccountContext {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding()]

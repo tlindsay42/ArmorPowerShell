@@ -50,6 +50,12 @@ function Get-ArmorCompleteDatacenter {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Location_Get
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

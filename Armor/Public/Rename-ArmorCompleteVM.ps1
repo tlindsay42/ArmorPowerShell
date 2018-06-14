@@ -34,6 +34,12 @@ function Rename-ArmorCompleteVM {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Vm_UpdateVm
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

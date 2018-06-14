@@ -69,6 +69,12 @@ function Connect-Armor {
 
         .LINK
         https://developer.armor.com/#!/Authentication/Me_GetMeAsync
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor session management
     #>
 
     [CmdletBinding()]
@@ -149,9 +155,9 @@ function Connect-Armor {
         }
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'Body'        = $body
+            'Uri' = $uri
+            'Method' = $resources.Method
+            'Body' = $body
             'SuccessCode' = $resources.SuccessCode
             'Description' = $resources.Description
         }

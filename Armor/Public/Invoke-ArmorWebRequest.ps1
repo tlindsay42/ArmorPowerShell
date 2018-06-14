@@ -36,6 +36,12 @@ function Invoke-ArmorWebRequest {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API requests
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]

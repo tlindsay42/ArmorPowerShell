@@ -32,6 +32,12 @@ function Format-ArmorApiRequestBody {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API request body preparation
     #>
 
     [CmdletBinding()]

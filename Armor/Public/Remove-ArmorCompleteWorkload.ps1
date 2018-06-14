@@ -42,6 +42,12 @@ function Remove-ArmorCompleteWorkload {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/App_DeleteApp
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

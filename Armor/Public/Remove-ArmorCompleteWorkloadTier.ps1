@@ -61,6 +61,12 @@ function Remove-ArmorCompleteWorkloadTier {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Tier_DeleteTier
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

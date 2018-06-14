@@ -32,6 +32,12 @@ function New-ArmorApiUriQuery {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API server-side request filtering
     #>
 
     [CmdletBinding()]

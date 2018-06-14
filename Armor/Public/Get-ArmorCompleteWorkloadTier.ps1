@@ -83,6 +83,12 @@ function Get-ArmorCompleteWorkloadTier {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Tier_Get
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

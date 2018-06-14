@@ -38,6 +38,12 @@ function Get-ArmorIdentity {
 
         .LINK
         https://developer.armor.com/#!/Authentication/Me_GetMeAsync
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor account management
     #>
 
     [CmdletBinding()]

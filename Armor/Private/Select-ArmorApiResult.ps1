@@ -40,6 +40,12 @@ function Select-ArmorApiResult {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API client-side response filtering
     #>
 
     [CmdletBinding()]

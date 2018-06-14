@@ -38,6 +38,12 @@ function New-ArmorApiUri {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API URI
     #>
 
     [CmdletBinding()]

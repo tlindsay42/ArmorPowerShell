@@ -30,6 +30,12 @@ function New-ArmorApiToken {
 
         .LINK
         https://developer.armor.com/#!/Authentication/TenantOAuth_TokenAsync
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor sessions management
     #>
 
     [CmdletBinding()]

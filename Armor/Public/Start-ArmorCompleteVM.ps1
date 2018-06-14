@@ -40,6 +40,12 @@ function Start-ArmorCompleteVM {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/Vm_PowerActionVm
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]

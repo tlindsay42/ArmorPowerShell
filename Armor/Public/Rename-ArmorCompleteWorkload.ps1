@@ -35,6 +35,12 @@ function Rename-ArmorCompleteWorkload {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/App_UpdateApp
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

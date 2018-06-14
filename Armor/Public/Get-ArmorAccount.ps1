@@ -55,6 +55,12 @@ function Get-ArmorAccount {
 
         .LINK
         https://developer.armor.com/#!/Account_Management/Accounts_GetAccounts
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor account management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ID' )]

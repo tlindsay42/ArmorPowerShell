@@ -31,6 +31,12 @@ function Test-ArmorSession {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor session management
     #>
 
     [CmdletBinding()]

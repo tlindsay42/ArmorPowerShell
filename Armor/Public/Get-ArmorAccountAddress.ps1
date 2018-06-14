@@ -46,6 +46,12 @@ function Get-ArmorAccountAddress {
 
         .LINK
         https://developer.armor.com/#!/Account_Management/Accounts_GetAccount
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor account management
     #>
 
     [CmdletBinding()]

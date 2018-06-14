@@ -36,6 +36,12 @@ function Expand-ArmorApiResult {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API response body property expansion
     #>
 
     [CmdletBinding()]

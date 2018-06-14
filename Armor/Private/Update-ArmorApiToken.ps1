@@ -31,6 +31,12 @@ function Update-ArmorApiToken {
 
         .LINK
         https://developer.armor.com/#!/Authentication/TenantOAuth_ReissueAsync
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor session management
     #>
 
     [CmdletBinding()]

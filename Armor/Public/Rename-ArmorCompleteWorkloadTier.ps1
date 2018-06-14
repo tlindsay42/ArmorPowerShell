@@ -35,6 +35,12 @@ function Rename-ArmorCompleteWorkloadTier {
 
         .LINK
         https://developer.armor.com/#!/Infrastructure/
+
+        .COMPONENT
+        Armor Complete
+
+        .FUNCTIONALITY
+        Armor Complete infrastructure management
     #>
 
     [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'High' )]

@@ -48,6 +48,12 @@ function Get-ArmorApiData {
 
         .LINK
         https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
+        Armor API schema management
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ApiVersion' )]
