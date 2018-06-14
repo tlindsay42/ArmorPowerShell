@@ -1,4 +1,4 @@
-﻿# The Armor Community PowerShell Module
+# The Armor Community PowerShell Module
 
 [![Current Version](https://img.shields.io/powershellgallery/v/Armor.svg)](https://www.powershellgallery.com/packages/Armor)
 [![Total Downloads](https://img.shields.io/powershellgallery/dt/Armor.svg)](https://www.powershellgallery.com/packages/Armor)
@@ -16,4 +16,3 @@ Code coverage scores and reports showing how much of the project is covered by a
 
 Every successful build is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor 'PowerShell Gallery').
 
-Please visit the **[full documentation](https://tlindsay42.github.io/ArmorPowerShell/ 'GitHubPages: ArmorPowerShell: Latest Build')** for more details.

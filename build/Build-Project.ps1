@@ -174,6 +174,7 @@ Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
     $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAction 'Stop'
+    $indexPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md'
     $docsUserPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'user' -ErrorAction 'Stop'
     $docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
     $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
@@ -208,12 +209,19 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
 
     Write-Host -Object "Copy '/README.md' to '/docs/index.md'." -ForegroundColor 'Yellow'
     $splat = @{
-        'Path'        = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md'
-        'Destination' = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md'
+        'Path'        = $readmePath
+        'Destination' = $indexPath
         'Force'       = $true
         'ErrorAction' = 'Stop'
     }
     Copy-Item @splat
+
+    Write-Host -Object "`nRemoving the last two lines of the home page." -ForegroundColor 'Yellow'
+    Get-Content -Path $indexPath |
+        Select-Object -SkipLast 2 |
+        Out-String |
+        Set-Content -Path $indexPath -Force -ErrorAction 'Stop'
+
 
     Write-Host -Object "Copy '/.github/CONTRIBUTING.md' to '/docs/user/Contributing.md'." -ForegroundColor 'Yellow'
     $splat.Path = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath '.github' |
