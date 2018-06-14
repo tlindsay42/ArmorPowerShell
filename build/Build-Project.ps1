@@ -13,6 +13,7 @@ $text = @{
     'AvailableOnGitHub'     = 'available on GitHub'
     'BoldForm'              = '**{0}**'
     'BuildStatus'           = 'Build Status'
+    'Copyright'             = "© 2017-$( ( Get-Date ).Year ) Troy Lindsay. All rights reserved."
     'CoverageStatus'        = 'Coverage Status'
     'Coveralls'             = 'Coveralls'
     'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}/badge.svg?branch=master"
@@ -128,8 +129,6 @@ $aliasesToExport = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" 
 $scriptsToProcess = Get-ChildItem -Path "${Env:CI_MODULE_LIB_PATH}/*.ps1" -File -ErrorAction 'Stop' |
     Resolve-Path -Relative
 
-$helpInfoUri = 'https://tlindsay42.github.io/ArmorPowerShell/'
-
 $splat = @{
     'Path'                  = $Env:CI_MODULE_MANIFEST_PATH
     'RootModule'            = "${Env:CI_MODULE_NAME}.psm1"
@@ -137,7 +136,7 @@ $splat = @{
     'Guid'                  = '226c1ea9-1078-402a-861c-10a845a0d173'
     'Author'                = 'Troy Lindsay'
     'CompanyName'           = 'Armor'
-    'Copyright'             = "© 2017-${year} Troy Lindsay. All rights reserved."
+    'Copyright'             = $text.Copyright
     'Description'           = $description
     'PowerShellVersion'     = '5.0'
     'ProcessorArchitecture' = 'None'
@@ -148,8 +147,8 @@ $splat = @{
     'Tags'                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
         'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
     'LicenseUri'            = $text.RepoUrl + '/blob/master/LICENSE.txt'
-    'IconUri'               = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
-    'HelpInfoUri'           = $helpInfoUri
+    'IconUri'               = $text.GitHubPagesProjectUrl + 'img/Armor_logo.png'
+    'HelpInfoUri'           = $text.GitHubPagesProjectUrl
     'ErrorAction'           = 'Stop'
 }
 
@@ -173,16 +172,41 @@ Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
 
 #region documentation
 if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
-    # Update the docs
     Write-Host -Object "`nBuilding the documentation." -ForegroundColor 'Yellow'
+    $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAction 'Stop'
     $docsUserPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'user' -ErrorAction 'Stop'
     $docsPrivatePath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'private' -ErrorAction 'Stop'
     $docsPublicPath = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'public' -ErrorAction 'Stop'
     $modulePage = Join-Path -Path $docsPublicPath -ChildPath "${Env:CI_MODULE_NAME}.md" -ErrorAction 'Stop'
     $externalHelpDirectory = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'en-US' -ErrorAction 'Stop'
 
+    Write-Host -Object "`nEnrich keywords in the description for use in 'README.md' (Markdown formatting)" -ForegroundColor 'Yellow'
+    $markDownDescription = $description -replace
+    $text.ArmorComplete, $text.ArmorCompleteMd -replace
+    $text.ArmorAnywhere, $text.ArmorAnywhereMd -replace
+    $text.RestfulApi, $text.RestfulApiMd -replace
+    $text.Windows, $text.WindowsBold -replace
+    $text.AppVeyor, $text.AppVeyorMd -replace
+    $text.macOS, $text.macOSBold -replace
+    $text.Ubuntu, $text.UbuntuBold -replace
+    $text.TravisCi, $text.TravisCiMd -replace
+    $text.Pester, $text.PesterMd -replace
+    $text.Coveralls, $text.CoverallsMd -replace
+    $text.PSGallery, $text.PSGalleryMd
 
-    # /README.md -> /docs/index.md
+    Write-Host -Object "`nBuild 'README.md'." -ForegroundColor 'Yellow'
+    "# $( $text.Title )`r`n`r`n" +
+    $text.PSGalleryMdShield + "`r`n" +
+    $text.PSDownloadsMdShield + "`r`n`r`n" +
+    $text.AppVeyorMdShield + "`r`n" +
+    $text.TravisCiMdShield + "`r`n" +
+    $text.CoverallsMdShield + "`r`n" +
+    $text.GitterMdShield + "`r`n`r`n" +
+    "${markDownDescription}`r`n`r`n" +
+    "Please visit the $( $text.GitHubPagesMd ) for more details." |
+        Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
+
+    Write-Host -Object "Copy '/README.md' to '/docs/index.md'." -ForegroundColor 'Yellow'
     $splat = @{
         'Path'        = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md'
         'Destination' = Join-Path -Path $Env:CI_DOCS_PATH -ChildPath 'index.md'
@@ -191,44 +215,139 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
     }
     Copy-Item @splat
 
-    # /.github/CONTRIBUTING.md -> /docs/user/Contributing.md
+    Write-Host -Object "Copy '/.github/CONTRIBUTING.md' to '/docs/user/Contributing.md'." -ForegroundColor 'Yellow'
     $splat.Path = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath '.github' |
         Join-Path -ChildPath 'CONTRIBUTING.md'
     $splat.Destination = Join-Path -Path $docsUserPath -ChildPath 'Contributing.md'
     Copy-Item @splat
 
-    # /.github/CODE_OF_CONDUCT.md -> /docs/user/Code_of_Conduct.md
+    Write-Host -Object "Copy '/.github/CODE_OF_CONDUCT.md' to '/docs/user/Code_of_Conduct.md'." -ForegroundColor 'Yellow'
     $splat.Path = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath '.github' |
         Join-Path -ChildPath 'CODE_OF_CONDUCT.md'
     $splat.Destination = Join-Path -Path $docsUserPath -ChildPath 'Code_of_Conduct.md'
     Copy-Item @splat
 
-    # Enrich keywords in the description for use in README.md (Markdown formatting)
-    $markDownDescription = $description -replace
-        $text.ArmorComplete, $text.ArmorCompleteMd -replace
-        $text.ArmorAnywhere, $text.ArmorAnywhereMd -replace
-        $text.RestfulApi, $text.RestfulApiMd -replace
-        $text.Windows, $text.WindowsBold -replace
-        $text.AppVeyor, $text.AppVeyorMd -replace
-        $text.macOS, $text.macOSBold -replace
-        $text.Ubuntu, $text.UbuntuBold -replace
-        $text.TravisCi, $text.TravisCiMd -replace
-        $text.Pester, $text.PesterMd -replace
-        $text.Coveralls, $text.CoverallsMd -replace
-        $text.PSGallery, $text.PSGalleryMd
+    #region mkdocs.yml
+    Write-Host -Object "Build the 'mkdocs.yml' config file." -ForegroundColor 'Yellow'
+    $mkdocsConfig = "# https://www.mkdocs.org/user-guide/configuration/
 
-    $readmePath = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'README.md' -ErrorAction 'Stop'
-    # Build README.md
-    "# $( $text.Title )`r`n`r`n" +
-        $text.PSGalleryMdShield + "`r`n" +
-        $text.PSDownloadsMdShield + "`r`n`r`n" +
-        $text.AppVeyorMdShield + "`r`n" +
-        $text.TravisCiMdShield + "`r`n" +
-        $text.CoverallsMdShield + "`r`n" +
-        $text.GitterMdShield + "`r`n`r`n" +
-        "${markDownDescription}`r`n`r`n" +
-        "Please visit the $( $text.GitHubPagesMd ) for more details." |
-        Out-File -FilePath $readmePath -Encoding 'utf8' -Force -ErrorAction 'Stop'
+# Project information
+site_name: '$( $text.Title )'
+site_description: 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.'
+site_author: 'Troy Lindsay'
+site_url: '$( $text.GitHubPagesProjectUrl )'
+
+# Repository
+repo_name: '${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}'
+repo_url: '$( $text.RepoUrl )'
+remote_branch: 'gh-pages'
+edit_uri: 'blob/master/docs/'
+
+# Copyright
+copyright: 'Copyright $( $text.Copyright )'
+
+# Google Analytics
+google_analytics: ['UA-117909744-3', '${Env:CI_PROJECT_NAME}']
+
+# Configuration
+theme:
+  name: 'material'
+
+  # 404 page
+  static_templates:
+    - '404.html'
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: false
+
+  # Default values, taken from mkdocs_theme.yml
+  language: 'en'
+  feature:
+    tabs: false
+  palette:
+    primary: 'grey'
+    accent: 'deep orange'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  favicon: 'img/favicon.ico'
+  logo: 'img/armor_logo.svg'
+
+# Customization
+extra:
+  social:
+    - type: 'globe'
+      link: 'https://www.troylindsay.io'
+    - type: 'github-alt'
+      link: 'https://github.com/tlindsay42'
+    - type: 'twitter'
+      link: 'https://twitter.com/troylindsay42'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/troylindsay'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+pages:
+  - Home: 'index.md'
+  - User Documentation:
+    - Requirements: 'user/Requirements.md'
+    - Install Guide: 'user/Install.md'
+    - Update Guide: 'user/Update.md'
+    - Uninstall Guide: 'user/Uninstall.md'
+    - Getting Started: 'user/Getting_Started.md'
+    - Project Architecture: 'user/Project_Architecture.md'
+    - Licensing: 'user/Licensing.md'
+    - Contributing: 'user/Contributing.md'
+    - Code of Conduct: 'user/Code_of_Conduct.md'
+    - FAQs: 'user/FAQs.md'
+  - Cmdlet Documentation:
+    - Module Description: 'public/${Env:CI_MODULE_NAME}.md'`r`n"
+
+    foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -Filter '*.ps1' | Sort-Object -Property 'Name' ) ) {
+        $mkdocsConfig += "    - $( $file.BaseName )': `"public/$( $file.BaseName ).md`"`r`n"
+    }
+
+    $mkdocsConfig += '  - Private Functions:'
+
+    foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' | Sort-Object -Property 'Name' ) ) {
+        $mkdocsConfig += "    - $( $file.BaseName )': `"public/$( $file.BaseName ).md`r`n"
+    }
+
+    $splat = @{
+        'Path'  = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'mkdocs.yml'
+        'Force' = $true
+    }
+    $mkdocsConfig |
+        Set-Content @splat
+#endregion
 
     Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
     Remove-Item -Path "$docsPrivatePath/*.md" -Force
@@ -243,7 +362,7 @@ if ( $Env:APPVEYOR_JOB_NUMBER -eq 1 ) {
         'WithModulePage'        = $true
         'HelpVersion'           = $Env:CI_MODULE_VERSION
         'Locale'                = 'en-US'
-        'FwLink'                = $helpInfoUri
+        'FwLink'                = $text.GitHubPagesProjectUrl
         'ErrorAction'           = 'Stop'
     }
     New-MarkdownHelp @splat
