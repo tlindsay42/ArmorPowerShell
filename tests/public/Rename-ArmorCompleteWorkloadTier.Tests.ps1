@@ -22,13 +22,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkload', 'ArmorCompleteWorkload[]'
+        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkloadTier', 'ArmorCompleteWorkloadTier[]'
         'Help'                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'NewName', 'ApiVersion', 'WhatIf', 'Confirm'
+        'ExpectedParameterNames' = 'WorkloadID', 'ID', 'NewName', 'ApiVersion', 'WhatIf', 'Confirm'
         'Help'                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
@@ -52,16 +52,25 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
+                    'WorkloadID' = $invalidID
+                    'ID'         = $validID
+                    'NewName'    = $validNewName
+                    'ApiVersion' = $validApiVersion
+                },
+                @{
+                    'WorkloadID' = $validID
                     'ID'         = $invalidID
                     'NewName'    = $validNewName
                     'ApiVersion' = $validApiVersion
                 },
                 @{
+                    'WorkloadID' = $validID
                     'ID'         = $validID
                     'NewName'    = $invalidNewName
                     'ApiVersion' = $validApiVersion
                 },
                 @{
+                    'WorkloadID' = $validID
                     'ID'         = $validID
                     'NewName'    = $validNewName
                     'ApiVersion' = $invalidApiVersion
@@ -69,8 +78,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             )
             $testName = 'should fail when set to: ID: <ID>, NewName: <NewName>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $ID, [String] $NewName, [String] $ApiVersion )
-                { Rename-ArmorCompleteWorkload -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
+                param ( [String] $WorkloadID, [String] $ID, [String] $NewName, [String] $ApiVersion )
+                { Rename-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Throw
             } # End of It
 
@@ -85,6 +94,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
+                    'WorkloadID' = $validID
                     'ID'         = $validID
                     'NewName'    = $validNewName
                     'ApiVersion' = $validApiVersion
@@ -92,8 +102,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             )
             $testName = 'should not fail when set to: ID: <ID>, NewName: <NewName>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $ID, [String] $NewName, [String] $ApiVersion )
-                { Rename-ArmorCompleteWorkload -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
+                param ( [String] $WorkloadID, [String] $ID, [String] $NewName, [String] $ApiVersion )
+                { Rename-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Not -Throw
             } # End of It
             Assert-VerifiableMock
@@ -115,8 +125,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Rename-ArmorCompleteWorkload -ID 1 -NewName 'FakeName' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteWorkload'
+                    'FoundReturnType'    = ( Rename-ArmorCompleteWorkloadTier -WorkloadID 1 -ID 1 -NewName 'FakeName' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
+                    'ExpectedReturnType' = 'ArmorCompleteWorkloadTier'
                 }
             )
             $testName = $Global:ReturnTypeForm
@@ -133,7 +143,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
-                    Should -BeIn ( Get-Help -Name 'Rename-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
+                    Should -BeIn ( Get-Help -Name 'Rename-ArmorCompleteWorkloadTier' -Full ).ReturnValues.ReturnValue.Type.Name
             } # End of It
         } # End of InModuleScope
     } # End of Context

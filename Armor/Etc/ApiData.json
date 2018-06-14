@@ -267,6 +267,24 @@
       "SuccessCode": "200"
     }
   },
+  "Rename-ArmorCompleteWorkloadTier": {
+    "v1.0": {
+      "Description": "Rename the specified workload tier",
+      "Endpoints": [
+        "/apps/{id}/tiers/{id}"
+      ],
+      "Method": "Put",
+      "Body": {
+        "name": "Name"
+      },
+      "Query": {},
+      "Location": "Tiers",
+      "Filter": {
+        "ID": "ID"
+      },
+      "SuccessCode": "200"
+    }
+  },
   "Reset-ArmorCompleteVM": {
     "v1.0": {
       "Description": "Abruptly reset the specified virtual machine",
