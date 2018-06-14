@@ -203,6 +203,26 @@
       "SuccessCode": "200"
     }
   },
+  "Remove-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Delete the specified VM",
+      "Endpoints": [
+        "/vms/{id}"
+      ],
+      "Method": "Delete",
+      "Body": {
+        "accountId": "Account ID",
+        "vmId": "ID",
+        "userEmail": "$Global:ArmorSession.User.UserName",
+        "isActive": "Active VM?",
+        "deleteNow": "Delete now or at the end of the billing cycle?"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
+      "SuccessCode": "202"
+    }
+  },
   "Remove-ArmorCompleteWorkload": {
     "v1.0": {
       "Description": "Delete the specified workload",
