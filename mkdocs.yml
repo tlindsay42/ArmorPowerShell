@@ -1,59 +1,59 @@
 # https://www.mkdocs.org/user-guide/configuration/
 
 # Project information
-site_name: "The Armor Community PowerShell Module"
-site_description: "This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs."
-site_author: "Troy Lindsay"
-site_url: "https://tlindsay42.github.io/ArmorPowerShell/"
+site_name: 'The Armor Community PowerShell Module'
+site_description: 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.'
+site_author: 'Troy Lindsay'
+site_url: 'https://tlindsay42.github.io/ArmorPowerShell/'
 
 # Repository
-repo_name: "tlindsay42/ArmorPowerShell"
-repo_url: "https://github.com/tlindsay42/ArmorPowerShell/"
-remote_branch: "gh-pages"
-edit_uri: "blob/master/docs/"
+repo_name: 'tlindsay42/ArmorPowerShell'
+repo_url: 'https://github.com/tlindsay42/ArmorPowerShell'
+remote_branch: 'gh-pages'
+edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: "Copyright &copy; 2017-2018 Troy Lindsay. All rights reserved."
+copyright: 'Copyright © 2017-2018 Troy Lindsay. All rights reserved.'
 
 # Google Analytics
-google_analytics: ["UA-117909744-3", "ArmorPowerShell"]
+google_analytics: ['UA-117909744-3', 'ArmorPowerShell']
 
 # Configuration
 theme:
-  name: "material"
+  name: 'material'
 
   # 404 page
   static_templates:
-    - "404.html"
+    - '404.html'
 
   # Don't include MkDocs' JavaScript
   include_search_page: false
   search_index_only: false
 
   # Default values, taken from mkdocs_theme.yml
-  language: "en"
+  language: 'en'
   feature:
     tabs: false
   palette:
-    primary: "grey"
-    accent: "deep orange"
+    primary: 'grey'
+    accent: 'deep orange'
   font:
-    text: "Roboto"
-    code: "Roboto Mono"
-  favicon: "img/favicon.ico"
-  logo: "img/armor_logo.svg"
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  favicon: 'img/favicon.ico'
+  logo: 'img/armor_logo.svg'
 
 # Customization
 extra:
   social:
-    - type: "globe"
-      link: "https://www.troylindsay.io"
-    - type: "github-alt"
-      link: "https://github.com/tlindsay42"
-    - type: "twitter"
-      link: "https://twitter.com/troylindsay42"
-    - type: "linkedin"
-      link: "https://www.linkedin.com/in/troylindsay"
+    - type: 'globe'
+      link: 'https://www.troylindsay.io'
+    - type: 'github-alt'
+      link: 'https://github.com/tlindsay42'
+    - type: 'twitter'
+      link: 'https://twitter.com/troylindsay42'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/troylindsay'
 
 # Extensions
 markdown_extensions:
@@ -85,49 +85,51 @@ markdown_extensions:
 
 # Page tree
 pages:
-  - Home: "index.md"
+  - Home: 'index.md'
   - User Documentation:
-    - Requirements: "user/Requirements.md"
-    - Install Guide: "user/Install.md"
-    - Update Guide: "user/Update.md"
-    - Uninstall Guide: "user/Uninstall.md"
-    - Getting Started: "user/Getting_Started.md"
-    - Project Architecture: "user/Project_Architecture.md"
-    - Licensing: "user/Licensing.md"
-    - Contributing: "user/Contributing.md"
-    - Code of Conduct: "user/Code_of_Conduct.md"
-    - FAQs: "user/FAQs.md"
+    - Requirements: 'user/Requirements.md'
+    - Install Guide: 'user/Install.md'
+    - Update Guide: 'user/Update.md'
+    - Uninstall Guide: 'user/Uninstall.md'
+    - Getting Started: 'user/Getting_Started.md'
+    - Project Architecture: 'user/Project_Architecture.md'
+    - Licensing: 'user/Licensing.md'
+    - Contributing: 'user/Contributing.md'
+    - Code of Conduct: 'user/Code_of_Conduct.md'
+    - FAQs: 'user/FAQs.md'
   - Cmdlet Documentation:
-    - Module Description: "public/Armor.md"
-    - Connect-Armor: "public/Connect-Armor.md"
-    - Disconnect-Armor: "public/Disconnect-Armor.md"
-    - Get-ArmorAccount: "public/Get-ArmorAccount.md"
-    - Get-ArmorAccountAddress: "public/Get-ArmorAccountAddress.md"
-    - Get-ArmorAccountContext: "public/Get-ArmorAccountContext.md"
-    - Get-ArmorCompleteDatacenter: "public/Get-ArmorCompleteDatacenter.md"
-    - Get-ArmorCompleteWorkload: "public/Get-ArmorCompleteWorkload.md"
-    - Get-ArmorCompleteWorkloadTier: "public/Get-ArmorCompleteWorkloadTier.md"
-    - Get-ArmorIdentity: "public/Get-ArmorIdentity.md"
-    - Get-ArmorUser: "public/Get-ArmorUser.md"
-    - Get-ArmorVM: "public/Get-ArmorVM.md"
-    - Invoke-ArmorWebRequest: "public/Invoke-ArmorWebRequest.md"
-    - New-ArmorCompleteWorkloadTier: "public/New-ArmorCompleteWorkloadTier.md"
-    - Remove-ArmorCompleteWorkload: "public/Remove-ArmorCompleteWorkload.md"
-    - Rename-ArmorCompleteWorkload: "public/Rename-ArmorCompleteWorkload.md"
-    - Rename-ArmorCompleteVM: "public/Rename-ArmorCompleteVM.md"
-    - Reset-ArmorCompleteVM: "public/Reset-ArmorCompleteVM.md"
-    - Restart-ArmorCompleteVM: "public/Restart-ArmorCompleteVM.md"
-    - Set-ArmorAccountContext: "public/Set-ArmorAccountContext.md"
-    - Start-ArmorCompleteVM: "public/Start-ArmorCompleteVM.md"
-    - Stop-ArmorCompleteVM: "public/Stop-ArmorCompleteVM.md"
-  - Private Functions:
-    - Expand-ArmorApiResult: "private/Expand-ArmorApiResult.md"
-    - Format-ArmorApiRequestBody: "private/Format-ArmorApiRequestBody.md"
-    - Get-ArmorApiData: "private/Get-ArmorApiData.md"
-    - New-ArmorApiToken: "private/New-ArmorApiToken.md"
-    - New-ArmorApiUri: "private/New-ArmorApiUri.md"
-    - New-ArmorApiUriQuery: "private/New-ArmorApiUriQuery.md"
-    - Select-ArmorApiResult: "private/Select-ArmorApiResult.md"
-    - Submit-ArmorApiRequest: "private/Submit-ArmorApiRequest.md"
-    - Test-ArmorSession: "private/Test-ArmorSession.md"
-    - Update-ArmorApiToken: "private/Update-ArmorApiToken.md"
+    - Module Description: 'public/Armor.md'
+    - Connect-Armor': "public/Connect-Armor.md"
+    - Disconnect-Armor': "public/Disconnect-Armor.md"
+    - Get-ArmorAccount': "public/Get-ArmorAccount.md"
+    - Get-ArmorAccountAddress': "public/Get-ArmorAccountAddress.md"
+    - Get-ArmorAccountContext': "public/Get-ArmorAccountContext.md"
+    - Get-ArmorCompleteDatacenter': "public/Get-ArmorCompleteDatacenter.md"
+    - Get-ArmorCompleteWorkload': "public/Get-ArmorCompleteWorkload.md"
+    - Get-ArmorCompleteWorkloadTier': "public/Get-ArmorCompleteWorkloadTier.md"
+    - Get-ArmorIdentity': "public/Get-ArmorIdentity.md"
+    - Get-ArmorUser': "public/Get-ArmorUser.md"
+    - Get-ArmorVM': "public/Get-ArmorVM.md"
+    - Invoke-ArmorWebRequest': "public/Invoke-ArmorWebRequest.md"
+    - New-ArmorCompleteWorkloadTier': "public/New-ArmorCompleteWorkloadTier.md"
+    - Remove-ArmorCompleteWorkload': "public/Remove-ArmorCompleteWorkload.md"
+    - Remove-ArmorCompleteWorkloadTier': "public/Remove-ArmorCompleteWorkloadTier.md"
+    - Rename-ArmorCompleteVM': "public/Rename-ArmorCompleteVM.md"
+    - Rename-ArmorCompleteWorkload': "public/Rename-ArmorCompleteWorkload.md"
+    - Rename-ArmorCompleteWorkloadTier': "public/Rename-ArmorCompleteWorkloadTier.md"
+    - Reset-ArmorCompleteVM': "public/Reset-ArmorCompleteVM.md"
+    - Restart-ArmorCompleteVM': "public/Restart-ArmorCompleteVM.md"
+    - Set-ArmorAccountContext': "public/Set-ArmorAccountContext.md"
+    - Start-ArmorCompleteVM': "public/Start-ArmorCompleteVM.md"
+    - Stop-ArmorCompleteVM': "public/Stop-ArmorCompleteVM.md"
+  - Private Functions:    - Expand-ArmorApiResult': "public/Expand-ArmorApiResult.md
+    - Format-ArmorApiRequestBody': "public/Format-ArmorApiRequestBody.md
+    - Get-ArmorApiData': "public/Get-ArmorApiData.md
+    - New-ArmorApiToken': "public/New-ArmorApiToken.md
+    - New-ArmorApiUri': "public/New-ArmorApiUri.md
+    - New-ArmorApiUriQuery': "public/New-ArmorApiUriQuery.md
+    - Select-ArmorApiResult': "public/Select-ArmorApiResult.md
+    - Submit-ArmorApiRequest': "public/Submit-ArmorApiRequest.md
+    - Test-ArmorSession': "public/Test-ArmorSession.md
+    - Update-ArmorApiToken': "public/Update-ArmorApiToken.md
+

@@ -145,9 +145,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/](https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkloadTier/](https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkloadTier/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkload.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkloadTier.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Rename-ArmorCompleteWorkloadTier.ps1)
 
 [https://docs.armor.com/display/KBSS/Update+Tier](https://docs.armor.com/display/KBSS/Update+Tier)
 
