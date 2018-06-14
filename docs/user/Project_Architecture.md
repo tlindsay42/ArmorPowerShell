@@ -32,7 +32,8 @@ This page contains details on the artifacts found within the repository.
 ```
 
 * **Armor**: The parent folder containing the module
-    * **en-US:** American English MAML-xml external PowerShell help file
+    * en-US:
+        * **Armor-help.xml**: American English MAML-xml external PowerShell help file
     * **Etc**: Configuration files
     * **Formats**: Output decoration definition files
     * **Lib**: Class files
