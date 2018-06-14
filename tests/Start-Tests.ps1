@@ -47,13 +47,16 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
 
         $testCases = @(
             @{ 'Property' = 'Synopsis' },
-            @{ 'Property' = 'Description' }
+            @{ 'Property' = 'Description' },
+            @{ 'Property' = 'Examples' },
+            @{ 'Property' = 'Component' },
+            @{ 'Property' = 'Functionality' }
         )
         $testName = 'should have content in section: <Property>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Property )
-            $Help.$Property.Length |
-                Should -BeGreaterThan 0
+            $Help.$Property |
+                Should -Not -BeNullOrEmpty
         } # End of It
 
         $testName = "should not match the template entry: '${template}' in section: <Property>"
@@ -61,12 +64,6 @@ function TestAdvancedFunctionHelpMain ( [PSObject] $Help ) {
             param ( [String] $Property )
             $Help.$Property |
                 Should -Not -Match $template
-        } # End of It
-
-        $testName = "should have at least one: 'Example' entry"
-        It -Name $testName -Test {
-            $Help.Examples.Example.Remarks.Length |
-                Should -BeGreaterThan 0
         } # End of It
 
         for ( $i = 0; $i -lt ( $Help.Examples.Example | Measure-Object ).Count; $i++ ) {
