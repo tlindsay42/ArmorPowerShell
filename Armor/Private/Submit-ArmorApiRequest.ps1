@@ -43,7 +43,7 @@ function Submit-ArmorApiRequest {
         https://developer.armor.com/
     #>
 
-    [CmdletBinding( SupportsShouldProcess = $true )]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
     [OutputType( [PSCustomObject[]] )]
     [OutputType( [PSCustomObject] )]
     param (

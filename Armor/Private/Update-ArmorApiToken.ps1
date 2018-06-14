@@ -77,6 +77,8 @@ function Update-ArmorApiToken {
             'Body'        = $body
             'SuccessCode' = $resources.SuccessCode
             'Description' = $resources.Description
+            'WhatIf'      = $false
+            'Confirm'     = $false
         }
         $results = Submit-ArmorApiRequest @splat
 

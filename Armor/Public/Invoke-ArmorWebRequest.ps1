@@ -38,7 +38,7 @@ function Invoke-ArmorWebRequest {
         https://developer.armor.com/
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Medium' )]
     [OutputType( [PSCustomObject[]] )]
     [OutputType( [PSCustomObject] )]
     param (
@@ -121,16 +121,18 @@ function Invoke-ArmorWebRequest {
 
         $uri = New-ArmorApiUri -Endpoints $Endpoint
 
-        $splat = @{
-            'Uri'         = $uri
-            'Method'      = $Method
-            'Body'        = $jsonBody
-            'SuccessCode' = $SuccessCode
-            'Description' = $Description
-        }
-        $results = Submit-ArmorApiRequest @splat
+        if ( $PSCmdlet.ShouldProcess( $uri, $Description ) ) {
+            $splat = @{
+                'Uri'         = $uri
+                'Method'      = $Method
+                'Body'        = $jsonBody
+                'SuccessCode' = $SuccessCode
+                'Description' = $Description
+            }
+            $results = Submit-ArmorApiRequest @splat
 
-        $return = $results
+            $return = $results
+        }
 
         $return
     } # End of process
