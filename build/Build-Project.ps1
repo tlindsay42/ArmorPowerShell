@@ -345,6 +345,7 @@ pages:
         'InputObject' = $mkdocsConfig
         'FilePath'    = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'mkdocs.yml'
         'Force'       = $true
+        'ErrorAction' = 'Stop'
     }
     Out-File @splat
     #endregion
@@ -383,11 +384,6 @@ pages:
         New-ExternalHelpCab -CabFilesFolder $docsPublicPath -LandingPagePath $modulePage -OutputFolder $Env:CI_DOCS_PATH -ErrorAction 'Stop'
     }
 
-    Write-Host -Object "`nRemove the metadata from the module description documentation page." -ForegroundColor 'Yellow'
-    Get-Content -Path $modulePage |
-        Select-Object -Skip 8 |
-        Set-Content -Path $modulePage -Force -ErrorAction 'Stop'
-
     Write-Host -Object "`nRemove the metadata from the public cmdlet documentation pages." -ForegroundColor 'Yellow'
     $splat = @{
         'Module'                = $Env:CI_MODULE_NAME
@@ -413,6 +409,11 @@ pages:
         }
         New-MarkdownHelp @splat
     }
+
+    Write-Host -Object "`nRemove the metadata from the module description documentation page." -ForegroundColor 'Yellow'
+    Get-Content -Path $modulePage |
+        Select-Object -Skip 8 |
+        Out-File -FilePath $modulePage -Force -ErrorAction 'Stop'
 
     Write-Host -Object "`nBuild the documentation site." -ForegroundColor 'Yellow'
     mkdocs build --clean --strict 2> $tempFile
