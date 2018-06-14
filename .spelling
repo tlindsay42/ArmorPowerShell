@@ -136,6 +136,7 @@ TenantOAuth_ReissueAsync
 TenantOAuth_TokenAsync
 TEST-VM
 Tier_AddTier
+Tier_DeleteTier
 Tier_Get
 Tier_GetAppTiers
 tlindsay42

@@ -217,6 +217,22 @@
       "SuccessCode": "202"
     }
   },
+  "Remove-ArmorCompleteWorkloadTier": {
+    "v1.0": {
+      "Description": "Delete the specified workload tier",
+      "Endpoints": [
+        "/apps/{id}/tiers/{id}"
+      ],
+      "Method": "Delete",
+      "Body": {},
+      "Query": {},
+      "Location": "Tiers",
+      "Filter": {
+        "ID": "ID"
+      },
+      "SuccessCode": "200"
+    }
+  },
   "Rename-ArmorCompleteVM": {
     "v1.0": {
       "Description": "Rename the specified virtual machine",
