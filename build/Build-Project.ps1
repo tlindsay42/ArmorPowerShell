@@ -332,22 +332,22 @@ pages:
     - Module Description: 'public/${Env:CI_MODULE_NAME}.md'`r`n"
 
     foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -Filter '*.ps1' | Sort-Object -Property 'Name' ) ) {
-        $mkdocsConfig += "    - $( $file.BaseName )': `"public/$( $file.BaseName ).md`"`r`n"
+        $mkdocsConfig += "    - $( $file.BaseName ): 'public/$( $file.BaseName ).md'`r`n"
     }
 
-    $mkdocsConfig += '  - Private Functions:'
+    $mkdocsConfig += "  - Private Functions:`r`n"
 
     foreach ( $file in ( Get-ChildItem -Path $Env:CI_MODULE_PRIVATE_PATH -Filter '*.ps1' | Sort-Object -Property 'Name' ) ) {
-        $mkdocsConfig += "    - $( $file.BaseName )': `"public/$( $file.BaseName ).md`r`n"
+        $mkdocsConfig += "    - $( $file.BaseName ): 'private/$( $file.BaseName ).md'`r`n"
     }
 
     $splat = @{
-        'Path'  = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'mkdocs.yml'
-        'Force' = $true
+        'InputObject' = $mkdocsConfig
+        'FilePath'    = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'mkdocs.yml'
+        'Force'       = $true
     }
-    $mkdocsConfig |
-        Set-Content @splat
-#endregion
+    Out-File @splat
+    #endregion
 
     Write-Host -Object "`nClean the cmdlet & private function documentation directories." -ForegroundColor 'Yellow'
     Remove-Item -Path "$docsPrivatePath/*.md" -Force
