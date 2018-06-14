@@ -352,6 +352,7 @@ pages:
     $splat = @{
         'InputObject' = $mkdocsConfig
         'FilePath'    = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'mkdocs.yml'
+        'Encoding'    = 'utf8'
         'Force'       = $true
         'ErrorAction' = 'Stop'
     }
