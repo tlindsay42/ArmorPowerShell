@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.263'
+ModuleVersion = '1.0.265'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -75,18 +75,17 @@ ScriptsToProcess = 'Lib\ArmorTypes.ps1'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount',
-               'Get-ArmorAccountAddress', 'Get-ArmorAccountContext',
-               'Get-ArmorCompleteDatacenter', 'Get-ArmorCompleteWorkload',
-               'Get-ArmorCompleteWorkloadTier', 'Get-ArmorIdentity', 'Get-ArmorUser',
-               'Get-ArmorVM', 'Invoke-ArmorWebRequest',
-               'New-ArmorCompleteWorkloadTier', 'Remove-ArmorCompleteWorkload',
-               'Remove-ArmorCompleteVM',
-               'Remove-ArmorCompleteWorkloadTier', 'Rename-ArmorCompleteVM',
-               'Rename-ArmorCompleteWorkload', 'Rename-ArmorCompleteWorkloadTier',
-               'Reset-ArmorCompleteVM', 'Restart-ArmorCompleteVM',
-               'Set-ArmorAccountContext', 'Start-ArmorCompleteVM',
-               'Stop-ArmorCompleteVM'
+FunctionsToExport = 'Connect-Armor', 'Disconnect-Armor', 'Get-ArmorAccount', 
+               'Get-ArmorAccountAddress', 'Get-ArmorAccountContext', 
+               'Get-ArmorCompleteDatacenter', 'Get-ArmorCompleteWorkload', 
+               'Get-ArmorCompleteWorkloadTier', 'Get-ArmorIdentity', 'Get-ArmorUser', 
+               'Get-ArmorVM', 'Invoke-ArmorWebRequest', 
+               'New-ArmorCompleteWorkloadTier', 'Remove-ArmorCompleteVM', 
+               'Remove-ArmorCompleteWorkload', 'Remove-ArmorCompleteWorkloadTier', 
+               'Rename-ArmorCompleteVM', 'Rename-ArmorCompleteWorkload', 
+               'Rename-ArmorCompleteWorkloadTier', 'Reset-ArmorCompleteVM', 
+               'Restart-ArmorCompleteVM', 'Set-ArmorAccountContext', 
+               'Start-ArmorCompleteVM', 'Stop-ArmorCompleteVM'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -104,34 +103,34 @@ AliasesToExport = 'Get-ArmorCompleteVM'
 # ModuleList = @()
 
 # List of all files packaged with this module
-FileList = 'Armor.psd1', 'Armor.psm1', 'en-US\Armor-help.xml', 'Etc\Aliases.json',
-               'Etc\ApiData.json', 'Lib\ArmorTypes.ps1',
-               'Private\Expand-ArmorApiResult.ps1',
-               'Private\Format-ArmorApiRequestBody.ps1',
-               'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1',
-               'Private\New-ArmorApiUri.ps1', 'Private\New-ArmorApiUriQuery.ps1',
-               'Private\Select-ArmorApiResult.ps1',
-               'Private\Submit-ArmorApiRequest.ps1',
-               'Private\Test-ArmorSession.ps1', 'Private\Update-ArmorApiToken.ps1',
-               'Public\Connect-Armor.ps1', 'Public\Disconnect-Armor.ps1',
-               'Public\Get-ArmorAccount.ps1', 'Public\Get-ArmorAccountAddress.ps1',
-               'Public\Get-ArmorAccountContext.ps1',
-               'Public\Get-ArmorCompleteDatacenter.ps1',
-               'Public\Get-ArmorCompleteWorkload.ps1',
-               'Public\Get-ArmorCompleteWorkloadTier.ps1',
-               'Public\Get-ArmorIdentity.ps1', 'Public\Get-ArmorUser.ps1',
-               'Public\Get-ArmorVM.ps1', 'Public\Invoke-ArmorWebRequest.ps1',
-               'Public\New-ArmorCompleteWorkloadTier.ps1',
-               'Public\Remove-ArmorCompleteVM.ps1',
-               'Public\Remove-ArmorCompleteWorkload.ps1',
-               'Public\Remove-ArmorCompleteWorkloadTier.ps1',
-               'Public\Rename-ArmorCompleteVM.ps1',
-               'Public\Rename-ArmorCompleteWorkload.ps1',
-               'Public\Rename-ArmorCompleteWorkloadTier.ps1',
-               'Public\Reset-ArmorCompleteVM.ps1',
-               'Public\Restart-ArmorCompleteVM.ps1',
-               'Public\Set-ArmorAccountContext.ps1',
-               'Public\Start-ArmorCompleteVM.ps1',
+FileList = 'Armor.psd1', 'Armor.psm1', 'en-US\Armor-help.xml', 'Etc\Aliases.json', 
+               'Etc\ApiData.json', 'Lib\ArmorTypes.ps1', 
+               'Private\Expand-ArmorApiResult.ps1', 
+               'Private\Format-ArmorApiRequestBody.ps1', 
+               'Private\Get-ArmorApiData.ps1', 'Private\New-ArmorApiToken.ps1', 
+               'Private\New-ArmorApiUri.ps1', 'Private\New-ArmorApiUriQuery.ps1', 
+               'Private\Select-ArmorApiResult.ps1', 
+               'Private\Submit-ArmorApiRequest.ps1', 
+               'Private\Test-ArmorSession.ps1', 'Private\Update-ArmorApiToken.ps1', 
+               'Public\Connect-Armor.ps1', 'Public\Disconnect-Armor.ps1', 
+               'Public\Get-ArmorAccount.ps1', 'Public\Get-ArmorAccountAddress.ps1', 
+               'Public\Get-ArmorAccountContext.ps1', 
+               'Public\Get-ArmorCompleteDatacenter.ps1', 
+               'Public\Get-ArmorCompleteWorkload.ps1', 
+               'Public\Get-ArmorCompleteWorkloadTier.ps1', 
+               'Public\Get-ArmorIdentity.ps1', 'Public\Get-ArmorUser.ps1', 
+               'Public\Get-ArmorVM.ps1', 'Public\Invoke-ArmorWebRequest.ps1', 
+               'Public\New-ArmorCompleteWorkloadTier.ps1', 
+               'Public\Remove-ArmorCompleteVM.ps1', 
+               'Public\Remove-ArmorCompleteWorkload.ps1', 
+               'Public\Remove-ArmorCompleteWorkloadTier.ps1', 
+               'Public\Rename-ArmorCompleteVM.ps1', 
+               'Public\Rename-ArmorCompleteWorkload.ps1', 
+               'Public\Rename-ArmorCompleteWorkloadTier.ps1', 
+               'Public\Reset-ArmorCompleteVM.ps1', 
+               'Public\Restart-ArmorCompleteVM.ps1', 
+               'Public\Set-ArmorAccountContext.ps1', 
+               'Public\Start-ArmorCompleteVM.ps1', 
                'Public\Stop-ArmorCompleteVM.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
@@ -158,7 +157,7 @@ PrivateData = @{
         # ExternalModuleDependencies = ''
 
     } # End of PSData hashtable
-
+    
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
@@ -168,3 +167,4 @@ HelpInfoURI = 'https://tlindsay42.github.io/ArmorPowerShell/'
 # DefaultCommandPrefix = ''
 
 }
+

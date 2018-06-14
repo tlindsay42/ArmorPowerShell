@@ -2614,6 +2614,290 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-ArmorCompleteVM</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>ArmorCompleteVM</command:noun>
+      <maml:description>
+        <maml:para>Deletes Armor Complete VMs.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The specified VM in the Armor Complete account in context will be deleted.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-ArmorCompleteVM</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="1" aliases="VmID">
+          <maml:name>ID</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID of the Armor Complete workload.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>0</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="2" aliases="none">
+          <maml:name>IsActive</maml:name>
+          <maml:Description>
+            <maml:para>Confirms that the user is aware of the current state of the Armor Complete VM.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="3" aliases="none">
+          <maml:name>DeleteNow</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether the VM should be deleted now or at the end of the billing cycle.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
+          <maml:name>AccountID</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the Armor account ID to use for all subsequent requests.  The permitted range is 1-65535.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Global:ArmorSession.GetAccountContext().ID</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="5" aliases="UserEmail">
+          <maml:name>UserName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the username of the Armor user account.  The only accepted value is the current logged in username for meeting the requirements for the v1.0 API request body.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Global:ArmorSession.User.UserName</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
+          <maml:name>ApiVersion</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the API version for this request.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Global:ArmorSession.ApiVersion</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="1" aliases="VmID">
+        <maml:name>ID</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the ID of the Armor Complete workload.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>0</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="2" aliases="none">
+        <maml:name>IsActive</maml:name>
+        <maml:Description>
+          <maml:para>Confirms that the user is aware of the current state of the Armor Complete VM.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="3" aliases="none">
+        <maml:name>DeleteNow</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether the VM should be deleted now or at the end of the billing cycle.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
+        <maml:name>AccountID</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the Armor account ID to use for all subsequent requests.  The permitted range is 1-65535.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Global:ArmorSession.GetAccountContext().ID</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="5" aliases="UserEmail">
+        <maml:name>UserName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the username of the Armor user account.  The only accepted value is the current logged in username for meeting the requirements for the v1.0 API request body.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Global:ArmorSession.User.UserName</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
+        <maml:name>ApiVersion</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the API version for this request.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Global:ArmorSession.ApiVersion</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>PSCustomObject</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>ArmorVM[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>ArmorVM</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>- Troy Lindsay</maml:para>
+        <maml:para>- Twitter: @troylindsay42</maml:para>
+        <maml:para>- GitHub: tlindsay42</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+        <dev:code>Remove-ArmorCompleteVM -ID 1</dev:code>
+        <dev:remarks>
+          <maml:para>If confirmed and empty of child objects, deletes VM with ID=1.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+        <dev:code>1 | Remove-ArmorCompleteVM</dev:code>
+        <dev:remarks>
+          <maml:para>If confirmed and empty of child objects, deletes VM with ID=1 identified via pipeline value.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+        <dev:code>[PSCustomObject] @{ 'ID' = 1 | Remove-ArmorCompleteVM</dev:code>
+        <dev:remarks>
+          <maml:para>If confirmed and empty of child objects, deletes workload with ID=1 identified via property name in the pipeline.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteVM/</maml:linkText>
+        <maml:uri>https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteVM/</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteVM.ps1</maml:linkText>
+        <maml:uri>https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Remove-ArmorCompleteVM.ps1</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://docs.armor.com/display/KBSS/Delete+VM</maml:linkText>
+        <maml:uri>https://docs.armor.com/display/KBSS/Delete+VM</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://developer.armor.com/#!/Infrastructure/Vm_DeleteVm</maml:linkText>
+        <maml:uri>https://developer.armor.com/#!/Infrastructure/Vm_DeleteVm</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-ArmorCompleteWorkload</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>ArmorCompleteWorkload</command:noun>

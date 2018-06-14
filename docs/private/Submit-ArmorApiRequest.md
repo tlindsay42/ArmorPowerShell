@@ -8,7 +8,7 @@ use.
 
 ```
 Submit-ArmorApiRequest [-Uri] <String> [[-Headers] <Hashtable>] [-Method] <String> [[-Body] <String>]
- [-SuccessCode] <UInt16> [[-Description] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-SuccessCode] <UInt16> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +22,7 @@ is thrown as a terminating error.
 
 ### EXAMPLE 1
 ```
-Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200 | Select-Object -Property User
+Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200
 ```
 
 Submits a GET request to the Armor Identity API endpoint during a valid
@@ -31,7 +31,7 @@ pipeline, and then outputs the object.
 
 ### EXAMPLE 2
 ```
-Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}' -Description 'Test Description' -Confirm | Select-Object -Property Name
+Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
 ```
 
 Submits a GET request to the Armor Identity API endpoint during a valid
@@ -52,22 +52,6 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Description
-If this cmdlet is called with the -Confirm switch parameter set to true, this
-optional description will be displayed at the prompt.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -129,37 +113,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

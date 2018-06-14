@@ -42,6 +42,9 @@ Sends custom requests to Armor API endpoints.
 ### [New-ArmorCompleteWorkloadTier](New-ArmorCompleteWorkloadTier.md)
 Creates tiers in an Armor Complete workload.
 
+### [Remove-ArmorCompleteVM](Remove-ArmorCompleteVM.md)
+Deletes Armor Complete VMs.
+
 ### [Remove-ArmorCompleteWorkload](Remove-ArmorCompleteWorkload.md)
 Deletes Armor Complete workloads.
 
