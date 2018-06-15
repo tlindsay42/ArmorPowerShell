@@ -13,7 +13,7 @@ $text = @{
     'AvailableOnGitHub'     = 'available on GitHub'
     'BoldForm'              = '**{0}**'
     'BuildStatus'           = 'Build Status'
-    'Copyright'             = "© 2017-$( ( Get-Date ).Year ) Troy Lindsay. All rights reserved."
+    'Copyright'             = "2017-$( ( Get-Date ).Year ) Troy Lindsay. All rights reserved."
     'CoverageStatus'        = 'Coverage Status'
     'Coveralls'             = 'Coveralls'
     'CoverallsImageUrl'     = "https://coveralls.io/repos/github/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}/badge.svg?branch=master"
@@ -136,7 +136,7 @@ $splat = @{
     'Guid'                  = '226c1ea9-1078-402a-861c-10a845a0d173'
     'Author'                = 'Troy Lindsay'
     'CompanyName'           = 'Armor'
-    'Copyright'             = $text.Copyright
+    'Copyright'             = '© ' + $text.Copyright
     'Description'           = $description
     'PowerShellVersion'     = '5.0'
     'ProcessorArchitecture' = 'None'
@@ -252,7 +252,7 @@ remote_branch: 'gh-pages'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: 'Copyright $( $text.Copyright )'
+copyright: 'Copyright &copy; $( $text.Copyright )'
 
 # Google Analytics
 google_analytics: ['UA-117909744-3', '${Env:CI_PROJECT_NAME}']
