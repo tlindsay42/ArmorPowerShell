@@ -79,7 +79,7 @@ function Get-ArmorNoun {
         # The name of the cmdlet
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message "Beginning: '${function}'."
+        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         # Check to ensure that a session to the Armor session is valid.
         Test-ArmorSession

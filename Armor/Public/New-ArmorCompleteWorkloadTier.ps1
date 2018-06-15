@@ -113,7 +113,7 @@ function New-ArmorCompleteWorkloadTier {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message "Beginning: '${function}'."
+        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         Test-ArmorSession
     } # End of begin

@@ -72,7 +72,7 @@ function Expand-ArmorApiResult {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message "Beginning: '${function}'."
+        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
     } # End of begin
 
     process {
