@@ -126,7 +126,7 @@ function Get-ArmorVM {
 
         # Specifies the API version for this request.
         [Parameter( Position = 1 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )

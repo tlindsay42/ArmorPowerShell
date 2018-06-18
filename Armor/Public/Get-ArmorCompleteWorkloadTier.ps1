@@ -131,7 +131,7 @@ function Get-ArmorCompleteWorkloadTier {
 
         # Specifies the API version for this request.
         [Parameter( Position = 2 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )

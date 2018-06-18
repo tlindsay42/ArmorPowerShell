@@ -312,7 +312,7 @@ class ArmorSession {
     [ValidateNotNull()]
     [DateTime] $SessionExpirationTime
 
-    [ValidateSet( 'v1.0' )]
+    [ValidateSet( 'v1.0', 'internal' )]
     [String] $ApiVersion = 'v1.0'
 
     [ValidateSet( 'X-Account-Context' )]

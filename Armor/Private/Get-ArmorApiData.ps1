@@ -76,7 +76,7 @@ function Get-ArmorApiData {
             Position = 1,
             ValueFromPipelineByPropertyName = $true
         )]
-        [ValidateScript( { $_ -match '^v\d+\.\d+$' } )]
+        [ValidateScript( { $_ -match '^(?:v\d+\.\d+|internal)$' } )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion,
 

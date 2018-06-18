@@ -123,7 +123,7 @@ function Connect-Armor {
         a different default API version for the session.
         #>
         [Parameter( Position = 4 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = 'v1.0'
     )
@@ -146,6 +146,13 @@ function Connect-Armor {
 
         switch ( $Global:ArmorSession.ApiVersion ) {
             'v1.0' {
+                $body = @{
+                    $resources.Body.UserName = $Credential.UserName
+                    $resources.Body.Password = $Credential.GetNetworkCredential().Password
+                } |
+                    ConvertTo-Json -ErrorAction 'Stop'
+            }
+            'internal' {
                 $body = @{
                     $resources.Body.UserName = $Credential.UserName
                     $resources.Body.Password = $Credential.GetNetworkCredential().Password

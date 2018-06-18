@@ -57,7 +57,7 @@ function Update-ArmorApiToken {
             Position = 1,
             ValueFromPipelineByPropertyName = $true
         )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )
