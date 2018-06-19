@@ -10,9 +10,9 @@ function Get-ArmorNoun {
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
         .NOTES
-        Name { optional }
-        Twitter: { optional }
-        GitHub: { optional }
+        - Name { optional }
+        - Twitter: { optional }
+        - GitHub: { optional }
 
         .EXAMPLE
         { required: show one or more examples using the function }
@@ -63,7 +63,7 @@ function Get-ArmorNoun {
         { required: description of the specified input parameter's purpose }
         #>
         [Parameter( Position = 1 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )
@@ -110,7 +110,6 @@ function Get-ArmorNoun {
             'Uri'         = $uri
             'Method'      = $resources.Method
             'SuccessCode' = $resources.SuccessCode
-            'Description' = $resources.Description
         }
         $results = Submit-ArmorApiRequest @splat
 

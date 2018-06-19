@@ -10,9 +10,9 @@ function Update-ArmorNoun {
         { required: .NET Framework object types that can be piped in and a description of the input objects }
 
         .NOTES
-        Name { optional }
-        Twitter: { optional }
-        GitHub: { optional }
+        - Name { optional }
+        - Twitter: { optional }
+        - GitHub: { optional }
 
         .EXAMPLE
         { required: show one or more examples using the function }
@@ -39,7 +39,6 @@ function Update-ArmorNoun {
         [Parameter(
             Mandatory = $true,
             HelpMessage = 'Please enter the Name of the Armor item that you want to update',
-            ParameterSetName = 'Name',
             Position = 0,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
@@ -51,9 +50,14 @@ function Update-ArmorNoun {
         <#
         { required: description of the specified input parameter's purpose }
         #>
-        [String] $Param2,
         [Parameter( Position = 1 )]
-        [ValidateSet( 'v1.0' )]
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Param2,
+
+        # Specifies the API version for this request.
+        [Parameter( Position = 2 )]
+        [ValidateSet( 'v1.0', 'internal' )]
         [String]
         $ApiVersion = $Global:ArmorSession.ApiVersion
     )
@@ -100,7 +104,6 @@ function Update-ArmorNoun {
                 'Method'      = $resources.Method
                 'Body'        = $body
                 'SuccessCode' = $resources.SuccessCode
-                'Description' = $resources.Description
             }
             $results = Submit-ArmorApiRequest @splat
         }
