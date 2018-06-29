@@ -11,10 +11,13 @@ function Get-ArmorVM {
         .INPUTS
         UInt16
 
+        .INPUTS
         Guid
-
+        
+        .INPUTS
         String
-
+        
+        .INPUTS
         PSCustomObject
 
         .NOTES
