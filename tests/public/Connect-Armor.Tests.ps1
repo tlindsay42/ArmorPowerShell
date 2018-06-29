@@ -10,8 +10,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -20,20 +20,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorSession'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorSession'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Credential', 'AccountID', 'Server', 'Port', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Credential', 'AccountID', 'Server', 'Port', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -41,9 +41,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
-                'TypeName'     = 'System.Management.Automation.PSCredential'
-                'ArgumentList' = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
-                'ErrorAction'  = 'Stop'
+                TypeName     = 'System.Management.Automation.PSCredential'
+                ArgumentList = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
+                ErrorAction  = 'Stop'
             }
             $creds = New-Object @splat
             #endregion
@@ -51,11 +51,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Get the temporary authorization code
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 403
-                    'StatusDescription' = 'Access Denied'
-                    'Content'           = @{
-                        'errorCode'     = 'access_denied'
-                        'badLogonCount' = 0
+                    StatusCode        = 403
+                    StatusDescription = 'Access Denied'
+                    Content           = @{
+                        errorCode     = 'access_denied'
+                        badLogonCount = 0
                     }
                 }
             } -ParameterFilter {
@@ -79,9 +79,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
-                'TypeName'     = 'System.Management.Automation.PSCredential'
-                'ArgumentList' = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
-                'ErrorAction'  = 'Stop'
+                TypeName     = 'System.Management.Automation.PSCredential'
+                ArgumentList = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
+                ErrorAction  = 'Stop'
             }
             $creds = New-Object @splat
 
@@ -90,9 +90,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'redirect_uri' = $null
-                    'code'         = ''
-                    'success'      = 'true'
+                    redirect_uri = $null
+                    code         = ''
+                    success      = 'true'
                 }
             }
 
@@ -111,9 +111,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'redirect_uri' = $null
-                    'code'         = $validCode
-                    'success'      = 'false'
+                    redirect_uri = $null
+                    code         = $validCode
+                    success      = 'false'
                 }
             }
 
@@ -136,9 +136,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
-                'TypeName'     = 'System.Management.Automation.PSCredential'
-                'ArgumentList' = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
-                'ErrorAction'  = 'Stop'
+                TypeName     = 'System.Management.Automation.PSCredential'
+                ArgumentList = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
+                ErrorAction  = 'Stop'
             }
             $creds = New-Object @splat
 
@@ -147,9 +147,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'redirect_uri' = $null
-                    'code'         = $validCode
-                    'success'      = 'true'
+                    redirect_uri = $null
+                    code         = $validCode
+                    success      = 'true'
                 }
             }
             Mock -CommandName New-ArmorApiToken -Verifiable -MockWith {}
@@ -170,9 +170,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
-                'TypeName'     = 'System.Management.Automation.PSCredential'
-                'ArgumentList' = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
-                'ErrorAction'  = 'Stop'
+                TypeName     = 'System.Management.Automation.PSCredential'
+                ArgumentList = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
+                ErrorAction  = 'Stop'
             }
             $creds = New-Object @splat
             #endregion
@@ -180,8 +180,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Get the temporary authorization code
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode' = 200
-                    'Content'    = $Global:JsonResponseBody.Authorize1
+                    StatusCode = 200
+                    Content    = $Global:JSON_RESPONSE_BODY.Authorize1
                 }
             } -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
@@ -190,8 +190,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Convert the temporary authorization code to an API token
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode' = 200
-                    'Content'    = $Global:JsonResponseBody.Token1
+                    StatusCode = 200
+                    Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
@@ -200,15 +200,31 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Get the user's identity information
             Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $Env:CI_MODULE_NAME -MockWith {
                 @{
-                    'StatusCode' = 200
-                    'Content'    = $Global:JsonResponseBody.Identity1
+                    StatusCode = 200
+                    Content    = $Global:JSON_RESPONSE_BODY.Identity1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Connect-Armor -Credential $creds ).GetType().Name
-                    'ExpectedReturnType' = 'ArmorSession'
+                    FoundReturnType    = ( Connect-Armor -Credential $creds ).GetType().Name
+                    ExpectedReturnType = 'ArmorSession'
+                },
+                @{
+                    FoundReturnType    = ( Connect-Armor -Credential $creds -AccountID 2 ).GetType().Name
+                    ExpectedReturnType = 'ArmorSession'
+                },
+                @{
+                    FoundReturnType    = ( Connect-Armor -Credential $creds -ApiVersion 'internal' ).GetType().Name
+                    ExpectedReturnType = 'ArmorSession'
+                },
+                @{
+                    FoundReturnType    = ( Connect-Armor -Credential $creds -AccountID 3 -Server 'api.armor.test' -Port 8443 -ApiVersion 'internal' ).GetType().Name
+                    ExpectedReturnType = 'ArmorSession'
+                },
+                @{
+                    FoundReturnType    = ( Connect-Armor $creds 4 'api.armor.test' 8443 'internal' ).GetType().Name
+                    ExpectedReturnType = 'ArmorSession'
                 }
             )
             $testName = $Global:ReturnTypeForm

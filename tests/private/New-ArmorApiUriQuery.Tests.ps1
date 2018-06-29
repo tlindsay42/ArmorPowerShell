@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $help = Get-Help -Name $function -Full
     $validKeys = 'FirstName', 'LastName', 'Email'
     $validParameters = [PSCustomObject] @{
-        'FirstName' = 'John'
-        'LastName'  = 'Hartigan'
+        FirstName = 'John'
+        LastName  = 'Hartigan'
     }
     $validUri = 'https://api.armor.mock/users'
 
@@ -25,8 +25,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -35,20 +35,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.String'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.String'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Keys', 'Parameters', 'Uri'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Keys', 'Parameters', 'Uri'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -58,34 +58,34 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Keys'       = ''
-                'Parameters' = $validParameters
-                'Uri'        = $validUri
+                Keys       = ''
+                Parameters = $validParameters
+                Uri        = $validUri
             },
             @{
-                'Keys'       = 'key1', ''
-                'Parameters' = $validParameters
-                'Uri'        = $validUri
+                Keys       = 'key1', ''
+                Parameters = $validParameters
+                Uri        = $validUri
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = ''
-                'Uri'        = $validUri
+                Keys       = $validKeys
+                Parameters = ''
+                Uri        = $validUri
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = @()
-                'Uri'        = $validUri
+                Keys       = $validKeys
+                Parameters = @()
+                Uri        = $validUri
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = 'parameter1', ''
-                'Uri'        = $validUri
+                Keys       = $validKeys
+                Parameters = 'parameter1', ''
+                Uri        = $validUri
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = $validParameters
-                'Uri'        = 'http://insecure.api/users'
+                Keys       = $validKeys
+                Parameters = $validParameters
+                Uri        = 'http://insecure.api/users'
             }
         )
         $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>, Uri: <Uri>'
@@ -96,8 +96,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $splat = @{
-            'FirstName'   = $validParameters.FirstName
-            'ErrorAction' = 'Stop'
+            FirstName   = $validParameters.FirstName
+            ErrorAction = 'Stop'
         }
         $testName = "should not fail when set to: FirstName: '$( $validParameters.FirstName )'"
         It -Name $testName -Test {
@@ -113,8 +113,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $splat = @{
-            'LastName'    = $validParameters.LastName
-            'ErrorAction' = 'Stop'
+            LastName    = $validParameters.LastName
+            ErrorAction = 'Stop'
         }
         $testName = "should not fail when set to: LastName: '$( $validParameters.LastName )'"
         It -Name $testName -Test {
@@ -130,9 +130,9 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $splat = @{
-            'FirstName'   = $validParameters.FirstName
-            'LastName'    = $validParameters.LastName
-            'ErrorAction' = 'Stop'
+            FirstName   = $validParameters.FirstName
+            LastName    = $validParameters.LastName
+            ErrorAction = 'Stop'
         }
         $testName = "should not fail when set to: FirstName: '$( $validParameters.FirstName )', " +
             "LastName: '$( $validParameters.LastName )'"
@@ -152,16 +152,16 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
         $splat = @{
-            'FirstName'   = $validParameters.FirstName
-            'LastName'    = $validParameters.LastName
-            'ErrorAction' = 'Stop'
+            FirstName   = $validParameters.FirstName
+            LastName    = $validParameters.LastName
+            ErrorAction = 'Stop'
         }
         #endregion
 
         $testCases = @(
             @{
-                'FoundReturnType'    = ( Test-NewArmorApiUriQuery1 @splat ).GetType().FullName
-                'ExpectedReturnType' = 'System.String'
+                FoundReturnType    = ( Test-NewArmorApiUriQuery1 @splat ).GetType().FullName
+                ExpectedReturnType = 'System.String'
             }
         )
         $testName = $Global:ReturnTypeForm

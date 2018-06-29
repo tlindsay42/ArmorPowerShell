@@ -20,7 +20,7 @@ function Rename-ArmorCompleteWorkload {
         Renames the workload with ID=1 to 'TEST-WORKLOAD'.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
+        [PSCustomObject] @{ ID = 1; NewName = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
         Renames the workload with ID=1 to 'TEST-WORKLOAD' via property names in the
         pipeline.
 
@@ -98,10 +98,10 @@ function Rename-ArmorCompleteWorkload {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorUser', 'ArmorUser[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorUser', 'ArmorUser[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'UserName', 'FirstName', 'LastName', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'ID', 'UserName', 'FirstName', 'LastName', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -53,12 +53,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'ID'         = $invalidID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $invalidID
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $invalidApiVersion
+                    ID         = $validID
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -70,12 +70,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'UserName'   = ''
-                    'ApiVersion' = $validApiVersion
+                    UserName   = ''
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'UserName'   = $validUserName
-                    'ApiVersion' = $invalidApiVersion
+                    UserName   = $validUserName
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: UserName: <UserName>, ApiVersion: <ApiVersion>'
@@ -87,19 +87,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FirstName'  = ''
-                    'LastName'  = $validLastName
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = ''
+                    LastName  = $validLastName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'FirstName'  = $validFirstName
-                    'LastName'   = ''
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = $validFirstName
+                    LastName   = ''
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'FirstName'  = $validFirstName
-                    'LastName'   = $validLastName
-                    'ApiVersion' = $invalidApiVersion
+                    FirstName  = $validFirstName
+                    LastName   = $validLastName
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: FirstName: <FirstName>, LastName: <LastName>, ApiVersion: <ApiVersion>'
@@ -112,16 +112,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Users1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Users1
                 }
             }
 
             $testCases = @(
                 @{
-                    'UserName'   = 'pwnd@kobayashi.maru'
-                    'ApiVersion' = $validApiVersion
+                    UserName   = 'pwnd@kobayashi.maru'
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should fail when set to: UserName: <UserName>, ApiVersion: <ApiVersion>'
@@ -136,19 +136,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FirstName'  = 'Locutus'
-                    'LastName'   = $validLastName
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = 'Locutus'
+                    LastName   = $validLastName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'FirstName'  = $validFirstName
-                    'LastName'   = 'Rozhenko'
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = $validFirstName
+                    LastName   = 'Rozhenko'
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'FirstName'  = 'Noonien'
-                    'LastName'   = 'Soong'
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = 'Noonien'
+                    LastName   = 'Soong'
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should fail when set to: FirstName: <FirstName>, LastName: <LastName>, ApiVersion: <ApiVersion>'
@@ -163,8 +163,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -179,8 +179,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'UserName'   = $validUserName
-                    'ApiVersion' = $validApiVersion
+                    UserName   = $validUserName
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: UserName: <UserName>, ApiVersion: <ApiVersion>'
@@ -195,9 +195,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FirstName'  = $validFirstName
-                    'LastName'   = $validLastName
-                    'ApiVersion' = $validApiVersion
+                    FirstName  = $validFirstName
+                    LastName   = $validLastName
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: FirstName: <FirstName>, LastName: <LastName>, ApiVersion: <ApiVersion>'
@@ -221,24 +221,24 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Users1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Users1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Get-ArmorUser -ID 1 -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorUser'
+                    FoundReturnType    = ( Get-ArmorUser -ID 1 -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorUser'
                 },
                 @{
-                    'FoundReturnType'    = ( Get-ArmorUser -UserName 'user.name@example.com' -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorUser'
+                    FoundReturnType    = ( Get-ArmorUser -UserName 'user.name@example.com' -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorUser'
                 }
                 @{
-                    'FoundReturnType'    = ( Get-ArmorUser -FirstName 'User' -LastName 'Name' -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorUser'
+                    FoundReturnType    = ( Get-ArmorUser -FirstName 'User' -LastName 'Name' -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorUser'
                 }
             )
             $testName = $Global:ReturnTypeForm

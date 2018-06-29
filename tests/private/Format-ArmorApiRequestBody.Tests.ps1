@@ -12,10 +12,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     $help = Get-Help -Name $function -Full
     $validKeys = 'code', 'grant_type', 'array', 'switch'
     $validParameters = [PSCustomObject] @{
-        'Code'      = '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
-        'GrantType' = 'authorization_code'
-        'Array'     = 'test1', 'test2'
-        'Switch'    = $true
+        Code      = '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
+        GrantType = 'authorization_code'
+        Array     = 'test1', 'test2'
+        Switch    = $true
     }
 
     function Test-FormatArmorApiRequestBody1 {
@@ -26,8 +26,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -36,20 +36,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.String'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.String'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Keys', 'Parameters'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Keys', 'Parameters'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -59,24 +59,24 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Keys'       = ''
-                'Parameters' = $validParameters
+                Keys       = ''
+                Parameters = $validParameters
             },
             @{
-                'Keys'       = 'key1', ''
-                'Parameters' = $validParameters
+                Keys       = 'key1', ''
+                Parameters = $validParameters
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = ''
+                Keys       = $validKeys
+                Parameters = ''
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = @()
+                Keys       = $validKeys
+                Parameters = @()
             },
             @{
-                'Keys'       = $validKeys
-                'Parameters' = 'parameter1', ''
+                Keys       = $validKeys
+                Parameters = 'parameter1', ''
             }
         )
         $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>'

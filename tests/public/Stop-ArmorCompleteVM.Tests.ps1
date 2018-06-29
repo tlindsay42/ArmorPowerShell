@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorVM', 'ArmorVM[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorVM', 'ArmorVM[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'Type', 'ApiVersion', 'WhatIf', 'Confirm'
-        'Help'                   = $help
+        ExpectedParameterNames = 'ID', 'Type', 'ApiVersion', 'WhatIf', 'Confirm'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -52,19 +52,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'ID'         = $invalidID
-                    'Type'       = $validType
-                    'ApiVersion' = $validApiVersion
+                    ID         = $invalidID
+                    Type       = $validType
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'Type'       = $invalidType
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    Type       = $invalidType
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'Type'       = $validType
-                    'ApiVersion' = $invalidApiVersion
+                    ID         = $validID
+                    Type       = $validType
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: ID: <ID>, Type: <Type>, ApiVersion: <ApiVersion>'
@@ -77,27 +77,27 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'ID'         = $validID
-                    'Type'       = 'Shutdown'
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    Type       = 'Shutdown'
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'Type'       = 'Poweroff'
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    Type       = 'Poweroff'
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'Type'       = 'ForceOff'
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    Type       = 'ForceOff'
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: ID: <ID>, Type: <Type>, ApiVersion: <ApiVersion>'
@@ -117,16 +117,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Stop-ArmorCompleteVM -ID 1 -Type 'Poweroff' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorVM'
+                    FoundReturnType    = ( Stop-ArmorCompleteVM -ID 1 -Type 'Poweroff' -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorVM'
                 }
             )
             $testName = $Global:ReturnTypeForm

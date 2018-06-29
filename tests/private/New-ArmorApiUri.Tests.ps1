@@ -23,8 +23,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -33,96 +33,96 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.String'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.String'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Server', 'Port', 'Endpoints', 'IDs'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Server', 'Port', 'Endpoints', 'IDs'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
     Context -Name $Global:Execution -Fixture {
         $testCases = @(
             @{
-                'Server'    = $invalidServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints
-                'IDs'       = $validIDs
+                Server    = $invalidServer
+                Port      = $validPort
+                Endpoints = $validEndpoints
+                IDs       = $validIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $invalidPort
-                'Endpoints' = $validEndpoints
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $invalidPort
+                Endpoints = $validEndpoints
+                IDs       = $validIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $invalidEndpoints[0]
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $invalidEndpoints[0]
+                IDs       = $validIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $invalidEndpoints[1]
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $invalidEndpoints[1]
+                IDs       = $validIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[0]
-                'IDs'       = $invalidIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[0]
+                IDs       = $invalidIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[0]
-                'IDs'       = $null
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[0]
+                IDs       = $null
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[0], $validEndpoints[0]
-                'IDs'       = @()
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[0], $validEndpoints[0]
+                IDs       = @()
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[1]
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[1]
+                IDs       = $validIDs
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[1]
-                'IDs'       = @()
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[1]
+                IDs       = @()
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[1], $validEndpoints[1]
-                'IDs'       = $validIDs[0]
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[1], $validEndpoints[1]
+                IDs       = $validIDs[0]
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[2]
-                'IDs'       = $validIDs[0]
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[2]
+                IDs       = $validIDs[0]
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints[2], $validEndpoints[2]
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints[2], $validEndpoints[2]
+                IDs       = $validIDs
             }
         )
         $testName = 'should fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs>'
@@ -134,22 +134,22 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints
-                'IDs'       = @()
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints
+                IDs       = @()
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints
-                'IDs'       = $validIDs[0]
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints
+                IDs       = $validIDs[0]
             },
             @{
-                'Server'    = $validServer
-                'Port'      = $validPort
-                'Endpoints' = $validEndpoints
-                'IDs'       = $validIDs
+                Server    = $validServer
+                Port      = $validPort
+                Endpoints = $validEndpoints
+                IDs       = $validIDs
             }
         )
         $testName = 'should not fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs>'
@@ -163,8 +163,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
             @{
-                'FoundReturnType'    = ( New-ArmorApiUri -Server $validServer -Port $validPort -Endpoints '/' -ErrorAction 'Stop' ).GetType().FullName
-                'ExpectedReturnType' = 'System.String'
+                FoundReturnType    = ( New-ArmorApiUri -Server $validServer -Port $validPort -Endpoints '/' -ErrorAction 'Stop' ).GetType().FullName
+                ExpectedReturnType = 'System.String'
             }
         )
         $testName = $Global:ReturnTypeForm

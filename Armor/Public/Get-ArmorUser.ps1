@@ -134,9 +134,9 @@ function Get-ArmorUser {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

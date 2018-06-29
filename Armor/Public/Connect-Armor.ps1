@@ -162,10 +162,10 @@ function Connect-Armor {
         }
 
         $splat = @{
-            'Uri' = $uri
-            'Method' = $resources.Method
-            'Body' = $body
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            Body        = $body
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

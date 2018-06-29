@@ -73,9 +73,9 @@ function Get-ArmorIdentity {
         $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

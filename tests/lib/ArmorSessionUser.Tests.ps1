@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' }
+            @{ Value = '' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -31,7 +31,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'User' }
+            @{ Value = 'User' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -49,10 +49,10 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'username' },
-            @{ 'Value' = 'username@example' },
-            @{ 'Value' = 'username@example.c' }
+            @{ Value = '' },
+            @{ Value = 'username' },
+            @{ Value = 'username@example' },
+            @{ Value = 'username@example.c' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -61,9 +61,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'username@example.com' },
-            @{ 'Value' = 'user.name@example.com' },
-            @{ 'Value' = 'user.name@example.company.com' }
+            @{ Value = 'username@example.com' },
+            @{ Value = 'user.name@example.com' },
+            @{ Value = 'user.name@example.company.com' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -81,7 +81,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' }
+            @{ Value = '' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -90,8 +90,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'Jean Luc' },
-            @{ 'Value' = 'Beverly' }
+            @{ Value = 'Jean Luc' },
+            @{ Value = 'Beverly' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -109,7 +109,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' }
+            @{ Value = '' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -118,8 +118,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'Picard' },
-            @{ 'Value' = 'Crusher' }
+            @{ Value = 'Picard' },
+            @{ Value = 'Crusher' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -137,7 +137,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = $null }
+            @{ Value = $null }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
@@ -146,7 +146,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = [PSCustomObject] @{ 'UserID' = 1 } }
+            @{ Value = [PSCustomObject] @{ UserID = 1 } }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )

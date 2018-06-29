@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 0 }
+            @{ Value = 0 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -31,8 +31,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 1 },
-            @{ 'Value' = 4294967295 }
+            @{ Value = 1 },
+            @{ Value = 4294967295 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt32] $Value )
@@ -50,7 +50,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 0 }
+            @{ Value = 0 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -59,8 +59,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 1 },
-            @{ 'Value' = 9223372036854775807 }
+            @{ Value = 1 },
+            @{ Value = 9223372036854775807 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt64] $Value )
@@ -78,13 +78,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'Disk' },
-            @{ 'Value' = 'Disk ' },
-            @{ 'Value' = 'Disk1' },
-            @{ 'Value' = 'Disk sda' },
-            @{ 'Value' = 'Disk 0' },
-            @{ 'Value' = 'Disk 61' }
+            @{ Value = '' },
+            @{ Value = 'Disk' },
+            @{ Value = 'Disk ' },
+            @{ Value = 'Disk1' },
+            @{ Value = 'Disk sda' },
+            @{ Value = 'Disk 0' },
+            @{ Value = 'Disk 61' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -93,8 +93,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'Disk 1' },
-            @{ 'Value' = 'Disk 60' }
+            @{ Value = 'Disk 1' },
+            @{ Value = 'Disk 60' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -112,9 +112,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'Performance' },
-            @{ 'Value' = 'Capacity' }
+            @{ Value = '' },
+            @{ Value = 'Performance' },
+            @{ Value = 'Capacity' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -123,9 +123,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'SSD' },
-            @{ 'Value' = 'Fluid' },
-            @{ 'Value' = 'Raw' }
+            @{ Value = 'SSD' },
+            @{ Value = 'Fluid' },
+            @{ Value = 'Raw' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )

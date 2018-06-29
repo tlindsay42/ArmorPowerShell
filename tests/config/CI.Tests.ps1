@@ -3,12 +3,12 @@ if ( $Env:CI -eq $true ) {
         Context -Name 'CI Abstraction' -Fixture {
             $testCases = @(
                 @{
-                    'VariableName' = '$Env:CI_BUILD_PATH'
-                    'Path'         = $Env:CI_BUILD_PATH
+                    VariableName = '$CI_BUILD_PATH'
+                    Path         = $CI_BUILD_PATH
                 },
                 @{
-                    'VariableName' = '$Env:CI_BUILD_SCRIPTS_PATH'
-                    'Path'         = $Env:CI_BUILD_SCRIPTS_PATH
+                    VariableName = '$CI_BUILD_SCRIPTS_PATH'
+                    Path         = $CI_BUILD_SCRIPTS_PATH
                 }
             )
             $testName = 'should set: <VariableName> to a directory that exists'
@@ -48,8 +48,8 @@ if ( $Env:CI -eq $true ) {
 
             $testCases = @(
                 @{
-                    'VariableName' = '$Env:CI_BRANCH'
-                    'String'       = $Env:CI_BRANCH
+                    VariableName = '$CI_BRANCH'
+                    String       = $CI_BRANCH
                 }
             )
             $testName = 'should set: <VariableName>'
@@ -86,20 +86,20 @@ if ( $Env:CI -eq $true ) {
 
             $testCases = @(
                 @{
-                    'VariableName' = '$Env:CI_MODULE_ETC_PATH'
-                    'Path'         = $Env:CI_MODULE_ETC_PATH
+                    VariableName = '$CI_MODULE_ETC_PATH'
+                    Path         = $CI_MODULE_ETC_PATH
                 },
                 @{
-                    'VariableName' = '$Env:CI_MODULE_LIB_PATH'
-                    'Path'         = $Env:CI_MODULE_LIB_PATH
+                    VariableName = '$CI_MODULE_LIB_PATH'
+                    Path         = $CI_MODULE_LIB_PATH
                 },
                 @{
-                    'VariableName' = '$Env:CI_MODULE_PRIVATE_PATH'
-                    'Path'         = $Env:CI_MODULE_PRIVATE_PATH
+                    VariableName = '$CI_MODULE_PRIVATE_PATH'
+                    Path         = $CI_MODULE_PRIVATE_PATH
                 },
                 @{
-                    'VariableName' = '$Env:CI_MODULE_PUBLIC_PATH'
-                    'Path'         = $Env:CI_MODULE_PUBLIC_PATH
+                    VariableName = '$CI_MODULE_PUBLIC_PATH'
+                    Path         = $CI_MODULE_PUBLIC_PATH
                 }
             )
             $testName = 'should set: <VariableName> to a directory that exists'
@@ -111,8 +111,8 @@ if ( $Env:CI -eq $true ) {
 
             $testCases = @(
                 @{
-                    'VariableName' = '$Env:CI_MODULE_MANIFEST_PATH'
-                    'Path'         = $Env:CI_MODULE_MANIFEST_PATH
+                    VariableName = '$CI_MODULE_MANIFEST_PATH'
+                    Path         = $CI_MODULE_MANIFEST_PATH
                 }
             )
             $testName = 'should set: <VariableName> to a file that exists'
@@ -141,12 +141,12 @@ if ( $Env:CI -eq $true ) {
 
             $testCases = @(
                 @{
-                    'VariableName' = '$Env:CI_TEST_RESULTS_PATH'
-                    'Path'         = $Env:CI_TEST_RESULTS_PATH
+                    VariableName = '$CI_TEST_RESULTS_PATH'
+                    Path         = $CI_TEST_RESULTS_PATH
                 },
                 @{
-                    'VariableName' = '$Env:CI_COVERAGE_RESULTS_PATH'
-                    'Path'         = $Env:CI_COVERAGE_RESULTS_PATH
+                    VariableName = '$CI_COVERAGE_RESULTS_PATH'
+                    Path         = $CI_COVERAGE_RESULTS_PATH
                 }
             )
             $testName = 'should set: <VariableName> to a new file'
@@ -170,12 +170,12 @@ if ( $Env:CI -eq $true ) {
             Context -Name 'Configuration Files' -Fixture {
                 $testCases = @(
                     @{
-                        'FileType' = 'git config'
-                        'Path'     = Join-Path -Path $Env:USERPROFILE -ChildPath '.gitconfig'
+                        FileType = 'git config'
+                        Path     = Join-Path -Path $Env:HOME -ChildPath '.gitconfig'
                     },
                     @{
-                        'FileType' = 'git credential'
-                        'Path'     = Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials'
+                        FileType = 'git credential'
+                        Path     = Join-Path -Path $Env:HOME -ChildPath '.git-credentials'
                     }
                 )
                 $testName = 'should have a: <FileType> file'

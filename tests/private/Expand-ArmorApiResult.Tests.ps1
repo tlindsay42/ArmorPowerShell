@@ -11,16 +11,16 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
     $validResults = @(
-        [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Desired' = 'Result1' } },
-        [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Desired' = 'Result2' } }
+        [PSCustomObject] @{ Data = [PSCustomObject] @{ Desired = 'Result1' } },
+        [PSCustomObject] @{ Data = [PSCustomObject] @{ Desired = 'Result2' } }
     )
     $invalidLocation = ''
     $validLocation = 'Data'
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -29,20 +29,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Results', 'Location'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Results', 'Location'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -52,20 +52,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Results'  = $null
-                'Location' = $validLocation
+                Results  = $null
+                Location = $validLocation
             },
             @{
-                'Results'  = @()
-                'Location' = $invalidLocation
+                Results  = @()
+                Location = $invalidLocation
             },
             @{
-                'Results'  = $validResults[0]
-                'Location' = $invalidLocation
+                Results  = $validResults[0]
+                Location = $invalidLocation
             },
             @{
-                'Results'  = $validResults
-                'Location' = $invalidLocation
+                Results  = $validResults
+                Location = $invalidLocation
             }
         )
         $testName = 'should fail when set to: Results: <Results>, Location: <Location>'
@@ -77,8 +77,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Results'  = $validResults
-                'Location' = $validLocation
+                Results  = $validResults
+                Location = $validLocation
             }
         )
         $testName = 'should not fail when set to: Results: <Results>, Location: <Location>'
@@ -93,15 +93,15 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
         $splat = @{
-            'Results'  = [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Desired' = 'Result1' } }
-            'Location' = 'Data'
+            Results  = [PSCustomObject] @{ Data = [PSCustomObject] @{ Desired = 'Result1' } }
+            Location = 'Data'
         }
         #endregion
 
         $testCases = @(
             @{
-                'FoundReturnType'    = ( Expand-ArmorApiResult @splat ).GetType().FullName
-                'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                FoundReturnType    = ( Expand-ArmorApiResult @splat ).GetType().FullName
+                ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
             }
         )
         $testName = $Global:ReturnTypeForm

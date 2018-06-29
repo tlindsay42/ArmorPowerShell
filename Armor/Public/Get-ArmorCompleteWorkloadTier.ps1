@@ -57,12 +57,12 @@ function Get-ArmorCompleteWorkloadTier {
         workloads with WorkloadID=2 and WorkloadID=3 via pipeline values.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Get-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ WorkloadID = 1; ID = 1 } | Get-ArmorCompleteWorkloadTier
         Retrieves the details for the workload tier with ID=1 in the workload with
         WorkloadID=1 via property names in the pipeline.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'Presentation' } | Get-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ WorkloadID = 1; Name = 'Presentation' } | Get-ArmorCompleteWorkloadTier
         Retrieves the details for the workload tier with Name='Presentation' in the
         workload with WorkloadID=1 via property names in the pipeline.
 
@@ -161,9 +161,9 @@ function Get-ArmorCompleteWorkloadTier {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

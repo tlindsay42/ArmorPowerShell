@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 0 }
+            @{ Value = 0 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -31,8 +31,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 1 },
-            @{ 'Value' = 65535 }
+            @{ Value = 1 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -50,7 +50,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' }
+            @{ Value = '' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -59,9 +59,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'Presentation' },
-            @{ 'Value' = 'Business Rules' },
-            @{ 'Value' = 'Persistence' }
+            @{ Value = 'Presentation' },
+            @{ Value = 'Business Rules' },
+            @{ Value = 'Persistence' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -79,7 +79,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 1 }
+            @{ Value = 1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -88,9 +88,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = @() },
-            @{ 'Value' = [ArmorVM]::New() },
-            @{ 'Value' = [ArmorVM]::New(), [ArmorVM]::New() }
+            @{ Value = @() },
+            @{ Value = [ArmorVM]::New() },
+            @{ Value = [ArmorVM]::New(), [ArmorVM]::New() }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )

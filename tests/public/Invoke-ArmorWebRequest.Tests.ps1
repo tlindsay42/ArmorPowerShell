@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject', 'System.Management.Automation.PSObject[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Endpoint', 'Headers', 'Method', 'Body', 'SuccessCode', 'Description', 'WhatIf', 'Confirm'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Endpoint', 'Headers', 'Method', 'Body', 'SuccessCode', 'Description', 'WhatIf', 'Confirm'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -46,8 +46,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $validEndpoint = '/apps'
             $invalidHeaders = @{}
             $validHeaders = @{
-                'Accept'            = 'application/json'
-                'Authorization'     = 'FH-AUTH d4641394719f4513a80f25de11a85138'
+                Accept              = 'application/json'
+                Authorization       = 'FH-AUTH d4641394719f4513a80f25de11a85138'
                 'Content-Type'      = 'application/json'
                 'X-Account-Context' = '1'
             }
@@ -61,32 +61,32 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Endpoint'    = $validEndpoint
-                    'Headers'     = $invalidHeaders
-                    'Method'      = $validMethod
-                    'SuccessCode' = $validSuccessCode
-                    'Description' = $validDescription
+                    Endpoint    = $validEndpoint
+                    Headers     = $invalidHeaders
+                    Method      = $validMethod
+                    SuccessCode = $validSuccessCode
+                    Description = $validDescription
                 },
                 @{
-                    'Endpoint'    = $validEndpoint
-                    'Headers'     = $validHeaders
-                    'Method'      = $invalidMethod
-                    'SuccessCode' = $validSuccessCode
-                    'Description' = $validDescription
+                    Endpoint    = $validEndpoint
+                    Headers     = $validHeaders
+                    Method      = $invalidMethod
+                    SuccessCode = $validSuccessCode
+                    Description = $validDescription
                 },
                 @{
-                    'Endpoint'    = $validEndpoint
-                    'Headers'     = $validHeaders
-                    'Method'      = $validMethod
-                    'SuccessCode' = $invalidSuccessCode
-                    'Description' = $validDescription
+                    Endpoint    = $validEndpoint
+                    Headers     = $validHeaders
+                    Method      = $validMethod
+                    SuccessCode = $invalidSuccessCode
+                    Description = $validDescription
                 },
                 @{
-                    'Endpoint'    = $validEndpoint
-                    'Headers'     = $validHeaders
-                    'Method'      = $validMethod
-                    'SuccessCode' = $validSuccessCode
-                    'Description' = $invalidDescription
+                    Endpoint    = $validEndpoint
+                    Headers     = $validHeaders
+                    Method      = $validMethod
+                    SuccessCode = $validSuccessCode
+                    Description = $invalidDescription
                 }
             )
             $testName = 'should fail when set to: Endpoint: <Endpoint>, Headers: <Headers>, Method: <Method>, SuccessCode: <SuccessCode>, Description: <Description>'
@@ -99,19 +99,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 404
-                    'StatusDescription' = 'Not Found'
-                    'Content'           = ''
+                    StatusCode        = 404
+                    StatusDescription = 'Not Found'
+                    Content           = ''
                 }
             } -ParameterFilter { $Endpoint -match $invalidEndpoint }
 
             $testCases = @(
                 @{
-                    'Endpoint'    = $invalidEndpoint
-                    'Headers'     = $validHeaders
-                    'Method'      = $validMethod
-                    'SuccessCode' = $validSuccessCode
-                    'Description' = $validDescription
+                    Endpoint    = $invalidEndpoint
+                    Headers     = $validHeaders
+                    Method      = $validMethod
+                    SuccessCode = $validSuccessCode
+                    Description = $validDescription
                 }
             )
             $testName = 'should fail when set to: Endpoint: <Endpoint>, Headers: <Headers>, Method: <Method>, SuccessCode: <SuccessCode>, Description: <Description>'
@@ -126,19 +126,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Workloads1Tiers1VMs1
                 }
             } -ParameterFilter { $Endpoint -match $validEndpoint }
 
             $testCases = @(
                 @{
-                    'Endpoint'    = $validEndpoint
-                    'Headers'     = $validHeaders
-                    'Method'      = $validMethod
-                    'SuccessCode' = $validSuccessCode
-                    'Description' = $validDescription
+                    Endpoint    = $validEndpoint
+                    Headers     = $validHeaders
+                    Method      = $validMethod
+                    SuccessCode = $validSuccessCode
+                    Description = $validDescription
                 }
             )
             $testName = 'should not fail when set to: Endpoint: <Endpoint>, Headers: <Headers>, Method: <Method>, SuccessCode: <SuccessCode>, Description: <Description>'
@@ -157,8 +157,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $validHeaders = @{
-                'Accept'            = 'application/json'
-                'Authorization'     = 'FH-AUTH d4641394719f4513a80f25de11a85138'
+                Accept              = 'application/json'
+                Authorization       = 'FH-AUTH d4641394719f4513a80f25de11a85138'
                 'Content-Type'      = 'application/json'
                 'X-Account-Context' = '1'
             }
@@ -167,15 +167,15 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Workloads1Tiers1VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Workloads1Tiers1VMs1
                 }
             }
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Invoke-ArmorWebRequest -Endpoint '/apps' -Headers $validHeaders -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    FoundReturnType    = ( Invoke-ArmorWebRequest -Endpoint '/apps' -Headers $validHeaders -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
                 }
             )
             $testName = $Global:ReturnTypeForm

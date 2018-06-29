@@ -31,7 +31,7 @@ function Get-ArmorAccountAddress {
         pipeline values.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccountAddress
+        [PSCustomObject] @{ ID = 1 } | Get-ArmorAccountAddress
         Retrieves the mailing address of the Armor account with ID=1 and ID=2 via
         property names in the pipeline.
 
@@ -100,10 +100,10 @@ function Get-ArmorAccountAddress {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Headers'     = $headers
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Headers     = $headers
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

@@ -27,7 +27,7 @@ function Remove-ArmorCompleteWorkload {
         via pipeline value.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1 | Remove-ArmorCompleteWorkload
+        [PSCustomObject] @{ ID = 1 | Remove-ArmorCompleteWorkload
         If confirmed and empty of child objects, deletes workload with ID=1 identified
         via property name in the pipeline.
 
@@ -93,10 +93,10 @@ function Remove-ArmorCompleteWorkload {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

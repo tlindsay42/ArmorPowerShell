@@ -53,7 +53,7 @@ function New-ArmorCompleteWorkloadTier {
         WorkloadID=1 in the Armor Complete account that currently has context.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'persistence' } | New-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | New-ArmorCompleteWorkloadTier
         Creates a new workload tier named 'persistence' in the workload with
         WorkloadID=1 in the Armor Complete account that currently has context.
 
@@ -131,10 +131,10 @@ function New-ArmorCompleteWorkloadTier {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

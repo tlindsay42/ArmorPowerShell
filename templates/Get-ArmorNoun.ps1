@@ -107,9 +107,9 @@ function Get-ArmorNoun {
 
         # Submit the request to the Armor API
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorCompleteDatacenter', 'ArmorCompleteDatacenter[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorCompleteDatacenter', 'ArmorCompleteDatacenter[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'Name', 'Location', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'ID', 'Name', 'Location', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -54,12 +54,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'ID'         = $invalidID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $invalidID
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $invalidApiVersion
+                    ID         = $validID
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -71,12 +71,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Name'       = $invalidName
-                    'ApiVersion' = $validApiVersion
+                    Name       = $invalidName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'Name'       = $validName
-                    'ApiVersion' = $invalidApiVersion
+                    Name       = $validName
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
@@ -88,12 +88,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Location'   = $invalidLocation
-                    'ApiVersion' = $validApiVersion
+                    Location   = $invalidLocation
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'Location'   = $validLocation
-                    'ApiVersion' = $invalidApiVersion
+                    Location   = $validLocation
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: Location: <Location>, ApiVersion: <ApiVersion>'
@@ -106,16 +106,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Datacenters5
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Datacenters5
                 }
             }
 
             $testCases = @(
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -130,8 +130,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Name'       = $validName
-                    'ApiVersion' = $validApiVersion
+                    Name       = $validName
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: Name: <Name>, ApiVersion: <ApiVersion>'
@@ -146,8 +146,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Location'   = $validLocation
-                    'ApiVersion' = $validApiVersion
+                    Location   = $validLocation
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: Location: <Location>, ApiVersion: <ApiVersion>'
@@ -167,24 +167,24 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Datacenters5
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Datacenters5
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Get-ArmorCompleteDatacenter -ID 5 -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteDatacenter'
+                    FoundReturnType    = ( Get-ArmorCompleteDatacenter -ID 5 -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorCompleteDatacenter'
                 },
                 @{
-                    'FoundReturnType'    = ( Get-ArmorCompleteDatacenter -Name 'AS East' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteDatacenter'
+                    FoundReturnType    = ( Get-ArmorCompleteDatacenter -Name 'AS East' -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorCompleteDatacenter'
                 },
                 @{
-                    'FoundReturnType'    = ( Get-ArmorCompleteDatacenter -Location 'AMS01' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteDatacenter'
+                    FoundReturnType    = ( Get-ArmorCompleteDatacenter -Location 'AMS01' -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorCompleteDatacenter'
                 }
             )
             $testName = $Global:ReturnTypeForm

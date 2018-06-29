@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorVM', 'ArmorVM[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorVM', 'ArmorVM[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'IsActive', 'DeleteNow', 'AccountID', 'UserName', 'ApiVersion', 'WhatIf', 'Confirm'
-        'Help'                   = $help
+        ExpectedParameterNames = 'ID', 'IsActive', 'DeleteNow', 'AccountID', 'UserName', 'ApiVersion', 'WhatIf', 'Confirm'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -48,58 +48,58 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $invalidApiVersion = 'v0.0'
             $validApiVersion = 'v1.0'
             $Global:ArmorSession = [ArmorSession]::New()
-            $Global:ArmorSession.User = [ArmorSessionUser] @{ 'UserName' = 'valid@example.tld' }
-            $Global:ArmorSession.Accounts = [ArmorAccount] @{ 'ID' = 1 }, [ArmorAccount] @{ 'ID' = 2 }
+            $Global:ArmorSession.User = [ArmorSessionUser] @{ UserName = 'valid@example.tld' }
+            $Global:ArmorSession.Accounts = [ArmorAccount] @{ ID = 1 }, [ArmorAccount] @{ ID = 2 }
             #endregion
 
             $testCases = @(
                 @{
-                    'ID'         = $invalidID
-                    'IsActive'   = $false
-                    'DeleteNow'  = $false
-                    'AccountID'  = $validID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $invalidID
+                    IsActive   = $false
+                    DeleteNow  = $false
+                    AccountID  = $validID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $null
-                    'DeleteNow'  = $false
-                    'AccountID'  = $validID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    IsActive   = $null
+                    DeleteNow  = $false
+                    AccountID  = $validID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $true
-                    'DeleteNow'  = $null
-                    'AccountID'  = $validID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    IsActive   = $true
+                    DeleteNow  = $null
+                    AccountID  = $validID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $false
-                    'DeleteNow'  = $true
-                    'AccountID'  = $invalidID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    IsActive   = $false
+                    DeleteNow  = $true
+                    AccountID  = $invalidID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $false
-                    'DeleteNow'  = $false
-                    'AccountID'  = $validID
-                    'UserName'   = $invalidUserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    IsActive   = $false
+                    DeleteNow  = $false
+                    AccountID  = $validID
+                    UserName   = $invalidUserName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $false
-                    'DeleteNow'  = $true
-                    'AccountID'  = $validID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $invalidApiVersion
+                    ID         = $validID
+                    IsActive   = $false
+                    DeleteNow  = $true
+                    AccountID  = $validID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: ID: <ID>, IsActive: <IsActive>, DeleteNow: <DeleteNow>, AccountID: <AccountID>, UserName: <UserName> ApiVersion: <ApiVersion>'
@@ -112,20 +112,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 202
-                    'StatusDescription' = 'Accepted'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 202
+                    StatusDescription = 'Accepted'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'ID'         = $validID
-                    'IsActive'   = $false
-                    'DeleteNow'  = $true
-                    'AccountID'  = $validID
-                    'UserName'   = $Global:ArmorSession.User.UserName
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    IsActive   = $false
+                    DeleteNow  = $true
+                    AccountID  = $validID
+                    UserName   = $Global:ArmorSession.User.UserName
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -144,24 +144,24 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $Global:ArmorSession = [ArmorSession]::New()
-            $Global:ArmorSession.User = [ArmorSessionUser] @{ 'UserName' = 'valid@example.tld' }
-            $Global:ArmorSession.Accounts = [ArmorAccount] @{ 'ID' = 1 }
+            $Global:ArmorSession.User = [ArmorSessionUser] @{ UserName = 'valid@example.tld' }
+            $Global:ArmorSession.Accounts = [ArmorAccount] @{ ID = 1 }
             $Global:ArmorSession.SetAccountContext( 1 )
             #endregion
 
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 202
-                    'StatusDescription' = 'Accepted'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 202
+                    StatusDescription = 'Accepted'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Remove-ArmorCompleteVM -ID 1 -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorVM'
+                    FoundReturnType    = ( Remove-ArmorCompleteVM -ID 1 -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorVM'
                 }
             )
             $testName = $Global:ReturnTypeForm

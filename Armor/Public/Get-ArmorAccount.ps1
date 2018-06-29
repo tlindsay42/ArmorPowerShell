@@ -35,12 +35,12 @@ function Get-ArmorAccount {
         Name='Example Child Account' via pipeline values.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccount
+        [PSCustomObject] @{ ID = 1 } | Get-ArmorAccount
         Gets the Armor account assigned to the logged in user account with ID=1 via
         property name in the pipeline.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'Name' = 'My Secure Account' } | Get-ArmorAccount
+        [PSCustomObject] @{ Name = 'My Secure Account' } | Get-ArmorAccount
         Gets the Armor account assigned to the logged in user account with
         Name='My Secure Account' via property name in the pipeline.
 
@@ -117,9 +117,9 @@ function Get-ArmorAccount {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

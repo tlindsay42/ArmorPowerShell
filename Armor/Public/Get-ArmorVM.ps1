@@ -52,11 +52,11 @@ function Get-ArmorVM {
         Retrieves all VMs containing the word 'secure' in the name via pipeline value.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorVM
+        [PSCustomObject] @{ ID = 1 } | Get-ArmorVM
         Retrieves the details for the VM with ID=1 via property name in the pipeline.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'Name' = 'app1' } | Get-ArmorVM
+        [PSCustomObject] @{ Name = 'app1' } | Get-ArmorVM
         Retrieves the details for the VM with Name='app1' via property name in the
         pipeline.
 
@@ -162,9 +162,9 @@ function Get-ArmorVM {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

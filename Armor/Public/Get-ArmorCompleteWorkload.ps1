@@ -55,12 +55,12 @@ function Get-ArmorCompleteWorkload {
         Name='WISP stack' via pipeline values.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'Name' = 'Secure stack' } | Get-ArmorCompleteWorkload
+        [PSCustomObject] @{ Name = 'Secure stack' } | Get-ArmorCompleteWorkload
         Retrieves the details for the workload with Name='Secure stack' via property
         name in the pipeline.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1 } | Get-ArmorCompleteWorkload
+        [PSCustomObject] @{ ID = 1 } | Get-ArmorCompleteWorkload
         Retrieves the details for the workload with ID=1 via property name in the
         pipeline.
 
@@ -148,9 +148,9 @@ function Get-ArmorCompleteWorkload {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

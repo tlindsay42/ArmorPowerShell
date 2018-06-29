@@ -22,7 +22,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 0 }
+            @{ Value = 0 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -31,8 +31,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 1 },
-            @{ 'Value' = 65535 }
+            @{ Value = 1 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -50,7 +50,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' }
+            @{ Value = '' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -59,7 +59,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 'LAMP stack' }
+            @{ Value = 'LAMP stack' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -77,8 +77,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'DFW' },
-            @{ 'Value' = 1 }
+            @{ Value = 'DFW' },
+            @{ Value = 1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -87,12 +87,12 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'AMS01' },
-            @{ 'Value' = 'DFW01' },
-            @{ 'Value' = 'LHR01' },
-            @{ 'Value' = 'PHX01' },
-            @{ 'Value' = 'SIN01' }
+            @{ Value = '' },
+            @{ Value = 'AMS01' },
+            @{ Value = 'DFW01' },
+            @{ Value = 'LHR01' },
+            @{ Value = 'PHX01' },
+            @{ Value = 'SIN01' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -110,9 +110,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'DFW01-VC01' },
-            @{ 'Value' = 'DFW01T01-VC05' },
-            @{ 'Value' = 1 }
+            @{ Value = 'DFW01-VC01' },
+            @{ Value = 'DFW01T01-VC05' },
+            @{ Value = 1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -121,19 +121,19 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'AMS01T01-VC01' },
-            @{ 'Value' = 'DFW01R01-VC01' },
-            @{ 'Value' = 'DFW01T01-VC01' },
-            @{ 'Value' = 'DFW01T01-VC02' },
-            @{ 'Value' = 'DFW01T01-VC03' },
-            @{ 'Value' = 'DFW01T01-VC04' },
-            @{ 'Value' = 'LHR01T01-VC01' },
-            @{ 'Value' = 'PHX01R01-VC01' },
-            @{ 'Value' = 'PHX01T01-VC01' },
-            @{ 'Value' = 'PHX01T01-VC02' },
-            @{ 'Value' = 'PHX01T01-VC03' },
-            @{ 'Value' = 'SIN01T01-VC01' }
+            @{ Value = '' },
+            @{ Value = 'AMS01T01-VC01' },
+            @{ Value = 'DFW01R01-VC01' },
+            @{ Value = 'DFW01T01-VC01' },
+            @{ Value = 'DFW01T01-VC02' },
+            @{ Value = 'DFW01T01-VC03' },
+            @{ Value = 'DFW01T01-VC04' },
+            @{ Value = 'LHR01T01-VC01' },
+            @{ Value = 'PHX01R01-VC01' },
+            @{ Value = 'PHX01T01-VC01' },
+            @{ Value = 'PHX01T01-VC02' },
+            @{ Value = 'PHX01T01-VC03' },
+            @{ Value = 'SIN01T01-VC01' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -151,7 +151,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'Banana' }
+            @{ Value = 'Banana' }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -160,8 +160,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = -1 },
-            @{ 'Value' = 19 }
+            @{ Value = -1 },
+            @{ Value = 19 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [Int16] $Value )
@@ -179,8 +179,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'True' },
-            @{ 'Value' = 'False' }
+            @{ Value = 'True' },
+            @{ Value = 'False' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -198,7 +198,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -207,8 +207,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ Value = 0 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -226,7 +226,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -235,8 +235,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ Value = 0 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -254,7 +254,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -263,8 +263,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ Value = 0 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -282,7 +282,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -291,8 +291,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ Value = 0 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -310,7 +310,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -319,8 +319,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 18446744073709551615 }
+            @{ Value = 0 },
+            @{ Value = 18446744073709551615 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt64] $Value )
@@ -338,8 +338,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = 'True' },
-            @{ 'Value' = 'False' }
+            @{ Value = 'True' },
+            @{ Value = 'False' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -357,7 +357,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = [PSCustomObject] @{ 'Tier1' = '1' } }
+            @{ Value = [PSCustomObject] @{ Tier1 = '1' } }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
@@ -366,9 +366,9 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = @() },
-            @{ 'Value' = [ArmorCompleteWorkloadTier]::New() },
-            @{ 'Value' = [ArmorCompleteWorkloadTier]::New(), [ArmorCompleteWorkloadTier]::New() }
+            @{ Value = @() },
+            @{ Value = [ArmorCompleteWorkloadTier]::New() },
+            @{ Value = [ArmorCompleteWorkloadTier]::New(), [ArmorCompleteWorkloadTier]::New() }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Value )
@@ -386,8 +386,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'Note to self.' }
+            @{ Value = '' },
+            @{ Value = 'Note to self.' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -405,7 +405,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = -1 }
+            @{ Value = -1 }
         )
         It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
             param ( [Int32] $Value )
@@ -414,8 +414,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         $testCases = @(
-            @{ 'Value' = 0 },
-            @{ 'Value' = 65535 }
+            @{ Value = 0 },
+            @{ Value = 65535 }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [UInt16] $Value )
@@ -433,8 +433,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:PropertyForm -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ 'Value' = '' },
-            @{ 'Value' = 'Tag1', 'Tag2' }
+            @{ Value = '' },
+            @{ Value = 'Tag1', 'Tag2' }
         )
         It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
             param ( [String[]] $Value )

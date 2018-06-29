@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorVM', 'ArmorVM[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorVM', 'ArmorVM[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'ID', 'ApiVersion', 'WhatIf', 'Confirm'
-        'Help'                   = $help
+        ExpectedParameterNames = 'ID', 'ApiVersion', 'WhatIf', 'Confirm'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -50,12 +50,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'ID'         = $invalidID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $invalidID
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $invalidApiVersion
+                    ID         = $validID
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -68,16 +68,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'ID'         = $validID
-                    'ApiVersion' = $validApiVersion
+                    ID         = $validID
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: ID: <ID>, ApiVersion: <ApiVersion>'
@@ -97,16 +97,16 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Restart-ArmorCompleteVM -ID 1 -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorVM'
+                    FoundReturnType    = ( Restart-ArmorCompleteVM -ID 1 -Confirm:$false -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorVM'
                 }
             )
             $testName = $Global:ReturnTypeForm

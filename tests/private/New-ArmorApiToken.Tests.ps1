@@ -13,8 +13,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -23,20 +23,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Code', 'GrantType', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Code', 'GrantType', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -55,19 +55,19 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Code'       = $invalidCode
-                    'GrantType'  = $validGrantType
-                    'ApiVersion' = $validApiVersion
+                    Code       = $invalidCode
+                    GrantType  = $validGrantType
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'Code'       = $validCode
-                    'GrantType'  = $invalidGrantType
-                    'ApiVersion' = $validApiVersion
+                    Code       = $validCode
+                    GrantType  = $invalidGrantType
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'Code'       = $validCode
-                    'GrantType'  = $validGrantType
-                    'ApiVersion' = $invalidApiVersion
+                    Code       = $validCode
+                    GrantType  = $validGrantType
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion>'
@@ -79,8 +79,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode' = 200
-                    'Content'    = $Global:JsonResponseBody.Token1
+                    StatusCode = 200
+                    Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
@@ -88,9 +88,9 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Code'       = $validCode
-                    'GrantType'  = $validGrantType
-                    'ApiVersion' = $validApiVersion
+                    Code       = $validCode
+                    GrantType  = $validGrantType
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion>'
@@ -108,10 +108,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
-                'Code'        = '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
-                'GrantType'   = 'authorization_code'
-                'ApiVersion'  = 'v1.0'
-                'ErrorAction' = 'Stop'
+                Code        = '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
+                GrantType   = 'authorization_code'
+                ApiVersion  = 'v1.0'
+                ErrorAction = 'Stop'
             }
 
             $Global:ArmorSession = [ArmorSession]::New()
@@ -119,8 +119,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode' = 200
-                    'Content'    = $Global:JsonResponseBody.Token1
+                    StatusCode = 200
+                    Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
@@ -128,8 +128,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( New-ArmorApiToken @splat ).GetType().FullName
-                    'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                    FoundReturnType    = ( New-ArmorApiToken @splat ).GetType().FullName
+                    ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
                 }
             )
             $testName = $Global:ReturnTypeForm

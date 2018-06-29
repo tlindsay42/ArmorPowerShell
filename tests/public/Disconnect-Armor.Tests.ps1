@@ -10,8 +10,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -20,20 +20,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     # $splat = @{
-    #     'ExpectedOutputTypeNames' = 'Void'
-    #     'Help'                    = $help
+    #     ExpectedOutputTypeNames = 'Void'
+    #     Help                    = $help
     # }
     # TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'WhatIf', 'Confirm'
-        'Help'                   = $help
+        ExpectedParameterNames = 'WhatIf', 'Confirm'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -48,8 +48,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
             @{
-                'FoundReturnType'    = Disconnect-Armor -Confirm:$false
-                'ExpectedReturnType' = 'System.Void'
+                FoundReturnType    = Disconnect-Armor -Confirm:$false
+                ExpectedReturnType = 'System.Void'
             }
         )
         $testName = $Global:ReturnTypeForm

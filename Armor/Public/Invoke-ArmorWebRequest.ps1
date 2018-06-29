@@ -129,10 +129,10 @@ function Invoke-ArmorWebRequest {
 
         if ( $PSCmdlet.ShouldProcess( $uri, $Description ) ) {
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $Method
-                'Body'        = $jsonBody
-                'SuccessCode' = $SuccessCode
+                Uri         = $uri
+                Method      = $Method
+                Body        = $jsonBody
+                SuccessCode = $SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

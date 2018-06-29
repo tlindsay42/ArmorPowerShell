@@ -16,8 +16,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -26,52 +26,52 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Management.Automation.PSObject', 'System.String[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject', 'System.String[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'FunctionName', 'ApiVersion', 'ApiVersions'
-        'Help'                   = $help
+        ExpectedParameterNames = 'FunctionName', 'ApiVersion', 'ApiVersions'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
     Context -Name $Global:Execution -Fixture {
         $testCases = @(
             @{
-                'FunctionName' = $invalidFunctionName
-                'ApiVersion'   = $validApiVersion
+                FunctionName = $invalidFunctionName
+                ApiVersion   = $validApiVersion
             },
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = $invalidFunctionName
+                FunctionName = $validFunctionName
+                ApiVersion   = $invalidFunctionName
             },
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = 'v0.1'
+                FunctionName = $validFunctionName
+                ApiVersion   = 'v0.1'
             },
             @{
-                'FunctionName' = ''
-                'ApiVersion'   = $validApiVersion
+                FunctionName = ''
+                ApiVersion   = $validApiVersion
             },
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = ''
+                FunctionName = $validFunctionName
+                ApiVersion   = ''
             },
             @{
-                'FunctionName' = $validFunctionName, $validFunctionName
-                'ApiVersion'   = $validApiVersion
+                FunctionName = $validFunctionName, $validFunctionName
+                ApiVersion   = $validApiVersion
             },
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = $validApiVersion, $validApiVersion
+                FunctionName = $validFunctionName
+                ApiVersion   = $validApiVersion, $validApiVersion
             }
         )
         $testName = 'should fail when set to: FunctionName: <FunctionName>, ApiVersion: <ApiVersion>'
@@ -83,8 +83,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'FunctionName' = $validFunctionName
-                'ApiVersion'   = $validApiVersion
+                FunctionName = $validFunctionName
+                ApiVersion   = $validApiVersion
             }
         )
         $testName = 'should not fail when set to: FunctionName: <FunctionName>, ApiVersion: <ApiVersion>'
@@ -95,9 +95,9 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $testCases = @(
-            @{ 'FunctionName' = $invalidFunctionName },
-            @{ 'FunctionName' = '' },
-            @{ 'FunctionName' = $validFunctionName, $validFunctionName }
+            @{ FunctionName = $invalidFunctionName },
+            @{ FunctionName = '' },
+            @{ FunctionName = $validFunctionName, $validFunctionName }
         )
         $testName = 'should fail when set to: FunctionName: <FunctionName>, ApiVersions: $true'
         It -Name $testName -TestCases $testCases -Test {
@@ -107,7 +107,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $testCases = @(
-            @{ 'FunctionName' = $validFunctionName }
+            @{ FunctionName = $validFunctionName }
         )
         $testName = 'should not fail when set to: FunctionName: <FunctionName>, ApiVersions: $true'
         It -Name $testName -TestCases $testCases -Test {
@@ -120,12 +120,12 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
             @{
-                'FoundReturnType'    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
-                'ExpectedReturnType' = 'System.Management.Automation.PSCustomObject'
+                FoundReturnType    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName
+                ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
             },
             @{
-                'FoundReturnType'    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersions -ErrorAction 'Stop' ).GetType().FullName
-                'ExpectedReturnType' = 'System.String'
+                FoundReturnType    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersions -ErrorAction 'Stop' ).GetType().FullName
+                ExpectedReturnType = 'System.String'
             }
         )
         $testName = $Global:ReturnTypeForm

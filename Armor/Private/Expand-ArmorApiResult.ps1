@@ -18,11 +18,11 @@ function Expand-ArmorApiResult {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        Expand-ArmorApiResult -Results [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Important' = 'Info' } } -Location 'Data'
+        Expand-ArmorApiResult -Results [PSCustomObject] @{ Data = [PSCustomObject] @{ Important = 'Info' } } -Location 'Data'
         Returns the value of the 'Data' property.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Important' = 'Info' } } | Expand-ArmorApiResult -Location 'Data'
+        [PSCustomObject] @{ Data = [PSCustomObject] @{ Important = 'Info' } } | Expand-ArmorApiResult -Location 'Data'
         Returns the value of the 'Data' property.
 
         .LINK

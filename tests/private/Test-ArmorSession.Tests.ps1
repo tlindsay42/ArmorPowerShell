@@ -14,8 +14,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -24,20 +24,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Void'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Void'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = @()
-        'Help'                   = $help
+        ExpectedParameterNames = @()
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -54,18 +54,18 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                'Session'       = [ArmorSession]::New()
-                'Authorization' = ''
+                Session       = [ArmorSession]::New()
+                Authorization = ''
             },
             @{
-                'Session'       = $Global:JsonResponseBody.Session1 |
+                Session       = $Global:JSON_RESPONSE_BODY.Session1 |
                     ConvertFrom-Json -ErrorAction 'Stop'
-                'Authorization' = 'FH-AUTH efa32575460946e'
+                Authorization = 'FH-AUTH efa32575460946e'
             },
             @{
-                'Session'       = $Global:JsonResponseBody.Session1 |
+                Session       = $Global:JSON_RESPONSE_BODY.Session1 |
                     ConvertFrom-Json -ErrorAction 'Stop'
-                'Authorization' = 'Bearer d4641394719f4513a80f25de11a85138'
+                Authorization = 'Bearer d4641394719f4513a80f25de11a85138'
             }
         )
         $testName = 'should fail when the session authorization is: <Authorization>'
@@ -122,8 +122,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
         $testCases = @(
             @{
-                'FoundReturnType'    = Test-ArmorSession
-                'ExpectedReturnType' = ''
+                FoundReturnType    = Test-ArmorSession
+                ExpectedReturnType = ''
             }
         )
         $testName = $Global:ReturnTypeForm

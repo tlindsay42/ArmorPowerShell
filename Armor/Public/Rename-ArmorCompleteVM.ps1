@@ -20,7 +20,7 @@ function Rename-ArmorCompleteVM {
         Renames the VM with ID=1 to 'TEST-VM'.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-VM' } | Rename-ArmorCompleteVM
+        [PSCustomObject] @{ ID = 1; NewName = 'TEST-VM' } | Rename-ArmorCompleteVM
         Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
 
         .LINK
@@ -100,10 +100,10 @@ function Rename-ArmorCompleteVM {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

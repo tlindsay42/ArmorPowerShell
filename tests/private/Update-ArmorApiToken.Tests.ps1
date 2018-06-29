@@ -13,8 +13,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -23,20 +23,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'System.Void'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'System.Void'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'Token', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'Token', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -49,25 +49,25 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'access_token' = '2c307390e95843'
-                    'id_token'     = $null
-                    'expires_in'   = 15
-                    'token_type'   = 'Bearer'
+                    access_token = '2c307390e95843'
+                    id_token     = $null
+                    expires_in   = 15
+                    token_type   = 'Bearer'
                 }
             }
 
             $testCases = @(
                 @{
-                    'Token'      = ''
-                    'ApiVersion' = $validApiVersion
+                    Token      = ''
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'Token'      = $validToken
-                    'ApiVersion' = '1.0'
+                    Token      = $validToken
+                    ApiVersion = '1.0'
                 },
                 @{ # Invalid access_token in response body
-                    'Token'      = $validToken
-                    'ApiVersion' = $validApiVersion
+                    Token      = $validToken
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should fail when Token: <Token> ApiVersion: <ApiVersion> access_token: 2c307390e95843'
@@ -81,10 +81,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'access_token' = '2c307390e95843e38804f40ca8cac03e'
-                    'id_token'     = $null
-                    'expires_in'   = 15
-                    'token_type'   = 'Bearer'
+                    access_token = '2c307390e95843e38804f40ca8cac03e'
+                    id_token     = $null
+                    expires_in   = 15
+                    token_type   = 'Bearer'
                 }
             }
 
@@ -94,8 +94,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'Token'      = $validToken
-                    'ApiVersion' = $validApiVersion
+                    Token      = $validToken
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when Token: <Token> ApiVersion: <ApiVersion> access_token: 2c307390e95843e38804f40ca8cac03e'
@@ -120,17 +120,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
-                    'access_token' = '2c307390e95843e38804f40ca8cac03e'
-                    'id_token'     = $null
-                    'expires_in'   = 15
-                    'token_type'   = 'Bearer'
+                    access_token = '2c307390e95843e38804f40ca8cac03e'
+                    id_token     = $null
+                    expires_in   = 15
+                    token_type   = 'Bearer'
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = Update-ArmorApiToken
-                    'ExpectedReturnType' = ''
+                    FoundReturnType    = Update-ArmorApiToken
+                    ExpectedReturnType = ''
                 }
             )
             $testName = $Global:ReturnTypeForm

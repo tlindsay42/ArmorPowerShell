@@ -12,8 +12,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -22,20 +22,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorCompleteWorkloadTier', 'ArmorCompleteWorkloadTier[]'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorCompleteWorkloadTier', 'ArmorCompleteWorkloadTier[]'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = 'WorkloadID', 'ID', 'Name', 'ApiVersion'
-        'Help'                   = $help
+        ExpectedParameterNames = 'WorkloadID', 'ID', 'Name', 'ApiVersion'
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -52,19 +52,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'WorkloadID' = $invalidID
-                    'ID'         = $validID
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $invalidID
+                    ID         = $validID
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'WorkloadID' = $validID
-                    'ID'         = $invalidID
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $validID
+                    ID         = $invalidID
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'WorkloadID' = $validID
-                    'ID'         = $validID
-                    'ApiVersion' = $invalidApiVersion
+                    WorkloadID = $validID
+                    ID         = $validID
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, ID: <ID>, ApiVersion: <ApiVersion>'
@@ -76,19 +76,19 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'WorkloadID' = $invalidID
-                    'Name'       = $validName
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $invalidID
+                    Name       = $validName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'WorkloadID' = $validID
-                    'Name'       = $invalidName
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $validID
+                    Name       = $invalidName
+                    ApiVersion = $validApiVersion
                 },
                 @{
-                    'WorkloadID' = $validID
-                    'Name'       = $validName
-                    'ApiVersion' = $invalidApiVersion
+                    WorkloadID = $validID
+                    Name       = $validName
+                    ApiVersion = $invalidApiVersion
                 }
             )
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
@@ -101,17 +101,17 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Tiers1VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Tiers1VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'WorkloadID' = $validID
-                    'Name'       = 'Garbage'
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $validID
+                    Name       = 'Garbage'
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
@@ -126,9 +126,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'WorkloadID' = $validID
-                    'ID'         = $validID
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $validID
+                    ID         = $validID
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: WorkloadID: <WorkloadID>, ID: <ID>, ApiVersion: <ApiVersion>'
@@ -143,9 +143,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    'WorkloadID' = $validID
-                    'Name'       = $validName
-                    'ApiVersion' = $validApiVersion
+                    WorkloadID = $validID
+                    Name       = $validName
+                    ApiVersion = $validApiVersion
                 }
             )
             $testName = 'should not fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
@@ -165,20 +165,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
-                    'StatusCode'        = 200
-                    'StatusDescription' = 'OK'
-                    'Content'           = $Global:JsonResponseBody.Tiers1VMs1
+                    StatusCode        = 200
+                    StatusDescription = 'OK'
+                    Content           = $Global:JSON_RESPONSE_BODY.Tiers1VMs1
                 }
             }
 
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -ID 1 -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteWorkloadTier'
+                    FoundReturnType    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -ID 1 -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorCompleteWorkloadTier'
                 },
                 @{
-                    'FoundReturnType'    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorCompleteWorkloadTier'
+                    FoundReturnType    = ( Get-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
+                    ExpectedReturnType = 'ArmorCompleteWorkloadTier'
                 }
             )
             $testName = $Global:ReturnTypeForm

@@ -16,40 +16,40 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         $author = 'Troy Lindsay'
         $testCases = @(
             @{
-                'Property' = 'RootModule'
-                'Value'    = "${Env:CI_MODULE_NAME}.psm1"
+                Property = 'RootModule'
+                Value    = "${Global:CI_MODULE_NAME}.psm1"
             },
             @{
-                'Property' = 'Version'
-                'Value'    = $Env:CI_MODULE_VERSION
+                Property = 'Version'
+                Value    = $CI_MODULE_VERSION
             },
             @{
-                'Property' = 'GUID'
-                'Value'    = '226c1ea9-1078-402a-861c-10a845a0d173'
+                Property = 'GUID'
+                Value    = '226c1ea9-1078-402a-861c-10a845a0d173'
             },
             @{
-                'Property' = 'Author'
-                'Value'    = $author
+                Property = 'Author'
+                Value    = $author
             },
             @{
-                'Property' = 'CompanyName'
-                'Value'    = 'Armor'
+                Property = 'CompanyName'
+                Value    = 'Armor'
             },
             @{
-                'Property' = 'Copyright'
-                'Value'    = "© 2017-$( ( Get-Date ).Year ) ${author}. All rights reserved."
+                Property = 'Copyright'
+                Value    = "©2017-$( ( Get-Date ).Year ) ${author}. All rights reserved."
             },
             @{
-                'Property' = 'ProcessorArchitecture'
-                'Value'    = 'None'
+                Property = 'ProcessorArchitecture'
+                Value    = 'None'
             },
             @{
-                'Property' = 'Prefix'
-                'Value'    = ''
+                Property = 'Prefix'
+                Value    = ''
             },
             @{
-                'Property' = 'HelpInfoURI'
-                'Value'    = 'https://tlindsay42.github.io/ArmorPowerShell/'
+                Property = 'HelpInfoURI'
+                Value    = 'https://tlindsay42.github.io/ArmorPowerShell/'
             }
         )
         It -Name "should have set property: <Property> to: <Value>" -TestCases $testCases -Test {
@@ -59,19 +59,19 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
 
         $testCases = @(
-            @{ 'Property' = 'CompatiblePSEditions' },
-            @{ 'Property' = 'PowerShellHostName' },
-            @{ 'Property' = 'PowerShellHostVersion' },
-            @{ 'Property' = 'DotNetFrameworkVersion' },
-            @{ 'Property' = 'ClrVersion' },
-            @{ 'Property' = 'RequiredModules' },
-            @{ 'Property' = 'RequiredAssemblies' },
-            @{ 'Property' = 'ExportedTypeFiles' },
-            @{ 'Property' = 'ExportedFormatFiles' },
-            @{ 'Property' = 'NestedModules' },
-            @{ 'Property' = 'ExportedDscResources' },
-            @{ 'Property' = 'ModuleList' },
-            @{ 'Property' = 'ReleaseNotes' }
+            @{ Property = 'CompatiblePSEditions' },
+            @{ Property = 'PowerShellHostName' },
+            @{ Property = 'PowerShellHostVersion' },
+            @{ Property = 'DotNetFrameworkVersion' },
+            @{ Property = 'ClrVersion' },
+            @{ Property = 'RequiredModules' },
+            @{ Property = 'RequiredAssemblies' },
+            @{ Property = 'ExportedTypeFiles' },
+            @{ Property = 'ExportedFormatFiles' },
+            @{ Property = 'NestedModules' },
+            @{ Property = 'ExportedDscResources' },
+            @{ Property = 'ModuleList' },
+            @{ Property = 'ReleaseNotes' }
         )
         It -Name "should have set property: <Property> to: `$null" -TestCases $testCases -Test {
             param ( [String] $Property )
@@ -80,16 +80,16 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
 
         $testCases = $(
-            @{ 'Value' = 'Armor Complete' },
-            @{ 'Value' = 'Armor Anywhere' },
-            @{ 'Value' = 'Windows' },
-            @{ 'Value' = 'AppVeyor' },
-            @{ 'Value' = 'macOS' },
-            @{ 'Value' = 'Ubuntu Linux' },
-            @{ 'Value' = 'Travis CI' },
-            @{ 'Value' = 'Code coverage' },
-            @{ 'Value' = 'Coveralls' },
-            @{ 'Value' = 'PowerShell Gallery' }
+            @{ Value = 'Armor Complete' },
+            @{ Value = 'Armor Anywhere' },
+            @{ Value = 'Windows' },
+            @{ Value = 'AppVeyor' },
+            @{ Value = 'macOS' },
+            @{ Value = 'Ubuntu Linux' },
+            @{ Value = 'Travis CI' },
+            @{ Value = 'Code coverage' },
+            @{ Value = 'Coveralls' },
+            @{ Value = 'PowerShell Gallery' }
         )
         It -Name "should have set property: 'Description' to contain keyword: <Value>" -TestCases $testCases -Test {
             param ( [String] $Value )
@@ -99,20 +99,20 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
 
         $testCases = @(
             @{
-                'Property' = 'PowerShellVersion'
-                'Value'    = '5.0'
+                Property = 'PowerShellVersion'
+                Value    = '5.0'
             },
             @{
-                'Property' = 'LicenseURI'
-                'Value'    = 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE.txt'
+                Property = 'LicenseURI'
+                Value    = 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE.txt'
             },
             @{
-                'Property' = 'ProjectURI'
-                'Value'    = 'https://github.com/tlindsay42/ArmorPowerShell'
+                Property = 'ProjectURI'
+                Value    = 'https://github.com/tlindsay42/ArmorPowerShell'
             },
             @{
-                'Property' = 'IconURI'
-                'Value'    = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
+                Property = 'IconURI'
+                Value    = 'https://tlindsay42.github.io/ArmorPowerShell/img/Armor_logo.png'
             }
         )
         It -Name 'should have set property: <Property> to: <Value>' -TestCases $testCases -Test {
@@ -122,8 +122,8 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
 
         $testCases = @(
-            @{ 'Property' = 'ExportedCmdlets' },
-            @{ 'Property' = 'ExportedVariables' }
+            @{ Property = 'ExportedCmdlets' },
+            @{ Property = 'ExportedVariables' }
         )
         It -Name 'should have set property: <Property> to an empty collection' -TestCases $testCases -Test {
             param ( [String] $Property )
@@ -133,8 +133,8 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
 
         $testCases = @(
             @{
-                'Property' = 'ExportedAliases'
-                'Value'    = ( Get-Content -Path "${Env:CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' | ConvertFrom-Json -ErrorAction 'Stop' ).Count
+                Property = 'ExportedAliases'
+                Value    = ( Get-Content -Path "${CI_MODULE_ETC_PATH}/Aliases.json" -ErrorAction 'Stop' | ConvertFrom-Json -ErrorAction 'Stop' ).Count
             }
         )
         It -Name 'should have set property: <Property> to: <Value>' -TestCases $testCases -Test {

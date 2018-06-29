@@ -20,7 +20,7 @@ function Rename-ArmorCompleteWorkloadTier {
         Renames the workload tier with ID=1 to 'TEST-TIER'.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-TIER' } | Rename-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ ID = 1; NewName = 'TEST-TIER' } | Rename-ArmorCompleteWorkloadTier
         Renames the workload tier with ID=1 to 'TEST-WORKLOAD' via property names in the
         pipeline.
 
@@ -110,10 +110,10 @@ function Rename-ArmorCompleteWorkloadTier {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 

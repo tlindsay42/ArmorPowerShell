@@ -35,7 +35,7 @@ function Get-ArmorCompleteDatacenter {
         Location='PHX01' via pipeline values.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'Location' = 'EU West' } | Get-ArmorCompleteDatacenter
+        [PSCustomObject] @{ Location = 'EU West' } | Get-ArmorCompleteDatacenter
         Retrieves the details for the Armor Complete datacenter with Name='EU West' via
         property name in the pipeline.
 
@@ -120,9 +120,9 @@ function Get-ArmorCompleteDatacenter {
         $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
-            'Uri'         = $uri
-            'Method'      = $resources.Method
-            'SuccessCode' = $resources.SuccessCode
+            Uri         = $uri
+            Method      = $resources.Method
+            SuccessCode = $resources.SuccessCode
         }
         $results = Submit-ArmorApiRequest @splat
 

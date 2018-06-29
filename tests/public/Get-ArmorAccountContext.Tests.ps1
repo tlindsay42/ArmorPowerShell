@@ -10,26 +10,26 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
     $Global:ArmorSession = [ArmorSession]::New()
     $Global:ArmorSession.Accounts += [ArmorAccount] @{
-        'ID'       = 1
-        'Name'     = 'Armor Defense, Inc.'
-        'Currency' = 'USD'
-        'Status'   = 'Claimed'
-        'Parent'   = -1
-        'Products' = @()
+        ID       = 1
+        Name     = 'Armor Defense, Inc.'
+        Currency = 'USD'
+        Status   = 'Claimed'
+        Parent   = -1
+        Products = @()
     }
     $Global:ArmorSession.Accounts += [ArmorAccount] @{
-        'ID'       = 2
-        'Name'     = 'Old Armor QA Account, Ltd'
-        'Currency' = 'GBP'
-        'Status'   = 'Cancelled'
-        'Parent'   = 1
-        'Products' = @()
+        ID       = 2
+        Name     = 'Old Armor QA Account, Ltd'
+        Currency = 'GBP'
+        Status   = 'Cancelled'
+        Parent   = 1
+        Products = @()
     }
     #endregion
 
     $splat = @{
-        'ExpectedFunctionName' = $function
-        'FoundFunctionName'    = $help.Name
+        ExpectedFunctionName = $function
+        FoundFunctionName    = $help.Name
     }
     TestAdvancedFunctionName @splat
 
@@ -38,20 +38,20 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     TestAdvancedFunctionHelpInputs -Help $help
 
     $splat = @{
-        'ExpectedOutputTypeNames' = 'ArmorAccount'
-        'Help'                    = $help
+        ExpectedOutputTypeNames = 'ArmorAccount'
+        Help                    = $help
     }
     TestAdvancedFunctionHelpOutputs @splat
 
     $splat = @{
-        'ExpectedParameterNames' = @()
-        'Help'                   = $help
+        ExpectedParameterNames = @()
+        Help                   = $help
     }
     TestAdvancedFunctionHelpParameters @splat
 
     $splat = @{
-        'ExpectedNotes' = $Global:FunctionHelpNotes
-        'Help'          = $help
+        ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
+        Help          = $help
     }
     TestAdvancedFunctionHelpNotes @splat
 
@@ -72,8 +72,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         }
 
             $testCases = @(
-                @{ 'ID' = $Global:ArmorSession.Accounts[0].ID },
-                @{ 'ID' = $Global:ArmorSession.Accounts[1].ID }
+            @{ ID = $Global:ArmorSession.Accounts[0].ID },
+            @{ ID = $Global:ArmorSession.Accounts[1].ID }
             )
             $testName = 'should not fail when set to: ID: <ID>'
             It -Name $testName -TestCases $testCases -Test {
@@ -88,8 +88,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             $testCases = @(
                 @{
-                    'FoundReturnType'    = ( Get-ArmorAccountContext -ErrorAction 'Stop' ).GetType().FullName
-                    'ExpectedReturnType' = 'ArmorAccount'
+                FoundReturnType    = ( Get-ArmorAccountContext -ErrorAction 'Stop' ).GetType().FullName
+                ExpectedReturnType = 'ArmorAccount'
                 }
             )
             $testName = $Global:ReturnTypeForm

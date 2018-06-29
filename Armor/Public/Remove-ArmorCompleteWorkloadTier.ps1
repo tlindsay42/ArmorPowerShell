@@ -46,7 +46,7 @@ function Remove-ArmorCompleteWorkloadTier {
         context.
 
         .EXAMPLE
-        [PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Remove-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ WorkloadID = 1; ID = 1 } | Remove-ArmorCompleteWorkloadTier
         Deletes the workload tier with ID=1 in the workload with WorkloadID=1 in the
         Armor Complete account that currently has context.
 
@@ -124,10 +124,10 @@ function Remove-ArmorCompleteWorkloadTier {
             $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
             $splat = @{
-                'Uri'         = $uri
-                'Method'      = $resources.Method
-                'Body'        = $body
-                'SuccessCode' = $resources.SuccessCode
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
             }
             $results = Submit-ArmorApiRequest @splat
 
