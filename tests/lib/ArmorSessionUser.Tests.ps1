@@ -14,7 +14,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             { [ArmorSessionUser]::New() } |
                 Should -Not -Throw
         }
-    } # End of Context
+    }
 
     [ArmorSessionUser] $temp = [ArmorSessionUser]::New()
 
@@ -28,7 +28,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'User' }
@@ -37,13 +37,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'UserName'
     $context = $Global:PropertyForm -f $property
@@ -58,7 +58,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'username@example.com' },
@@ -69,13 +69,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'FirstName'
     $context = $Global:PropertyForm -f $property
@@ -87,7 +87,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'Jean Luc' },
@@ -97,13 +97,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'LastName'
     $context = $Global:PropertyForm -f $property
@@ -115,7 +115,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'Picard' },
@@ -125,13 +125,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'Links'
     $context = $Global:PropertyForm -f $property
@@ -143,7 +143,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [PSCustomObject[]] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = [PSCustomObject] @{ 'UserID' = 1 } }
@@ -152,13 +152,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [PSCustomObject[]] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.Management.Automation.PSCustomObject] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Remove-Variable -Name 'temp'
-} # End of Describe
+}

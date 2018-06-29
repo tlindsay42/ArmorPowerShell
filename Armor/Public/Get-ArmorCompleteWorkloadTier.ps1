@@ -142,7 +142,7 @@ function Get-ArmorCompleteWorkloadTier {
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         Test-ArmorSession
-    } # End of begin
+    }
 
     process {
         [ArmorCompleteWorkloadTier[]] $return = $null
@@ -179,9 +179,9 @@ function Get-ArmorCompleteWorkloadTier {
         }
 
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

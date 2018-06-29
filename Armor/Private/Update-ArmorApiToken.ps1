@@ -66,7 +66,7 @@ function Update-ArmorApiToken {
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-    } # End of begin
+    }
 
     process {
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion
@@ -86,9 +86,9 @@ function Update-ArmorApiToken {
         $results = Submit-ArmorApiRequest @splat
 
         $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

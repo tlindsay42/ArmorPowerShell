@@ -3,8 +3,8 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         It -Name "should import module: '${Env:CI_MODULE_NAME}'" -Test {
             { Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force } |
                 Should -Not -Throw
-        } # End of It
-    } # End of Context
+        }
+    }
 
     <#
     Get the last index because the script files in ScriptsToProcess are
@@ -56,7 +56,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property, [String] $Value )
             $moduleInfo.$Property |
                 Should -BeExactly $Value
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Property' = 'CompatiblePSEditions' },
@@ -77,7 +77,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property )
             $moduleInfo.$Property |
                 Should -BeExactly $null
-        } # End of It
+        }
 
         $testCases = $(
             @{ 'Value' = 'Armor Complete' },
@@ -95,7 +95,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Value )
             $moduleInfo.Description |
                 Should -Match $Value
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -119,7 +119,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property, [String] $Value )
             $moduleInfo.$Property.ToString() |
                 Should -BeExactly $Value
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Property' = 'ExportedCmdlets' },
@@ -129,7 +129,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property )
             $moduleInfo.$Property.Count |
                 Should -BeExactly 0
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -141,13 +141,13 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property, [UInt16] $Value )
             $moduleInfo.$Property.Count |
                 Should -Be $Value
-        } # End of It
+        }
 
         It -Name "should have set property: 'Tags'" -Test {
             $moduleInfo.Tags.Count |
                 Should -BeGreaterThan 0
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -File
     $functionNames = $moduleInfo.ExportedFunctions.Keys
@@ -157,16 +157,16 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             It -Name "should contain entry: '${fileName}'" -Test {
                 $fileName.BaseName |
                     Should -BeIn $functionNames
-            } # End of It
+            }
         }
 
         foreach ( $functionName in $functionNames ) {
             It -Name "should have matching file: '${functionName}'" -Test {
                 $functionName |
                     Should -BeIn $fileNames.BaseName
-            } # End of It
+            }
         }
-    } # End of Context
+        }
 
     $fileNames = Get-ChildItem -Path $Env:CI_MODULE_LIB_PATH -File
 
@@ -175,16 +175,16 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             It -Name "should contain entry: '${fileName}'" -Test {
                 $fileName.FullName |
                     Should -BeIn $moduleInfo.Scripts
-            } # End of It
+            }
         }
 
         foreach ( $fileName in $moduleInfo.Scripts ) {
             It -Name "should have matching file: '$( Split-Path -Path $fileName -Leaf )'" -Test {
                 $fileName |
                     Should -BeIn $fileNames.FullName
-            } # End of It
+            }
         }
-    } # End of Context
+        }
 
     $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse
 
@@ -193,14 +193,14 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             It -Name "should contain entry: '${fileName}'" -Test {
                 $fileName.FullName |
                     Should -BeIn $moduleInfo.FileList
-            } # End of It
+            }
         }
 
         foreach ( $fileName in $moduleInfo.FileList ) {
             It -Name "should have matching file: '$( Split-Path -Path $fileName -Leaf )'" -Test {
                 $fileName |
                     Should -BeIn $fileNames.FullName
-            } # End of It
+            }
         }
-    } # End of Context
-} # End of Describe
+    }
+        }

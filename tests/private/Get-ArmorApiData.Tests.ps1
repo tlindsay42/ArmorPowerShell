@@ -79,7 +79,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FunctionName, [String] $ApiVersion )
             { Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -92,7 +92,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FunctionName, [String] $ApiVersion )
             { Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'FunctionName' = $invalidFunctionName },
@@ -104,7 +104,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FunctionName )
             { Get-ArmorApiData -FunctionName $FunctionName -ApiVersions } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'FunctionName' = $validFunctionName }
@@ -114,8 +114,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FunctionName )
             { Get-ArmorApiData -FunctionName $FunctionName -ApiVersions } |
                 Should -Not -Throw
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
@@ -133,13 +133,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         # $testName = "has an 'OutputType' entry for <FoundReturnType>"
         # It -Name $testName -TestCases $testCases -Test {
         #     param ( [String] $FoundReturnType )
         #     $FoundReturnType |
         #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # } # End of It
-    } # End of Context
-} # End of Describe
+        # }
+    }
+}

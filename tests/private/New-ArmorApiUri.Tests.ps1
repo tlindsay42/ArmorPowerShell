@@ -130,7 +130,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
             { New-ArmorApiUri -Server $Server -Port $Port -Endpoints $Endpoints -IDs $IDs } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -157,8 +157,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
             { New-ArmorApiUri -Server $Server -Port $Port -Endpoints $Endpoints -IDs $IDs } |
                 Should -Not -Throw
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
@@ -172,13 +172,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         $testName = "has an 'OutputType' entry for <FoundReturnType>"
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        } # End of It
-    } # End of Context
-} # End of Describe
+        }
+    }
+}

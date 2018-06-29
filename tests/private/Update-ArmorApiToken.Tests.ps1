@@ -75,7 +75,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 param ( [String] $Token, [String] $ApiVersion )
                 { Update-ArmorApiToken -Token $Token -ApiVersion $ApiVersion } |
                     Should -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
 
@@ -103,11 +103,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 param ( [String] $Token, [String] $ApiVersion )
                 { Update-ArmorApiToken -Token $Token -ApiVersion $ApiVersion } |
                     Should -Not -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -138,7 +138,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
 
@@ -147,7 +147,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             #     param ( [String] $FoundReturnType )
             #     $FoundReturnType |
             #         Should -BeIn ( Get-Help -Name Update-ArmorApiToken ).ReturnValues.ReturnValue.Type.Name
-            # } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+            # }
+        }
+    }
+}

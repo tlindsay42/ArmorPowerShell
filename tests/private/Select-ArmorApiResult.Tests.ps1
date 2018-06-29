@@ -68,7 +68,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [PSCustomObject[]] $Results, [PSCustomObject[]] $Filters )
             { Test-SelectArmorApiResult1 -Name $name -Results $Results -Filters $Filters } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -118,15 +118,15 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [PSCustomObject[]] $Results, [PSCustomObject[]] $Filters )
             { Test-SelectArmorApiResult1 -Name $name -Results $Results -Filters $Filters -Verbose } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         $testName = 'should return: <Count> results when set to: Results: <Results>, Filters: <Filters>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Results, [PSCustomObject[]] $Filters, [UInt16] $Count )
             ( Test-SelectArmorApiResult1 -Name $name -Results $Results -Filters $Filters -Verbose ).Count |
                 Should -Be $Count
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
@@ -149,13 +149,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         # $testName = "has an 'OutputType' entry for <FoundReturnType>"
         # It -Name $testName -TestCases $testCases -Test {
         #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
         #     $FoundReturnType |
         #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # } # End of It
-    } # End of Context
-} # End of Describe
+        # }
+    }
+}

@@ -47,7 +47,7 @@ function Disconnect-Armor {
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-    } # End of begin
+    }
 
     process {
         if ( $PSCmdlet.ShouldProcess( 'Armor session', 'Disconnect' ) ) {
@@ -56,9 +56,9 @@ function Disconnect-Armor {
             $Global:ArmorSession = $null
             Remove-Variable -Name 'ArmorSession' -Scope 'Global'
         }
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

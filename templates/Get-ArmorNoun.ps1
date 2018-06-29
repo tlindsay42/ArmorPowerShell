@@ -83,7 +83,7 @@ function Get-ArmorNoun {
 
         # Check to ensure that a session to the Armor session is valid.
         Test-ArmorSession
-    } # End of begin
+    }
 
     process {
         [PSCustomObject[]] $return = $null
@@ -132,9 +132,9 @@ function Get-ArmorNoun {
 
         # Pass the return value to the pipeline
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

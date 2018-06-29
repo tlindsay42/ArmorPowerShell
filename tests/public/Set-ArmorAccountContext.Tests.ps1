@@ -69,7 +69,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID )
                 { Set-ArmorAccountContext -ID $ID } |
                     Should -Throw
-            } # End of It
+            }
 
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
 
@@ -82,11 +82,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID )
                 ( Set-ArmorAccountContext -ID $ID ).ID |
                     Should -Be $ID
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -103,7 +103,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
 
@@ -112,7 +112,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -BeIn ( Get-Help -Name 'Set-ArmorAccountContext' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+            }
+        }
+    }
+}

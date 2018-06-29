@@ -14,7 +14,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             { [ArmorAccountAddress]::New() } |
                 Should -Not -Throw
         }
-    } # End of Context
+    }
 
     [ArmorAccountAddress] $temp = [ArmorAccountAddress]::New()
 
@@ -29,7 +29,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [UInt32] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 1 },
@@ -39,13 +39,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [UInt16] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'Name'
     $context = $Global:PropertyForm -f $property
@@ -57,7 +57,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'Armor Defense, Inc. (US HQ)' },
@@ -67,13 +67,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'AddressLine1'
     $context = $Global:PropertyForm -f $property
@@ -85,7 +85,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = '2360 Campbell Creek Blvd' },
@@ -95,13 +95,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'AddressLine2'
     $context = $Global:PropertyForm -f $property
@@ -114,13 +114,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'City'
     $context = $Global:PropertyForm -f $property
@@ -132,7 +132,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'Richardson' },
@@ -142,13 +142,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'State'
     $context = $Global:PropertyForm -f $property
@@ -160,7 +160,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'Texas' },
@@ -170,13 +170,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'PostalCode'
     $context = $Global:PropertyForm -f $property
@@ -188,7 +188,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = '75082' },
@@ -198,13 +198,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     $property = 'Country'
     $context = $Global:PropertyForm -f $property
@@ -216,7 +216,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{ 'Value' = 'USA' },
@@ -226,13 +226,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         It -Name $Global:PropertyTypeForm -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Remove-Variable -Name 'temp'
-} # End of Describe
+}

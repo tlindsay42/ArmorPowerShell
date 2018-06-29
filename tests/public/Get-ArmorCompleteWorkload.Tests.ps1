@@ -65,7 +65,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID, [String] $ApiVersion )
                 { Get-ArmorCompleteWorkload -ID $ID -ApiVersion $ApiVersion } |
                     Should -Throw
-            } # End of It
+            }
 
             $testCases = @(
                 @{
@@ -82,7 +82,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $Name, [String] $ApiVersion )
                 { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
-            } # End of It
+            }
 
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
@@ -104,7 +104,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $Name, [String] $ApiVersion )
                 { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
-            } # End of It
+            }
 
             $testCases = @(
                 @{
@@ -117,7 +117,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID, [String] $ApiVersion )
                 { Get-ArmorCompleteWorkload -ID $ID -ApiVersion $ApiVersion } |
                     Should -Not -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
@@ -133,12 +133,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $Name, [String] $ApiVersion )
                 { Get-ArmorCompleteWorkload -Name $Name -ApiVersion $ApiVersion } |
                     Should -Not -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -166,7 +166,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
@@ -176,7 +176,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -BeIn ( Get-Help -Name 'Get-ArmorCompleteWorkload' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+            }
+        }
+    }
+}

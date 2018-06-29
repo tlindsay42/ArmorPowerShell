@@ -85,7 +85,7 @@ function Format-ArmorApiRequestBody {
             'WhatIf',
             'Confirm'
         )
-    } # End of begin
+    }
 
     process {
         [String] $return = $null
@@ -142,9 +142,9 @@ function Format-ArmorApiRequestBody {
         Write-Verbose -Message "Body = ${return}"
 
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

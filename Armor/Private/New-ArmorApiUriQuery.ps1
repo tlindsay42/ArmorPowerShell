@@ -77,7 +77,7 @@ function New-ArmorApiUriQuery {
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-    } # End of begin
+    }
 
     process {
         [String] $return = $Uri
@@ -129,9 +129,9 @@ function New-ArmorApiUriQuery {
         }
 
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

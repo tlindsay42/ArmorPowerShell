@@ -106,7 +106,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
             { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Throw
-        } # End of It
+        }
 
         Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
             @{
@@ -157,10 +157,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
             { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Not -Throw
-        } # End of It
+        }
         Assert-VerifiableMock
         Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
-    } # End of Context
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
@@ -190,7 +190,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
         Assert-VerifiableMock
         Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
@@ -199,6 +199,6 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         #     param ( [String] $FoundReturnType )
         #     $FoundReturnType |
         #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # } # End of It
-    } # End of Context
-} # End of Describe
+        # }
+    }
+}

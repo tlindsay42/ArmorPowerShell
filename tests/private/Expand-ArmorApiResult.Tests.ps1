@@ -73,7 +73,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [PSCustomObject[]] $Results, [String] $Location )
             { Expand-ArmorApiResult -Results $Results -Location $Location } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -86,9 +86,9 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [PSCustomObject[]] $Results, [String] $Location )
             { Expand-ArmorApiResult -Results $Results -Location $Location } |
                 Should -Not -Throw
-        } # End of It
+        }
 
-    } # End of Context
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
@@ -109,13 +109,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         # $testName = "has an 'OutputType' entry for <FoundReturnType>"
         # It -Name $testName -TestCases $testCases -Test {
         #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
         #     $FoundReturnType |
         #         Should -BeIn ( Get-Help -Name 'Expand-ArmorApiResult' ).ReturnValues.ReturnValue.Type.Name
-        # } # End of It
-    } # End of Context
-} # End of Describe
+        # }
+    }
+}

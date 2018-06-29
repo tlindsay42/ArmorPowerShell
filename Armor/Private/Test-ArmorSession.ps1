@@ -47,7 +47,7 @@ function Test-ArmorSession {
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-    } # End of begin
+    }
 
     process {
         Write-Verbose -Message 'Verify that the session authorization exists.'
@@ -76,9 +76,9 @@ function Test-ArmorSession {
 
             throw "Session expired at ${expirationTime}.  Please log in again."
         }
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

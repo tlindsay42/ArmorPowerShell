@@ -66,14 +66,14 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -Test {
                 { Connect-Armor -Credential $creds } |
                     Should -Throw
-            } # End of It
+            }
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-WebRequest -Times 1 -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
             }
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name 'Authorize' -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -104,7 +104,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 )
                 { Connect-Armor -Credential $creds } |
                     Should -Throw
-            } # End of It
+            }
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
@@ -125,12 +125,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 )
                 { Connect-Armor -Credential $creds } |
                     Should -Throw
-            } # End of It
+            }
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 2
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name 'API Token' -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -158,13 +158,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -Test {
                 { Connect-Armor -Credential $creds } |
                     Should -Throw
-            } # End of It
+            }
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
             Assert-MockCalled -CommandName New-ArmorApiToken -Times 1
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -215,7 +215,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -TestCases $testCases -Test {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
                 $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
@@ -230,7 +230,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -BeIn ( Get-Help -Name 'Connect-Armor' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+            }
+        }
+    }
+}

@@ -50,7 +50,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-ArmorSession } |
                 Should -Throw
-        } # End of It
+        }
 
         $testCases = @(
             @{
@@ -77,7 +77,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Test-ArmorSession
             } |
                 Should -Throw
-        } # End of It
+        }
 
         [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
@@ -86,7 +86,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-ArmorSession } |
                 Should -Throw
-        } # End of It
+        }
 
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
             Mock -CommandName Update-ArmorApiToken -Verifiable -MockWith {}
@@ -99,7 +99,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             It -Name $testName -Test {
                 { Test-ArmorSession } |
                     Should -Not -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Update-ArmorApiToken -Times 1
         }
@@ -112,8 +112,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-ArmorSession } |
                 Should -Not -Throw
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
@@ -131,13 +131,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         # $testName = "has an 'OutputType' entry for <FoundReturnType>"
         # It -Name $testName -TestCases $testCases -Test {
         #     param ( [String] $FoundReturnType )
         #     $FoundReturnType |
         #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # } # End of It
-    } # End of Context
-} # End of Describe
+        # }
+    }
+}

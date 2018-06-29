@@ -117,7 +117,7 @@ function Invoke-ArmorWebRequest {
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         Test-ArmorSession
-    } # End of begin
+    }
 
     process {
         [PSCustomObject[]] $return = $null
@@ -140,9 +140,9 @@ function Invoke-ArmorWebRequest {
         }
 
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

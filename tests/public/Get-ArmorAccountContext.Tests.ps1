@@ -69,7 +69,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID )
                 { Get-ArmorAccountContext -ID $ID } |
                     Should -Throw
-            } # End of It
+        }
 
             $testCases = @(
                 @{ 'ID' = $Global:ArmorSession.Accounts[0].ID },
@@ -81,9 +81,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 $Global:ArmorSession.SetAccountContext( $ID )
                 ( Get-ArmorAccountContext ).ID |
                     Should -Be $ID
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -98,14 +97,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+        }
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -BeIn ( Get-Help -Name 'Get-ArmorAccountContext' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+        }
+    }
+}

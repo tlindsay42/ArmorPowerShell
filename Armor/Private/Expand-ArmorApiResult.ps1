@@ -73,7 +73,7 @@ function Expand-ArmorApiResult {
         $function = $MyInvocation.MyCommand.Name
 
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-    } # End of begin
+    }
 
     process {
         [PSCustomObject[]] $return = @()
@@ -91,9 +91,9 @@ function Expand-ArmorApiResult {
         }
 
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

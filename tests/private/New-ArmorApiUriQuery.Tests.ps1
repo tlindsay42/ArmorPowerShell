@@ -93,7 +93,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String[]] $Keys, [PSCustomObject[]] $Parameters, [String] $Uri )
             { New-ArmorApiUriQuery -Keys $Keys -Parameters $Parameters -Uri $Uri } |
                 Should -Throw
-        } # End of It
+        }
 
         $splat = @{
             'FirstName'   = $validParameters.FirstName
@@ -103,14 +103,14 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-NewArmorApiUriQuery1 @splat } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         $uri = "${validUri}?FirstName=$( $validParameters.FirstName )"
         $testName = "should build URI: '${uri}'"
         It -Name $testName -Test {
             Test-NewArmorApiUriQuery1 @splat |
                 Should -BeExactly $uri
-        } # End of It
+        }
 
         $splat = @{
             'LastName'    = $validParameters.LastName
@@ -120,14 +120,14 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-NewArmorApiUriQuery1 @splat } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         $uri = "${validUri}?LastName=$( $validParameters.LastName )"
         $testName = "should build URI: '${uri}'"
         It -Name $testName -Test {
             Test-NewArmorApiUriQuery1 @splat |
                 Should -BeExactly $uri
-        } # End of It
+        }
 
         $splat = @{
             'FirstName'   = $validParameters.FirstName
@@ -139,15 +139,15 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -Test {
             { Test-NewArmorApiUriQuery1 @splat } |
                 Should -Not -Throw
-        } # End of It
+        }
 
         $uri = "${validUri}?FirstName=$( $validParameters.FirstName )&LastName=$( $validParameters.LastName )"
         $testName = "should build URI: '${uri}'"
         It -Name $testName -Test {
             Test-NewArmorApiUriQuery1 @splat |
                 Should -BeExactly $uri
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         #region init
@@ -169,13 +169,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -Be $ExpectedReturnType
-        } # End of It
+        }
 
         $testName = "has an 'OutputType' entry for <FoundReturnType>"
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -BeIn ( Get-Help -Name 'New-ArmorApiUriQuery' ).ReturnValues.ReturnValue.Type.Name
-        } # End of It
-    } # End of Context
-} # End of Describe
+        }
+    }
+}

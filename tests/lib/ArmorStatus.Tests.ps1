@@ -119,6 +119,6 @@ Describe -Name $describe -Tag 'Enum', $enum -Fixture {
             param ( [String] $ValueName, [Int16] $ValueNumber )
             [ArmorStatus]::$ValueName |
                 Should -Be $ValueNumber
-        } # End of It
-    } # End of Context
-} # End of Describe
+        }
+    }
+}

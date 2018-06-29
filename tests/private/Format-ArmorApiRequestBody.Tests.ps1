@@ -84,52 +84,6 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             param ( [String[]] $Keys, [PSCustomObject[]] $Parameters )
             { Format-ArmorApiRequestBody -Keys $Keys -Parameters $Parameters } |
                 Should -Throw
-        } # End of It
-
-        $splat = @{
-            'Code'        = $validParameters.Code
-            'GrantType'   = $validParameters.GrantType
-            'Array'       = $validParameters.Array
-            'Switch'      = $true
         }
-        $testName = "should not fail when set to: Code: '" + $validParameters.Code + "', " +
-            "GrantType: '" + $validParameters.GrantType + "', Array: '" + $validParameters.Array + "', " +
-            "Switch: '" + $validParameters.Switch + "'"
-        It -Name $testName -Test {
-            { Test-FormatArmorApiRequestBody1 @splat } |
-                Should -Not -Throw
-        } # End of It
-    } # End of Context
-
-    Context -Name $Global:ReturnTypeContext -Fixture {
-        #region init
-        $splat = @{
-            'Code'        = $validParameters.Code
-            'GrantType'   = $validParameters.GrantType
-            'Array'       = $validParameters.Array
-            'Switch'      = $true
-            'ErrorAction' = 'Stop'
         }
-        #endregion
-
-        $testCases = @(
-            @{
-                'FoundReturnType'    = ( Test-FormatArmorApiRequestBody1 @splat ).GetType().FullName
-                'ExpectedReturnType' = 'System.String'
             }
-        )
-        $testName = $Global:ReturnTypeForm
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            $FoundReturnType |
-                Should -Be $ExpectedReturnType
-        } # End of It
-
-        $testName = "has an 'OutputType' entry for <FoundReturnType>"
-        It -Name $testName -TestCases $testCases -Test {
-            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            $FoundReturnType |
-                Should -BeIn ( Get-Help -Name 'Format-ArmorApiRequestBody' ).ReturnValues.ReturnValue.Type.Name
-        } # End of It
-    } # End of Context
-} # End of Describe

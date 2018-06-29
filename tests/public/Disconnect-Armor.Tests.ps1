@@ -42,8 +42,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         It -Name $testName -Test {
             { Disconnect-Armor -Confirm:$false } |
                 Should -Not -Throw
-        } # End of It
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         $testCases = @(
@@ -57,6 +57,6 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
                 Should -BeNullOrEmpty
-        } # End of It
-    } # End of Context
-} # End of Describe
+        }
+    }
+}

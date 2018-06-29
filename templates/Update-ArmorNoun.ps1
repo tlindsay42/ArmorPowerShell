@@ -77,7 +77,7 @@ function Update-ArmorNoun {
 
         # Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
         Test-ArmorSession
-    } # End of begin
+    }
 
     process {
         [PSCustomObject[]] $return = $null
@@ -112,9 +112,9 @@ function Update-ArmorNoun {
 
         # Pass the return value to the pipeline
         $return
-    } # End of process
+    }
 
     end {
         Write-Verbose -Message "Ending: '${function}'."
-    } # End of end
-} # End of function
+    }
+}

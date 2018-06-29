@@ -72,7 +72,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID, [String] $NewName, [String] $ApiVersion )
                 { Rename-ArmorCompleteVM -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Throw
-            } # End of It
+            }
 
             Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
@@ -95,12 +95,12 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $ID, [String] $NewName, [String] $ApiVersion )
                 { Rename-ArmorCompleteVM -ID $ID -NewName $NewName -ApiVersion $ApiVersion -Confirm:$false } |
                     Should -Not -Throw
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
-        } # End of InModuleScope
-    } # End of Context
+        }
+    }
 
     Context -Name $Global:ReturnTypeContext -Fixture {
         InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
@@ -124,7 +124,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
-            } # End of It
+            }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
@@ -134,7 +134,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
                     Should -BeIn ( Get-Help -Name 'Rename-ArmorCompleteVM' -Full ).ReturnValues.ReturnValue.Type.Name
-            } # End of It
-        } # End of InModuleScope
-    } # End of Context
-} # End of Describe
+            }
+        }
+    }
+}
