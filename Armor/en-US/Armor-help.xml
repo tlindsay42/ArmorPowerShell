@@ -1983,9 +1983,31 @@
           <maml:name>UInt16</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>Guid</maml:para>
-          <maml:para>String</maml:para>
-          <maml:para>PSCustomObject</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>PSCustomObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>

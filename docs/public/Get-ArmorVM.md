@@ -158,11 +158,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ### UInt16
 
-Guid
+### Guid
 
-String
+### String
 
-PSCustomObject
+### PSCustomObject
 
 ## OUTPUTS
 
