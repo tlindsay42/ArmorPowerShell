@@ -19,11 +19,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
     Test-AdvancedFunctionHelpInput -Help $help
 
-    # $splat = @{
-    #     ExpectedOutputTypeNames = 'Void'
-    #     Help                    = $help
-    # }
-    # TestAdvancedFunctionHelpOutputs @splat
+    $splat = @{
+        ExpectedOutputTypeNames = 'System.Void'
+        Help                    = $help
+    }
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = 'WhatIf', 'Confirm'
