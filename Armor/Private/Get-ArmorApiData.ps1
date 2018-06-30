@@ -58,8 +58,10 @@ function Get-ArmorApiData {
     #>
 
     [CmdletBinding( DefaultParameterSetName = 'ApiVersion' )]
+    [OutputType( [PSCustomObject[]], ParameterSetName = 'ApiVersion' )]
     [OutputType( [PSCustomObject], ParameterSetName = 'ApiVersion' )]
     [OutputType( [String[]], ParameterSetName = 'ApiVersions' )]
+    [OutputType( [String], ParameterSetName = 'ApiVersions' )]
     param (
         # Specifies the cmdlet name to lookup the API data for.
         [Parameter(

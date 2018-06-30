@@ -28,7 +28,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
-        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject', 'System.String[]'
+        ExpectedOutputTypeNames = 'System.Management.Automation.PSObject[]', 'System.Management.Automation.PSObject', 'System.String[]', 'System.String'
         Help                    = $help
     }
     Test-AdvancedFunctionHelpOutput @splat
