@@ -8,7 +8,7 @@ function Rename-ArmorCompleteWorkload {
         renamed.
 
         .INPUTS
-        PSCustomObject
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

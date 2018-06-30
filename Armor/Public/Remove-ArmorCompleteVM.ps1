@@ -7,9 +7,10 @@ function Remove-ArmorCompleteVM {
         The specified VM in the Armor Complete account in context will be deleted.
 
         .INPUTS
-        UInt16
+        System.UInt16
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

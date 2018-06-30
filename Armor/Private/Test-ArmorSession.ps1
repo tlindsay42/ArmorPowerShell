@@ -9,7 +9,8 @@ function Test-ArmorSession {
         This cmdlet should be called in the Begin section of public cmdlets for optimal performance, so that the session is not tested repeatedly when pipeline input is processed.
 
         .INPUTS
-        None- this function does not accept pipeline inputs.
+        None
+            You cannot pipe input to this cmdlet.
 
         .NOTES
         - Troy Lindsay

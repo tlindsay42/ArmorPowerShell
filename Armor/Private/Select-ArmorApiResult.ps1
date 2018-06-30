@@ -10,9 +10,10 @@ function Select-ArmorApiResult {
         Wildcard filtering is supported via the use of the `-like` operator.
 
         .INPUTS
-        PSObject[]
+        System.Management.Automation.PSObject[]
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

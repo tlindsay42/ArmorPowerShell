@@ -8,13 +8,14 @@ function Get-ArmorCompleteDatacenter {
         zones.  Returns a set of datacenters that correspond to the filter criteria
         provided by the cmdlet parameters.
 
+        .INPUTS
+        System.UInt16
 
         .INPUTS
-        UInt16
+        System.String
 
-        String
-
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay
@@ -82,7 +83,7 @@ function Get-ArmorCompleteDatacenter {
         [String]
         $Name = '',
 
-        # Specifies the name of the Armor Complete datacenter.
+        # Specifies the location code for the Armor Complete datacenter.
         [Parameter(
             ParameterSetName = 'Location',
             Position = 0,

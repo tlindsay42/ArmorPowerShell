@@ -25,11 +25,13 @@ function Get-ArmorCompleteWorkload {
         the cmdlet parameters.
 
         .INPUTS
-        UInt16
+        System.UInt16
 
-        String
+        .INPUTS
+        System.String
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

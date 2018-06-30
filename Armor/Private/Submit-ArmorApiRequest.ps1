@@ -11,7 +11,8 @@ function Submit-ArmorApiRequest {
         is thrown as a terminating error.
 
         .INPUTS
-        None- this function does not accept pipeline inputs.
+        None
+            You cannot pipe input to this cmdlet.
 
         .NOTES
         - Troy Lindsay

@@ -7,7 +7,8 @@ function New-ArmorApiToken {
         Retrieves an authentication token from a temporary authorization code.
 
         .INPUTS
-        None- this function does not accept pipeline inputs.
+        None
+            You cannot pipe input to this cmdlet.
 
         .NOTES
         - Troy Lindsay

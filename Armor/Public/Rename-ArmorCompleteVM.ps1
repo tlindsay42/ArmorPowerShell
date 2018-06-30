@@ -8,7 +8,7 @@ function Rename-ArmorCompleteVM {
         renamed.
 
         .INPUTS
-        PSCustomObject
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

@@ -12,7 +12,8 @@ function Connect-Armor {
         the session details which are stored in the variable: $Global:ArmorSession.
 
         .INPUTS
-        None- this function does not accept pipeline inputs.
+        None
+            You cannot pipe input to this cmdlet.
 
         .NOTES
         - Troy Lindsay

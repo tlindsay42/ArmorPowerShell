@@ -8,9 +8,10 @@ function Invoke-ArmorWebRequest {
         calling API endpoints that are not yet covered by the cmdlets in this module.
 
         .INPUTS
-        String
+        System.String
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

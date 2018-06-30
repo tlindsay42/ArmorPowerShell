@@ -8,9 +8,10 @@ function Update-ArmorApiToken {
         the session details: $Global:ArmorSession.
 
         .INPUTS
-        String
+        System.String
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

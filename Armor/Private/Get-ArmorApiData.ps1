@@ -8,9 +8,10 @@ function Get-ArmorApiData {
         cmdlet name.
 
         .INPUTS
-        String
+        System.String
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

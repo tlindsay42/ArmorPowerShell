@@ -8,9 +8,10 @@ function Expand-ArmorApiResult {
         results in a "data" key.
 
         .INPUTS
-        PSObject[]
+        System.Management.Automation.PSObject[]
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

@@ -9,9 +9,10 @@ function Set-ArmorAccountContext {
         future requests reference the specified account.
 
         .INPUTS
-        UInt16
+        System.UInt16
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

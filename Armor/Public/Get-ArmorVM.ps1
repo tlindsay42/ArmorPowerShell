@@ -9,16 +9,16 @@ function Get-ArmorVM {
         to the filter criteria provided by the cmdlet parameters.
 
         .INPUTS
-        UInt16
+        System.UInt16
 
         .INPUTS
-        Guid
+        System.Guid
         
         .INPUTS
-        String
+        System.String
         
         .INPUTS
-        PSCustomObject
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay

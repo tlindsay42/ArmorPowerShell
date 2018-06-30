@@ -8,9 +8,10 @@ function Get-ArmorAccountAddress {
         user account has access to.
 
         .INPUTS
-        UInt16
+        System.UInt16
 
-        PSCustomObject
+        .INPUTS
+        System.Management.Automation.PSObject
 
         .NOTES
         - Troy Lindsay
