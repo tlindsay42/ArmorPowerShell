@@ -83,6 +83,53 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         }
 
+
+        $testCases = @(
+            @{ FunctionName = $invalidFunctionName },
+            @{ FunctionName = '' },
+            @{ FunctionName = $validFunctionName, $validFunctionName }
+        )
+        $testName = 'should fail when set to: FunctionName: <FunctionName> (named)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            { Get-ArmorApiData -FunctionName $FunctionName } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            { Get-ArmorApiData $FunctionName } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(pipeline by value)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName )
+            { $FunctionName | Get-ArmorApiData } |
+                Should -Throw
+        }
+
+        $testCases = @(
+            @{ ApiVersion   = $validFunctionName },
+            @{ ApiVersion   = 'v0.1' },
+            @{ ApiVersion   = '' },
+            @{ ApiVersion   = $validApiVersion, $validApiVersion }
+        )
+        $testName = 'should fail when set to: ApiVersion: <ApiVersion>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $ApiVersion )
+              { Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $ApiVersion } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $ApiVersion )
+            { Get-ArmorApiData $validFunctionName $ApiVersion } |
+                Should -Throw
+        }
+
         $testCases = @(
             @{
                 FunctionName = $validFunctionName
@@ -93,6 +140,20 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FunctionName, [String] $ApiVersion )
             { Get-ArmorApiData -FunctionName $FunctionName -ApiVersion $ApiVersion } |
+                Should -Not -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName, [String] $ApiVersion )
+            { Get-ArmorApiData $FunctionName $ApiVersion } |
+                Should -Not -Throw
+        }
+
+        $testName = $testName -replace '\(positional\)', '(pipeline by value)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FunctionName, [String] $ApiVersion )
+            { $FunctionName | Get-ArmorApiData } |
                 Should -Not -Throw
         }
 
