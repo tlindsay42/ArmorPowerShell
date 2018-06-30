@@ -1,4 +1,11 @@
+# Documentation static site generator & deployment tool
 mkdocs>=0.17.1
+
+# Custom mkdocs theme for the project documentation site
 mkdocs-material>=2.8.0
+
+# Syntax highlighter
 Pygments>=2.2
+
+# Extensions for Python Markdown
 pymdown-extensions>=4.10
