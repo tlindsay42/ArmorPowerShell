@@ -1,0 +1,101 @@
+# https://www.mkdocs.org/user-guide/configuration/
+
+# Project information
+site_name: '{{title}}'
+site_description: 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.'
+site_author: 'Troy Lindsay'
+site_url: '{{site_url}}'
+
+# Repository
+repo_name: '{{owner_name}}/{{project_name}}'
+repo_url: '{{repo_url}}'
+remote_branch: 'gh-pages'
+edit_uri: 'blob/master/docs/'
+
+# Copyright
+copyright: 'Copyright &copy;{{copyright}}'
+
+# Google Analytics
+google_analytics: ['UA-117909744-3', '{{project_name}}']
+
+# Configuration
+theme:
+  name: 'material'
+
+  # 404 page
+  static_templates:
+    - '404.html'
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: false
+
+  # Default values, taken from mkdocs_theme.yml
+  language: 'en'
+  feature:
+    tabs: false
+  palette:
+    primary: 'grey'
+    accent: 'deep orange'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  favicon: 'img/favicon.ico'
+  logo: 'img/armor_logo.svg'
+
+# Customization
+extra:
+  social:
+    - type: 'globe'
+      link: 'https://www.troylindsay.io'
+    - type: 'github-alt'
+      link: 'https://github.com/tlindsay42'
+    - type: 'twitter'
+      link: 'https://twitter.com/troylindsay42'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/troylindsay'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+pages:
+  - Home: 'index.md'
+  - User Documentation:
+    - Requirements: 'user/Requirements.md'
+    - Install Guide: 'user/Install.md'
+    - Update Guide: 'user/Update.md'
+    - Uninstall Guide: 'user/Uninstall.md'
+    - Getting Started: 'user/Getting_Started.md'
+    - Project Architecture: 'user/Project_Architecture.md'
+    - Licensing: 'user/Licensing.md'
+    - Contributing: 'user/Contributing.md'
+    - Code of Conduct: 'user/Code_of_Conduct.md'
+    - FAQs: 'user/FAQs.md'
+  - Cmdlet Documentation:
+    - Module Description: 'public/{{module_name}}.md'
