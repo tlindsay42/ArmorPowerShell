@@ -27,7 +27,7 @@ Author = 'Troy Lindsay'
 CompanyName = 'Armor'
 
 # Copyright statement for this module
-Copyright = '© 2017-2018 Troy Lindsay. All rights reserved.'
+Copyright = '©2017-2018 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.

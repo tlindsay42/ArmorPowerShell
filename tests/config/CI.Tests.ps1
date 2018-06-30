@@ -18,8 +18,8 @@ if ( $Env:CI -eq $true ) {
                     Should -Be $true
             }
 
-            It -Name "should set: '`$Env:CI_OWNER_NAME' be a valid username" -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri "https://github.com/${Env:CI_OWNER_NAME}" ).StatusCode |
+            It -Name "should set: '`$CI_OWNER_NAME' be a valid username" -Test {
+                ( Invoke-WebRequest -Method 'Get' -Uri "https://github.com/${CI_OWNER_NAME}" ).StatusCode |
                     Should -Be 200
             }
 
@@ -31,18 +31,18 @@ if ( $Env:CI -eq $true ) {
 
         Context -Name 'Coveralls' -Fixture {
             $testCases = 'AppVeyor', 'Travis'
-            It -Name "should set: '`$Env:CI_NAME' to one of the following: $( $testCases -join ', ' )" -Test {
-                $Env:CI_NAME |
+            It -Name "should set: '`$CI_NAME' to one of the following: $( $testCases -join ', ' )" -Test {
+                $CI_NAME |
                     Should -BeIn $testCases
             }
 
-            It -Name "should set: '`$Env:CI_BUILD_NUMBER' to an unsigned integer" -Test {
-                $Env:CI_BUILD_NUMBER |
+            It -Name "should set: '`$CI_BUILD_NUMBER' to an unsigned integer" -Test {
+                $CI_BUILD_NUMBER |
                     Should -Match '^\d+$'
             }
 
-            It -Name "should set: '`$Env:CI_BUILD_URL' to a URL that exists" -Test {
-                ( Invoke-WebRequest -Method 'Get' -Uri $Env:CI_BUILD_URL ).StatusCode |
+            It -Name "should set: '`$CI_BUILD_URL' to a URL that exists" -Test {
+                ( Invoke-WebRequest -Method 'Get' -Uri $CI_BUILD_URL ).StatusCode |
                     Should -Be 200
             }
 
@@ -59,28 +59,28 @@ if ( $Env:CI -eq $true ) {
                     Should -Not -BeNullOrEmpty
             }
 
-            if ( $Env:CI_PULL_REQUEST -ne $null ) {
-                It -Name "should set: '`$Env:CI_PULL_REQUEST'" -Test {
-                    $Env:CI_PULL_REQUEST |
+            if ( $CI_PULL_REQUEST -ne $null ) {
+                It -Name "should set: '`$CI_PULL_REQUEST'" -Test {
+                    $CI_PULL_REQUEST |
                         Should -Not -BeNullOrEmpty
-            }
+                }
             }
             else {
-                It -Name "should not set: '`$Env:CI_PULL_REQUEST'" -Test {
-                    $Env:CI_PULL_REQUEST |
+                It -Name "should not set: '`$CI_PULL_REQUEST'" -Test {
+                    $CI_PULL_REQUEST |
                         Should -BeNullOrEmpty
-            }
+                }
             }
         }
 
         Context -Name 'Module' -Fixture {
             $testCases = @(
-                @{ 'Name' = 'Armor' }
+                @{ Name = 'Armor' }
             )
-            $testName = "should set: '`$Env:CI_MODULE_NAME' to: <Name>"
+            $testName = "should set: '`$Global:CI_MODULE_NAME' to: <Name>"
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Name )
-                $Env:CI_MODULE_NAME |
+                $Global:CI_MODULE_NAME |
                     Should -Be $Name
             }
 
@@ -122,8 +122,8 @@ if ( $Env:CI -eq $true ) {
                     Should -Be $true
             }
 
-            It -Name "should set: '`$Env:CI_MODULE_MANIFEST_PATH' to a valid module manifest" -Test {
-                { Test-ModuleManifest -Path $Env:CI_MODULE_MANIFEST_PATH } |
+            It -Name "should set: '`$CI_MODULE_MANIFEST_PATH' to a valid module manifest" -Test {
+                { Test-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH } |
                     Should -Not -Throw
             }
 
@@ -134,8 +134,8 @@ if ( $Env:CI -eq $true ) {
         }
 
         Context -Name 'Test Result Paths' -Fixture {
-            It -Name "should set: '`$Env:CI_TESTS_PATH' to a directory that exists" -Test {
-                Test-Path -Path $Env:CI_TESTS_PATH -PathType 'Container' |
+            It -Name "should set: '`$CI_TESTS_PATH' to a directory that exists" -Test {
+                Test-Path -Path $CI_TESTS_PATH -PathType 'Container' |
                     Should -Be $true
             }
 
@@ -158,14 +158,14 @@ if ( $Env:CI -eq $true ) {
         }
 
         Context -Name 'Documentation Path' -Fixture {
-            It -Name "should set: '`$Env:CI_DOCS_PATH' to a directory that exists" -Test {
-                Test-Path -Path $Env:CI_DOCS_PATH -PathType 'Container' |
+            It -Name "should set: '`$CI_DOCS_PATH' to a directory that exists" -Test {
+                Test-Path -Path $CI_DOCS_PATH -PathType 'Container' |
                     Should -Be $true
             }
         }
-                }
+    }
 
-    if ( $Env:APPVEYOR -eq $true ) {
+    if ( $DeploymentMode -eq $true ) {
         Describe -Name 'Git' -Tag 'Git', 'Config' -Fixture {
             Context -Name 'Configuration Files' -Fixture {
                 $testCases = @(

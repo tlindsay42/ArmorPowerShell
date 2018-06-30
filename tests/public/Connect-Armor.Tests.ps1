@@ -1,9 +1,9 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PublicFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PUBLIC -f $function
 Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -13,32 +13,32 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
         ExpectedOutputTypeNames = 'ArmorSession'
         Help                    = $help
     }
-    TestAdvancedFunctionHelpOutputs @splat
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = 'Credential', 'AccountID', 'Server', 'Port', 'ApiVersion'
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
     Context -Name 'Access Denied' -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
                 TypeName     = 'System.Management.Automation.PSCredential'
@@ -76,7 +76,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     }
 
     Context -Name 'Authorize' -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
                 TypeName     = 'System.Management.Automation.PSCredential'
@@ -166,8 +166,8 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         }
     }
 
-    Context -Name $Global:ReturnTypeContext -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+    Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
                 TypeName     = 'System.Management.Automation.PSCredential'
@@ -175,6 +175,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                 ErrorAction  = 'Stop'
             }
             $creds = New-Object @splat
+            $connectArmorEndpoint = ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
+            $newArmorApiTokenEndpoint = ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+            $getArmorIdentityEndpoint = ( Get-ArmorApiData -FunctionName 'Get-ArmorIdentity' -ApiVersion 'v1.0' ).Endpoints
             #endregion
 
             # Get the temporary authorization code
@@ -184,7 +187,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Content    = $Global:JSON_RESPONSE_BODY.Authorize1
                 }
             } -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match $connectArmorEndpoint
             }
 
             # Convert the temporary authorization code to an API token
@@ -194,15 +197,17 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match $newArmorApiTokenEndpoint
             }
 
             # Get the user's identity information
-            Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $Env:CI_MODULE_NAME -MockWith {
+            Mock -CommandName Invoke-WebRequest -Verifiable -ModuleName $Global:CI_MODULE_NAME -MockWith {
                 @{
                     StatusCode = 200
                     Content    = $Global:JSON_RESPONSE_BODY.Identity1
                 }
+            } -ParameterFilter {
+                $Uri -match $getArmorIdentityEndpoint
             }
 
             $testCases = @(
@@ -227,19 +232,22 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     ExpectedReturnType = 'ArmorSession'
                 }
             )
-            $testName = $Global:ReturnTypeForm
+            $testName = $Global:FORM_RETURN_TYPE
             It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType)
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             }
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match $connectArmorEndpoint
             }
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match $newArmorApiTokenEndpoint
             }
-            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ModuleName $Env:CI_MODULE_NAME
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count -ModuleName $Global:CI_MODULE_NAME -ParameterFilter {
+                $Uri -match $getArmorIdentityEndpoint
+            }
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {

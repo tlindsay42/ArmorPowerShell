@@ -1,9 +1,9 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PublicFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PUBLIC -f $function
 Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -31,79 +31,77 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
         ExpectedOutputTypeNames = 'ArmorAccount'
         Help                    = $help
     }
-    TestAdvancedFunctionHelpOutputs @splat
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = @()
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
-    Context -Name $Global:Execution -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
-            #region init
-            $invalidID = 0
-            #endregion
+    Context -Name $Global:EXECUTION -Fixture {
+        #region init
+        $invalidID = 0
+        #endregion
 
-            $testCases = @(
-                @{ 'ID' = $invalidID }
-            )
-            $testName = 'should fail when set to: ID: <ID>'
-            It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $ID )
-                { Get-ArmorAccountContext -ID $ID } |
-                    Should -Throw
+        $testCases = @(
+            @{ ID = $invalidID }
+        )
+        $testName = 'should fail when set to: ID: <ID>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $ID )
+            { Get-ArmorAccountContext -ID $ID } |
+                Should -Throw
         }
 
-            $testCases = @(
+        $testCases = @(
             @{ ID = $Global:ArmorSession.Accounts[0].ID },
             @{ ID = $Global:ArmorSession.Accounts[1].ID }
-            )
-            $testName = 'should not fail when set to: ID: <ID>'
-            It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $ID )
-                $Global:ArmorSession.SetAccountContext( $ID )
-                ( Get-ArmorAccountContext ).ID |
-                    Should -Be $ID
+        )
+        $testName = 'should not fail when set to: ID: <ID>'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $ID )
+            $Global:ArmorSession.SetAccountContext( $ID )
+            ( Get-ArmorAccountContext ).ID |
+                Should -Be $ID
         }
     }
 
-    Context -Name $Global:ReturnTypeContext -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
-            $testCases = @(
-                @{
+    Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        $testCases = @(
+            @{
                 FoundReturnType    = ( Get-ArmorAccountContext -ErrorAction 'Stop' ).GetType().FullName
                 ExpectedReturnType = 'ArmorAccount'
-                }
-            )
-            $testName = $Global:ReturnTypeForm
-            It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-                $FoundReturnType |
-                    Should -Be $ExpectedReturnType
+            }
+        )
+        $testName = $Global:FORM_RETURN_TYPE
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
+                Should -Be $ExpectedReturnType
         }
 
-            $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            It -Name $testName -TestCases $testCases -Test {
-                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-                $FoundReturnType |
-                    Should -BeIn ( Get-Help -Name 'Get-ArmorAccountContext' -Full ).ReturnValues.ReturnValue.Type.Name
+        $testName = "has an 'OutputType' entry for <FoundReturnType>"
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
+                Should -BeIn ( Get-Help -Name 'Get-ArmorAccountContext' -Full ).ReturnValues.ReturnValue.Type.Name
         }
     }
 }

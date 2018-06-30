@@ -1,10 +1,10 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath 'ArmorTypes.ps1'
+$filePath = Join-Path -Path $CI_MODULE_LIB_PATH -ChildPath 'ArmorTypes.ps1'
 
 . $filePath
 
 $enum = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:EnumForm -f $enum
+$describe = $Global:FORM_ENUM -f $enum
 Describe -Name $describe -Tag 'Enum', $enum -Fixture {
     #region init
     #endregion

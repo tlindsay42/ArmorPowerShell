@@ -1,16 +1,16 @@
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $Env:CI_MODULE_LIB_PATH -ChildPath 'ArmorTypes.ps1'
+$filePath = Join-Path -Path $CI_MODULE_LIB_PATH -ChildPath 'ArmorTypes.ps1'
 
 . $filePath
 
 $class = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:ClassForm -f $class
+$describe = $Global:FORM_CLASS -f $class
 Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
     #endregion
 
-    Context -Name $Global:Constructors -Fixture {
-        It -Name $Global:DefaultConstructorForm -Test {
+    Context -Name $Global:CONSTRUCTORS -Fixture {
+        It -Name $Global:FORM_DEFAULT_CONTRUCTORS -Test {
             { [ArmorCompleteDatacenter]::New() } |
                 Should -Not -Throw
         }
@@ -19,13 +19,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     [ArmorCompleteDatacenter] $temp = [ArmorCompleteDatacenter]::New()
 
     $property = 'ID'
-    $context = $Global:PropertyForm -f $property
+    $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
         $testCases = @(
             @{ Value = 0 },
             @{ Value = 6 }
         )
-        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
             param ( [UInt16] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
@@ -35,27 +35,27 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             @{ Value = 1 },
             @{ Value = 5 }
         )
-        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
             param ( [UInt16] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         }
 
-        It -Name $Global:PropertyTypeForm -Test {
+        It -Name $Global:FORM_PROPERTY_TYPE -Test {
             $temp.$property |
                 Should -BeOfType ( [System.UInt16] )
         }
     }
 
     $property = 'Location'
-    $context = $Global:PropertyForm -f $property
+    $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
         $testCases = @(
             @{ Value = '' },
             @{ Value = 'DFW' },
             @{ Value = 1 }
         )
-        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
@@ -68,20 +68,20 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             @{ Value = 'PHX01' },
             @{ Value = 'SIN01' }
         )
-        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         }
 
-        It -Name $Global:PropertyTypeForm -Test {
+        It -Name $Global:FORM_PROPERTY_TYPE -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
         }
     }
 
     $property = 'Name'
-    $context = $Global:PropertyForm -f $property
+    $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
         $testCases = @(
             @{ Value = 'AS' },
@@ -89,7 +89,7 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             @{ Value = 'DFW01' },
             @{ Value = 1 }
         )
-        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
@@ -102,27 +102,27 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             @{ Value = 'US Central' },
             @{ Value = 'US West' }
         )
-        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         }
 
-        It -Name $Global:PropertyTypeForm -Test {
+        It -Name $Global:FORM_PROPERTY_TYPE -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
         }
     }
 
     $property = 'Zones'
-    $context = $Global:PropertyForm -f $property
+    $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
         $testCases = @(
             @{ Value = 'DFW01-VC01' },
             @{ Value = 'DFW01T01-VC05' },
             @{ Value = 1 }
         )
-        It -Name $Global:PropertyFailForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
@@ -142,13 +142,13 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
             @{ Value = 'PHX01T01-VC03' },
             @{ Value = 'SIN01T01-VC01' }
         )
-        It -Name $Global:PropertyPassForm -TestCases $testCases -Test {
+        It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
             param ( [String] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         }
 
-        It -Name $Global:PropertyTypeForm -Test {
+        It -Name $Global:FORM_PROPERTY_TYPE -Test {
             $temp.$property |
                 Should -BeOfType ( [System.String] )
         }

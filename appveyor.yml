@@ -8,132 +8,49 @@
 #   - All section names are case-sensitive.
 #   - Section names should be unique on each level.
 
-
-#---------------------------------#
-#      general configuration      #
-#---------------------------------#
-
-# version format
 version: 1.0.{build}
 
-# branches to build
 branches:
-  # whitelist
-  #only:
-    #- master
-
-  # blacklist
   except:
   - gh-pages
 
-# Do not build on tags
 skip_tags: true
 
-# Start builds on tags only
-#skip_non_tags:
-
-# Skipping commits with particular message, from specific users, or for specific files
-#skip_commits:
-  #message: /Merge branch .+ of .+ArmorPowerShell/
-  #author:
-  #files:
-    #- README.md
-
-# Including commits with particular message, from specific users, or for specific files
-#only_commits:
-  #message:
-  #author:
-  #files:
-
-# There's no need to alter the build number for a Pull Request (PR) since they don't modify anything
 pull_requests:
   do_not_increment_build_number: true
 
-# Do not build feature branch with open Pull Requests
-#skip_branch_with_pr:
-
-# Maximum number of concurrent jobs for the project
 max_jobs: 5
 
-
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
-
-# Build worker image (VM template)
 image:
   - Visual Studio 2015
   - Visual Studio 2017
-  # - Ubuntu
+  - Ubuntu
 
-# scripts that are called at very beginning, before repo cloning
-init:
-    # CI abstraction variables
-  - ps: $Env:CI_BUILD_PATH = $Env:APPVEYOR_BUILD_FOLDER
-  - ps: $Env:CI_BUILD_SCRIPTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'build'
-  - ps: $Env:CI_OWNER_NAME = $Env:APPVEYOR_ACCOUNT_NAME
-  - ps: $Env:CI_PROJECT_NAME = $Env:APPVEYOR_PROJECT_NAME
-  - ps: $Env:CI_COMMIT_MESSAGE = $Env:APPVEYOR_REPO_COMMIT_MESSAGE
+for:
+- matrix:
+    only:
+      - PowerShell: 6
+        image: Visual Studio 2017
+  build_script:
+  - pwsh: ./build/build.ps1 -DeploymentMode
+- matrix:
+    only:
+      - PowerShell: 5
+  build_script:
+  - ps: ./build/build.ps1
+- matrix:
+    only:
+      - PowerShell: 6
+  build_script:
+  - pwsh: ./build/build.ps1
 
-    # Coveralls environment variables
-  - ps: $Env:CI_NAME = 'AppVeyor'
-  - ps: $Env:CI_BUILD_NUMBER = $Env:APPVEYOR_BUILD_NUMBER
-  - ps: $Env:CI_BUILD_URL = "https://ci.appveyor.com/project/${Env:CI_OWNER_NAME}/${Env:CI_PROJECT_NAME}/build/job/${Env:APPVEYOR_JOB_ID}"
-  - ps: $Env:CI_BRANCH = $Env:APPVEYOR_REPO_BRANCH
-  - ps: $Env:CI_PULL_REQUEST = $Env:APPVEYOR_PULL_REQUEST_NUMBER
+matrix:
+  exclude:
+    - PowerShell: 5
+      image: Ubuntu
 
-    # Module variables
-  - ps: $Env:CI_MODULE_NAME = 'Armor'
-  - ps: $Env:CI_MODULE_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath $Env:CI_MODULE_NAME -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_ETC_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Etc' -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_LIB_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Lib' -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_PRIVATE_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Private' -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_PUBLIC_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath 'Public' -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_MANIFEST_PATH = Join-Path -Path $Env:CI_MODULE_PATH -ChildPath "${Env:CI_MODULE_NAME}.psd1" -ErrorAction 'Stop'
-  - ps: $Env:CI_MODULE_VERSION = ( $Env:APPVEYOR_BUILD_VERSION ).Split( '-' )[0]
-
-    # Testing variables
-  - ps: $Env:CI_TESTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'tests' -ErrorAction 'Stop'
-  - ps: $Env:CI_TEST_RESULTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'TestResults.xml' -ErrorAction 'Stop'
-  - ps: $Env:CI_COVERAGE_RESULTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'CodeCoverageResults.xml' -ErrorAction 'Stop'
-
-    # Deployment variables
-  - ps: $Env:CI_DEPLOY_SCRIPTS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'deploy' -ErrorAction 'Stop'
-
-    # Documentation variables
-  - ps: $Env:CI_DOCS_PATH = Join-Path -Path $Env:CI_BUILD_PATH -ChildPath 'docs' -ErrorAction 'Stop'
-
-    # Script path variables
-  - ps: $Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH = Join-Path -Path $Env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Initialize-Environment.ps1'
-  - ps: $Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH = Join-Path -Path $Env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Install-Dependencies.ps1' -ErrorAction 'Stop'
-  - ps: $Env:CI_BUILD_PROJECT_SCRIPT_PATH = Join-Path -Path $Env:CI_BUILD_SCRIPTS_PATH -ChildPath 'Build-Project.ps1' -ErrorAction 'Stop'
-  - ps: $Env:CI_START_TESTS_SCRIPT_PATH = Join-Path -Path $Env:CI_TESTS_PATH -ChildPath 'Start-Tests.ps1' -ErrorAction 'Stop'
-  - ps: $Env:CI_PUBLISH_PROJECT_SCRIPT_PATH = Join-Path -Path $Env:CI_DEPLOY_SCRIPTS_PATH -ChildPath 'Publish-Project.ps1' -ErrorAction 'Stop'
-
-    # Configure git
-  - ps: git config --global credential.helper store
-  - ps: Add-Content -Path ( Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials' ) -Value "https://${Env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
-  - ps: git config --global user.email $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
-  - ps: git config --global user.name $Env:APPVEYOR_REPO_COMMIT_AUTHOR
-  - ps: git config --global core.autocrlf true
-  - ps: git config --global core.safecrlf false
-  - ps: git config --global push.default tracking
-
-# clone directory
-#clone_folder:
-
-# fetch repository as zip archive
-# default is "false"
-#shallow_clone:
-
-# set clone depth
-# clone entire repository history if not defined
 clone_depth: 50
 
-# setting up etc/hosts file
-#hosts:
-
-# environment variables
 environment:
   APPVEYOR_CACHE_SKIP_RESTORE: true
   APPVEYOR_CACHE_SKIP_SAVE: true
@@ -145,121 +62,10 @@ environment:
     secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
   COVERALLS_API_KEY:
     secure: WWnf4Q5NJHBpILI4QpagjvIO4lKmqu3wa3u/vhDXRivO2Xsr4xt3XEsswAG0vryE
+  matrix:
+  - PowerShell: 5
+  - PowerShell: 6
 
-# this is how to allow failing jobs in the matrix
-#matrix:
-  # set this flag to immediately finish build once one of the jobs fails.
-  #fast_finish:
-  #allow_failures:
-    #- platform: x86
-      #configuration: Debug
-    #- platform: x64
-      #configuration: Release
-
-# exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
-  #exclude:
-    #- platform: x86
-      #configuration: Debug
-
-# build cache to preserve files/folders between builds
-#cache:
-
-# enable service required for build/tests
-#services:
-  #- mssql2014           # start SQL Server 2014 Express
-  #- mssql2014rs         # start SQL Server 2014 Express and Reporting Services
-  #- mssql2012sp1        # start SQL Server 2012 SP1 Express
-  #- mssql2012sp1rs      # start SQL Server 2012 SP1 Express and Reporting Services
-  #- mssql2008r2sp2      # start SQL Server 2008 R2 SP2 Express
-  #- mssql2008r2sp2rs    # start SQL Server 2008 R2 SP2 Express and Reporting Services
-  #- mysql               # start MySQL 5.6 service
-  #- postgresql          # start PostgreSQL 9.5 service
-  #- iis                 # start IIS
-  #- msmq                # start Queuing services
-  #- mongodb             # start MongoDB
-  #- docker              # start Docker
-  #- mssql               # start SQL Server 2017 for Linux
-
-# scripts that run after cloning repository
-# by default, all script lines are interpreted as batch
-install:
-  - ps: . $Env:CI_INITIALIZE_ENVIRONMENT_SCRIPT_PATH
-  - ps: . $Env:CI_INSTALL_DEPENDENCIES_SCRIPT_PATH
-
-# enable patching of AssemblyInfo.* files
-#assembly_info:
-  #patch:
-  #file:
-  #assembly_version:
-  #assembly_file_version:
-  #assembly_informational_version:
-
-
-# Automatically register private account and/or project AppVeyor NuGet feeds.
-#nuget:
-  #account_feed:
-  #project_feed:
-  #disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to account/project feeds for pull request builds
-
-
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
-
-# scripts to run before build
-#before_build:
-
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-#platform:
-  #- Any CPU
-
-# build Configuration, i.e. Debug, Release, etc.
-#configuration:
-
-# to disable automatic builds
-#build: off
-
-# to run your custom scripts instead of automatic MSBuild
-build_script:
-  - ps: . $Env:CI_BUILD_PROJECT_SCRIPT_PATH
-
-# scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
-#before_package:
-
-# scripts to run after build
-#after_build:
-
-
-#---------------------------------#
-#       tests configuration       #
-#---------------------------------#
-
-# scripts to run before tests
-#before_test:
-
-# to run tests again only selected assemblies and/or categories
-#test:
-  #assemblies:
-    #only:
-
-  #categories:
-    #only:
-
-# to disable automatic tests
-#test: off
-
-# to run your custom scripts instead of automatic tests
-test_script:
-  - ps: . $Env:CI_START_TESTS_SCRIPT_PATH
-
-# scripts to run after tests
-#after_test:
-
-#---------------------------------#
-#      artifacts configuration    #
-#---------------------------------#
-
-# Files generated during the build process that should be retained
 artifacts:
   - path: TestResults.xml
     name: Pester Test Results
@@ -267,43 +73,6 @@ artifacts:
   - path: CodeCoverageResults.xml
     name: Pester Code Coverage Results
     type: Auto
-
-
-#---------------------------------#
-#     deployment configuration    #
-#---------------------------------#
-
-# scripts to run before deployment
-#before_deploy:
-
-# provider deployments
-#deploy: off
-
-# to run your custom scripts instead of provider deployments
-#deploy_script:
-
-# scripts to run after deployment
-#after_deploy:
-
-
-#---------------------------------#
-#        global handlers          #
-#---------------------------------#
-
-# on successful build
-on_success:
-  - ps: . $Env:CI_PUBLISH_PROJECT_SCRIPT_PATH
-
-# on build failure
-#on_failure:
-
-# after build failure or success
-#on_finish:
-
-
-#---------------------------------#
-#         notifications           #
-#---------------------------------#
 
 notifications:
   - provider: Email

@@ -1,12 +1,12 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $Env:CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
+$filePath = Join-Path -Path $CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PrivateFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PRIVATE -f $function
 Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -20,8 +20,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
     function Test-FormatArmorApiRequestBody1 {
         param ( [String] $Code, [String] $GrantType, [String[]] $Array, [Switch] $Switch )
-        $parameters = ( Get-Command -Name $MyInvocation.MyCommand.Name ).Parameters.Values
-        Format-ArmorApiRequestBody -Keys $validKeys -Parameters $parameters
+        Format-ArmorApiRequestBody -Keys $validKeys -Parameters $PSBoundParameters
     }
     #endregion
 
@@ -29,31 +28,31 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
         ExpectedOutputTypeNames = 'System.String'
         Help                    = $help
     }
-    TestAdvancedFunctionHelpOutputs @splat
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = 'Keys', 'Parameters'
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
-    Context -Name $Global:Execution -Fixture {
+    Context -Name $Global:EXECUTION -Fixture {
         #region init
         #endregion
 
@@ -85,5 +84,5 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             { Format-ArmorApiRequestBody -Keys $Keys -Parameters $Parameters } |
                 Should -Throw
         }
-        }
-            }
+    }
+}

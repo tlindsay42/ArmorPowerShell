@@ -1,9 +1,9 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PublicFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PUBLIC -f $function
 Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -13,11 +13,11 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     # $splat = @{
     #     ExpectedOutputTypeNames = 'Void'
@@ -29,15 +29,15 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         ExpectedParameterNames = 'WhatIf', 'Confirm'
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
-    Context -Name $Global:Execution -Fixture {
+    Context -Name $Global:EXECUTION -Fixture {
         $testName = "should not fail"
         It -Name $testName -Test {
             { Disconnect-Armor -Confirm:$false } |
@@ -45,14 +45,14 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         }
     }
 
-    Context -Name $Global:ReturnTypeContext -Fixture {
+    Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
         $testCases = @(
             @{
                 FoundReturnType    = Disconnect-Armor -Confirm:$false
                 ExpectedReturnType = 'System.Void'
             }
         )
-        $testName = $Global:ReturnTypeForm
+        $testName = $Global:FORM_RETURN_TYPE
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |

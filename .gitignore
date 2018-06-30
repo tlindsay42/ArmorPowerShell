@@ -43,5 +43,3 @@ Thumbs.db
 .candidate/
 BuildOutput/
 site/
-TestResults.xml
-CodeCoverageResults.xml

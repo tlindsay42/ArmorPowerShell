@@ -1,12 +1,12 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $Env:CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
+$filePath = Join-Path -Path $CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PrivateFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PRIVATE -f $function
 Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -26,31 +26,31 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
         ExpectedOutputTypeNames = 'System.String'
         Help                    = $help
     }
-    TestAdvancedFunctionHelpOutputs @splat
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = 'Server', 'Port', 'Endpoints', 'IDs'
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
-    Context -Name $Global:Execution -Fixture {
+    Context -Name $Global:EXECUTION -Fixture {
         $testCases = @(
             @{
                 Server    = $invalidServer
@@ -160,14 +160,14 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
     }
 
-    Context -Name $Global:ReturnTypeContext -Fixture {
+    Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
         $testCases = @(
             @{
                 FoundReturnType    = ( New-ArmorApiUri -Server $validServer -Port $validPort -Endpoints '/' -ErrorAction 'Stop' ).GetType().FullName
                 ExpectedReturnType = 'System.String'
             }
         )
-        $testName = $Global:ReturnTypeForm
+        $testName = $Global:FORM_RETURN_TYPE
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |

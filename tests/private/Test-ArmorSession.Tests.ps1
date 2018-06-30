@@ -1,12 +1,12 @@
-Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force
+Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
-$filePath = Join-Path -Path $Env:CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
+$filePath = Join-Path -Path $CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
 
 . $filePath
 
 $function = $systemUnderTest.Split( '.' )[0]
-$describe = $Global:PrivateFunctionForm -f $function
+$describe = $Global:FORM_FUNCTION_PRIVATE -f $function
 Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     #region init
     $help = Get-Help -Name $function -Full
@@ -17,31 +17,31 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         ExpectedFunctionName = $function
         FoundFunctionName    = $help.Name
     }
-    TestAdvancedFunctionName @splat
+    Test-AdvancedFunctionName @splat
 
-    TestAdvancedFunctionHelpMain -Help $help
+    Test-AdvancedFunctionHelpMain -Help $help
 
-    TestAdvancedFunctionHelpInputs -Help $help
+    Test-AdvancedFunctionHelpInput -Help $help
 
     $splat = @{
         ExpectedOutputTypeNames = 'System.Void'
         Help                    = $help
     }
-    TestAdvancedFunctionHelpOutputs @splat
+    Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
         ExpectedParameterNames = @()
         Help                   = $help
     }
-    TestAdvancedFunctionHelpParameters @splat
+    Test-AdvancedFunctionHelpParameter @splat
 
     $splat = @{
         ExpectedNotes = $Global:FORM_FUNCTION_HELP_NOTES
         Help          = $help
     }
-    TestAdvancedFunctionHelpNotes @splat
+    Test-AdvancedFunctionHelpNote @splat
 
-    Context -Name $Global:Execution -Fixture {
+    Context -Name $Global:EXECUTION -Fixture {
         #region init
         #endregion
 
@@ -79,7 +79,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         }
 
-        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+        [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $testName = "should fail when the session expired at: '$( $Global:ArmorSession.SessionExpirationTime )'"
@@ -88,10 +88,10 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Throw
         }
 
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             Mock -CommandName Update-ArmorApiToken -Verifiable -MockWith {}
 
-            [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+            [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
                 ConvertFrom-Json -ErrorAction 'Stop'
             $Global:ArmorSession.Headers.Authorization = 'FH-AUTH d4641394719f4513a80f25de11a85138'
             $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( ( $Global:ArmorSession.SessionLengthInMinutes * ( 1 / 3 ) ) )
@@ -104,7 +104,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             Assert-MockCalled -CommandName Update-ArmorApiToken -Times 1
         }
 
-        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+        [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
@@ -115,8 +115,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
     }
 
-    Context -Name $Global:ReturnTypeContext -Fixture {
-        [ArmorSession] $Global:ArmorSession = $Global:JsonResponseBody.Session1 |
+    Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
@@ -126,7 +126,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 ExpectedReturnType = ''
             }
         )
-        $testName = $Global:ReturnTypeForm
+        $testName = $Global:FORM_RETURN_TYPE
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |

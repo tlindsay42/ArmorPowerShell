@@ -1,7 +1,7 @@
 Describe -Name 'Module' -Tag 'Module' -Fixture {
     Context -Name 'Import' -Fixture {
-        It -Name "should import module: '${Env:CI_MODULE_NAME}'" -Test {
-            { Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -Force } |
+        It -Name "should import module: '${Global:CI_MODULE_NAME}'" -Test {
+            { Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force } |
                 Should -Not -Throw
         }
     }
@@ -10,7 +10,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
     Get the last index because the script files in ScriptsToProcess are
     returned as earlier index items.
     #>
-    $moduleInfo = ( Import-Module -Name $Env:CI_MODULE_MANIFEST_PATH -PassThru )[-1]
+    $moduleInfo = ( Import-Module -Name $CI_MODULE_MANIFEST_PATH -PassThru )[-1]
 
     Context -Name 'Manifest' -Fixture {
         $author = 'Troy Lindsay'
@@ -149,7 +149,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
     }
 
-    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PUBLIC_PATH -File
+    $fileNames = Get-ChildItem -Path $CI_MODULE_PUBLIC_PATH -File
     $functionNames = $moduleInfo.ExportedFunctions.Keys
 
     Context -Name 'ExportedFunctions' -Fixture {
@@ -166,9 +166,9 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
                     Should -BeIn $fileNames.BaseName
             }
         }
-        }
+    }
 
-    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_LIB_PATH -File
+    $fileNames = Get-ChildItem -Path $CI_MODULE_LIB_PATH -File
 
     Context -Name 'ScriptsToProcess' -Fixture {
         foreach ( $fileName in $fileNames ) {
@@ -184,9 +184,9 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
                     Should -BeIn $fileNames.FullName
             }
         }
-        }
+    }
 
-    $fileNames = Get-ChildItem -Path $Env:CI_MODULE_PATH -File -Recurse
+    $fileNames = Get-ChildItem -Path $CI_MODULE_PATH -File -Recurse
 
     Context -Name 'FileList' -Fixture {
         foreach ( $fileName in $fileNames ) {
@@ -203,4 +203,4 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             }
         }
     }
-        }
+}
