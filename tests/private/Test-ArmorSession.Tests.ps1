@@ -116,14 +116,29 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        #region init
+        $returnValue = $null
+        $returnType = $null
+
         [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
             ConvertFrom-Json -ErrorAction 'Stop'
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
+
+        $returnValue = Test-ArmorSession
+        #endregion
+
+        if ( $returnValue -eq $null ) {
+            $returnType = 'System.Void'
+        }
+        else {
+            $returnType = $returnValue.GetType().FullName
+        }
+
         $testCases = @(
             @{
-                FoundReturnType    = Test-ArmorSession
-                ExpectedReturnType = ''
+                FoundReturnType    = $returnType
+                ExpectedReturnType = 'System.Void'
             }
         )
         $testName = $Global:FORM_RETURN_TYPE
@@ -133,11 +148,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Be $ExpectedReturnType
         }
 
-        # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-        # It -Name $testName -TestCases $testCases -Test {
-        #     param ( [String] $FoundReturnType )
-        #     $FoundReturnType |
-        #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # }
+        $testName = "has an 'OutputType' entry for <FoundReturnType>"
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType )
+            $FoundReturnType |
+                Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
+        }
     }
 }

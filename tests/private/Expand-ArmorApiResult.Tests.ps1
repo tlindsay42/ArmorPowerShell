@@ -115,7 +115,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
-                Should -BeIn ( Get-Help -Name 'Expand-ArmorApiResult' ).ReturnValues.ReturnValue.Type.Name
+                Should -BeIn ( $help.ReturnValues.ReturnValue.Type.Name + 'System.Management.Automation.PSCustomObject' )
         }
     }
 }

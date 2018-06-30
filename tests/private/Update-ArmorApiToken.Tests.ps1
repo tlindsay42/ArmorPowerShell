@@ -112,11 +112,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
         InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             #region init
-            #endregion
+            $returnValue = $null
+            $returnType = $null
 
             [ArmorSession] $Global:ArmorSession = $Global:JSON_RESPONSE_BODY.Session1 |
                 ConvertFrom-Json -ErrorAction 'Stop'
             $Global:ArmorSession.Headers.Authorization = "FH-AUTH d4641394719f4513a80f25de11a85138"
+            #endregion
 
             Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
                 @{
@@ -127,10 +129,21 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 }
             }
 
+            $returnValue = Update-ArmorApiToken
+
+            if ( $returnValue -eq $null ) {
+                $returnType = 'System.Void'
+            }
+            else {
+                $returnType = $returnValue.GetType().FullName
+            }
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+
             $testCases = @(
                 @{
-                    FoundReturnType    = Update-ArmorApiToken
-                    ExpectedReturnType = ''
+                    FoundReturnType    = $returnType
+                    ExpectedReturnType = 'System.Void'
                 }
             )
             $testName = $Global:FORM_RETURN_TYPE
@@ -139,15 +152,13 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 $FoundReturnType |
                     Should -Be $ExpectedReturnType
             }
-            Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name Update-ArmorApiToken ).ReturnValues.ReturnValue.Type.Name
-            # }
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( Get-Help -Name Update-ArmorApiToken ).ReturnValues.ReturnValue.Type.Name
+            }
         }
     }
 }

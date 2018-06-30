@@ -141,12 +141,12 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
-            # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-            # It -Name $testName -TestCases $testCases -Test {
-            #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-            #     $FoundReturnType |
-            #         Should -BeIn ( Get-Help -Name 'New-ArmorApiToken' ).ReturnValues.ReturnValue.Type.Name
-            # }
+            $testName = "has an 'OutputType' entry for <FoundReturnType>"
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+                $FoundReturnType |
+                    Should -BeIn ( @( ( Get-Help -Name 'New-ArmorApiToken' ).ReturnValues.ReturnValue.Type.Name ) + $ExpectedReturnType )
+            }
         }
     }
 }

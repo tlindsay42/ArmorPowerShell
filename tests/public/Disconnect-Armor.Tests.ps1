@@ -46,9 +46,21 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        #region init
+        $returnValue = Disconnect-Armor -Confirm:$false
+        $returnType = $null
+        #endregion
+
+        if ( $returnValue -eq $null ) {
+            $returnType = 'System.Void'
+        }
+        else {
+            $returnType = $returnValue.GetType().FullName
+        }
+
         $testCases = @(
             @{
-                FoundReturnType    = Disconnect-Armor -Confirm:$false
+                FoundReturnType    = $returnType
                 ExpectedReturnType = 'System.Void'
             }
         )
@@ -56,7 +68,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
-                Should -BeNullOrEmpty
+                Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
         }
     }
 }

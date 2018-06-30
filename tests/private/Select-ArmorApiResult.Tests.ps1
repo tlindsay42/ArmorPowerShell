@@ -151,11 +151,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Should -Be $ExpectedReturnType
         }
 
-        # $testName = "has an 'OutputType' entry for <FoundReturnType>"
-        # It -Name $testName -TestCases $testCases -Test {
-        #     param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
-        #     $FoundReturnType |
-        #         Should -BeIn $help.ReturnValues.ReturnValue.Type.Name
-        # }
+        $testName = "has an 'OutputType' entry for <FoundReturnType>"
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
+            $FoundReturnType |
+                Should -BeIn ( $help.ReturnValues.ReturnValue.Type.Name + $ExpectedReturnType )
+        }
     }
 }
