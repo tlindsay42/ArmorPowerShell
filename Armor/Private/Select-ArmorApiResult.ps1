@@ -88,11 +88,12 @@ function Select-ArmorApiResult {
     process {
         [PSCustomObject[]] $return = $null
 
-        if ( $Results.Count -eq 0 -or $Filters.Count -eq 0 ) {
+        if ( ( $Results | Measure-Object ).Count -eq 0 -or ( $Filters | Measure-Object ).Count -eq 0 ) {
             $return = $Results
         }
         else {
             $filteredResults = $Results.Clone()
+            $filteredResultsCount = ( $filteredResults | Measure-Object ).Count
 
             Write-Verbose -Message 'Filter the results.'
 
@@ -110,12 +111,17 @@ function Select-ArmorApiResult {
                         $filterList = @( $filterValueName )
                     }
 
-                    Write-Verbose -Message ( 'Filter depth: ' + $filterList.Count )
-                    switch ( $filterList.Count ) {
+                    $filterListCount = ( $filterList | Measure-Object ).Count
+
+                    Write-Verbose -Message "Filter depth: '${filterListCount}'"
+                    switch ( $filterListCount ) {
                         1 {
-                            Write-Verbose -Message ( 'Results count pre-filter: ' + $filteredResults.Count )
-                            $filteredResults = $filteredResults.Where( { $_.$filterValueName -like $filterValue } )
-                            Write-Verbose -Message ( 'Results count post-filter: ' + $filteredResults.Count )
+                            Write-Verbose -Message "Results count pre-filter: '${filteredResultsCount}'"
+                            $filteredResults = $filteredResults |
+                                Where-Object -FilterScript { $_  | Get-Member -Name $filterValueName -ErrorAction 'SilentlyContinue' } |
+                                Where-Object -FilterScript { $_.$filterValueName -like $filterValue }
+                            $filteredResultsCount = ( $filteredResults | Measure-Object ).Count
+                            Write-Verbose -Message "Results count post-filter: '${filteredResultsCount}'"
                         }
 
                         2 {
@@ -126,9 +132,14 @@ function Select-ArmorApiResult {
                                 throw "Invalid Armor API filter configuration: '${filterValue}'"
                             }
 
-                            Write-Verbose -Message ( 'Results count pre-filter: ' + $filteredResults.Count )
-                            $filteredResults = $filteredResults.Where( { $_.$parentFilter.$childFilter -like $filterValue } )
-                            Write-Verbose -Message ( 'Results count post-filter: ' + $filteredResults.Count )
+                            Write-Verbose -Message "Results count pre-filter: '${filteredResultsCount}'"
+
+                            $filteredResults = $filteredResults |
+                                Where-Object -FilterScript { $_ | Get-Member -Name $parentFilter -ErrorAction 'SilentlyContinue' } |
+                                Where-Object -FilterScript { $_.$parentFilter | Get-Member -Name $childFilter -ErrorAction 'SilentlyContinue' } |
+                                Where-Object -FilterScript { $_.$parentFilter.$childFilter -like $filterValue }
+                            $filteredResultsCount = ( $filteredResults | Measure-Object ).Count
+                            Write-Verbose -Message "Results count post-filter: '${filteredResultsCount}'"
                         }
 
                         default {

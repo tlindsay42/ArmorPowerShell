@@ -133,7 +133,41 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     }
 
     Context -Name 'API Token' -Fixture {
-        InModuleScope -ModuleName $Env:CI_MODULE_NAME -ScriptBlock {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
+            #region init
+            $splat = @{
+                TypeName     = 'System.Management.Automation.PSCredential'
+                ArgumentList = 'test', ( 'Fake Password' | ConvertTo-SecureString -AsPlainText -Force )
+                ErrorAction  = 'Stop'
+            }
+            $creds = New-Object @splat
+
+            $validCode = 'VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu='
+            #endregion
+
+            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+                @{
+                    redirect_uri = $null
+                    code         = $validCode
+                    success      = 'true'
+                }
+            }
+            Mock -CommandName New-ArmorApiToken -Verifiable -MockWith {}
+
+            $testName = 'should fail on invalid token'
+            It -Name $testName -Test {
+                { Connect-Armor -Credential $creds } |
+                    Should -Throw
+            }
+
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName New-ArmorApiToken -Times 1
+        }
+    }
+
+    Context -Name 'Valid Logins' -Fixture {
+        InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
             #region init
             $splat = @{
                 TypeName     = 'System.Management.Automation.PSCredential'

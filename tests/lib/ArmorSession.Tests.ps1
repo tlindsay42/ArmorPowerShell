@@ -591,8 +591,31 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $method = 'GetToken'
     $context = $Global:FORM_METHOD_FAIL -f $method
     Context -Name $context -Fixture {
-        It -Name 'should fail to get an authentication token since the session has not been authorized' -Test {
-            { $temp.$method() } |
+        It -Name 'should fail to get an authentication token if the authorization token has been destroyed' -Test {
+            {
+                $temp.Headers.Remove( 'Authorization' )
+                $temp.$method()
+            } |
+                Should -Throw
+        }
+
+        It -Name 'should fail to get an authentication token if the token is invalid' -Test {
+            {
+                $temp.Headers = @{
+                    Authorization = 'FH-AUTH Invalid_Token1'
+                }
+                $temp.$method()
+            } |
+                Should -Throw
+        }
+
+        It -Name 'should fail to get an authentication token if the session has not been authorized' -Test {
+            {
+                $temp.Headers = @{
+                    Authorization = $null
+                }
+                $temp.$method()
+            } |
                 Should -Throw
         }
     }

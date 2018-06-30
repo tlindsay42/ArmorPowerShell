@@ -78,9 +78,7 @@ function Set-ArmorAccountContext {
     }
 
     process {
-        [ArmorAccount] $return = $Global:ArmorSession.SetAccountContext( $ID )
-
-        $return
+        $Global:ArmorSession.SetAccountContext( $ID )
     }
 
     end {
