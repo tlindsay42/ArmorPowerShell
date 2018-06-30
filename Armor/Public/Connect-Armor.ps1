@@ -145,20 +145,14 @@ function Connect-Armor {
 
         $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
-        switch ( $Global:ArmorSession.ApiVersion ) {
-            'v1.0' {
+        switch -Regex ( $Global:ArmorSession.ApiVersion ) {
+            '^(?:v1.0|internal)$' {
                 $body = @{
                     $resources.Body.UserName = $Credential.UserName
                     $resources.Body.Password = $Credential.GetNetworkCredential().Password
                 } |
                     ConvertTo-Json -ErrorAction 'Stop'
-            }
-            'internal' {
-                $body = @{
-                    $resources.Body.UserName = $Credential.UserName
-                    $resources.Body.Password = $Credential.GetNetworkCredential().Password
-                } |
-                    ConvertTo-Json -ErrorAction 'Stop'
+                break
             }
         }
 
