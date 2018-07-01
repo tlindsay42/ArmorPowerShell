@@ -240,6 +240,26 @@ class ArmorPhoneNumber {
 }
 
 
+class ArmorScheduledEvent {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $EntityType
+
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $EntityID
+
+    [ValidateNotNullOrEmpty()]
+    [String] $Action
+
+    [DateTime] $TaskDate
+
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $MaintenanceWindow
+
+    #Constructors
+    ArmorScheduledEvent () {}
+}
+
+
 class ArmorSessionUser {
     [ValidateNotNullOrEmpty()]
     [String] $Type
@@ -795,7 +815,7 @@ class ArmorVM {
     [String] $ProviderRefID
 
     [AllowEmptyCollection()]
-    [PSCustomObject[]] $ScheduledEvents
+    [ArmorScheduledEvent[]] $ScheduledEvents
 
     [ArmorStatus] $Status
 

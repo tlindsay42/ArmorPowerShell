@@ -1150,23 +1150,28 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
         $testCases = @(
-            @{ Value = @() },
-            @{
-                Value = @(
-                    [PSCustomObject] @{ ScheduledEvent = 1 },
-                    [PSCustomObject] @{ ScheduledEvent = 2 }
+                Value =  [PSCustomObject] @{ ScheduledEvent = 1 }
                 )
+        It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
+            param ( [PSCustomObject] $Value )
+            { $temp.$property = $Value } |
+                Should -Throw
             }
+
+        $testCases = @(
+            @{ Value = @() },
+            @{ Value = [ArmorScheduledEvent]::New(), [ArmorScheduledEvent]::New() },
+            @{ Value = [ArmorScheduledEvent]::New() }
         )
         It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
-            param ( [PSCustomObject[]] $Value )
+            param ( [ArmorScheduledEvent] $Value )
             { $temp.$property = $Value } |
                 Should -Not -Throw
         }
 
         It -Name $Global:FORM_PROPERTY_TYPE -Test {
             $temp.$property |
-                Should -BeOfType ( [System.Management.Automation.PSCustomObject] )
+                Should -BeOfType ( [ArmorScheduledEvent] )
         }
     }
 
