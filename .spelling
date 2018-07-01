@@ -26,6 +26,7 @@ Armor.psm1
 ArmorAccount
 ArmorAccountAddress
 ArmorCompleteDatacenter
+ArmorCompleteVmOrder
 ArmorCompleteWorkload
 ArmorCompleteWorkloadTier
 ArmorPowerShell
@@ -54,6 +55,7 @@ eg
 e.g.
 ErrorAction
 ErrorVariable
+ExistingWorkloadAndTier
 Expand-ArmorApiResult
 FirstName
 ForceOff
@@ -93,11 +95,14 @@ Me_GetMeAsync
 MkDocs
 mkdocs.org
 NewName
+NewWorkloadAndTier
 New-ArmorApiToken
 New-ArmorApiUri
 New-ArmorApiUriQuery
+New-ArmorCompleteVM
 OneDrive
 open-vm-tools
+Orders_PostVmOrderAsync
 OutBuffer
 OutVariable
 pasteable
@@ -128,6 +133,7 @@ styleguides
 Styleguides
 Submit-ArmorApiRequest
 SuccessCode
+System.Guid
 System.Management.Automation.PSObject
 System.String
 System.UInt16
@@ -138,6 +144,8 @@ TenantOAuth_AuthorizeAsync
 TenantOAuth_ReissueAsync
 TenantOAuth_TokenAsync
 TEST-VM
+TierID
+TierName
 Tier_AddTier
 Tier_DeleteTier
 Tier_Get
@@ -153,6 +161,7 @@ Uri
 Users_GetUser
 Users_GetUsers
 Verb-ArmorNoun
+VirtualDisks
 VMs
 VMware
 Vm_DeleteVm
@@ -169,6 +178,7 @@ whitespace
 white_check_mark
 Wildcard
 WorkloadID
+WorkloadName
 www.apache.org
 xml
 #endregion

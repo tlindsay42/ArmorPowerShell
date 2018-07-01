@@ -140,7 +140,8 @@ function Format-ArmorApiRequestBody {
         # Store the results in a JSON string
         $return = ConvertTo-Json -InputObject $body -ErrorAction 'Stop'
 
-        Write-Verbose -Message "Body = ${return}"
+        $filteredReturn = $return -replace '"secret": ".+"', '"secret": "[redacted]"'
+        Write-Verbose -Message "Body = $filteredReturn"
 
         $return
     }

@@ -189,6 +189,7 @@ Properties {
         Tiers1VMs1           = Get-TestResponseBody -FileName 'Tiers_1-VMs_1.json'
         Token1               = Get-TestResponseBody -FileName 'Token_1.json'
         Users1               = Get-TestResponseBody -FileName 'Users_1.json'
+        VmOrders1            = Get-TestResponseBody -FileName 'VmOrders_1.json'
         VMs1                 = Get-TestResponseBody -FileName 'VMs_1.json'
         VMs2                 = Get-TestResponseBody -FileName 'VMs_2.json'
         Workloads1Tiers1VMs1 = Get-TestResponseBody -FileName 'Workloads_1-Tiers_1-VMs_1.json'

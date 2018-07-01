@@ -1,0 +1,33 @@
+{
+  "id": 1,
+  "accountId": 1,
+  "status": "submitted",
+  "dateCreated": "2015-01-07T02:21:00.00000Z",
+  "vms": [{
+    "trackingId": "00000000-0000-0000-0000-000000000000",
+    "name": "VM1",
+    "location": "DFW01",
+    "zone": "DFW01T01-VC01",
+    "appId": 1,
+    "appName": "WL1",
+    "tierId": 1,
+    "tierName": "TR1",
+    "storage": [{
+      "size": 30,
+      "sku": "SAN-001",
+      "quantity": 1,
+      "accountId": 1
+    }],
+    "software": [{
+      "sku": "CentOS 6",
+      "parameters": [],
+      "type": "os",
+      "quantity": 1,
+      "accountId": 1
+    }],
+    "secret": null,
+    "sku": "A1-101",
+    "quantity": 1,
+    "accountId": 1
+  }]
+}

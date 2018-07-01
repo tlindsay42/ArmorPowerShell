@@ -185,6 +185,31 @@
       "SuccessCode": "200"
     }
   },
+  "New-ArmorCompleteVM": {
+    "v1.0": {
+      "Description": "Order {0} new VM{1}",
+      "Endpoints": [
+        "/orders/vms"
+      ],
+      "Method": "Post",
+      "Body": {
+        "name": "Name",
+        "location": "Armor Complete datacenter location code",
+        "appId": "Workload ID",
+        "appName": "New Workload Name",
+        "tierId": "Workload Tier ID",
+        "tierName": "New Workload Tier Name",
+        "storage": "Virtual disks",
+        "secret": "Password",
+        "sku": "Fixed instance VM geometry",
+        "quantity": "Quantity to order"
+      },
+      "Query": {},
+      "Location": "VMs",
+      "Filter": {},
+      "SuccessCode": "200"
+    }
+  },
   "New-ArmorCompleteWorkloadTier": {
     "v1.0": {
       "Description": "Create workload tier",

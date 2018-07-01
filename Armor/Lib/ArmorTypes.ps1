@@ -167,6 +167,50 @@ class ArmorCompleteDatacenter {
 }
 
 
+class ArmorCompleteVmOrderVm {
+    [UInt16] $AccountID
+
+    [UInt16] $AppID
+
+    [AllowEmptyString()]
+    [String] $AppName
+
+    [AllowEmptyString()]
+    [String] $Name
+
+    [AllowEmptyString()]
+    [String] $Location
+
+    [UInt16] $Quantity
+
+    Hidden [String] $Secret
+
+    [AllowEmptyString()]
+    [String] $SKU
+
+    [AllowEmptyCollection()]
+    [PSCustomObject[]] $Software
+
+    [AllowEmptyCollection()]
+    [PSCustomObject[]] $Storage
+
+    [UInt16] $TemplateID
+
+    [UInt16] $TierID
+
+    [AllowEmptyString()]
+    [String] $TierName
+
+    [Guid] $TrackingID
+
+    [AllowEmptyString()]
+    [String] $Zone
+
+    #Constructors
+    ArmorCompleteVmOrderVm () {}
+}
+
+
 class ArmorDepartment {
     [ValidateRange( 1, 65535 )]
     [UInt16] $ID
@@ -868,6 +912,27 @@ class ArmorVM {
 
     #Constructors
     ArmorVM () {}
+}
+
+
+class ArmorCompleteVmOrder {
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $ID
+
+    [ValidateRange( 1, 65535 )]
+    [UInt16] $AccountID
+
+    [ValidateNotNullOrEmpty()]
+    [String] $Status
+
+    [ValidateNotNull()]
+    [DateTime] $DateCreated
+
+    [ValidateCount( 1, 65535 )]
+    [ArmorCompleteVmOrderVm[]] $VMs
+
+    #Constructors
+    ArmorCompleteVmOrder () {}
 }
 
 
