@@ -800,6 +800,9 @@ class ArmorVM {
     [AllowEmptyString()]
     [String] $OsID
 
+    [AllowEmptyString()]
+    [String] $OsProvider
+
     [AllowEmptyCollection()]
     [ArmorVmProduct[]] $Product
 

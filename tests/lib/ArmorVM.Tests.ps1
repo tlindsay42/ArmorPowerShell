@@ -1029,6 +1029,24 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
     }
 
+    $property = 'OsProvider'
+    $context = $Global:FORM_PROPERTY -f $property
+    Context -Name $context -Fixture {
+        $testCases = @(
+            @{ Value = '' }
+        )
+        It -Name $Global:FORM_PROPERTY_PASS -TestCases $testCases -Test {
+            param ( [String] $Value )
+            { $temp.$property = $Value } |
+                Should -Not -Throw
+        }
+
+        It -Name $Global:FORM_PROPERTY_TYPE -Test {
+            $temp.$property |
+                Should -BeOfType ( [System.String] )
+        }
+    }
+
     $property = 'Product'
     $context = $Global:FORM_PROPERTY -f $property
     Context -Name $context -Fixture {
@@ -1151,12 +1169,12 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
     Context -Name $context -Fixture {
         $testCases = @(
                 Value =  [PSCustomObject] @{ ScheduledEvent = 1 }
-                )
+        )
         It -Name $Global:FORM_PROPERTY_FAIL -TestCases $testCases -Test {
             param ( [PSCustomObject] $Value )
             { $temp.$property = $Value } |
                 Should -Throw
-            }
+        }
 
         $testCases = @(
             @{ Value = @() },
