@@ -138,16 +138,13 @@ class ArmorAccountAddress {
 
 class ArmorCompleteDatacenter {
     [ValidateRange( 1, 5 )]
-    [UInt16]
-    $ID
+    [UInt16] $ID
 
     [ValidateSet( 'AMS01', 'DFW01', 'LHR01', 'PHX01', 'SIN01' )]
-    [String]
-    $Location
+    [String] $Location
 
     [ValidateSet( 'AS East', 'EU Central', 'EU West', 'US Central', 'US West' )]
-    [String]
-    $Name
+    [String] $Name
 
     [ValidateSet(
         'AMS01T01-VC01',
@@ -163,8 +160,7 @@ class ArmorCompleteDatacenter {
         'PHX01T01-VC03',
         'SIN01T01-VC01'
     )]
-    [String[]]
-    $Zones
+    [String[]] $Zones
 
     #Constructors
     ArmorCompleteDatacenter () {}
