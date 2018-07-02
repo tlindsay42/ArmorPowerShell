@@ -54,7 +54,13 @@ function Write-StatusUpdate {
     switch ( $Category ) {
         'Information' {
             Write-Host -Object $Message -ForegroundColor $MessageColor
-            Write-Host -Object $Details -ForegroundColor $DetailsColor
+
+            if ( $Details.Length -gt 0 ) {
+                Write-Host -Object $Details -ForegroundColor $DetailsColor
+            }
+            else {
+                Write-Host
+            }
         }
 
         'Warning' {
