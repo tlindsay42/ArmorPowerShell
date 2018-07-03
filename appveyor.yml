@@ -69,11 +69,11 @@ environment:
 init:
   # Issue #140 (https://github.com/appveyor/ci/issues/2477)
   - pwsh: >-
-    if ( $Env:WINDOWS -eq $true ) {
-      Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\avvm\avvm.psm1"
-      Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\build-worker-api\build-worker-api.psm1"
-      Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\nodejs-utils\nodejs-utils.psm1"
-    }
+      if ( $Env:WINDOWS -eq $true ) {
+        Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\avvm\avvm.psm1"
+        Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\build-worker-api\build-worker-api.psm1"
+        Import-Module -Name "${Env:ProgramFiles}\AppVeyor\BuildAgent\Modules\nodejs-utils\nodejs-utils.psm1"
+      }
 
 artifacts:
   - path: TestResults.xml
