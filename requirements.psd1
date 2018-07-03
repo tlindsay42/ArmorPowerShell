@@ -23,7 +23,12 @@
     }
 
     # Framework for Behavior Driven Development (BDD) test automation
-    Pester                = 'Latest'
+    Pester                = @{
+        Parameters = @{
+            SkipPublisherCheck = $true
+        }
+        Version    = 'Latest'
+    }
 
     # Documentation generation tool
     platyPS               = 'Latest'
