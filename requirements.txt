@@ -1,5 +1,5 @@
 # Documentation static site generator & deployment tool
-mkdocs>=0.17.1
+mkdocs>=0.16.3
 
 # Custom mkdocs theme for the project documentation site
 mkdocs-material>=2.8.0
