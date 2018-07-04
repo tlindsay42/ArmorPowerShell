@@ -11,17 +11,6 @@
     # Code coverage deployment tool
     Coveralls             = 'Latest'
 
-    # Markdown documentation spell-checking tool
-    'markdown-spellcheck' = @{
-        DependencyType = 'npm'
-        Parameters     = @{
-            Global = $true
-        }
-        Tags           = 'NodeJS'
-        Target         = 'Global'
-        Version        = 'Latest'
-    }
-
     # Framework for Behavior Driven Development (BDD) test automation
     Pester                = @{
         Parameters = @{

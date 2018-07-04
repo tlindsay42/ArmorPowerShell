@@ -94,7 +94,7 @@ if ( $SkipDependencies -eq $false ) {
     #endregion
 
     #region Install dependencies
-    Write-StatusUpdate -Message "Install PSDepend managed PowerShell & NodeJS dependencies."
+    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module dependencies."
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
@@ -109,6 +109,13 @@ if ( $SkipDependencies -eq $false ) {
     if ( $Local -eq $false ) {
         Write-StatusUpdate -Message "Load the 'BuildHelpers' environment variables."
         Set-BuildEnvironment -Force
+    }
+
+    Write-StatusUpdate -Message 'Install NodeJS dependencies.'
+    $details = npm install --global sinon@1 markdown-spellcheck |
+        Out-String
+    if ( $? -eq $false ) {
+        Write-StatusUpdate -Message 'Failed to install NodeJS dependencies.' -Category 'Error'
     }
 
     Write-StatusUpdate -Message 'Install python dependencies.'
