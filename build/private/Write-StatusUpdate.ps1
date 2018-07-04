@@ -73,6 +73,10 @@ function Write-StatusUpdate {
     }
 
     if ( $Env:APPVEYOR -eq $true -and $TestMode -eq $false ) {
+        # Issue #140 (https://github.com/appveyor/ci/issues/2477)
+        if ( ( $PSVersionTable.PSVersion.Major -eq 5 -and $Env:CI_WINDOWS -eq $true ) -or ( $Env:CI_LINUX -eq $true )
+        ) {
         Add-AppveyorMessage -Message $message -Category $Category -Details $Details
     }
+}
 }
