@@ -50,7 +50,7 @@ if ( $SkipDependencies -eq $false ) {
     #endregion
 
     #region Configure PowerShell repositories
-    $splats = @( 
+    $splats = @(
         @{
             Name                      = 'PSGallery'
             SourceLocation            = 'https://www.powershellgallery.com/api/v2/'
@@ -98,8 +98,8 @@ if ( $SkipDependencies -eq $false ) {
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
-    Invoke-PSDepend -Path $psdependPath -Tags 'PSGalleryModule' -Install -Import -Confirm:$false
-    Invoke-PSDepend -Path $psdependPath -Tags 'NodeJS' -Install -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags 'PSGalleryModule' -Install -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags 'PSGalleryModule' -Import -Confirm:$false
 
     $details = Get-Dependency -Path $psdependPath |
         Format-Table -AutoSize -Property 'DependencyName', 'DependencyType', 'Version' |
