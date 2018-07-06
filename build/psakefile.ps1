@@ -1,5 +1,5 @@
 #requires -Version 5.0
-#requires -Modules BuildHelpers, Coveralls, Pester, platyPS, psake, PSDeploy
+#requires -Modules BuildHelpers, Pester, platyPS, psake, PSDeploy
 
 #region Format task title style
 $horizontalLine = '#' * 80
@@ -28,14 +28,10 @@ Remove-Variable -Name 'errorAction'
 #endregion
 
 #region Assert PowerShell module dependencies
-$moduleDependencies = @(
+$moduleDevDependencies = @(
     @{
         Name           = 'BuildHelpers'
         MinimumVersion = '1.1.4'
-    },
-    @{
-        Name           = 'Coveralls'
-        MinimumVersion = '1.0.25'
     },
     @{
         Name           = 'Pester'
@@ -54,9 +50,20 @@ $moduleDependencies = @(
         MinimumVersion = '0.2.5'
     }
 )
-foreach ( $moduleDependency in $moduleDependencies ) {
-    $message = "PowerShell module dependency: '$( $moduleDependency.Name )', minimum version: '$( $moduleDependency.MinimumVersion )' not found."
-    Assert ( ( Get-Module -Name $moduleDependency.Name ).Version -ge $moduleDependency.MinimumVersion ) $message
+
+if ( $Env:APPVEYOR -eq $true ) {
+    $moduleDevDependencies += @{
+        Name           = 'Coveralls'
+        MinimumVersion = '1.0.25'
+    }
+}
+
+foreach ( $moduleDevDependency in $moduleDevDependencies ) {
+    $message = (
+        "PowerShell module development dependency: '$( $moduleDevDependency.Name )', " +
+        "minimum version: '$( $moduleDevDependency.MinimumVersion )' not found."
+    )
+    Assert ( ( Get-Module -Name $moduleDevDependency.Name ).Version -ge $moduleDevDependency.MinimumVersion ) $message
 }
 #endregion
 
