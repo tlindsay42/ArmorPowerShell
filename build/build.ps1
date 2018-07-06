@@ -93,40 +93,42 @@ if ( $SkipDependencies -eq $false ) {
     Write-StatusUpdate -Message 'PSDepend module:' -Details $details
     #endregion
 
-    #region Install dependencies
-    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module dependencies."
+    #region Install development dependencies
+    $ciName = ''
+    if ( $Env:APPVEYOR -eq $true ) {
+        $ciName = 'AppVeyor'
+    }
+    elseif ( $Env:TRAVIS -eq $true ) {
+        $ciName = 'Travis'
+    }
+    else {
+        throw 'Unsupported continuous integration environment.'
+    }
+    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module and NodeJS development dependencies."
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
-    Invoke-PSDepend -Path $psdependPath -Tags 'PSGalleryModule' -Install -Confirm:$false
-    Invoke-PSDepend -Path $psdependPath -Tags 'PSGalleryModule' -Import -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $ciName -Install -Import -Confirm:$false -ErrorAction 'Continue'
 
     $details = Get-Dependency -Path $psdependPath |
         Format-Table -AutoSize -Property 'DependencyName', 'DependencyType', 'Version' |
         Out-String
-    Write-StatusUpdate -Message 'PSDepend managed dependencies:' -Details $details
+    Write-StatusUpdate -Message 'PSDepend managed development dependencies:' -Details $details
 
     if ( $Local -eq $false ) {
         Write-StatusUpdate -Message "Load the 'BuildHelpers' environment variables."
         Set-BuildEnvironment -Force
     }
 
-    Write-StatusUpdate -Message 'Install NodeJS dependencies.'
-    $details = npm install --global sinon@1 markdown-spellcheck |
-        Out-String
-    if ( $? -eq $false ) {
-        Write-StatusUpdate -Message 'Failed to install NodeJS dependencies.' -Category 'Error'
-    }
-
-    Write-StatusUpdate -Message 'Install python dependencies.'
+    Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $details = pip install --requirement $requirementsPath |
         Out-String
     if ( $? -eq $false ) {
-        Write-StatusUpdate -Message 'Failed to install python dependencies.' -Category 'Error'
+        Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
     }
     Remove-Variable -Name 'psdependPath', 'requirementsPath'
-    Write-StatusUpdate -Message 'python dependencies:' -Details $details
+    Write-StatusUpdate -Message 'python development dependencies:' -Details $details
     #endregion
 }
 

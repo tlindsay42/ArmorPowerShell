@@ -2,14 +2,27 @@
     # Defaults for all dependencies, unless overridden
     PSDependOptions       = @{
         Target = 'CurrentUser'
-        Tags   = 'PSGalleryModule'
+        Tags   = 'AppVeyor', 'Travis'
     }
     
     # Continuous-Integration / Continuous Deployment (CI/CD) tools
     BuildHelpers          = 'Latest'
 
     # Code coverage deployment tool
-    Coveralls             = 'Latest'
+    Coveralls             = @{
+        Tags           = 'AppVeyor'
+        Version        = 'Latest'
+    }
+
+    # Markdown documentation spell-checking tool
+    'markdown-spellcheck' = @{
+        DependencyType = 'npm'
+        Parameters     = @{
+            Global = $true
+        }
+        Target         = 'Global'
+        Version        = 'Latest'
+    }
 
     # Framework for Behavior Driven Development (BDD) test automation
     Pester                = @{
