@@ -15,29 +15,29 @@ language: generic
 
 env:
   global:
-    - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
+  - secure: "XdVbG5aX7sm+oH21amR4oY3Vv9pI6PJZE1TWuLLLoXCl3o/yRqpDqNp91LKVZuEf727FK11vZ3r+kK0akg99iKLDFF3hEDpmddUpNvnR0Zpg3w9xd/PEiW0m78J83qtXMql4/SbS6okOcSrC3kYidaMgAEnjM3GXVnkyjQE0ODyE4HmLmgixEHiCI7zoiqtWqJhuIB2c0n104UjJfAwg42OY+AX2lo/bnptWLopmWCmyatlqVOw34XHHev02c2ZpXCHPU1vY0p9WdEmtHBrxITNPHwWL1NX40yflLamaUw/LbOTdMBVf5G+oVM5h0IdBijqt2k9msTvQCe2OO+4CohyrN1poXLgbsUK/60IBqNV9VJ4zF4gzbu2MofRh0RnSEUXhuM/zhYKYPOMFwBx1+X9hnChGRpILEg92Lc2cyLK6QB47WGoSb2M/L+VKSHDCVPGvCIiR26t5dcMBzQ20Hjo15zVWA+xECC0DiAZWl+15Nymjs45PX65gDY9sS6JjC7zlboRukdE2yZY/0TPBVKDtaaVVAi5tSL/6D7esNhzrLoft6+HdoUH4dPycG/Oiy9iT3yCHmRTCh3q+nzoSFGpBRtonBGkvZkeqe5xsrUoYJp2eX3oRVlCu1g2VwJppnw2wWHVTz/08ps389AEjNgZAsgHgp0v5qe/KByEpV3A="
 
 matrix:
   include:
-    - os: linux
-      dist: trusty
-      sudo: false
-      addons:
-        apt:
-          sources:
-            - sourceline: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/14.04/prod trusty main"
-              key_url: "https://packages.microsoft.com/keys/microsoft.asc"
-          packages:
-            - powershell
-    - os: osx
-      osx_image: xcode9.1
-      before_install:
-        - brew tap caskroom/cask
-        - brew cask install powershell
+  - os: linux
+    dist: trusty
+    sudo: false
+    addons:
+      apt:
+        sources:
+        - sourceline: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/14.04/prod trusty main"
+          key_url: "https://packages.microsoft.com/keys/microsoft.asc"
+        packages:
+        - powershell
+  - os: osx
+    osx_image: xcode9.4
+    before_install:
+    - brew tap caskroom/cask
+    - brew cask install powershell
   fast_finish: true
 
 script:
-  - pwsh -File ./build/build.ps1
+- pwsh -File './build/build.ps1'
 
 notifications:
   email: false
