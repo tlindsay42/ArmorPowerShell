@@ -22,32 +22,32 @@ pull_requests:
 max_jobs: 5
 
 image:
-  - Visual Studio 2015
-  - Visual Studio 2017
-  - Ubuntu
+- Visual Studio 2015
+- Visual Studio 2017
+- Ubuntu
 
 for:
 - matrix:
     only:
-      - PowerShell: 6
-        image: Visual Studio 2017
+    - PowerShell: 6
+      image: Visual Studio 2017
   build_script:
   - pwsh: ./build/build.ps1 -DeploymentMode
 - matrix:
     only:
-      - PowerShell: 5
+    - PowerShell: 5
   build_script:
   - ps: ./build/build.ps1
 - matrix:
     only:
-      - PowerShell: 6
+    - PowerShell: 6
   build_script:
   - pwsh: ./build/build.ps1
 
 matrix:
   exclude:
-    - PowerShell: 5
-      image: Ubuntu
+  - PowerShell: 5
+    image: Ubuntu
 
 clone_depth: 50
 
@@ -67,25 +67,25 @@ environment:
   - PowerShell: 6
 
 artifacts:
-  - path: TestResults.xml
-    name: Pester Test Results
-    type: Auto
-  - path: CodeCoverageResults.xml
-    name: Pester Code Coverage Results
-    type: Auto
+- path: ./BuildOutput/TestResults.xml
+  name: Pester Test Results
+  type: Auto
+- path: ./BuildOutput/CodeCoverageResults.xml
+  name: Pester Code Coverage Results
+  type: Auto
 
 notifications:
-  - provider: Email
-    on_build_success: false
-    on_build_failure: false
-    on_build_status_changed: false
-  - provider: GitHubPullRequest
-    auth_token:
-      secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
-      template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
-  - provider: Webhook # Gitter
-    url:
-      secure: VMG8UrlePL6sWol/IyQFbaCGkOLY9jFz+3wRnBG+rf95z9hLULTCpi+lN4xhSxwi4PyVEtDfstxeUA4/3+aP+g==
-    on_build_success: true
-    on_build_failure: true
-    on_build_status_changed: true
+- provider: Email
+  on_build_success: false
+  on_build_failure: false
+  on_build_status_changed: false
+- provider: GitHubPullRequest
+  auth_token:
+    secure: C73uALUvX96LkyNxMJ2FtGMPHBANvjpviy9EFg33uYZowJEdS4DvsXS12fzT17BY
+    template: "{{#passed}}:white_check_mark:{{/passed}}{{#failed}}:x:{{/failed}} [Build {{&projectName}} {{buildVersion}} {{status}}]({{buildUrl}}) (commit {{commitUrl}} by @{{&commitAuthorUsername}})"
+- provider: Webhook # Gitter
+  url:
+    secure: VMG8UrlePL6sWol/IyQFbaCGkOLY9jFz+3wRnBG+rf95z9hLULTCpi+lN4xhSxwi4PyVEtDfstxeUA4/3+aP+g==
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
