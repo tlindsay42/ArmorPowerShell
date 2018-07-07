@@ -7,6 +7,7 @@ $class = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:FORM_CLASS -f $class
 Describe -Name $describe -Tag 'Class', $class -Fixture {
     #region init
+    $formReturnType = $Global:FORM_RETURN_TYPE -replace '<ExpectedReturnType>', "'{0}'"
     $validServer = 'api.armor.com'
     $validPort = 443
     $validApiVersion = 'v1.0'
@@ -568,7 +569,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeLessThan 1
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Int32'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         }
@@ -582,7 +584,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeLessThan 1
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Int32'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         }
@@ -670,7 +673,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $true
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Boolean'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         }
@@ -684,7 +688,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $true
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Boolean'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Boolean] )
         }
@@ -698,7 +703,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeGreaterThan 0
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Int32'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         }
@@ -712,7 +718,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -BeGreaterThan 0
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.Int32'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.Int32] )
         }
@@ -748,7 +755,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $accounts[0]
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'ArmorAccount'
+        It -Name $testName -Test {
             $temp.$method( 1 ) |
                 Should -BeOfType ( [ArmorAccount] )
         }
@@ -762,7 +770,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be $accounts[0]
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'ArmorAccount'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [ArmorAccount] )
         }
@@ -776,7 +785,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
                 Should -Be 1
         }
 
-        It -Name $Global:FORM_RETURN_TYPE -Test {
+        $testName = $formReturnType -f 'System.UInt16'
+        It -Name $testName -Test {
             $temp.$method() |
                 Should -BeOfType ( [System.UInt16] )
         }
