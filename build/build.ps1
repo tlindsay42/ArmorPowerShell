@@ -94,12 +94,12 @@ if ( $SkipDependencies -eq $false ) {
     #endregion
 
     #region Install development dependencies
-    $ciName = ''
-    if ( $Env:APPVEYOR -eq $true ) {
-        $ciName = 'AppVeyor'
+    $tag = ''
+    if ( $Env:CI_WINDOWS -eq $true ) {
+        $tag = 'WindowsOnly'
     }
     elseif ( $Env:TRAVIS -eq $true ) {
-        $ciName = 'Travis'
+        $tag = 'Default'
     }
     else {
         throw 'Unsupported continuous integration environment.'
@@ -108,7 +108,7 @@ if ( $SkipDependencies -eq $false ) {
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
-    Invoke-PSDepend -Path $psdependPath -Tags $ciName -Install -Import -Confirm:$false -ErrorAction 'Continue'
+    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false
 
     $details = Get-Dependency -Path $psdependPath |
         Format-Table -AutoSize -Property 'DependencyName', 'DependencyType', 'Version' |
@@ -134,7 +134,7 @@ if ( $SkipDependencies -eq $false ) {
 
     Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
-    $details = pip install --requirement $requirementsPath |
+    $details = pip install --user --requirement $requirementsPath |
         Out-String
     if ( $? -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'

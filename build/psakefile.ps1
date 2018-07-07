@@ -51,7 +51,7 @@ $moduleDevDependencies = @(
     }
 )
 
-if ( $Env:BHBuildSystem -eq 'AppVeyor' ) {
+if ( $Env:CI_WINDOWS -eq $true ) {
     $moduleDevDependencies += @{
         Name           = 'Coveralls'
         MinimumVersion = '1.0.25'

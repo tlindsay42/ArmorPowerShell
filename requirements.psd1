@@ -2,7 +2,7 @@
     # Defaults for all dependencies, unless overridden
     PSDependOptions       = @{
         Target = 'CurrentUser'
-        Tags   = 'AppVeyor', 'Travis'
+        Tags   = 'Default', 'WindowsOnly'
     }
     
     # Continuous-Integration / Continuous Deployment (CI/CD) tools
@@ -10,7 +10,7 @@
 
     # Code coverage deployment tool
     Coveralls             = @{
-        Tags           = 'AppVeyor'
+        Tags           = 'WindowsOnly'
         Version        = 'Latest'
     }
 
