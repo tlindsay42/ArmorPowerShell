@@ -974,7 +974,7 @@ $publishTestResults = @{
         'CI_TEST_RESULTS_PATH'
     )
     PreCondition      = {
-        $DeploymentMode -eq $true -and
+        $Local -eq $false -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
         ( Test-Path -Path $CI_TEST_RESULTS_PATH ) -eq $true -and
@@ -1002,7 +1002,7 @@ $publishCodeCoverageTask = @{
         'CI_TEST_RESULTS'
     )
     PreCondition      = {
-        $DeploymentMode -eq $true -and
+        $Local -eq $false -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
         $Env:COVERALLS_API_KEY -ne $null
@@ -1032,6 +1032,7 @@ $deployAppVeyorNuGetFeedTask = @{
         'CI_PROJECT_PATH'
     )
     PreCondition      = {
+        $Local -eq $false -and
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor'
@@ -1072,6 +1073,7 @@ $deployPsGalleryTask = @{
         'CI_PROJECT_PATH'
     )
     PreCondition      = {
+        $Local -eq $false -and
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_COMMIT_MESSAGE -notmatch $CI_SKIP_PUBLISH_KEYWORD -and
@@ -1102,6 +1104,7 @@ $commitChangesTask = @{
         'Env:HOME'
     )
     PreCondition      = {
+        $Local -eq $false -and
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
@@ -1164,6 +1167,7 @@ $deployReleaseTask = @{
         'CI_PUBLISH_MESSAGE_FORM'
     )
     PreCondition      = {
+        $Local -eq $false -and
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_COMMIT_MESSAGE -notmatch $CI_SKIP_PUBLISH_KEYWORD -and
@@ -1207,6 +1211,7 @@ $deployDocsTask = @{
         'CI_PROJECT_NAME'
     )
     PreCondition      = {
+        $Local -eq $false -and
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
