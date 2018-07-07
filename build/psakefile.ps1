@@ -120,7 +120,7 @@ Properties {
     }
 
     if ( -not $Coverage ) {
-        $Coverage = $false
+        $Coverage = $true
     }
     #endregion
 

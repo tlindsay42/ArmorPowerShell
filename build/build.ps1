@@ -21,7 +21,7 @@ param (
     [String[]] $ExcludeTestTag = @(),
 
     # Specifies whether to build a code coverage report.
-    [Switch] $Coverage = $false,
+    [Boolean] $Coverage = $true,
 
     # Skips dependency testing & installation if enabled.
     [Switch] $SkipDependencies = $false
@@ -175,7 +175,7 @@ if ( $DeploymentMode -eq $true ) {
     git config --local credential.helper store
 
     $splat = @{
-        Path  = Join-Path -Path $Env:HOME -ChildPath '.git-credentials'
+        Path  = Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials'
         Value = "https://${Env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
         Force = $true
     }
