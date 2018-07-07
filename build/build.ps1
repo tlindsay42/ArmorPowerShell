@@ -32,7 +32,7 @@ param (
 #endregion
 
 #region Set the error action preference
-$errorAction = 'Stop'
+$errorAction = 'Continue'
 $ErrorActionPreference = $errorAction
 Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'."
 Remove-Variable -Name 'errorAction'
