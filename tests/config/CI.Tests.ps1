@@ -171,11 +171,11 @@ if ( $Env:CI -eq $true ) {
                 $testCases = @(
                     @{
                         FileType = 'git config'
-                        Path     = Join-Path -Path $Env:HOME -ChildPath '.gitconfig'
+                        Path     = Join-Path -Path $Env:USERPROFILE -ChildPath '.gitconfig'
                     },
                     @{
                         FileType = 'git credential'
-                        Path     = Join-Path -Path $Env:HOME -ChildPath '.git-credentials'
+                        Path     = Join-Path -Path $Env:USERPROFILE -ChildPath '.git-credentials'
                     }
                 )
                 $testName = 'should have a: <FileType> file'
