@@ -31,13 +31,6 @@ param (
 . ( Join-Path -Path $PSScriptRoot -ChildPath 'private' | Join-Path -ChildPath 'Write-StatusUpdate.ps1' )
 #endregion
 
-#region Set the error action preference
-$errorAction = 'Stop'
-$ErrorActionPreference = $errorAction
-Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'."
-Remove-Variable -Name 'errorAction'
-#endregion
-
 if ( $SkipDependencies -eq $false ) {
     #region Install PowerShell package providers
     $providerNames = 'NuGet', 'PowerShellGet'
@@ -104,7 +97,7 @@ if ( $SkipDependencies -eq $false ) {
     else {
         throw 'Unsupported continuous integration environment.'
     }
-    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module and NodeJS development dependencies."
+    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module development dependencies."
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
@@ -119,6 +112,17 @@ if ( $SkipDependencies -eq $false ) {
         Write-StatusUpdate -Message "Load the 'BuildHelpers' environment variables."
         Set-BuildEnvironment -Force
     }
+
+    Write-StatusUpdate -Message 'Install NodeJS development dependencies.'
+    $tempFile = [System.IO.Path]::GetTempFileName()
+    npm install --global sinon@1 markdown-spellcheck 2> $tempFile
+    $details = Get-Content -Path $tempFile
+    if ( -not ( Get-Command -Name 'mdspell' -ErrorAction 'SilentlyContinue' ) ) {
+        Write-StatusUpdate -Message 'Failed to install NodeJS development dependencies.' -Category 'Error'
+    }
+    Remove-Item -Path $tempFile -Force
+    Remove-Variable -Name 'tempFile'
+    Write-StatusUpdate -Message 'NodeJS development dependencies:' -Details $details
 
     Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'

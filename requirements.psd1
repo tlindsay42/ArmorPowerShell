@@ -14,16 +14,6 @@
         Version        = 'Latest'
     }
 
-    # Markdown documentation spell-checking tool
-    'markdown-spellcheck' = @{
-        DependencyType = 'npm'
-        Parameters     = @{
-            Global = $true
-        }
-        Target         = 'Global'
-        Version        = 'Latest'
-    }
-
     # Framework for Behavior Driven Development (BDD) test automation
     Pester                = @{
         Parameters = @{
