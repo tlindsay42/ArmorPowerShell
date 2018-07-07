@@ -254,15 +254,15 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     ExpectedReturnType = 'ArmorSession'
                 },
                 @{
-                    FoundReturnType    = ( Connect-Armor -Credential $creds -ApiVersion 'internal' ).GetType().Name
+                    FoundReturnType    = ( Connect-Armor -Credential $creds -Server 'api.armor.tld' -Port 4443 ).GetType().Name
                     ExpectedReturnType = 'ArmorSession'
                 },
                 @{
-                    FoundReturnType    = ( Connect-Armor -Credential $creds -AccountID 3 -Server 'api.armor.test' -Port 8443 -ApiVersion 'internal' ).GetType().Name
+                    FoundReturnType    = ( Connect-Armor -Credential $creds -AccountID 3 -Server 'api.armor.test' -Port 8443 ).GetType().Name
                     ExpectedReturnType = 'ArmorSession'
                 },
                 @{
-                    FoundReturnType    = ( Connect-Armor $creds 4 'api.armor.test' 8443 'internal' ).GetType().Name
+                    FoundReturnType    = ( Connect-Armor $creds 4 'api.armor.test' 8443 ).GetType().Name
                     ExpectedReturnType = 'ArmorSession'
                 }
             )
