@@ -124,7 +124,12 @@ Properties {
     }
     #endregion
 
-    Set-StrictMode -Version 'Latest'
+    #region Set strict mode
+    $strictModeVersion = 'Latest'
+    Write-StatusUpdate -Message "Set PowerShell strict mode to version: '${strictModeVersion}'."
+    Set-StrictMode -Version $strictModeVersion
+    Remove-Variable -Name 'strictModeVersion'
+    #endregion
 
     Push-Location -Path $Env:BHProjectPath
 

@@ -38,6 +38,13 @@ Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'
 Remove-Variable -Name 'errorAction'
 #endregion
 
+#region Set strict mode
+$strictModeVersion = 'Latest'
+Write-StatusUpdate -Message "Set PowerShell strict mode to version: '${strictModeVersion}'."
+Set-StrictMode -Version $strictModeVersion
+Remove-Variable -Name 'strictModeVersion'
+#endregion
+
 if ( $SkipDependencies -eq $false ) {
     #region Install PowerShell package providers
     $providerNames = 'NuGet', 'PowerShellGet'
