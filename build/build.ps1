@@ -108,7 +108,7 @@ if ( $SkipDependencies -eq $false ) {
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
-    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Quiet -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false
 
     $details = Get-Dependency -Path $psdependPath |
         Format-Table -AutoSize -Property 'DependencyName', 'DependencyType', 'Version' |
