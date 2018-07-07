@@ -122,8 +122,9 @@ if ( $SkipDependencies -eq $false ) {
 
     Write-StatusUpdate -Message 'Install NodeJS development dependencies.'
     $tempFile = [System.IO.Path]::GetTempFileName()
-    npm install --global sinon@1 markdown-spellcheck 2> $tempFile
-    $details = Get-Content -Path $tempFile
+    npm install --global sinon@1 markdown-spellcheck 2>&1 > $tempFile
+    $details = Get-Content -Path $tempFile |
+        Out-String
     if ( -not ( Get-Command -Name 'mdspell' -ErrorAction 'SilentlyContinue' ) ) {
         Write-StatusUpdate -Message 'Failed to install NodeJS development dependencies.' -Category 'Error'
     }
