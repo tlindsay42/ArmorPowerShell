@@ -218,7 +218,7 @@ Properties {
     $CI_DEPLOY_SCRIPTS_PATH = Join-Path -Path $CI_PROJECT_PATH -ChildPath 'deploy'
     $CI_SKIP_PUBLISH_KEYWORD = '\[skip publish\]'
     $CI_PUBLISH_MESSAGE_FORM = "Publishing {0}: '{1}' version: '{2}' to {3}."
-    $CI_DEPLOY_COMMIT_MESSAGE = $null
+    $Global:CI_DEPLOY_COMMIT_MESSAGE = $null
     #endregion
 
     #region Documentation variables
@@ -533,7 +533,7 @@ $task = @{
     PreAction         = {
         Set-Location -Path $CI_PROJECT_PATH
 
-        $CI_DEPLOY_COMMIT_MESSAGE = "${CI_NAME}: Update version to ${Script:CI_MODULE_VERSION} [ci skip]"
+        $Global:CI_DEPLOY_COMMIT_MESSAGE = "${CI_NAME}: Update version to ${Script:CI_MODULE_VERSION} [ci skip]"
 
         Write-StatusUpdate -Message "Set the working directory to: '${CI_MODULE_PATH}'."
         Push-Location -Path $CI_MODULE_PATH
@@ -1139,7 +1139,7 @@ $commitChangesTask = @{
             Write-StatusUpdate -Message "Failed to retrieve status." -Category 'Error'
         }
 
-        $details += git commit --signoff --message $CI_DEPLOY_COMMIT_MESSAGE |
+        $details += git commit --signoff --message $Global:CI_DEPLOY_COMMIT_MESSAGE |
             Out-String
         if ( $? -eq $false ) {
             Write-StatusUpdate -Message "Failed to commit changes." -Category 'Error'
@@ -1227,7 +1227,7 @@ $deployDocsTask = @{
         $temp = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
         $tempFile = [System.IO.Path]::GetTempFileName()
-        mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
+        mkdocs gh-deploy --clean --message $Global:CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
         if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
