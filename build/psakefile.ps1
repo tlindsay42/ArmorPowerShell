@@ -883,10 +883,12 @@ $task = @{
     Action            = {
         Write-StatusUpdate -Message 'Build the mkdocs site.'
         # mkdocs output is written directly to the console instead of stdout in v0.17.4 and earlier
-        mkdocs build --clean --strict
+        $details = mkdocs build --clean --strict |
+            Out-String
         if ( $? -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
+        Write-StatusUpdate -Message 'mkdocs build:' -Details $details
     }
     PostCondition     = {
         ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $true
@@ -1217,10 +1219,12 @@ $deployDocsTask = @{
     Action            = {
         Write-StatusUpdate -Message "Publishing documentation: '${CI_PROJECT_NAME}' version: '${Script:CI_MODULE_VERSION}' to GitHub Pages."
         # mkdocs output is written directly to the console instead of stdout in v0.17.4 and earlier
-        mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE
+        $details = mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE |
+            Out-String
         if ( $? -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
+        Write-StatusUpdate -Message 'mkdocs gh-deploy:' -Details $details
     }
 }
 Task @deployDocsTask
