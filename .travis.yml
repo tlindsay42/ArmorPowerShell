@@ -11,10 +11,7 @@ branches:
   except:
   - gh-pages
 
-# Required for mkdocs dev dependency
-language: python
-python:
-  - "3.6"
+language: generic
 
 env:
   global:
