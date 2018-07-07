@@ -1005,7 +1005,6 @@ $publishCodeCoverageTask = @{
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
-        $CI_TEST_RESULTS -ne $null -and
         $Env:COVERALLS_API_KEY -ne $null
     }
     Action            = {
