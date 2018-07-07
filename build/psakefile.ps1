@@ -1107,7 +1107,7 @@ $commitChangesTask = @{
         $CI_NAME -eq 'AppVeyor' -and
         $CI_PULL_REQUEST -eq $null -and
         $Env:APPVEYOR_REPO_TAG -eq $false -and
-        $Env:APPVEYOR_RE_BUILD -eq $true -and
+        $Env:APPVEYOR_RE_BUILD -eq $null -and
         $Env:APPVEYOR_REPO_COMMIT_AUTHOR -ne $null -and
         $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $null -and
         $Env:GITHUB_API_KEY -ne $null
@@ -1171,7 +1171,7 @@ $deployReleaseTask = @{
         $CI_BRANCH -eq 'master' -and
         $CI_PULL_REQUEST -eq $null -and
         $Env:APPVEYOR_REPO_TAG -eq $false -and
-        $Env:APPVEYOR_RE_BUILD -eq $true
+        $Env:APPVEYOR_RE_BUILD -eq $null
     }
     Action            = {
         #region init
