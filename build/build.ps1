@@ -146,12 +146,21 @@ if ( $SkipDependencies -eq $false ) {
     #region python dev dependencies
     Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
-    $details = pip install --user --requirement $requirementsPath |
-        Out-String
-    if ( $? -eq $false ) {
+    $return = $null
+    if ( $Env:TRAVIS_OS_NAME -eq 'linux' ) {
+        $details = pip install --user --requirement $requirementsPath |
+            Out-String
+        $return = $?
+    }
+    else {
+        $details = pip install --requirement $requirementsPath |
+            Out-String
+        $return = $?
+    }
+    if ( $return -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
-        }
-    Remove-Variable -Name 'psdependPath', 'requirementsPath'
+    }
+    Remove-Variable -Name 'psdependPath', 'requirementsPath', 'return'
     Write-StatusUpdate -Message 'python development dependencies:' -Details $details
     #endregion
     #endregion
