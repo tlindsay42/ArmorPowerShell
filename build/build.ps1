@@ -166,6 +166,22 @@ if ( $SkipDependencies -eq $false ) {
     #endregion
 }
 
+if ( $DeploymentMode -eq $true ) {
+    Write-StatusUpdate -Message 'Configure git'
+    git config --local user.email $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
+    git config --local user.name $Env:APPVEYOR_REPO_COMMIT_AUTHOR
+    git config --local core.autocrlf true
+    git config --local core.safecrlf false
+    git config --local credential.helper store
+
+    $splat = @{
+        Path  = Join-Path -Path $Env:HOME -ChildPath '.git-credentials'
+        Value = "https://${Env:GITHUB_API_KEY}:x-oauth-basic@github.com`n"
+        Force = $true
+    }
+    Add-Content @splat
+}
+
 <#
 Enable verbose mode for the build if the commit message contains the
 appropriate flag.
