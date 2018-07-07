@@ -206,7 +206,7 @@ Properties {
 
     #region Deployment variables
     $CI_DEPLOY_SCRIPTS_PATH = Join-Path -Path $CI_PROJECT_PATH -ChildPath 'deploy'
-    $CI_SKIP_PUBLISH_KEYWORD = '\b\[skip publish\]\b'
+    $CI_SKIP_PUBLISH_KEYWORD = '\[skip publish\]'
     $CI_PUBLISH_MESSAGE_FORM = "Publishing {0}: '{1}' version: '{2}' to {3}."
     $CI_DEPLOY_COMMIT_MESSAGE = $null
     #endregion
