@@ -891,16 +891,13 @@ $task = @{
         $ErrorActionPreference = 'Continue'
         $tempFile = [System.IO.Path]::GetTempFileName()
         mkdocs build --clean --strict 2>&1 > $tempFile
-        if ( $? -eq $false ) {
+        $ErrorActionPreference = $temp
+        if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
-        $ErrorActionPreference = $temp
         $details = Get-Content -Path $tempFile |
             Out-String
         Write-StatusUpdate -Message 'mkdocs build:' -Details $details
-    }
-    PostCondition     = {
-        ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $true
     }
 }
 Task @task
@@ -1210,13 +1207,16 @@ $deployDocsTask = @{
         $CI_PULL_REQUEST -eq $null -and
         $Env:APPVEYOR_REPO_TAG -eq $false
     }
+    PreAction         = {
+        Remove-Item -Path $CI_DOCS_SITE_PATH -Force
+    }
     Action            = {
         Write-StatusUpdate -Message "Publishing documentation: '${CI_PROJECT_NAME}' version: '${Script:CI_MODULE_VERSION}' to GitHub Pages."
         $temp = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
         $tempFile = [System.IO.Path]::GetTempFileName()
         mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
-        if ( $? -eq $false ) {
+        if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
         $ErrorActionPreference = $temp
