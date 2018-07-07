@@ -174,7 +174,7 @@ Properties {
 
     #region Testing variables
     $CI_TESTS_PATH = Join-Path -Path $CI_PROJECT_PATH -ChildPath 'tests'
-    $CI_TEST_RESULTS = $null
+    $Global:CI_TEST_RESULTS = $null
     $CI_TEST_RESULTS_PATH = Join-Path -Path $CI_BUILD_OUTPUT_PATH -ChildPath 'TestResults.xml'
     $CI_COVERAGE_RESULTS_PATH = Join-Path -Path $CI_BUILD_OUTPUT_PATH -ChildPath 'CodeCoverageResults.xml'
     $Global:FORM_CLASS = 'Class/{0}'
@@ -950,14 +950,14 @@ $testTask = @{
         }
 
         Write-StatusUpdate -Message 'Invoking Pester automated test framework.'
-        $CI_TEST_RESULTS = Invoke-Pester @splat
+        $Global:CI_TEST_RESULTS = Invoke-Pester @splat
 
         if (
-            $CI_TEST_RESULTS |
+            $Global:CI_TEST_RESULTS |
                 Where-Object -FilterScript { $_ | Get-Member -Name 'FailedCount' } |
                 Where-Object -FilterScript { $_.FailedCount -gt 0 }
         ) {
-            Write-StatusUpdate -Message "$( $CI_TEST_RESULTS.FailedCount ) tests failed." -Category 'Error'
+            Write-StatusUpdate -Message "$( $Global:CI_TEST_RESULTS.FailedCount ) tests failed." -Category 'Error'
         }
     }
     PostCondition     = {
@@ -1010,7 +1010,7 @@ $publishCodeCoverageTask = @{
     Action            = {
         Write-StatusUpdate -Message "Formatting code coverage for 'Coveralls.io'."
         $splat = @{
-            'PesterResults'     = $CI_TEST_RESULTS
+            'PesterResults'     = $Global:CI_TEST_RESULTS
             'CoverallsApiToken' = $Env:COVERALLS_API_KEY
             'BranchName'        = $CI_BRANCH
         }
