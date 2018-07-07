@@ -32,7 +32,7 @@ param (
 #endregion
 
 #region Set the error action preference
-$errorAction = 'Continue'
+$errorAction = 'Stop'
 $ErrorActionPreference = $errorAction
 Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'."
 Remove-Variable -Name 'errorAction'
@@ -118,15 +118,18 @@ if ( $SkipDependencies -eq $false ) {
     }
 
     Write-StatusUpdate -Message 'Install NodeJS development dependencies.'
+    $temp = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
     $tempFile = [System.IO.Path]::GetTempFileName()
     npm install --global sinon@1 markdown-spellcheck 2>&1 > $tempFile
+    $ErrorActionPreference = $temp
     $details = Get-Content -Path $tempFile |
         Out-String
     if ( -not ( Get-Command -Name 'mdspell' -ErrorAction 'SilentlyContinue' ) ) {
         Write-StatusUpdate -Message 'Failed to install NodeJS development dependencies.' -Category 'Error'
     }
     Remove-Item -Path $tempFile -Force
-    Remove-Variable -Name 'tempFile'
+    Remove-Variable -Name 'tempFile', 'temp'
     Write-StatusUpdate -Message 'NodeJS development dependencies:' -Details $details
 
     Write-StatusUpdate -Message 'Install python development dependencies.'
