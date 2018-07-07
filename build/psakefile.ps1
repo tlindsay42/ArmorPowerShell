@@ -97,9 +97,6 @@ Assert ( Test-Path -Path $Env:BHBuildOutput ) "Build output path not found: '${E
 Assert ( $Env:BHProjectName -eq 'Armor' ) "Unexpected project name: '${Env:BHProjectName}'."
 #endregion
 
-Assert ( Get-Command -Name 'mdspell*' ) "Cannot find the Markdown spell-check tool dependency: 'mdspell'"
-Assert ( Get-Command -Name 'mkdocs*' ) "Cannot find the Markdown static site generation and deployment tool dependency: 'mkdocs'"
-
 Properties {
     #region init build parameters
     if ( -not $DeploymentMode ) {
