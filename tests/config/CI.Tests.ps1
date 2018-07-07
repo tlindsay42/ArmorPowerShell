@@ -188,27 +188,27 @@ if ( $Env:CI -eq $true ) {
 
             Context -Name 'Configuration Settings' -Fixture {
                 It -Name "should set: 'user.name' to the commit author" -Test {
-                    git config --global --get 'user.name' |
+                    git config --local --get 'user.name' |
                         Should -Be $Env:APPVEYOR_REPO_COMMIT_AUTHOR
                 }
 
                 It -Name "should set: 'user.email' to the commit author's email address" -Test {
-                    git config --global --get 'user.email' |
+                    git config --local --get 'user.email' |
                         Should -Be $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL
                 }
 
                 It -Name "should set: 'credential.helper' to 'store'" -Test {
-                    git config --global --get 'credential.helper' |
+                    git config --local --get 'credential.helper' |
                         Should -Be 'store'
                 }
 
                 It -Name "should set: 'core.autocrlf' to 'true'" -Test {
-                    git config --global --get 'core.autocrlf' |
+                    git config --local --get 'core.autocrlf' |
                         Should -Be 'true'
                 }
 
                 It -Name "should set: 'core.safecrlf' to 'false'" -Test {
-                    git config --global --get 'core.safecrlf' |
+                    git config --local --get 'core.safecrlf' |
                         Should -Be 'false'
                 }
             }
