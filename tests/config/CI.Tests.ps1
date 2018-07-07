@@ -30,7 +30,7 @@ if ( $Env:CI -eq $true ) {
         }
 
         Context -Name 'Coveralls' -Fixture {
-            $testCases = 'AppVeyor', 'Travis'
+            $testCases = 'AppVeyor', 'Travis CI'
             It -Name "should set: '`$CI_NAME' to one of the following: $( $testCases -join ', ' )" -Test {
                 $CI_NAME |
                     Should -BeIn $testCases
