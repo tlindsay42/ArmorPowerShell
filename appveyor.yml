@@ -61,7 +61,7 @@ environment:
   NUGET_API_KEY:
     secure: u2jbw68/5JWUmA5z8fBok8TNO0BAJ41CSNGUJeVAtrIgDJ7p7TqW6dTbFmytP9UG
   COVERALLS_API_KEY:
-    secure: WWnf4Q5NJHBpILI4QpagjvIO4lKmqu3wa3u/vhDXRivO2Xsr4xt3XEsswAG0vryE
+    secure: hClQPXu5AWqBK5R49g0hrkhYtLgDpdftXlpMk2tTO1ba4FlsL6Q6BtpqR1QQPkRC
   matrix:
   - PowerShell: 5
   - PowerShell: 6

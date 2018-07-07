@@ -1016,8 +1016,8 @@ $publishCodeCoverageTask = @{
         }
         $coverageResults = Format-Coverage @splat
 
-        Write-StatusUpdate -Message "Publishing code coverage to 'Coveralls.io'." -Details $coverageResults
-        Publish-Coverage -Coverage $coverageResults
+        $details = Publish-Coverage -Coverage $coverageResults
+        Write-StatusUpdate -Message "Publishing code coverage to 'Coveralls.io'." -Details $details
     }
 }
 Task @publishCodeCoverageTask
