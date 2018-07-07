@@ -502,7 +502,7 @@ $stepAppVeyorBuildTask = @{
         if ( $Local -eq $false ) {
             Write-StatusUpdate -Message "Update AppVeyor build version."
             Update-AppVeyorBuild -Version $Script:CI_MODULE_VERSION
-        }    
+        }
     }
 }
 Task @stepAppVeyorBuildTask
@@ -887,12 +887,16 @@ $task = @{
     }
     Action            = {
         Write-StatusUpdate -Message 'Build the mkdocs site.'
-        # mkdocs output is written directly to the console instead of stdout in v0.17.4 and earlier
-        $details = mkdocs build --clean --strict |
-            Out-String
+        $temp = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        $tempFile = [System.IO.Path]::GetTempFileName()
+        mkdocs build --clean --strict 2>&1 > $tempFile
         if ( $? -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
+        $ErrorActionPreference = $temp
+        $details = Get-Content -Path $tempFile |
+            Out-String
         Write-StatusUpdate -Message 'mkdocs build:' -Details $details
     }
     PostCondition     = {
@@ -1208,12 +1212,16 @@ $deployDocsTask = @{
     }
     Action            = {
         Write-StatusUpdate -Message "Publishing documentation: '${CI_PROJECT_NAME}' version: '${Script:CI_MODULE_VERSION}' to GitHub Pages."
-        # mkdocs output is written directly to the console instead of stdout in v0.17.4 and earlier
-        $details = mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE |
-            Out-String
+        $temp = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        $tempFile = [System.IO.Path]::GetTempFileName()
+        mkdocs gh-deploy --clean --message $CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
         if ( $? -eq $false ) {
             Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
         }
+        $ErrorActionPreference = $temp
+        $details = Get-Content -Path $tempFile |
+            Out-String
         Write-StatusUpdate -Message 'mkdocs gh-deploy:' -Details $details
     }
 }
