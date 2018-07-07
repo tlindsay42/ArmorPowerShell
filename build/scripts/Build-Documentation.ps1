@@ -111,7 +111,7 @@ begin {
     $docsPublicPath = Join-Path -Path $DocsPath -ChildPath 'public'
     $docsModulePagePath = Join-Path -Path $docsPublicPath -ChildPath "${ModuleName}.md"
     $cultureCode = 'en-US'
-    $modulePrivatePath = Join-Path -Path $ModulePath -ChildPath 'private'
+    $modulePrivatePath = Join-Path -Path $ModulePath -ChildPath 'Private'
     $moduleExternalHelpPath = Join-Path -Path $ModulePath -ChildPath $cultureCode
     #endregion
 }
