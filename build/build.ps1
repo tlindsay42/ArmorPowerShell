@@ -98,11 +98,8 @@ if ( $SkipDependencies -eq $false ) {
     if ( $Env:CI_WINDOWS -eq $true ) {
         $tag = 'WindowsOnly'
     }
-    elseif ( $Env:TRAVIS -eq $true ) {
-        $tag = 'Default'
-    }
     else {
-        throw 'Unsupported continuous integration environment.'
+        $tag = 'Default'
     }
     Write-StatusUpdate -Message "Install PSDepend managed PowerShell module development dependencies."
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
