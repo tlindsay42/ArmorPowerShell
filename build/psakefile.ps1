@@ -107,27 +107,27 @@ Assert ( $Env:BHProjectName -eq 'Armor' ) "Unexpected project name: '${Env:BHPro
 
 Properties {
     #region init build parameters
-    if ( -not $DeploymentMode ) {
+    if ( $DeploymentMode -eq $null ) {
         $DeploymentMode = $false
     }
 
-    if ( -not $TestMode ) {
+    if ( $TestMode -eq $null ) {
         $TestMode = $false
     }
 
-    if ( -not $Local ) {
+    if ( $Local -eq $null ) {
         $Local = $false
     }
 
-    if ( -not $TestTag ) {
+    if ( $TestTag -eq $null ) {
         $TestTag = @()
     }
 
-    if ( -not $ExcludeTestTag ) {
+    if ( $ExcludeTestTag -eq $null ) {
         $ExcludeTestTag = @()
     }
 
-    if ( -not $Coverage ) {
+    if ( $Coverage -eq $null ) {
         $Coverage = $true
     }
     #endregion
