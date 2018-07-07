@@ -20,11 +20,19 @@ Include ( Join-Path -Path $privatePath -ChildPath 'Write-StatusUpdate.ps1' )
 Remove-Variable -Name 'privatePath'
 #endregion
 
-#region Set default error action
+#region Set the error action preference
 $errorAction = 'Stop'
 $ErrorActionPreference = $errorAction
 Assert ( $ErrorActionPreference -eq 'Stop' ) "Unexpected error action preference: '${errorAction}'."
 Remove-Variable -Name 'errorAction'
+#endregion
+
+#region Set the progress bar preference
+# The progress bar generates really ugly console output in most continuous integration environments
+$progressBarAction = 'SilentlyContinue'
+$ProgressPreference = $progressBarAction
+Assert ( $ProgressPreference -eq 'SilentlyContinue' ) "Unexpected progress bar preference: '${progressBarAction}'."
+Remove-Variable -Name 'progressBarAction'
 #endregion
 
 #region Assert PowerShell module dependencies

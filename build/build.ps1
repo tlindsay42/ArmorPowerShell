@@ -34,8 +34,16 @@ param (
 #region Set the error action preference
 $errorAction = 'Stop'
 $ErrorActionPreference = $errorAction
-Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'."
+Write-StatusUpdate -Message "Set the error action preference to: '${errorAction}'."
 Remove-Variable -Name 'errorAction'
+#endregion
+
+#region Set the progress preference
+# The progress bar generates really ugly console output in most continuous integration environments
+$progressBarAction = 'SilentlyContinue'
+$ProgressPreference = $progressBarAction
+Write-StatusUpdate -Message "Set the progress bar preference to: '${progressBarAction}'."
+Remove-Variable -Name 'progressBarAction'
 #endregion
 
 #region Set strict mode
