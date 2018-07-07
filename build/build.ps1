@@ -31,6 +31,13 @@ param (
 . ( Join-Path -Path $PSScriptRoot -ChildPath 'private' | Join-Path -ChildPath 'Write-StatusUpdate.ps1' )
 #endregion
 
+#region Set the error action preference
+$errorAction = 'Stop'
+$ErrorActionPreference = $errorAction
+Write-StatusUpdate -Message "Set the ErrorAction preference to: '${errorAction}'."
+Remove-Variable -Name 'errorAction'
+#endregion
+
 if ( $SkipDependencies -eq $false ) {
     #region Install PowerShell package providers
     $providerNames = 'NuGet', 'PowerShellGet'
