@@ -94,6 +94,7 @@ if ( $SkipDependencies -eq $false ) {
     #endregion
 
     #region Install development dependencies
+    #region PowerShell Module dev dependencies
     $tag = ''
     if ( $Env:CI_WINDOWS -eq $true ) {
         $tag = 'WindowsOnly'
@@ -116,7 +117,9 @@ if ( $SkipDependencies -eq $false ) {
         Write-StatusUpdate -Message "Load the 'BuildHelpers' environment variables."
         Set-BuildEnvironment -Force
     }
+    #endregion
 
+    #region NodeJS dev dependencies
     Write-StatusUpdate -Message 'Install NodeJS development dependencies.'
     $temp = $ErrorActionPreference
     $ErrorActionPreference = 'Continue'
@@ -131,16 +134,19 @@ if ( $SkipDependencies -eq $false ) {
     Remove-Item -Path $tempFile -Force
     Remove-Variable -Name 'tempFile', 'temp'
     Write-StatusUpdate -Message 'NodeJS development dependencies:' -Details $details
+    #endregion
 
+    #region python dev dependencies
     Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $details = pip install --user --requirement $requirementsPath |
         Out-String
     if ( $? -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
-    }
+        }
     Remove-Variable -Name 'psdependPath', 'requirementsPath'
     Write-StatusUpdate -Message 'python development dependencies:' -Details $details
+    #endregion
     #endregion
 }
 
