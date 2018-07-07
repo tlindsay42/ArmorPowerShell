@@ -1215,7 +1215,7 @@ $deployDocsTask = @{
         $Env:APPVEYOR_REPO_TAG -eq $false
     }
     PreAction         = {
-        Remove-Item -Path $CI_DOCS_SITE_PATH -Force
+        Remove-Item -Path $CI_DOCS_SITE_PATH -Force -Confirm:$false
     }
     Action            = {
         Write-StatusUpdate -Message "Publishing documentation: '${CI_PROJECT_NAME}' version: '${Script:CI_MODULE_VERSION}' to GitHub Pages."
