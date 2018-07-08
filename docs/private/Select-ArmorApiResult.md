@@ -75,9 +75,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### PSObject[]
+### System.Management.Automation.PSObject[]
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

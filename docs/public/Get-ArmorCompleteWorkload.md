@@ -72,7 +72,7 @@ Name='WISP stack' via pipeline values.
 
 ### EXAMPLE 5
 ```
-[PSCustomObject] @{ 'Name' = 'Secure stack' } | Get-ArmorCompleteWorkload
+[PSCustomObject] @{ Name = 'Secure stack' } | Get-ArmorCompleteWorkload
 ```
 
 Retrieves the details for the workload with Name='Secure stack' via property
@@ -80,7 +80,7 @@ name in the pipeline.
 
 ### EXAMPLE 6
 ```
-[PSCustomObject] @{ 'ID' = 1 } | Get-ArmorCompleteWorkload
+[PSCustomObject] @{ ID = 1 } | Get-ArmorCompleteWorkload
 ```
 
 Retrieves the details for the workload with ID=1 via property name in the
@@ -139,11 +139,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

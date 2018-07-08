@@ -112,9 +112,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-PSCustomObject
+System.Management.Automation.PSObject
 
 ## OUTPUTS
 

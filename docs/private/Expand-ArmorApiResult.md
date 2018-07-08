@@ -17,14 +17,14 @@ results in a "data" key.
 
 ### EXAMPLE 1
 ```
-Expand-ArmorApiResult -Results [PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Important' = 'Info' } } -Location 'Data'
+Expand-ArmorApiResult -Results [PSCustomObject] @{ Data = [PSCustomObject] @{ Important = 'Info' } } -Location 'Data'
 ```
 
 Returns the value of the 'Data' property.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ 'Data' = [PSCustomObject] @{ 'Important' = 'Info' } } | Expand-ArmorApiResult -Location 'Data'
+[PSCustomObject] @{ Data = [PSCustomObject] @{ Important = 'Info' } } | Expand-ArmorApiResult -Location 'Data'
 ```
 
 Returns the value of the 'Data' property.
@@ -68,9 +68,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### PSObject[]
+### System.Management.Automation.PSObject[]
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

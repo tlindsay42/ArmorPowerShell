@@ -25,7 +25,7 @@ Renames the VM with ID=1 to 'TEST-VM'.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-VM' } | Rename-ArmorCompleteVM
+[PSCustomObject] @{ ID = 1; NewName = 'TEST-VM' } | Rename-ArmorCompleteVM
 ```
 
 Renames the VM with ID=1 to 'TEST-VM' via property names in the pipeline.
@@ -115,7 +115,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

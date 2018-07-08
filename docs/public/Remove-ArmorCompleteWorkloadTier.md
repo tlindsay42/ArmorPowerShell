@@ -54,7 +54,7 @@ context.
 
 ### EXAMPLE 3
 ```
-[PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Remove-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ WorkloadID = 1; ID = 1 } | Remove-ArmorCompleteWorkloadTier
 ```
 
 Deletes the workload tier with ID=1 in the workload with WorkloadID=1 in the
@@ -144,9 +144,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

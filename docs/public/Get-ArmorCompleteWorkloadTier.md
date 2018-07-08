@@ -76,7 +76,7 @@ workloads with WorkloadID=2 and WorkloadID=3 via pipeline values.
 
 ### EXAMPLE 5
 ```
-[PSCustomObject] @{ 'WorkloadID' = 1; 'ID' = 1 } | Get-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ WorkloadID = 1; ID = 1 } | Get-ArmorCompleteWorkloadTier
 ```
 
 Retrieves the details for the workload tier with ID=1 in the workload with
@@ -84,7 +84,7 @@ WorkloadID=1 via property names in the pipeline.
 
 ### EXAMPLE 6
 ```
-[PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'Presentation' } | Get-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ WorkloadID = 1; Name = 'Presentation' } | Get-ArmorCompleteWorkloadTier
 ```
 
 Retrieves the details for the workload tier with Name='Presentation' in the
@@ -158,11 +158,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

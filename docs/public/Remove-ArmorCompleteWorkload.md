@@ -32,7 +32,7 @@ via pipeline value.
 
 ### EXAMPLE 3
 ```
-[PSCustomObject] @{ 'ID' = 1 | Remove-ArmorCompleteWorkload
+[PSCustomObject] @{ ID = 1 | Remove-ArmorCompleteWorkload
 ```
 
 If confirmed and empty of child objects, deletes workload with ID=1 identified
@@ -107,9 +107,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

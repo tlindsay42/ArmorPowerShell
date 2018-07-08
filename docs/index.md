@@ -15,4 +15,3 @@ Every code push is built on **Windows** via [AppVeyor](https://ci.appveyor.com/p
 Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by [Coveralls](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master 'Coveralls: ArmorPowerShell: Latest Report').
 
 Every successful build is published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Armor 'PowerShell Gallery').
-

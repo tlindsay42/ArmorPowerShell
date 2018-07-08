@@ -74,14 +74,14 @@ Retrieves all VMs containing the word 'secure' in the name via pipeline value.
 
 ### EXAMPLE 7
 ```
-[PSCustomObject] @{ 'ID' = 1 } | Get-ArmorVM
+[PSCustomObject] @{ ID = 1 } | Get-ArmorVM
 ```
 
 Retrieves the details for the VM with ID=1 via property name in the pipeline.
 
 ### EXAMPLE 8
 ```
-[PSCustomObject] @{ 'Name' = 'app1' } | Get-ArmorVM
+[PSCustomObject] @{ Name = 'app1' } | Get-ArmorVM
 ```
 
 Retrieves the details for the VM with Name='app1' via property name in the
@@ -156,13 +156,13 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-### Guid
+### System.Guid
 
-### String
+### System.String
 
-### PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

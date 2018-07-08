@@ -1,4 +1,4 @@
-﻿# https://www.mkdocs.org/user-guide/configuration/
+# https://www.mkdocs.org/user-guide/configuration/
 
 # Project information
 site_name: 'The Armor Community PowerShell Module'
@@ -13,7 +13,7 @@ remote_branch: 'gh-pages'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: 'Copyright Â© 2017-2018 Troy Lindsay. All rights reserved.'
+copyright: 'Copyright &copy;2017-2018 Troy Lindsay. All rights reserved.'
 
 # Google Analytics
 google_analytics: ['UA-117909744-3', 'ArmorPowerShell']
@@ -111,6 +111,7 @@ pages:
     - Get-ArmorUser: 'public/Get-ArmorUser.md'
     - Get-ArmorVM: 'public/Get-ArmorVM.md'
     - Invoke-ArmorWebRequest: 'public/Invoke-ArmorWebRequest.md'
+    - New-ArmorCompleteVM: 'public/New-ArmorCompleteVM.md'
     - New-ArmorCompleteWorkloadTier: 'public/New-ArmorCompleteWorkloadTier.md'
     - Remove-ArmorCompleteVM: 'public/Remove-ArmorCompleteVM.md'
     - Remove-ArmorCompleteWorkload: 'public/Remove-ArmorCompleteWorkload.md'
@@ -134,4 +135,3 @@ pages:
     - Submit-ArmorApiRequest: 'private/Submit-ArmorApiRequest.md'
     - Test-ArmorSession: 'private/Test-ArmorSession.md'
     - Update-ArmorApiToken: 'private/Update-ArmorApiToken.md'
-

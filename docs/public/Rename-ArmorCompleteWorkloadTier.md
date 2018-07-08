@@ -25,7 +25,7 @@ Renames the workload tier with ID=1 to 'TEST-TIER'.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-TIER' } | Rename-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ ID = 1; NewName = 'TEST-TIER' } | Rename-ArmorCompleteWorkloadTier
 ```
 
 Renames the workload tier with ID=1 to 'TEST-WORKLOAD' via property names in the
@@ -130,7 +130,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

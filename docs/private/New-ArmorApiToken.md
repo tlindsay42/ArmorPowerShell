@@ -75,7 +75,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### None- this function does not accept pipeline inputs.
+### None
+    You cannot pipe input to this cmdlet.
 
 ## OUTPUTS
 
