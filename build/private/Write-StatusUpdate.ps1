@@ -73,16 +73,22 @@ function Write-StatusUpdate {
         }
     }
 
-    if ( $Env:APPVEYOR -eq $true -and $TestMode -eq $false ) {
-        # Issue #140 (https://github.com/appveyor/ci/issues/2477)
-        if ( ( $PSVersionTable.PSVersion.Major -eq 5 -and $Env:CI_WINDOWS -eq $true ) -or ( $Env:CI_LINUX -eq $true )
-        ) {
-            if ( $Details.Length -eq 0 ) {
-                Add-AppveyorMessage -Message $message -Category $Category
+    if ( $Env:APPVEYOR -eq $true -and $Env:APPVEYOR_API_URL -match 'http://localhost:\d{1,5}/' -and $TestMode -eq $false ) {
+        # Post the status update to the AppVeyor job message queue
+        $splat = @{
+            Uri         = $Env:APPVEYOR_API_URL + 'api/build/messages'
+            Method      = 'Post'
+            Headers     = @{
+                'Content-Type' = 'application/json'
             }
-            elseif ( $Details.Length -gt 0 ) {
-                Add-AppveyorMessage -Message $message -Category $Category -Details $Details
-            }
+            Body        = @{
+                message  = $Message
+                category = $Category
+                details  = $Details
+            } |
+                ConvertTo-Json
+            ErrorAction = 'Continue'
         }
+        Invoke-WebRequest @splat
     }
 }
