@@ -31,16 +31,38 @@ for:
     only:
     - PowerShell: 6
       image: Visual Studio 2017
+  cache:
+  - %USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1
+  - node_modules
+  - %LOCALAPPDATA%\pip\cache -> requirements.txt
+  build_script:
+  - pwsh: ./build/build.ps1 -DeploymentMode
+- matrix:
+    only:
+    - PowerShell: 6
+      image: Ubuntu
+  cache:
+  - $HOME/.local/share/powershell/Modules -> requirements.psd1
+  - node_modules
+  - $HOME/.cache/pip -> requirements.txt
   build_script:
   - pwsh: ./build/build.ps1 -DeploymentMode
 - matrix:
     only:
     - PowerShell: 5
+  cache:
+  - %USERPROFILE%\Documents\WindowsPowerShell\Modules -> requirements.psd1
+  - node_modules
+  - %LOCALAPPDATA%\pip\cache -> requirements.txt
   build_script:
   - ps: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 6
+  cache:
+  - %USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1
+  - node_modules
+  - %LOCALAPPDATA%\pip\cache -> requirements.txt
   build_script:
   - pwsh: ./build/build.ps1
 
@@ -52,8 +74,6 @@ matrix:
 clone_depth: 50
 
 environment:
-  APPVEYOR_CACHE_SKIP_RESTORE: true
-  APPVEYOR_CACHE_SKIP_SAVE: true
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
   GITHUB_API_KEY:

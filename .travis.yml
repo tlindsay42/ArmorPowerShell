@@ -29,11 +29,25 @@ matrix:
           key_url: "https://packages.microsoft.com/keys/microsoft.asc"
         packages:
         - powershell
+    before_cache:
+    - rm -f $HOME/.cache/pip/log/debug.log
+    cache:
+      directories:
+      - $HOME/.local/share/powershell/Modules
+      - node_modules
+      - $HOME/.cache/pip
   - os: osx
     osx_image: xcode9.4
     before_install:
     - brew tap caskroom/cask
     - brew cask install powershell
+    before_cache:
+    - rm -f $HOME/Library/Caches/pip/log/debug.log
+    cache:
+      directories:
+      - $HOME/.local/share/powershell/Modules
+      - node_modules
+      - $HOME/Library/Caches/pip
   fast_finish: true
 
 script:
