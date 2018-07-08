@@ -106,6 +106,11 @@ begin {
 
     Push-Location -Path $ProjectPath
 
+    #region Set the progress bar preference
+    # The progress bar generates really ugly console output in most continuous integration environments
+    $ProgressPreference = 'SilentlyContinue'
+    #endregion
+
     #region init
     $docsPrivatePath = Join-Path -Path $DocsPath -ChildPath 'private'
     $docsPublicPath = Join-Path -Path $DocsPath -ChildPath 'public'
