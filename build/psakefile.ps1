@@ -981,14 +981,7 @@ $publishTestResults = @{
         $Env:APPVEYOR_JOB_ID -ne $null
     }
     Action            = {
-        #region init
-        $webClient = New-Object -TypeName 'System.Net.WebClient'
-        #endregion
-
-        $webClient.UploadFile(
-            "https://ci.appveyor.com/api/testresults/nunit/${Env:APPVEYOR_JOB_ID}",
-            $CI_TEST_RESULTS_PATH
-        )
+        Add-TestResultToAppveyor -TestFile $CI_TEST_RESULTS_PATH
     }
 }
 Task @publishTestResults
