@@ -89,6 +89,7 @@ function Write-StatusUpdate {
                 ConvertTo-Json
             ErrorAction = 'Continue'
         }
-        Invoke-WebRequest @splat
+        Invoke-WebRequest @splat |
+            Write-Verbose
     }
 }
