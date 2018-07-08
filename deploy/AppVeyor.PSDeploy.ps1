@@ -1,9 +1,9 @@
 Deploy 'DeveloperBuild' {
     By 'AppVeyorModule' {
-        FromSource $CI_PROJECT_NAME
+        FromSource $Global:CI_MODULE_NAME
         To 'AppVeyor'
         WithOptions @{
-            Version = $CI_MODULE_PRERELEASE_VERSION
+            Version = $Script:CI_MODULE_PRERELEASE_VERSION
         }
     }
 }
