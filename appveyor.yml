@@ -66,6 +66,10 @@ environment:
   - PowerShell: 5
   - PowerShell: 6
 
+test: off
+
+deploy: off
+
 artifacts:
 - path: ./BuildOutput/TestResults.xml
   name: Pester Test Results
