@@ -1234,11 +1234,11 @@ $task = @{
         $testTask.Name,
         $publishTestResults.Name,
         $publishCodeCoverageTask.Name,
+        $deployAppVeyorNuGetFeedTask.Name,
         $deployPsGalleryTask.Name,
         $commitChangesTask.Name,
         $deployReleaseTask.Name,
-        $deployDocsTask.Name,
-        $deployAppVeyorNuGetFeedTask.Name
+        $deployDocsTask.Name
     )
 }
 Task @task
