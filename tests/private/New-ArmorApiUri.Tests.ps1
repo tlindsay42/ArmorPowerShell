@@ -125,10 +125,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 IDs       = $validIDs
             }
         )
-        $testName = 'should fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs>'
+        $testName = 'should fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
             { New-ArmorApiUri -Server $Server -Port $Port -Endpoints $Endpoints -IDs $IDs } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
+            { New-ArmorApiUri $Server $Port $Endpoints $IDs } |
                 Should -Throw
         }
 
@@ -152,10 +159,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 IDs       = $validIDs
             }
         )
-        $testName = 'should not fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs>'
+        $testName = 'should not fail when set to: Server: <Server>, Port: <Port>, Endpoints: <Endpoints>, IDs: <IDs> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
             { New-ArmorApiUri -Server $Server -Port $Port -Endpoints $Endpoints -IDs $IDs } |
+                Should -Not -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Server, [UInt16] $Port, [String[]] $Endpoints, [UInt16[]] $IDs )
+            { New-ArmorApiUri $Server $Port $Endpoints $IDs } |
                 Should -Not -Throw
         }
     }

@@ -78,10 +78,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Parameters = 'parameter1', ''
             }
         )
-        $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>'
+        $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String[]] $Keys, [PSCustomObject[]] $Parameters )
             { Format-ArmorApiRequestBody -Keys $Keys -Parameters $Parameters } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String[]] $Keys, [PSCustomObject[]] $Parameters )
+            { Format-ArmorApiRequestBody $Keys $Parameters } |
                 Should -Throw
         }
     }

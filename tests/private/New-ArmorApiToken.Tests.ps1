@@ -70,10 +70,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     ApiVersion = $invalidApiVersion
                 }
             )
-            $testName = 'should fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion>'
+            $testName = 'should fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion> (named)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
                 { New-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
+                    Should -Throw
+            }
+
+            $testName = $testName -replace '\(named\)', '(positional)'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
+                { New-ArmorApiToken $Code $GrantType $ApiVersion } |
                     Should -Throw
             }
 
@@ -93,10 +100,19 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     ApiVersion = $validApiVersion
                 }
             )
-            $testName = 'should not fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion>'
+            $testName = 'should not fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion> (named)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
                 { New-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
+                    Should -Not -Throw
+            }
+            Assert-VerifiableMock
+            Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+
+            $testName = $testName -replace '\(named\)', '(positional)'
+            It -Name $testName -TestCases $testCases -Test {
+                param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
+                { New-ArmorApiToken $Code $GrantType $ApiVersion } |
                     Should -Not -Throw
             }
             Assert-VerifiableMock

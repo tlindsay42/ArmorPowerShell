@@ -100,10 +100,17 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 SuccessCode = $invalidSuccessCode
             }
         )
-        $testName = 'should fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
+        $testName = 'should fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
             { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
+            { Submit-ArmorApiRequest $Uri $Headers $Method $Body $SuccessCode } |
                 Should -Throw
         }
 
@@ -151,10 +158,19 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 SuccessCode = $validSuccessCode
             }
         )
-        $testName = 'should not fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode>'
+        $testName = 'should not fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
             { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
+                Should -Not -Throw
+        }
+        Assert-VerifiableMock
+        Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
+            { Submit-ArmorApiRequest $Uri $Headers $Method $Body $SuccessCode } |
                 Should -Not -Throw
         }
         Assert-VerifiableMock

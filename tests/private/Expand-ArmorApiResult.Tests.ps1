@@ -68,10 +68,24 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Location = $invalidLocation
             }
         )
-        $testName = 'should fail when set to: Results: <Results>, Location: <Location>'
+        $testName = 'should fail when set to: Results: <Results>, Location: <Location> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Results, [String] $Location )
             { Expand-ArmorApiResult -Results $Results -Location $Location } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [PSCustomObject[]] $Results, [String] $Location )
+            { Expand-ArmorApiResult $Results $Location } |
+                Should -Throw
+        }
+
+        $testName = $testName -replace '\(positional\)', '(pipeline by value)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [PSCustomObject[]] $Results, [String] $Location )
+            { $Results | Expand-ArmorApiResult -Location $Location } |
                 Should -Throw
         }
 
@@ -81,13 +95,26 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 Location = $validLocation
             }
         )
-        $testName = 'should not fail when set to: Results: <Results>, Location: <Location>'
+        $testName = 'should not fail when set to: Results: <Results>, Location: <Location> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [PSCustomObject[]] $Results, [String] $Location )
             { Expand-ArmorApiResult -Results $Results -Location $Location } |
                 Should -Not -Throw
         }
 
+        $testName = $testName -replace '\(named\)', '(positional)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [PSCustomObject[]] $Results, [String] $Location )
+            { Expand-ArmorApiResult $Results $Location } |
+                Should -Not -Throw
+        }
+
+        $testName = $testName -replace '\(positional\)', '(pipeline by value)'
+        It -Name $testName -TestCases $testCases -Test {
+            param ( [PSCustomObject[]] $Results, [String] $Location )
+            { $Results | Expand-ArmorApiResult -Location $Location } |
+                Should -Not -Throw
+        }
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
