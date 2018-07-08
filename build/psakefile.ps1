@@ -1017,14 +1017,15 @@ $publishCodeCoverageTask = @{
 Task @publishCodeCoverageTask
 
 
-$deployAppVeyorNuGetFeedTask = @{
-    Name              = 'PSDeploy prerelease module to AppVeyor NuGet Feed'
+$deployAppVeyorNuGetProjectFeedTask = @{
+    Name              = 'PSDeploy prerelease module to AppVeyor NuGet Project Feed'
     Depends           = $task.Name
     PreCondition      = {
         $Local -eq $false -and
-        $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
-        $CI_NAME -eq 'AppVeyor'
+        $CI_NAME -eq 'AppVeyor' -and
+        $Env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2017' -and
+        $PSVersionTable.PSVersion.Major -eq 5
     }
     PreAction         = {
         #region init
@@ -1055,7 +1056,7 @@ $deployAppVeyorNuGetFeedTask = @{
         ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) -eq $null
     }
 }
-Task @deployAppVeyorNuGetFeedTask
+Task @deployAppVeyorNuGetProjectFeedTask
 
 
 $deployPsGalleryTask = @{
@@ -1234,7 +1235,7 @@ $task = @{
         $testTask.Name,
         $publishTestResults.Name,
         $publishCodeCoverageTask.Name,
-        $deployAppVeyorNuGetFeedTask.Name,
+        $deployAppVeyorNuGetProjectFeedTask.Name,
         $deployPsGalleryTask.Name,
         $commitChangesTask.Name,
         $deployReleaseTask.Name,
