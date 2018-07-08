@@ -154,6 +154,7 @@ if ( $SkipDependencies -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install NodeJS development dependencies.' -Category 'Error'
     }
     $details += Get-Command -Name 'mdspell' -ErrorAction 'Continue' |
+        Format-Table -AutoSize -Property 'Name', 'Source' |
         Out-String
     Remove-Item -Path $tempFile -Force
     Remove-Variable -Name 'tempFile', 'temp'
@@ -175,6 +176,7 @@ if ( $SkipDependencies -eq $false ) {
         $return = $?
     }
     $details += Get-Command -Name 'mkdocs' -ErrorAction 'Continue' |
+        Format-Table -AutoSize -Property 'Name', 'Source' |
         Out-String
     if ( $return -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
