@@ -32,9 +32,10 @@ for:
     - PowerShell: 6
       image: Visual Studio 2017
   cache:
-  - %USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1
+  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
   - node_modules
-  - %LOCALAPPDATA%\pip\cache -> requirements.txt
+  - '%APPDATA%\npm-cache'
+  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1 -DeploymentMode
 - matrix:
@@ -42,27 +43,30 @@ for:
     - PowerShell: 6
       image: Ubuntu
   cache:
-  - $HOME/.local/share/powershell/Modules -> requirements.psd1
+  - '$HOME/.local/share/powershell/Modules -> requirements.psd1'
   - node_modules
-  - $HOME/.cache/pip -> requirements.txt
+  - '$HOME/.npm'
+  - '$HOME/.cache/pip -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1 -DeploymentMode
 - matrix:
     only:
     - PowerShell: 5
   cache:
-  - %USERPROFILE%\Documents\WindowsPowerShell\Modules -> requirements.psd1
+  - '%USERPROFILE%\Documents\WindowsPowerShell\Modules -> requirements.psd1'
   - node_modules
-  - %LOCALAPPDATA%\pip\cache -> requirements.txt
+  - '%APPDATA%\npm-cache'
+  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
   build_script:
   - ps: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 6
   cache:
-  - %USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1
+  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
   - node_modules
-  - %LOCALAPPDATA%\pip\cache -> requirements.txt
+  - '%APPDATA%\npm-cache'
+  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1
 
