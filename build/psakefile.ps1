@@ -447,14 +447,14 @@ Task @task
 $stepModuleTask = @{
     Name              = 'Step module build version'
     Depends           = $task.Name
-    RequiredVariables = (
-        'CI_COMMIT_MESSAGE',
-        'CI_MODULE_VERSION'
-    )
     PreCondition      = {
         $Script:CI_MODULE_VERSION -match '^\d+\.\d+\.\d+$' -and
         $CI_COMMIT_MESSAGE -match '!(?:Major|Minor)'
     }
+    RequiredVariables = (
+        'CI_COMMIT_MESSAGE',
+        'CI_MODULE_VERSION'
+    )
     Action            = {
         #region init
         $increment = ''
@@ -488,15 +488,15 @@ Task @stepModuleTask
 $stepAppVeyorBuildTask = @{
     Name              = 'Step AppVeyor build version'
     Depends           = $stepModuleTask.Name
-    RequiredVariables = (
-        'CI_MODULE_VERSION',
-        'CI_PROJECT_PATH'
-    )
     PreCondition      = {
         $CI_NAME -eq 'AppVeyor' -and
         $Script:CI_MODULE_VERSION -match '^\d+\.\d+\.\d+$' -and
         $CI_COMMIT_MESSAGE -match '!(?:Major|Minor)'
     }
+    RequiredVariables = (
+        'CI_MODULE_VERSION',
+        'CI_PROJECT_PATH'
+    )
     Action            = {
         #region init
         $version = $Script:CI_MODULE_VERSION.Split( '.' )
@@ -519,17 +519,6 @@ Task @stepAppVeyorBuildTask
 $task = @{
     Name              = 'Update the module manifest'
     Depends           = $task.Name, $stepModuleTask.Name, $stepAppVeyorBuildTask.Name
-    RequiredVariables = (
-        'CI_MODULE_GUID',
-        'CI_MODULE_LIB_PATH',
-        'CI_MODULE_MANIFEST_PATH',
-        'CI_MODULE_MANIFEST_RELATIVE_PATH',
-        'CI_MODULE_NAME',
-        'CI_MODULE_PATH',
-        'CI_MODULE_VERSION',
-        'CI_PROJECT_PATH',
-        'TEXT'
-    )
     PreAction         = {
         Set-Location -Path $CI_PROJECT_PATH
 
@@ -548,6 +537,17 @@ $task = @{
             Out-String
         Write-StatusUpdate -Message 'Module manifest:' -Details $details
     }
+    RequiredVariables = (
+        'CI_MODULE_GUID',
+        'CI_MODULE_LIB_PATH',
+        'CI_MODULE_MANIFEST_PATH',
+        'CI_MODULE_MANIFEST_RELATIVE_PATH',
+        'CI_MODULE_NAME',
+        'CI_MODULE_PATH',
+        'CI_MODULE_VERSION',
+        'CI_PROJECT_PATH',
+        'TEXT'
+    )
     Action            = {
         Write-StatusUpdate -Message "Update the module manifest: '${CI_MODULE_MANIFEST_RELATIVE_PATH}'."
 
@@ -887,12 +887,12 @@ Task @task
 $task = @{
     Name              = 'Build the documentation site'
     Depends           = $task.Name
-    RequiredVariables = (
-        'CI_DOCS_SITE_PATH'
-    )
     PreCondition      = {
         $TestMode -eq $false
     }
+    RequiredVariables = (
+        'CI_DOCS_SITE_PATH'
+    )
     Action            = {
         Write-StatusUpdate -Message 'Build the mkdocs site.'
         $temp = $ErrorActionPreference
@@ -970,9 +970,6 @@ Task @testTask
 $publishTestResults = @{
     Name              = 'Publish test results'
     Depends           = $testTask.Name
-    RequiredVariables = (
-        'CI_TEST_RESULTS_PATH'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $TestMode -eq $false -and
@@ -980,6 +977,9 @@ $publishTestResults = @{
         ( Test-Path -Path $CI_TEST_RESULTS_PATH ) -eq $true -and
         $Env:APPVEYOR_JOB_ID -ne $null
     }
+    RequiredVariables = (
+        'CI_TEST_RESULTS_PATH'
+    )
     Action            = {
         Add-TestResultToAppveyor -TestFile $CI_TEST_RESULTS_PATH
     }
@@ -990,16 +990,17 @@ Task @publishTestResults
 $publishCodeCoverageTask = @{
     Name              = 'Publish code coverage'
     Depends           = $testTask.Name
-    RequiredVariables = (
-        'CI_BRANCH',
-        'CI_TEST_RESULTS'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
+        $Env:CI_WINDOWS -eq $true -and
         $Env:COVERALLS_API_KEY -ne $null
     }
+    RequiredVariables = (
+        'CI_BRANCH',
+        'CI_TEST_RESULTS'
+    )
     Action            = {
         Write-StatusUpdate -Message "Formatting code coverage for 'Coveralls.io'."
         $splat = @{
@@ -1019,11 +1020,6 @@ Task @publishCodeCoverageTask
 $deployAppVeyorNuGetFeedTask = @{
     Name              = 'PSDeploy prerelease module to AppVeyor NuGet Feed'
     Depends           = $task.Name
-    RequiredVariables = (
-        'CI_DEPLOY_SCRIPTS_PATH',
-        'CI_PROJECT_NAME',
-        'CI_PROJECT_PATH'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $DeploymentMode -eq $true -and
@@ -1040,6 +1036,11 @@ $deployAppVeyorNuGetFeedTask = @{
         Remove-Module -Name "${Global:CI_MODULE_NAME}*"
         Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
     }
+    RequiredVariables = (
+        'CI_DEPLOY_SCRIPTS_PATH',
+        'CI_PROJECT_NAME',
+        'CI_PROJECT_PATH'
+    )
     Action            = {
         $path = Join-Path -Path $CI_DEPLOY_SCRIPTS_PATH -ChildPath 'AppVeyor.PSDeploy.ps1'
         Write-StatusUpdate -Message "Start PSDeploy task: '${path}'."
@@ -1060,11 +1061,6 @@ Task @deployAppVeyorNuGetFeedTask
 $deployPsGalleryTask = @{
     Name              = 'PSDeploy module to PowerShell Gallery'
     Depends           = $testTask.Name
-    RequiredVariables = (
-        'CI_DEPLOY_SCRIPTS_PATH',
-        'CI_MODULE_NAME',
-        'CI_PROJECT_PATH'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $DeploymentMode -eq $true -and
@@ -1076,6 +1072,11 @@ $deployPsGalleryTask = @{
         $Env:APPVEYOR_REPO_TAG -eq $false -and
         $Env:NUGET_API_KEY -ne $null
     }
+    RequiredVariables = (
+        'CI_DEPLOY_SCRIPTS_PATH',
+        'CI_MODULE_NAME',
+        'CI_PROJECT_PATH'
+    )
     Action            = {
         $path = Join-Path -Path $CI_DEPLOY_SCRIPTS_PATH -ChildPath 'PSGallery.PSDeploy.ps1'
         Write-StatusUpdate -Message "Start PSDeploy task: '${path}'."
@@ -1088,14 +1089,6 @@ Task @deployPsGalleryTask
 $commitChangesTask = @{
     Name              = 'Commit & push changes'
     Depends           = $task.Name
-    RequiredVariables = (
-        'CI_BRANCH',
-        'CI_DEPLOY_COMMIT_MESSAGE',
-        'CI_MODULE_VERSION',
-        'CI_PROJECT_NAME',
-        'CI_PUBLISH_MESSAGE_FORM',
-        'Env:HOME'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $DeploymentMode -eq $true -and
@@ -1108,6 +1101,13 @@ $commitChangesTask = @{
         $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $null -and
         $Env:GITHUB_API_KEY -ne $null
     }
+    RequiredVariables = (
+        'CI_BRANCH',
+        'CI_DEPLOY_COMMIT_MESSAGE',
+        'CI_MODULE_VERSION',
+        'CI_PROJECT_NAME',
+        'CI_PUBLISH_MESSAGE_FORM'
+    )
     Action            = {
         #region init
         $message = $CI_PUBLISH_MESSAGE_FORM -f 'project', $CI_PROJECT_NAME, $Script:CI_MODULE_VERSION, 'GitHub'
@@ -1154,11 +1154,6 @@ $deployReleaseTask = @{
     Name              = 'Create release'
     Description       = 'Tag commit & push tag to GitHub Releases.'
     Depends           = $commitChangesTask.Name
-    RequiredVariables = (
-        'CI_MODULE_VERSION',
-        'CI_PROJECT_NAME',
-        'CI_PUBLISH_MESSAGE_FORM'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $DeploymentMode -eq $true -and
@@ -1170,6 +1165,11 @@ $deployReleaseTask = @{
         $Env:APPVEYOR_REPO_TAG -eq $false -and
         $Env:APPVEYOR_RE_BUILD -eq $null
     }
+    RequiredVariables = (
+        'CI_MODULE_VERSION',
+        'CI_PROJECT_NAME',
+        'CI_PUBLISH_MESSAGE_FORM'
+    )
     Action            = {
         #region init
         $tag = "v${Script:CI_MODULE_VERSION}"
@@ -1198,11 +1198,6 @@ Task @deployReleaseTask
 $deployDocsTask = @{
     Name              = 'Deploy documentation site'
     Depends           = $task.Name
-    RequiredVariables = (
-        'CI_DEPLOY_COMMIT_MESSAGE',
-        'CI_MODULE_VERSION',
-        'CI_PROJECT_NAME'
-    )
     PreCondition      = {
         $Local -eq $false -and
         $DeploymentMode -eq $true -and
@@ -1215,6 +1210,11 @@ $deployDocsTask = @{
     PreAction         = {
         Remove-Item -Path $CI_DOCS_SITE_PATH -Force -Confirm:$false
     }
+    RequiredVariables = (
+        'CI_DEPLOY_COMMIT_MESSAGE',
+        'CI_MODULE_VERSION',
+        'CI_PROJECT_NAME'
+    )
     Action            = {
         Write-StatusUpdate -Message "Publishing documentation: '${CI_PROJECT_NAME}' version: '${Script:CI_MODULE_VERSION}' to GitHub Pages."
         $temp = $ErrorActionPreference
