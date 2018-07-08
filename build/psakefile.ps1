@@ -1207,9 +1207,6 @@ $deployDocsTask = @{
         $CI_PULL_REQUEST -eq $null -and
         $Env:APPVEYOR_REPO_TAG -eq $false
     }
-    PreAction         = {
-        Remove-Item -Path $CI_DOCS_SITE_PATH -Force -Confirm:$false
-    }
     RequiredVariables = (
         'CI_DEPLOY_COMMIT_MESSAGE',
         'CI_MODULE_VERSION',
@@ -1220,10 +1217,7 @@ $deployDocsTask = @{
         $temp = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
         $tempFile = [System.IO.Path]::GetTempFileName()
-        mkdocs gh-deploy --clean --message $Global:CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
-        if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
-            Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
-        }
+        mkdocs gh-deploy --dirty --message $Global:CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
         $ErrorActionPreference = $temp
         $details = Get-Content -Path $tempFile |
             Out-String
