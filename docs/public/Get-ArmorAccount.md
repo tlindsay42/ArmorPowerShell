@@ -48,7 +48,7 @@ Name='Example Child Account' via pipeline values.
 
 ### EXAMPLE 4
 ```
-[PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccount
+[PSCustomObject] @{ ID = 1 } | Get-ArmorAccount
 ```
 
 Gets the Armor account assigned to the logged in user account with ID=1 via
@@ -56,7 +56,7 @@ property name in the pipeline.
 
 ### EXAMPLE 5
 ```
-[PSCustomObject] @{ 'Name' = 'My Secure Account' } | Get-ArmorAccount
+[PSCustomObject] @{ Name = 'My Secure Account' } | Get-ArmorAccount
 ```
 
 Gets the Armor account assigned to the logged in user account with
@@ -115,11 +115,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

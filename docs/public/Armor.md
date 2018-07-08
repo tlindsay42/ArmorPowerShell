@@ -39,6 +39,9 @@ Retrieves Armor Complete and Armor Anywhere virtual machine details.
 ### [Invoke-ArmorWebRequest](Invoke-ArmorWebRequest.md)
 Sends custom requests to Armor API endpoints.
 
+### [New-ArmorCompleteVM](New-ArmorCompleteVM.md)
+Creates new Armor Complete VMs.
+
 ### [New-ArmorCompleteWorkloadTier](New-ArmorCompleteWorkloadTier.md)
 Creates tiers in an Armor Complete workload.
 

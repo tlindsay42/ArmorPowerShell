@@ -107,15 +107,19 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
+
+### System.Management.Automation.PSObject[]
 
 ### System.Management.Automation.PSObject
 
 ### System.String[]
+
+### System.String
 
 ## NOTES
 - Troy Lindsay

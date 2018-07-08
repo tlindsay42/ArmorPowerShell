@@ -25,7 +25,7 @@ Renames the workload with ID=1 to 'TEST-WORKLOAD'.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ 'ID' = 1; 'NewName' = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
+[PSCustomObject] @{ ID = 1; NewName = 'TEST-WORKLOAD' } | Rename-ArmorCompleteWorkload
 ```
 
 Renames the workload with ID=1 to 'TEST-WORKLOAD' via property names in the
@@ -115,7 +115,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

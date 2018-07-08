@@ -39,7 +39,7 @@ pipeline values.
 
 ### EXAMPLE 4
 ```
-[PSCustomObject] @{ 'ID' = 1 } | Get-ArmorAccountAddress
+[PSCustomObject] @{ ID = 1 } | Get-ArmorAccountAddress
 ```
 
 Retrieves the mailing address of the Armor account with ID=1 and ID=2 via
@@ -83,9 +83,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

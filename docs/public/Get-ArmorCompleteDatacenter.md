@@ -52,7 +52,7 @@ Location='PHX01' via pipeline values.
 
 ### EXAMPLE 4
 ```
-[PSCustomObject] @{ 'Location' = 'EU West' } | Get-ArmorCompleteDatacenter
+[PSCustomObject] @{ Location = 'EU West' } | Get-ArmorCompleteDatacenter
 ```
 
 Retrieves the details for the Armor Complete datacenter with Name='EU West' via
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -Location
-Specifies the name of the Armor Complete datacenter.
+Specifies the location code for the Armor Complete datacenter.
 
 ```yaml
 Type: String
@@ -126,11 +126,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 

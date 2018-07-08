@@ -1,4 +1,4 @@
-﻿# The Armor Community PowerShell Module
+# The Armor Community PowerShell Module
 
 [![Current Version](https://img.shields.io/powershellgallery/v/Armor.svg)](https://www.powershellgallery.com/packages/Armor)
 [![Total Downloads](https://img.shields.io/powershellgallery/dt/Armor.svg)](https://www.powershellgallery.com/packages/Armor)

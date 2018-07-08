@@ -62,7 +62,7 @@ WorkloadID=1 in the Armor Complete account that currently has context.
 
 ### EXAMPLE 4
 ```
-[PSCustomObject] @{ 'WorkloadID' = 1; 'Name' = 'persistence' } | New-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | New-ArmorCompleteWorkloadTier
 ```
 
 Creates a new workload tier named 'persistence' in the workload with
@@ -152,11 +152,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### UInt16
+### System.UInt16
 
-String
+### System.String
 
-PSCustomObject
+### System.Management.Automation.PSObject
 
 ## OUTPUTS
 
