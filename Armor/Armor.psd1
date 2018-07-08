@@ -12,7 +12,7 @@
 RootModule = 'Armor.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.292'
+ModuleVersion = '1.0.294'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -164,7 +164,7 @@ PrivateData = @{
         # ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
