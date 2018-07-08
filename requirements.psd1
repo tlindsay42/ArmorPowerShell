@@ -1,21 +1,27 @@
 @{
     # Defaults for all dependencies, unless overridden
-    PSDependOptions       = @{
+    PSDependOptions   = @{
         Target = 'CurrentUser'
         Tags   = 'Default', 'WindowsOnly'
     }
     
     # Continuous-Integration / Continuous Deployment (CI/CD) tools
-    BuildHelpers          = 'Latest'
+    BuildHelpers      = 'Latest'
 
     # Code coverage deployment tool
-    Coveralls             = @{
-        Tags           = 'WindowsOnly'
-        Version        = 'Latest'
+    Coveralls         = @{
+        Tags    = 'WindowsOnly'
+        Version = 'Latest'
+    }
+
+    # Multiplexor of package providers
+    PackageManagement = @{
+        Tags    = 'Base'
+        Version = 'Latest'
     }
 
     # Framework for Behavior Driven Development (BDD) test automation
-    Pester                = @{
+    Pester            = @{
         Parameters = @{
             SkipPublisherCheck = $true
         }
@@ -23,11 +29,17 @@
     }
 
     # Documentation generation tool
-    platyPS               = 'Latest'
+    platyPS           = 'Latest'
+
+    # Module updating & publishing tool
+    PowerShellGet     = @{
+        Tags    = 'Base'
+        Version = 'Latest'
+    }
 
     # Build automation tool
-    psake                 = 'Latest'
+    psake             = 'Latest'
 
     # Deployment tool
-    PSDeploy              = 'Latest'
+    PSDeploy          = 'Latest'
 }

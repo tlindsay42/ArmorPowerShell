@@ -1,5 +1,5 @@
 #requires -Version 5.0
-#requires -Modules BuildHelpers, Pester, platyPS, psake, PSDeploy
+#requires -Modules BuildHelpers, PackageManagement, Pester, platyPS, PowerShellGet, psake, PSDeploy
 
 #region Format task title style
 $horizontalLine = '#' * 80
@@ -42,6 +42,10 @@ $moduleDevDependencies = @(
         MinimumVersion = '1.1.4'
     },
     @{
+        Name           = 'PackageManagement'
+        MinimumVersion = '1.1.7.2'
+    },
+    @{
         Name           = 'Pester'
         MinimumVersion = '4.3.1'
     },
@@ -52,6 +56,10 @@ $moduleDevDependencies = @(
     @{
         Name           = 'psake'
         MinimumVersion = '4.7.0'
+    },
+    @{
+        Name           = 'PowerShellGet'
+        MinimumVersion = '1.6.6'
     },
     @{
         Name           = 'PSDeploy'

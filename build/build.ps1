@@ -121,7 +121,14 @@ if ( $SkipDependencies -eq $false ) {
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
+    $base = 'Base'
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force
+    Remove-Module -Name 'PowerShellGet', 'PackageManagement'
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false
+    Remove-Variable -Name 'base'
+
     Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false
+    Remove-Variable -Name 'tag'
 
     $details = Get-Dependency -Path $psdependPath |
         Format-Table -AutoSize -Property 'DependencyName', 'DependencyType', 'Version' |
@@ -146,6 +153,8 @@ if ( $SkipDependencies -eq $false ) {
     if ( -not ( Get-Command -Name 'mdspell' -ErrorAction 'SilentlyContinue' ) ) {
         Write-StatusUpdate -Message 'Failed to install NodeJS development dependencies.' -Category 'Error'
     }
+    $details += Get-Command -Name 'mdspell' -ErrorAction 'Continue' |
+        Out-String
     Remove-Item -Path $tempFile -Force
     Remove-Variable -Name 'tempFile', 'temp'
     Write-StatusUpdate -Message 'NodeJS development dependencies:' -Details $details
@@ -165,6 +174,8 @@ if ( $SkipDependencies -eq $false ) {
             Out-String
         $return = $?
     }
+    $details += Get-Command -Name 'mkdocs' -ErrorAction 'Continue' |
+        Out-String
     if ( $return -eq $false ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
     }
