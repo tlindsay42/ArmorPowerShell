@@ -37,20 +37,7 @@ matrix:
       - $HOME/.nvm
       - $HOME/.npm
       - $HOME/.cache/pip
-      - $HOME/.local/bin
-  - os: osx
-    osx_image: xcode9.2
-    before_install:
-    - brew tap caskroom/cask
-    - brew cask install powershell
-    before_cache:
-    - rm -f $HOME/Library/Caches/pip/log/debug.log
-    cache:
-      directories:
-      - $HOME/.local/share/powershell/Modules
-      - $HOME/.nvm
-      - $HOME/.npm
-      - $HOME/Library/Caches/pip
+      - $HOME/.local/bin/mkdocs
   - os: osx
     osx_image: xcode9.4
     before_install:
