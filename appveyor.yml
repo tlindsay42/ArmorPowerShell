@@ -36,7 +36,8 @@ for:
   - '%APPDATA%\npm'
   - '%APPDATA%\npm-cache'
   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Scripts\ -> requirements.txt'
+  - 'C:\Python27\Lib\site-packages -> requirements.txt'
+  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1 -DeploymentMode
 - matrix:
@@ -48,7 +49,8 @@ for:
   - '$HOME/.nvm'
   - '$HOME/.npm'
   - '$HOME/.cache/pip -> requirements.txt'
-  - '$HOME/.local/bin -> requirements.txt'
+  - '$HOME/.local/lib/python2.7/site-packages -> requirements.txt'
+  - '$HOME/.local/bin/mkdocs -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1
 - matrix:
@@ -59,7 +61,8 @@ for:
   - '%APPDATA%\npm'
   - '%APPDATA%\npm-cache'
   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Scripts\ -> requirements.txt'
+  - 'C:\Python27\Lib\site-packages -> requirements.txt'
+  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
   - ps: ./build/build.ps1
 - matrix:
@@ -70,7 +73,8 @@ for:
   - '%APPDATA%\npm'
   - '%APPDATA%\npm-cache'
   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Scripts\ -> requirements.txt'
+  - 'C:\Python27\Lib\site-packages -> requirements.txt'
+  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
   - pwsh: ./build/build.ps1
 

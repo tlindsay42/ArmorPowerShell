@@ -37,6 +37,7 @@ matrix:
       - $HOME/.nvm
       - $HOME/.npm
       - $HOME/.cache/pip
+      - $HOME/.local/lib/python2.7/site-packages
       - $HOME/.local/bin/mkdocs
   - os: osx
     osx_image: xcode9.4
@@ -51,6 +52,8 @@ matrix:
       - $HOME/.nvm
       - $HOME/.npm
       - $HOME/Library/Caches/pip
+      - /usr/local/lib/python2.7/site-packages
+      - /usr/local/bin/mkdocs
   fast_finish: true
 
 script:
