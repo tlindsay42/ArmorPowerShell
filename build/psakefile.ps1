@@ -580,7 +580,8 @@ $task = @{
             FileList              = Get-ChildItem -Path $CI_MODULE_PATH -File -Recurse |
                 Resolve-Path -Relative
             Tags                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
-            'Performance', 'Complete', 'Anywhere', 'Compliant', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS'
+                'Complete', 'Anywhere', 'Compliance', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS', 'SECaaS',
+                'PSEdition_Core', 'PSEdition_Desktop'
             LicenseUri            = $TEXT.RepoUrl + '/blob/master/LICENSE.txt'
             IconUri               = $TEXT.GitHubPagesProjectUrl + 'img/Armor_logo.png'
             HelpInfoUri           = $TEXT.GitHubPagesProjectUrl
@@ -1226,7 +1227,7 @@ $deployDocsTask = @{
         $temp = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
         $tempFile = [System.IO.Path]::GetTempFileName()
-        mkdocs gh-deploy --dirty --message $Global:CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
+        mkdocs gh-deploy --dirty --force --message $Global:CI_DEPLOY_COMMIT_MESSAGE 2>&1 > $tempFile
         $ErrorActionPreference = $temp
         $details = Get-Content -Path $tempFile |
             Out-String
