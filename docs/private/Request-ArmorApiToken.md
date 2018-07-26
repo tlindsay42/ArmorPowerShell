@@ -1,4 +1,4 @@
-# New-ArmorApiToken
+# Request-ArmorApiToken
 
 ## SYNOPSIS
 Retrieves an authentication token.
@@ -6,7 +6,7 @@ Retrieves an authentication token.
 ## SYNTAX
 
 ```
-New-ArmorApiToken [-Code] <String> [[-GrantType] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
+Request-ArmorApiToken [-Code] <String> [[-GrantType] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -16,7 +16,7 @@ Retrieves an authentication token from a temporary authorization code.
 
 ### EXAMPLE 1
 ```
-New-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
+Request-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
 ```
 
 Submits the temporary authorization code to retrieve a new Armor API session
@@ -89,9 +89,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/](https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Request-ArmorApiToken/](https://tlindsay42.github.io/ArmorPowerShell/private/Request-ArmorApiToken/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Request-ArmorApiToken.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Request-ArmorApiToken.ps1)
 
 [https://docs.armor.com/display/KBSS/Post+Token](https://docs.armor.com/display/KBSS/Post+Token)
 
