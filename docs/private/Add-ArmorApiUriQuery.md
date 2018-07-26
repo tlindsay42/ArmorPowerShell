@@ -1,12 +1,13 @@
 # Add-ArmorApiUriQuery
 
 ## SYNOPSIS
-Builds the Armor API URI with a server-side filter.
+Builds the Armor API URI with one or more server-side filters.
 
 ## SYNTAX
 
 ```
-Add-ArmorApiUriQuery [-Keys] <String[]> [-Parameters] <PSObject[]> [-Uri] <String> [<CommonParameters>]
+Add-ArmorApiUriQuery [-Keys] <String[]> [-Parameters] <PSObject[]> [-Uri] <String> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -66,6 +67,37 @@ Aliases:
 
 Required: True
 Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

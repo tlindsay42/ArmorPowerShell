@@ -1,4 +1,4 @@
-#requires -Version 5.0
+﻿#requires -Version 5.0
 #requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.1.4' }
 #requires -Modules @{ ModuleName = 'PackageManagement'; ModuleVersion = '1.1.7.2' }
 #requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.3.1' }
@@ -48,7 +48,7 @@ if ( $Env:CI_WINDOWS -eq $true ) {
         Name           = 'Coveralls'
         MinimumVersion = '1.0.25'
     }
-    
+
     foreach ( $moduleDevDependency in $moduleDevDependencies ) {
         $message = (
             "PowerShell module development dependency: '$( $moduleDevDependency.Name )', " +
