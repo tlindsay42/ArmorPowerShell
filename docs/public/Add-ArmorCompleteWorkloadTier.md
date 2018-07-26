@@ -1,4 +1,4 @@
-# New-ArmorCompleteWorkloadTier
+# Add-ArmorCompleteWorkloadTier
 
 ## SYNOPSIS
 Creates tiers in an Armor Complete workload.
@@ -6,7 +6,7 @@ Creates tiers in an Armor Complete workload.
 ## SYNTAX
 
 ```
-New-ArmorCompleteWorkloadTier [-WorkloadID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf]
+Add-ArmorCompleteWorkloadTier [-WorkloadID] <UInt16> [-Name] <String> [[-ApiVersion] <String>] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ provided by the cmdlet parameters.
 
 ### EXAMPLE 1
 ```
-New-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'presentation'
+Add-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'presentation'
 ```
 
 Creates a new workload tier named 'presentation' in the workload with WorkloadID=1
@@ -45,7 +45,7 @@ in the Armor Complete account that currently has context.
 
 ### EXAMPLE 2
 ```
-1, 2 | New-ArmorCompleteWorkloadTier -Name 'business logic' -ApiVersion 'v1.0'
+1, 2 | Add-ArmorCompleteWorkloadTier -Name 'business logic' -ApiVersion 'v1.0'
 ```
 
 Creates a new workload tier named 'business logic' in the workloads with
@@ -54,7 +54,7 @@ Complete account that currently has context.
 
 ### EXAMPLE 3
 ```
-'web', 'app', 'db' | New-ArmorCompleteWorkloadTier -WorkloadID 1
+'web', 'app', 'db' | Add-ArmorCompleteWorkloadTier -WorkloadID 1
 ```
 
 Creates new workload tiers named 'web', 'app', and 'db' in the workload with
@@ -62,7 +62,7 @@ WorkloadID=1 in the Armor Complete account that currently has context.
 
 ### EXAMPLE 4
 ```
-[PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | New-ArmorCompleteWorkloadTier
+[PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | Add-ArmorCompleteWorkloadTier
 ```
 
 Creates a new workload tier named 'persistence' in the workload with
@@ -171,9 +171,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/public/New-ArmorCompleteWorkloadTier/](https://tlindsay42.github.io/ArmorPowerShell/public/New-ArmorCompleteWorkloadTier/)
+[https://tlindsay42.github.io/ArmorPowerShell/public/Add-ArmorCompleteWorkloadTier/](https://tlindsay42.github.io/ArmorPowerShell/public/Add-ArmorCompleteWorkloadTier/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/New-ArmorCompleteWorkloadTier.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/New-ArmorCompleteWorkloadTier.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Add-ArmorCompleteWorkloadTier.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Add-ArmorCompleteWorkloadTier.ps1)
 
 [https://docs.armor.com/display/KBSS/Create+Tier](https://docs.armor.com/display/KBSS/Create+Tier)
 

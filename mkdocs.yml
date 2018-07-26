@@ -99,6 +99,7 @@ pages:
     - FAQs: 'user/FAQs.md'
   - Cmdlet Documentation:
     - Module Description: 'public/Armor.md'
+    - Add-ArmorCompleteWorkloadTier: 'public/Add-ArmorCompleteWorkloadTier.md'
     - Connect-Armor: 'public/Connect-Armor.md'
     - Disconnect-Armor: 'public/Disconnect-Armor.md'
     - Get-ArmorAccount: 'public/Get-ArmorAccount.md'
@@ -112,7 +113,6 @@ pages:
     - Get-ArmorVM: 'public/Get-ArmorVM.md'
     - Invoke-ArmorWebRequest: 'public/Invoke-ArmorWebRequest.md'
     - New-ArmorCompleteVM: 'public/New-ArmorCompleteVM.md'
-    - New-ArmorCompleteWorkloadTier: 'public/New-ArmorCompleteWorkloadTier.md'
     - Remove-ArmorCompleteVM: 'public/Remove-ArmorCompleteVM.md'
     - Remove-ArmorCompleteWorkload: 'public/Remove-ArmorCompleteWorkload.md'
     - Remove-ArmorCompleteWorkloadTier: 'public/Remove-ArmorCompleteWorkloadTier.md'

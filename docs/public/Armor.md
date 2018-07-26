@@ -3,6 +3,9 @@
 The Armor command-line interface
 
 ## Armor Cmdlets
+### [Add-ArmorCompleteWorkloadTier](Add-ArmorCompleteWorkloadTier.md)
+Creates tiers in an Armor Complete workload.
+
 ### [Connect-Armor](Connect-Armor.md)
 Connects to the Armor API and establishes a session.
 
@@ -42,9 +45,6 @@ Sends custom requests to Armor API endpoints.
 ### [New-ArmorCompleteVM](New-ArmorCompleteVM.md)
 Creates new Armor Complete VMs.
 
-### [New-ArmorCompleteWorkloadTier](New-ArmorCompleteWorkloadTier.md)
-Creates tiers in an Armor Complete workload.
-
 ### [Remove-ArmorCompleteVM](Remove-ArmorCompleteVM.md)
 Deletes Armor Complete VMs.
 
@@ -77,5 +77,4 @@ Starts Armor Complete virtual machines.
 
 ### [Stop-ArmorCompleteVM](Stop-ArmorCompleteVM.md)
 Stops Armor Complete virtual machines.
-
 
