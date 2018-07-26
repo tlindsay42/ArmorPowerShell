@@ -1,14 +1,28 @@
-$aliases = Get-Content -Path "${PSScriptRoot}/Etc/Aliases.json" -ErrorAction 'Stop' |
-    ConvertFrom-Json -ErrorAction 'Stop'
+$moduleName = ( Get-Item -Path $PSScriptRoot ).BaseName
 
-$lib = @( Get-ChildItem -Path "${PSScriptRoot}/Lib/*.ps1" -ErrorAction 'Stop' )
-$private = @( Get-ChildItem -Path "${PSScriptRoot}/Private/*.ps1" -ErrorAction 'Stop' )
-$public = @( Get-ChildItem -Path "${PSScriptRoot}/Public/*.ps1" -ErrorAction 'Stop' )
+$glob = '*.ps1'
+
+$lib = @(
+    Join-Path -Path $PSScriptRoot -ChildPath 'Lib' |
+        Get-ChildItem -Filter $glob -ErrorAction 'Stop'
+)
+
+$private = @(
+    Join-Path -Path $PSScriptRoot -ChildPath 'Private' |
+        Get-ChildItem -Filter $glob -ErrorAction 'Stop'
+)
+
+$public = @(
+    Join-Path -Path $PSScriptRoot -ChildPath 'Public' |
+        Get-ChildItem -Filter $glob -ErrorAction 'Stop'
+)
 
 # Source the definition files
 foreach ( $import in ( $lib + $private + $public ) ) {
     . $import.FullName
 }
+
+$aliases = ( Get-Alias ).Where( { $_.Source -eq $moduleName } )
 
 # Export the Public modules
 Export-ModuleMember -Function $public.BaseName -Alias $aliases.Name -ErrorAction 'Stop'
