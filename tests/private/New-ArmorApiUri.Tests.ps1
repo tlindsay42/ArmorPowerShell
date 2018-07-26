@@ -39,7 +39,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
-        ExpectedParameterNames = 'Server', 'Port', 'Endpoints', 'IDs'
+        ExpectedParameterNames = 'Server', 'Port', 'Endpoints', 'IDs', 'Confirm', 'WhatIf'
         Help                   = $help
     }
     Test-AdvancedFunctionHelpParameter @splat

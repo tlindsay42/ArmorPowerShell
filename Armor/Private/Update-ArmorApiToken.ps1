@@ -40,7 +40,7 @@ function Update-ArmorApiToken {
         Armor session management
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Low' )]
     [OutputType( [Void] )]
     param (
         # Specifies the Armor API authorization token.
@@ -74,19 +74,21 @@ function Update-ArmorApiToken {
 
         $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
-        $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
-        $parameters = ( Get-Command -Name $function ).Parameters.Values
-        $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
+        if ( $PSCmdlet.ShouldProcess( $Token, $resources.Description ) ) {
+            $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
+            $parameters = ( Get-Command -Name $function ).Parameters.Values
+            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
-        $splat = @{
-            Uri         = $uri
-            Method      = $resources.Method
-            Body        = $body
-            SuccessCode = $resources.SuccessCode
-        }
+            $splat = @{
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
+            }
             $results = Invoke-ArmorRestMethod @splat
 
-        $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
+            $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
+        }
     }
 
     end {

@@ -29,7 +29,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
-        ExpectedParameterNames = 'Token', 'ApiVersion'
+        ExpectedParameterNames = 'Token', 'ApiVersion', 'Confirm', 'WhatIf'
         Help                   = $help
     }
     Test-AdvancedFunctionHelpParameter @splat

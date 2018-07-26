@@ -44,7 +44,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
     Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
-        ExpectedParameterNames = 'ID'
+        ExpectedParameterNames = 'ID', 'Confirm', 'WhatIf'
         Help                   = $help
     }
     Test-AdvancedFunctionHelpParameter @splat

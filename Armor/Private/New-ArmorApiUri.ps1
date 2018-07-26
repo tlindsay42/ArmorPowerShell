@@ -47,7 +47,7 @@ function New-ArmorApiUri {
         Armor API URI
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Low' )]
     [OutputType( [String] )]
     param (
         # Specifies the Armor API server IP address or FQDN.
@@ -89,68 +89,70 @@ function New-ArmorApiUri {
     process {
         [String] $return = $null
 
-        Write-Verbose -Message 'Build the URI.'
+        if ( $PSCmdlet.ShouldProcess( 'Build the Armor API URI' ) ) {
+            Write-Verbose -Message 'Build the URI.'
 
-        switch ( ( $IDs | Measure-Object ).Count ) {
-            0 {
-                $endpoint = $Endpoints.Where( { $_ -notmatch '{id}' } )
+            switch ( ( $IDs | Measure-Object ).Count ) {
+                0 {
+                    $endpoint = $Endpoints.Where( { $_ -notmatch '{id}' } )
 
-                if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
-                    throw 'Endpoint with no ID specification not found.'
-                }
-                elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
-                    throw 'More than one endpoint with no ID specification found.'
-                }
-                else {
-                    $endpoint = $endpoint[0]
+                    if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
+                        throw 'Endpoint with no ID specification not found.'
+                    }
+                    elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
+                        throw 'More than one endpoint with no ID specification found.'
+                    }
+                    else {
+                        $endpoint = $endpoint[0]
+                    }
+
+                    $return = "https://${Server}:${Port}${endpoint}"
                 }
 
-                $return = "https://${Server}:${Port}${endpoint}"
+                1 {
+                    $endpoint = $Endpoints.Where( { $_ -match '/{id}' -and $_ -notmatch '/{id}.*/{id}' } )
+
+                    if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
+                        throw 'Endpoint with one ID specification not found.'
+                    }
+                    elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
+                        throw 'More than one endpoint with one ID specification found.'
+                    }
+                    else {
+                        $endpoint = $endpoint[0]
+                    }
+
+                    $return = "https://${Server}:${Port}${endpoint}"
+
+                    # Insert ID in URI string
+                    $return = $return -replace '{id}', $IDs[0]
+                }
+
+                2 {
+                    $endpoint = $Endpoints.Where( { $_ -match '/{id}.*/{id}' -and $_ -notmatch '/{id}.*/{id}.*/{id}' } )
+
+                    if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
+                        throw 'Endpoint with two ID specifications not found.'
+                    }
+                    elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
+                        throw 'More than one endpoint with two ID specifications found.'
+                    }
+                    else {
+                        $endpoint = $endpoint[0]
+                    }
+
+                    $return = "https://${Server}:${Port}${endpoint}"
+
+                    # Insert first ID in URI string
+                    $return = $return -replace '(.*?)/{id}(.*)', "`$1/$( $IDs[0] )`$2"
+
+                    # Insert second ID in URI string
+                    $return = $return -replace '{id}', $IDs[1]
+                }
             }
 
-            1 {
-                $endpoint = $Endpoints.Where( { $_ -match '/{id}' -and $_ -notmatch '/{id}.*/{id}' } )
-
-                if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
-                    throw 'Endpoint with one ID specification not found.'
-                }
-                elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
-                    throw 'More than one endpoint with one ID specification found.'
-                }
-                else {
-                    $endpoint = $endpoint[0]
-                }
-
-                $return = "https://${Server}:${Port}${endpoint}"
-
-                # Insert ID in URI string
-                $return = $return -replace '{id}', $IDs[0]
-            }
-
-            2 {
-                $endpoint = $Endpoints.Where( { $_ -match '/{id}.*/{id}' -and $_ -notmatch '/{id}.*/{id}.*/{id}' } )
-
-                if ( ( $endpoint | Measure-Object ).Count -eq 0 ) {
-                    throw 'Endpoint with two ID specifications not found.'
-                }
-                elseif ( ( $endpoint | Measure-Object ).Count -ne 1 ) {
-                    throw 'More than one endpoint with two ID specifications found.'
-                }
-                else {
-                    $endpoint = $endpoint[0]
-                }
-
-                $return = "https://${Server}:${Port}${endpoint}"
-
-                # Insert first ID in URI string
-                $return = $return -replace '(.*?)/{id}(.*)', "`$1/$( $IDs[0] )`$2"
-
-                # Insert second ID in URI string
-                $return = $return -replace '{id}', $IDs[1]
-            }
+            Write-Verbose -Message "URI = ${return}"
         }
-
-        Write-Verbose -Message "URI = ${return}"
 
         $return
     }

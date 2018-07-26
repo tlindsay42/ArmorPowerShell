@@ -51,7 +51,7 @@ function Set-ArmorAccountContext {
         Armor Complete infrastructure management
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Low' )]
     [OutputType( [ArmorAccount] )]
     param (
         <#
@@ -78,7 +78,9 @@ function Set-ArmorAccountContext {
     }
 
     process {
-        $Global:ArmorSession.SetAccountContext( $ID )
+        if ( $PSCmdlet.ShouldProcess( $ID, 'Set the Armor account context' ) ) {
+            $Global:ArmorSession.SetAccountContext( $ID )
+        }
     }
 
     end {
