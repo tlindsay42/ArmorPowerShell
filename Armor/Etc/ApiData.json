@@ -17,6 +17,24 @@
       "SuccessCode": "The expected HTTP status code for a successful call"
     }
   },
+  "Add-ArmorCompleteWorkloadTier": {
+    "v1.0": {
+      "Description": "Create workload tier",
+      "Endpoints": [
+        "/apps/{id}/tiers"
+      ],
+      "Method": "Post",
+      "Body": {
+        "name": "Name"
+      },
+      "Query": {},
+      "Location": "Tiers",
+      "Filter": {
+        "Name": "Name"
+      },
+      "SuccessCode": "200"
+    }
+  },
   "Connect-Armor": {
     "v1.0": {
       "Description": "Create a new login session",
@@ -190,24 +208,6 @@
       "Query": {},
       "Location": "VMs",
       "Filter": {},
-      "SuccessCode": "200"
-    }
-  },
-  "New-ArmorCompleteWorkloadTier": {
-    "v1.0": {
-      "Description": "Create workload tier",
-      "Endpoints": [
-        "/apps/{id}/tiers"
-      ],
-      "Method": "Post",
-      "Body": {
-        "name": "Name"
-      },
-      "Query": {},
-      "Location": "Tiers",
-      "Filter": {
-        "Name": "Name"
-      },
       "SuccessCode": "200"
     }
   },

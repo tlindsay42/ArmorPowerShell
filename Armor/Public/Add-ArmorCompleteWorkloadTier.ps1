@@ -1,4 +1,4 @@
-function New-ArmorCompleteWorkloadTier {
+function Add-ArmorCompleteWorkloadTier {
     <#
         .SYNOPSIS
         Creates tiers in an Armor Complete workload.
@@ -39,31 +39,31 @@ function New-ArmorCompleteWorkloadTier {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        New-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'presentation'
+        Add-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'presentation'
         Creates a new workload tier named 'presentation' in the workload with WorkloadID=1
         in the Armor Complete account that currently has context.
 
         .EXAMPLE
-        1, 2 | New-ArmorCompleteWorkloadTier -Name 'business logic' -ApiVersion 'v1.0'
+        1, 2 | Add-ArmorCompleteWorkloadTier -Name 'business logic' -ApiVersion 'v1.0'
         Creates a new workload tier named 'business logic' in the workloads with
         WorkloadID=1 and WorkloadID=2 using Armor API version v1.0 in the Armor
         Complete account that currently has context.
 
         .EXAMPLE
-        'web', 'app', 'db' | New-ArmorCompleteWorkloadTier -WorkloadID 1
+        'web', 'app', 'db' | Add-ArmorCompleteWorkloadTier -WorkloadID 1
         Creates new workload tiers named 'web', 'app', and 'db' in the workload with
         WorkloadID=1 in the Armor Complete account that currently has context.
 
         .EXAMPLE
-        [PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | New-ArmorCompleteWorkloadTier
+        [PSCustomObject] @{ WorkloadID = 1; Name = 'persistence' } | Add-ArmorCompleteWorkloadTier
         Creates a new workload tier named 'persistence' in the workload with
         WorkloadID=1 in the Armor Complete account that currently has context.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/public/New-ArmorCompleteWorkloadTier/
+        https://tlindsay42.github.io/ArmorPowerShell/public/Add-ArmorCompleteWorkloadTier/
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/New-ArmorCompleteWorkloadTier.ps1
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Public/Add-ArmorCompleteWorkloadTier.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Create+Tier
@@ -138,7 +138,7 @@ function New-ArmorCompleteWorkloadTier {
                 Body        = $body
                 SuccessCode = $resources.SuccessCode
             }
-            $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
             $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 

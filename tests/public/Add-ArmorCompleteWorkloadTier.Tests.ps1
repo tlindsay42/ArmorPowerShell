@@ -70,7 +70,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $WorkloadID, [String] $Name, [String] $ApiVersion )
-                { New-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                { Add-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
             }
 
@@ -93,7 +93,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $WorkloadID, [String] $Name, [String] $ApiVersion )
-                { New-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
+                { Add-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion -ErrorAction 'Stop' } |
                     Should -Throw
             }
             Assert-VerifiableMock
@@ -118,7 +118,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $testName = 'should not fail when set to: WorkloadID: <WorkloadID>, Name: <Name>, ApiVersion: <ApiVersion>'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $WorkloadID, [String] $Name, [String] $ApiVersion )
-                { New-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion } |
+                { Add-ArmorCompleteWorkloadTier -WorkloadID $WorkloadID -Name $Name -ApiVersion $ApiVersion } |
                     Should -Not -Throw
             }
             Assert-VerifiableMock
@@ -140,7 +140,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             $testCases = @(
                 @{
-                    FoundReturnType    = ( New-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
+                    FoundReturnType    = ( Add-ArmorCompleteWorkloadTier -WorkloadID 1 -Name 'TR1' -ErrorAction 'Stop' ).GetType().FullName
                     ExpectedReturnType = 'ArmorCompleteWorkloadTier'
                 }
             )
@@ -158,7 +158,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
-                    Should -BeIn ( Get-Help -Name 'New-ArmorCompleteWorkloadTier' -Full ).ReturnValues.ReturnValue.Type.Name
+                    Should -BeIn ( Get-Help -Name 'Add-ArmorCompleteWorkloadTier' -Full ).ReturnValues.ReturnValue.Type.Name
             }
         }
     }
