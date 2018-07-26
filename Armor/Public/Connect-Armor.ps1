@@ -180,7 +180,7 @@ function Connect-Armor {
         }
 
         # Final throw for when all versions of the API have failed
-        if ( $token -eq $null ) {
+        if ( $null -eq $token ) {
             throw 'Unable to acquire authorization token. Check $Error for details or use the -Verbose parameter.'
         }
 

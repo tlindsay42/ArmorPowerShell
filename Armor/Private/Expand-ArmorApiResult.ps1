@@ -80,7 +80,7 @@ function Expand-ArmorApiResult {
         [PSCustomObject[]] $return = @()
 
         foreach ( $result in $Results ) {
-            if ( $Location -and $result.$Location -ne $null ) {
+            if ( $null -ne $Location -and $null -ne $result.$Location ) {
                 <#
                 The $Location check assumes that not all endpoints will require
                 finding (and removing) a parent key if one does exist, this

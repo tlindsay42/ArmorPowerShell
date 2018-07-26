@@ -482,7 +482,7 @@ class ArmorSession {
             if ( $this.Headers.Authorization -match "^$( $this.AuthenticationType ) [a-z0-9]+$" ) {
                 $return = $this.Headers.Authorization.Split( ' ' )[-1]
             }
-            elseif ( $this.Headers.Authorization -eq $null ) {
+            elseif ( $null -eq $this.Headers.Authorization ) {
                 throw 'The session has not been authorized.'
             }
             else {

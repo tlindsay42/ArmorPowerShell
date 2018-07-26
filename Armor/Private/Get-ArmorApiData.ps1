@@ -118,10 +118,10 @@ function Get-ArmorApiData {
         $api = Get-Content -Path $filePath |
             ConvertFrom-Json -ErrorAction 'Stop'
 
-        if ( ( $api | Get-Member -Name $FunctionName -ErrorAction 'SilentlyContinue' ) -eq $null ) {
+        if ( $null -eq ( $api | Get-Member -Name $FunctionName -ErrorAction 'SilentlyContinue' ) ) {
             throw "Invalid endpoint: '${FunctionName}'"
         }
-        elseif ( $PSCmdlet.ParameterSetName -eq 'ApiVersion' -and ( $api.$FunctionName | Get-Member -Name $ApiVersion -ErrorAction 'SilentlyContinue' ) -eq $null ) {
+        elseif ( $null -eq $PSCmdlet.ParameterSetName -eq 'ApiVersion' -and ( $api.$FunctionName | Get-Member -Name $ApiVersion -ErrorAction 'SilentlyContinue' ) ) {
             throw "Invalid endpoint version: '${ApiVersion}'"
         }
         elseif ( $PSCmdlet.ParameterSetName -eq 'ApiVersions' -and $ApiVersions -eq $true ) {
