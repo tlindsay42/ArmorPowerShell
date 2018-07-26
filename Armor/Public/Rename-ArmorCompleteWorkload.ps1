@@ -103,7 +103,7 @@ function Rename-ArmorCompleteWorkload {
                 Body        = $body
                 SuccessCode = $resources.SuccessCode
             }
-            $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
             $return = $results
         }

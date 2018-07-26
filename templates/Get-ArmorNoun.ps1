@@ -111,7 +111,7 @@ function Get-ArmorNoun {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         # Filter the results
         $filters = $resources.Filter |

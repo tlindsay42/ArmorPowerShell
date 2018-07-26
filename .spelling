@@ -82,6 +82,7 @@ https
 img
 InformationAction
 InformationVariable
+Invoke-ArmorRestMethod
 Invoke-ArmorWebRequest
 Invoke-WebRequest
 IsActive
@@ -131,7 +132,6 @@ Stop-ArmorCompleteVM
 Styleguide
 styleguides
 Styleguides
-Submit-ArmorApiRequest
 SuccessCode
 System.Guid
 System.Management.Automation.PSObject

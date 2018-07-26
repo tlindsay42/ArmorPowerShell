@@ -125,7 +125,7 @@ function Get-ArmorCompleteDatacenter {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         if ( $PSCmdlet.ParameterSetName -ne 'ID' -or $ID -gt 0 ) {
             $filters = $resources.Filter |

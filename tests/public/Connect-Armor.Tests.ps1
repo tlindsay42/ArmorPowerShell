@@ -88,7 +88,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $validCode = 'VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu='
             #endregion
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     redirect_uri = $null
                     code         = ''
@@ -107,9 +107,9 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
 
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     redirect_uri = $null
                     code         = $validCode
@@ -128,7 +128,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
 
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 2
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 2
         }
     }
 
@@ -145,7 +145,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $validCode = 'VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu='
             #endregion
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     redirect_uri = $null
                     code         = $validCode
@@ -161,8 +161,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
 
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
-            Assert-MockCalled -CommandName New-ArmorApiToken -Times 1
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
         }
     }
 
@@ -179,7 +178,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $validCode = 'VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu='
             #endregion
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     redirect_uri = $null
                     code         = $validCode
@@ -195,8 +194,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
 
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
-            Assert-MockCalled -CommandName New-ArmorApiToken -Times 1
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
         }
     }
 

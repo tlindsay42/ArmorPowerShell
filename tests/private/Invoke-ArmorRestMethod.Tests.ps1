@@ -103,14 +103,14 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = 'should fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
+            { Invoke-ArmorRestMethod -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Throw
         }
 
         $testName = $testName -replace '\(named\)', '(positional)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest $Uri $Headers $Method $Body $SuccessCode } |
+            { Invoke-ArmorRestMethod $Uri $Headers $Method $Body $SuccessCode } |
                 Should -Throw
         }
 
@@ -161,7 +161,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = 'should not fail when set to: Uri: <Uri>, Headers: <Headers>, Method: <Method>, Body: <Body>, SuccessCode: <SuccessCode> (named)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
+            { Invoke-ArmorRestMethod -Uri $Uri -Headers $Headers -Method $Method -Body $Body -SuccessCode $SuccessCode } |
                 Should -Not -Throw
         }
         Assert-VerifiableMock
@@ -170,7 +170,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = $testName -replace '\(named\)', '(positional)'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $Uri, [Hashtable] $Headers, [String] $Method, [String] $Body, [UInt16] $SuccessCode )
-            { Submit-ArmorApiRequest $Uri $Headers $Method $Body $SuccessCode } |
+            { Invoke-ArmorRestMethod $Uri $Headers $Method $Body $SuccessCode } |
                 Should -Not -Throw
         }
         Assert-VerifiableMock
@@ -196,7 +196,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
         $testCases = @(
             @{
-                FoundReturnType    = ( Submit-ArmorApiRequest @splat ).GetType().FullName
+                FoundReturnType    = ( Invoke-ArmorRestMethod @splat ).GetType().FullName
                 ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
             }
         )

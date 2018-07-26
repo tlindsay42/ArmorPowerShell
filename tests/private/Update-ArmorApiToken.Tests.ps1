@@ -47,7 +47,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $validApiVersion = 'v1.0'
             #endregion
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     access_token = '2c307390e95843'
                     id_token     = $null
@@ -77,9 +77,9 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Should -Throw
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     access_token = '2c307390e95843e38804f40ca8cac03e'
                     id_token     = $null
@@ -105,7 +105,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Should -Not -Throw
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times $testCases.Count
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times $testCases.Count
         }
     }
 
@@ -120,7 +120,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $Global:ArmorSession.Headers.Authorization = "FH-AUTH d4641394719f4513a80f25de11a85138"
             #endregion
 
-            Mock -CommandName Submit-ArmorApiRequest -Verifiable -MockWith {
+            Mock -CommandName Invoke-ArmorRestMethod -Verifiable -MockWith {
                 @{
                     access_token = '2c307390e95843e38804f40ca8cac03e'
                     id_token     = $null
@@ -138,7 +138,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                 $returnType = $returnValue.GetType().FullName
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Submit-ArmorApiRequest -Times 1
+            Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
 
             $testCases = @(
                 @{

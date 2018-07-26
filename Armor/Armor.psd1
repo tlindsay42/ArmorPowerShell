@@ -109,7 +109,7 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'en-US\Armor-help.xml', 'Etc\Aliases.json
                'Private\Format-ArmorApiRequestBody.ps1', 
                'Private\New-ArmorApiUri.ps1', 'Private\Add-ArmorApiUriQuery.ps1', 
                'Private\Select-ArmorApiResult.ps1', 
-               'Private\Submit-ArmorApiRequest.ps1', 
+               'Private\Invoke-ArmorRestMethod.ps1', 
                'Private\Test-ArmorSession.ps1', 'Private\Update-ArmorApiToken.ps1', 
                'Public\Connect-Armor.ps1', 'Public\Disconnect-Armor.ps1', 
                'Public\Get-ArmorAccount.ps1', 'Public\Get-ArmorAccountAddress.ps1', 

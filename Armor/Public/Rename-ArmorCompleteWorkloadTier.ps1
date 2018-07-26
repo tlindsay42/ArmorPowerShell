@@ -115,7 +115,7 @@ function Rename-ArmorCompleteWorkloadTier {
                 Body        = $body
                 SuccessCode = $resources.SuccessCode
             }
-            $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
             $results = Expand-ArmorApiResult -Results $results -Location $resources.Location
 

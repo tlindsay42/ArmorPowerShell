@@ -106,7 +106,7 @@ function Get-ArmorAccountAddress {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         $return = $results
 

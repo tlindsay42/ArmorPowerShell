@@ -1,4 +1,4 @@
-function Submit-ArmorApiRequest {
+function Invoke-ArmorRestMethod {
     <#
         .SYNOPSIS
         Sends data to an Armor API endpoint and then formats the response for further
@@ -20,22 +20,22 @@ function Submit-ArmorApiRequest {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200
+        Invoke-ArmorRestMethod -Uri https://api.armor.com/me -Method Get -SuccessCode 200
         Submits a GET request to the Armor Identity API endpoint during a valid
         session, converts the JSON response body to an object, passes the object to the
         pipeline, and then outputs the object.
 
         .EXAMPLE
-        Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
+        Invoke-ArmorRestMethod -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
         Submits a GET request to the Armor Identity API endpoint during a valid
         session, converts the JSON response body to an object, passes the object to the
         pipeline, and then outputs the object.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/private/Submit-ArmorApiRequest/
+        https://tlindsay42.github.io/ArmorPowerShell/private/Invoke-ArmorRestMethod/
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Submit-ArmorApiRequest.ps1
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Invoke-ArmorRestMethod.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Armor+API+Guide

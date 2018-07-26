@@ -135,7 +135,7 @@ function Invoke-ArmorWebRequest {
                 Body        = $jsonBody
                 SuccessCode = $SuccessCode
             }
-            $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
             $return = $results
         }

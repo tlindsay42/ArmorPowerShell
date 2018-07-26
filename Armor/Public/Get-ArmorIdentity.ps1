@@ -78,7 +78,7 @@ function Get-ArmorIdentity {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         $temp = $results.User
         $Global:ArmorSession.User = $temp |

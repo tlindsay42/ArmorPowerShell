@@ -1,4 +1,4 @@
-# Submit-ArmorApiRequest
+# Invoke-ArmorRestMethod
 
 ## SYNOPSIS
 Sends data to an Armor API endpoint and then formats the response for further
@@ -7,7 +7,7 @@ use.
 ## SYNTAX
 
 ```
-Submit-ArmorApiRequest [-Uri] <String> [[-Headers] <Hashtable>] [-Method] <String> [[-Body] <String>]
+Invoke-ArmorRestMethod [-Uri] <String> [[-Headers] <Hashtable>] [-Method] <String> [[-Body] <String>]
  [-SuccessCode] <UInt16> [<CommonParameters>]
 ```
 
@@ -22,7 +22,7 @@ is thrown as a terminating error.
 
 ### EXAMPLE 1
 ```
-Submit-ArmorApiRequest -Uri https://api.armor.com/me -Method Get -SuccessCode 200
+Invoke-ArmorRestMethod -Uri https://api.armor.com/me -Method Get -SuccessCode 200
 ```
 
 Submits a GET request to the Armor Identity API endpoint during a valid
@@ -31,7 +31,7 @@ pipeline, and then outputs the object.
 
 ### EXAMPLE 2
 ```
-Submit-ArmorApiRequest -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
+Invoke-ArmorRestMethod -Uri https://api.armor.com:443/vms/1 -Headers $Global:ArmorSession.Headers -Method Post -SuccessCode 200 -Body '{"name":"app1","id":1}'
 ```
 
 Submits a GET request to the Armor Identity API endpoint during a valid
@@ -140,9 +140,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/private/Submit-ArmorApiRequest/](https://tlindsay42.github.io/ArmorPowerShell/private/Submit-ArmorApiRequest/)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Invoke-ArmorRestMethod/](https://tlindsay42.github.io/ArmorPowerShell/private/Invoke-ArmorRestMethod/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Submit-ArmorApiRequest.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Submit-ArmorApiRequest.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Invoke-ArmorRestMethod.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Invoke-ArmorRestMethod.ps1)
 
 [https://docs.armor.com/display/KBSS/Armor+API+Guide](https://docs.armor.com/display/KBSS/Armor+API+Guide)
 

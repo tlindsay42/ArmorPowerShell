@@ -154,7 +154,7 @@ function Get-ArmorCompleteWorkload {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         $filters = $resources.Filter |
             Get-Member -MemberType 'NoteProperty'

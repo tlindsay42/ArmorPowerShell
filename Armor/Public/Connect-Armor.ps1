@@ -162,7 +162,7 @@ function Connect-Armor {
             Body        = $body
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         # Destroy variables with passwords since they are no longer needed
         $body = ''

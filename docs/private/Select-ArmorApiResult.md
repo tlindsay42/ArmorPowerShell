@@ -19,7 +19,7 @@ Wildcard filtering is supported via the use of the \`-like\` operator.
 
 ### EXAMPLE 1
 ```
-$results = Submit-ArmorApiRequest -Uri 'https://api.armor.com/vms'; $filters = $resources.Filter | Get-Member -MemberType 'NoteProperty'; $results = Select-ArmorApiResult -Results $results -Filters $filters
+$results = Invoke-ArmorRestMethod -Uri 'https://api.armor.com/vms'; $filters = $resources.Filter | Get-Member -MemberType 'NoteProperty'; $results = Select-ArmorApiResult -Results $results -Filters $filters
 ```
 
 Sets $results to the VMs matching the parameters defined in the calling cmdlet:

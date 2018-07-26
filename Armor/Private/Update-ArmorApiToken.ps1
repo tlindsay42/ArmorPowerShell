@@ -84,7 +84,7 @@ function Update-ArmorApiToken {
             Body        = $body
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
         $Global:ArmorSession.Authorize( $results.Access_Token, $results.Expires_In )
     }

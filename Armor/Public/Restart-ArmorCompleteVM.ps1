@@ -103,7 +103,7 @@ function Restart-ArmorCompleteVM {
                 Body        = $body
                 SuccessCode = $resources.SuccessCode
             }
-            $results = Submit-ArmorApiRequest @splat
+            $results = Invoke-ArmorRestMethod @splat
 
             $return = $results
         }

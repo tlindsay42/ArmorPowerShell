@@ -13,10 +13,10 @@ function Get-ArmorVM {
 
         .INPUTS
         System.Guid
-        
+
         .INPUTS
         System.String
-        
+
         .INPUTS
         System.Management.Automation.PSObject
 
@@ -166,7 +166,7 @@ function Get-ArmorVM {
             Method      = $resources.Method
             SuccessCode = $resources.SuccessCode
         }
-        $results = Submit-ArmorApiRequest @splat
+        $results = Invoke-ArmorRestMethod @splat
 
         $filters = $resources.Filter |
             Get-Member -MemberType 'NoteProperty'
