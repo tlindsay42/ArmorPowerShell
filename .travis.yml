@@ -11,7 +11,9 @@ branches:
   except:
   - gh-pages
 
-language: generic
+language: python
+python:
+- "3.6"
 
 env:
   global:
