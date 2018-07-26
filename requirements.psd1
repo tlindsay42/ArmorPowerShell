@@ -4,7 +4,7 @@
         Target = 'CurrentUser'
         Tags   = 'Default', 'WindowsOnly'
     }
-    
+
     # Continuous-Integration / Continuous Deployment (CI/CD) tools
     BuildHelpers      = 'Latest'
 
@@ -42,4 +42,11 @@
 
     # Deployment tool
     PSDeploy          = 'Latest'
+
+    <#
+    PSScriptAnalyzer provides script analysis and checks for potential code defects in
+    the scripts by applying a group of built-in or customized rules on the scripts
+    being analyzed.
+    #>
+    PSScriptAnalyzer  = 'Latest'
 }

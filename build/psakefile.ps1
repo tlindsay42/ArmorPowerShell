@@ -1,5 +1,12 @@
 #requires -Version 5.0
-#requires -Modules BuildHelpers, PackageManagement, Pester, platyPS, PowerShellGet, psake, PSDeploy
+#requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.1.4' }
+#requires -Modules @{ ModuleName = 'PackageManagement'; ModuleVersion = '1.1.7.2' }
+#requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.3.1' }
+#requires -Modules @{ ModuleName = 'platyPS'; ModuleVersion = '0.10.1' }
+#requires -Modules @{ ModuleName = 'psake'; ModuleVersion = '4.7.0' }
+#requires -Modules @{ ModuleName = 'PowerShellGet'; ModuleVersion = '1.6.6' }
+#requires -Modules @{ ModuleName = 'PSDeploy'; ModuleVersion = '0.2.5' }
+#requires -Modules @{ ModuleName = 'PSScriptAnalyzer'; ModuleVersion = '1.17.1' }
 
 #region Format task title style
 $horizontalLine = '#' * 80
@@ -36,50 +43,19 @@ Remove-Variable -Name 'progressBarAction'
 #endregion
 
 #region Assert PowerShell module dependencies
-$moduleDevDependencies = @(
-    @{
-        Name           = 'BuildHelpers'
-        MinimumVersion = '1.1.4'
-    },
-    @{
-        Name           = 'PackageManagement'
-        MinimumVersion = '1.1.7.2'
-    },
-    @{
-        Name           = 'Pester'
-        MinimumVersion = '4.3.1'
-    },
-    @{
-        Name           = 'platyPS'
-        MinimumVersion = '0.10.1'
-    },
-    @{
-        Name           = 'psake'
-        MinimumVersion = '4.7.0'
-    },
-    @{
-        Name           = 'PowerShellGet'
-        MinimumVersion = '1.6.6'
-    },
-    @{
-        Name           = 'PSDeploy'
-        MinimumVersion = '0.2.5'
-    }
-)
-
 if ( $Env:CI_WINDOWS -eq $true ) {
-    $moduleDevDependencies += @{
+    $moduleDevDependencies = @{
         Name           = 'Coveralls'
         MinimumVersion = '1.0.25'
     }
-}
-
-foreach ( $moduleDevDependency in $moduleDevDependencies ) {
-    $message = (
-        "PowerShell module development dependency: '$( $moduleDevDependency.Name )', " +
-        "minimum version: '$( $moduleDevDependency.MinimumVersion )' not found."
-    )
-    Assert ( ( Get-Module -Name $moduleDevDependency.Name ).Version -ge $moduleDevDependency.MinimumVersion ) $message
+    
+    foreach ( $moduleDevDependency in $moduleDevDependencies ) {
+        $message = (
+            "PowerShell module development dependency: '$( $moduleDevDependency.Name )', " +
+            "minimum version: '$( $moduleDevDependency.MinimumVersion )' not found."
+        )
+        Assert ( ( Get-Module -Name $moduleDevDependency.Name ).Version -ge $moduleDevDependency.MinimumVersion ) $message
+    }
 }
 #endregion
 
