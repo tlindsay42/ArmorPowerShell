@@ -168,23 +168,6 @@
       "SuccessCode": "200"
     }
   },
-  "New-ArmorApiToken": {
-    "v1.0": {
-      "Description": "Create an authentication token from an active authorization code",
-      "Endpoints": [
-        "/auth/token"
-      ],
-      "Method": "Post",
-      "Body": {
-        "code": "GUID",
-        "grant_type": "authorization_code"
-      },
-      "Query": {},
-      "Location": "",
-      "Filter": {},
-      "SuccessCode": "200"
-    }
-  },
   "New-ArmorCompleteVM": {
     "v1.0": {
       "Description": "Order {0} new VM{1}",
@@ -327,6 +310,23 @@
       "Filter": {
         "ID": "ID"
       },
+      "SuccessCode": "200"
+    }
+  },
+  "Request-ArmorApiToken": {
+    "v1.0": {
+      "Description": "Create an authentication token from an active authorization code",
+      "Endpoints": [
+        "/auth/token"
+      ],
+      "Method": "Post",
+      "Body": {
+        "code": "GUID",
+        "grant_type": "authorization_code"
+      },
+      "Query": {},
+      "Location": "",
+      "Filter": {},
       "SuccessCode": "200"
     }
   },

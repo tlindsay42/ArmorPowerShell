@@ -173,7 +173,7 @@ function Connect-Armor {
         if ( $results.Code.Length -gt 0 -and $results.Success -eq 'true' ) {
             Write-Verbose -Message "Successfully acquired temporary authorization code: '$( $results.Code )'"
 
-            $token = New-ArmorApiToken -Code $results.Code -GrantType 'authorization_code'
+            $token = Request-ArmorApiToken -Code $results.Code -GrantType 'authorization_code'
         }
         else {
             throw 'Failed to obtain temporary authorization code.'

@@ -152,7 +152,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     success      = 'true'
                 }
             }
-            Mock -CommandName New-ArmorApiToken -Verifiable -MockWith {}
+            Mock -CommandName Request-ArmorApiToken -Verifiable -MockWith {}
 
             $testName = 'should fail on invalid token'
             It -Name $testName -Test {
@@ -162,6 +162,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
+            Assert-MockCalled -CommandName Request-ArmorApiToken -Times 1
         }
     }
 
@@ -185,7 +186,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     success      = 'true'
                 }
             }
-            Mock -CommandName New-ArmorApiToken -Verifiable -MockWith {}
+            Mock -CommandName Request-ArmorApiToken -Verifiable -MockWith {}
 
             $testName = 'should fail on invalid token'
             It -Name $testName -Test {
@@ -195,6 +196,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Assert-VerifiableMock
             Assert-MockCalled -CommandName Invoke-ArmorRestMethod -Times 1
+            Assert-MockCalled -CommandName Request-ArmorApiToken -Times 1
         }
     }
 
@@ -208,7 +210,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             }
             $creds = New-Object @splat
             $connectArmorEndpoint = ( Get-ArmorApiData -FunctionName 'Connect-Armor' -ApiVersion 'v1.0' ).Endpoints
-            $newArmorApiTokenEndpoint = ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+            $newArmorApiTokenEndpoint = ( Get-ArmorApiData -FunctionName 'Request-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
             $getArmorIdentityEndpoint = ( Get-ArmorApiData -FunctionName 'Get-ArmorIdentity' -ApiVersion 'v1.0' ).Endpoints
             #endregion
 

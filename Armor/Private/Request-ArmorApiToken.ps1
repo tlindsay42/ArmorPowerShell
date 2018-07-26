@@ -1,4 +1,4 @@
-function New-ArmorApiToken {
+function Request-ArmorApiToken {
     <#
         .SYNOPSIS
         Retrieves an authentication token.
@@ -16,15 +16,15 @@ function New-ArmorApiToken {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        New-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
+        Request-ArmorApiToken -Code '+8oaKtcO9kuVbjUXlfnlHCY3HmXXCidHjzOBGwr+iTo='
         Submits the temporary authorization code to retrieve a new Armor API session
         token.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiToken/
+        https://tlindsay42.github.io/ArmorPowerShell/private/Request-ArmorApiToken/
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiToken.ps1
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Request-ArmorApiToken.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Post+Token
@@ -39,7 +39,7 @@ function New-ArmorApiToken {
         Armor sessions management
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding( SupportsShouldProcess = $true, ConfirmImpact = 'Low' )]
     [OutputType( [PSCustomObject] )]
     param (
         # Specifies the temporary authorization code to redeem for a token.
@@ -77,23 +77,25 @@ function New-ArmorApiToken {
 
         $uri = New-ArmorApiUri -Endpoints $resources.Endpoints
 
-        $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
-        $parameters = ( Get-Command -Name $function ).Parameters.Values
-        $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
+        if ( $PSCmdlet.ShouldProcess( $Code, $resources.Description ) ) {
+            $keys = ( $resources.Body | Get-Member -MemberType 'NoteProperty' ).Name
+            $parameters = ( Get-Command -Name $function ).Parameters.Values
+            $body = Format-ArmorApiRequestBody -Keys $keys -Parameters $parameters
 
-        $splat = @{
-            Uri         = $uri
-            Method      = $resources.Method
-            Body        = $body
-            SuccessCode = $resources.SuccessCode
+            $splat = @{
+                Uri         = $uri
+                Method      = $resources.Method
+                Body        = $body
+                SuccessCode = $resources.SuccessCode
+            }
+            $results = Invoke-ArmorRestMethod @splat
+
+            $filters = $resources.Filter |
+                Get-Member -MemberType 'NoteProperty'
+            $results = Select-ArmorApiResult -Results $results -Filters $filters
+
+            $return = $results
         }
-        $results = Submit-ArmorApiRequest @splat
-
-        $filters = $resources.Filter |
-            Get-Member -MemberType 'NoteProperty'
-        $results = Select-ArmorApiResult -Results $results -Filters $filters
-
-        $return = $results
 
         $return
     }

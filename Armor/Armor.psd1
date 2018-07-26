@@ -107,6 +107,7 @@ FileList = 'Armor.psd1', 'Armor.psm1', 'en-US\Armor-help.xml', 'Etc\Aliases.json
                'Etc\ApiData.json', 'Lib\ArmorTypes.ps1', 
                'Private\Expand-ArmorApiResult.ps1', 
                'Private\Format-ArmorApiRequestBody.ps1', 
+               'Private\Get-ArmorApiData.ps1', 'Private\Request-ArmorApiToken.ps1', 
                'Private\New-ArmorApiUri.ps1', 'Private\Add-ArmorApiUriQuery.ps1', 
                'Private\Select-ArmorApiResult.ps1', 
                'Private\Invoke-ArmorRestMethod.ps1', 

@@ -98,7 +98,6 @@ MkDocs
 mkdocs.org
 NewName
 NewWorkloadAndTier
-New-ArmorApiToken
 New-ArmorApiUri
 New-ArmorCompleteVM
 OneDrive
@@ -120,6 +119,7 @@ Remove-ArmorCompleteWorkload
 Rename-ArmorCompleteVM
 Rename-ArmorCompleteWorkload
 Rename-ArmorCompleteWorkloadTier
+Request-ArmorApiToken
 Reset-ArmorCompleteVM
 Restart-ArmorCompleteVM
 RESTful

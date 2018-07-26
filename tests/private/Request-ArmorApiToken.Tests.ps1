@@ -29,7 +29,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
-        ExpectedParameterNames = 'Code', 'GrantType', 'ApiVersion'
+        ExpectedParameterNames = 'Code', 'GrantType', 'ApiVersion', 'Confirm', 'WhatIf'
         Help                   = $help
     }
     Test-AdvancedFunctionHelpParameter @splat
@@ -73,14 +73,14 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $testName = 'should fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion> (named)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
-                { New-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
+                { Request-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
                     Should -Throw
             }
 
             $testName = $testName -replace '\(named\)', '(positional)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
-                { New-ArmorApiToken $Code $GrantType $ApiVersion } |
+                { Request-ArmorApiToken $Code $GrantType $ApiVersion } |
                     Should -Throw
             }
 
@@ -90,7 +90,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match ( Get-ArmorApiData -FunctionName 'Request-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
             }
 
             $testCases = @(
@@ -103,7 +103,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $testName = 'should not fail when set to: Code: <Code>, GrantType: <GrantType>, ApiVersion: <ApiVersion> (named)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
-                { New-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
+                { Request-ArmorApiToken -Code $Code -GrantType $GrantType -ApiVersion $ApiVersion } |
                     Should -Not -Throw
             }
             Assert-VerifiableMock
@@ -112,7 +112,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $testName = $testName -replace '\(named\)', '(positional)'
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $Code, [String] $GrantType, [String] $ApiVersion )
-                { New-ArmorApiToken $Code $GrantType $ApiVersion } |
+                { Request-ArmorApiToken $Code $GrantType $ApiVersion } |
                     Should -Not -Throw
             }
             Assert-VerifiableMock
@@ -139,12 +139,12 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
                     Content    = $Global:JSON_RESPONSE_BODY.Token1
                 }
             } -ParameterFilter {
-                $Uri -match ( Get-ArmorApiData -FunctionName 'New-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
+                $Uri -match ( Get-ArmorApiData -FunctionName 'Request-ArmorApiToken' -ApiVersion 'v1.0' ).Endpoints
             }
 
             $testCases = @(
                 @{
-                    FoundReturnType    = ( New-ArmorApiToken @splat ).GetType().FullName
+                    FoundReturnType    = ( Request-ArmorApiToken @splat ).GetType().FullName
                     ExpectedReturnType = 'System.Management.Automation.PSCustomObject'
                 }
             )
@@ -161,7 +161,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             It -Name $testName -TestCases $testCases -Test {
                 param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
                 $FoundReturnType |
-                    Should -BeIn ( @( ( Get-Help -Name 'New-ArmorApiToken' ).ReturnValues.ReturnValue.Type.Name ) + $ExpectedReturnType )
+                    Should -BeIn ( @( ( Get-Help -Name 'Request-ArmorApiToken' ).ReturnValues.ReturnValue.Type.Name ) + $ExpectedReturnType )
             }
         }
     }
