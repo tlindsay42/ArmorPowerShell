@@ -174,6 +174,7 @@ Properties {
     $CI_MODULE_GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
     $CI_MODULE_MANIFEST_PATH = $Env:BHPSModuleManifest
     $CI_MODULE_MANIFEST_RELATIVE_PATH = Resolve-Path -Path $CI_MODULE_MANIFEST_PATH -Relative
+    $CI_MODULE_NUSPEC_PATH = $CI_MODULE_MANIFEST_PATH -replace '\.psd1$', '.nuspec'
     $CI_MODULE_ETC_PATH = Join-Path -Path $CI_MODULE_PATH -ChildPath 'Etc'
     $CI_MODULE_LIB_PATH = Join-Path -Path $CI_MODULE_PATH -ChildPath 'Lib'
     $CI_MODULE_PRIVATE_PATH = Join-Path -Path $CI_MODULE_PATH -ChildPath 'Private'
@@ -1055,14 +1056,7 @@ $deployAppVeyorNuGetProjectFeedTask = @{
         $PSVersionTable.PSVersion.Major -eq 5
     }
     PreAction         = {
-        #region init
-        $prerelease = 'alpha'
-        $Script:CI_MODULE_PRERELEASE_VERSION = "${Script:CI_MODULE_VERSION}-${prerelease}"
-        #endregion
-
-        Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease $prerelease
-        Remove-Module -Name "${Global:CI_MODULE_NAME}*"
-        Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
+        Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease 'alpha'
     }
     RequiredVariables = (
         'CI_DEPLOY_SCRIPTS_PATH',
@@ -1070,17 +1064,24 @@ $deployAppVeyorNuGetProjectFeedTask = @{
         'CI_PROJECT_PATH'
     )
     Action            = {
+        #region init
         $path = Join-Path -Path $CI_DEPLOY_SCRIPTS_PATH -ChildPath 'AppVeyor.PSDeploy.ps1'
+        #endregion
+
         Write-StatusUpdate -Message "Start PSDeploy task: '${path}'."
-        Invoke-PSDeploy -Path $path -DeploymentRoot $CI_PROJECT_PATH -Force
+        Invoke-PSDeploy -Path $path -DeploymentRoot $CI_PROJECT_PATH -Confirm:$false
+        Get-Content -Path $CI_MODULE_NUSPEC_PATH -replace
+            '<requireLicenseAcceptance>true</requireLicenseAcceptance>', '<requireLicenseAcceptance>false</requireLicenseAcceptance>' -replace
+            '<copyright>.*</copyright>', "<copyright>$( $TEXT.Copyright )</copyright>" |
+            Set-Content -Path $CI_MODULE_NUSPEC_PATH
     }
     PostAction        = {
         Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease $null
-        Remove-Module -Name "${Global:CI_MODULE_NAME}*"
-        Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
+        Remove-Item -Path $CI_MODULE_NUSPEC_PATH -Force
     }
     PostCondition     = {
-        ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) -eq $null
+        ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) -eq $null -and
+        ( Test-Path -Path $CI_MODULE_NUSPEC_PATH ) -eq $false
     }
 }
 Task @deployAppVeyorNuGetProjectFeedTask
