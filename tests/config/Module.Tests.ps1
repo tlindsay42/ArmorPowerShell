@@ -36,10 +36,6 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
                 Value    = 'Armor'
             },
             @{
-                Property = 'Copyright'
-                Value    = "©2017-$( ( Get-Date ).Year ) ${author}. All rights reserved."
-            },
-            @{
                 Property = 'ProcessorArchitecture'
                 Value    = 'None'
             },
@@ -56,6 +52,18 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property, [String] $Value )
             $moduleInfo.$Property |
                 Should -BeExactly $Value
+        }
+
+        $testCases = @(
+            @{
+                Property = 'Copyright'
+                Value    = "2017-$( ( Get-Date ).Year ) ${author}\. All rights reserved\.`$"
+            }
+        )
+        It -Name "should have set property: <Property> to match: <Value>" -TestCases $testCases -Test {
+            param ( [String] $Property, [String] $Value )
+            $moduleInfo.$Property |
+                Should -Match $Value
         }
 
         $testCases = @(
