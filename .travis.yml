@@ -11,9 +11,7 @@ branches:
   except:
   - gh-pages
 
-language: python
-python:
-- "3.6"
+language: generic
 
 env:
   global:
@@ -31,6 +29,9 @@ matrix:
           key_url: "https://packages.microsoft.com/keys/microsoft.asc"
         packages:
         - powershell
+    language: python
+    python:
+    - "3.6"
     before_cache:
     - rm -f $HOME/.cache/pip/log/debug.log
     cache:
@@ -38,9 +39,6 @@ matrix:
       - $HOME/.local/share/powershell/Modules
       - $HOME/.nvm
       - $HOME/.npm
-      - $HOME/.cache/pip
-      - $HOME/.local/lib/python2.7/site-packages
-      - $HOME/.local/bin/mkdocs
   - os: osx
     osx_image: xcode9.4
     before_install:
@@ -53,9 +51,6 @@ matrix:
       - $HOME/.local/share/powershell/Modules
       - $HOME/.nvm
       - $HOME/.npm
-      - $HOME/Library/Caches/pip
-      - /usr/local/lib/python2.7/site-packages
-      - /usr/local/bin/mkdocs
   fast_finish: true
 
 script:
