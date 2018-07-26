@@ -835,6 +835,24 @@ Task @task
 
 
 $task = @{
+    Name              = 'Remove trailing whitespace from all PowerShell files'
+    Depends           = $task.Name
+    RequiredVariables = 'CI_PROJECT_PATH'
+    Action            = {
+        $splat = @{
+            Path          = $CI_PROJECT_PATH
+            Recurse       = $true
+            IncludeRule   = 'PSAvoidTrailingWhitespace'
+            Fix           = $true
+            ReportSummary = $true
+        }
+        Invoke-ScriptAnalyzer @splat
+    }
+}
+Task @task
+
+
+$task = @{
     Name              = 'Build the module documentation content'
     Description       = 'This is handled in a separate script via a job due to some odd issues with inheritence in psake 4.7.0 that prevents platyPS 0.10.2 from running properly.'
     Depends           = $task.Name
