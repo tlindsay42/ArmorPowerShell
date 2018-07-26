@@ -19,10 +19,9 @@ skip_tags: true
 pull_requests:
   do_not_increment_build_number: true
 
-max_jobs: 5
+max_jobs: 3
 
 image:
-- Visual Studio 2015
 - Visual Studio 2017
 - Ubuntu
 
