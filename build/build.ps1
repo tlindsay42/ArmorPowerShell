@@ -165,6 +165,9 @@ if ( $SkipDependencies -eq $false ) {
     Write-StatusUpdate -Message 'Install python development dependencies.'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
+    $details = pip install --upgrade pip |
+        Out-String
+    $return = $?
     if ( $Env:CI_LINUX -eq $true -or $Env:TRAVIS_OS_NAME -eq 'linux' ) {
         $details = pip install --user --requirement $requirementsPath |
             Out-String
