@@ -1,4 +1,4 @@
-# New-ArmorApiUriQuery
+# Add-ArmorApiUriQuery
 
 ## SYNOPSIS
 Builds the Armor API URI with a server-side filter.
@@ -6,7 +6,7 @@ Builds the Armor API URI with a server-side filter.
 ## SYNTAX
 
 ```
-New-ArmorApiUriQuery [-Keys] <String[]> [-Parameters] <PSObject[]> [-Uri] <String> [<CommonParameters>]
+Add-ArmorApiUriQuery [-Keys] <String[]> [-Parameters] <PSObject[]> [-Uri] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -18,7 +18,7 @@ the filter keys in the \`Query\` key.
 
 ### EXAMPLE 1
 ```
-$keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name; New-ArmorApiUriQuery -Keys $keys; $parameters = ( Get-Command -Name $function ).Parameters.Values; New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri 'https://api.armor.com/vms'
+$keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name; Add-ArmorApiUriQuery -Keys $keys; $parameters = ( Get-Command -Name $function ).Parameters.Values; Add-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri 'https://api.armor.com/vms'
 ```
 
 This is not a real example, but if valid, it would return the input URI with a
@@ -91,9 +91,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiUriQuery/](https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiUriQuery/)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Add-ArmorApiUriQuery/](https://tlindsay42.github.io/ArmorPowerShell/private/Add-ArmorApiUriQuery/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUriQuery.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/New-ArmorApiUriQuery.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Add-ArmorApiUriQuery.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Add-ArmorApiUriQuery.ps1)
 
 [https://docs.armor.com/display/KBSS/Armor+API+Guide](https://docs.armor.com/display/KBSS/Armor+API+Guide)
 

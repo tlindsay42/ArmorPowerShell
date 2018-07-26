@@ -10,6 +10,7 @@ AccountID
 Account_Management
 Accounts_GetAccount
 Accounts_GetAccounts
+Add-ArmorApiUriQuery
 ApiData.json
 APIs
 ApiVersion
@@ -98,7 +99,6 @@ NewName
 NewWorkloadAndTier
 New-ArmorApiToken
 New-ArmorApiUri
-New-ArmorApiUriQuery
 New-ArmorCompleteVM
 OneDrive
 open-vm-tools

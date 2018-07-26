@@ -125,12 +125,12 @@ pages:
     - Start-ArmorCompleteVM: 'public/Start-ArmorCompleteVM.md'
     - Stop-ArmorCompleteVM: 'public/Stop-ArmorCompleteVM.md'
   - Private Functions:
+    - Add-ArmorApiUriQuery: 'private/Add-ArmorApiUriQuery.md'
     - Expand-ArmorApiResult: 'private/Expand-ArmorApiResult.md'
     - Format-ArmorApiRequestBody: 'private/Format-ArmorApiRequestBody.md'
     - Get-ArmorApiData: 'private/Get-ArmorApiData.md'
     - New-ArmorApiToken: 'private/New-ArmorApiToken.md'
     - New-ArmorApiUri: 'private/New-ArmorApiUri.md'
-    - New-ArmorApiUriQuery: 'private/New-ArmorApiUriQuery.md'
     - Select-ArmorApiResult: 'private/Select-ArmorApiResult.md'
     - Submit-ArmorApiRequest: 'private/Submit-ArmorApiRequest.md'
     - Test-ArmorSession: 'private/Test-ArmorSession.md'

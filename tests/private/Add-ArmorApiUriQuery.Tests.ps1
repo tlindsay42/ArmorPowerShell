@@ -20,7 +20,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     function Test-NewArmorApiUriQuery1 {
         param ( [String] $FirstName, [String] $LastName, [String] $UserName )
         $parameters = ( Get-Command -Name $MyInvocation.MyCommand.Name ).Parameters.Values
-        New-ArmorApiUriQuery -Keys $validKeys -Parameters $parameters -Uri $validUri
+        Add-ArmorApiUriQuery -Keys $validKeys -Parameters $parameters -Uri $validUri
     }
     #endregion
 
@@ -41,7 +41,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpOutput @splat
 
     $splat = @{
-        ExpectedParameterNames = 'Keys', 'Parameters', 'Uri'
+        ExpectedParameterNames = 'Keys', 'Parameters', 'Uri', 'Confirm', 'WhatIf'
         Help                   = $help
     }
     Test-AdvancedFunctionHelpParameter @splat
@@ -91,7 +91,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $testName = 'should fail when set to: Keys: <Keys>, Parameters: <Parameters>, Uri: <Uri>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String[]] $Keys, [PSCustomObject[]] $Parameters, [String] $Uri )
-            { New-ArmorApiUriQuery -Keys $Keys -Parameters $Parameters -Uri $Uri } |
+            { Add-ArmorApiUriQuery -Keys $Keys -Parameters $Parameters -Uri $Uri } |
                 Should -Throw
         }
 
@@ -175,7 +175,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $FoundReturnType, [String] $ExpectedReturnType )
             $FoundReturnType |
-                Should -BeIn ( Get-Help -Name 'New-ArmorApiUriQuery' ).ReturnValues.ReturnValue.Type.Name
+                Should -BeIn ( Get-Help -Name 'Add-ArmorApiUriQuery' ).ReturnValues.ReturnValue.Type.Name
         }
     }
 }

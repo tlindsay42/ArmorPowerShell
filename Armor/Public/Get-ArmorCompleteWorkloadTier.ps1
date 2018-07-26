@@ -160,7 +160,7 @@ function Get-ArmorCompleteWorkloadTier {
 
         $keys = ( $resources.Query | Get-Member -MemberType 'NoteProperty' ).Name
         $parameters = ( Get-Command -Name $function ).Parameters.Values
-        $uri = New-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
+        $uri = Add-ArmorApiUriQuery -Keys $keys -Parameters $parameters -Uri $uri
 
         $splat = @{
             Uri         = $uri
