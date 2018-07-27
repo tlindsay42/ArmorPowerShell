@@ -1,4 +1,10 @@
-$moduleName = ( Get-Item -Path $PSScriptRoot ).BaseName
+#
+# Script module for module 'Armor'
+#
+Set-StrictMode -Version 'Latest'
+
+# Set up some helper variables to make it easier to work with the module
+$Script:PSModule = $ExecutionContext.SessionState.Module
 
 $glob = '*.ps1'
 
@@ -22,7 +28,19 @@ foreach ( $import in ( $lib + $private + $public ) ) {
     . $import.FullName
 }
 
-$aliases = ( Get-Alias ).Where( { $_.Source -eq $moduleName } )
+$aliases = ( Get-Alias ).Where( { $_.Source -eq $Script:PSModule.Name } )
+
+$splat = @{
+    ErrorAction = 'Stop'
+}
+
+if ( ( $public.BaseName | Measure-Object ).Count -gt 0 ) {
+    $splat.Add( 'Function', $public.BaseName )
+}
+
+if ( ( $aliases.Name | Measure-Object ).Count -gt 0 ) {
+    $splat.Add( 'Alias', $aliases.Name )
+}
 
 # Export the Public modules
-Export-ModuleMember -Function $public.BaseName -Alias $aliases.Name -ErrorAction 'Stop'
+Export-ModuleMember @splat
