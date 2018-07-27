@@ -12,7 +12,6 @@ Deploy 'DeveloperBuild' {
             Owners                   = 'tlindsay42'
             PackageName              = $moduleManifest.Name
             ProjectUrl               = $moduleManifest.ProjectUri
-            ReleaseNotes             = $moduleManifest.ReleaseNotes
             Tags                     = $moduleManifest.Tags
             Version                  = $moduleVersion
         }
