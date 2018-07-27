@@ -1,9 +1,4 @@
-#
-# Script module for module 'Armor'
-#
-Set-StrictMode -Version 'Latest'
-
-# Set up some helper variables to make it easier to work with the module
+# Helper variable to make it easier to work with the module
 $Script:PSModule = $ExecutionContext.SessionState.Module
 
 $glob = '*.ps1'
