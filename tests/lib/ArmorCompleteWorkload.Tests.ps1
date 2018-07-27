@@ -170,8 +170,8 @@ Describe -Name $describe -Tag 'Class', $class -Fixture {
         }
 
         It -Name $Global:FORM_PROPERTY_TYPE -Test {
-            $temp.$property |
-                Should -BeOfType ( [ArmorStatus] )
+            $temp.$property.GetType().FullName |
+                Should -BeExactly 'ArmorStatus'
         }
     }
 
