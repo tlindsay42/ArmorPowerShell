@@ -1054,7 +1054,9 @@ $deployAppVeyorNuGetProjectFeedTask = @{
     }
     PostAction        = {
         Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease $null
-        Remove-Item -Path $CI_MODULE_NUSPEC_PATH -Force
+        if ( ( Test-Path -Path $CI_MODULE_NUSPEC_PATH ) -eq $true ) {
+            Remove-Item -Path $CI_MODULE_NUSPEC_PATH -Force
+        }
     }
     PostCondition     = {
         ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) -eq $null -and
