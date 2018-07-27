@@ -122,8 +122,8 @@ function Get-ArmorApiData {
             throw "Invalid endpoint: '${FunctionName}'"
         }
         elseif (
-            $null -eq $PSCmdlet.ParameterSetName -eq 'ApiVersion' -and
-            $null -ne ( $api.$FunctionName | Select-Object -ExpandProperty $ApiVersion -ErrorAction 'SilentlyContinue' )
+            $PSCmdlet.ParameterSetName -eq 'ApiVersion' -and
+            $null -eq ( $api.$FunctionName | Select-Object -ExpandProperty $ApiVersion -ErrorAction 'SilentlyContinue' )
         ) {
             throw "Invalid endpoint version: '${ApiVersion}'"
         }
