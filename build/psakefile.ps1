@@ -1044,13 +1044,7 @@ $deployAppVeyorNuGetProjectFeedTask = @{
         #endregion
 
         Write-StatusUpdate -Message "Start PSDeploy task: '${path}'."
-        Invoke-PSDeploy -Path $path -Confirm:$false
-        if ( ( Test-Path -Path $CI_MODULE_NUSPEC_PATH ) -eq $true ) {
-            ( Get-Content -Path $CI_MODULE_NUSPEC_PATH ) -replace
-                '<requireLicenseAcceptance>true</requireLicenseAcceptance>', '<requireLicenseAcceptance>false</requireLicenseAcceptance>' -replace
-                '<copyright>.*</copyright>', "<copyright>$( $TEXT.Copyright )</copyright>" |
-                Set-Content -Path $CI_MODULE_NUSPEC_PATH
-        }
+        Invoke-PSDeploy -Path $path -DeploymentRoot $CI_PROJECT_PATH -Force
     }
     PostAction        = {
         Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease $null
