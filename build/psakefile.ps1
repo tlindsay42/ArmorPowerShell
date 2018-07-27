@@ -1026,10 +1026,9 @@ $deployAppVeyorNuGetProjectFeedTask = @{
     Depends           = $task.Name
     PreCondition      = {
         $Local -eq $false -and
+        $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
-        $CI_NAME -eq 'AppVeyor' -and
-        $Env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2017' -and
-        $PSVersionTable.PSVersion.Major -eq 5
+        $CI_NAME -eq 'AppVeyor'
     }
     PreAction         = {
         Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease 'alpha'
@@ -1046,10 +1045,12 @@ $deployAppVeyorNuGetProjectFeedTask = @{
 
         Write-StatusUpdate -Message "Start PSDeploy task: '${path}'."
         Invoke-PSDeploy -Path $path -DeploymentRoot $CI_PROJECT_PATH -Confirm:$false
-        Get-Content -Path $CI_MODULE_NUSPEC_PATH -replace
-            '<requireLicenseAcceptance>true</requireLicenseAcceptance>', '<requireLicenseAcceptance>false</requireLicenseAcceptance>' -replace
-            '<copyright>.*</copyright>', "<copyright>$( $TEXT.Copyright )</copyright>" |
-            Set-Content -Path $CI_MODULE_NUSPEC_PATH
+        if ( ( Test-Path -Path $CI_MODULE_NUSPEC_PATH ) -eq $true ) {
+            ( Get-Content -Path $CI_MODULE_NUSPEC_PATH ) -replace
+                '<requireLicenseAcceptance>true</requireLicenseAcceptance>', '<requireLicenseAcceptance>false</requireLicenseAcceptance>' -replace
+                '<copyright>.*</copyright>', "<copyright>$( $TEXT.Copyright )</copyright>" |
+                Set-Content -Path $CI_MODULE_NUSPEC_PATH
+        }
     }
     PostAction        = {
         Update-ModuleManifest -Path $CI_MODULE_MANIFEST_PATH -Prerelease $null
