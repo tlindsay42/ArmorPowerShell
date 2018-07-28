@@ -30,9 +30,9 @@ CompanyName = 'Armor'
 Copyright = '©2017-2018 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.
+Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.
 
-Every code push is built on Windows via AppVeyor, as well as on macOS and Ubuntu Linux via Travis CI, and tested using the Pester test & mock framework.
+Every code push is built on Windows via AppVeyor, as well as on macOS and Ubuntu Linux via Travis CI, and tested using the Pester test and mock framework.
 
 Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by Coveralls.
 
