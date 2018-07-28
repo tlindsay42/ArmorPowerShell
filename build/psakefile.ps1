@@ -355,8 +355,8 @@ Properties {
     }
 
     $TEXT += @{
-        Description = "This is a community project that provides a powerful command-line interface for managing and monitoring your $( $TEXT.ArmorComplete ) (secure public cloud) and $( $TEXT.ArmorAnywhere ) (security as a service) environments & accounts via a PowerShell module with cmdlets that interact with the published $( $TEXT.RestfulApi ).",
-        "Every code push is built on $( $TEXT.Windows ) via $( $TEXT.AppVeyor ), as well as on $( $TEXT.macOS ) and $( $TEXT.Ubuntu ) via $( $TEXT.TravisCi ), and tested using the $( $TEXT.Pester ) test & mock framework.",
+        Description = "This is a community project that provides a powerful command-line interface for managing and monitoring your $( $TEXT.ArmorComplete ) (secure public cloud) and $( $TEXT.ArmorAnywhere ) (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published $( $TEXT.RestfulApi ).",
+        "Every code push is built on $( $TEXT.Windows ) via $( $TEXT.AppVeyor ), as well as on $( $TEXT.macOS ) and $( $TEXT.Ubuntu ) via $( $TEXT.TravisCi ), and tested using the $( $TEXT.Pester ) test and mock framework.",
         "Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by $( $TEXT.Coveralls ).",
         "Every successful build is published on the $( $TEXT.PSGallery )." -join "`r`n`r`n"
     }
