@@ -1,8 +1,20 @@
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  sha: v1.3.0
+- repo: https://github.com/pre-commit/pre-commit
+  rev: v1.10.4
   hooks:
+  - id: validate_manifest
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v1.4.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-json
   - id: check-merge-conflict
+  - id: check-symlinks
+  - id: check-xml
   - id: check-yaml
   - id: end-of-file-fixer
+  - id: pretty-format-json
+    args:
+    - --autofix
+    - --indent 2
   - id: trailing-whitespace
