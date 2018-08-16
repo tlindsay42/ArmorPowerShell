@@ -3,28 +3,45 @@
 [CmdletBinding()]
 param (
     # Deployment mode.
-    [Switch] $DeploymentMode = $false,
+    [Parameter( Position = 0 )]
+    [Switch]
+    $DeploymentMode = $false,
 
     # Test mode.
-    [Switch] $TestMode = $false,
+    [Parameter( Position = 1 )]
+    [Switch]
+    $TestMode = $false,
 
     <#
     Bypasses the BuildHelpers initialization of environment variables if running
     locally instead of from a supported CI system.
     #>
-    [Switch] $Local = $false,
+    [Parameter( Position = 2 )]
+    [Switch]
+    $Local = $false,
 
     # Include automated tests assigned the specified tags.
-    [String[]] $TestTag = @(),
+    [Parameter( Position = 3 )]
+    [AllowNull()]
+    [String[]]
+    $TestTag = @(),
 
     # Exclude automated tests assigned the specified tags.
-    [String[]] $ExcludeTestTag = @(),
+    [Parameter( Position = 4 )]
+    [AllowNull()]
+    [String[]]
+    $ExcludeTestTag = @(),
 
     # Specifies whether to build a code coverage report.
-    [Boolean] $Coverage = $true,
+    [Parameter( Position = 5 )]
+    [ValidateSet( $true, $false )]
+    [Boolean]
+    $Coverage = $true,
 
     # Skips dependency testing & installation if enabled.
-    [Switch] $SkipDependencies = $false
+    [Parameter( Position = 6 )]
+    [Switch]
+    $SkipDependencies = $false
 )
 
 #region Includes
