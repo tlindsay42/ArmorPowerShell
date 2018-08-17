@@ -153,17 +153,12 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### System.UInt16
-
 ### System.String
-
 ### System.Management.Automation.PSObject
-
 ## OUTPUTS
 
 ### ArmorCompleteWorkloadTier[]
-
 ### ArmorCompleteWorkloadTier
-
 ## NOTES
 - Troy Lindsay
 - Twitter: @troylindsay42

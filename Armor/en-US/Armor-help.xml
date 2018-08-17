@@ -388,7 +388,15 @@
           <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>You cannot pipe input to this cmdlet.</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>You cannot pipe input to this cmdlet.</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -556,7 +564,15 @@
           <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>You cannot pipe input to this cmdlet.</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>You cannot pipe input to this cmdlet.</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -993,7 +1009,15 @@
           <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>You cannot pipe input to this cmdlet.</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>You cannot pipe input to this cmdlet.</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1837,7 +1861,15 @@
           <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>You cannot pipe input to this cmdlet.</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>You cannot pipe input to this cmdlet.</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -4729,7 +4761,15 @@
           <maml:name>System.UInt16</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>System.Management.Automation.PSObject</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -4920,7 +4960,15 @@
           <maml:name>System.UInt16</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para>System.Management.Automation.PSObject</maml:para>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>

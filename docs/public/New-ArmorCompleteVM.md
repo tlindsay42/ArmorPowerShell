@@ -240,15 +240,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### System.String
-
 ### System.Management.Automation.PSObject
-
 ## OUTPUTS
 
 ### ArmorCompleteVmOrder[]
-
 ### ArmorCompleteVmOrder
-
 ## NOTES
 - Troy Lindsay
 - Twitter: @troylindsay42

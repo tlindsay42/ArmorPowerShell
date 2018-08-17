@@ -94,13 +94,10 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### System.UInt16
-
 ### System.Management.Automation.PSObject
-
 ## OUTPUTS
 
 ### ArmorAccount
-
 ## NOTES
 - Troy Lindsay
 - Twitter: @troylindsay42
