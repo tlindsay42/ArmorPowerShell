@@ -1,4 +1,4 @@
-﻿#requires -Version 5.0
+#requires -Version 5.0
 #requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.2.0' }
 #requires -Modules @{ ModuleName = 'PackageManagement'; ModuleVersion = '1.1.7.2' }
 #requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.4.0' }
@@ -904,12 +904,12 @@ $task = @{
         $tempFile = [System.IO.Path]::GetTempFileName()
         mkdocs build --clean --strict 2>&1 > $tempFile
         $ErrorActionPreference = $temp
-        if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
-            Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
-        }
         $details = Get-Content -Path $tempFile |
             Out-String
         Write-StatusUpdate -Message 'mkdocs build:' -Details $details
+        if ( ( Test-Path -Path $CI_DOCS_SITE_PATH -PathType 'Container' ) -eq $false ) {
+            Write-StatusUpdate -Message 'Failed to build the mkdocs site.' -Category 'Error'
+        }
     }
 }
 Task @task
