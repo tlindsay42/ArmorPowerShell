@@ -84,7 +84,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 # Page tree
-pages:
+nav:
   - Home: 'index.md'
   - User Documentation:
     - Requirements: 'user/Requirements.md'
