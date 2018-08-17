@@ -111,7 +111,7 @@ if ( $SkipDependencies -eq $false ) {
         Repository     = 'PSGallery'
         Force          = $true
     }
-    if ( ( Get-Module -ListAvailable -Name $splat.Name ) -eq $null ) {
+    if ( $null -eq ( Get-Module -ListAvailable -Name $splat.Name ) ) {
         Install-Module @splat
     }
 

@@ -128,7 +128,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $returnValue = Test-ArmorSession
         #endregion
 
-        if ( $returnValue -eq $null ) {
+        if ( $null -eq $returnValue ) {
             $returnType = 'System.Void'
         }
         else {

@@ -51,7 +51,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
         $returnType = $null
         #endregion
 
-        if ( $returnValue -eq $null ) {
+        if ( $null -eq $returnValue ) {
             $returnType = 'System.Void'
         }
         else {

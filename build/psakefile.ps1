@@ -1,4 +1,4 @@
-#requires -Version 5.0
+﻿#requires -Version 5.0
 #requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.2.0' }
 #requires -Modules @{ ModuleName = 'PackageManagement'; ModuleVersion = '1.1.7.2' }
 #requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.4.0' }
@@ -91,27 +91,27 @@ Assert ( $Env:BHProjectName -eq 'Armor' ) "Unexpected project name: '${Env:BHPro
 
 Properties {
     #region init build parameters
-    if ( $DeploymentMode -eq $null ) {
+    if ( $null -eq $DeploymentMode ) {
         $DeploymentMode = $false
     }
 
-    if ( $TestMode -eq $null ) {
+    if ( $null -eq $TestMode ) {
         $TestMode = $false
     }
 
-    if ( $Local -eq $null ) {
+    if ( $null -eq $Local ) {
         $Local = $false
     }
 
-    if ( $TestTag -eq $null ) {
+    if ( $null -eq $TestTag ) {
         $TestTag = @()
     }
 
-    if ( $ExcludeTestTag -eq $null ) {
+    if ( $null -eq $ExcludeTestTag ) {
         $ExcludeTestTag = @()
     }
 
-    if ( $Coverage -eq $null ) {
+    if ( $null -eq $Coverage ) {
         $Coverage = $true
     }
     #endregion
@@ -1053,7 +1053,7 @@ $deployAppVeyorNuGetProjectFeedTask = @{
         }
     }
     PostCondition     = {
-        ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) -eq $null -and
+        ( $null -eq ( Get-Metadata -Path $CI_MODULE_MANIFEST_PATH -PropertyName 'Prerelease' -ErrorAction 'SilentlyContinue' ) ) -and
         ( Test-Path -Path $CI_MODULE_NUSPEC_PATH ) -eq $false
     }
 }
@@ -1069,10 +1069,10 @@ $deployPsGalleryTask = @{
         $TestMode -eq $false -and
         $CI_COMMIT_MESSAGE -notmatch $CI_SKIP_PUBLISH_KEYWORD -and
         $CI_NAME -eq 'AppVeyor' -and
-        $CI_PULL_REQUEST -eq $null -and
+        $null -eq $CI_PULL_REQUEST -and
         $CI_BRANCH -eq 'master' -and
         $Env:APPVEYOR_REPO_TAG -eq $false -and
-        $Env:NUGET_API_KEY -ne $null
+        $null -ne $Env:NUGET_API_KEY
     }
     RequiredVariables = (
         'CI_DEPLOY_SCRIPTS_PATH',
@@ -1096,9 +1096,9 @@ $commitChangesTask = @{
         $DeploymentMode -eq $true -and
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
-        $CI_PULL_REQUEST -eq $null -and
+        $null -eq $CI_PULL_REQUEST -and
         $Env:APPVEYOR_REPO_TAG -eq $false -and
-        $Env:APPVEYOR_RE_BUILD -eq $null -and
+        $null -eq $Env:APPVEYOR_RE_BUILD -and
         $Env:APPVEYOR_REPO_COMMIT_AUTHOR -ne $null -and
         $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $null -and
         $Env:GITHUB_API_KEY -ne $null
@@ -1163,9 +1163,9 @@ $deployReleaseTask = @{
         $CI_COMMIT_MESSAGE -notmatch $CI_SKIP_PUBLISH_KEYWORD -and
         $CI_NAME -eq 'AppVeyor' -and
         $CI_BRANCH -eq 'master' -and
-        $CI_PULL_REQUEST -eq $null -and
+        $null -eq $CI_PULL_REQUEST -and
         $Env:APPVEYOR_REPO_TAG -eq $false -and
-        $Env:APPVEYOR_RE_BUILD -eq $null
+        $null -eq $Env:APPVEYOR_RE_BUILD
     }
     RequiredVariables = (
         'CI_MODULE_VERSION',
@@ -1206,7 +1206,7 @@ $deployDocsTask = @{
         $TestMode -eq $false -and
         $CI_NAME -eq 'AppVeyor' -and
         $CI_BRANCH -eq 'master' -and
-        $CI_PULL_REQUEST -eq $null -and
+        $null -eq $CI_PULL_REQUEST -and
         $Env:APPVEYOR_REPO_TAG -eq $false
     }
     RequiredVariables = (

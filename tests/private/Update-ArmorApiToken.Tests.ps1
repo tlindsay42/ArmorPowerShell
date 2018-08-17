@@ -131,7 +131,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
 
             $returnValue = Update-ArmorApiToken
 
-            if ( $returnValue -eq $null ) {
+            if ( $null -eq $returnValue ) {
                 $returnType = 'System.Void'
             }
             else {
