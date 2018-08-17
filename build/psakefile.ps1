@@ -1,11 +1,11 @@
-﻿#requires -Version 5.0
-#requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.1.4' }
+#requires -Version 5.0
+#requires -Modules @{ ModuleName = 'BuildHelpers'; ModuleVersion = '1.2.0' }
 #requires -Modules @{ ModuleName = 'PackageManagement'; ModuleVersion = '1.1.7.2' }
-#requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.3.1' }
-#requires -Modules @{ ModuleName = 'platyPS'; ModuleVersion = '0.10.1' }
-#requires -Modules @{ ModuleName = 'psake'; ModuleVersion = '4.7.0' }
+#requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '4.4.0' }
+#requires -Modules @{ ModuleName = 'platyPS'; ModuleVersion = '0.11.0' }
+#requires -Modules @{ ModuleName = 'psake'; ModuleVersion = '4.7.3' }
 #requires -Modules @{ ModuleName = 'PowerShellGet'; ModuleVersion = '1.6.6' }
-#requires -Modules @{ ModuleName = 'PSDeploy'; ModuleVersion = '0.2.5' }
+#requires -Modules @{ ModuleName = 'PSDeploy'; ModuleVersion = '0.2.6' }
 #requires -Modules @{ ModuleName = 'PSScriptAnalyzer'; ModuleVersion = '1.17.1' }
 
 #region Format task title style
