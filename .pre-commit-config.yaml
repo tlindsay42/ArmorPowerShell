@@ -1,6 +1,6 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit
-  rev: v1.10.4
+  rev: v1.10.5
   hooks:
   - id: validate_manifest
 - repo: https://github.com/pre-commit/pre-commit-hooks
