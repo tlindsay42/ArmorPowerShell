@@ -111,15 +111,15 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         }
 
         $testCases = @(
-            @{ ApiVersion   = $validFunctionName },
-            @{ ApiVersion   = 'v0.1' },
-            @{ ApiVersion   = '' },
-            @{ ApiVersion   = $validApiVersion, $validApiVersion }
+            @{ ApiVersion = $validFunctionName },
+            @{ ApiVersion = 'v0.1' },
+            @{ ApiVersion = '' },
+            @{ ApiVersion = $validApiVersion, $validApiVersion }
         )
         $testName = 'should fail when set to: ApiVersion: <ApiVersion>'
         It -Name $testName -TestCases $testCases -Test {
             param ( [String] $ApiVersion )
-              { Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $ApiVersion } |
+            { Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $ApiVersion } |
                 Should -Throw
         }
 
