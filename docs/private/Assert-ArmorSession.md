@@ -1,4 +1,4 @@
-# Test-ArmorSession
+# Assert-ArmorSession
 
 ## SYNOPSIS
 Tests the validity of the Armor API session.
@@ -6,13 +6,13 @@ Tests the validity of the Armor API session.
 ## SYNTAX
 
 ```
-Test-ArmorSession [<CommonParameters>]
+Assert-ArmorSession [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Test to see if a session has been established with the Armor API and that it has not yet expired. 
-If no token is found, an error will be thrown. 
-If the session has expired, Disconnect-Armor will be called with confirmation disabled to clean up the session. 
+Test to see if a session has been established with the Armor API and that it has not yet expired.
+If no token is found, an error will be thrown.
+If the session has expired, Disconnect-Armor will be called with confirmation disabled to clean up the session.
 If less than 2/3 of the session length remain, Update-ArmorApiToken will be called to renew the session.
 
 This cmdlet should be called in the Begin section of public cmdlets for optimal performance, so that the session is not tested repeatedly when pipeline input is processed.
@@ -21,7 +21,7 @@ This cmdlet should be called in the Begin section of public cmdlets for optimal 
 
 ### EXAMPLE 1
 ```
-Test-ArmorSession
+Assert-ArmorSession
 ```
 
 Validates that the Armor API session stored in $Global:ArmorSession is still active.
@@ -46,9 +46,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/private/Test-ArmorSession/](https://tlindsay42.github.io/ArmorPowerShell/private/Test-ArmorSession/)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Assert-ArmorSession/](https://tlindsay42.github.io/ArmorPowerShell/private/Assert-ArmorSession/)
 
-[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Test-ArmorSession.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Test-ArmorSession.ps1)
+[https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Assert-ArmorSession.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Assert-ArmorSession.ps1)
 
 [https://docs.armor.com/display/KBSS/Armor+API+Guide](https://docs.armor.com/display/KBSS/Armor+API+Guide)
 

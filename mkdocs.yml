@@ -127,6 +127,7 @@ nav:
     - Stop-ArmorCompleteVM: 'public/Stop-ArmorCompleteVM.md'
   - Private Functions:
     - Add-ArmorApiUriQuery: 'private/Add-ArmorApiUriQuery.md'
+    - Assert-ArmorSession: 'private/Assert-ArmorSession.md'
     - Expand-ArmorApiResult: 'private/Expand-ArmorApiResult.md'
     - Format-ArmorApiRequestBody: 'private/Format-ArmorApiRequestBody.md'
     - Get-ArmorApiData: 'private/Get-ArmorApiData.md'
@@ -134,5 +135,4 @@ nav:
     - New-ArmorApiUri: 'private/New-ArmorApiUri.md'
     - Request-ArmorApiToken: 'private/Request-ArmorApiToken.md'
     - Select-ArmorApiResult: 'private/Select-ArmorApiResult.md'
-    - Test-ArmorSession: 'private/Test-ArmorSession.md'
     - Update-ArmorApiToken: 'private/Update-ArmorApiToken.md'

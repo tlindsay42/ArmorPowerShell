@@ -48,7 +48,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         [ArmorSession] $Global:ArmorSession = $null
         $testName = 'should fail when the $Global:ArmorSession is $null'
         It -Name $testName -Test {
-            { Test-ArmorSession } |
+            { Assert-ArmorSession } |
                 Should -Throw
         }
 
@@ -74,7 +74,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             {
                 [ArmorSession] $Global:ArmorSession = $Session
                 $Global:ArmorSession.Headers.Authorization = $Authorization
-                Test-ArmorSession
+                Assert-ArmorSession
             } |
                 Should -Throw
         }
@@ -84,7 +84,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $testName = "should fail when the session expired at: '$( $Global:ArmorSession.SessionExpirationTime )'"
         It -Name $testName -Test {
-            { Test-ArmorSession } |
+            { Assert-ArmorSession } |
                 Should -Throw
         }
 
@@ -97,7 +97,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( ( $Global:ArmorSession.SessionLengthInMinutes * ( 1 / 3 ) ) )
             $testName = "should not fail and renew the session when it expires at: '$( $Global:ArmorSession.SessionExpirationTime )'"
             It -Name $testName -Test {
-                { Test-ArmorSession } |
+                { Assert-ArmorSession } |
                     Should -Not -Throw
             }
             Assert-VerifiableMock
@@ -110,7 +110,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
         $testName = "should not fail when the session expires at: '$( $Global:ArmorSession.SessionExpirationTime )'"
         It -Name $testName -Test {
-            { Test-ArmorSession } |
+            { Assert-ArmorSession } |
                 Should -Not -Throw
         }
     }
@@ -125,7 +125,7 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         $Global:ArmorSession.Headers.Authorization = $validAuthorization
         $Global:ArmorSession.SessionExpirationTime = ( Get-Date ).AddMinutes( $Global:ArmorSession.SessionLengthInMinutes )
 
-        $returnValue = Test-ArmorSession
+        $returnValue = Assert-ArmorSession
         #endregion
 
         if ( $null -eq $returnValue ) {

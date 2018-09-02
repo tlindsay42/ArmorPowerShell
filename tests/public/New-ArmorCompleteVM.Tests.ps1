@@ -399,7 +399,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Get-ArmorCompleteWorkload -Verifiable -MockWith { $workload }
             # Mock -CommandName Get-ArmorCompleteWorkloadTier -Verifiable -MockWith { $true }
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
                     StatusCode        = 400
@@ -458,7 +458,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Assert-MockCalled -CommandName Get-ArmorCompleteWorkloadTier -Times 1
             Assert-MockCalled -CommandName Get-ArmorCompleteWorkload -Times 2
             #endregion
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testCases[0].TierID = 2
@@ -495,7 +495,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Assert-MockCalled -CommandName Get-ArmorCompleteWorkloadTier -Times 1
             Assert-MockCalled -CommandName Get-ArmorCompleteWorkload -Times 2
             #endregion
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
@@ -544,7 +544,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Assert-MockCalled -CommandName Get-ArmorCompleteWorkloadTier -Times 1
             Assert-MockCalled -CommandName Get-ArmorCompleteWorkload -Times 2
             #endregion
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
@@ -600,7 +600,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Throw
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
@@ -644,7 +644,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Not -Throw
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
         }
     }
@@ -682,7 +682,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
 
             Mock -CommandName Get-ArmorCompleteWorkload -Verifiable -MockWith { $workload }
             # Mock -CommandName Get-ArmorCompleteWorkloadTier -Verifiable -MockWith { $true }
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
                     StatusCode        = 200
@@ -713,7 +713,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             # Assert-MockCalled -CommandName Get-ArmorCompleteWorkloadTier -Times 1
             Assert-MockCalled -CommandName Get-ArmorCompleteWorkload -Times 2
             #endregion
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"

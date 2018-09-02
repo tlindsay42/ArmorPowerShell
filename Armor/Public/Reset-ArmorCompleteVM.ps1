@@ -82,9 +82,7 @@ function Reset-ArmorCompleteVM {
     begin {
         $function = $MyInvocation.MyCommand.Name
 
-        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
-
-        Test-ArmorSession
+        Assert-ArmorSession
     }
 
     process {
