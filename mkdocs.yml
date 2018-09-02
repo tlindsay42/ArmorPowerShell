@@ -131,6 +131,7 @@ nav:
     - Expand-ArmorApiResult: 'private/Expand-ArmorApiResult.md'
     - Format-ArmorApiRequestBody: 'private/Format-ArmorApiRequestBody.md'
     - Get-ArmorApiData: 'private/Get-ArmorApiData.md'
+    - Hide-SensitiveData: 'private/Hide-SensitiveData.md'
     - Invoke-ArmorRestMethod: 'private/Invoke-ArmorRestMethod.md'
     - New-ArmorApiUri: 'private/New-ArmorApiUri.md'
     - Request-ArmorApiToken: 'private/Request-ArmorApiToken.md'

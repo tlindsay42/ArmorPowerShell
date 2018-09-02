@@ -170,11 +170,17 @@ function New-ArmorCompleteVM {
 
     begin {
         $function = $MyInvocation.MyCommand.Name
+        Write-Verbose -Message "Beginning: '${function}'."
 
         Assert-ArmorSession
     }
 
     process {
+        Write-Verbose -Message (
+            "Processing: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: " +
+            ( $PSBoundParameters | Hide-SensitiveData | Format-Table -AutoSize | Out-String )
+        )
+
         [ArmorCompleteVmOrder[]] $return = $null
 
         if ( $PSCmdlet.ParameterSetName -eq 'ExistingWorkloadAndTier' ) {
