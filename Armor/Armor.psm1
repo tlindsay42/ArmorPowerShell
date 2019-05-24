@@ -37,5 +37,9 @@ if ( ( $aliases.Name | Measure-Object ).Count -gt 0 ) {
     $splat.Add( 'Alias', $aliases.Name )
 }
 
+if( [Net.ServicePointManager]::SecurityProtocol -notmatch "TLS12" ) {
+    [Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
+}
+
 # Export the Public modules
 Export-ModuleMember @splat
