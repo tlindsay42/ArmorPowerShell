@@ -4,6 +4,13 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             { Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force } |
                 Should -Not -Throw
         }
+        It -Name 'Should enable TLS 1.2' -test {
+            {
+                [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls,[Net.SecurityProtocolType]::Tls11
+                Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
+                [Net.ServicePointManager]::SecurityProtocol
+            } | Should -Match 'Tls12'
+        }
     }
 
     <#
