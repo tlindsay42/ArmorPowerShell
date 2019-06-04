@@ -37,7 +37,7 @@ if ( ( $aliases.Name | Measure-Object ).Count -gt 0 ) {
     $splat.Add( 'Alias', $aliases.Name )
 }
 
-if( [Net.ServicePointManager]::SecurityProtocol -notmatch "TLS12" ) {
+if ( [Net.ServicePointManager]::SecurityProtocol -notmatch "Tls12" ) {
     [Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
 }
 
