@@ -6,7 +6,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
                 Should -Not -Throw
         }
         It -Name 'Should enable TLS 1.2' -test {
-            { [Net.ServicePointManager]::SecurityProtocol } |
+            [Net.ServicePointManager]::SecurityProtocol |
                 Should -Match 'Tls12'
         }
     }
