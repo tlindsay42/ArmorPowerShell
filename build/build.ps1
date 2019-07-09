@@ -116,11 +116,15 @@ if ( $SkipDependencies -eq $false ) {
     $splat = @{
         Name           = 'PSDepend'
         Scope          = 'CurrentUser'
-        MinimumVersion = '0.2.5'
+        MinimumVersion = '0.3.0'
         Repository     = 'PSGallery'
         Force          = $true
     }
-    if ( $null -eq ( Get-Module -ListAvailable -Name $splat.Name ) ) {
+    $psdepend = Get-Module -ListAvailable -Name $splat.Name
+    if ( $null -eq $psdepend ) {
+        Install-Module @splat
+    }
+    elseif ( $psdepend.Version.ToString() -lt $splat.MinimumVersion ) {
         Install-Module @splat
     }
 
