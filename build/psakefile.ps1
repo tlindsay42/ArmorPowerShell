@@ -78,7 +78,9 @@ Remove-Variable -Name 'buildHelperVariableName', 'buildHelperVariableNames'
 #endregion
 
 #region Assert BuildHelpers environment variable values
-Assert ( $Env:BHBuildSystem -in 'AppVeyor', 'Travis CI' ) "Unsupported continuous integration build system: '${Env:BHBuildSystem}'."
+if ( $Local -eq $false ) {
+    Assert ( $Env:BHBuildSystem -in 'AppVeyor', 'Travis CI' ) "Unsupported continuous integration build system: '${Env:BHBuildSystem}'."
+}
 Assert ( $Env:BHBranchName.Length -gt 0 ) "Invalid branch name: '${Env:BHBranchName}'."
 Assert ( Test-Path -Path $Env:BHModulePath ) "PowerShell module path not found: '${Env:BHModulePath}'."
 Assert ( Test-Path -Path $Env:BHPSModuleManifest ) "PowerShell module manifest path not found: '${Env:BHPSModuleManifest}'."
