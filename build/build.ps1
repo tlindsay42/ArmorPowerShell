@@ -74,7 +74,7 @@ if ( $SkipDependencies -eq $false ) {
     #region Install PowerShell package providers
     $providerNames = 'NuGet', 'PowerShellGet'
     Write-StatusUpdate -Message "Install PowerShell package providers: $( ( $providerNames.ForEach( { "'${_}'" } ) -join ', ' ) )."
-    $details = Get-PackageProvider $providerNames -Force -ForceBootstrap |
+    $details = Get-PackageProvider -Name $providerNames -Force -ForceBootstrap |
         Format-Table -AutoSize -Property 'Name', 'Version' |
         Out-String
     Write-StatusUpdate -Message 'PowerShell package providers:' -Details $details
