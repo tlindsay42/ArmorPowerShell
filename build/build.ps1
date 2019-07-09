@@ -214,11 +214,14 @@ if ( $SkipDependencies -eq $false ) {
         $return = $?
     }
     $ErrorActionPreference = $temp
-    $details += Get-Command -Name 'mkdocs' -ErrorAction 'Continue' |
-        Format-Table -AutoSize -Property 'Name', 'Source' |
-        Out-String
-    if ( $return -eq $false ) {
+    $mkdocs = Get-Command -Name 'mkdocs' -ErrorAction 'Continue'
+    if ( $mkdocs -eq $null ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error' -Details $details
+    }
+    else {
+        $details += $mkdocs |
+            Format-Table -AutoSize -Property 'Name', 'Source' |
+            Out-String
     }
     Remove-Variable -Name 'psdependPath', 'requirementsPath', 'return'
     Write-StatusUpdate -Message 'python development dependencies:' -Details $details
