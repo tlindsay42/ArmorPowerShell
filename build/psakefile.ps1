@@ -560,7 +560,7 @@ $task = @{
                 Resolve-Path -Relative
             Tags                  = 'Armor', 'Defense', 'Cloud', 'Security', 'DevOps', 'Scripting', 'Automation',
                 'Complete', 'Anywhere', 'Compliance', 'PCI-DSS', 'HIPAA', 'HITRUST', 'GDPR', 'IaaS', 'SaaS', 'SECaaS',
-                'PSEdition_Core', 'PSEdition_Desktop'
+                'Windows', 'Linux', 'Mac', 'macOS', 'PSEdition_Core', 'PSEdition_Desktop'
             LicenseUri            = $TEXT.RepoUrl + '/blob/master/LICENSE.txt'
             IconUri               = $TEXT.GitHubPagesProjectUrl + 'img/Armor_logo.png'
             HelpInfoUri           = $TEXT.GitHubPagesProjectUrl
