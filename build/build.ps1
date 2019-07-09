@@ -189,6 +189,8 @@ if ( $SkipDependencies -eq $false ) {
 
     #region python dev dependencies
     Write-StatusUpdate -Message 'Install python development dependencies.'
+    $temp = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
     if ( $Env:CI_LINUX -eq $true ) {
@@ -207,6 +209,7 @@ if ( $SkipDependencies -eq $false ) {
             Out-String
         $return = $?
     }
+    $ErrorActionPreference = $temp
     $details += Get-Command -Name 'mkdocs' -ErrorAction 'Continue' |
         Format-Table -AutoSize -Property 'Name', 'Source' |
         Out-String
