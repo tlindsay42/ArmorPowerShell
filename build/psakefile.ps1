@@ -357,10 +357,12 @@ Properties {
     }
 
     $TEXT += @{
-        Description = "This is a community project that provides a powerful command-line interface for managing and monitoring your $( $TEXT.ArmorComplete ) (secure public cloud) and $( $TEXT.ArmorAnywhere ) (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published $( $TEXT.RestfulApi ).",
-        "Every code push is built on $( $TEXT.Windows ) via $( $TEXT.AppVeyor ), as well as on $( $TEXT.macOS ) and $( $TEXT.Ubuntu ) via $( $TEXT.TravisCi ), and tested using the $( $TEXT.Pester ) test and mock framework.",
-        "Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by $( $TEXT.Coveralls ).",
-        "Every successful build is published on the $( $TEXT.PSGallery )." -join "`r`n`r`n"
+        Description = "This is an open source, community project that provides a powerful command-line interface for managing and monitoring your $( $TEXT.ArmorComplete ) (secure public cloud) and $( $TEXT.ArmorAnywhere ) (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published $( $TEXT.RestfulApi ).",
+        "Every code push is built using psake on $( $TEXT.Windows ) and $( $TEXT.Ubuntu ) via $( $TEXT.AppVeyor ), as well as on $( $TEXT.macOS ) and $( $TEXT.Ubuntu ) via $( $TEXT.TravisCi ), and tested using the $( $TEXT.Pester ) test and mock framework.",
+        "Code coverage scores and reports showing 100% coverage are tracked by $( $TEXT.Coveralls ).",
+        "Cmdlet & private function documentation is generated programmatically via platyPS and rigorously tested to ensure accuracy.",
+        "Every successful continuous integration build is continuously deployed to the $( $TEXT.AppVeyor ) NuGet project feed as a prerelease version for contributors.",
+        "Every successful continuous integration build on the master branch is continuously deployed to the $( $TEXT.PSGallery ) to deliver rigorously tested new features as fast as possible to end users." -join "`r`n`r`n"
     }
 
 
