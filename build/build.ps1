@@ -85,7 +85,6 @@ if ( $SkipDependencies -eq $false ) {
     $splats = @(
         @{
             Name                      = 'PSGallery'
-            SourceLocation            = 'https://www.powershellgallery.com/api/v2/'
             InstallationPolicy        = 'Trusted'
             PackageManagementProvider = 'NuGet'
         }
