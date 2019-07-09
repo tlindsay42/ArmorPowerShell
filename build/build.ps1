@@ -152,12 +152,12 @@ if ( $SkipDependencies -eq $false ) {
         Join-Path -ChildPath 'requirements.psd1'
 
     $base = 'Base'
-    Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force -ErrorAction 'Continue'
     Remove-Module -Name 'PowerShellGet', 'PackageManagement'
     Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false
     Remove-Variable -Name 'base'
 
-    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false -ErrorAction 'Continue'
     Remove-Variable -Name 'tag'
 
     $details = Get-Dependency -Path $psdependPath |
