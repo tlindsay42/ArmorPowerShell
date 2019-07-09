@@ -365,45 +365,6 @@ Properties {
         "Every successful continuous integration build on the master branch is continuously deployed to the $( $TEXT.PSGallery ) to deliver rigorously tested new features as fast as possible to end users." -join "`r`n`r`n"
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # $BuildDate = Get-Date -UFormat '%Y%m%d'
-    # $ReleaseNotes = "$ProjectRoot\RELEASE.md"
-    # $ChangeLog = "$ProjectRoot\docs\ChangeLog.md"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Pop-Location
 }
 
