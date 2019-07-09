@@ -201,7 +201,7 @@ if ( $SkipDependencies -eq $false ) {
         $details = python -m pip install --user --upgrade pip |
             Out-String
         $return = $?
-        $details = python -m pip install --user --requirement $requirementsPath |
+        $details += python -m pip install --user --requirement $requirementsPath |
             Out-String
         $return = $?
     }
@@ -209,7 +209,7 @@ if ( $SkipDependencies -eq $false ) {
         $details = python -m pip install --upgrade pip |
             Out-String
         $return = $?
-        $details = python -m pip install --requirement $requirementsPath |
+        $details += python -m pip install --requirement $requirementsPath |
             Out-String
         $return = $?
     }
@@ -218,7 +218,7 @@ if ( $SkipDependencies -eq $false ) {
         Format-Table -AutoSize -Property 'Name', 'Source' |
         Out-String
     if ( $return -eq $false ) {
-        Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
+        Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error' -Details $details
     }
     Remove-Variable -Name 'psdependPath', 'requirementsPath', 'return'
     Write-StatusUpdate -Message 'python development dependencies:' -Details $details
