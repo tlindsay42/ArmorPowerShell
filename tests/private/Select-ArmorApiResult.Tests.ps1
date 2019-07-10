@@ -2,8 +2,10 @@ Import-Module -Name $CI_MODULE_MANIFEST_PATH -Force
 
 $systemUnderTest = ( Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '\.Tests\.', '.'
 $filePath = Join-Path -Path $CI_MODULE_PRIVATE_PATH -ChildPath $systemUnderTest
+$hideSensitiveVariablesFilePath = Join-Path -Path $CI_MODULE_PRIVATE_PATH -ChildPath 'Hide-SensitiveData.ps1'
 
 . $filePath
+. $hideSensitiveVariablesFilePath
 
 $function = $systemUnderTest.Split( '.' )[0]
 $describe = $Global:FORM_FUNCTION_PRIVATE -f $function
@@ -51,8 +53,6 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Context -Name $Global:EXECUTION -Fixture {
         #region init
         #endregion
-
-        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
 
         $testCases = @(
             @{
@@ -142,8 +142,6 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             ErrorAction = 'Stop'
         }
         #endregion
-
-        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
 
         $testCases = @(
             @{
