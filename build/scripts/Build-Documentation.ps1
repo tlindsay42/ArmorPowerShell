@@ -163,16 +163,16 @@ end {
     Write-StatusUpdate -Message 'External help file:' -Details $details
     Write-Host
 
-    # CAB file packing process changed. TODO: Figure this out later.
-    # if ( $Env:CI_WINDOWS -eq $true ) {
-    if ( $false ) {
+    if ( $Env:CI_WINDOWS -eq $true ) {
         Write-StatusUpdate -Message 'Build the updatable help files.'
         $splat = @{
-            CabFilesFolder  = $docsPublicPath
+            CabFilesFolder  = Join-Path -Path $ModulePath -ChildPath 'en-US'
             LandingPagePath = $docsModulePagePath
             OutputFolder    = $DocsPath
         }
-        New-ExternalHelpCab @splat
+        $details = New-ExternalHelpCab @splat |
+            Out-String
+        Write-StatusUpdate -Message 'Details:' -Details $details
     }
     else {
         $splat = @{
@@ -193,24 +193,6 @@ end {
         Out-String
     Write-StatusUpdate -Message 'Updatable help files:' -Details $details
 
-    Write-StatusUpdate -Message 'Remove the front matter metadata from the public cmdlet documentation.'
-    $splat = @{
-        Module                = $ModuleName
-        OutputFolder          = $docsPublicPath
-        AlphabeticParamsOrder = $true
-        NoMetadata            = $true
-        Force                 = $true
-    }
-    $details = New-MarkdownHelp @splat |
-        Out-String
-    Write-StatusUpdate -Message 'Public cmdlet documentation files:' -Details $details
-
-    Write-StatusUpdate -Message "Remove the front matter metadata from the module page: '${docsModulePageRelativePath}'."
-    Get-Content -Path $docsModulePagePath |
-        Select-Object -Skip 8 |
-        Out-String |
-        Set-Content -Path $docsModulePagePath -Force
-
     Write-StatusUpdate -Message 'Build the private function documentation.'
     foreach ( $file in ( Get-ChildItem -Path $modulePrivatePath -Filter '*.ps1' ) ) {
         . $file.FullName
@@ -219,8 +201,8 @@ end {
             Command               = $file.BaseName
             OutputFolder          = $docsPrivatePath
             AlphabeticParamsOrder = $true
-            NoMetadata            = $true
             Force                 = $true
+            WarningAction         = 'SilentlyContinue'
         }
         New-MarkdownHelp @splat
     }
