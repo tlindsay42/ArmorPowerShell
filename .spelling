@@ -60,6 +60,7 @@ ExistingWorkloadAndTier
 Expand-ArmorApiResult
 FirstName
 ForceOff
+ForceVerbose
 Format-ArmorApiRequestBody
 FunctionName
 Get-ArmorAccountAddress
@@ -76,12 +77,15 @@ Gitter
 GrantType
 green_heart
 Guid
+hashtable
+Hide-SensitiveData
 hoc
 http
 https
 img
 InformationAction
 InformationVariable
+InputObject
 Invoke-ArmorRestMethod
 Invoke-ArmorWebRequest
 Invoke-WebRequest
@@ -107,6 +111,7 @@ OutBuffer
 OutVariable
 pasteable
 PipelineVariable
+PlainText
 PowerShell
 Poweroff
 pre-commit
@@ -124,6 +129,7 @@ Reset-ArmorCompleteVM
 Restart-ArmorCompleteVM
 RESTful
 Select-ArmorApiResult
+SensitiveProperties
 Set-ArmorAccountContext
 sexualized
 showback
@@ -133,8 +139,10 @@ Styleguide
 styleguides
 Styleguides
 SuccessCode
+System.Collections.Hashtable
 System.Guid
 System.Management.Automation.PSObject
+System.Object
 System.String
 System.UInt16
 System.Void

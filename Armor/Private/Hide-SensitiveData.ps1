@@ -20,9 +20,7 @@ function Hide-SensitiveData {
     .EXAMPLE
         Hide-SensitiveData -InputObject [PSCustomObject] @{ Credential = ( Get-Credential )) }
         Returns the input object with the value of the Credential key set to
-        '[REDACTED]', unless the $Script:Armor.ForceVerbose ArmorPowerShell module
-        configuration parameter is set to $true, in which case the value would not be
-        masked.
+        '[REDACTED]'.
 
     .EXAMPLE
         [PSCustomObject] @{ PlainText = 'do not display' } | Hide-SensitiveData -SensitiveProperties 'PlainText'
@@ -32,10 +30,7 @@ function Hide-SensitiveData {
 
     .EXAMPLE
         Hide-SensitiveData -InputObject [PSCustomObject] @{ Authorization = $authorization } -ForceVerbose
-        Returns the input object with the value of the Authorization key intact
-        regardless of whether or not the $Script:PSRyver.ForceVerbose PSRyver module
-        configuration parameter is set to $true, because the ForceVerbose parameter
-        mandated this.
+        Returns the input object with the value of the Authorization key intact.
 
     .EXAMPLE
         Hide-SensitiveData [PSCustomObject] @{ Authorization = $authorization }
@@ -92,10 +87,6 @@ function Hide-SensitiveData {
     begin {
         $function = $MyInvocation.MyCommand.Name
         Write-Verbose -Message "Beginning: '${function}'."
-
-        if ( $PSBoundParameters.ContainsKey( 'ForceVerbose' ) -eq $false -and $Script:Armor.ForceVerbose -in $true, $false ) {
-            $ForceVerbose = $Script:Armor.ForceVerbose
-        }
     }
 
     process {
