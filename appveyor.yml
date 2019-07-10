@@ -26,19 +26,19 @@ image:
 - Ubuntu
 
 for:
-- matrix:
-    only:
-    - PowerShell: 6
-      image: Visual Studio 2017
-  cache:
-  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
-  - '%APPDATA%\npm'
-  - '%APPDATA%\npm-cache'
-  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Lib\site-packages -> requirements.txt'
-  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
-  build_script:
-  - pwsh: ./build/build.ps1
+# - matrix:
+#     only:
+#     - PowerShell: 6
+#       image: Visual Studio 2017
+#   cache:
+#   - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
+#   - '%APPDATA%\npm'
+#   - '%APPDATA%\npm-cache'
+#   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
+#   - 'C:\Python27\Lib\site-packages -> requirements.txt'
+#   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
+#   build_script:
+#   - pwsh: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 6
@@ -64,18 +64,18 @@ for:
   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
   - ps: ./build/build.ps1 -DeploymentMode
-- matrix:
-    only:
-    - PowerShell: 6
-  cache:
-  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
-  - '%APPDATA%\npm'
-  - '%APPDATA%\npm-cache'
-  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Lib\site-packages -> requirements.txt'
-  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
-  build_script:
-  - pwsh: ./build/build.ps1
+# - matrix:
+#     only:
+#     - PowerShell: 6
+#   cache:
+#   - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
+#   - '%APPDATA%\npm'
+#   - '%APPDATA%\npm-cache'
+#   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
+#   - 'C:\Python27\Lib\site-packages -> requirements.txt'
+#   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
+#   build_script:
+#   - pwsh: ./build/build.ps1
 
 matrix:
   exclude:
