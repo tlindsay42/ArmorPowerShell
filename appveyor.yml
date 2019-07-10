@@ -92,8 +92,8 @@ environment:
   COVERALLS_API_KEY:
     secure: hClQPXu5AWqBK5R49g0hrkhYtLgDpdftXlpMk2tTO1ba4FlsL6Q6BtpqR1QQPkRC
   matrix:
-  - PowerShell: 5
-  - PowerShell: 6
+  - PowerShell: '5'
+  - PowerShell: '6'
 
 test: off
 
@@ -102,10 +102,8 @@ deploy: off
 artifacts:
 - path: ./BuildOutput/TestResults.xml
   name: Pester Test Results
-  type: Auto
 - path: ./BuildOutput/CodeCoverageResults.xml
   name: Pester Code Coverage Results
-  type: Auto
 
 notifications:
 - provider: Email
