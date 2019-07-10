@@ -1,3 +1,10 @@
+---
+external help file:
+Module Name:
+online version: https://tlindsay42.github.io/ArmorPowerShell/private/Get-ArmorApiData/
+schema: 2.0.0
+---
+
 # Get-ArmorApiData
 
 ## SYNOPSIS

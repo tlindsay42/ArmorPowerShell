@@ -1,3 +1,10 @@
+---
+external help file:
+Module Name:
+online version: https://tlindsay42.github.io/ArmorPowerShell/private/Assert-ArmorSession/
+schema: 2.0.0
+---
+
 # Assert-ArmorSession
 
 ## SYNOPSIS

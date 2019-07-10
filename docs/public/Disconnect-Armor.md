@@ -1,3 +1,10 @@
+---
+external help file: Armor-help.xml
+Module Name: Armor
+online version: https://tlindsay42.github.io/ArmorPowerShell/public/Disconnect-Armor/
+schema: 2.0.0
+---
+
 # Disconnect-Armor
 
 ## SYNOPSIS
@@ -62,7 +69,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-###     You cannot pipe input to this cmdlet.
+### You cannot pipe input to this cmdlet.
 ## OUTPUTS
 
 ### System.Void

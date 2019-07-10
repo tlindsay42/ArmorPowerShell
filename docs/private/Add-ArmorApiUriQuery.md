@@ -1,3 +1,10 @@
+---
+external help file:
+Module Name:
+online version: https://tlindsay42.github.io/ArmorPowerShell/private/Add-ArmorApiUriQuery/
+schema: 2.0.0
+---
+
 # Add-ArmorApiUriQuery
 
 ## SYNOPSIS

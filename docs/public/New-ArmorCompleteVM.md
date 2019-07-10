@@ -1,3 +1,10 @@
+---
+external help file: Armor-help.xml
+Module Name: Armor
+online version: https://tlindsay42.github.io/ArmorPowerShell/public/New-ArmorCompleteVM/
+schema: 2.0.0
+---
+
 # New-ArmorCompleteVM
 
 ## SYNOPSIS

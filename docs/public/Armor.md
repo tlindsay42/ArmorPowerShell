@@ -1,3 +1,11 @@
+---
+Module Name: Armor
+Module Guid: 226c1ea9-1078-402a-861c-10a845a0d173
+Download Help Link: https://tlindsay42.github.io/ArmorPowerShell/
+Help Version: 1.0.335
+Locale: en-US
+---
+
 # Armor Module
 ## Description
 The Armor command-line interface
@@ -77,5 +85,4 @@ Starts Armor Complete virtual machines.
 
 ### [Stop-ArmorCompleteVM](Stop-ArmorCompleteVM.md)
 Stops Armor Complete virtual machines.
-
 

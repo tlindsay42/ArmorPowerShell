@@ -1,3 +1,10 @@
+---
+external help file: Armor-help.xml
+Module Name: Armor
+online version: https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountContext/
+schema: 2.0.0
+---
+
 # Get-ArmorAccountContext
 
 ## SYNOPSIS
@@ -31,7 +38,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-###     You cannot pipe input to this cmdlet.
+### You cannot pipe input to this cmdlet.
 ## OUTPUTS
 
 ### ArmorAccount

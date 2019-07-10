@@ -1,3 +1,10 @@
+---
+external help file: Armor-help.xml
+Module Name: Armor
+online version: https://tlindsay42.github.io/ArmorPowerShell/public/Add-ArmorCompleteWorkloadTier/
+schema: 2.0.0
+---
+
 # Add-ArmorCompleteWorkloadTier
 
 ## SYNOPSIS

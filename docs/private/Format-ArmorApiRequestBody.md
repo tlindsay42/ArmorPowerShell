@@ -1,3 +1,10 @@
+---
+external help file:
+Module Name:
+online version: https://tlindsay42.github.io/ArmorPowerShell/private/Format-ArmorApiRequestBody/
+schema: 2.0.0
+---
+
 # Format-ArmorApiRequestBody
 
 ## SYNOPSIS
