@@ -17,17 +17,15 @@ Redact sensitive property values and then return objects to the pipeline.
 
 ### EXAMPLE 1
 ```
-Hide-SensitiveData -InputObject [PSCustomObject] @{ Credential = ( Get-Credential )) }
+Hide-SensitiveData -InputObject @{ Credential = ( Get-Credential )) }
 ```
 
 Returns the input object with the value of the Credential key set to
-'\[REDACTED\]', unless the $Script:Armor.ForceVerbose ArmorPowerShell module
-configuration parameter is set to $true, in which case the value would not be
-masked.
+'\[REDACTED\]'.
 
 ### EXAMPLE 2
 ```
-[PSCustomObject] @{ PlainText = 'do not display' } | Hide-SensitiveData -SensitiveProperties 'PlainText'
+@{ PlainText = 'do not display' } | Hide-SensitiveData -SensitiveProperties 'PlainText'
 ```
 
 Returns the object input via the pipeline with the value of the 'PlainText' key
@@ -36,17 +34,14 @@ key as sensitive.
 
 ### EXAMPLE 3
 ```
-Hide-SensitiveData -InputObject [PSCustomObject] @{ Authorization = $authorization } -ForceVerbose
+Hide-SensitiveData -InputObject @{ Authorization = $authorization } -ForceVerbose
 ```
 
-Returns the input object with the value of the Authorization key intact
-regardless of whether or not the $Script:PSRyver.ForceVerbose PSRyver module
-configuration parameter is set to $true, because the ForceVerbose parameter
-mandated this.
+Returns the input object with the value of the Authorization key intact.
 
 ### EXAMPLE 4
 ```
-Hide-SensitiveData [PSCustomObject] @{ Authorization = $authorization }
+Hide-SensitiveData @{ Uri = '/uri' } @('Uri')
 ```
 
 Uses a positional parameter Returns the hashtable with the Uri value set to '\[REDACTED\]'.
@@ -107,17 +102,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### System.Object[]
-### System.Object
+### System.Collections.Hashtable
 ## OUTPUTS
 
-### System.Object[]
-### System.Object
 ### System.Collections.Hashtable
 ## NOTES
 - Troy Lindsay
@@ -126,7 +117,11 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/](https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/)
+[https://tlindsay42.github.io/ArmorPowerShell/private/Hide-SensitiveData/](https://tlindsay42.github.io/ArmorPowerShell/private/Hide-SensitiveData/)
 
 [https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Hide-SensitiveData.ps1](https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Hide-SensitiveData.ps1)
+
+[https://docs.armor.com/display/KBSS/Armor+API+Guide](https://docs.armor.com/display/KBSS/Armor+API+Guide)
+
+[https://developer.armor.com/](https://developer.armor.com/)
 

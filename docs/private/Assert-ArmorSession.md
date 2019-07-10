@@ -1,7 +1,7 @@
 # Assert-ArmorSession
 
 ## SYNOPSIS
-Tests the validity of the Armor API session.
+Affirms the state of the Armor API session.
 
 ## SYNTAX
 
@@ -10,12 +10,17 @@ Assert-ArmorSession [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Test to see if a session has been established with the Armor API and that it has not yet expired.
+Affirms that the state of a session has been established with the Armor API and
+that it has not yet expired. 
 If no token is found, an error will be thrown.
-If the session has expired, Disconnect-Armor will be called with confirmation disabled to clean up the session.
-If less than 2/3 of the session length remain, Update-ArmorApiToken will be called to renew the session.
+If the session has expired, Disconnect-Armor will be called with confirmation
+disabled to clean up the session. 
+If less than 2/3 of the session length
+remain, Update-ArmorApiToken will be called to renew the session.
 
-This cmdlet should be called in the Begin section of public cmdlets for optimal performance, so that the session is not tested repeatedly when pipeline input is processed.
+This cmdlet should be called in the Begin section of public cmdlets for optimal
+performance, so that the session is not tested repeatedly when pipeline input
+is processed.
 
 ## EXAMPLES
 
@@ -29,8 +34,7 @@ Validates that the Armor API session stored in $Global:ArmorSession is still act
 ## PARAMETERS
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
