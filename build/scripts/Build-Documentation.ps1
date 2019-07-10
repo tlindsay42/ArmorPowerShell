@@ -155,7 +155,7 @@ end {
 
     Write-StatusUpdate -Message "Update the module description in the module page: '${docsModulePageRelativePath}'."
     ( Get-Content -Path $docsModulePagePath ) -replace
-        '^{{Manually Enter Description Here}}$', "The ${ModuleName} command-line interface" |
+        '^{{(?:Manually Enter Description Here|\s?Fill in the Description\s?)}}$', "The ${ModuleName} command-line interface" |
         Set-Content -Path $docsModulePagePath -Force
 
     Write-StatusUpdate -Message 'Build the external help file.'
