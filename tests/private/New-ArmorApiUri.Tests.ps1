@@ -51,6 +51,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpNote @splat
 
     Context -Name $Global:EXECUTION -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 Server    = $invalidServer
@@ -175,6 +180,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 FoundReturnType    = ( New-ArmorApiUri -Server $validServer -Port $validPort -Endpoints '/' -ErrorAction 'Stop' ).GetType().FullName

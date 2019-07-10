@@ -56,6 +56,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
         #region init
         #endregion
 
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 Keys       = ''
@@ -157,6 +159,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             ErrorAction = 'Stop'
         }
         #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
 
         $testCases = @(
             @{

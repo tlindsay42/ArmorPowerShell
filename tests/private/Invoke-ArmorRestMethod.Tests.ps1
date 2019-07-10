@@ -49,6 +49,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpNote @splat
 
     Context -Name $Global:EXECUTION -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 Uri         = $invalidUri
@@ -186,6 +191,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             ErrorAction = 'Stop'
         }
         #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
 
         Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
             @{

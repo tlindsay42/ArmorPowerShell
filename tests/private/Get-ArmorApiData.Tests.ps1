@@ -46,6 +46,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpNote @splat
 
     Context -Name $Global:EXECUTION -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 FunctionName = $invalidFunctionName
@@ -181,6 +186,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 FoundReturnType    = ( Get-ArmorApiData -FunctionName $validFunctionName -ApiVersion $validApiVersion -ErrorAction 'Stop' ).GetType().FullName

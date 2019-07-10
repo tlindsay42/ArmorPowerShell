@@ -49,6 +49,11 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
     Test-AdvancedFunctionHelpNote @splat
 
     Context -Name $Global:EXECUTION -Fixture {
+        #region init
+        #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
+
         $testCases = @(
             @{
                 Results = [ArmorVM] @{ VmServices = [PSCustomObject] @{ Name = 'TROY-TEST_1' } }
@@ -137,6 +142,8 @@ Describe -Name $describe -Tag 'Function', 'Private', $function -Fixture {
             ErrorAction = 'Stop'
         }
         #endregion
+
+        Mock -CommandName Hide-SensitiveData -Verifiable -MockWith {}
 
         $testCases = @(
             @{
