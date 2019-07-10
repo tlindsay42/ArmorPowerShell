@@ -38,7 +38,7 @@ for:
   - 'C:\Python27\Lib\site-packages -> requirements.txt'
   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
-  - pwsh: ./build/build.ps1 -DeploymentMode
+  - pwsh: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 6
@@ -63,7 +63,7 @@ for:
   - 'C:\Python27\Lib\site-packages -> requirements.txt'
   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
-  - ps: ./build/build.ps1
+  - ps: ./build/build.ps1 -DeploymentMode
 - matrix:
     only:
     - PowerShell: 6
@@ -81,6 +81,8 @@ matrix:
   exclude:
   - PowerShell: 5
     image: Ubuntu
+  - PowerShell: 6
+    image: Visual Studio 2017
 
 clone_depth: 50
 
@@ -92,8 +94,8 @@ environment:
   COVERALLS_API_KEY:
     secure: hClQPXu5AWqBK5R49g0hrkhYtLgDpdftXlpMk2tTO1ba4FlsL6Q6BtpqR1QQPkRC
   matrix:
-  - PowerShell: 5
-  - PowerShell: 6
+  - PowerShell: '5'
+  - PowerShell: '6'
 
 test: off
 
@@ -102,10 +104,8 @@ deploy: off
 artifacts:
 - path: ./BuildOutput/TestResults.xml
   name: Pester Test Results
-  type: Auto
 - path: ./BuildOutput/CodeCoverageResults.xml
   name: Pester Code Coverage Results
-  type: Auto
 
 notifications:
 - provider: Email

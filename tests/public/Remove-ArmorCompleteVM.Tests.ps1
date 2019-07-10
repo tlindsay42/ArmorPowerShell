@@ -109,7 +109,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Throw
             }
 
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
                     StatusCode        = 202
@@ -135,7 +135,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Not -Throw
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
         }
     }
@@ -149,7 +149,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
             $Global:ArmorSession.SetAccountContext( 1 )
             #endregion
 
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
             Mock -CommandName Invoke-WebRequest -Verifiable -MockWith {
                 @{
                     StatusCode        = 202
@@ -171,7 +171,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Be $ExpectedReturnType
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
             Assert-MockCalled -CommandName Invoke-WebRequest -Times $testCases.Count
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"

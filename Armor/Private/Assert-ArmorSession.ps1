@@ -1,12 +1,18 @@
-function Test-ArmorSession {
+function Assert-ArmorSession {
     <#
         .SYNOPSIS
-        Tests the validity of the Armor API session.
+        Affirms the state of the Armor API session.
 
         .DESCRIPTION
-        Test to see if a session has been established with the Armor API and that it has not yet expired.  If no token is found, an error will be thrown.  If the session has expired, Disconnect-Armor will be called with confirmation disabled to clean up the session.  If less than 2/3 of the session length remain, Update-ArmorApiToken will be called to renew the session.
+        Affirms that the state of a session has been established with the Armor API and
+        that it has not yet expired.  If no token is found, an error will be thrown.
+        If the session has expired, Disconnect-Armor will be called with confirmation
+        disabled to clean up the session.  If less than 2/3 of the session length
+        remain, Update-ArmorApiToken will be called to renew the session.
 
-        This cmdlet should be called in the Begin section of public cmdlets for optimal performance, so that the session is not tested repeatedly when pipeline input is processed.
+        This cmdlet should be called in the Begin section of public cmdlets for optimal
+        performance, so that the session is not tested repeatedly when pipeline input
+        is processed.
 
         .INPUTS
         None
@@ -18,14 +24,14 @@ function Test-ArmorSession {
         - GitHub: tlindsay42
 
         .EXAMPLE
-        Test-ArmorSession
+        Assert-ArmorSession
         Validates that the Armor API session stored in $Global:ArmorSession is still active.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/private/Test-ArmorSession/
+        https://tlindsay42.github.io/ArmorPowerShell/private/Assert-ArmorSession/
 
         .LINK
-        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Test-ArmorSession.ps1
+        https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Assert-ArmorSession.ps1
 
         .LINK
         https://docs.armor.com/display/KBSS/Armor+API+Guide
@@ -46,11 +52,17 @@ function Test-ArmorSession {
 
     begin {
         $function = $MyInvocation.MyCommand.Name
-
-        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
+        Write-Verbose -Message "Beginning: '${function}'."
     }
 
     process {
+        <#
+        Write-Verbose -Message (
+            "Processing: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: " +
+            ( $PSBoundParameters | Hide-SensitiveData | Format-Table -AutoSize | Out-String )
+        )
+        #>
+
         Write-Verbose -Message 'Verify that the session authorization exists.'
         if ( -not $Global:ArmorSession ) {
             throw 'Session not found.  Please log in again.'

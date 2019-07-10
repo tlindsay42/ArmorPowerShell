@@ -74,18 +74,27 @@ if ( $SkipDependencies -eq $false ) {
     #region Install PowerShell package providers
     $providerNames = 'NuGet', 'PowerShellGet'
     Write-StatusUpdate -Message "Install PowerShell package providers: $( ( $providerNames.ForEach( { "'${_}'" } ) -join ', ' ) )."
-    $details = Get-PackageProvider $providerNames -Force -ForceBootstrap |
+    $details = Get-PackageProvider -Name $providerNames -Force -ForceBootstrap |
         Format-Table -AutoSize -Property 'Name', 'Version' |
         Out-String
     Write-StatusUpdate -Message 'PowerShell package providers:' -Details $details
     Remove-Variable -Name 'providerNames'
     #endregion
 
+    #region Import package management modules
+    $modules = 'PackageManagement', 'PowerShellGet'
+    Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
+    foreach ( $module in $modules ) {
+        if ( ( Get-Module -Name $module ) -eq $null ) {
+            Import-Module -Name $module -Force
+        }
+    }
+    #endregion
+
     #region Configure PowerShell repositories
     $splats = @(
         @{
             Name                      = 'PSGallery'
-            SourceLocation            = 'https://www.powershellgallery.com/api/v2/'
             InstallationPolicy        = 'Trusted'
             PackageManagementProvider = 'NuGet'
         }
@@ -107,11 +116,15 @@ if ( $SkipDependencies -eq $false ) {
     $splat = @{
         Name           = 'PSDepend'
         Scope          = 'CurrentUser'
-        MinimumVersion = '0.2.5'
+        MinimumVersion = '0.3.0'
         Repository     = 'PSGallery'
         Force          = $true
     }
-    if ( $null -eq ( Get-Module -ListAvailable -Name $splat.Name ) ) {
+    $psdepend = Get-Module -ListAvailable -Name $splat.Name
+    if ( $null -eq $psdepend ) {
+        Install-Module @splat
+    }
+    elseif ( $psdepend.Version.ToString() -lt $splat.MinimumVersion ) {
         Install-Module @splat
     }
 
@@ -139,12 +152,12 @@ if ( $SkipDependencies -eq $false ) {
         Join-Path -ChildPath 'requirements.psd1'
 
     $base = 'Base'
-    Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force -ErrorAction 'Continue'
     Remove-Module -Name 'PowerShellGet', 'PackageManagement'
-    Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false -ErrorAction 'Continue'
     Remove-Variable -Name 'base'
 
-    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false -ErrorAction 'Continue'
     Remove-Variable -Name 'tag'
 
     $details = Get-Dependency -Path $psdependPath |
@@ -180,13 +193,15 @@ if ( $SkipDependencies -eq $false ) {
 
     #region python dev dependencies
     Write-StatusUpdate -Message 'Install python development dependencies.'
+    $temp = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
     if ( $Env:CI_LINUX -eq $true ) {
         $details = python -m pip install --user --upgrade pip |
             Out-String
         $return = $?
-        $details = python -m pip install --user --requirement $requirementsPath |
+        $details += python -m pip install --user --requirement $requirementsPath |
             Out-String
         $return = $?
     }
@@ -194,15 +209,19 @@ if ( $SkipDependencies -eq $false ) {
         $details = python -m pip install --upgrade pip |
             Out-String
         $return = $?
-        $details = python -m pip install --requirement $requirementsPath |
+        $details += python -m pip install --requirement $requirementsPath |
             Out-String
         $return = $?
     }
-    $details += Get-Command -Name 'mkdocs' -ErrorAction 'Continue' |
-        Format-Table -AutoSize -Property 'Name', 'Source' |
-        Out-String
-    if ( $return -eq $false ) {
-        Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error'
+    $ErrorActionPreference = $temp
+    $mkdocs = Get-Command -Name 'mkdocs' -ErrorAction 'Continue'
+    if ( $mkdocs -eq $null ) {
+        Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error' -Details $details
+    }
+    else {
+        $details += $mkdocs |
+            Format-Table -AutoSize -Property 'Name', 'Source' |
+            Out-String
     }
     Remove-Variable -Name 'psdependPath', 'requirementsPath', 'return'
     Write-StatusUpdate -Message 'python development dependencies:' -Details $details

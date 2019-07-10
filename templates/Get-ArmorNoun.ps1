@@ -82,7 +82,7 @@ function Get-ArmorNoun {
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         # Check to ensure that a session to the Armor session is valid.
-        Test-ArmorSession
+        Assert-ArmorSession
     }
 
     process {

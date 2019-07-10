@@ -66,11 +66,15 @@ function Request-ArmorApiToken {
 
     begin {
         $function = $MyInvocation.MyCommand.Name
-
-        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
+        Write-Verbose -Message "Beginning: '${function}'."
     }
 
     process {
+        Write-Verbose -Message (
+            "Processing: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: " +
+            ( $PSBoundParameters | Hide-SensitiveData | Format-Table -AutoSize | Out-String )
+        )
+
         [PSCustomObject] $return = $null
 
         $resources = Get-ArmorApiData -FunctionName $function -ApiVersion $ApiVersion

@@ -71,7 +71,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Throw
             }
 
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
 
             $testCases = @(
                 @{ ID = $Global:ArmorSession.Accounts[0].ID },
@@ -84,13 +84,13 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Be $ID
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
         }
     }
 
     Context -Name $Global:RETURN_TYPE_CONTEXT -Fixture {
         InModuleScope -ModuleName $Global:CI_MODULE_NAME -ScriptBlock {
-            Mock -CommandName Test-ArmorSession -Verifiable -MockWith {}
+            Mock -CommandName Assert-ArmorSession -Verifiable -MockWith {}
 
             $testCases = @(
                 @{
@@ -105,7 +105,7 @@ Describe -Name $describe -Tag 'Function', 'Public', $function -Fixture {
                     Should -Be $ExpectedReturnType
             }
             Assert-VerifiableMock
-            Assert-MockCalled -CommandName Test-ArmorSession -Times $testCases.Count
+            Assert-MockCalled -CommandName Assert-ArmorSession -Times $testCases.Count
 
             $testName = "has an 'OutputType' entry for <FoundReturnType>"
             It -Name $testName -TestCases $testCases -Test {

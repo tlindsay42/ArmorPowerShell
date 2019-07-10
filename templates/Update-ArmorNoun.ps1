@@ -76,7 +76,7 @@ function Update-ArmorNoun {
         Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
 
         # Check to ensure that a session to the Armor cluster exists and load the needed header data for authentication
-        Test-ArmorSession
+        Assert-ArmorSession
     }
 
     process {

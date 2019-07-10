@@ -12,9 +12,12 @@ repos:
   - id: check-symlinks
   - id: check-xml
   - id: check-yaml
+    exclude: '^(?:mkdocs.yml)$'
   - id: end-of-file-fixer
+    exclude: '\.(?:md|psd1)$'
   - id: pretty-format-json
     args:
     - --autofix
     - --indent 2
   - id: trailing-whitespace
+    exclude: '\.(?:md|psd1)$'

@@ -67,8 +67,7 @@ function Format-ArmorApiRequestBody {
 
     begin {
         $function = $MyInvocation.MyCommand.Name
-
-        Write-Verbose -Message "Beginning: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: $( $PSBoundParameters | Out-String )"
+        Write-Verbose -Message "Beginning: '${function}'."
 
         $excludedParameters = @(
             'ApiVersion',
@@ -89,6 +88,11 @@ function Format-ArmorApiRequestBody {
     }
 
     process {
+        Write-Verbose -Message (
+            "Processing: '${function}' with ParameterSetName '$( $PSCmdlet.ParameterSetName )' and Parameters: " +
+            ( $PSBoundParameters | Hide-SensitiveData | Format-Table -AutoSize | Out-String )
+        )
+
         [String] $return = $null
         $filteredParameters = $Parameters.Where( { $_.Name -notin $excludedParameters } )
 
