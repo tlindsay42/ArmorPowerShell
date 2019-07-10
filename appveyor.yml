@@ -38,7 +38,7 @@ for:
   - 'C:\Python27\Lib\site-packages -> requirements.txt'
   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
-  - pwsh: ./build/build.ps1 -DeploymentMode
+  - pwsh: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 6
@@ -63,7 +63,7 @@ for:
   - 'C:\Python27\Lib\site-packages -> requirements.txt'
   - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
-  - ps: ./build/build.ps1
+  - ps: ./build/build.ps1 -DeploymentMode
 - matrix:
     only:
     - PowerShell: 6
