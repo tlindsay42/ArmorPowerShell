@@ -1,55 +1,59 @@
 function Hide-SensitiveData {
     <#
-    .SYNOPSIS
+        .SYNOPSIS
         Redact sensitive property values.
 
-    .DESCRIPTION
+        .DESCRIPTION
         Redact sensitive property values and then return objects to the pipeline.
 
-    .INPUTS
-        System.Object[]
+        .INPUTS
+        System.Collections.Hashtable
 
-    .INPUTS
-        System.Object
-
-    .NOTES
+        .NOTES
         - Troy Lindsay
         - Twitter: @troylindsay42
         - GitHub: tlindsay42
 
-    .EXAMPLE
-        Hide-SensitiveData -InputObject [PSCustomObject] @{ Credential = ( Get-Credential )) }
+        .EXAMPLE
+        Hide-SensitiveData -InputObject @{ Credential = ( Get-Credential )) }
         Returns the input object with the value of the Credential key set to
         '[REDACTED]'.
 
-    .EXAMPLE
-        [PSCustomObject] @{ PlainText = 'do not display' } | Hide-SensitiveData -SensitiveProperties 'PlainText'
+        .EXAMPLE
+        @{ PlainText = 'do not display' } | Hide-SensitiveData -SensitiveProperties 'PlainText'
         Returns the object input via the pipeline with the value of the 'PlainText' key
         set to '[REDACTED]', because the SensitiveProperties parameter specified this
         key as sensitive.
 
-    .EXAMPLE
-        Hide-SensitiveData -InputObject [PSCustomObject] @{ Authorization = $authorization } -ForceVerbose
+        .EXAMPLE
+        Hide-SensitiveData -InputObject @{ Authorization = $authorization } -ForceVerbose
         Returns the input object with the value of the Authorization key intact.
 
-    .EXAMPLE
-        Hide-SensitiveData [PSCustomObject] @{ Authorization = $authorization }
+        .EXAMPLE
+        Hide-SensitiveData @{ Uri = '/uri' } @('Uri')
         Uses a positional parameter Returns the hashtable with the Uri value set to '[REDACTED]'.
 
-    .LINK
+        .LINK
         https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/
 
-    .LINK
+        .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Hide-SensitiveData.ps1
 
-    .FUNCTIONALITY
+        .LINK
+        https://docs.armor.com/display/KBSS/Armor+API+Guide
+
+        .LINK
+        https://developer.armor.com/
+
+        .COMPONENT
+        Armor API
+
+        .FUNCTIONALITY
         PowerShell Language
     #>
     [CmdletBinding(
         HelpUri = 'https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/'
     )]
-    [OutputType( [Object[]] )]
-    [OutputType( [Object] )]
     [OutputType( [Hashtable] )]
     param (
         # Specifies the objects to evaluate for sensitive property keys.
@@ -64,7 +68,7 @@ function Hide-SensitiveData {
 
         # Specifies the properties that should be redacted.
         [Parameter( Position = 1 )]
-        [ValidateNotNullOrEmpty()]
+        [ValidateCount(1, 42)]
         [String[]]
         $SensitiveProperties = @(
             'Credential',
@@ -99,22 +103,13 @@ function Hide-SensitiveData {
             $InputObject
         }
         else {
-            if (
-                $InputObject -is [Hashtable] -or
-                ( $InputObject.Keys.Count -gt 0 -and $InputObject.Values.Count -gt 0 )
-            ) {
-                $return = [Hashtable] $( $InputObject.PSObject.Copy() )
-                foreach ( $sensitiveProperty in $SensitiveProperties ) {
-                    if ( $InputObject.ContainsKey( $sensitiveProperty ) ) {
-                        $return[$sensitiveProperty] = '[REDACTED]'
-                    }
+            [Hashtable] $return = [Hashtable] $( $InputObject.PSObject.Copy() )
+            foreach ( $sensitiveProperty in $SensitiveProperties ) {
+                if ( $InputObject.ContainsKey( $sensitiveProperty ) ) {
+                    $return[$sensitiveProperty] = '[REDACTED]'
                 }
-                $return
             }
-            else {
-                $InputObject |
-                    Select-Object -Property '*' -ExcludeProperty $SensitiveProperties
-            }
+            $return
         }
     }
 
