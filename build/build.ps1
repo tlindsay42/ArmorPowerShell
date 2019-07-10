@@ -154,7 +154,7 @@ if ( $SkipDependencies -eq $false ) {
     $base = 'Base'
     Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force -ErrorAction 'Continue'
     Remove-Module -Name 'PowerShellGet', 'PackageManagement'
-    Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false
+    Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false -ErrorAction 'Continue'
     Remove-Variable -Name 'base'
 
     Invoke-PSDepend -Path $psdependPath -Tags $tag -Install -Import -Confirm:$false -ErrorAction 'Continue'
