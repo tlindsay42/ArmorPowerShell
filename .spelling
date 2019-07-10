@@ -104,6 +104,7 @@ NewName
 NewWorkloadAndTier
 New-ArmorApiUri
 New-ArmorCompleteVM
+NuGet
 OneDrive
 open-vm-tools
 Orders_PostVmOrderAsync
@@ -112,9 +113,12 @@ OutVariable
 pasteable
 PipelineVariable
 PlainText
+platyPS
 PowerShell
 Poweroff
 pre-commit
+programmatically
+psake
 pscredential
 PSCustomObject
 PSObject
