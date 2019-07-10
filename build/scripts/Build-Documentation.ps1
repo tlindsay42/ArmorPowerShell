@@ -163,7 +163,9 @@ end {
     Write-StatusUpdate -Message 'External help file:' -Details $details
     Write-Host
 
-    if ( $Env:CI_WINDOWS -eq $true ) {
+    # CAB file packing process changed. TODO: Figure this out later.
+    # if ( $Env:CI_WINDOWS -eq $true ) {
+    if ( $false ) {
         Write-StatusUpdate -Message 'Build the updatable help files.'
         $splat = @{
             CabFilesFolder  = $docsPublicPath
