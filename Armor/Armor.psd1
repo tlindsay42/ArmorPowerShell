@@ -27,16 +27,20 @@ Author = 'Troy Lindsay'
 CompanyName = 'Armor'
 
 # Copyright statement for this module
-Copyright = '©2017-2018 Troy Lindsay. All rights reserved.'
+Copyright = '©2017-2019 Troy Lindsay. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This is a community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.
+Description = 'This is an open source, community project that provides a powerful command-line interface for managing and monitoring your Armor Complete (secure public cloud) and Armor Anywhere (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published RESTful APIs.
 
-Every code push is built on Windows via AppVeyor, as well as on macOS and Ubuntu Linux via Travis CI, and tested using the Pester test and mock framework.
+Every code push is built using psake on Windows and Ubuntu Linux via AppVeyor, as well as on macOS and Ubuntu Linux via Travis CI, and tested using the Pester test and mock framework.
 
-Code coverage scores and reports showing how much of the project is covered by automated tests are tracked by Coveralls.
+Code coverage scores and reports showing 100% coverage are tracked by Coveralls.
 
-Every successful build is published on the PowerShell Gallery.'
+Cmdlet & private function documentation is generated programmatically via platyPS and rigorously tested to ensure accuracy.
+
+Every successful continuous integration build is continuously deployed to the AppVeyor NuGet project feed as a prerelease version for contributors.
+
+Every successful continuous integration build on the master branch is continuously deployed to the PowerShell Gallery to deliver rigorously tested new features as fast as possible to end users.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'
@@ -143,7 +147,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Armor','Defense','Cloud','Security','DevOps','Scripting','Automation','Complete','Anywhere','Compliance','PCI-DSS','HIPAA','HITRUST','GDPR','IaaS','SaaS','SECaaS','PSEdition_Core','PSEdition_Desktop'
+        Tags = 'Armor','Defense','Cloud','Security','DevOps','Scripting','Automation','Complete','Anywhere','Compliance','PCI-DSS','HIPAA','HITRUST','GDPR','IaaS','SaaS','SECaaS','Windows','Linux','Mac','macOS','PSEdition_Core','PSEdition_Desktop'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/tlindsay42/ArmorPowerShell/blob/master/LICENSE.txt'
