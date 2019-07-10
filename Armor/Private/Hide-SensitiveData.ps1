@@ -34,7 +34,7 @@ function Hide-SensitiveData {
         Uses a positional parameter Returns the hashtable with the Uri value set to '[REDACTED]'.
 
         .LINK
-        https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/
+        https://tlindsay42.github.io/ArmorPowerShell/private/Hide-SensitiveData/
 
         .LINK
         https://github.com/tlindsay42/ArmorPowerShell/blob/master/Armor/Private/Hide-SensitiveData.ps1
@@ -51,9 +51,7 @@ function Hide-SensitiveData {
         .FUNCTIONALITY
         PowerShell Language
     #>
-    [CmdletBinding(
-        HelpUri = 'https://tlindsay42.github.io/ArmorPowerShell/Private/Hide-SensitiveData/'
-    )]
+    [CmdletBinding()]
     [OutputType( [Hashtable] )]
     param (
         # Specifies the objects to evaluate for sensitive property keys.
