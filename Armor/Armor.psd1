@@ -43,7 +43,7 @@ Every successful continuous integration build is continuously deployed to the Ap
 Every successful continuous integration build on the master branch is continuously deployed to the PowerShell Gallery to deliver rigorously tested new features as fast as possible to end users.'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '5.0'
+PowerShellVersion = '5.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
