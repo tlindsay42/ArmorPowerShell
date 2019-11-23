@@ -195,22 +195,12 @@ if ( $SkipDependencies -eq $false ) {
     $ErrorActionPreference = 'Continue'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
-    if ( $Env:CI_LINUX -eq $true ) {
-        $details = python -m pip install --user --upgrade pip |
-            Out-String
-        $return = $?
-        $details += python -m pip install --user --requirement $requirementsPath |
-            Out-String
-        $return = $?
-    }
-    else {
-        $details = python -m pip install --upgrade pip |
-            Out-String
-        $return = $?
-        $details += python -m pip install --requirement $requirementsPath |
-            Out-String
-        $return = $?
-    }
+    $details = pip3 install --upgrade pip |
+        Out-String
+    $return = $?
+    $details += pip3 install --requirement $requirementsPath |
+        Out-String
+    $return = $?
     $ErrorActionPreference = $temp
     $mkdocs = Get-Command -Name 'mkdocs' -ErrorAction 'Continue'
     if ( $mkdocs -eq $null ) {
