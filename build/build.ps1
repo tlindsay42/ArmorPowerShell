@@ -85,9 +85,7 @@ if ( $SkipDependencies -eq $false ) {
     $modules = 'PackageManagement', 'PowerShellGet'
     Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
     foreach ( $module in $modules ) {
-        if ( ( Get-Module -Name $module ) -eq $null ) {
-            Import-Module -Name $module -Force
-        }
+        Import-Module -Name $module -Force
     }
     #endregion
 
