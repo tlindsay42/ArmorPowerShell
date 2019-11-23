@@ -29,19 +29,6 @@ for:
 - matrix:
     only:
     - PowerShell: 6
-      image: Visual Studio 2017
-  cache:
-  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
-  - '%APPDATA%\npm'
-  - '%APPDATA%\npm-cache'
-  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Lib\site-packages -> requirements.txt'
-  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
-  build_script:
-  - pwsh: ./build/build.ps1
-- matrix:
-    only:
-    - PowerShell: 6
       image: Ubuntu
   cache:
   - '$HOME/.local/share/powershell/Modules -> requirements.psd1'
@@ -60,22 +47,24 @@ for:
   - '%APPDATA%\npm'
   - '%APPDATA%\npm-cache'
   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Lib\site-packages -> requirements.txt'
-  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
+  - '%PYTHON%\Lib\site-packages -> requirements.txt'
+  - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
+  - ps: $env:PATH = $env:PYTHON;$env:PYTHON\Scripts;$env:PATH
   - ps: ./build/build.ps1 -DeploymentMode
-- matrix:
-    only:
-    - PowerShell: 6
-  cache:
-  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
-  - '%APPDATA%\npm'
-  - '%APPDATA%\npm-cache'
-  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-  - 'C:\Python27\Lib\site-packages -> requirements.txt'
-  - 'C:\Python27\Scripts\mkdocs.exe -> requirements.txt'
-  build_script:
-  - pwsh: ./build/build.ps1
+# - matrix:
+#     only:
+#     - PowerShell: 6
+#   cache:
+#   - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
+#   - '%APPDATA%\npm'
+#   - '%APPDATA%\npm-cache'
+#   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
+#   - '%PYTHON%\Lib\site-packages -> requirements.txt'
+#   - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
+#   build_script:
+#   - pwsh: $env:PATH = $env:PYTHON;$env:PYTHON\Scripts;$env:PATH
+#   - pwsh: ./build/build.ps1
 
 matrix:
   exclude:
@@ -95,6 +84,7 @@ environment:
     secure: hClQPXu5AWqBK5R49g0hrkhYtLgDpdftXlpMk2tTO1ba4FlsL6Q6BtpqR1QQPkRC
   matrix:
   - PowerShell: '5'
+    PYTHON: C:\Python37-x64
   - PowerShell: '6'
 
 test: off
