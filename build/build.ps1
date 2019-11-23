@@ -81,15 +81,19 @@ if ( $SkipDependencies -eq $false ) {
         Write-StatusUpdate -Message 'PowerShell package providers:' -Details $details
         Remove-Variable -Name 'providerNames'
         #endregion
-
-        #region Import package management modules
-        $modules = 'PackageManagement', 'PowerShellGet'
-        Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
-        foreach ( $module in $modules ) {
-            Import-Module -Name $module -Force
-        }
-        #endregion
     }
+
+    #region Import package management modules
+    $modules = 'PackageManagement', 'PowerShellGet'
+    Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
+    foreach ( $module in $modules ) {
+        Import-Module -Name $module -Force
+    }
+    $details = Get-Module -Name $modules |
+        Format-Table -AutoSize -Property 'Name', 'Version' |
+        Out-String
+    Write-StatusUpdate -Message 'Provider modules:' -Details $details
+    #endregion
 
     #region Configure PowerShell repositories
     $splats = @(
