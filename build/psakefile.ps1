@@ -511,6 +511,7 @@ $task = @{
             Copyright             = '©' + $TEXT.Copyright
             Description           = $TEXT.Description
             PowerShellVersion     = '5.0'
+            CompatiblePSEditions  = 'Core', 'Desktop'
             ProcessorArchitecture = 'None'
             ScriptsToProcess      = Get-ChildItem -Path $CI_MODULE_LIB_PATH -Filter $GLOB_PS1 -File |
                 Resolve-Path -Relative
