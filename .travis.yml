@@ -46,9 +46,6 @@ matrix:
         casks:
         - powershell
         update: true
-    language: python
-    python:
-    - "3.7"
     before_cache:
     - rm -f $HOME/Library/Caches/pip/log/debug.log
     cache:
