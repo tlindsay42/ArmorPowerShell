@@ -50,7 +50,7 @@ for:
   - '%PYTHON%\Lib\site-packages -> requirements.txt'
   - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
   build_script:
-  - ps: $env:PATH = $env:PYTHON;$env:PYTHON\Scripts;$env:PATH
+  - ps: $env:PATH = "${env:PYTHON};${env:PYTHON}\Scripts;${env:PATH}"
   - ps: ./build/build.ps1 -DeploymentMode
 # - matrix:
 #     only:
@@ -63,7 +63,7 @@ for:
 #   - '%PYTHON%\Lib\site-packages -> requirements.txt'
 #   - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
 #   build_script:
-#   - pwsh: $env:PATH = $env:PYTHON;$env:PYTHON\Scripts;$env:PATH
+#   - pwsh: $env:PATH = "${env:PYTHON};${env:PYTHON}\Scripts;${env:PATH}"
 #   - pwsh: ./build/build.ps1
 
 matrix:
