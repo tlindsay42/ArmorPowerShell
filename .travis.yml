@@ -43,7 +43,7 @@ matrix:
     osx_image: xcode9.4
     before_install:
     - brew update
-    - brew tap caskroom/cask
+    - brew tap homebrew/cask-cask
     - brew cask install powershell
     before_cache:
     - rm -f $HOME/Library/Caches/pip/log/debug.log
