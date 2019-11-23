@@ -122,7 +122,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         $testCases = @(
             @{
                 Property = 'PowerShellVersion'
-                Value    = '5.0'
+                Value    = '5.1'
             },
             @{
                 Property = 'LicenseURI'
