@@ -41,10 +41,11 @@ matrix:
       - $HOME/.npm
   - os: osx
     osx_image: xcode11.2
-    before_install:
-    - brew update
-    - brew tap homebrew/cask-cask
-    - brew cask install powershell
+    addons:
+      homebrew:
+        casks:
+        - powershell
+        update: true
     before_cache:
     - rm -f $HOME/Library/Caches/pip/log/debug.log
     cache:
