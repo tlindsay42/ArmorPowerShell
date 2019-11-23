@@ -72,7 +72,6 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
         }
 
         $testCases = @(
-            @{ Property = 'CompatiblePSEditions' },
             @{ Property = 'PowerShellHostName' },
             @{ Property = 'PowerShellHostVersion' },
             @{ Property = 'DotNetFrameworkVersion' },
@@ -90,6 +89,16 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             param ( [String] $Property )
             $moduleInfo.$Property |
                 Should -BeExactly $null
+        }
+
+        $testCases = @(
+            @{ Value = 'Core' },
+            @{ Value = 'Desktop' }
+        )
+        It -Name "should have set property: CompatiblePSEditions to contain value: <Value>" -TestCases $testCases -Test {
+            param ( [String] $Value )
+            $Value |
+                Should -BeIn $moduleInfo.CompatiblePSEditions
         }
 
         $testCases = $(

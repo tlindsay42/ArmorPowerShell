@@ -15,7 +15,7 @@ RootModule = 'Armor.psm1'
 ModuleVersion = '1.0.335'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Core', 'Desktop')
 
 # ID used to uniquely identify this module
 GUID = '226c1ea9-1078-402a-861c-10a845a0d173'
