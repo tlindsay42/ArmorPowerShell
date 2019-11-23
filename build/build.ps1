@@ -71,23 +71,25 @@ Remove-Variable -Name 'strictModeVersion'
 #endregion
 
 if ( $SkipDependencies -eq $false ) {
-    #region Install PowerShell package providers
-    $providerNames = 'NuGet', 'PowerShellGet'
-    Write-StatusUpdate -Message "Install PowerShell package providers: $( ( $providerNames.ForEach( { "'${_}'" } ) -join ', ' ) )."
-    $details = Get-PackageProvider -Name $providerNames -Force -ForceBootstrap |
-        Format-Table -AutoSize -Property 'Name', 'Version' |
-        Out-String
-    Write-StatusUpdate -Message 'PowerShell package providers:' -Details $details
-    Remove-Variable -Name 'providerNames'
-    #endregion
+    if ( $Env:CI_LINUX -eq $false ) {
+        #region Install PowerShell package providers
+        $providerNames = 'NuGet', 'PowerShellGet'
+        Write-StatusUpdate -Message "Install PowerShell package providers: $( ( $providerNames.ForEach( { "'${_}'" } ) -join ', ' ) )."
+        $details = Get-PackageProvider -Name $providerNames -Force -ForceBootstrap |
+            Format-Table -AutoSize -Property 'Name', 'Version' |
+            Out-String
+        Write-StatusUpdate -Message 'PowerShell package providers:' -Details $details
+        Remove-Variable -Name 'providerNames'
+        #endregion
 
-    #region Import package management modules
-    $modules = 'PackageManagement', 'PowerShellGet'
-    Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
-    foreach ( $module in $modules ) {
-        Import-Module -Name $module -Force
+        #region Import package management modules
+        $modules = 'PackageManagement', 'PowerShellGet'
+        Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
+        foreach ( $module in $modules ) {
+            Import-Module -Name $module -Force
+        }
+        #endregion
     }
-    #endregion
 
     #region Configure PowerShell repositories
     $splats = @(
