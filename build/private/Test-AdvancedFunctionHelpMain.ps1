@@ -46,7 +46,10 @@ function Test-AdvancedFunctionHelpMain ( [PSObject] $Help ) {
                 Should -BeGreaterThan 3
         }
 
-        $helpLinks = $Help.RelatedLinks.NavigationLink.Uri
+        $helpLinks = $Help.RelatedLinks.NavigationLink.Uri |
+            Where-Object -FilterScript {
+                $_ -notmatch 'https://docs.armor.com/display/KBSS/'
+            }
         if ( $CI_COMMIT_MESSAGE -match '\[new\]' ) {
             $helpLinks = $helpLinks.Where( {
                     $_ -notmatch ( $uriRegex -join '|' )
