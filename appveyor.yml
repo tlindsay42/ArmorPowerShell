@@ -23,13 +23,13 @@ max_jobs: 3
 
 image:
 - Visual Studio 2017
-- Ubuntu
+- Previous Ubuntu
 
 for:
 - matrix:
     only:
     - PowerShell: 6
-      image: Ubuntu
+      image: Previous Ubuntu
   cache:
   - '$HOME/.local/share/powershell/Modules -> requirements.psd1'
   - '$HOME/.nvm'
@@ -69,7 +69,7 @@ for:
 matrix:
   exclude:
   - PowerShell: 5
-    image: Ubuntu
+    image: Previous Ubuntu
   - PowerShell: 6
     image: Visual Studio 2017
 
