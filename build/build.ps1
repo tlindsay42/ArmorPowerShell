@@ -90,7 +90,6 @@ if ( $SkipDependencies -eq $false ) {
     $modules = 'PackageManagement', 'PowerShellGet'
     Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
     foreach ( $module in $modules ) {
-        Remove-Module -Name $module -Force
         Import-Module -Name $module -Force
     }
     $details = Get-Module |
@@ -155,13 +154,24 @@ if ( $SkipDependencies -eq $false ) {
     else {
         $tag = 'Default'
     }
-    Write-StatusUpdate -Message "Install PSDepend managed PowerShell module development dependencies."
+    Write-StatusUpdate -Message 'Install PSDepend managed PowerShell module development dependencies.'
     $psdependPath = Split-Path -Path $PSScriptRoot -Parent |
         Join-Path -ChildPath 'requirements.psd1'
 
     $base = 'Base'
     Invoke-PSDepend -Path $psdependPath -Tags $base -Install -Force -ErrorAction 'Continue'
-    Remove-Module -Name 'PowerShellGet', 'PackageManagement'
+
+    Write-StatusUpdate -Message "Re-import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
+    foreach ( $module in $modules ) {
+        Remove-Module -Name $module -Force -ErrorAction 'SilentlyContinue'
+        Import-Module -Name $module -Force
+    }
+    $details = Get-Module |
+        Format-Table -AutoSize -Property 'Name', 'Version' |
+        Out-String
+    Write-StatusUpdate -Message 'Modules:' -Details $details
+
+    Write-StatusUpdate -Message 'Import PSDepend managed PowerShell module development dependencies.'
     Invoke-PSDepend -Path $psdependPath -Tags $base -Import -Confirm:$false -ErrorAction 'Continue'
     Remove-Variable -Name 'base'
 
