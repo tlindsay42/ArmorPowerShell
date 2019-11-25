@@ -90,12 +90,13 @@ if ( $SkipDependencies -eq $false ) {
     $modules = 'PackageManagement', 'PowerShellGet'
     Write-StatusUpdate -Message "Import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
     foreach ( $module in $modules ) {
+        Remove-Module -Name $module -Force
         Import-Module -Name $module -Force
     }
-    $details = Get-Module -Name $modules |
+    $details = Get-Module |
         Format-Table -AutoSize -Property 'Name', 'Version' |
         Out-String
-    Write-StatusUpdate -Message 'Provider modules:' -Details $details
+    Write-StatusUpdate -Message 'Modules:' -Details $details
     #endregion
 
     #region Configure PowerShell repositories
