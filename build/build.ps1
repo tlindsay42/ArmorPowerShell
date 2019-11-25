@@ -70,6 +70,9 @@ Set-StrictMode -Version $strictModeVersion
 Remove-Variable -Name 'strictModeVersion'
 #endregion
 
+# Print the path directories
+$Env:PATH
+
 if ( $SkipDependencies -eq $false ) {
     if ( $Env:CI_LINUX -eq $false ) {
         #region Install PowerShell package providers
