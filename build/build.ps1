@@ -164,6 +164,9 @@ if ( $SkipDependencies -eq $false ) {
     Write-StatusUpdate -Message "Re-import the $( ( $modules.ForEach( { "'${_}'" } ) -join ', ' ) ) modules."
     foreach ( $module in $modules ) {
         Remove-Module -Name $module -Force -ErrorAction 'SilentlyContinue'
+    }
+    Start-Sleep -Seconds 1
+    foreach ( $module in $modules ) {
         Import-Module -Name $module -Force
     }
     $details = Get-Module |
