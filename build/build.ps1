@@ -219,19 +219,19 @@ if ( $SkipDependencies -eq $false ) {
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
     if ($env:TRAVIS_OS_NAME -eq 'osx') {
-        $details = pip install --upgrade pip |
-        Out-String
+        $details = python -m pip install --upgrade pip |
+            Out-String
         $return = $?
         $details += pip install --requirement $requirementsPath |
-        Out-String
+            Out-String
         $return = $?
     }
     else {
         $details = pip3 install --upgrade pip |
-        Out-String
+            Out-String
         $return = $?
         $details += pip3 install --requirement $requirementsPath |
-        Out-String
+            Out-String
         $return = $?
     }
     $mkdocs = Get-Command -Name 'mkdocs'
