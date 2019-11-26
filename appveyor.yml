@@ -23,22 +23,22 @@ max_jobs: 3
 
 image:
 - Visual Studio 2017
-# - Ubuntu
+- Ubuntu
 
 for:
-# - matrix:
-#     only:
-#     - PowerShell: 6
-#       image: Ubuntu
-#   cache:
-#   - '$HOME/.local/share/powershell/Modules -> requirements.psd1'
-#   - '$HOME/.nvm'
-#   - '$HOME/.npm'
-#   - '$HOME/.cache/pip -> requirements.txt'
-#   - '$HOME/.local/lib/python3.6/site-packages -> requirements.txt'
-#   - '$HOME/.local/bin/mkdocs -> requirements.txt'
-#   build_script:
-#   - pwsh: ./build/build.ps1
+- matrix:
+    only:
+    - PowerShell: 6
+      image: Ubuntu
+  cache:
+  - '$HOME/.local/share/powershell/Modules -> requirements.psd1'
+  - '$HOME/.nvm'
+  - '$HOME/.npm'
+  - '$HOME/.cache/pip -> requirements.txt'
+  - '$HOME/.local/lib/python3.6/site-packages -> requirements.txt'
+  - '$HOME/.local/bin/mkdocs -> requirements.txt'
+  build_script:
+  - pwsh: ./build/build.ps1
 - matrix:
     only:
     - PowerShell: 5
@@ -52,26 +52,26 @@ for:
   build_script:
   - ps: $env:PATH = "${env:PYTHON};${env:PYTHON}\Scripts;${env:PATH}"
   - ps: ./build/build.ps1 -DeploymentMode
-# - matrix:
-#     only:
-#     - PowerShell: 6
-#   cache:
-#   - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
-#   - '%APPDATA%\npm'
-#   - '%APPDATA%\npm-cache'
-#   - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
-#   - '%PYTHON%\Lib\site-packages -> requirements.txt'
-#   - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
-#   build_script:
-#   - pwsh: $env:PATH = "${env:PYTHON};${env:PYTHON}\Scripts;${env:PATH}"
-#   - pwsh: ./build/build.ps1
+- matrix:
+    only:
+    - PowerShell: 6
+  cache:
+  - '%USERPROFILE%\Documents\PowerShell\Modules -> requirements.psd1'
+  - '%APPDATA%\npm'
+  - '%APPDATA%\npm-cache'
+  - '%LOCALAPPDATA%\pip\cache -> requirements.txt'
+  - '%PYTHON%\Lib\site-packages -> requirements.txt'
+  - '%PYTHON%\Scripts\mkdocs.exe -> requirements.txt'
+  build_script:
+  - pwsh: $env:PATH = "${env:PYTHON};${env:PYTHON}\Scripts;${env:PATH}"
+  - pwsh: ./build/build.ps1
 
-# matrix:
-#   exclude:
-#   - PowerShell: 5
-#     image: Ubuntu
-#   - PowerShell: 6
-#     image: Visual Studio 2017
+matrix:
+  exclude:
+  - PowerShell: 5
+    image: Ubuntu
+  - PowerShell: 6
+    image: Visual Studio 2017
 
 clone_depth: 50
 
