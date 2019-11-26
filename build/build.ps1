@@ -224,8 +224,9 @@ if ( $SkipDependencies -eq $false ) {
     $details += pip3 install --requirement $requirementsPath |
         Out-String
     $return = $?
+    if ($env:TRAVIS_OS_NAME -eq 'osx') { $details = find / -type f -name mkdocs 2> /dev/null; Write-StatusUpdate -Message 'mkdocs location:' -Details $details }
+    $mkdocs = Get-Command -Name 'mkdocs'
     $ErrorActionPreference = $temp
-    $mkdocs = Get-Command -Name 'mkdocs' -ErrorAction 'Continue'
     if ( $mkdocs -eq $null ) {
         Write-StatusUpdate -Message 'Failed to install python development dependencies.' -Category 'Error' -Details $details
     }
