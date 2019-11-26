@@ -10,7 +10,7 @@
 
 This is an open source, community project that provides a powerful command-line interface for managing and monitoring your **[Armor Complete](https://www.armor.com/armor-complete-secure-hosting/ 'Armor Complete Product Page')** (secure public cloud) and **[Armor Anywhere](https://www.armor.com/armor-anywhere-security/ 'Armor Anywhere Product Page')** (security as a service) environments and accounts via a PowerShell module with cmdlets that interact with the published [RESTful APIs](https://docs.armor.com/display/KBSS/Armor+API+Guide 'Armor API Guide').
 
-Every code push is built using psake on **Windows** via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master 'AppVeyor: ArmorPowerShell: Latest Build Console'), as well as on **macOS** and **Ubuntu Linux** via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell 'Travis CI: ArmorPowerShell: Latest Build Console'), and tested using the [Pester](https://github.com/pester/Pester 'Pester GitHub repo') test and mock framework.
+Every code push is built using psake on **Windows** via [AppVeyor](https://ci.appveyor.com/project/tlindsay42/ArmorPowerShell/branch/master 'AppVeyor: ArmorPowerShell: Latest Build Console'), as well as on **Ubuntu Linux** via [Travis CI](https://travis-ci.org/tlindsay42/ArmorPowerShell 'Travis CI: ArmorPowerShell: Latest Build Console'), and tested using the [Pester](https://github.com/pester/Pester 'Pester GitHub repo') test and mock framework.
 
 Code coverage scores and reports showing 100% coverage are tracked by [Coveralls](https://coveralls.io/github/tlindsay42/ArmorPowerShell?branch=master 'Coveralls: ArmorPowerShell: Latest Report').
 
