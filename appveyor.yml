@@ -85,7 +85,7 @@ environment:
   matrix:
   - PowerShell: '5'
     PYTHON: C:\Python37-x64
-  # - PowerShell: '6'
+  - PowerShell: '6'
 
 test: off
 
