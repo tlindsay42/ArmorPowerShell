@@ -42,7 +42,6 @@ matrix:
       - $HOME/virtualenv
   - os: osx
     osx_image: xcode11.2
-    env: PATH=$PATH:/Users/travis/Library/Python/3.7/bin
     addons:
       homebrew:
         casks:

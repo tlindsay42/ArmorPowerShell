@@ -218,13 +218,22 @@ if ( $SkipDependencies -eq $false ) {
     $ErrorActionPreference = 'Continue'
     $requirementsPath = Join-Path -Path $Env:BHProjectPath -ChildPath 'requirements.txt'
     $return = $null
-    $details = pip3 install --upgrade pip |
+    if ($env:TRAVIS_OS_NAME -eq 'osx') {
+        $details = pip install --upgrade pip |
         Out-String
-    $return = $?
-    $details += pip3 install --requirement $requirementsPath |
+        $return = $?
+        $details += pip install --requirement $requirementsPath |
         Out-String
-    $return = $?
-    if ($env:TRAVIS_OS_NAME -eq 'osx') { $details = find / -type f -name mkdocs 2> /dev/null; Write-StatusUpdate -Message 'mkdocs location:' -Details $details }
+        $return = $?
+    }
+    else {
+        $details = pip3 install --upgrade pip |
+        Out-String
+        $return = $?
+        $details += pip3 install --requirement $requirementsPath |
+        Out-String
+        $return = $?
+    }
     $mkdocs = Get-Command -Name 'mkdocs'
     $ErrorActionPreference = $temp
     if ( $mkdocs -eq $null ) {
