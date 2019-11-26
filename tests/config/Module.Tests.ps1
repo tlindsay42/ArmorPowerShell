@@ -106,7 +106,7 @@ Describe -Name 'Module' -Tag 'Module' -Fixture {
             @{ Value = 'Armor Anywhere' },
             @{ Value = 'Windows' },
             @{ Value = 'AppVeyor' },
-            @{ Value = 'macOS' },
+            # @{ Value = 'macOS' },
             @{ Value = 'Ubuntu Linux' },
             @{ Value = 'Travis CI' },
             @{ Value = 'Code coverage' },
