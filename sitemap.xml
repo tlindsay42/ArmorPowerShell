@@ -2,247 +2,247 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Requirements/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Install/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Update/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Uninstall/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Getting_Started/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Project_Architecture/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Support/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Licensing/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Contributing/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/Code_of_Conduct/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/user/FAQs/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Armor/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Add-ArmorCompleteWorkloadTier/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Connect-Armor/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Disconnect-Armor/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccount/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountAddress/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorAccountContext/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteDatacenter/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkload/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorCompleteWorkloadTier/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorIdentity/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorUser/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Get-ArmorVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Invoke-ArmorWebRequest/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/New-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteWorkload/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Remove-ArmorCompleteWorkloadTier/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkload/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Rename-ArmorCompleteWorkloadTier/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Reset-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Restart-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Set-ArmorAccountContext/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Start-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/public/Stop-ArmorCompleteVM/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Add-ArmorApiUriQuery/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Assert-ArmorSession/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Expand-ArmorApiResult/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Format-ArmorApiRequestBody/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Get-ArmorApiData/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Hide-SensitiveData/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Invoke-ArmorRestMethod/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/New-ArmorApiUri/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Request-ArmorApiToken/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Select-ArmorApiResult/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://tlindsay42.github.io/ArmorPowerShell/private/Update-ArmorApiToken/</loc>
-     <lastmod>2019-11-26</lastmod>
+     <lastmod>2020-01-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
